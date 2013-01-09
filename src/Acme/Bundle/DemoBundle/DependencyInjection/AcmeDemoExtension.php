@@ -1,6 +1,6 @@
 <?php
 
-namespace Acme\DemoBundle\DependencyInjection;
+namespace Acme\Bundle\DemoBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;

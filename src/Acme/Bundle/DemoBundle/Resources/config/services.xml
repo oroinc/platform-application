@@ -5,12 +5,12 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="twig.extension.acme.demo" class="Acme\DemoBundle\Twig\Extension\DemoExtension" public="false">
+        <service id="twig.extension.acme.demo" class="Acme\Bundle\DemoBundle\Twig\Extension\DemoExtension" public="false">
             <tag name="twig.extension" />
             <argument type="service" id="twig.loader" />
         </service>
 
-        <service id="acme.demo.listener" class="Acme\DemoBundle\EventListener\ControllerListener">
+        <service id="acme.demo.listener" class="Acme\Bundle\DemoBundle\EventListener\ControllerListener">
             <tag name="kernel.event_listener" event="kernel.controller" method="onKernelController" />
             <argument type="service" id="twig.extension.acme.demo" />
         </service>
