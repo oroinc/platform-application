@@ -3,3 +3,4 @@
 /.project
 /composer.phar
 /vendor
+/cov
