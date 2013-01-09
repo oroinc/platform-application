@@ -1,5 +1,5 @@
 {
-    "hash": "addf2541972b996b4b6ae1658b8e4591",
+    "hash": "59d391abd76127fb36ec891b86790b48",
     "packages": [
         {
             "name": "doctrine/common",
@@ -591,6 +591,67 @@
                 "compression",
                 "minification"
             ]
+        },
+        {
+            "name": "laboro/OroFlexibleEntityBundle",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:laboro/OroFlexibleEntityBundle.git",
+                "reference": "ca2dd664b4b2cb449982a49c1dcafbc67a35abf0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laboro/OroFlexibleEntityBundle/zipball/ca2dd664b4b2cb449982a49c1dcafbc67a35abf0",
+                "reference": "ca2dd664b4b2cb449982a49c1dcafbc67a35abf0",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "symfony/symfony": "2.1.*",
+                "doctrine/orm": ">=2.2.3,<2.4-dev",
+                "doctrine/doctrine-bundle": "1.0.*",
+                "twig/extensions": "1.0.*@dev",
+                "symfony/assetic-bundle": "2.1.*",
+                "symfony/swiftmailer-bundle": "2.1.*",
+                "symfony/monolog-bundle": "2.1.*",
+                "sensio/distribution-bundle": "2.1.*",
+                "sensio/framework-extra-bundle": "2.1.*",
+                "sensio/generator-bundle": "2.1.*",
+                "jms/security-extra-bundle": "1.2.*",
+                "jms/di-extra-bundle": "1.1.*",
+                "kriswallsmith/assetic": "1.1.*@dev"
+            },
+            "time": "2013-01-09 11:33:43",
+            "type": "library",
+            "extra": {
+                "symfony-app-dir": "app",
+                "symfony-web-dir": "web"
+            },
+            "autoload": {
+                "psr-0": {
+                    "": "src/"
+                }
+            },
+            "scripts": {
+                "post-install-cmd": [
+                    "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+                    "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+                    "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+                    "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+                ],
+                "post-update-cmd": [
+                    "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+                    "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+                    "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+                    "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+                ]
+            },
+            "description": "BAP Flexible Entity Bundle",
+            "support": {
+                "source": "https://github.com/laboro/OroFlexibleEntityBundle/tree/master",
+                "issues": "https://github.com/laboro/OroFlexibleEntityBundle/issues"
+            }
         },
         {
             "name": "monolog/monolog",
@@ -1247,6 +1308,7 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "twig/extensions": 20,
-        "kriswallsmith/assetic": 20
+        "kriswallsmith/assetic": 20,
+        "laboro/oroflexibleentitybundle": 20
     }
 }
