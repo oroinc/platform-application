@@ -1,0 +1,21 @@
+{% extends 'AcmeDemoFlexibleEntityBundle::layout.html.twig' %}
+
+{% block content %}
+
+    <ul id="menu-block">
+        <!-- fields -->
+        <li>id: {{customer.id}}</li>
+        <li>email: {{customer.email}}</li>
+        <li>firstname: {{customer.firstname}}</li>
+        <li>lastname: {{customer.lastname}}</li>
+        <li>created: {{customer.created|date('Y-m-d h:i:s')}}</li>
+        <li>updated: {{customer.updated|date('Y-m-d h:i:s')}}</li>
+        <!-- attributes -->
+        <li>Dob : {{ customer.dob|date('Y-m-d')}}</li>
+        <li>Gender : {{ customer.gender }}</li>
+        <li>Company : {{ customer.company }}</li>
+    </ul>
+    
+    <p><a href="{{ path('acme_demoflexibleentity_customer_index') }}">Back to list</a></p>
+
+{% endblock %}

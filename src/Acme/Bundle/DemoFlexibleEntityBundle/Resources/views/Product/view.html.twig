@@ -1,0 +1,26 @@
+{% extends 'AcmeDemoFlexibleEntityBundle::layout.html.twig' %}
+
+{% block content %}
+
+    <ul id="menu-block">
+        <li class="subtitle"><h2>base fields</h2></li>
+        <li>id:      {{product.id}}</li>
+        <li>sku:     {{product.sku}}</li>
+        <li>created: {{product.created|date('Y-m-d h:i:s')}}</li>
+        <li>updated: {{product.updated|date('Y-m-d h:i:s')}}</li>
+        
+        <li class="subtitle"><h2>Get explicit attributes values (automatically grab locale)</h2></li>
+        <li>Name :        {{product.name}}</li>
+        <li>Description : {{product.description}}</li>
+        <li>Color :       {{product.color}}</li>
+        <li>Size :        {{product.size}}</li>
+        
+        <li class="subtitle"><h2>All attributes values (all values including translated)</h2></li>
+        {% for value in product.values %}
+            <li>{{value.attribute.code}} : {{value.localecode}} : {{value.data}}</li>
+        {% endfor %}
+    </ul>
+
+    <p><a href="{{ path('acme_demoflexibleentity_product_index') }}">Back to list</a></p>
+
+{% endblock %}
