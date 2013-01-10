@@ -219,7 +219,7 @@ class ProductController extends Controller
 
     /**
      * List product attributes
-     * @Route("/atribute")
+     * @Route("/attribute")
      * @Template()
      *
      * @return multitype
