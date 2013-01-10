@@ -61,12 +61,4 @@ class Manufacturer
     {
         return $this->name;
     }
-
-    /**
-     * @return string
-     */
-    public function __toString()
-    {
-        return $this->name;
-    }
 }
