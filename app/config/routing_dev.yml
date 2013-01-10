@@ -2,6 +2,12 @@ _welcome:
     pattern:  /{_locale}
     defaults: { _controller: AcmeDemoBundle:Welcome:index, _locale: %locale% }
 
+bap_demo_flexible:
+    resource: "@AcmeDemoFlexibleEntityBundle/Controller/"
+    type:     annotation
+    prefix:   /{_locale}/flexible-entity/
+    defaults: { _locale: %locale% }
+    
 _demo_secured:
     resource: "@AcmeDemoBundle/Controller/SecuredController.php"
     type:     annotation

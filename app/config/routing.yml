@@ -6,17 +6,3 @@
 #_internal:
 #    resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
 #    prefix:   /_internal
-
-oro_product:
-    resource: "@AcmeProductBundle/Controller/"
-    type:     annotation
-    prefix:   /{_locale}/product/
-
-oro_manufacturer:
-    resource: "@AcmeManufacturerBundle/Controller/"
-    type:     annotation
-    prefix:   /{_locale}/manufacturer/
-
-oro_customer:
-    resource: "@AcmeCustomerBundle/Controller/"
-    prefix:   /{_locale}/customer/
