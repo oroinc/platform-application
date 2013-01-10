@@ -108,9 +108,16 @@ ul li
     padding: 30px 30px 20px 30px;
 }
 
+.clear {clear:both;}
+
+.sidebar {
+    width:170px;
+    float:left;
+}
+
 #symfony-wrapper
 {
-    width:  970px;
+    width:  1000px;
     margin: 0 auto;
 }
 
@@ -291,4 +298,44 @@ ul#menu
     padding-left: 0;
     margin-right: 10px;
     display: inline;
+}
+
+#menu-block li
+{
+    display: block;
+    padding-bottom: 0px;
+}
+
+#menu-block li.subtitle
+{
+    padding-top: 10px;
+}
+
+.mytable tr {border: 1px solid; } 
+.mytable td {padding:10px;}
+
+/* flags icons */
+ul.switch-language {
+    float:right;
+}
+ul.switch-language li {
+    display: inline-block;
+    width: auto;
+}
+ul.switch-language li a {
+    display: block; height:11px; width:16px; background-position: 0 0; background-repeat: no-repeat;
+}
+
+#content-side
+{
+    width:                      700px;
+    float:                      right;
+    background-color:           white;
+    border:                     1px solid #DFDFDF;
+    padding:                    50px;
+    -moz-border-radius:         16px;
+    -webkit-border-radius:      16px;
+    border-radius:              16px;
+    margin-bottom:              20px;
+    word-wrap:                  break-word;
 }
