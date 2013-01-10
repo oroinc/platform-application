@@ -2,7 +2,7 @@ _welcome:
     pattern:  /{_locale}
     defaults: { _controller: AcmeDemoBundle:Welcome:index, _locale: %locale% }
 
-bap_demo_flexible:
+acme_demo_flexible_entity:
     resource: "@AcmeDemoFlexibleEntityBundle/Controller/"
     type:     annotation
     prefix:   /{_locale}/flexible-entity/
