@@ -1,5 +1,5 @@
 {
-    "hash": "59d391abd76127fb36ec891b86790b48",
+    "hash": "fa071c69872825402e5db1aee8154e7b",
     "packages": [
         {
             "name": "doctrine/common",
@@ -54,7 +54,7 @@
                     "email": "kontakt@beberlei.de"
                 },
                 {
-                    "name": "Johannes M. Schmitt",
+                    "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
                     "homepage": "https://github.com/schmittjoh",
                     "role": "Developer of wrapped JMSSerializerBundle"
@@ -532,12 +532,12 @@
             "source": {
                 "type": "git",
                 "url": "http://github.com/kriswallsmith/assetic.git",
-                "reference": "e6934e60a271630d4b3d59e41fb70eb5f901e0af"
+                "reference": "1677147ed595899a024636194ffe6f0c0d7800b5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/kriswallsmith/assetic/archive/e6934e60a271630d4b3d59e41fb70eb5f901e0af.zip",
-                "reference": "e6934e60a271630d4b3d59e41fb70eb5f901e0af",
+                "url": "https://github.com/kriswallsmith/assetic/archive/1677147ed595899a024636194ffe6f0c0d7800b5.zip",
+                "reference": "1677147ed595899a024636194ffe6f0c0d7800b5",
                 "shasum": ""
             },
             "require": {
@@ -558,7 +558,7 @@
                 "ptachoire/cssembed": "Assetic provides the integration with phpcssembed to embed data uris",
                 "leafo/scssphp-compass": "Assetic provides the integration with the SCSS compass plugin"
             },
-            "time": "2013-01-08 20:39:03",
+            "time": "2013-01-11 14:41:50",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -593,80 +593,31 @@
             ]
         },
         {
-            "name": "laboro/OroFlexibleEntityBundle",
-            "version": "dev-master",
-            "target-dir": "Oro/Bundle/FlexibleEntityBundle",
-            "source": {
-                "type": "git",
-                "url": "git@github.com:laboro/OroFlexibleEntityBundle.git",
-                "reference": "79e9a2bf834507ea5266d5a068b1d069311cfee9"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/laboro/OroFlexibleEntityBundle/zipball/79e9a2bf834507ea5266d5a068b1d069311cfee9",
-                "reference": "79e9a2bf834507ea5266d5a068b1d069311cfee9",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3",
-                "symfony/symfony": "2.1.*"
-            },
-            "time": "2013-01-09 13:47:00",
-            "type": "symfony-bundle",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Oro\\Bundle\\FlexibleEntityBundle": ""
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "description": "BAP Flexible Entity Bundle",
-            "homepage": "https://github.com/laboro/OroFlexibleEntityBundle",
-            "keywords": [
-                "BAP"
-            ],
-            "support": {
-                "source": "https://github.com/laboro/OroFlexibleEntityBundle/tree/master",
-                "issues": "https://github.com/laboro/OroFlexibleEntityBundle/issues"
-            }
-        },
-        {
             "name": "monolog/monolog",
-            "version": "1.3.0",
+            "version": "1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog",
-                "reference": "1.3.0"
+                "reference": "1.2.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/Seldaek/monolog/archive/1.3.0.zip",
-                "reference": "1.3.0",
+                "url": "https://github.com/Seldaek/monolog/zipball/1.2.1",
+                "reference": "1.2.1",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.0",
-                "psr/log": ">=1.0,<2.0"
+                "php": ">=5.3.0"
             },
             "require-dev": {
-                "mlehner/gelf-php": "1.0.*",
-                "raven/raven": "0.3.*",
-                "doctrine/couchdb": "dev-master"
+                "mlehner/gelf-php": "1.0.*"
             },
             "suggest": {
                 "mlehner/gelf-php": "Allow sending log messages to a GrayLog2 server",
-                "raven/raven": "Allow sending log messages to a Sentry server",
-                "doctrine/couchdb": "Allow sending log messages to a CouchDB server",
                 "ext-amqp": "Allow sending log messages to an AMQP server (1.0+ required)",
                 "ext-mongo": "Allow sending log messages to a MongoDB server"
             },
-            "time": "2013-01-07 20:26:46",
+            "time": "2012-08-29 04:53:20",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -690,50 +641,11 @@
                     "role": "Developer"
                 }
             ],
-            "description": "Sends your logs to files, sockets, inboxes, databases and various web services",
+            "description": "Logging for PHP 5.3",
             "homepage": "http://github.com/Seldaek/monolog",
             "keywords": [
                 "log",
-                "logging",
-                "psr-3"
-            ]
-        },
-        {
-            "name": "psr/log",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/php-fig/log",
-                "reference": "1.0.0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/php-fig/log/archive/1.0.0.zip",
-                "reference": "1.0.0",
-                "shasum": ""
-            },
-            "time": "2012-12-21 11:40:51",
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Psr\\Log\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "PHP-FIG",
-                    "homepage": "http://www.php-fig.org/"
-                }
-            ],
-            "description": "Common interface for logging libraries",
-            "keywords": [
-                "log",
-                "psr",
-                "psr-3"
+                "logging"
             ]
         },
         {
@@ -991,17 +903,17 @@
         },
         {
             "name": "symfony/monolog-bundle",
-            "version": "v2.1.5",
+            "version": "v2.1.7",
             "target-dir": "Symfony/Bundle/MonologBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/MonologBundle",
-                "reference": "v2.1.5"
+                "reference": "v2.1.7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony/MonologBundle/archive/v2.1.5.zip",
-                "reference": "v2.1.5",
+                "url": "https://github.com/symfony/MonologBundle/archive/v2.1.7.zip",
+                "reference": "v2.1.7",
                 "shasum": ""
             },
             "require": {
@@ -1009,13 +921,13 @@
                 "symfony/monolog-bridge": ">=2.1.0,<2.3-dev",
                 "symfony/dependency-injection": ">=2.1.0,<2.3-dev",
                 "symfony/config": ">=2.1.0,<2.3-dev",
-                "monolog/monolog": "1.*"
+                "monolog/monolog": ">=1.0,<1.3-dev"
             },
             "require-dev": {
                 "symfony/yaml": ">=2.1.0,<2.3-dev",
                 "symfony/config": ">=2.1.0,<2.3-dev"
             },
-            "time": "2012-09-20 10:40:24",
+            "time": "2013-01-07 10:57:41",
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
@@ -1042,7 +954,11 @@
                 }
             ],
             "description": "Symfony MonologBundle",
-            "homepage": "http://symfony.com"
+            "homepage": "http://symfony.com",
+            "keywords": [
+                "log",
+                "logging"
+            ]
         },
         {
             "name": "symfony/swiftmailer-bundle",
@@ -1291,7 +1207,6 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "twig/extensions": 20,
-        "kriswallsmith/assetic": 20,
-        "laboro/oroflexibleentitybundle": 20
+        "kriswallsmith/assetic": 20
     }
 }

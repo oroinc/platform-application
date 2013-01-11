@@ -193,13 +193,12 @@ class CustomerManagerTest extends KernelAwareTest
         // create attribute
         $attribute = $this->manager->createAttribute();
         $attribute->setCode($code);
-        $attribute->setTitle($title);
         $attribute->setBackendStorage($backendStorage);
         $attribute->setBackendType($backendType);
 
         // create options
         foreach ($options as $option) {
-            $this->option = $this->manager->createNewAttributeOption();
+            $this->option = $this->manager->createAttributeOption();
             $optVal = $this->manager->createAttributeOptionValue();
             $optVal->setValue($option);
             $this->option->addOptionValue($optVal);

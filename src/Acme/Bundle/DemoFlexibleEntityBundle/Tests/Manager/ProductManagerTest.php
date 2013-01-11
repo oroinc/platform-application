@@ -68,7 +68,6 @@ class ProductManagerTest extends KernelAwareTest
         $attName = $this->manager->createAttribute();
         $attNameCode= 'name'.$timestamp;
         $attName->setCode($attNameCode);
-        $attName->setTitle('Name');
         $attName->setBackendStorage(AbstractAttributeType::BACKEND_STORAGE_ATTRIBUTE_VALUE);
         $attName->setBackendType(AbstractAttributeType::BACKEND_TYPE_VARCHAR);
         $attName->setTranslatable(true);
@@ -78,7 +77,6 @@ class ProductManagerTest extends KernelAwareTest
         $attSize = $this->manager->createAttribute();
         $attSizeCode= 'size'.$timestamp;
         $attSize->setCode($attSizeCode);
-        $attSize->setTitle('Size');
         $attSize->setBackendStorage(AbstractAttributeType::BACKEND_STORAGE_ATTRIBUTE_VALUE);
         $attSize->setBackendType(AbstractAttributeType::BACKEND_TYPE_INTEGER);
         $this->manager->getStorageManager()->persist($attSize);

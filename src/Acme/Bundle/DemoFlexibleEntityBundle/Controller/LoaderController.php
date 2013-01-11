@@ -407,7 +407,6 @@ class LoaderController extends Controller
         } else {
             $att = $this->getCustomerManager()->createAttribute();
             $att->setCode($attCode);
-            $att->setTitle('Company');
             $att->setBackendStorage(AbstractAttributeType::BACKEND_STORAGE_ATTRIBUTE_VALUE);
             $att->setBackendType(AbstractAttributeType::BACKEND_TYPE_VARCHAR);
             $this->getCustomerManager()->getStorageManager()->persist($att);
@@ -422,7 +421,6 @@ class LoaderController extends Controller
         } else {
             $att = $this->getCustomerManager()->createAttribute();
             $att->setCode($attCode);
-            $att->setTitle('Date of birth');
             $att->setBackendStorage(AbstractAttributeType::BACKEND_STORAGE_ATTRIBUTE_VALUE);
             $att->setBackendType(AbstractAttributeType::BACKEND_TYPE_DATE);
             $this->getCustomerManager()->getStorageManager()->persist($att);
@@ -437,17 +435,16 @@ class LoaderController extends Controller
         } else {
             $att = $this->getCustomerManager()->createAttribute();
             $att->setCode($attCode);
-            $att->setTitle('Gender');
             $att->setBackendStorage(AbstractAttributeType::BACKEND_STORAGE_ATTRIBUTE_VALUE);
             $att->setBackendType(AbstractAttributeType::BACKEND_TYPE_OPTION);
             // add option and related value
-            $opt = $this->getCustomerManager()->createNewAttributeOption();
+            $opt = $this->getCustomerManager()->createAttributeOption();
             $optVal = $this->getCustomerManager()->createAttributeOptionValue();
             $optVal->setValue('Mr');
             $opt->addOptionValue($optVal);
             $att->addOption($opt);
             // add another option
-            $opt = $this->getCustomerManager()->createNewAttributeOption();
+            $opt = $this->getCustomerManager()->createAttributeOption();
             $optVal = $this->getCustomerManager()->createAttributeOptionValue();
             $optVal->setValue('Mrs');
             $opt->addOptionValue($optVal);
@@ -485,7 +482,6 @@ class LoaderController extends Controller
         } else {
             $attribute = $this->getProductManager()->createAttribute();
             $attribute->setCode($attributeCode);
-            $attribute->setTitle('Name');
             $attribute->setRequired(true);
             $attribute->setBackendStorage(AbstractAttributeType::BACKEND_STORAGE_ATTRIBUTE_VALUE);
             $attribute->setBackendType(AbstractAttributeType::BACKEND_TYPE_VARCHAR);
@@ -502,7 +498,6 @@ class LoaderController extends Controller
         } else {
             $attribute = $this->getProductManager()->createAttribute();
             $attribute->setCode($attributeCode);
-            $attribute->setTitle('Description');
             $attribute->setBackendStorage(AbstractAttributeType::BACKEND_STORAGE_ATTRIBUTE_VALUE);
             $attribute->setBackendType(AbstractAttributeType::BACKEND_TYPE_TEXT);
             $attribute->setTranslatable(true);
@@ -518,7 +513,6 @@ class LoaderController extends Controller
         } else {
             $attribute = $this->getProductManager()->createAttribute();
             $attribute->setCode($attributeCode);
-            $attribute->setTitle('Size');
             $attribute->setBackendStorage(AbstractAttributeType::BACKEND_STORAGE_ATTRIBUTE_VALUE);
             $attribute->setBackendType(AbstractAttributeType::BACKEND_TYPE_INTEGER);
             $this->getProductManager()->getStorageManager()->persist($attribute);
@@ -533,14 +527,13 @@ class LoaderController extends Controller
         } else {
             $attribute = $this->getProductManager()->createAttribute();
             $attribute->setCode($attributeCode);
-            $attribute->setTitle('Color');
             $attribute->setBackendStorage(AbstractAttributeType::BACKEND_STORAGE_ATTRIBUTE_VALUE);
             $attribute->setBackendType(AbstractAttributeType::BACKEND_TYPE_OPTION);
             $attribute->setTranslatable(false); // only one value but option can be translated in option values
             // add translatable option and related value "Red", "Blue", "Green"
             $colors = array("Red", "Blue", "Green");
             foreach ($colors as $color) {
-                $option = $this->getProductManager()->createNewAttributeOption();
+                $option = $this->getProductManager()->createAttributeOption();
                 $option->setTranslatable(true);
                 $optionValue = $this->getProductManager()->createAttributeOptionValue();
                 $optionValue->setValue($color);
