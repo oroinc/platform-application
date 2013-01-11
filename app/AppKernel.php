@@ -22,6 +22,7 @@ class AppKernel extends Kernel
 
             // BAP bundles
             new Oro\Bundle\FlexibleEntityBundle\OroFlexibleEntityBundle(),
+            new Oro\Bundle\UIBundle\OroUIBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

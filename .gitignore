@@ -5,3 +5,5 @@
 /composer.phar
 /vendor
 /cov
+/web/bundles
+/app/config/parameters.yml
