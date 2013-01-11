@@ -1,0 +1,6 @@
+[submodule "src/Oro/Bundle/UIBundle"]
+	path = src/Oro/Bundle/UIBundle
+	url = git@github.com:laboro/UIBundle.git
+[submodule "src/Oro/Bundle/FlexibleEntityBundle"]
+	path = src/Oro/Bundle/FlexibleEntityBundle
+	url = git@github.com:laboro/OroFlexibleEntityBundle.git

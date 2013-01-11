@@ -1,4 +1,4 @@
-bap-standard
+bap-dev
 ============
 
-BAP standard edition (allows to easily create an application based on BAP bundles)
+BAP development edition (allows to easily work with BAP bundles repositories)

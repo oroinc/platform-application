@@ -1,6 +1,6 @@
 {
-    "name": "laboro/bap-standard",
-    "description": "The \"BAP Standard Edition\" distribution",
+    "name": "laboro/bap-dev",
+    "description": "The \"BAP Development Edition\" distribution",
     "autoload": {
         "psr-0": { "": "src/" }
     },
@@ -18,16 +18,8 @@
         "sensio/generator-bundle": "2.1.*",
         "jms/security-extra-bundle": "1.2.*",
         "jms/di-extra-bundle": "1.1.*",
-        "kriswallsmith/assetic": "1.1.*@dev",
-        "laboro/OroFlexibleEntityBundle": "dev-master"
+        "kriswallsmith/assetic": "1.1.*@dev"
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/laboro/OroFlexibleEntityBundle.git",
-            "branch": "master"
-        }
-    ],
     "scripts": {
         "post-install-cmd": [
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
