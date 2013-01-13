@@ -1,16 +1,24 @@
 {% extends 'AcmeDemoFlexibleEntityBundle::layout.html.twig' %}
 
-{% block content %}
+{% block pagecontent %}
 
-    <table class="mytable">
-        <tr>
-            <td>Id</td><td>Name</td>
-        </tr>
+        <div class="popup-box">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                </tr>
+                </thead>
+                <tbody>
     {% for manufacturer in manufacturers %}
         <tr>
             <td>{{ manufacturer.id }}</td><td>{{ manufacturer.name }}</td>
         </tr>
     {% endfor %}
-    </table>
+                </tbody>
+            </table>
+        </div>
+        <hr />
 
 {% endblock %}

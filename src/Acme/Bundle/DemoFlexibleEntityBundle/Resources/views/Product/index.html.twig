@@ -1,6 +1,6 @@
 {% extends 'AcmeDemoFlexibleEntityBundle::layout.html.twig' %}
 
-{% block content %}
+{% block pagecontent %}
 
     <ul id="menu-block">
         <li><a href="{{ path('acme_demoflexibleentity_product_index') }}">Select entities and all attribute values</a></li>
@@ -22,54 +22,64 @@
 
     <p>Nb results : {{ products|length }}</p>
 
-    <table class="mytable">
-        <tr>
-            <td>Id</td>
-            <td>Sku</td>
-            
-            {% if 'name' in attributes %}
-                <td>Name</td>
-            {% endif %}
-            
-            {% if 'description' in attributes %}
-                <td>Description</td>
-            {% endif %}
-            
-            {% if 'size' in attributes %}
-                <td>Size</td>
-            {% endif %}
-            
-            {% if 'color' in attributes %}
-                <td>Color</td>
-            {% endif %}
-            
-            <td>Action</td>
-        </tr>
-    {% for product in products %}
-        <tr>
-            <!-- fields -->
-            <td>{{ product.id }}</td>
-            <td>{{ product.sku }}</td>
-            
-            <!-- attributes -->
-            {% if 'name' in attributes %}
-                <td>{{ product.name }}</td>
-            {% endif %}
-            
-            {% if 'description' in attributes %}
-                <td>{{ product.description }}</td>
-            {% endif %}
-            
-            {% if 'size' in attributes %}
-                <td>{{ product.size }}</td>
-            {% endif %}
-            
-            {% if 'color' in attributes %}
-                <td>{{ product.color }}</td>
-            {% endif %}
-            <td><a href="{{ path('acme_demoflexibleentity_product_view', {'id': product.id}) }}">Load details</a></td>
-        </tr>
-    {% endfor %}
-    </table>
+        <div class="popup-box">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Sku</th>
+
+                    {% if 'name' in attributes %}
+                        <th>Name</th>
+                    {% endif %}
+
+                    {% if 'description' in attributes %}
+                        <th>Description</th>
+                    {% endif %}
+
+                    {% if 'size' in attributes %}
+                        <th>Size</th>
+                    {% endif %}
+
+                    {% if 'color' in attributes %}
+                       <th>Color</th>
+                    {% endif %}
+
+                    <th>Action</th>
+
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for product in products %}
+                <tr>
+                    <!-- fields -->
+                    <td>{{ product.id }}</td>
+                    <td>{{ product.sku }}</td>
+
+                    <!-- attributes -->
+                    {% if 'name' in attributes %}
+                       <td>{{ product.name }}</td>
+                    {% endif %}
+
+                    {% if 'description' in attributes %}
+                        <td>{{ product.description }}</td>
+                    {% endif %}
+
+                    {% if 'size' in attributes %}
+                        <td>{{ product.size }}</td>
+                    {% endif %}
+
+                    {% if 'color' in attributes %}
+                        <td>{{ product.color }}</td>
+                    {% endif %}
+                    <td><a href="{{ path('acme_demoflexibleentity_product_view', {'id': product.id}) }}">Load details</a></td>
+                 </tr>
+                 {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+        <hr />
 
 {% endblock %}

@@ -532,12 +532,12 @@
             "source": {
                 "type": "git",
                 "url": "http://github.com/kriswallsmith/assetic.git",
-                "reference": "1677147ed595899a024636194ffe6f0c0d7800b5"
+                "reference": "7f43630d18f5cb2c72a91dddd9c02228bb82f792"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/kriswallsmith/assetic/archive/1677147ed595899a024636194ffe6f0c0d7800b5.zip",
-                "reference": "1677147ed595899a024636194ffe6f0c0d7800b5",
+                "url": "https://github.com/kriswallsmith/assetic/archive/7f43630d18f5cb2c72a91dddd9c02228bb82f792.zip",
+                "reference": "7f43630d18f5cb2c72a91dddd9c02228bb82f792",
                 "shasum": ""
             },
             "require": {
@@ -549,7 +549,11 @@
                 "leafo/lessphp": "*",
                 "leafo/scssphp": "*",
                 "ptachoire/cssembed": "*",
-                "leafo/scssphp-compass": "*"
+                "leafo/scssphp-compass": "*",
+                "cssmin/cssmin": "*",
+                "mrclay/minify": "*",
+                "kamicane/packager": "*",
+                "joliclic/javascript-packer": "*"
             },
             "suggest": {
                 "twig/twig": "Assetic provides the integration with the Twig templating engine",
@@ -558,7 +562,7 @@
                 "ptachoire/cssembed": "Assetic provides the integration with phpcssembed to embed data uris",
                 "leafo/scssphp-compass": "Assetic provides the integration with the SCSS compass plugin"
             },
-            "time": "2013-01-11 14:41:50",
+            "time": "2013-01-11 23:08:21",
             "type": "library",
             "extra": {
                 "branch-alias": {

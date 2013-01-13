@@ -1,62 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Demo Flexible Entity Bundle{% endblock %}</title>
-        <link rel="icon" sizes="16x16" href="{{ asset('favicon.ico') }}" />
-        <link rel="stylesheet" href="{{ asset('bundles/acmedemo/css/demo.css') }}" />
-        <link rel="stylesheet" href="{{ asset('bundles/acmedemoflexibleentitybundle/css/demo.css') }}" />
-    </head>
-    <body>
-        <div id="symfony-wrapper">
-            <div id="symfony-header">&nbsp;</div>
+{% extends "OroUIBundle:Default:index.html.twig" %}
 
-            {% block header %}
-                <ul class="switch-language">
-                    {% set route_params = app.request.attributes.get('_route_params') %}
-                    {% if route_params == "" %}
-                        {% set route_params = [] %}
-                    {% endif %}
-                    <li>
-                        <a href="{{ path(
-                            app.request.attributes.get('_route'),
-                            route_params | merge({"_locale": "en"})
-                        ) }}" class="ui-icon-flag-us">EN</a>
-                    </li>&nbsp;&nbsp;
-                    <li>
-                        <a href="{{ path(
-                            app.request.attributes.get('_route'),
-                            route_params | merge({"_locale": "fr"})
-                        ) }}" data-role="button" class="ui-icon-flag-fr">FR</a>
-                    </li>
-                </ul>
-            {% endblock %}
+{% block content %}
 
-            {% for flashMessage in app.session.flashbag.get('notice') %}
-                <div class="flash-message">
-                    <em>Notice</em>: {{ flashMessage }}
-                </div>
-            {% endfor %}
-            
-            <div class="clear"></div>
-
-            <div class="sidebar">
-            {% block content_header %}
+    <div class="container-fluid">
+        <div class="row-fluid" id="wrapper">
+            <div class="span3">
+                <div id="sidebar" class="test-box alert alert-success">
+                   
                 <ul id="menu-block">
                     <li class="subtitle"><strong>Settings</strong></li>
                     <li><a href="{{ path('acme_demoflexibleentity_loader_truncatedb') }}">Reset DB</a></li>
                     <li><a href="{{ path('acme_demoflexibleentity_flexible_entityconfig') }}">Config flexibles</a></li>
-            
+
                     <li class="subtitle"><strong>Simple entity</strong></li>
                     <li><a href="{{ path('acme_demoflexibleentity_loader_manufacturer') }}">Insert manufacturers</a></li>
                     <li><a href="{{ path('acme_demoflexibleentity_manufacturer_index') }}">List manufacturers</a></li>
-            
+
                     <li class="subtitle"><strong>Flexible entity customer (no translatable values)</strong></li>
                     <li><a href="{{ path('acme_demoflexibleentity_loader_customerattribute') }}">Insert attributes</a></li>
                     <li><a href="{{ path('acme_demoflexibleentity_customer_attribute') }}">List attributes</a></li>
                     <li><a href="{{ path('acme_demoflexibleentity_loader_customer') }}">Insert customers</a></li>
                     <li><a href="{{ path('acme_demoflexibleentity_customer_index') }}">List customers</a></li>
-            
+
                     <li class="subtitle"><strong>Flexible entity product (translatable values)</strong></li>
                     <li><a href="{{ path('acme_demoflexibleentity_loader_productattribute') }}">Insert attributes</a></li>
                     <li><a href="{{ path('acme_demoflexibleentity_product_attribute') }}">List attributes</a></li>
@@ -64,18 +29,46 @@
                     <li><a href="{{ path('acme_demoflexibleentity_loader_producttranslate') }}">Translate products</a></li>
                     <li><a href="{{ path('acme_demoflexibleentity_product_index') }}">List products</a></li>
                 </ul>
-            {% endblock %}
-            </div>
 
-            <div class="content-side">
-                {% block content %}
+                </div>
+            </div>
+            <div class="span9">
+                <div id="content" class="test-box alert alert-block">
+
+                    {% set route_params = app.request.attributes.get('_route_params') %}
+                    {% if route_params == "" %}
+                        {% set route_params = [] %}
+                    {% endif %}
+                    
+                        <a href="{{ path(
+                            app.request.attributes.get('_route'),
+                            route_params | merge({"_locale": "en"})
+                        ) }}" class="ui-icon-flag-us">EN</a>
+                    &nbsp;&nbsp;-&nbsp;&nbsp;
+                        <a href="{{ path(
+                            app.request.attributes.get('_route'),
+                            route_params | merge({"_locale": "fr"})
+                        ) }}" data-role="button" class="ui-icon-flag-fr">FR</a>
+
+            {% for flashMessage in app.session.flashbag.get('notice') %}
+
+                   <div class="alert alert-success">
+                        <button data-dismiss="alert" class="close" type="button">&times;</button>
+                        <strong>Well done!</strong>
+                    {{ flashMessage }}
+                    </div>
+            {% endfor %}
+
+
+                {% block pagecontent %}
                 {% endblock %}
-            </div>
 
-            {% if code is defined %}
-                <h2>Code behind this page</h2>
-                <div class="symfony-content">{{ code|raw }}</div>
-            {% endif %}
+
+                </div>
+            </div>
         </div>
-    </body>
-</html>
+    </div>
+
+
+{% endblock %}
+

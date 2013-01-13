@@ -1,6 +1,6 @@
 {% extends 'AcmeDemoFlexibleEntityBundle::layout.html.twig' %}
 
-{% block content %}
+{% block pagecontent %}
 
     <ul id="menu-block">
         <li><a href="{{ path('acme_demoflexibleentity_customer_index') }}">Select entities and all attribute values</a></li>
@@ -18,30 +18,38 @@
     
     <p>Nb results : {{ customers|length }}</p>
 
-    <table class="mytable">
-        <tr>
-            <td>Id</td>
-            <td>Email</td>
-            <td>FirstName</td>
-            <td>LastName</td>
-            <td>Birth</td>
-            <td>Gender</td>
-            <td>Company</td>
-            <td>Action</td>
-        </tr>
-    {% for customer in customers %}
-        <tr>
-            <td>{{ customer.id }}</td>
-            <td>{{ customer.email }}</td>
-            <td>{{ customer.firstname }}</td>
-            <td>{{ customer.lastname }}</td>
-            <td>{{ customer.dob|date('Y-m-d')}}</td>
-            <td>{{ customer.gender }}</td>
-            <td>{{ customer.company }}</td>
+    <div class="popup-box">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Email</th>
+                    <th>FirstName</th>
+                    <th>LastName</th>
+                    <th>Birth</th>
+                    <th>Gender</th>
+                    <th>Company</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for customer in customers %}
+            <tr>
+                <td>{{ customer.id }}</td>
+                <td>{{ customer.email }}</td>
+                <td>{{ customer.firstname }}</td>
+                <td>{{ customer.lastname }}</td>
+                <td>{{ customer.dob|date('Y-m-d')}}</td>
+                <td>{{ customer.gender }}</td>
+                <td>{{ customer.company }}</td>
 
-            <td><a href="{{ path('acme_demoflexibleentity_customer_view', {'id': customer.id}) }}">Show details</a></td>
-        </tr>
-    {% endfor %}
-    </table>
+                <td><a href="{{ path('acme_demoflexibleentity_customer_view', {'id': customer.id}) }}">Show details</a></td>
+            </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+    <hr />
 
 {% endblock %}

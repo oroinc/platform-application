@@ -24,10 +24,6 @@
                 route_params | merge({"_locale": "de"})
             ) }}" data-role="button">de</a>
 
-    <h1>Welcome!</h1>
-
-    <p>Congratulations! You have successfully installed a new Symfony application.</p>
-
     <div class="symfony-blocks-welcome">
         <div class="block-quick-tour">
             <div class="illustration">
@@ -50,10 +46,10 @@
             <a class="symfony-button-green" href="{{ path('_demo') }}">Run The Demo</a>
         </div>
         <div class="block-demo">
-            <div class="illustration">
-                <img src="{{ asset('bundles/acmedemo/images/flexible-demo.gif') }}" alt="Demo Flexible Entity" />
-            </div>
             <a class="symfony-button-green" href="{{ path('acme_demoflexibleentity_flexible_index') }}">Run Flexible Entity</a>
+        </div>
+        <div class="block-demo">
+            <a class="symfony-button-green" href="{{ path('oro_ui_default_index') }}">UI Demo</a>
         </div>
     </div>
 
