@@ -4,7 +4,6 @@ namespace Acme\Bundle\DemoFlexibleEntityBundle;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
- *
  * Demo of flexible entity bundle
  *
  * @author    Nicolas Dupont <nicolas@akeneo.com>
