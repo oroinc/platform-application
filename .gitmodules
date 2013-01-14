@@ -4,6 +4,3 @@
 [submodule "src/Oro/Bundle/FlexibleEntityBundle"]
 	path = src/Oro/Bundle/FlexibleEntityBundle
 	url = git@github.com:laboro/FlexibleEntityBundle.git
-[submodule "src/Oro/Bundle/ToolsBundle"]
-	path = src/Oro/Bundle/ToolsBundle
-	url = git@github.com:laboro/ToolsBundle.git
