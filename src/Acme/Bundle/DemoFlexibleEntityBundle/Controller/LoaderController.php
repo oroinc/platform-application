@@ -480,13 +480,14 @@ class LoaderController extends Controller
         if ($attribute) {
             $messages[]= "Attribute ".$attributeCode." already exists";
         } else {
-            $attribute = $this->getProductManager()->createAttribute();
-            $attribute->setCode($attributeCode);
-            $attribute->setRequired(true);
-            $attribute->setBackendStorage(AbstractAttributeType::BACKEND_STORAGE_ATTRIBUTE_VALUE);
-            $attribute->setBackendType(AbstractAttributeType::BACKEND_TYPE_VARCHAR);
-            $attribute->setTranslatable(true);
-            $this->getProductManager()->getStorageManager()->persist($attribute);
+            $productAttribute = $this->getProductManager()->createFlexibleAttribute();
+            $productAttribute->setName('Name');
+            $productAttribute->getAttribute()->setCode($attributeCode);
+            $productAttribute->getAttribute()->setRequired(true);
+            $productAttribute->getAttribute()->setBackendStorage(AbstractAttributeType::BACKEND_STORAGE_ATTRIBUTE_VALUE);
+            $productAttribute->getAttribute()->setBackendType(AbstractAttributeType::BACKEND_TYPE_VARCHAR);
+            $productAttribute->getAttribute()->setTranslatable(true);
+            $this->getProductManager()->getStorageManager()->persist($productAttribute);
             $messages[]= "Attribute ".$attributeCode." has been created";
         }
 
@@ -496,12 +497,13 @@ class LoaderController extends Controller
         if ($attribute) {
             $messages[]= "Attribute ".$attributeCode." already exists";
         } else {
-            $attribute = $this->getProductManager()->createAttribute();
-            $attribute->setCode($attributeCode);
-            $attribute->setBackendStorage(AbstractAttributeType::BACKEND_STORAGE_ATTRIBUTE_VALUE);
-            $attribute->setBackendType(AbstractAttributeType::BACKEND_TYPE_TEXT);
-            $attribute->setTranslatable(true);
-            $this->getProductManager()->getStorageManager()->persist($attribute);
+            $productAttribute = $this->getProductManager()->createFlexibleAttribute();
+            $productAttribute->setName('Description');
+            $productAttribute->getAttribute()->setCode($attributeCode);
+            $productAttribute->getAttribute()->setBackendStorage(AbstractAttributeType::BACKEND_STORAGE_ATTRIBUTE_VALUE);
+            $productAttribute->getAttribute()->setBackendType(AbstractAttributeType::BACKEND_TYPE_TEXT);
+            $productAttribute->getAttribute()->setTranslatable(true);
+            $this->getProductManager()->getStorageManager()->persist($productAttribute);
             $messages[]= "Attribute ".$attributeCode." has been created";
         }
 
@@ -511,11 +513,12 @@ class LoaderController extends Controller
         if ($attribute) {
             $messages[]= "Attribute ".$attributeCode." already exists";
         } else {
-            $attribute = $this->getProductManager()->createAttribute();
-            $attribute->setCode($attributeCode);
-            $attribute->setBackendStorage(AbstractAttributeType::BACKEND_STORAGE_ATTRIBUTE_VALUE);
-            $attribute->setBackendType(AbstractAttributeType::BACKEND_TYPE_INTEGER);
-            $this->getProductManager()->getStorageManager()->persist($attribute);
+            $productAttribute = $this->getProductManager()->createFlexibleAttribute();
+            $productAttribute->setName('Size');
+            $productAttribute->getAttribute()->setCode($attributeCode);
+            $productAttribute->getAttribute()->setBackendStorage(AbstractAttributeType::BACKEND_STORAGE_ATTRIBUTE_VALUE);
+            $productAttribute->getAttribute()->setBackendType(AbstractAttributeType::BACKEND_TYPE_INTEGER);
+            $this->getProductManager()->getStorageManager()->persist($productAttribute);
             $messages[]= "Attribute ".$attributeCode." has been created";
         }
 
@@ -525,11 +528,12 @@ class LoaderController extends Controller
         if ($attribute) {
             $messages[]= "Attribute ".$attributeCode." already exists";
         } else {
-            $attribute = $this->getProductManager()->createAttribute();
-            $attribute->setCode($attributeCode);
-            $attribute->setBackendStorage(AbstractAttributeType::BACKEND_STORAGE_ATTRIBUTE_VALUE);
-            $attribute->setBackendType(AbstractAttributeType::BACKEND_TYPE_OPTION);
-            $attribute->setTranslatable(false); // only one value but option can be translated in option values
+            $productAttribute = $this->getProductManager()->createFlexibleAttribute();
+            $productAttribute->setName('Color');
+            $productAttribute->getAttribute()->setCode($attributeCode);
+            $productAttribute->getAttribute()->setBackendStorage(AbstractAttributeType::BACKEND_STORAGE_ATTRIBUTE_VALUE);
+            $productAttribute->getAttribute()->setBackendType(AbstractAttributeType::BACKEND_TYPE_OPTION);
+            $productAttribute->getAttribute()->setTranslatable(false); // only one value but option can be translated in option values
             // add translatable option and related value "Red", "Blue", "Green"
             $colors = array("Red", "Blue", "Green");
             foreach ($colors as $color) {
@@ -538,9 +542,9 @@ class LoaderController extends Controller
                 $optionValue = $this->getProductManager()->createAttributeOptionValue();
                 $optionValue->setValue($color);
                 $option->addOptionValue($optionValue);
-                $attribute->addOption($option);
+                $productAttribute->getAttribute()->addOption($option);
             }
-            $this->getProductManager()->getStorageManager()->persist($attribute);
+            $this->getProductManager()->getStorageManager()->persist($productAttribute);
             $messages[]= "Attribute ".$attributeCode." has been created";
         }
 
