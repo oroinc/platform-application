@@ -1,0 +1,50 @@
+{% extends "AcmeDemoBundle::layout.html.twig" %}
+
+{% block content_header '' %}
+
+{% block content %}
+    <h1>Product List</h1>
+    <p><a href="{{ path('acme_demo_queue')}}">Run queues</a></p>
+    <p><a href="{{ path('acme_demo_query_builder')}}">Demo search</a></p>
+    <table border="1">
+        <tr>
+            <td>
+                Name
+            </td>
+            <td>
+                Price
+            </td>
+            <td>
+                Description
+            </td>
+            <td>
+                Actions
+            </td>
+        </tr>
+        {% for product in products %}
+            <tr>
+                <td>
+                    {{ product.name }}
+                </td>
+                <td>
+                    {{ product.price }}
+                </td>
+                <td>
+                    {{ product.description }}
+                </td>
+                <td>
+                    <a href="{{ path('acme_demo_edit', { id: product.id }) }}">Edit</a>
+                    <a href="{{ path('acme_demo_delete', { id: product.id }) }}">Delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    <p></p>
+    <h2>Add new product entity</h2>
+    <form action="{{ path('acme_demo_homepage')}}" method="post" {{ form_enctype(form) }}>
+        {{ form_widget(form) }}
+        <input type="submit" value="Add"/>
+    </form>
+{% endblock %}
+
+

@@ -1,0 +1,52 @@
+Acme\Bundle\DemoBundle\Entity\Product:
+    fields:
+        -
+            name: name
+            target_type: text
+            target_fields: [name, all_data]
+        -
+            name: description
+            target_type: text
+            target_fields: [description, all_data]
+        -
+            name: price
+            target_type: decimal
+            target_fields: [price]
+        -
+            name: count
+            target_type: integer
+            target_fields: [count]
+        -
+            name: createDate
+            target_type: datetime
+            target_fields: [create_date]
+        -
+            name: manufacturer
+            relation_type: many-to-one
+            relation_fields:
+                -
+                    name: name
+                    target_type: text
+                    target_fields: [manufacturer, all_data]
+                -
+                    name: id
+                    target_type: integer
+                    target_fields: [manufacturer]
+        -
+            name: categories
+            relation_type: many-to-many
+            relation_fields:
+                -
+                    name: name
+                    target_type: text
+                    target_fields: [all_data]
+Acme\Bundle\DemoBundle\Entity\Customer:
+    fields:
+        -
+            name: first_name:
+            target_type: text
+            target_fields: [first_name, all_data]
+        -
+            name: second_name:
+            target_type: text
+            target_fields: [second_name, all_data]

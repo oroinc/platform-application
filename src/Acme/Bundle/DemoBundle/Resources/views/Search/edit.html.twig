@@ -1,0 +1,14 @@
+{% extends "AcmeDemoBundle::layout.html.twig" %}
+
+{% block content_header '' %}
+
+{% block content %}
+    <h1>Edit product {{ product.name }}</h1>
+
+    <form action="{{ path('acme_demo_edit', { id: product.id }) }}" method="post" {{ form_enctype(form) }}>
+        {{ form_widget(form) }}
+        <input type="submit" value="Save"/>
+    </form>
+{% endblock %}
+
+

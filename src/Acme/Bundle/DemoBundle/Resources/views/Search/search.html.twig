@@ -1,0 +1,37 @@
+{% extends "AcmeDemoBundle::layout.html.twig" %}
+
+{% block content_header '' %}
+
+{% block content %}
+    <h1>Search Results for query: {{ searchString }}</h1>
+    {% if searchResults|length %}
+        <table border="1">
+            <tr>
+                <td>
+                    name
+                </td>
+                <td>
+                    price
+                </td>
+                <td>
+                    description
+                </td>
+            </tr>
+            {% for product in searchResults %}
+                <tr>
+                    <td>
+                        {{ product.name }}
+                    </td>
+                    <td>
+                        {{ product.price }}
+                    </td>
+                    <td>
+                        {{ product.description }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <h2>Where is no results. Sorry.</h2>
+    {% endif %}
+{% endblock %}
