@@ -41,6 +41,7 @@ class LoaderController extends Controller
         $attDescription = $this->getProductManager()->getEntityRepository()->findAttributeByCode('description');
         $attSize = $this->getProductManager()->getEntityRepository()->findAttributeByCode('size');
         $attColor = $this->getProductManager()->getEntityRepository()->findAttributeByCode('color');
+        $attPrice = $this->getProductManager()->getEntityRepository()->findAttributeByCode('price');
         // get first attribute option
         $optColor = $this->getProductManager()->getAttributeOptionRepository()->findOneBy(array('attribute' => $attColor));
 
@@ -91,6 +92,7 @@ class LoaderController extends Controller
                     $valueSize = $this->getProductManager()->createEntityValue();
                     $valueSize->setAttribute($attSize);
                     $valueSize->setData(175);
+                    $valueSize->setUnit('mm');
                     $newProduct->addValue($valueSize);
                 }
                 if ($attColor) {
@@ -104,7 +106,7 @@ class LoaderController extends Controller
                 $indSku++;
             }
 
-            // add product with sku, name and size
+            // add product with sku, name, size and price
             $prodSku = 'sku-'.$indSku;
             $newProduct = $this->getProductManager()->getEntityRepository()->findOneBySku($prodSku);
             if ($newProduct) {
@@ -122,7 +124,15 @@ class LoaderController extends Controller
                     $valueSize = $this->getProductManager()->createEntityValue();
                     $valueSize->setAttribute($attSize);
                     $valueSize->setData(175);
+                    $valueSize->setUnit('mm');
                     $newProduct->addValue($valueSize);
+                }
+                if ($attPrice) {
+                    $valuePrice = $this->getProductManager()->createEntityValue();
+                    $valuePrice->setAttribute($attPrice);
+                    $valuePrice->setData(rand(5, 100));
+                    $valuePrice->setCurrency('USD');
+                    $newProduct->addValue($valuePrice);
                 }
                 $this->getProductManager()->getStorageManager()->persist($newProduct);
                 $messages[]= "Product ".$prodSku." has been created";
@@ -487,6 +497,21 @@ class LoaderController extends Controller
             $productAttribute->getAttribute()->setBackendStorage(AbstractAttributeType::BACKEND_STORAGE_ATTRIBUTE_VALUE);
             $productAttribute->getAttribute()->setBackendType(AbstractAttributeType::BACKEND_TYPE_VARCHAR);
             $productAttribute->getAttribute()->setTranslatable(true);
+            $this->getProductManager()->getStorageManager()->persist($productAttribute);
+            $messages[]= "Attribute ".$attributeCode." has been created";
+        }
+
+        // attribute price (if not exists)
+        $attributeCode = 'price';
+        $attribute = $this->getProductManager()->getEntityRepository()->findAttributeByCode($attributeCode);
+        if ($attribute) {
+            $messages[]= "Attribute ".$attributeCode." already exists";
+        } else {
+            $productAttribute = $this->getProductManager()->createFlexibleAttribute();
+            $productAttribute->setName('Price');
+            $productAttribute->getAttribute()->setCode($attributeCode);
+            $productAttribute->getAttribute()->setBackendStorage(AbstractAttributeType::BACKEND_STORAGE_ATTRIBUTE_VALUE);
+            $productAttribute->getAttribute()->setBackendType(AbstractAttributeType::BACKEND_TYPE_DECIMAL);
             $this->getProductManager()->getStorageManager()->persist($productAttribute);
             $messages[]= "Attribute ".$attributeCode." has been created";
         }

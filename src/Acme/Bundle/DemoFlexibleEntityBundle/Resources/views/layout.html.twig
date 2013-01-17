@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <div class="row-fluid" id="wrapper">
             <div class="span3">
-                <div id="sidebar" class="test-box alert alert-success">
+                <div id="sidebar">
                    
                 <ul id="menu-block">
                     <li class="subtitle"><strong>Settings</strong></li>
@@ -33,36 +33,32 @@
                 </div>
             </div>
             <div class="span9">
-                <div id="content" class="test-box alert alert-block">
+                <div id="content">
 
                     {% set route_params = app.request.attributes.get('_route_params') %}
                     {% if route_params == "" %}
                         {% set route_params = [] %}
                     {% endif %}
-                    
-                        <a href="{{ path(
-                            app.request.attributes.get('_route'),
-                            route_params | merge({"_locale": "en"})
-                        ) }}" class="ui-icon-flag-us">EN</a>
-                    &nbsp;&nbsp;-&nbsp;&nbsp;
-                        <a href="{{ path(
-                            app.request.attributes.get('_route'),
-                            route_params | merge({"_locale": "fr"})
-                        ) }}" data-role="button" class="ui-icon-flag-fr">FR</a>
 
-            {% for flashMessage in app.session.flashbag.get('notice') %}
+                    <br/>
+                    <a class="btn btn-small btn-primary disabled" href="{{ path(app.request.attributes.get('_route'), route_params | merge({"_locale": "en"})) }}">
+                        {{ "EN" | trans }}
+                    </a>
+                    <a class="btn btn-small btn-primary disabled" href="{{ path(app.request.attributes.get('_route'), route_params | merge({"_locale": "fr"})) }}">
+                        {{ "FR" | trans }}
+                    </a>
+                    <hr/>
 
-                   <div class="alert alert-success">
-                        <button data-dismiss="alert" class="close" type="button">&times;</button>
-                        <strong>Well done!</strong>
-                    {{ flashMessage }}
-                    </div>
-            {% endfor %}
+                    {% for flashMessage in app.session.flashbag.get('notice') %}
+                       <div class="alert alert-success">
+                            <button data-dismiss="alert" class="close" type="button">&times;</button>
+                            <strong>Well done!</strong>
+                        {{ flashMessage }}
+                        </div>
+                    {% endfor %}
 
-
-                {% block pagecontent %}
-                {% endblock %}
-
+                    {% block pagecontent %}
+                    {% endblock %}
 
                 </div>
             </div>

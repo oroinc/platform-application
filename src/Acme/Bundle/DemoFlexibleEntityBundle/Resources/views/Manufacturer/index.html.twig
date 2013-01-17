@@ -2,23 +2,21 @@
 
 {% block pagecontent %}
 
-        <div class="popup-box">
-            <table class="table table-striped">
-                <thead>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for manufacturer in manufacturers %}
                 <tr>
-                    <th>#</th>
-                    <th>Name</th>
+                    <td>{{ manufacturer.id }}</td><td>{{ manufacturer.name }}</td>
                 </tr>
-                </thead>
-                <tbody>
-    {% for manufacturer in manufacturers %}
-        <tr>
-            <td>{{ manufacturer.id }}</td><td>{{ manufacturer.name }}</td>
-        </tr>
-    {% endfor %}
-                </tbody>
-            </table>
-        </div>
+            {% endfor %}
+            </tbody>
+        </table>
         <hr />
 
 {% endblock %}

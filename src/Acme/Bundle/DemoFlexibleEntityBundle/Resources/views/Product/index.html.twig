@@ -20,66 +20,80 @@
         <li><a href="{{ path('acme_demoflexibleentity_product_querynameanddesclimit') }}">Select with attribute name and description limit 0, 10</a></li>
     </ul>
 
+    <hr/>
+
     <p>Nb results : {{ products|length }}</p>
 
-        <div class="popup-box">
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Sku</th>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Sku</th>
 
-                    {% if 'name' in attributes %}
-                        <th>Name</th>
-                    {% endif %}
+            {% if 'name' in attributes %}
+                <th>Name</th>
+            {% endif %}
 
-                    {% if 'description' in attributes %}
-                        <th>Description</th>
-                    {% endif %}
+            {% if 'description' in attributes %}
+                <th>Description</th>
+            {% endif %}
 
-                    {% if 'size' in attributes %}
-                        <th>Size</th>
-                    {% endif %}
+            {% if 'size' in attributes %}
+                <th>Size</th>
+            {% endif %}
 
-                    {% if 'color' in attributes %}
-                       <th>Color</th>
-                    {% endif %}
+            {% if 'color' in attributes %}
+               <th>Color</th>
+            {% endif %}
 
-                    <th>Action</th>
+            {% if 'price' in attributes %}
+               <th>Price</th>
+            {% endif %}
 
-                </tr>
-                </thead>
-                <tbody>
+            <th>Action</th>
 
-                {% for product in products %}
-                <tr>
-                    <!-- fields -->
-                    <td>{{ product.id }}</td>
-                    <td>{{ product.sku }}</td>
+        </tr>
+        </thead>
+        <tbody>
 
-                    <!-- attributes -->
-                    {% if 'name' in attributes %}
-                       <td>{{ product.name }}</td>
-                    {% endif %}
+        {% for product in products %}
+        <tr>
+            <!-- fields -->
+            <td>{{ product.id }}</td>
+            <td>{{ product.sku }}</td>
 
-                    {% if 'description' in attributes %}
-                        <td>{{ product.description }}</td>
-                    {% endif %}
+            <!-- attributes -->
+            {% if 'name' in attributes %}
+               <td>{{ product.name }}</td>
+            {% endif %}
 
-                    {% if 'size' in attributes %}
-                        <td>{{ product.size }}</td>
-                    {% endif %}
+            {% if 'description' in attributes %}
+                <td>{{ product.description }}</td>
+            {% endif %}
 
-                    {% if 'color' in attributes %}
-                        <td>{{ product.color }}</td>
-                    {% endif %}
-                    <td><a href="{{ path('acme_demoflexibleentity_product_view', {'id': product.id}) }}">Load details</a></td>
-                 </tr>
-                 {% endfor %}
+            {% if 'size' in attributes %}
+                <td>{{product.size}} {% if product.size is not null %} {{ product.getValue('size').getUnit() }} {% endif %}</td>
+            {% endif %}
 
-                </tbody>
-            </table>
-        </div>
-        <hr />
+            {% if 'color' in attributes %}
+                <td>{{ product.color }}</td>
+            {% endif %}
+            
+            {% if 'price' in attributes %}
+                <td>{{product.price}} {% if product.price is not null %} {{ product.getValue('price').getCurrency() }} {% endif %}</td>
+            {% endif %}
+
+            <td>
+                <a class="btn btn-small btn-primary disabled" href="{{ path('acme_demoflexibleentity_product_view', {'id': product.id}) }}">
+                    {{ "View details" | trans }}
+                </a>
+            </td>
+         </tr>
+         {% endfor %}
+
+        </tbody>
+    </table>
+
+    <hr />
 
 {% endblock %}

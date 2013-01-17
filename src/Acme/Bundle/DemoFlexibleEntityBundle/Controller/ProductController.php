@@ -34,7 +34,7 @@ class ProductController extends Controller
      */
     protected function getAttributeCodesToDisplay()
     {
-        return array('name', 'description', 'size', 'color');
+        return array('name', 'description', 'size', 'color', 'price');
     }
 
     /**
