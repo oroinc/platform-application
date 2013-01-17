@@ -1,0 +1,13 @@
+{% block sidebar %}
+    <p>Daemon status: <span class="label label-{{ pid ? 'success' : 'important' }}">{{ pid ? 'Running' : 'Not running' }}</span> <img src="{{ asset('bundles/acmedemo/images/loading.gif') }}" alt="" style="display: none;" /></p>
+    <p>Daemon PID: <span>{{ pid|default('N/A') }}</span></p>
+
+    <p>
+        <a class="btn btn-primary btn-large" id="run-daemon" href="{{ path('acme_demo_job_run_daemon') }}"{% if pid %} style="display: none;"{% endif %}>Run daemon</a>
+        <a class="btn btn-warning btn-large" id="stop-daemon" href="{{ path('acme_demo_job_stop_daemon') }}"{% if not pid %} style="display: none;"{% endif %}>Stop daemon</a>
+    </p>
+    <p>{#<a class="btn btn-small" href="{{ path('jobs_dummy') }}">Add dummy jobs</a> #}<a class="btn btn-small" href="{{ path('acme_demo_job_index') }}">Refresh list</a></p>
+
+    <a class="btn btn-small" id="status-daemon" href="{{ path('acme_demo_job_status') }}" style="display: none;">Check status</a>
+{% endblock %}
+
