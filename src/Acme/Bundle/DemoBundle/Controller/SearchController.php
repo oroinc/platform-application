@@ -10,34 +10,36 @@ use Doctrine\Common\Annotations\AnnotationReader;
 use Acme\Bundle\DemoBundle\Entity\Product;
 use Acme\Bundle\DemoBundle\Form\ProductType;
 
+/**
+ * @Route("/search")
+ */
 class SearchController extends Controller
 {
     /**
      * List of products and add new product
      *
-     * @Route("/", name="acme_demo_homepage")
+     * @Route("/", name="acme_demo_search")
      * @Template()
-     * @return array
      */
     public function indexAction()
     {
         $request = $this->getRequest();
-        $em = $this->getDoctrine()->getManager();
+        $em      = $this->getDoctrine()->getManager();
         $product = new Product();
-        $form = $this->createForm(new ProductType(), $product);
+        $form    = $this->createForm(new ProductType(), $product);
 
         if ($request->getMethod() == 'POST') {
             $form->bind($request);
-            if($form->isValid()) {
+
+            if ($form->isValid()) {
                 $em->persist($product);
                 $em->flush();
-                $this->getSearchManager()->addSaveQueue('AcmeDemoBundle:Product', $product->getId());
             }
         }
 
         return array(
             'products' => $em->getRepository('AcmeDemoBundle:Product')->findAll(),
-            'form'  => $form->createView(),
+            'form'     => $form->createView(),
         );
     }
 
@@ -47,29 +49,28 @@ class SearchController extends Controller
      * @Route("/edit/{id}", name="acme_demo_edit")
      * @Template()
      * @param $id
-     * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function editAction($id)
     {
         $request = $this->getRequest();
-        $em = $this->getDoctrine()->getManager();
+        $em      = $this->getDoctrine()->getManager();
         $product = $this->getDoctrine()->getRepository('AcmeDemoBundle:Product')->find($id);
-        $form = $this->createForm(new ProductType(), $product);
+        $form    = $this->createForm(new ProductType(), $product);
 
         if ($request->getMethod() == 'POST') {
             $form->bind($request);
-            if($form->isValid()) {
+
+            if ($form->isValid()) {
                 $em->persist($product);
                 $em->flush();
-                $this->getSearchManager()->addSaveQueue('AcmeDemoBundle:Product', $product->getId());
 
-                return $this->redirect($this->generateUrl('acme_demo_homepage'));
+                return $this->redirect($this->generateUrl('acme_demo_search'));
             }
         }
 
         return array(
             'product' => $product,
-            'form'  => $form->createView(),
+            'form'    => $form->createView(),
         );
     }
 
@@ -82,26 +83,13 @@ class SearchController extends Controller
      */
     public function deleteAction($id)
     {
-        $em = $this->getDoctrine()->getManager();
+        $em      = $this->getDoctrine()->getManager();
         $product = $this->getDoctrine()->getRepository('AcmeDemoBundle:Product')->find($id);
-        $this->getSearchManager()->addDeleteQueue('AcmeDemoBundle:Product', $product->getId());
+
         $em->remove($product);
+        $em->flush();
 
-        return $this->redirect($this->generateUrl('acme_demo_homepage'));
-    }
-
-    /**
-     * Processing queues
-     *
-     * @Route("/queue", name="acme_demo_queue")
-     * @Template()
-     * @return array
-     */
-    public function runQueueAction()
-    {
-        return array(
-            'records' => $this->getSearchManager()->runQueues(),
-        );
+        return $this->redirect($this->generateUrl('acme_demo_search'));
     }
 
     /**
@@ -125,7 +113,6 @@ class SearchController extends Controller
                 3
             )
         );
-
     }
 
     /**
@@ -147,6 +134,4 @@ class SearchController extends Controller
     {
         return $this->get('oro_search.index');
     }
-
-
 }

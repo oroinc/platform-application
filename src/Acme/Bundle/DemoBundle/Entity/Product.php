@@ -64,9 +64,9 @@ class Product
 
     /**
      * @ORM\ManyToMany(targetEntity="Category", inversedBy="products")
-     * @ORM\JoinTable(name="category_product",
-     *      joinColumns={@ORM\JoinColumn(name="product_id", referencedColumnName="id")},
-     *          inverseJoinColumns={@ORM\JoinColumn(name="category_id", referencedColumnName="id")}
+     * @ORM\JoinTable(name="demo_category_product",
+     *      joinColumns={@ORM\JoinColumn(name="product_id", referencedColumnName="id", onDelete="CASCADE")},
+     *          inverseJoinColumns={@ORM\JoinColumn(name="category_id", referencedColumnName="id", onDelete="CASCADE")}
      *      )
      */
     private $categories;
@@ -75,7 +75,7 @@ class Product
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -91,14 +91,14 @@ class Product
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -113,14 +113,14 @@ class Product
     public function setDescription($description)
     {
         $this->description = $description;
-    
+
         return $this;
     }
 
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -133,7 +133,7 @@ class Product
     {
         $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Set manufacturer
      *
@@ -143,7 +143,7 @@ class Product
     public function setManufacturer(\Acme\Bundle\DemoBundle\Entity\Manufacturer $manufacturer = null)
     {
         $this->manufacturer = $manufacturer;
-    
+
         return $this;
     }
 
@@ -166,7 +166,7 @@ class Product
     public function addCategorie(\Acme\Bundle\DemoBundle\Entity\Category $category)
     {
         $this->categories[] = $category;
-    
+
         return $this;
     }
 
@@ -199,14 +199,14 @@ class Product
     public function setPrice($price)
     {
         $this->price = $price;
-    
+
         return $this;
     }
 
     /**
      * Get price
      *
-     * @return float 
+     * @return float
      */
     public function getPrice()
     {
@@ -222,14 +222,14 @@ class Product
     public function setCount($count)
     {
         $this->count = $count;
-    
+
         return $this;
     }
 
     /**
      * Get count
      *
-     * @return integer 
+     * @return integer
      */
     public function getCount()
     {
@@ -245,14 +245,14 @@ class Product
     public function setCreateDate($createDate)
     {
         $this->createDate = $createDate;
-    
+
         return $this;
     }
 
     /**
      * Get createDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreateDate()
     {
