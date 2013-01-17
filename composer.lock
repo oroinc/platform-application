@@ -1,5 +1,5 @@
 {
-    "hash": "016b68a30e097ca41bbe32645db23353",
+    "hash": "e86151443e87391343dbbf63128f40aa"
     "packages": [
         {
             "name": "dflydev/markdown",
@@ -706,6 +706,78 @@
             "keywords": [
                 "dependency injection",
                 "annotations"
+            ]
+        },
+        {
+            "name": "jms/job-queue-bundle",
+            "version": "dev-master",
+            "target-dir": "JMS/JobQueueBundle",
+            "source": {
+                "type": "git",
+                "url": "git://github.com/schmittjoh/JMSJobQueueBundle.git",
+                "reference": "6c080695103d73fd682559a59a4bdd6c509519f7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/schmittjoh/JMSJobQueueBundle/archive/6c080695103d73fd682559a59a4bdd6c509519f7.zip",
+                "reference": "6c080695103d73fd682559a59a4bdd6c509519f7",
+                "shasum": ""
+            },
+            "require": {
+                "symfony/framework-bundle": "2.1.*",
+                "jms/di-extra-bundle": ">=1.1,<2.0",
+                "doctrine/common": ">=2.3,<3.0"
+            },
+            "require-dev": {
+                "doctrine/doctrine-fixtures-bundle": "*",
+                "sensio/framework-extra-bundle": "*",
+                "symfony/class-loader": "*",
+                "symfony/yaml": "*",
+                "symfony/browser-kit": "*",
+                "symfony/finder": "*",
+                "symfony/css-selector": "*",
+                "symfony/process": "*",
+                "doctrine/doctrine-bundle": "*",
+                "symfony/twig-bundle": "*",
+                "doctrine/orm": "*",
+                "symfony/form": "*",
+                "symfony/validator": "*",
+                "pagerfanta/pagerfanta": "dev-master"
+            },
+            "suggest": {
+                "pagerfanta/pagerfanta": "Required when using the webinterface.",
+                "sensio/framework-extra-bundle": "Required when using the webinterface.",
+                "symfony/twig-bundle": "Required when using the webinterface."
+            },
+            "time": "2013-01-11 07:28:52",
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "JMS\\JobQueueBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache2"
+            ],
+            "authors": [
+                {
+                    "name": "Johannes M. Schmitt",
+                    "email": "schmittjoh@gmail.com",
+                    "homepage": "https://github.com/schmittjoh",
+                    "role": "Developer of wrapped JMSSerializerBundle"
+                }
+            ],
+            "description": "Allows to schedule Symfony2 console commands as jobs.",
+            "homepage": "http://jmsyst.com/bundles/JMSJobQueueBundle",
+            "keywords": [
+                "queue",
+                "job"
             ]
         },
         {
@@ -1964,6 +2036,7 @@
         "friendsofsymfony/rest-bundle": 20,
         "jms/serializer": 20,
         "jms/serializer-bundle": 20,
-        "nelmio/api-doc-bundle": 20
+        "nelmio/api-doc-bundle": 20,
+        "jms/job-queue-bundle": 20
     }
 }
