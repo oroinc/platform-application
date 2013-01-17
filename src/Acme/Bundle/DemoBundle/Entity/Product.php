@@ -258,4 +258,9 @@ class Product
     {
         return $this->createDate;
     }
+
+    public function __toString()
+    {
+        return $this->name;
+    }
 }

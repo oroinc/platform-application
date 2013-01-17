@@ -43,7 +43,11 @@
                             $("#recordsCount").val(data['records_count']);
                             if (data['count'] > 0) {
                                 for (var i = 0; i < data['count']; i++) {
-                                    searchDiv.append('<div class="alert alert-success">' + data['data'][i]['entity_name'] + ', id:' + data['data'][i]['record_id'] + '</div>')
+                                    searchDiv.append('<div class="alert alert-success">'
+                                            + data['data'][i]['entity_name']
+                                            + ', id:' + data['data'][i]['record_id']
+                                            + '<h3>' + data['data'][i]['record_string'] + '</h3>'
+                                    + '</div>')
                                 }
                             } else {
                                 searchDiv.html("<h2>Sorry, I can't find any result for your request '<i>" + query + "</i>'</h2>");
