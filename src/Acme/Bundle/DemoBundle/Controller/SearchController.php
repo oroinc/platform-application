@@ -107,7 +107,7 @@ class SearchController extends Controller
     /**
      * Search request using query builder
      *
-     * @Route("/query", name="acme_demo_query_builder")
+     * @Route("/query-builder", name="acme_demo_query_builder")
      * @Template()
      * @return array
      */
@@ -126,6 +126,16 @@ class SearchController extends Controller
             )
         );
 
+    }
+
+    /**
+     * @Route("/query", name="acme_demo_query")
+     * @Template()
+     * @return array
+     */
+    public function queryAction()
+    {
+        return array();
     }
 
     /**

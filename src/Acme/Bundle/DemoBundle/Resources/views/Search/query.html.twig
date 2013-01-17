@@ -1,0 +1,47 @@
+{% extends "OroUIBundle:Default:index.html.twig" %}
+{% block title %}Search{% endblock %}
+{% block content %}
+    <script>
+        $(function () {
+            // preview icon
+            $("#appendedInputButtons").keyup(function () {
+                ajaxsearch();
+            });
+            function ajaxsearch() {
+                var searchDiv = $(".search_stats");
+                query = $("#appendedInputButtons").val();
+                if (query == '') {
+                    searchDiv.html('');
+                } else {
+                    $.ajax({
+                        url:"{{ path('get_search') }}",
+                        dataType:"json",
+                        data:{search:query},
+                        success:function (data) {
+                            searchDiv.html('');
+                            if (data['count'] > 0) {
+                                for (var i = 0; i < data['count']; i++) {
+                                    searchDiv.append('<div class="alert alert-success">' + data['data'][i]['entity_name'] + ', id:' + data['data'][i]['record_id'] + '</div>')
+                                }
+                            } else {
+                                searchDiv.html("<h2>Sorry, I can't find any result for your request '<i>" + query + "</i>'</h2>");
+                            }
+                        }
+                    });
+                }
+                jQuery('#loader').hide();
+            }
+        });
+    </script>
+
+    <div class="container-fluid">
+        <div class="input-append">
+            <h1>Type your search request in search field</h1>
+            <input id="appendedInputButtons" class="span2" type="text" placeholder="Search">
+        </div>
+
+        <h2>Search results</h2>
+
+        <div class="search_stats alert alert-info test-box"><h2>Type your search request in search field</h2></div>
+    </div>
+{% endblock content %}
