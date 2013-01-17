@@ -7,6 +7,6 @@
 [submodule "src/Oro/Bundle/SearchBundle"]
 	path = src/Oro/Bundle/SearchBundle
 	url = git@github.com:laboro/SearchBundle.git
-[submodule "src/Oro/UserBundle"]
-	path = src/Oro/UserBundle
+[submodule "src/Oro/Bundle/UserBundle"]
+	path = src/Oro/Bundle/UserBundle
 	url = git@github.com:laboro/UserBundle.git
