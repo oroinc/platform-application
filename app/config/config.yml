@@ -27,7 +27,7 @@ twig:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [ ]
+    bundles:        ['AcmeDemoBundle']
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -69,3 +69,4 @@ knp_paginator:
 
 oro_search:
     engine: orm
+    realtime_update: false
