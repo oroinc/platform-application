@@ -85,4 +85,16 @@ fos_rest:
 
 oro_search:
     engine: orm
-    realtime_update: false
+    realtime_update: true
+
+be_simple_soap:
+    cache:
+        type:     disk
+        lifetime: 86400
+        limit:    5
+    services:
+        OroSearch:
+            namespace:     http://symfony.loc/ws/DemoApi/1.0/
+            binding:       rpc-literal
+            resource:      "@OroSearchBundle/Controller/Api/SoapController.php"
+            resource_type: annotation
