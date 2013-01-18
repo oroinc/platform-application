@@ -68,5 +68,10 @@ knp_paginator:
         distinct: true
 
 oro_search:
-    engine: orm
-    realtime_update: false
+    engine:           orm
+    realtime_update:  false
+
+fos_user:
+    db_driver:        orm                                   # other valid values are 'mongodb', 'couchdb' and 'propel'
+    firewall_name:    main
+    user_class:       Oro\Bundle\UserBundle\Entity\User
