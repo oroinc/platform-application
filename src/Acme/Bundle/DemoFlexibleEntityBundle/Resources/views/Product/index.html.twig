@@ -2,22 +2,43 @@
 
 {% block pagecontent %}
 
-    <ul id="menu-block">
-        <li><a href="{{ path('acme_demoflexibleentity_product_index') }}">Select entities and all attribute values</a></li>
-        <li><a href="{{ path('acme_demoflexibleentity_product_querylazyload') }}">Select just entities, attributes and values are lazy loaded</a></li>
-        
-        <li><a href="{{ path('acme_demoflexibleentity_product_queryonlyname') }}">Select with only attribute name</a></li>
-        <li><a href="{{ path('acme_demoflexibleentity_product_querynameanddesc') }}">Select with attribute name and description</a></li>
-        <li><a href="{{ path('acme_demoflexibleentity_product_querynameanddescforcelocale') }}">Select with attribute name and description (force french)</a></li>
-        
-        <li><a href="{{ path('acme_demoflexibleentity_product_queryfilterskufield') }}">Select filtered on field sku = 'sku-2'</a></li>
-        <li><a href="{{ path('acme_demoflexibleentity_product_querynamefilterskufield') }}">Select with attribute name and filtered on field sku = 'sku-2'</a></li>
-        
-        <li><a href="{{ path('acme_demoflexibleentity_product_queryfiltersizeattribute') }}">Select with attribute description, size filtered on attribute size = 175</a></li>
-        <li><a href="{{ path('acme_demoflexibleentity_product_queryfiltersizeanddescattributes') }}">Select with attribute description, size filtered on attribute size = 175 and description = 'my other description'</a></li>
+    {% set route_params = app.request.attributes.get('_route_params') %}
+    {% if route_params == "" %}
+        {% set route_params = [] %}
+        {% set dataLocale = 'en_US' %}
+    {% else %}
+        {% set dataLocale = route_params['dataLocale'] %}
+        {% if dataLocale is null %}
+            {% set dataLocale = 'en_US' %}
+        {% endif %}
+    {% endif %}
+    <br/>
+    <p>{{ "Choose data locale : " | trans }}
+    {% for locale in ['en_US', 'fr_FR', 'de_DE'] %}
+        <a class="btn btn-small btn-primary {% if dataLocale == locale %} disabled {% endif %}"
+           href="{{ path(app.request.attributes.get('_route'), route_params | merge({'dataLocale': locale})) }}">{{ locale | trans }}</a>
+    {% endfor %}
+    </p>
+    <hr/>
 
-        <li><a href="{{ path('acme_demoflexibleentity_product_querynameanddescorderby') }}">Select with attribute name and description order by description DESC and id ASC</a></li>
-        <li><a href="{{ path('acme_demoflexibleentity_product_querynameanddesclimit') }}">Select with attribute name and description limit 0, 10</a></li>
+    <h3>Product list</h3>
+
+    <ul id="menu-block">
+        <li><a href="{{ path('acme_demoflexibleentity_product_index', {'dataLocale': dataLocale}) }}">Select entities and all attribute values</a></li>
+        <li><a href="{{ path('acme_demoflexibleentity_product_querylazyload', {'dataLocale': dataLocale}) }}">Select just entities, attributes and values are lazy loaded</a></li>
+        
+        <li><a href="{{ path('acme_demoflexibleentity_product_queryonlyname', {'dataLocale': dataLocale}) }}">Select with only attribute name</a></li>
+        <li><a href="{{ path('acme_demoflexibleentity_product_querynameanddesc', {'dataLocale': dataLocale}) }}">Select with attribute name and description</a></li>
+        <li><a href="{{ path('acme_demoflexibleentity_product_querynameanddescforcelocale', {'dataLocale': dataLocale}) }}">Select with attribute name and description (force french)</a></li>
+        
+        <li><a href="{{ path('acme_demoflexibleentity_product_queryfilterskufield', {'dataLocale': dataLocale}) }}">Select filtered on field sku = 'sku-2'</a></li>
+        <li><a href="{{ path('acme_demoflexibleentity_product_querynamefilterskufield', {'dataLocale': dataLocale}) }}">Select with attribute name and filtered on field sku = 'sku-2'</a></li>
+        
+        <li><a href="{{ path('acme_demoflexibleentity_product_queryfiltersizeattribute', {'dataLocale': dataLocale}) }}">Select with attribute description, size filtered on attribute size = 175</a></li>
+        <li><a href="{{ path('acme_demoflexibleentity_product_queryfiltersizeanddescattributes', {'dataLocale': dataLocale}) }}">Select with attribute description, size filtered on attribute size = 175 and description = 'my other description'</a></li>
+
+        <li><a href="{{ path('acme_demoflexibleentity_product_querynameanddescorderby', {'dataLocale': dataLocale}) }}">Select with attribute name and description order by description DESC and id ASC</a></li>
+        <li><a href="{{ path('acme_demoflexibleentity_product_querynameanddesclimit', {'dataLocale': dataLocale}) }}">Select with attribute name and description limit 0, 10</a></li>
     </ul>
 
     <hr/>
@@ -84,7 +105,7 @@
             {% endif %}
 
             <td>
-                <a class="btn btn-small btn-primary disabled" href="{{ path('acme_demoflexibleentity_product_view', {'id': product.id}) }}">
+                <a class="btn btn-small btn-primary" href="{{ path('acme_demoflexibleentity_product_view', {'id': product.id, 'dataLocale': dataLocale }) }}">
                     {{ "View details" | trans }}
                 </a>
             </td>

@@ -11,6 +11,9 @@ if (!function_exists('intl_get_error_code')) {
     $loader->add('', __DIR__.'/../vendor/symfony/symfony/src/Symfony/Component/Locale/Resources/stubs');
 }
 
+// add possibility to extends doctrine unit test and use mocks
+$loader->add( 'Doctrine\\Tests', __DIR__.'/../vendor/doctrine/orm/tests' );
+
 AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
 
 return $loader;

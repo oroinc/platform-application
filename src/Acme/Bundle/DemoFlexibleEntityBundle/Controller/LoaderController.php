@@ -34,7 +34,7 @@ class LoaderController extends Controller
         $messages = array();
 
         // force in english because product is translatable
-        $this->getProductManager()->setLocaleCode('en');
+        $this->getProductManager()->setLocaleCode('en_US');
 
         // get attributes
         $attName = $this->getProductManager()->getEntityRepository()->findAttributeByCode('name');
@@ -46,7 +46,7 @@ class LoaderController extends Controller
         $optColor = $this->getProductManager()->getAttributeOptionRepository()->findOneBy(array('attribute' => $attColor));
 
         $indSku = 1;
-        $descriptions = array('my long descrition', 'my other description');
+        $descriptions = array('my long description', 'my other description');
         for ($ind= 1; $ind <= 33; $ind++) {
 
             // add product with only sku and name
@@ -159,7 +159,7 @@ class LoaderController extends Controller
         $messages = array();
 
         // force in english
-        $this->getProductManager()->setLocaleCode('en');
+        $this->getProductManager()->setLocaleCode('en_US');
 
         // get attributes
         $attName = $this->getProductManager()->getEntityRepository()->findAttributeByCode('name');
@@ -171,10 +171,10 @@ class LoaderController extends Controller
         foreach ($products as $product) {
             // translate name value
             if ($attName) {
-                if ($product->setLocaleCode('en')->getValue('name') != null) {
+                if ($product->setLocaleCode('en_US')->getValue('name') != null) {
                     $value = $this->getProductManager()->createEntityValue();
                     $value->setAttribute($attName);
-                    $value->setLocaleCode('fr');
+                    $value->setLocaleCode('fr_FR');
                     $value->setData('mon nom FR '.$ind++);
                     $product->addValue($value);
                     $this->getProductManager()->getStorageManager()->persist($value);
@@ -186,7 +186,7 @@ class LoaderController extends Controller
                 if ($product->getValue('description') != null) {
                     $value = $this->getProductManager()->createEntityValue();
                     $value->setAttribute($attDescription);
-                    $value->setLocaleCode('fr');
+                    $value->setLocaleCode('fr_FR');
                     $value->setData('ma description FR '.$ind++);
                     $product->addValue($value);
                     $this->getProductManager()->getStorageManager()->persist($value);
@@ -206,7 +206,7 @@ class LoaderController extends Controller
                 $option = $optValueEn->getOption();
                 $optValueFr = $this->getProductManager()->createAttributeOptionValue();
                 $optValueFr->setValue($colorFr);
-                $optValueFr->setLocaleCode('fr');
+                $optValueFr->setLocaleCode('fr_FR');
                 $option->addOptionValue($optValueFr);
                 $this->getProductManager()->getStorageManager()->persist($optValueFr);
                 $messages[]= "Option '".$colorEn."' has been translated";
@@ -407,7 +407,7 @@ class LoaderController extends Controller
         $messages = array();
 
         // force in english
-        $this->getCustomerManager()->setLocaleCode('en');
+        $this->getCustomerManager()->setLocaleCode('en_US');
 
         // attribute company (if not exists)
         $attCode = 'company';
@@ -417,7 +417,6 @@ class LoaderController extends Controller
         } else {
             $att = $this->getCustomerManager()->createAttribute();
             $att->setCode($attCode);
-            $att->setBackendStorage(AbstractAttributeType::BACKEND_STORAGE_ATTRIBUTE_VALUE);
             $att->setBackendType(AbstractAttributeType::BACKEND_TYPE_VARCHAR);
             $this->getCustomerManager()->getStorageManager()->persist($att);
             $messages[]= "Attribute ".$attCode." has been created";
@@ -431,7 +430,6 @@ class LoaderController extends Controller
         } else {
             $att = $this->getCustomerManager()->createAttribute();
             $att->setCode($attCode);
-            $att->setBackendStorage(AbstractAttributeType::BACKEND_STORAGE_ATTRIBUTE_VALUE);
             $att->setBackendType(AbstractAttributeType::BACKEND_TYPE_DATE);
             $this->getCustomerManager()->getStorageManager()->persist($att);
             $messages[]= "Attribute ".$attCode." has been created";
@@ -445,7 +443,6 @@ class LoaderController extends Controller
         } else {
             $att = $this->getCustomerManager()->createAttribute();
             $att->setCode($attCode);
-            $att->setBackendStorage(AbstractAttributeType::BACKEND_STORAGE_ATTRIBUTE_VALUE);
             $att->setBackendType(AbstractAttributeType::BACKEND_TYPE_OPTION);
             // add option and related value
             $opt = $this->getCustomerManager()->createAttributeOption();
@@ -482,7 +479,7 @@ class LoaderController extends Controller
         $messages = array();
 
         // force in english
-        $this->getProductManager()->setLocaleCode('en');
+        $this->getProductManager()->setLocaleCode('en_US');
 
         // attribute name (if not exists)
         $attributeCode = 'name';
@@ -494,7 +491,6 @@ class LoaderController extends Controller
             $productAttribute->setName('Name');
             $productAttribute->getAttribute()->setCode($attributeCode);
             $productAttribute->getAttribute()->setRequired(true);
-            $productAttribute->getAttribute()->setBackendStorage(AbstractAttributeType::BACKEND_STORAGE_ATTRIBUTE_VALUE);
             $productAttribute->getAttribute()->setBackendType(AbstractAttributeType::BACKEND_TYPE_VARCHAR);
             $productAttribute->getAttribute()->setTranslatable(true);
             $this->getProductManager()->getStorageManager()->persist($productAttribute);
@@ -510,7 +506,6 @@ class LoaderController extends Controller
             $productAttribute = $this->getProductManager()->createFlexibleAttribute();
             $productAttribute->setName('Price');
             $productAttribute->getAttribute()->setCode($attributeCode);
-            $productAttribute->getAttribute()->setBackendStorage(AbstractAttributeType::BACKEND_STORAGE_ATTRIBUTE_VALUE);
             $productAttribute->getAttribute()->setBackendType(AbstractAttributeType::BACKEND_TYPE_DECIMAL);
             $this->getProductManager()->getStorageManager()->persist($productAttribute);
             $messages[]= "Attribute ".$attributeCode." has been created";
@@ -525,7 +520,6 @@ class LoaderController extends Controller
             $productAttribute = $this->getProductManager()->createFlexibleAttribute();
             $productAttribute->setName('Description');
             $productAttribute->getAttribute()->setCode($attributeCode);
-            $productAttribute->getAttribute()->setBackendStorage(AbstractAttributeType::BACKEND_STORAGE_ATTRIBUTE_VALUE);
             $productAttribute->getAttribute()->setBackendType(AbstractAttributeType::BACKEND_TYPE_TEXT);
             $productAttribute->getAttribute()->setTranslatable(true);
             $this->getProductManager()->getStorageManager()->persist($productAttribute);
@@ -541,7 +535,6 @@ class LoaderController extends Controller
             $productAttribute = $this->getProductManager()->createFlexibleAttribute();
             $productAttribute->setName('Size');
             $productAttribute->getAttribute()->setCode($attributeCode);
-            $productAttribute->getAttribute()->setBackendStorage(AbstractAttributeType::BACKEND_STORAGE_ATTRIBUTE_VALUE);
             $productAttribute->getAttribute()->setBackendType(AbstractAttributeType::BACKEND_TYPE_INTEGER);
             $this->getProductManager()->getStorageManager()->persist($productAttribute);
             $messages[]= "Attribute ".$attributeCode." has been created";
@@ -556,7 +549,6 @@ class LoaderController extends Controller
             $productAttribute = $this->getProductManager()->createFlexibleAttribute();
             $productAttribute->setName('Color');
             $productAttribute->getAttribute()->setCode($attributeCode);
-            $productAttribute->getAttribute()->setBackendStorage(AbstractAttributeType::BACKEND_STORAGE_ATTRIBUTE_VALUE);
             $productAttribute->getAttribute()->setBackendType(AbstractAttributeType::BACKEND_TYPE_OPTION);
             $productAttribute->getAttribute()->setTranslatable(false); // only one value but option can be translated in option values
             // add translatable option and related value "Red", "Blue", "Green"

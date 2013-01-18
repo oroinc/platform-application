@@ -2,6 +2,25 @@
 
 {% block pagecontent %}
 
+    {% set route_params = app.request.attributes.get('_route_params') %}
+    {% if route_params == "" %}
+        {% set route_params = [] %}
+        {% set dataLocale = 'en_US' %}
+    {% else %}
+        {% set dataLocale = route_params['dataLocale'] %}
+        {% if dataLocale is null %}
+            {% set dataLocale = 'en_US' %}
+        {% endif %}
+    {% endif %}
+    <br/>
+    <p>{{ "Choose data locale : " | trans }}
+    {% for locale in ['en_US', 'fr_FR', 'de_DE'] %}
+        <a class="btn btn-small btn-primary {% if dataLocale == locale %} disabled {% endif %}"
+           href="{{ path(app.request.attributes.get('_route'), route_params | merge({'dataLocale': locale})) }}">{{ locale | trans }}</a>
+    {% endfor %}
+    </p>
+    <hr/>
+
     <h3>Get fields values</h3>
     <ul>
         <li>id:      {{product.id}}</li>
@@ -10,14 +29,13 @@
         <li>updated: {{product.updated|date('Y-m-d h:i:s')}}</li>
     </ul>
 
-    <h3>Get explicit attributes values (use current locale)</h3>
+    <h3>Get explicit attributes values (use selected data locale)</h3>
     <ul>
         <li>Name :        {{product.name}}</li>
         <li>Description : {{product.description}}</li>
         <li>Color :       {{product.color}}</li>
         <li>Size :        {{product.size}} {% if product.size is not null %} {{ product.getValue('size').getUnit() }} {% endif %}</li>
         <li>Price :       {{product.price}} {% if product.price is not null %} {{ product.getValue('price').getCurrency() }} {% endif %}</li>
-
     </ul>
 
     <h3>All attributes values (all values including translated)</h3>
@@ -27,8 +45,10 @@
         {% endfor %}
     </ul>
 
-    <a class="btn btn-small btn-primary disabled" href="{{ path('acme_demoflexibleentity_product_index') }}">
+    <hr/>
+    <a class="btn btn-small btn-primary" href="{{ path('acme_demoflexibleentity_product_index', {'dataLocale': dataLocale }) }}">
         {{ "Back to list" | trans }}
     </a>
+    <br/><br/>
 
 {% endblock %}

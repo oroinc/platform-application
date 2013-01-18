@@ -2,6 +2,8 @@
 
 {% block pagecontent %}
 
+    <h3>Customer list</h3>
+
     <ul id="menu-block">
         <li><a href="{{ path('acme_demoflexibleentity_customer_index') }}">Select entities and all attribute values</a></li>
         <li><a href="{{ path('acme_demoflexibleentity_customer_querylazyload') }}">Select just entities, attributes and values are lazy load</a></li>
@@ -45,7 +47,7 @@
             <td>{{ customer.company }}</td>
 
             <td>
-                <a class="btn btn-small btn-primary disabled" href="{{ path('acme_demoflexibleentity_customer_view', {'id': customer.id}) }}">
+                <a class="btn btn-small btn-primary" href="{{ path('acme_demoflexibleentity_customer_view', {'id': customer.id}) }}">
                     {{ "View details" | trans }}
                 </a>
             </td>
