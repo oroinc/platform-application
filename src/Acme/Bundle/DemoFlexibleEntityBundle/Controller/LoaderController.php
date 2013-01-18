@@ -487,7 +487,7 @@ class LoaderController extends Controller
         if ($attribute) {
             $messages[]= "Attribute ".$attributeCode." already exists";
         } else {
-            $productAttribute = $this->getProductManager()->createFlexibleAttribute();
+            $productAttribute = $this->getProductManager()->createEntityAttribute();
             $productAttribute->setName('Name');
             $productAttribute->getAttribute()->setCode($attributeCode);
             $productAttribute->getAttribute()->setRequired(true);
@@ -503,7 +503,7 @@ class LoaderController extends Controller
         if ($attribute) {
             $messages[]= "Attribute ".$attributeCode." already exists";
         } else {
-            $productAttribute = $this->getProductManager()->createFlexibleAttribute();
+            $productAttribute = $this->getProductManager()->createEntityAttribute();
             $productAttribute->setName('Price');
             $productAttribute->getAttribute()->setCode($attributeCode);
             $productAttribute->getAttribute()->setBackendType(AbstractAttributeType::BACKEND_TYPE_DECIMAL);
@@ -517,7 +517,7 @@ class LoaderController extends Controller
         if ($attribute) {
             $messages[]= "Attribute ".$attributeCode." already exists";
         } else {
-            $productAttribute = $this->getProductManager()->createFlexibleAttribute();
+            $productAttribute = $this->getProductManager()->createEntityAttribute();
             $productAttribute->setName('Description');
             $productAttribute->getAttribute()->setCode($attributeCode);
             $productAttribute->getAttribute()->setBackendType(AbstractAttributeType::BACKEND_TYPE_TEXT);
@@ -532,7 +532,7 @@ class LoaderController extends Controller
         if ($attribute) {
             $messages[]= "Attribute ".$attributeCode." already exists";
         } else {
-            $productAttribute = $this->getProductManager()->createFlexibleAttribute();
+            $productAttribute = $this->getProductManager()->createEntityAttribute();
             $productAttribute->setName('Size');
             $productAttribute->getAttribute()->setCode($attributeCode);
             $productAttribute->getAttribute()->setBackendType(AbstractAttributeType::BACKEND_TYPE_INTEGER);
@@ -546,7 +546,7 @@ class LoaderController extends Controller
         if ($attribute) {
             $messages[]= "Attribute ".$attributeCode." already exists";
         } else {
-            $productAttribute = $this->getProductManager()->createFlexibleAttribute();
+            $productAttribute = $this->getProductManager()->createEntityAttribute();
             $productAttribute->setName('Color');
             $productAttribute->getAttribute()->setCode($attributeCode);
             $productAttribute->getAttribute()->setBackendType(AbstractAttributeType::BACKEND_TYPE_OPTION);
