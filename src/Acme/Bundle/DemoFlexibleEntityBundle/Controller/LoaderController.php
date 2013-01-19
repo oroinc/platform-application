@@ -1,6 +1,8 @@
 <?php
 namespace Acme\Bundle\DemoFlexibleEntityBundle\Controller;
 
+use Acme\Bundle\DemoFlexibleEntityBundle\Entity\ProductAttribute;
+
 use Oro\Bundle\FlexibleEntityBundle\Model\Attribute\Type\AbstractAttributeType;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -83,9 +85,18 @@ class LoaderController extends Controller
                     $newProduct->addValue($valueName);
                 }
                 if ($attDescription) {
+                    // scope ecommerce
                     $value = $this->getProductManager()->createEntityValue();
+                    $value->setScope(ProductAttribute::SCOPE_ECOMMERCE);
                     $value->setAttribute($attDescription);
-                    $value->setData($descriptions[$ind%2]);
+                    $myDescription = $descriptions[$ind%2];
+                    $value->setData($myDescription.'(ecommerce)');
+                    $newProduct->addValue($value);
+                    // scope mobile
+                    $value = $this->getProductManager()->createEntityValue();
+                    $value->setScope(ProductAttribute::SCOPE_MOBILE);
+                    $value->setAttribute($attDescription);
+                    $value->setData($myDescription.'(mobile)');
                     $newProduct->addValue($value);
                 }
                 if ($attSize) {
@@ -158,9 +169,6 @@ class LoaderController extends Controller
     {
         $messages = array();
 
-        // force in english
-        $this->getProductManager()->setLocaleCode('en_US');
-
         // get attributes
         $attName = $this->getProductManager()->getEntityRepository()->findAttributeByCode('name');
         $attDescription = $this->getProductManager()->getEntityRepository()->findAttributeByCode('description');
@@ -175,7 +183,7 @@ class LoaderController extends Controller
                     $value = $this->getProductManager()->createEntityValue();
                     $value->setAttribute($attName);
                     $value->setLocaleCode('fr_FR');
-                    $value->setData('mon nom FR '.$ind++);
+                    $value->setData('mon nom FR '.$ind);
                     $product->addValue($value);
                     $this->getProductManager()->getStorageManager()->persist($value);
                     $messages[]= "Value 'name' has been translated";
@@ -183,16 +191,28 @@ class LoaderController extends Controller
             }
             // translate description value
             if ($attDescription) {
-                if ($product->getValue('description') != null) {
+                // check if a value en_US + scope ecommerce exists
+                if ($product->setLocaleCode('en_US')->setScope('ecommerce')->getValue('description') != null) {
+                    // scope ecommerce
                     $value = $this->getProductManager()->createEntityValue();
-                    $value->setAttribute($attDescription);
                     $value->setLocaleCode('fr_FR');
-                    $value->setData('ma description FR '.$ind++);
+                    $value->setScope(ProductAttribute::SCOPE_ECOMMERCE);
+                    $value->setAttribute($attDescription);
+                    $value->setData('ma description FR (ecommerce) '.$ind);
+                    $product->addValue($value);
+                    $this->getProductManager()->getStorageManager()->persist($value);
+                    // scope mobile
+                    $value = $this->getProductManager()->createEntityValue();
+                    $value->setLocaleCode('fr_FR');
+                    $value->setScope(ProductAttribute::SCOPE_MOBILE);
+                    $value->setAttribute($attDescription);
+                    $value->setData('ma description FR (mobile) '.$ind);
                     $product->addValue($value);
                     $this->getProductManager()->getStorageManager()->persist($value);
                     $messages[]= "Value 'description' has been translated";
                 }
             }
+            $ind++;
         }
 
         // get color attribute options
@@ -522,6 +542,7 @@ class LoaderController extends Controller
             $productAttribute->getAttribute()->setCode($attributeCode);
             $productAttribute->getAttribute()->setBackendType(AbstractAttributeType::BACKEND_TYPE_TEXT);
             $productAttribute->getAttribute()->setTranslatable(true);
+            $productAttribute->getAttribute()->setScopable(true);
             $this->getProductManager()->getStorageManager()->persist($productAttribute);
             $messages[]= "Attribute ".$attributeCode." has been created";
         }

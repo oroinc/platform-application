@@ -12,6 +12,7 @@
                 <th>Required</th>
                 <th>Unique</th>
                 <th>Translatable</th>
+                <th>Scopable</th>
                 <th>Created</th>
             </tr>
         </thead>
@@ -25,6 +26,7 @@
                 <td>{{ attribute.required }}</td>
                 <td>{{ attribute.unique }}</td>
                 <td>{{ attribute.translatable }}</td>
+                <td>{{ attribute.scopable }}</td>
                 <td>{{ attribute.created|date('Y-m-d h:i:s') }}</td>
             </tr>
          {% endfor %}
