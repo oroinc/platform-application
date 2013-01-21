@@ -28,7 +28,7 @@ class ProductController extends Controller
         $pm = $this->container->get('product_manager');
         // force data locale if provided
         $dataLocale = $this->getRequest()->get('dataLocale');
-        $pm->setLocaleCode($dataLocale);
+        $pm->setLocale($dataLocale);
         // force data scope if provided
         $dataScope = $this->getRequest()->get('dataScope');
         $dataScope = ($dataScope) ? $dataScope : 'ecommerce';
@@ -113,7 +113,7 @@ class ProductController extends Controller
         // get all entity fields and directly get attributes values
         $pm = $this->getProductManager();
         // force, always in french
-        $pm->setLocaleCode('fr_FR');
+        $pm->setLocale('fr_FR');
         $products = $pm->getEntityRepository()->findByWithAttributes(array('name', 'description'));
 
         return array('products' => $products, 'attributes' => array('name', 'description'));

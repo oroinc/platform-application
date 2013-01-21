@@ -36,7 +36,7 @@ class LoaderController extends Controller
         $messages = array();
 
         // force in english because product is translatable
-        $this->getProductManager()->setLocaleCode('en_US');
+        $this->getProductManager()->setLocale('en_US');
 
         // get attributes
         $attName = $this->getProductManager()->getEntityRepository()->findAttributeByCode('name');
@@ -179,10 +179,10 @@ class LoaderController extends Controller
         foreach ($products as $product) {
             // translate name value
             if ($attName) {
-                if ($product->setLocaleCode('en_US')->getValue('name') != null) {
+                if ($product->setLocale('en_US')->getValue('name') != null) {
                     $value = $this->getProductManager()->createEntityValue();
                     $value->setAttribute($attName);
-                    $value->setLocaleCode('fr_FR');
+                    $value->setLocale('fr_FR');
                     $value->setData('mon nom FR '.$ind);
                     $product->addValue($value);
                     $this->getProductManager()->getStorageManager()->persist($value);
@@ -192,10 +192,10 @@ class LoaderController extends Controller
             // translate description value
             if ($attDescription) {
                 // check if a value en_US + scope ecommerce exists
-                if ($product->setLocaleCode('en_US')->setScope('ecommerce')->getValue('description') != null) {
+                if ($product->setLocale('en_US')->setScope('ecommerce')->getValue('description') != null) {
                     // scope ecommerce
                     $value = $this->getProductManager()->createEntityValue();
-                    $value->setLocaleCode('fr_FR');
+                    $value->setLocale('fr_FR');
                     $value->setScope(ProductAttribute::SCOPE_ECOMMERCE);
                     $value->setAttribute($attDescription);
                     $value->setData('ma description FR (ecommerce) '.$ind);
@@ -203,7 +203,7 @@ class LoaderController extends Controller
                     $this->getProductManager()->getStorageManager()->persist($value);
                     // scope mobile
                     $value = $this->getProductManager()->createEntityValue();
-                    $value->setLocaleCode('fr_FR');
+                    $value->setLocale('fr_FR');
                     $value->setScope(ProductAttribute::SCOPE_MOBILE);
                     $value->setAttribute($attDescription);
                     $value->setData('ma description FR (mobile) '.$ind);
@@ -226,7 +226,7 @@ class LoaderController extends Controller
                 $option = $optValueEn->getOption();
                 $optValueFr = $this->getProductManager()->createAttributeOptionValue();
                 $optValueFr->setValue($colorFr);
-                $optValueFr->setLocaleCode('fr_FR');
+                $optValueFr->setLocale('fr_FR');
                 $option->addOptionValue($optValueFr);
                 $this->getProductManager()->getStorageManager()->persist($optValueFr);
                 $messages[]= "Option '".$colorEn."' has been translated";
@@ -427,7 +427,7 @@ class LoaderController extends Controller
         $messages = array();
 
         // force in english
-        $this->getCustomerManager()->setLocaleCode('en_US');
+        $this->getCustomerManager()->setLocale('en_US');
 
         // attribute company (if not exists)
         $attCode = 'company';
@@ -499,7 +499,7 @@ class LoaderController extends Controller
         $messages = array();
 
         // force in english
-        $this->getProductManager()->setLocaleCode('en_US');
+        $this->getProductManager()->setLocale('en_US');
 
         // attribute name (if not exists)
         $attributeCode = 'name';
