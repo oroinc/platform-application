@@ -11,10 +11,10 @@ use Doctrine\ORM\Mapping as ORM;
  * @copyright 2012 Akeneo SAS (http://www.akeneo.com)
  * @license   http://opensource.org/licenses/MIT MIT
  *
- * @ORM\Table(name="acmedemoflexibleentity_customer_attribute_value")
+ * @ORM\Table(name="acmedemoflexibleentity_customer_value")
  * @ORM\Entity
  */
-class CustomerAttributeValue extends AbstractEntityFlexibleValue
+class CustomerValue extends AbstractEntityFlexibleValue
 {
     /**
      * @var Oro\Bundle\FlexibleEntityBundle\Entity\Attribute $attribute

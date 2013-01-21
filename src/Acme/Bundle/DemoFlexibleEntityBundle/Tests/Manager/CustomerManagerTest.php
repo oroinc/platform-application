@@ -3,7 +3,7 @@ namespace Acme\Bundle\DemoFlexibleEntityBundle\Test\Manager;
 
 use Oro\Bundle\FlexibleEntityBundle\Entity\AttributeOption;
 
-use Acme\Bundle\DemoFlexibleEntityBundle\Entity\CustomerAttributeValue;
+use Acme\Bundle\DemoFlexibleEntityBundle\Entity\CustomerValue;
 
 use Oro\Bundle\FlexibleEntityBundle\Model\Attribute\Type\AbstractAttributeType;
 
@@ -162,7 +162,7 @@ class CustomerManagerTest extends KernelAwareTest
      * @param Attribute $attribute Attribute object
      * @param mixed     $value     Value of the attribute
      *
-     * @return CustomerAttributeValue
+     * @return CustomerValue
      */
     protected function createValue($attribute, $value)
     {

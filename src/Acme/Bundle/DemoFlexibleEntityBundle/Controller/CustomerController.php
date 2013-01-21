@@ -108,7 +108,7 @@ class CustomerController extends Controller
         $customers = $this->getCustomerManager()
                           ->getEntityRepository()
                           ->findByWithAttributes(
-                              array('company'),
+                              array('company', 'dob', 'gender'),
                               array('firstname' => 'Nicolas', 'company' => 'Akeneo')
                           );
 

@@ -41,7 +41,7 @@ class Customer extends AbstractEntityFlexible
     /**
      * @var Value
      *
-     * @ORM\OneToMany(targetEntity="CustomerAttributeValue", mappedBy="entity", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="CustomerValue", mappedBy="entity", cascade={"persist", "remove"})
      */
     protected $values;
 
