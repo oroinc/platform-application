@@ -31,11 +31,15 @@ class CustomerValue extends AbstractEntityFlexibleValue
     protected $entity;
 
     /**
-     * Store option value, if backend is an option
+     * Store options values
      *
-     * @var Oro\Bundle\FlexibleEntityBundle\Entity\AttributeOption $option
+     * @var options ArrayCollection
      *
-     * @ORM\ManyToOne(targetEntity="Oro\Bundle\FlexibleEntityBundle\Entity\AttributeOption")
+     * @ORM\ManyToMany(targetEntity="Oro\Bundle\FlexibleEntityBundle\Entity\AttributeOption")
+     * @ORM\JoinTable(name="acmedemoflexibleentity_customer_values_options",
+     *      joinColumns={@ORM\JoinColumn(name="value_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="option_id", referencedColumnName="id")}
+     * )
      */
-    protected $option;
+    protected $options;
 }

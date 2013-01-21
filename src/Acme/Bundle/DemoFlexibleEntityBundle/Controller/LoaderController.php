@@ -44,8 +44,12 @@ class LoaderController extends Controller
         $attSize = $this->getProductManager()->getEntityRepository()->findAttributeByCode('size');
         $attColor = $this->getProductManager()->getEntityRepository()->findAttributeByCode('color');
         $attPrice = $this->getProductManager()->getEntityRepository()->findAttributeByCode('price');
-        // get first attribute option
-        $optColor = $this->getProductManager()->getAttributeOptionRepository()->findOneBy(array('attribute' => $attColor));
+        // get attribute color options
+        $optColors = $this->getProductManager()->getAttributeOptionRepository()->findBy(array('attribute' => $attColor));
+        $colors = array();
+        foreach ($optColors as $option) {
+            $colors[]= $option;
+        }
 
         $indSku = 1;
         $descriptions = array('my long description', 'my other description');
@@ -102,14 +106,20 @@ class LoaderController extends Controller
                 if ($attSize) {
                     $valueSize = $this->getProductManager()->createEntityValue();
                     $valueSize->setAttribute($attSize);
-                    $valueSize->setData(175);
+                    $valueSize->setData(175); // single value
                     $valueSize->setUnit('mm');
                     $newProduct->addValue($valueSize);
                 }
                 if ($attColor) {
                     $value = $this->getProductManager()->createEntityValue();
                     $value->setAttribute($attColor);
-                    $value->setData($optColor); // we set option as data, you can use $value->setOption($optColor) too
+                    // pick many colors (multiselect)
+                    $firstColorOpt = $colors[rand(0, count($colors)-1)];
+                    $value->addOption($firstColorOpt);
+                    $secondColorOpt = $colors[rand(0, count($colors)-1)];
+                    if ($firstColorOpt->getId() != $secondColorOpt->getId()) {
+                        $value->addOption($secondColorOpt);
+                    }
                     $newProduct->addValue($value);
                 }
                 $this->getProductManager()->getStorageManager()->persist($newProduct);
@@ -363,7 +373,7 @@ class LoaderController extends Controller
                 if ($attGender) {
                     $value = $this->getCustomerManager()->createEntityValue();
                     $value->setAttribute($attGender);
-                    $value->setData($optGender);  // we set option as data, you can use $value->setOption($optGender) too
+                    $value->setOption($optGender);  // we set option as data, you can use $value->setOption($optGender) too
                     $customer->addValue($value);
                 }
                 $messages[]= "Customer ".$custEmail." has been created";
