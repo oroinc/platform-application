@@ -5,7 +5,7 @@ use Oro\Bundle\FlexibleEntityBundle\Entity\AttributeOption;
 
 use Acme\Bundle\DemoFlexibleEntityBundle\Entity\CustomerValue;
 
-use Oro\Bundle\FlexibleEntityBundle\Model\Attribute\Type\AbstractAttributeType;
+use Oro\Bundle\FlexibleEntityBundle\Model\AbstractAttributeType;
 
 use Acme\Bundle\DemoFlexibleEntityBundle\Entity\Customer;
 

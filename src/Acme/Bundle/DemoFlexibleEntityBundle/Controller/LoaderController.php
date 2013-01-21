@@ -3,7 +3,7 @@ namespace Acme\Bundle\DemoFlexibleEntityBundle\Controller;
 
 use Acme\Bundle\DemoFlexibleEntityBundle\Entity\ProductAttribute;
 
-use Oro\Bundle\FlexibleEntityBundle\Model\Attribute\Type\AbstractAttributeType;
+use Oro\Bundle\FlexibleEntityBundle\Model\AbstractAttributeType;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 

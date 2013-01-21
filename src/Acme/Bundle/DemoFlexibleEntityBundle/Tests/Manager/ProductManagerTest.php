@@ -2,7 +2,7 @@
 namespace Acme\Bundle\DemoFlexibleEntityBundle\Test\Manager;
 
 use Acme\Bundle\DemoFlexibleEntityBundle\Entity\Product;
-use Oro\Bundle\FlexibleEntityBundle\Model\Attribute\Type\AbstractAttributeType;
+use Oro\Bundle\FlexibleEntityBundle\Model\AbstractAttributeType;
 
 use Acme\Bundle\DemoFlexibleEntityBundle\Tests\KernelAwareTest;
 
