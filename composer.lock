@@ -1,320 +1,6 @@
 {
-    "hash": "7302db66a8cb379f6baf8ec4ce0d29d0",
+    "hash": "016b68a30e097ca41bbe32645db23353",
     "packages": [
-        {
-            "name": "burti/ass-xmlsecurity",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Burti/XmlSecurity.git",
-                "reference": "c25f29818ead1220b779a12e4abd5a8a4d853592"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/Burti/XmlSecurity/archive/c25f29818ead1220b779a12e4abd5a8a4d853592.zip",
-                "reference": "c25f29818ead1220b779a12e4abd5a8a4d853592",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "time": "2012-12-13 14:26:31",
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "ass\\XmlSecurity": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "authors": [
-                {
-                    "name": "Robert Richards",
-                    "email": "rrichards@cdatazone.org"
-                },
-                {
-                    "name": "Andreas Schamberger",
-                    "email": "mail@andreass.net"
-                }
-            ],
-            "description": "The XmlSecurity library is written in PHP for working with XML Encryption and Signatures",
-            "homepage": "https://github.com/aschamberger/XmlSecurity",
-            "keywords": [
-                "xml",
-                "security",
-                "encryption",
-                "signature"
-            ]
-        },
-        {
-            "name": "burti/besimple-soap-bundle",
-            "version": "dev-master",
-            "target-dir": "BeSimple/SoapBundle",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Burti/BeSimpleSoapBundle.git",
-                "reference": "c0d14f128f61938047f5a7de0fb66f7c11eda83c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/Burti/BeSimpleSoapBundle/archive/c0d14f128f61938047f5a7de0fb66f7c11eda83c.zip",
-                "reference": "c0d14f128f61938047f5a7de0fb66f7c11eda83c",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0",
-                "burti/besimple-soap-common": "dev-master",
-                "burti/zend-soap": "dev-master",
-                "burti/zend-mime": "dev-master"
-            },
-            "suggest": {
-                "burti/besimple-soap-client": "dev-master",
-                "burti/besimple-soap-server": "dev-master"
-            },
-            "time": "2012-12-13 15:05:45",
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "BeSimple\\SoapBundle": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "authors": [
-                {
-                    "name": "Francis Besset",
-                    "email": "francis.besset@gmail.com",
-                    "homepage": "http://www.apercite.fr"
-                },
-                {
-                    "name": "Andreas Schamberger",
-                    "email": "mail@andreass.net"
-                },
-                {
-                    "name": "Christian Kerl",
-                    "email": "christian-kerl@web.de"
-                }
-            ],
-            "description": "Build and consume SOAP and WSDL based web services with Symfony2",
-            "homepage": "https://github.com/BeSimple/BeSimpleSoapBundle",
-            "keywords": [
-                "soap"
-            ]
-        },
-        {
-            "name": "burti/besimple-soap-common",
-            "version": "dev-master",
-            "target-dir": "BeSimple/SoapCommon",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Burti/BeSimpleSoapCommon.git",
-                "reference": "3747cc87d5d24003d355043048de123fbb3e5fa6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/Burti/BeSimpleSoapCommon/archive/3747cc87d5d24003d355043048de123fbb3e5fa6.zip",
-                "reference": "3747cc87d5d24003d355043048de123fbb3e5fa6",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0",
-                "burti/ass-xmlsecurity": "dev-master",
-                "burti/vfsstream": "dev-master"
-            },
-            "time": "2012-12-13 15:03:21",
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "BeSimple\\SoapCommon": "BeSimple/SoapCommon/src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "authors": [
-                {
-                    "name": "Francis Besset",
-                    "email": "francis.besset@gmail.com",
-                    "homepage": "http://www.apercite.fr"
-                },
-                {
-                    "name": "Andreas Schamberger",
-                    "email": "mail@andreass.net"
-                },
-                {
-                    "name": "Christian Kerl",
-                    "email": "christian-kerl@web.de"
-                }
-            ],
-            "description": "Build and consume SOAP Common based web services with Symfony2",
-            "homepage": "https://github.com/BeSimple/BeSimpleSoapBundle",
-            "keywords": [
-                "soap",
-                "soap-common"
-            ]
-        },
-        {
-            "name": "burti/besimple-soap-server",
-            "version": "dev-master",
-            "target-dir": "BeSimple/SoapServer",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Burti/BeSimpleSoapServer.git",
-                "reference": "3a4be0be484d14066f9ccb799137b8b38a6a8a39"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/Burti/BeSimpleSoapServer/archive/3a4be0be484d14066f9ccb799137b8b38a6a8a39.zip",
-                "reference": "3a4be0be484d14066f9ccb799137b8b38a6a8a39",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0",
-                "burti/besimple-soap-common": "dev-master"
-            },
-            "time": "2012-12-13 14:53:19",
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "BeSimple\\SoapServer": "BeSimple/SoapServer/src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "authors": [
-                {
-                    "name": "Francis Besset",
-                    "email": "francis.besset@gmail.com",
-                    "homepage": "http://www.apercite.fr"
-                },
-                {
-                    "name": "Andreas Schamberger",
-                    "email": "mail@andreass.net"
-                },
-                {
-                    "name": "Christian Kerl",
-                    "email": "christian-kerl@web.de"
-                }
-            ],
-            "description": "Build and consume SOAP Server based web services with Symfony2",
-            "homepage": "https://github.com/BeSimple/BeSimpleSoapBundle",
-            "keywords": [
-                "soap",
-                "soap-server"
-            ]
-        },
-        {
-            "name": "burti/vfsstream",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Burti/vfsStream.git",
-                "reference": "9f6baa80121372ae709cbd04186a36cf9632666f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/Burti/vfsStream/archive/9f6baa80121372ae709cbd04186a36cf9632666f.zip",
-                "reference": "9f6baa80121372ae709cbd04186a36cf9632666f",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "time": "2012-12-13 14:40:28",
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "org\\bovigo\\vfs\\": "src/main/php"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD"
-            ],
-            "authors": [
-                {
-                    "name": "Frank Kleine"
-                }
-            ],
-            "homepage": "http://vfs.bovigo.org/"
-        },
-        {
-            "name": "burti/zend-mime",
-            "version": "dev-master",
-            "target-dir": "Zend/Mime",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Burti/zend-mime.git",
-                "reference": "23c9f3201b4555fea93c6a13d66ae1295888fb48"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/Burti/zend-mime/archive/23c9f3201b4555fea93c6a13d66ae1295888fb48.zip",
-                "reference": "23c9f3201b4555fea93c6a13d66ae1295888fb48",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "time": "2012-12-13 14:36:34",
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Zend\\Mime": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-new"
-            ],
-            "authors": [
-                {
-                    "name": "Zend",
-                    "homepage": "http://framework.zend.com/"
-                }
-            ],
-            "description": "Zend Mime based web services with Symfony2",
-            "homepage": "http://framework.zend.com/",
-            "keywords": [
-                "zend-mime"
-            ]
-        },
-        {
-            "name": "burti/zend-soap",
-            "version": "dev-master",
-            "target-dir": "Zend/Soap",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Burti/zend-soap.git",
-                "reference": "1184fdd26b18bbb8ec7adabc5d5a6ec52cc4c69f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/Burti/zend-soap/archive/1184fdd26b18bbb8ec7adabc5d5a6ec52cc4c69f.zip",
-                "reference": "1184fdd26b18bbb8ec7adabc5d5a6ec52cc4c69f",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "time": "2012-12-13 14:37:01",
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Zend\\Soap": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-new"
-            ],
-            "authors": [
-                {
-                    "name": "Zend",
-                    "homepage": "http://framework.zend.com/"
-                }
-            ],
-            "description": "Zend Soap based web services with Symfony2",
-            "homepage": "http://framework.zend.com/",
-            "keywords": [
-                "zend-soap"
-            ]
-        },
         {
             "name": "dflydev/markdown",
             "version": "v1.0.2",
@@ -1180,12 +866,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/schmittjoh/JMSSecurityExtraBundle",
-                "reference": "ebb72f40c7496f156d0db67f27ad95978ed39e99"
+                "reference": "527fd1440287e66e12df70b71406ae26f36131a1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/schmittjoh/JMSSecurityExtraBundle/archive/ebb72f40c7496f156d0db67f27ad95978ed39e99.zip",
-                "reference": "ebb72f40c7496f156d0db67f27ad95978ed39e99",
+                "url": "https://github.com/schmittjoh/JMSSecurityExtraBundle/archive/527fd1440287e66e12df70b71406ae26f36131a1.zip",
+                "reference": "527fd1440287e66e12df70b71406ae26f36131a1",
                 "shasum": ""
             },
             "require": {
@@ -1210,7 +896,7 @@
                 "symfony/form": "*",
                 "symfony/validator": "*"
             },
-            "time": "2013-01-18 10:09:22",
+            "time": "2012-12-09 19:12:10",
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
@@ -1442,12 +1128,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/KnpLabs/KnpPaginatorBundle",
-                "reference": "6ec70b0673a489259c72041df3ad242a0d56f1a8"
+                "reference": "v2.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/KnpLabs/KnpPaginatorBundle/archive/6ec70b0673a489259c72041df3ad242a0d56f1a8.zip",
-                "reference": "6ec70b0673a489259c72041df3ad242a0d56f1a8",
+                "url": "https://github.com/KnpLabs/KnpPaginatorBundle/archive/v2.3.zip",
+                "reference": "v2.3",
                 "shasum": ""
             },
             "require": {
@@ -1456,7 +1142,7 @@
                 "knplabs/knp-components": ">=1.1,<2.0",
                 "twig/twig": ">=1.5,<2.0"
             },
-            "time": "2013-01-17 19:53:45",
+            "time": "2013-01-18 17:41:27",
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
@@ -2350,14 +2036,7 @@
         "friendsofsymfony/rest-bundle": 20,
         "jms/serializer": 20,
         "jms/serializer-bundle": 20,
-        "nelmio/api-doc-bundle": 20,
-        "jms/job-queue-bundle": 20,
-        "burti/zend-mime": 20,
-        "burti/zend-soap": 20,
-        "burti/vfsstream": 20,
-        "burti/ass-xmlsecurity": 20,
-        "burti/besimple-soap-common": 20,
-        "burti/besimple-soap-bundle": 20,
-        "burti/besimple-soap-server": 20
+        "nelmio/api-doc-bundle": 20
+        "jms/job-queue-bundle": 20
     }
 }
