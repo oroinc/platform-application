@@ -27,7 +27,7 @@ twig:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        ['AcmeDemoBundle']
+    bundles:        ['AcmeDemoBundle', 'FOSUserBundle']
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -75,3 +75,7 @@ fos_user:
     db_driver:        orm                                   # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name:    main
     user_class:       Oro\Bundle\UserBundle\Entity\User
+    group:
+        group_class:  Oro\Bundle\UserBundle\Entity\Group
+    service:
+        user_manager: oro_user.user_manager
