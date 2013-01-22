@@ -1,5 +1,5 @@
 parameters:
-#    oro_measure.example.class: Oro\Bundle\MeasureBundle\Example
+    oro_measure.measures_config: ~
 
 services:
 #    oro_measure.example:

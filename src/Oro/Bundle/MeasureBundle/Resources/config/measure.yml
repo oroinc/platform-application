@@ -1,0 +1,25 @@
+measures_config:
+    Oro\Bundle\MeasureBundle\Measure\Lenght:
+        standard: METER
+        units:
+            METER:
+                convert: 1
+                format: m
+            CENTIMETER:
+                convert: 0.01
+                format: cm
+            MILLIMETER:
+                convert: 0.001
+                format: mm
+            DONG:
+                convert: array('' => '7','/' => '300')
+                format: dong
+    Oro\Bundle\MeasureBundle\Measure\Weight:
+        standard: KILOGRAM
+        units:
+            KILOGRAM:
+                convert: 1
+                format: kg
+            GRAM:
+                convert: 0.001
+                format: g
