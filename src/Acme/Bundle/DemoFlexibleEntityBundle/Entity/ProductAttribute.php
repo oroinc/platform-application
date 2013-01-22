@@ -12,11 +12,14 @@ use Doctrine\ORM\Mapping as ORM;
  * @copyright 2012 Akeneo SAS (http://www.akeneo.com)
  * @license   http://opensource.org/licenses/MIT MIT
  *
- * @ORM\Table(name="acmeproduct_product_attribute")
+ * @ORM\Table(name="acmedemoflexibleentity_product_attribute")
  * @ORM\Entity
  */
 class ProductAttribute extends AbstractEntityFlexibleAttribute
 {
+    const SCOPE_ECOMMERCE = 'ecommerce';
+    const SCOPE_MOBILE    = 'mobile';
+
     /**
      * @var Oro\Bundle\FlexibleEntityBundle\Entity\Attribute $attribute
      *
