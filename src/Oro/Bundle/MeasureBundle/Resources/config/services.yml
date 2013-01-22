@@ -1,0 +1,7 @@
+parameters:
+#    oro_measure.example.class: Oro\Bundle\MeasureBundle\Example
+
+services:
+#    oro_measure.example:
+#        class: %oro_measure.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
