@@ -169,7 +169,11 @@ class CustomerManagerTest extends KernelAwareTest
         // create value
         $entityValue = $this->manager->createEntityValue();
         $entityValue->setAttribute($attribute);
-        $entityValue->setData($value);
+        if ($attribute->getCode() == 'gender') {
+            $entityValue->setOption($value);
+        } else {
+            $entityValue->setData($value);
+        }
 
         return $entityValue;
     }
