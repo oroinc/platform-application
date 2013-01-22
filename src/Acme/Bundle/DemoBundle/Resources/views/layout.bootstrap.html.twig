@@ -4,15 +4,16 @@
         <title>{% block title %}BAP Dev{% endblock %}</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript"> localStorage.clear();</script>
         <link rel="stylesheet/less" href="{{ asset('bundles/oroui/css/less/main.less') }}" media="all" />
-        {#% stylesheets
-            '@AcmeDemoBundle/Resources/public/css/*'
+        {% stylesheets
+            '@OroUIBundle/Resources/public/css/all.css'
 
             output='css/acme.all.css'
             filter='cssrewrite'
         %}
         <link rel="stylesheet" type="text/css" href="{{ asset_url }}" />
-        {% endstylesheets %#}
+        {% endstylesheets %}
 
         {% block stylesheets %}{% endblock %}
 
