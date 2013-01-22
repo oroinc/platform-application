@@ -2,6 +2,8 @@
 
 {% block pagecontent %}
 
+    <h3>Customer list</h3>
+
     <ul id="menu-block">
         <li><a href="{{ path('acme_demoflexibleentity_customer_index') }}">Select entities and all attribute values</a></li>
         <li><a href="{{ path('acme_demoflexibleentity_customer_querylazyload') }}">Select just entities, attributes and values are lazy load</a></li>
@@ -13,43 +15,47 @@
         <li><a href="{{ path('acme_demoflexibleentity_customer_queryfilterfirstnameandcompany') }}">Select filtered by firstname and company (firstname = "Nicolas" and company = "Akeneo")</a></li>
         
         <li><a href="{{ path('acme_demoflexibleentity_customer_queryfilterfirstnameandlimit') }}">Select filter by firstname (Nicolas) and limit (10)</a></li>
-        <li><a href="{{ path('acme_demoflexibleentity_customer_queryfilterfirstnameandorderbirthdatedesc') }}">Select filter by firstname and order by birthdate desc</a></li>
+        <li><a href="{{ path('acme_demoflexibleentity_customer_queryfilterfirstnameandorderbirthdatedesc') }}">Select only birthdate, filter by firstname (Nicolas) and order by birthdate desc</a></li>
     </ul>
+    
+    <hr/>
     
     <p>Nb results : {{ customers|length }}</p>
 
-    <div class="popup-box">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Email</th>
-                    <th>FirstName</th>
-                    <th>LastName</th>
-                    <th>Birth</th>
-                    <th>Gender</th>
-                    <th>Company</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-            {% for customer in customers %}
+    <table class="table table-striped">
+        <thead>
             <tr>
-                <td>{{ customer.id }}</td>
-                <td>{{ customer.email }}</td>
-                <td>{{ customer.firstname }}</td>
-                <td>{{ customer.lastname }}</td>
-                <td>{{ customer.dob|date('Y-m-d')}}</td>
-                <td>{{ customer.gender }}</td>
-                <td>{{ customer.company }}</td>
-
-                <td><a href="{{ path('acme_demoflexibleentity_customer_view', {'id': customer.id}) }}">Show details</a></td>
+                <th>Id</th>
+                <th>Email</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Birth</th>
+                <th>Gender</th>
+                <th>Company</th>
+                <th>Action</th>
             </tr>
-            {% endfor %}
+        </thead>
+        <tbody>
+        {% for customer in customers %}
+        <tr>
+            <td>{{ customer.id }}</td>
+            <td>{{ customer.email }}</td>
+            <td>{{ customer.firstname }}</td>
+            <td>{{ customer.lastname }}</td>
+            <td>{{ customer.dob|date('Y-m-d')}}</td>
+            <td>{{ customer.gender }}</td>
+            <td>{{ customer.company }}</td>
 
-            </tbody>
-        </table>
-    </div>
+            <td>
+                <a class="btn btn-small btn-primary" href="{{ path('acme_demoflexibleentity_customer_view', {'id': customer.id}) }}">
+                    {{ "View details" | trans }}
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
     <hr />
 
 {% endblock %}
