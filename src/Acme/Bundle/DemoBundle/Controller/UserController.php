@@ -10,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 use JMS\SecurityExtraBundle\Annotation\Secure;
 
+use Oro\Bundle\FlexibleEntityBundle\Model\AbstractAttributeType;
 use Oro\Bundle\UserBundle\Entity\User;
 use Oro\Bundle\UserBundle\Form\Type\UserType;
 
@@ -47,19 +48,48 @@ class UserController extends Controller
     public function editAction(User $entity)
     {
         $request = $this->getRequest();
-        $form    = $this->createForm(new UserType(), $entity);
+        $form    = $this->createForm('oro_user_form', $entity);
 
         if ($request->getMethod() == 'POST') {
             $form->bind($request);
 
             if ($form->isValid()) {
-                /**
-                 * @todo try to use fos_user.user_manager to manipulate user data
-                 */
-                $em = $this->getDoctrine()->getManager();
+                $fm = $this->get('oro_user.flexible_manager');
 
-                $em->persist($entity);
-                $em->flush();
+                /**
+                 * Process all entity attributes manually
+                 *
+                 * @todo move this code to FlexibleEntityBundle
+                 */
+                foreach ($fm->getEntityRepository()->getCodeToAttributes([]) as $attr) {
+                    $field = $form->get($attr->getCode());
+
+                    if ($field) {
+                        $data = $field->getData();
+
+                        if ($attr->getBackendType() == AbstractAttributeType::BACKEND_TYPE_OPTION) {
+                            /**
+                             * @todo how to handle options?
+                             */
+                        } else {
+                            if (!$entity->getId() || !($value = $entity->getValue($attr->getCode()))) {
+                                // add new value
+                                $value = $fm->createEntityValue()->setAttribute($attr);
+
+                                $entity->addValue($value);
+                            }
+
+                            $value->setData($data);
+                        }
+                    }
+                }
+
+                /**
+                 * @todo maybe it is better to use fos_user.user_manager or
+                 *       oro_user.user_manager to manipulate user data?
+                 */
+                $fm->getStorageManager()->persist($entity);
+                $fm->getStorageManager()->flush();
 
                 $this->get('session')->getFlashBag()->add('success', 'User successfully saved');
 
