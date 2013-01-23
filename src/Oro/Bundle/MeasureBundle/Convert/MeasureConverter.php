@@ -43,7 +43,7 @@ class MeasureConverter
      *
      * @return MeasureConverter
      *
-     * @throws UUnknownFamilyMeasureException
+     * @throws Oro\Bundle\MeasureBundle\Exception\UnknownFamilyMeasureException
      */
     public function setFamily($family)
     {
@@ -80,8 +80,8 @@ class MeasureConverter
      *
      * @return float
      *
-     * @throws UnknownOperatorException
-     * @throws UnknownMeasureException
+     * @throws Oro\Bundle\MeasureBundle\Exception\UnknownOperatorException
+     * @throws Oro\Bundle\MeasureBundle\Exception\UnknownMeasureException
      */
     protected function convertBaseToStandard($baseUnit, $value)
     {
@@ -123,8 +123,8 @@ class MeasureConverter
      *
      * @return double
      *
-     * @throws UnknownOperatorException
-     * @throws UnknownMeasureException
+     * @throws Oro\Bundle\MeasureBundle\Exception\UnknownOperatorException
+     * @throws Oro\Bundle\MeasureBundle\Exception\UnknownMeasureException
      */
     protected function convertStandardToResult($finalUnit, $value)
     {
@@ -134,7 +134,7 @@ class MeasureConverter
         $conversionConfig = $this->config[$this->family]['units'][$finalUnit]['convert'];
         $convertedValue = $value;
 
-        // calculate result with conversion config
+        // calculate result with conversion config (calculs must be reversed and operation inversed)
         foreach (array_reverse($conversionConfig) as $operator => $operand) {
             switch ($operator) {
                 case "/":
