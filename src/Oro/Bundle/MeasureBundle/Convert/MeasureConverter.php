@@ -92,24 +92,26 @@ class MeasureConverter
         $convertedValue = $value;
 
         // calculate result with conversion config
-        foreach ($conversionConfig as $operator => $operand) {
-            switch ($operator) {
-                case "div":
-                    if ($operand !== 0) {
-                        $convertedValue = $convertedValue / $operand;
-                    }
-                    break;
-                case "mul":
-                    $convertedValue = $convertedValue * $operand;
-                    break;
-                case "add":
-                    $convertedValue = $convertedValue + $operand;
-                    break;
-                case "sub":
-                    $convertedValue = $convertedValue - $operand;
-                    break;
-                default:
-                    throw new UnknownOperatorException();
+        foreach ($conversionConfig as $operation) {
+            foreach ($operation as $operator => $operand) {
+                switch ($operator) {
+                    case "div":
+                        if ($operand !== 0) {
+                            $convertedValue = $convertedValue / $operand;
+                        }
+                        break;
+                    case "mul":
+                        $convertedValue = $convertedValue * $operand;
+                        break;
+                    case "add":
+                        $convertedValue = $convertedValue + $operand;
+                        break;
+                    case "sub":
+                        $convertedValue = $convertedValue - $operand;
+                        break;
+                    default:
+                        throw new UnknownOperatorException();
+                }
             }
         }
 
@@ -135,24 +137,26 @@ class MeasureConverter
         $convertedValue = $value;
 
         // calculate result with conversion config (calculs must be reversed and operation inversed)
-        foreach (array_reverse($conversionConfig) as $operator => $operand) {
-            switch ($operator) {
-                case "div":
-                    $convertedValue = $convertedValue * $operand;
-                    break;
-                case "mul":
-                    if ($operand !== 0) {
-                        $convertedValue = $convertedValue / $operand;
-                    }
-                    break;
-                case "add":
-                    $convertedValue = $convertedValue - $operand;
-                    break;
-                case "sub":
-                    $convertedValue = $convertedValue + $operand;
-                    break;
-                default:
-                    throw new UnknownOperatorException();
+        foreach (array_reverse($conversionConfig) as $operation) {
+            foreach ($operation as $operator => $operand) {
+                switch ($operator) {
+                    case "div":
+                        $convertedValue = $convertedValue * $operand;
+                        break;
+                    case "mul":
+                        if ($operand !== 0) {
+                            $convertedValue = $convertedValue / $operand;
+                        }
+                        break;
+                    case "add":
+                        $convertedValue = $convertedValue - $operand;
+                        break;
+                    case "sub":
+                        $convertedValue = $convertedValue + $operand;
+                        break;
+                    default:
+                        throw new UnknownOperatorException();
+                }
             }
         }
 
