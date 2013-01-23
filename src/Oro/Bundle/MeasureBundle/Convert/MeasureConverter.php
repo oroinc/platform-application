@@ -130,21 +130,21 @@ class MeasureConverter
         $convertedValue = $value;
 
         // calculate result with conversion config
-        foreach ($conversionConfig as $operator => $rate) {
+        foreach ($conversionConfig as $operator => $operand) {
             switch ($operator) {
                 case "/":
-                    if ($operand !== 0) {
-                        $convertedValue = $convertedValue * $rate;
-                    }
+                    $convertedValue = $convertedValue * $operand;
                     break;
                 case "*":
-                    $convertedValue = $convertedValue / $rate;
+                    if ($operand !== 0) {
+                        $convertedValue = $convertedValue / $operand;
+                    }
                     break;
                 case "+":
-                    $convertedValue = $convertedValue - $rate;
+                    $convertedValue = $convertedValue - $operand;
                     break;
                 case "-":
-                    $convertedValue = $convertedValue + $rate;
+                    $convertedValue = $convertedValue + $operand;
                     break;
                 default:
                     throw new UnknownOperatorException();
