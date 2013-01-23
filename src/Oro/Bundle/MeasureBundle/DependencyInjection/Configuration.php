@@ -28,7 +28,7 @@ class Configuration implements ConfigurationInterface
             ->prototype('array')
             ->children()
 
-                // standard unit (used as reference for convertion)
+                // standard unit (used as reference for conversion)
                 ->scalarNode('standard')
                 ->isRequired()
                 ->end()
