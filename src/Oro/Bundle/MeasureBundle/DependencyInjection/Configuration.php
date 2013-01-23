@@ -37,7 +37,7 @@ class Configuration implements ConfigurationInterface
                 ->arrayNode('units')
                 ->prototype('array')
                 ->children()
-                    ->scalarNode('convert')
+                    ->arrayNode('convert')
                     ->isRequired()
                     ->end()
                     ->scalarNode('format')
