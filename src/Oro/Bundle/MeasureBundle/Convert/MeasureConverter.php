@@ -135,7 +135,7 @@ class MeasureConverter
         $convertedValue = $value;
 
         // calculate result with conversion config
-        foreach ($conversionConfig as $operator => $operand) {
+        foreach (array_reverse($conversionConfig) as $operator => $operand) {
             switch ($operator) {
                 case "/":
                     $convertedValue = $convertedValue * $operand;
