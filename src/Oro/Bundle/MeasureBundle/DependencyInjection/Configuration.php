@@ -38,6 +38,26 @@ class Configuration implements ConfigurationInterface
                 ->prototype('array')
                 ->children()
                     ->arrayNode('convert')
+                    ->children()
+
+                            ->scalarNode('add')
+                            ->cannotBeEmpty()
+                            ->end()
+
+                            ->scalarNode('sub')
+                            ->cannotBeEmpty()
+                            ->end()
+
+                            ->scalarNode('mul')
+                            ->cannotBeEmpty()
+                            ->end()
+
+                            ->scalarNode('div')
+                            ->cannotBeEmpty()
+                            ->end()
+
+                    ->end()
+
                     ->isRequired()
                     ->end()
                     ->scalarNode('format')

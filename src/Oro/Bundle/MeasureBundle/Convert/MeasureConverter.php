@@ -94,18 +94,18 @@ class MeasureConverter
         // calculate result with conversion config
         foreach ($conversionConfig as $operator => $operand) {
             switch ($operator) {
-                case "/":
+                case "div":
                     if ($operand !== 0) {
                         $convertedValue = $convertedValue / $operand;
                     }
                     break;
-                case "*":
+                case "mul":
                     $convertedValue = $convertedValue * $operand;
                     break;
-                case "+":
+                case "add":
                     $convertedValue = $convertedValue + $operand;
                     break;
-                case "-":
+                case "sub":
                     $convertedValue = $convertedValue - $operand;
                     break;
                 default:
@@ -137,18 +137,18 @@ class MeasureConverter
         // calculate result with conversion config (calculs must be reversed and operation inversed)
         foreach (array_reverse($conversionConfig) as $operator => $operand) {
             switch ($operator) {
-                case "/":
+                case "div":
                     $convertedValue = $convertedValue * $operand;
                     break;
-                case "*":
+                case "mul":
                     if ($operand !== 0) {
                         $convertedValue = $convertedValue / $operand;
                     }
                     break;
-                case "+":
+                case "add":
                     $convertedValue = $convertedValue - $operand;
                     break;
-                case "-":
+                case "sub":
                     $convertedValue = $convertedValue + $operand;
                     break;
                 default:
