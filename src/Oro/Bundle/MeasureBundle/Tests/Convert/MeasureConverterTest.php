@@ -447,20 +447,44 @@ class MeasureConverterTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test related exception
+     * Test related exception in base to standard method
      * @expectedException Oro\Bundle\MeasureBundle\Exception\UnknownMeasureException
      */
-    public function testUnknownMeasureException()
+    public function testUnknownMeasureExceptionBaseToStandard()
+    {
+        $this->converter->setFamily(WeightMeasure::FAMILY);
+        $this->converter->convert('test-unit', WeightMeasure::GRAM, 50);
+    }
+
+    /**
+     * Test related exception in standard to final method
+     * @expectedException Oro\Bundle\MeasureBundle\Exception\UnknownMeasureException
+     */
+    public function testUnknownMeasureExceptionStandardToFinal()
     {
         $this->converter->setFamily(WeightMeasure::FAMILY);
         $this->converter->convert(WeightMeasure::GRAM, 'test-unit', 50);
     }
 
     /**
-     * Test related exception
+     * Test related exception in base to standard method
      * @expectedException Oro\Bundle\MeasureBundle\Exception\UnknownOperatorException
      */
-    public function testUnknownOperatorException()
+    public function testUnknownOperatorExceptionBaseToStandard()
+    {
+        $configFile = dirname(__FILE__) .'/../Files/measure-test.yml';
+        $config = $this->initializeConfig($configFile);
+
+        $converter = $this->initializeConverter($config);
+        $converter->setFamily(LengthMeasure::FAMILY);
+        $converter->convert(LengthMeasure::METER, LengthMeasure::CENTIMETER, 100);
+    }
+
+    /**
+     * Test related exception in standard to final method
+     * @expectedException Oro\Bundle\MeasureBundle\Exception\UnknownOperatorException
+     */
+    public function testUnknownOperatorExceptionStandardToFinal()
     {
         $configFile = dirname(__FILE__) .'/../Files/measure-test.yml';
         $config = $this->initializeConfig($configFile);

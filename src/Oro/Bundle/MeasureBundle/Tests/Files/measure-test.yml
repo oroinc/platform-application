@@ -3,7 +3,7 @@ measures_config:
         standard: METER
         units:
             CENTIMETER:
-                convert: {'*': 0.01}
+                convert: {'/': 0.01}
                 format: cm
             METER:
                 convert: {'.': 1}
