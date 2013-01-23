@@ -2,6 +2,6 @@ parameters:
     oro_measure.measures_config: ~
 
 services:
-#    oro_measure.example:
-#        class: %oro_measure.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    oro_measure.measure_converter:
+        class: Oro\Bundle\MeasureBundle\Convert\MeasureConverter
+        arguments: [%oro_measure.measures_config%]
