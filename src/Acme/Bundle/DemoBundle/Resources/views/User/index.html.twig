@@ -14,7 +14,6 @@
             <th>ID</th>
             <th>Username</th>
             <th>Email</th>
-            <th style="width: 50px">Enabled</th>
             <th style="width: 150px">Created At</th>
             <th style="width: 50px">Edit</th>
             <th style="width: 50px">Remove</th>
@@ -27,7 +26,6 @@
             <td><a href="{{ path('acme_demo_user_show', { id: rec.id }) }}">{{ rec.id }}</a></td>
             <td><a href="{{ path('acme_demo_user_show', { id: rec.id }) }}">{{ rec.username }}</a></td>
             <td><a href="{{ path('acme_demo_user_show', { id: rec.id }) }}">{{ rec.email }}</a></td>
-            <td>{% if rec.enabled %}<i class="icon-check"></i>{% endif %}</td>
             <td>{{ macros.time(rec.createdAt) }}</td>
             <td><a href="{{ path('acme_demo_user_edit', { id: rec.id }) }}"><i class="icon-edit"></i></a></td>
             <td><a href="{{ path('acme_demo_user_remove', { id: rec.id }) }}"><i class="icon-remove"></i></a></td>
