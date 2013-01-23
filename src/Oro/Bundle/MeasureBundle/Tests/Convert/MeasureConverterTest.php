@@ -88,11 +88,7 @@ class MeasureConverterTest extends \PHPUnit_Framework_TestCase
      */
     protected function initializeConverter($config)
     {
-        if (!isset($config['measures_config'])) {
-            throw new \Exception('Error in measures converter configuration');
-        }
-
-        return new MeasureConverter($config['measures_config']);
+        return new MeasureConverter($config);
     }
 
     /**
