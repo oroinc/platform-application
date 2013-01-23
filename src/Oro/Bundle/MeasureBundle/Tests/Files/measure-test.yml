@@ -1,0 +1,10 @@
+measures_config:
+    Length:
+        standard: METER
+        units:
+            CENTIMETER:
+                convert: {'*': 0.01}
+                format: cm
+            METER:
+                convert: {'.': 1}
+                format: m
