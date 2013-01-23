@@ -51,11 +51,6 @@ class WeightMeasure extends AbstractMeasure
     /**
      * @staticvar string
      */
-    const MILLIER   = 'MILLIER';
-
-    /**
-     * @staticvar string
-     */
     const MILLIGRAM = 'MILLIGRAM';
 
     /**
@@ -72,11 +67,6 @@ class WeightMeasure extends AbstractMeasure
      * @staticvar string
      */
     const POUND     = 'POUND';
-
-    /**
-     * @staticvar string
-     */
-    const QUINTAL   = 'QUINTAL';
 
     /**
      * @staticvar string

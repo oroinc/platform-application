@@ -272,9 +272,6 @@ measures_config:
             MARC:
                 convert: {'*': 0.24475'}
                 format: marc
-            MILLIER:
-                convert: {'*': 1000'}
-                format: millier
             MILLIGRAM:
                 convert: {'*': 0.000001}
                 format: mg
@@ -287,9 +284,6 @@ measures_config:
             POUND:
                 convert: {'*': 0.45359237}
                 format: lb
-            QUINTAL:
-                convert: {'*': 100}
-                format: q
             TON:
                 convert: {'*': 1000}
                 format: t
