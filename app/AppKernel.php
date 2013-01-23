@@ -37,6 +37,7 @@ class AppKernel extends Kernel
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
             // BAP test bundles
             $bundles[] = new Acme\Bundle\DemoFlexibleEntityBundle\AcmeDemoFlexibleEntityBundle();
+            $bundles[] = new Acme\Bundle\DemoDataFlowBundle\AcmeDemoDataFlowBundle();
         }
 
         return $bundles;

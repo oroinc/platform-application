@@ -8,6 +8,11 @@ acme_demo_flexible_entity:
     prefix:   /{_locale}/flexible-entity/
     defaults: { _locale: %locale% }
 
+acme_demo_data_flow:
+    resource: "@AcmeDemoDataFlowBundle/Controller/"
+    type:     annotation
+    prefix:   /dataflow/
+
 _welcome:
     pattern:  /{_locale}
     defaults: { _controller: AcmeDemoBundle:Welcome:index, _locale: %locale% }
