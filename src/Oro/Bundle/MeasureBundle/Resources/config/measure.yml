@@ -242,7 +242,7 @@ measures_config:
             LITER:
                 convert: {'*': 0.001}
                 format: l
-            MILLIMETER:
+            MILLILITER:
                 convert: {'*': 0.000001}
                 format: ml
             OUNCE:
@@ -254,12 +254,27 @@ measures_config:
     Weight:
         standard: KILOGRAM
         units:
+            DENIER:
+                convert: {'*': 0.001275}
+                format: denier
+            GRAIN:
+                convert: {'*': 0.00006479891}
+                format: gr
             GRAM:
                 convert: {'*': 0.001}
                 format: g
             KILOGRAM:
                 convert: {'*': 1}
                 format: kg
+            LIVRE:
+                convert: {'*': 0.4895}
+                format: livre
+            MARC:
+                convert: {'*': 0.24475'}
+                format: marc
+            MILLIER:
+                convert: {'*': 1000'}
+                format: millier
             MILLIGRAM:
                 convert: {'*': 0.000001}
                 format: mg
@@ -272,6 +287,9 @@ measures_config:
             POUND:
                 convert: {'*': 0.45359237}
                 format: lb
+            QUINTAL:
+                convert: {'*': 100}
+                format: q
             TON:
                 convert: {'*': 1000}
                 format: t

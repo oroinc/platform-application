@@ -21,12 +21,37 @@ class WeightMeasure extends AbstractMeasure
     /**
      * @staticvar string
      */
+    const DENIER    = 'DENIER';
+
+    /**
+     * @staticvar string
+     */
+    const GRAIN     = 'GRAIN';
+
+    /**
+     * @staticvar string
+     */
     const GRAM      = 'GRAM';
 
     /**
      * @staticvar string
      */
     const KILOGRAM  = 'KILOGRAM';
+
+    /**
+     * @staticvar string
+     */
+    const LIVRE     = 'LIVRE';
+
+    /**
+     * @staticvar string
+     */
+    const MARC      = 'MARC';
+
+    /**
+     * @staticvar string
+     */
+    const MILLIER   = 'MILLIER';
 
     /**
      * @staticvar string
@@ -47,6 +72,11 @@ class WeightMeasure extends AbstractMeasure
      * @staticvar string
      */
     const POUND     = 'POUND';
+
+    /**
+     * @staticvar string
+     */
+    const QUINTAL   = 'QUINTAL';
 
     /**
      * @staticvar string
