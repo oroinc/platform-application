@@ -47,6 +47,6 @@ class OroMeasureExtension extends Extension
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
         // set measures config
-        $container->setParameter('oro_flexibleentity.measures_config', $config);
+        $container->setParameter('oro_measure.measures_config', $config);
     }
 }
