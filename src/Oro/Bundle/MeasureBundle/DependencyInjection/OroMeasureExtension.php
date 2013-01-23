@@ -32,8 +32,14 @@ class OroMeasureExtension extends Extension
                     $measuresConfig = Yaml::parse(realpath($file));
                 } else {
                     $entities = Yaml::parse(realpath($file));
-                    foreach ($entities['measures_config'] as $group => $groupConfig) {
-                        $measuresConfig['measures_config'][$group]= $groupConfig;
+                    foreach ($entities['measures_config'] as $family => $familyConfig) {
+                        // merge result with already existing family config to add custom units
+                        if (isset($measuresConfig['measures_config'][$family])) {
+                            $measuresConfig['measures_config'][$family]['units'] =
+                                array_merge($measuresConfig['measures_config'][$family]['units'], $familyConfig['units']);
+                        } else {
+                            $measuresConfig['measures_config'][$family]= $familyConfig;
+                        }
                     }
                 }
             }

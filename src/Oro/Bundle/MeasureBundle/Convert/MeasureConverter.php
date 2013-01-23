@@ -34,7 +34,7 @@ class MeasureConverter
      */
     public function __construct($config = array())
     {
-        $this->config = $config;
+        $this->config = $config['measures_config'];
     }
 
     /**
