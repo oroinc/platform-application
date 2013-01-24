@@ -200,7 +200,7 @@ class JobController extends Controller
     public function dummyJobsAction()
     {
         $em    = $this->getDoctrine()->getEntityManager();
-        $tasks = ['acme:lighttask', 'acme:heavytask'];
+        $tasks = array('acme:lighttask', 'acme:heavytask');
 
         for ($i = 0, $cnt = rand(1, 15); $i < $cnt; $i++) {
             // second arg, for example:
