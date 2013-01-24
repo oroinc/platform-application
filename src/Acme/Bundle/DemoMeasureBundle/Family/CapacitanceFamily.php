@@ -1,7 +1,7 @@
 <?php
-namespace Acme\Bundle\DemoMeasureBundle\Measure;
+namespace Acme\Bundle\DemoMeasureBundle\Family;
 
-use Oro\Bundle\MeasureBundle\Measure\AbstractMeasure;
+use Oro\Bundle\MeasureBundle\Family\AbstractFamily;
 
 /**
  * Capacitance measures constants
@@ -11,7 +11,7 @@ use Oro\Bundle\MeasureBundle\Measure\AbstractMeasure;
  * @license   http://opensource.org/licenses/MIT MIT
  *
  */
-class CapacitanceMeasure extends AbstractMeasure
+class CapacitanceFamily extends AbstractFamily
 {
 
     /**
