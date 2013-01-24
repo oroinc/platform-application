@@ -1,0 +1,19 @@
+measures_config:
+    Capacitance:
+        standard: FARAD
+        units:
+            FARAD:
+                convert: [{'mul': 1}]
+                format: F
+            KILOFARAD:
+                convert: [{'mul': 1000}]
+                format: kF
+            MEGAFARAD:
+                convert: [{'mul': 1000000}]
+                format: MF
+    Length:
+        standard: METER
+        units:
+            DONG:
+                convert: [{'mul': 7},{'div': 300}]
+                format: dong

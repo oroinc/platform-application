@@ -27,6 +27,8 @@ class AppKernel extends Kernel
             new Oro\Bundle\FlexibleEntityBundle\OroFlexibleEntityBundle(),
             new Oro\Bundle\UIBundle\OroUIBundle(),
             new Oro\Bundle\SearchBundle\OroSearchBundle(),
+            new Oro\Bundle\MeasureBundle\OroMeasureBundle(),
+            new Acme\Bundle\DemoMeasureBundle\AcmeDemoMeasureBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
