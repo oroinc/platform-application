@@ -1,17 +1,17 @@
 <?php
-namespace Acme\Bundle\DemoMeasureBundle\Measure;
+namespace Acme\Bundle\DemoMeasureBundle\Family;
 
-use Oro\Bundle\MeasureBundle\Measure\LengthMeasure;
+use Oro\Bundle\MeasureBundle\Family\LengthFamily;
 
 /**
- * Override LengthMeasure class to add Dong measure constant
+ * Override LengthFamily class to add Dong measure constant
  *
  * @author    Romain Monceau <romain@akeneo.com>
  * @copyright 2012 Akeneo SAS (http://www.akeneo.com)
  * @license   http://opensource.org/licenses/MIT MIT
  *
  */
-class MyLengthMeasure extends LengthMeasure
+class MyLengthFamily extends LengthFamily
 {
 
     /**
