@@ -4,16 +4,16 @@ measures_config:
         units:
             FARAD:
                 convert: [{'mul': 1}]
-                format: F
+                symbol: F
             KILOFARAD:
                 convert: [{'mul': 1000}]
-                format: kF
+                symbol: kF
             MEGAFARAD:
                 convert: [{'mul': 1000000}]
-                format: MF
+                symbol: MF
     Length:
         standard: METER
         units:
             DONG:
                 convert: [{'mul': 7},{'div': 300}]
-                format: dong
+                symbol: dong

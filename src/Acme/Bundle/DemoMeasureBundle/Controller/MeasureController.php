@@ -2,12 +2,12 @@
 
 namespace Acme\Bundle\DemoMeasureBundle\Controller;
 
-use Acme\Bundle\DemoMeasureBundle\Measure\CapacitanceMeasure;
-use Acme\Bundle\DemoMeasureBundle\Measure\MyLengthMeasure;
+use Acme\Bundle\DemoMeasureBundle\Family\CapacitanceFamily;
+use Acme\Bundle\DemoMeasureBundle\Family\MyLengthFamily;
 
 use Oro\Bundle\MeasureBundle\Convert\MeasureConverter;
 
-use Oro\Bundle\MeasureBundle\Measure\LengthMeasure;
+use Oro\Bundle\MeasureBundle\Family\LengthFamily;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -36,26 +36,26 @@ class MeasureController extends Controller
     {
         $converter = $this->getMeasureConverter();
 
-        $converter->setFamily(LengthMeasure::FAMILY);
-        $result = $converter->convert(LengthMeasure::KILOMETER, LengthMeasure::MILE, 1);
+        $converter->setFamily(LengthFamily::FAMILY);
+        $result = $converter->convert(LengthFamily::KILOMETER, LengthFamily::MILE, 1);
 
         return array('result' => $result);
     }
 
     /**
-     * Example using a custom measure (capacitance)
+     * Example using a custom family of measures (capacitance)
      *
-     * @Route("/customMeasure")
+     * @Route("/customFamilyMeasure")
      * @Template()
      *
      * @return multitype
      */
-    public function customMeasureAction()
+    public function customFamilyMeasureAction()
     {
         $converter = $this->getMeasureConverter();
 
-        $converter->setFamily(CapacitanceMeasure::FAMILY);
-        $result = $converter->convert(CapacitanceMeasure::FARAD, CapacitanceMeasure::KILOFARAD, 1500);
+        $converter->setFamily(CapacitanceFamily::FAMILY);
+        $result = $converter->convert(CapacitanceFamily::FARAD, CapacitanceFamily::KILOFARAD, 1500);
 
         return array('result' => $result);
     }
@@ -72,8 +72,8 @@ class MeasureController extends Controller
     {
         $converter = $this->getMeasureConverter();
 
-        $converter->setFamily(LengthMeasure::FAMILY);
-        $result = $converter->convert(LengthMeasure::KILOMETER, MyLengthMeasure::DONG, 1);
+        $converter->setFamily(LengthFamily::FAMILY);
+        $result = $converter->convert(LengthFamily::KILOMETER, MyLengthFamily::DONG, 1);
 
         return array('result' => $result);
     }
