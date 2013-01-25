@@ -120,8 +120,8 @@
             {% endif %}
 
             <td>
-                <a class="btn btn-small btn-primary" href="{{ path('acme_demoflexibleentity_product_view', {'id': product.id, 'dataLocale': dataLocale, 'dataScope': dataScope }) }}">
-                    {{ "View details" | trans }}
+                <a class="btn btn-small btn-primary" href="{{ path('acme_demoflexibleentity_product_show', {'id': product.id, 'dataLocale': dataLocale, 'dataScope': dataScope }) }}">
+                    {{ "Show" | trans }}
                 </a>
             </td>
          </tr>

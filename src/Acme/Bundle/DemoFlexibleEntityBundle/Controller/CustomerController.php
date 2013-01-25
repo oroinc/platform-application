@@ -20,7 +20,7 @@ class CustomerController extends Controller
 
     /**
      * Get customer manager
-     * @return SimpleEntityManager
+     * @return FlexibleEntityManager
      */
     protected function getCustomerManager()
     {
@@ -29,9 +29,9 @@ class CustomerController extends Controller
 
     /**
      * @Route("/index")
-     * @Template()
+     * @Template("AcmeDemoFlexibleEntityBundle:Customer:index.html.twig")
      *
-     * @return multitype
+     * @return array
      */
     public function indexAction()
     {
@@ -39,6 +39,29 @@ class CustomerController extends Controller
 
         return array('customers' => $customers);
     }
+
+    /**
+     * @Route("/query/{attributes}/{criteria}/{orderBy}/{limit}/{offset}", defaults={"attributes" = null, "criteria" = null, "orderBy" = null, "limit" = null, "offset" = null})
+     *
+     * @Template("AcmeDemoFlexibleEntityBundle:Customer:index.html.twig")
+     *
+     * @param array      $attributes attribute codes
+     * @param array      $criteria   criterias
+     * @param array|null $orderBy    order by
+     * @param int|null   $limit      limit
+     * @param int|null   $offset     offset
+     *
+     * @return array
+     */
+    public function queryAction($attributes, $criteria, $orderBy, $limit, $offset)
+    {
+        $customers = $this->getCustomerManager()->getEntityRepository()->findByWithAttributes(
+            $attributes, $criteria, $orderBy, $limit, $offset
+        );
+
+        return array('customers' => $customers);
+    }
+
 
     /**
      * @Route("/querylazyload")
@@ -52,6 +75,25 @@ class CustomerController extends Controller
 
         return array('customers' => $customers);
     }
+
+    /**
+     * @param integer $id
+     *
+     * @Route("/show/{id}")
+     * @Template()
+     *
+     * @return multitype
+     */
+    public function showAction($id)
+    {
+        // with any values
+        $customer = $this->getCustomerManager()->getEntityRepository()->findWithAttributes($id);
+
+        return array('customer' => $customer);
+    }
+
+
+
 
     /**
      * @Route("/queryonlydob")
@@ -160,20 +202,5 @@ class CustomerController extends Controller
         return array('customers' => $customers);
     }
 
-    /**
-     * @param integer $id
-     *
-     * @Route("/view/{id}")
-     * @Template()
-     *
-     * @return multitype
-     */
-    public function viewAction($id)
-    {
-        // with any values
-        $customer = $this->getCustomerManager()->getEntityRepository()->findWithAttributes($id);
-
-        return array('customer' => $customer);
-    }
 
 }

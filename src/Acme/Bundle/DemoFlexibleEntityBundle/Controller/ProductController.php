@@ -215,12 +215,12 @@ class ProductController extends Controller
      * @param string  $dataLocale data locale
      * @param string  $dataScope  data scope
      *
-     * @Route("/view/{id}/{dataLocale}/{dataScope}", defaults={"dataLocale" = null, "dataScope" = null})
+     * @Route("/show/{id}/{dataLocale}/{dataScope}", defaults={"dataLocale" = null, "dataScope" = null})
      * @Template()
      *
-     * @return multitype
+     * @return array
      */
-    public function viewAction($id, $dataLocale, $dataScope)
+    public function showAction($id, $dataLocale, $dataScope)
     {
         // load with any values
         $product = $this->getProductManager()->getEntityRepository()->findWithAttributes($id);
