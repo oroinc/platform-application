@@ -3,6 +3,7 @@
 /.project
 /.idea
 /composer.phar
+composer.lock
 /vendor
 /cov
 /web/bundles
