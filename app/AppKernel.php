@@ -22,6 +22,9 @@ class AppKernel extends Kernel
             new JMS\JobQueueBundle\JMSJobQueueBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle($this),
+            new FOS\RestBundle\FOSRestBundle(),
+            new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
             new FOS\UserBundle\FOSUserBundle(),
 
             // BAP bundles
