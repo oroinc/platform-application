@@ -1,10 +1,10 @@
-{% extends "AcmeDemoBundle::layout.html.twig" %}
+{% extends bap.layout %}
 
 {% block content_header '' %}
 
 {% block content %}
     <h1>Product List</h1>
-    <p><a href="{{ path('acme_demo_query_builder')}}">Demo search</a></p>
+    <p><a href="{{ path('acme_demo_query')}}">Demo search</a></p>
     <table border="1">
         <tr>
             <td>
