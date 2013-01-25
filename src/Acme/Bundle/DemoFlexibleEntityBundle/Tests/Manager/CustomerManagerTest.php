@@ -3,9 +3,9 @@ namespace Acme\Bundle\DemoFlexibleEntityBundle\Test\Manager;
 
 use Oro\Bundle\FlexibleEntityBundle\Entity\AttributeOption;
 
-use Acme\Bundle\DemoFlexibleEntityBundle\Entity\CustomerAttributeValue;
+use Acme\Bundle\DemoFlexibleEntityBundle\Entity\CustomerValue;
 
-use Oro\Bundle\FlexibleEntityBundle\Model\Attribute\Type\AbstractAttributeType;
+use Oro\Bundle\FlexibleEntityBundle\Model\AbstractAttributeType;
 
 use Acme\Bundle\DemoFlexibleEntityBundle\Entity\Customer;
 
@@ -71,19 +71,16 @@ class CustomerManagerTest extends KernelAwareTest
         $this->attCompany = $this->createAttribute(
             'company',
             'Company',
-            AbstractAttributeType::BACKEND_STORAGE_ATTRIBUTE_VALUE,
             AbstractAttributeType::BACKEND_TYPE_VARCHAR
         );
         $this->attDob = $this->createAttribute(
             'dob',
             'Date of Birth',
-            AbstractAttributeType::BACKEND_STORAGE_ATTRIBUTE_VALUE,
             AbstractAttributeType::BACKEND_TYPE_DATE
         );
         $this->attGender = $this->createAttribute(
             'gender',
             'Gender',
-            AbstractAttributeType::BACKEND_STORAGE_ATTRIBUTE_VALUE,
             AbstractAttributeType::BACKEND_TYPE_OPTION,
             array('Mr', 'Mrs')
         );
@@ -165,14 +162,18 @@ class CustomerManagerTest extends KernelAwareTest
      * @param Attribute $attribute Attribute object
      * @param mixed     $value     Value of the attribute
      *
-     * @return CustomerAttributeValue
+     * @return CustomerValue
      */
     protected function createValue($attribute, $value)
     {
         // create value
         $entityValue = $this->manager->createEntityValue();
         $entityValue->setAttribute($attribute);
-        $entityValue->setData($value);
+        if ($attribute->getCode() == 'gender') {
+            $entityValue->setOption($value);
+        } else {
+            $entityValue->setData($value);
+        }
 
         return $entityValue;
     }
@@ -182,18 +183,16 @@ class CustomerManagerTest extends KernelAwareTest
      *
      * @param string    $code           Attribute code
      * @param string    $title          Attribute title
-     * @param string    $backendStorage Attribute backend model
      * @param string    $backendType    Attribute backend type
      * @param multitype $options        Options list
      *
      * @return Attribute
      */
-    protected function createAttribute($code, $title, $backendStorage, $backendType, $options = array())
+    protected function createAttribute($code, $title, $backendType, $options = array())
     {
         // create attribute
         $attribute = $this->manager->createAttribute();
         $attribute->setCode($code);
-        $attribute->setBackendStorage($backendStorage);
         $attribute->setBackendType($backendType);
 
         // create options

@@ -28,7 +28,8 @@
         "jms/serializer-bundle": "dev-master",
         "nelmio/api-doc-bundle": "dev-master",
 
-        "jms/job-queue-bundle": "dev-master"
+        "jms/job-queue-bundle": "dev-master",
+        "friendsofsymfony/user-bundle": "*"
     },
     "scripts": {
         "post-install-cmd": [

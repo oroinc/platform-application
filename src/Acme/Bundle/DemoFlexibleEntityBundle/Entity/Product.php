@@ -1,6 +1,7 @@
 <?php
 namespace Acme\Bundle\DemoFlexibleEntityBundle\Entity;
 
+use Oro\Bundle\FlexibleEntityBundle\Model\Behavior\HasRequiredValueInterface;
 use Oro\Bundle\FlexibleEntityBundle\Entity\Mapping\AbstractEntityFlexible;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -11,10 +12,10 @@ use Doctrine\ORM\Mapping as ORM;
  * @copyright 2012 Akeneo SAS (http://www.akeneo.com)
  * @license   http://opensource.org/licenses/MIT MIT
  *
- * @ORM\Table(name="acmeproduct_product")
+ * @ORM\Table(name="acmedemoflexibleentity_product")
  * @ORM\Entity(repositoryClass="Oro\Bundle\FlexibleEntityBundle\Entity\Repository\FlexibleEntityRepository")
  */
-class Product extends AbstractEntityFlexible
+class Product extends AbstractEntityFlexible implements HasRequiredValueInterface
 {
     /**
      * @var string $sku
@@ -26,7 +27,7 @@ class Product extends AbstractEntityFlexible
     /**
      * @var Value
      *
-     * @ORM\OneToMany(targetEntity="ProductAttributeValue", mappedBy="entity", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="ProductValue", mappedBy="entity", cascade={"persist", "remove"})
      */
     protected $values;
 

@@ -2,84 +2,134 @@
 
 {% block pagecontent %}
 
-    <ul id="menu-block">
-        <li><a href="{{ path('acme_demoflexibleentity_product_index') }}">Select entities and all attribute values</a></li>
-        <li><a href="{{ path('acme_demoflexibleentity_product_querylazyload') }}">Select just entities, attributes and values are lazy loaded</a></li>
+    {% set route_params = app.request.attributes.get('_route_params') %}
+    {% if route_params == "" %}
+        {% set route_params = [] %}
         
-        <li><a href="{{ path('acme_demoflexibleentity_product_queryonlyname') }}">Select with only attribute name</a></li>
-        <li><a href="{{ path('acme_demoflexibleentity_product_querynameanddesc') }}">Select with attribute name and description</a></li>
-        <li><a href="{{ path('acme_demoflexibleentity_product_querynameanddescforcelocale') }}">Select with attribute name and description (force french)</a></li>
+        {% set dataLocale = 'en_US' %}
+        {% set dataScope = 'ecommerce' %}
         
-        <li><a href="{{ path('acme_demoflexibleentity_product_queryfilterskufield') }}">Select filtered on field sku = 'sku-2'</a></li>
-        <li><a href="{{ path('acme_demoflexibleentity_product_querynamefilterskufield') }}">Select with attribute name and filtered on field sku = 'sku-2'</a></li>
-        
-        <li><a href="{{ path('acme_demoflexibleentity_product_queryfiltersizeattribute') }}">Select with attribute description, size filtered on attribute size = 175</a></li>
-        <li><a href="{{ path('acme_demoflexibleentity_product_queryfiltersizeanddescattributes') }}">Select with attribute description, size filtered on attribute size = 175 and description = 'my other description'</a></li>
+    {% else %}
+    
+        {% set dataLocale = route_params['dataLocale'] %}
+        {% if dataLocale is null %}
+            {% set dataLocale = 'en_US' %}
+        {% endif %}
 
-        <li><a href="{{ path('acme_demoflexibleentity_product_querynameanddescorderby') }}">Select with attribute name and description order by description DESC and id ASC</a></li>
-        <li><a href="{{ path('acme_demoflexibleentity_product_querynameanddesclimit') }}">Select with attribute name and description limit 0, 10</a></li>
+        {% set dataScope = route_params['dataScope'] %}
+        {% if dataScope is null %}
+            {% set dataScope = 'ecommerce' %}
+        {% endif %}
+    {% endif %}
+    <br/>
+    <p>{{ "Choose data locale : " | trans }}
+    {% for locale in ['en_US', 'fr_FR', 'de_DE'] %}
+        <a class="btn btn-small btn-primary {% if dataLocale == locale %} disabled {% endif %}"
+           href="{{ path(app.request.attributes.get('_route'), route_params | merge({'dataLocale': locale})) }}">{{ locale | trans }}</a>
+    {% endfor %}
+    </p>
+    <p>{{ "Choose data scope : " | trans }}
+    {% for scope in ['ecommerce', 'mobile'] %}
+        <a class="btn btn-small btn-primary {% if dataScope == scope %} disabled {% endif %}"
+           href="{{ path(app.request.attributes.get('_route'), route_params | merge({'dataLocale': dataLocale, 'dataScope': scope})) }}">{{ scope | trans }}</a>
+    {% endfor %}
+    </p>
+    <hr/>
+
+    <h3>Product list</h3>
+
+    <ul id="menu-block">
+        <li><a href="{{ path('acme_demoflexibleentity_product_index', {'dataLocale': dataLocale, 'dataScope': dataScope}) }}">Select entities and all attribute values</a></li>
+        <li><a href="{{ path('acme_demoflexibleentity_product_querylazyload', {'dataLocale': dataLocale, 'dataScope': dataScope}) }}">Select just entities, attributes and values are lazy loaded</a></li>
+        
+        <li><a href="{{ path('acme_demoflexibleentity_product_queryonlyname', {'dataLocale': dataLocale, 'dataScope': dataScope}) }}">Select with only attribute name</a></li>
+        <li><a href="{{ path('acme_demoflexibleentity_product_querynameanddesc', {'dataLocale': dataLocale, 'dataScope': dataScope}) }}">Select with attribute name and description</a></li>
+        <li><a href="{{ path('acme_demoflexibleentity_product_querynameanddescforcelocale', {'dataLocale': dataLocale, 'dataScope': dataScope}) }}">Select with attribute name and description (force french)</a></li>
+        
+        <li><a href="{{ path('acme_demoflexibleentity_product_queryfilterskufield', {'dataLocale': dataLocale, 'dataScope': dataScope}) }}">Select filtered on field sku = 'sku-2'</a></li>
+        <li><a href="{{ path('acme_demoflexibleentity_product_querynamefilterskufield', {'dataLocale': dataLocale, 'dataScope': dataScope}) }}">Select with attribute name and filtered on field sku = 'sku-2'</a></li>
+        
+        <li><a href="{{ path('acme_demoflexibleentity_product_queryfiltersizeattribute', {'dataLocale': dataLocale, 'dataScope': dataScope}) }}">Select with attribute description, size filtered on attribute size = 175</a></li>
+        <li><a href="{{ path('acme_demoflexibleentity_product_queryfiltersizeanddescattributes', {'dataLocale': dataLocale, 'dataScope': dataScope}) }}">Select with attribute description, size filtered on attribute size = 175 and description = 'my other description(ecommerce)'</a></li>
+
+        <li><a href="{{ path('acme_demoflexibleentity_product_querynameanddescorderby', {'dataLocale': dataLocale, 'dataScope': dataScope}) }}">Select with attribute name and description order by description DESC and id ASC</a></li>
+        <li><a href="{{ path('acme_demoflexibleentity_product_querynameanddesclimit', {'dataLocale': dataLocale, 'dataScope': dataScope}) }}">Select with attribute name and description limit 0, 10</a></li>
     </ul>
+
+    <hr/>
 
     <p>Nb results : {{ products|length }}</p>
 
-        <div class="popup-box">
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Sku</th>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Sku</th>
 
-                    {% if 'name' in attributes %}
-                        <th>Name</th>
-                    {% endif %}
+            {% if 'name' in attributes %}
+                <th>Name</th>
+            {% endif %}
 
-                    {% if 'description' in attributes %}
-                        <th>Description</th>
-                    {% endif %}
+            {% if 'description' in attributes %}
+                <th>Description</th>
+            {% endif %}
 
-                    {% if 'size' in attributes %}
-                        <th>Size</th>
-                    {% endif %}
+            {% if 'size' in attributes %}
+                <th>Size</th>
+            {% endif %}
 
-                    {% if 'color' in attributes %}
-                       <th>Color</th>
-                    {% endif %}
+            {% if 'color' in attributes %}
+               <th>Color</th>
+            {% endif %}
 
-                    <th>Action</th>
+            {% if 'price' in attributes %}
+               <th>Price</th>
+            {% endif %}
 
-                </tr>
-                </thead>
-                <tbody>
+            <th>Action</th>
 
-                {% for product in products %}
-                <tr>
-                    <!-- fields -->
-                    <td>{{ product.id }}</td>
-                    <td>{{ product.sku }}</td>
+        </tr>
+        </thead>
+        <tbody>
 
-                    <!-- attributes -->
-                    {% if 'name' in attributes %}
-                       <td>{{ product.name }}</td>
-                    {% endif %}
+        {% for product in products %}
+        <tr>
+            <!-- fields -->
+            <td>{{ product.id }}</td>
+            <td>{{ product.sku }}</td>
 
-                    {% if 'description' in attributes %}
-                        <td>{{ product.description }}</td>
-                    {% endif %}
+            <!-- attributes -->
+            {% if 'name' in attributes %}
+               <td>{{ product.name }}</td>
+            {% endif %}
 
-                    {% if 'size' in attributes %}
-                        <td>{{ product.size }}</td>
-                    {% endif %}
+            {% if 'description' in attributes %}
+                <td>{{ product.description }}</td>
+            {% endif %}
 
-                    {% if 'color' in attributes %}
-                        <td>{{ product.color }}</td>
-                    {% endif %}
-                    <td><a href="{{ path('acme_demoflexibleentity_product_view', {'id': product.id}) }}">Load details</a></td>
-                 </tr>
-                 {% endfor %}
+            {% if 'size' in attributes %}
+                <td>{{product.size}} {% if product.size is not null %} {{ product.getValue('size').getUnit() }} {% endif %}</td>
+            {% endif %}
 
-                </tbody>
-            </table>
-        </div>
-        <hr />
+            {% if 'color' in attributes %}
+                <td>{{ product.color }}</td>
+            {% endif %}
+            
+            {% if 'price' in attributes %}
+                <td>{{product.price}} {% if product.price is not null %} {{ product.getValue('price').getCurrency() }} {% endif %}</td>
+            {% endif %}
+
+            <td>
+                <a class="btn btn-small btn-primary" href="{{ path('acme_demoflexibleentity_product_view', {'id': product.id, 'dataLocale': dataLocale, 'dataScope': dataScope }) }}">
+                    {{ "View details" | trans }}
+                </a>
+            </td>
+         </tr>
+         {% endfor %}
+
+        </tbody>
+    </table>
+
+    <hr />
 
 {% endblock %}

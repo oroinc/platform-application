@@ -25,11 +25,15 @@ class AppKernel extends Kernel
             new JMS\SerializerBundle\JMSSerializerBundle($this),
             new FOS\RestBundle\FOSRestBundle(),
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
 
             // BAP bundles
             new Oro\Bundle\FlexibleEntityBundle\OroFlexibleEntityBundle(),
             new Oro\Bundle\UIBundle\OroUIBundle(),
             new Oro\Bundle\SearchBundle\OroSearchBundle(),
+            new Oro\Bundle\UserBundle\OroUserBundle(),
+            new Oro\Bundle\MeasureBundle\OroMeasureBundle(),
+            new Acme\Bundle\DemoMeasureBundle\AcmeDemoMeasureBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

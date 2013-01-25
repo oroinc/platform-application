@@ -7,7 +7,7 @@
 {% block content %}
 <h1>Jobs overview</h1>
 
-{{ pager.render('AcmeDemoBundle::pager.bootstrap.html.twig')|raw }}
+{{ knp_pagination_render(pager, 'AcmeDemoBundle::pager.bootstrap.html.twig') }}
 
 <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -49,7 +49,7 @@
     </tbody>
 </table>
 
-{{ pager.render('AcmeDemoBundle::pager.bootstrap.html.twig')|raw }}
+{{ knp_pagination_render(pager, 'AcmeDemoBundle::pager.bootstrap.html.twig') }}
 
 {% endblock %}
 
