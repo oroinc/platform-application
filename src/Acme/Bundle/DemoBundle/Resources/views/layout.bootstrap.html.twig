@@ -40,9 +40,15 @@
                     <a class="brand" href="{{ path('acme_default') }}">BAP Dev</a>
                     <ul class="nav">
                         <li><a href="{{ path('acme_demoflexibleentity_flexible_index') }}">Flexible entity</a></li>
-                        <li><a href="{{ path('oro_ui_default_index') }}">UI</a></li>
+                        <li><a href="{{ path('oro_ui_index') }}">UI</a></li>
                         <li><a href="{{ path('acme_demo_search') }}">Search</a></li>
-                        <li><a href="{{ path('oro_user_index') }}">User</a></li>
+                        <li class="dropdown">
+                            <a href="{{ path('oro_user_index') }}" class="dropdown-toggle" data-toggle="dropdown">User <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ path('oro_user_role_index') }}">Roles</a></li>
+                                <li><a href="{{ path('oro_user_group_index') }}">Groups</a></li>
+                            </ul>
+                        </li>
                         <li class="divider-vertical"></li>
                         <li><a href="{{ path('acme_demo_job_index') }}">Jobs</a></li>
                     </ul>

@@ -20,8 +20,7 @@ acme_demo:
     type:     annotation
 
 oro_ui:
-    resource: "@OroUIBundle/Controller/"
-    type:     annotation
+    resource: "@OroUIBundle/Resources/config/routing.yml"
     prefix:   /ui
 
 oro_user:
