@@ -20,14 +20,17 @@ framework:
 
 # Twig Configuration
 twig:
-    debug:            "%kernel.debug%"
-    strict_variables: "%kernel.debug%"
+    debug:                    "%kernel.debug%"
+    strict_variables:         "%kernel.debug%"
+    globals:
+        bap:
+            layout:           AcmeDemoBundle::layout.bootstrap.html.twig  # default layout across all Oro bundles
 
 # Assetic Configuration
 assetic:
-    debug:          "%kernel.debug%"
-    use_controller: false
-    bundles:        ['AcmeDemoBundle']
+    debug:                    "%kernel.debug%"
+    use_controller:           false
+    bundles:                  ["AcmeDemoBundle", "FOSUserBundle", "OroUserBundle"]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -39,34 +42,45 @@ assetic:
 # Doctrine Configuration
 doctrine:
     dbal:
-        driver:   "%database_driver%"
-        host:     "%database_host%"
-        port:     "%database_port%"
-        dbname:   "%database_name%"
-        user:     "%database_user%"
-        password: "%database_password%"
-        charset:  UTF8
+        driver:               "%database_driver%"
+        host:                 "%database_host%"
+        port:                 "%database_port%"
+        dbname:               "%database_name%"
+        user:                 "%database_user%"
+        password:             "%database_password%"
+        charset:              UTF8
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
-        auto_mapping: true
+        auto_mapping:         true
 
 # Swiftmailer Configuration
 swiftmailer:
-    transport: "%mailer_transport%"
-    host:      "%mailer_host%"
-    username:  "%mailer_user%"
-    password:  "%mailer_password%"
-    spool:     { type: memory }
+    transport:                "%mailer_transport%"
+    host:                     "%mailer_host%"
+    username:                 "%mailer_user%"
+    password:                 "%mailer_password%"
+    spool:                    { type: memory }
 
 knp_paginator:
-    page_range: 5                      # default page range used in pagination control
+    page_range:               5         # default page range used in pagination control
     default_options:
-        page_name: page                # page query parameter name
-        sort_field_name: sort          # sort field query parameter name
-        sort_direction_name: direction # sort direction query parameter name
-        distinct: true
+        page_name:            page      # page query parameter name
+        sort_field_name:      sort      # sort field query parameter name
+        sort_direction_name:  direction # sort direction query parameter name
+        distinct:             true      # ensure distinct results, useful when ORM queries are using GROUP BY statements
+    template:
+        pagination:           AcmeDemoBundle::pager.bootstrap.html.twig
 
 oro_search:
-    engine: orm
-    realtime_update: false
+    engine:                   orm
+    realtime_update:          false
+
+fos_user:
+    db_driver:                orm       # other valid values are 'mongodb', 'couchdb' and 'propel'
+    firewall_name:            main
+    user_class:               Oro\Bundle\UserBundle\Entity\User
+    group:
+        group_class:          Oro\Bundle\UserBundle\Entity\Group
+    service:
+        user_manager:         oro_user.user_manager

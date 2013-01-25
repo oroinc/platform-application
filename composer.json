@@ -22,7 +22,8 @@
         "doctrine/data-fixtures": "@dev",
         "doctrine/doctrine-fixtures-bundle": "@dev",
         "knplabs/knp-paginator-bundle": "dev-master",
-        "jms/job-queue-bundle": "dev-master"
+        "jms/job-queue-bundle": "dev-master",
+        "friendsofsymfony/user-bundle": "*"
     },
     "scripts": {
         "post-install-cmd": [

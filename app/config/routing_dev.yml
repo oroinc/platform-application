@@ -1,16 +1,8 @@
-acme_demo:
-    resource: "@AcmeDemoBundle/Controller/"
-    type:     annotation
-
 acme_demo_flexible_entity:
     resource: "@AcmeDemoFlexibleEntityBundle/Controller/"
     type:     annotation
     prefix:   /{_locale}/flexible-entity/
     defaults: { _locale: %locale% }
-
-_welcome:
-    pattern:  /{_locale}
-    defaults: { _controller: AcmeDemoBundle:Welcome:index, _locale: %locale% }
 
 _wdt:
     resource: "@WebProfilerBundle/Resources/config/routing/wdt.xml"

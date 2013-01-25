@@ -11,7 +11,23 @@ acme_demo_measure:
 #_internal:
 #    resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
 #    prefix:   /_internal
-OroUIBundle:
-    resource: "@OroUIBundle/Controller/"
+acme_default:
+    pattern:  /{_locale}
+    defaults:
+        template:    AcmeDemoBundle:Default:index.html.twig
+        _locale:     %locale%
+        _controller: FrameworkBundle:Template:template
+    requirements:
+        _locale:  en|fr|de
+
+acme_demo:
+    resource: "@AcmeDemoBundle/Controller/"
     type:     annotation
+
+oro_ui:
+    resource: "@OroUIBundle/Resources/config/routing.yml"
     prefix:   /ui
+
+oro_user:
+    resource: "@OroUserBundle/Resources/config/routing.yml"
+    prefix:   /user
