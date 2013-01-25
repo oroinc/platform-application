@@ -31,3 +31,11 @@ oro_ui:
 oro_user:
     resource: "@OroUserBundle/Resources/config/routing.yml"
     prefix:   /user
+
+_oro_search:
+    resource: "@OroSearchBundle/Resources/config/routing.yml"
+    prefix:   /
+
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /api/doc
