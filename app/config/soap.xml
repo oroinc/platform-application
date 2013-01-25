@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<webservice xmlns="http://github.com/BeSimple/BeSimpleSoapBundle/servicedefinition/1.0/"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            name="webservice">
+    <method controller="Oro\Bundle\SearchBundle\Controller\Api\SoapController::searchAction" name="search">
+        <argument name="search">
+            <type php-type="string" xml-type="xsd:string"/>
+        </argument>
+        <argument name="offset">
+            <type php-type="int" xml-type="xsd:string"/>
+        </argument>
+        <argument name="max_results">
+            <type php-type="int" xml-type="xsd:string"/>
+        </argument>
+        <return>
+            <type php-type="string" xml-type="xsd:string"/>
+        </return>
+    </method>
+    <method controller="Oro\Bundle\SearchBundle\Controller\Api\Soap1Controller::searchAction" name="test">
+        <return>
+            <type php-type="string" xml-type="xsd:string"/>
+        </return>
+    </method>
+</webservice>

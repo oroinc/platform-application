@@ -15,6 +15,10 @@ _oro_search:
     resource: "@OroSearchBundle/Resources/config/routing.yml"
     prefix:   /
 
+oro_soap_api:
+    resource: "@BeSimpleSoapBundle/Resources/config/routing/webservicecontroller.xml"
+    prefix:   /api/
+
 NelmioApiDocBundle:
     resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
     prefix:   /api/doc
