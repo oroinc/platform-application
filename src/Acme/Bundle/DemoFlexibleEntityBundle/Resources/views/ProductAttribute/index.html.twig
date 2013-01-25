@@ -2,20 +2,22 @@
 
 {% block content %}
 
-    <h1>Attributes overview</h1>
+    <h1>Attributes overview <a class="btn btn-primary pull-right" href="{{ path('acme_demoflexibleentity_productattribute_create') }}">Add new</a></h1>
 
     <table class="table table-striped">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Code</th>
-                <th>Backend storage</th>
-                <th>Backend type</th>
+                <th>Type</th>
                 <th>Required</th>
                 <th>Unique</th>
                 <th>Translatable</th>
                 <th>Scopable</th>
                 <th>Created</th>
+                <th>Updated</th>
+                <th style="width: 50px">Edit</th>
+                <th style="width: 50px">Remove</th>
             </tr>
         </thead>
         <tbody>
@@ -23,17 +25,20 @@
             <tr>
                 <td>{{ attribute.id }}</td>
                 <td>{{ attribute.code }}</td>
-                <td>{{ attribute.backendStorage }}</td>
-                <td>{{ attribute.backendType }}</td>
+                <td>{{ attribute.frontendType }}</td>
                 <td>{{ attribute.required }}</td>
                 <td>{{ attribute.unique }}</td>
                 <td>{{ attribute.translatable }}</td>
                 <td>{{ attribute.scopable }}</td>
                 <td>{{ attribute.created|date('Y-m-d h:i:s') }}</td>
+                <td>{{ attribute.updated|date('Y-m-d h:i:s') }}</td>
+                <td><a href="{{ path('acme_demoflexibleentity_productattribute_edit', { id: attribute.id }) }}"><i class="icon-edit"></i></a></td>
+                <td><a href="{{ path('acme_demoflexibleentity_productattribute_remove', { id: attribute.id }) }}"><i class="icon-remove"></i></a></td>
             </tr>
          {% endfor %}
         </tbody>
     </table>
     <hr />
+
 
 {% endblock %}

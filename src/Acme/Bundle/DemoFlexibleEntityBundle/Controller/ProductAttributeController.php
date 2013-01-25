@@ -1,11 +1,12 @@
 <?php
 namespace Acme\Bundle\DemoFlexibleEntityBundle\Controller;
 
+use Oro\Bundle\FlexibleEntityBundle\Entity\Attribute;
+use Acme\Bundle\DemoFlexibleEntityBundle\Form\Type\ProductAttributeType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
 /**
  * Product attribute controller
@@ -51,4 +52,67 @@ class ProductAttributeController extends Controller
 
         return array('attributes' => $attributes);
     }
+
+    /**
+     * Create attribute
+     *
+     * @Route("/create")
+     * @Template("AcmeDemoFlexibleEntityBundle:ProductAttribute:edit.html.twig")
+     */
+    public function createAction()
+    {
+        $attribute = $this->getProductManager()->createAttribute();
+
+        return $this->editAction($attribute);
+    }
+
+    /**
+     * Edit attribute form
+     *
+     * @Route("/edit/{id}", requirements={"id"="\d+"}, defaults={"id"=0})
+     * @Template
+     */
+    public function editAction(Attribute $entity)
+    {
+        $request = $this->getRequest();
+
+        // create form
+        $attClassName = $this->getProductManager()->getAttributeName();
+        $form = $this->createForm(new ProductAttributeType($attClassName), $entity);
+
+        if ($request->getMethod() == 'POST') {
+            $form->bind($request);
+
+            if ($form->isValid()) {
+                $em = $this->getProductManager()->getStorageManager();
+                $em->persist($entity);
+                $em->flush();
+
+                $this->get('session')->getFlashBag()->add('success', 'Attribute successfully saved');
+
+                return $this->redirect($this->generateUrl('acme_demoflexibleentity_productattribute_index'));
+            }
+        }
+
+        return array(
+            'form' => $form->createView(),
+        );
+    }
+
+    /**
+     * Remove attribute
+     *
+     * @Route("/remove/{id}", requirements={"id"="\d+"})
+     */
+    public function removeAction(Attribute $entity)
+    {
+        $em = $this->getProductManager()->getStorageManager();
+        $em->remove($entity);
+        $em->flush();
+
+        $this->get('session')->getFlashBag()->add('success', 'Attribute successfully removed');
+
+        return $this->redirect($this->generateUrl('acme_demoflexibleentity_productattribute_index'));
+    }
+
 }

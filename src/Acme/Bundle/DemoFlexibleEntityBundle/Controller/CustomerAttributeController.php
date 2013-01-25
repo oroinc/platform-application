@@ -2,9 +2,8 @@
 namespace Acme\Bundle\DemoFlexibleEntityBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
-
-use Oro\Bundle\FlexibleEntityBundle\Form\Type\AttributeType;
-
+use Oro\Bundle\FlexibleEntityBundle\Entity\Attribute;
+use Acme\Bundle\DemoFlexibleEntityBundle\Form\Type\CustomerAttributeType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -35,7 +34,7 @@ class CustomerAttributeController extends Controller
      * @Route("/index")
      * @Template()
      *
-     * @return multitype
+     * @return array
      */
     public function indexAction()
     {
@@ -47,206 +46,65 @@ class CustomerAttributeController extends Controller
     }
 
     /**
-     * Create attribute form
-     * @param string $attribute
-     *
-     * @return Symfony\Component\Form\Form
-     */
-    protected function createAttributeForm($attribute)
-    {
-        // get classes fullname
-        $attClassFullname = $this->getCustomerManager()->getAttributeName();
-
-        // create form
-        $form = $this->createForm(new AttributeType($attClassFullname), $attribute);
-
-        return $form;
-    }
-
-    /**
-     * Displays a form to create a new attribute
-     *
-     * @Method("GET")
-     * @Route("/new")
-     * @Template()
-     *
-     * @return multitype
-     */
-    public function newAction()
-    {
-        $attribute = $this->getCustomerManager()->createAttribute();
-        $form = $this->createAttributeForm($attribute);
-
-        // render form
-        return array('entity' => $attribute, 'form' => $form->createView());
-    }
-
-    /**
-     * Create a new attribute
-     *
-     * @param Request $request the request
+     * Create attribute
      *
      * @Route("/create")
-     * @Method("POST")
-     *
-     * @return Response|RedirectResponse
+     * @Template("AcmeDemoFlexibleEntityBundle:CustomerAttribute:edit.html.twig")
      */
-    public function createAction(Request $request)
+    public function createAction()
     {
         $attribute = $this->getCustomerManager()->createAttribute();
 
-        $form = $this->createAttributeForm($attribute);
-        $form->bind($request);
+        return $this->editAction($attribute);
+    }
 
-        // validation
-        if ($form->isValid()) {
-            try {
-                // persists object
-                $manager = $this->getCustomerManager()->getStorageManager();
-                $manager->persist($attribute);
-                $manager->flush();
+    /**
+     * Edit attribute form
+     *
+     * @Route("/edit/{id}", requirements={"id"="\d+"}, defaults={"id"=0})
+     * @Template
+     */
+    public function editAction(Attribute $entity)
+    {
+        $request = $this->getRequest();
 
-                $this->get('session')->setFlash('success', "attribute '{$attribute->getCode()}' has been created");
+        // create form
+        $attClassName = $this->getCustomerManager()->getAttributeName();
+        $form = $this->createForm(new CustomerAttributeType($attClassName), $entity);
 
-                return $this->redirect(
-                    $this->generateUrl('acme_demoflexibleentity_customerattribute_edit', array('id' => $attribute->getId()))
-                );
+        if ($request->getMethod() == 'POST') {
+            $form->bind($request);
 
-            } catch (\Exception $e) {
-                $this->get('session')->setFlash('error', $e->getMessage());
+            if ($form->isValid()) {
+                $em = $this->getCustomerManager()->getStorageManager();
+                $em->persist($entity);
+                $em->flush();
+
+                $this->get('session')->getFlashBag()->add('success', 'Attribute successfully saved');
+
+                return $this->redirect($this->generateUrl('acme_demoflexibleentity_customerattribute_index'));
             }
         }
 
-        // render form
-        return $this->render(
-            'AcmeDemoFlexibleEntityBundle:CustomerAttribute:new.html.twig',
-            array(
-                'entity' => $attribute,
-                'form'   => $form->createView()
-            )
+        return array(
+            'form' => $form->createView(),
         );
     }
 
     /**
-     * Displays a form to edit an existing attribute
+     * Remove attribute
      *
-     * @param integer $id Attribute id to edit
-     *
-     * @Method("GET")
-     * @Route("/{id}/edit")
-     * @Template()
-     *
-     * @return multitype
+     * @Route("/remove/{id}", requirements={"id"="\d+"})
      */
-    public function editAction($id)
+    public function removeAction(Attribute $entity)
     {
-        $attribute = $this->getCustomerManager()->getAttributeRepository()->find($id);
-        if (!$attribute) {
-            $this->get('session')->setFlash('error', "Attribute {$id} not found");
+        $em = $this->getCustomerManager()->getStorageManager();
+        $em->remove($entity);
+        $em->flush();
 
-            return $this->redirect(
-                $this->generateUrl('acme_demoflexibleentity_customerattribute_index')
-            );
-        }
-        $form = $this->createAttributeForm($attribute);
+        $this->get('session')->getFlashBag()->add('success', 'Attribute successfully removed');
 
-        // render form
-        return array('entity' => $attribute, 'form' => $form->createView());
-    }
-
-    /**
-     * Update an existing attribute
-     *
-     * @param Request $request the request
-     * @param integer $id      attribute id
-     *
-     * @Method("POST")
-     * @Route("/{id}/update")
-     * @Template()
-     *
-     * @return multitype
-     */
-    public function updateAction(Request $request, $id)
-    {
-        $attribute = $this->getCustomerManager()->getAttributeRepository()->find($id);
-
-        if (!$attribute) {
-            $this->get('session')->setFlash('error', "Attribute {$id} not found");
-
-            return $this->redirect(
-                $this->generateUrl('acme_demoflexibleentity_customerattribute_index')
-            );
-        }
-
-        $form = $this->createAttributeForm($attribute);
-        $form->bind($request);
-
-        if ($form->isValid()) {
-
-            try {
-                // persists object
-                $manager = $this->getCustomerManager()->getStorageManager();
-                $manager->persist($attribute);
-                $manager->flush();
-
-                $this->get('session')->setFlash('success', "Attribute '{$attribute->getCode()}' has been updated");
-
-                return $this->redirect(
-                    $this->generateUrl('acme_demoflexibleentity_customerattribute_edit', array('id' => $id))
-                );
-            } catch (\Exception $e) {
-                $this->get('session')->setFlash('error', $e->getMessage());
-            }
-        }
-
-        // render form
-        return $this->render(
-            'AcmeDemoFlexibleEntityBundle:CustomerAttribute:edit.html.twig',
-            array(
-                'entity' => $attribute,
-                'form' => $form->createView()
-            )
-        );
-    }
-
-    /**
-     * Remove an existing attribute
-     * @param integer  $id
-     *
-     * @Method("GET")
-     * @Route("/{id}/delete")
-     * @Template()
-     *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     */
-    public function deleteAction($id)
-    {
-        try {
-            $attribute = $this->getCustomerManager()->getAttributeRepository()->find($id);
-            if (!$attribute) {
-                $this->get('session')->setFlash('error', "Attribute {$id} not found");
-
-                return $this->redirect(
-                    $this->generateUrl('acme_demoflexibleentity_customerattribute_index')
-                );
-            }
-
-            // delete attribute
-            $this->getCustomerManager()->getStorageManager()->remove($attribute);
-            $this->getCustomerManager()->getStorageManager()->flush();
-        } catch (\Exception $e) {
-            $this->get('session')->setFlash('error', $e->getMessage());
-
-            return $this->redirect(
-                $this->generateUrl('acme_demoflexibleentity_customerattribute_index')
-            );
-        }
-
-        $this->get('session')->setFlash('success', "Attribute {$id} has been successfully removed");
-
-        return $this->redirect(
-            $this->generateUrl('acme_demoflexibleentity_customerattribute_index')
-        );
+        return $this->redirect($this->generateUrl('acme_demoflexibleentity_customerattribute_index'));
     }
 
 }

@@ -5,9 +5,9 @@
 {% block title %}{{ parent() }} - {{ title }}{% endblock %}
 
 {% block content %}
-<form action="{{ form.vars.value.id ? path('acme_demoflexibleentity_customerattribute_edit', { id: form.vars.value.id }) : path('acme_demoflexibleentity_customerattribute_create') }}" method="POST" class="form-register">
+<form action="{{ form.vars.value.id ? path('acme_demoflexibleentity_productattribute_edit', { id: form.vars.value.id }) : path('acme_demoflexibleentity_productattribute_create') }}" method="POST" class="form-register">
     <fieldset>
-        <legend>{{ title }} <a class="btn btn-primary pull-right" href="{{ path('acme_demoflexibleentity_customerattribute_index') }}">{{ "Back to list" | trans }}</a></legend>
+        <legend>{{ title }} <a class="btn btn-primary pull-right" href="{{ path('acme_demoflexibleentity_productattribute_index') }}">{{ "Back to list" | trans }}</a></legend>
 
         {{ form_widget(form) }}
 

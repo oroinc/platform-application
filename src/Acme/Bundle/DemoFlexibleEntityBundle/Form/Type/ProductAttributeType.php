@@ -2,9 +2,6 @@
 namespace Acme\Bundle\DemoFlexibleEntityBundle\Form\Type;
 
 use Oro\Bundle\FlexibleEntityBundle\Form\Type\AttributeType;
-
-use Oro\Bundle\FlexibleEntityBundle\Model\AbstractAttributeType;
-
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\AbstractType;
@@ -17,15 +14,22 @@ use Symfony\Component\Form\AbstractType;
  * @license   http://opensource.org/licenses/MIT MIT
  *
  */
-class CustomerAttributeType extends AttributeType
+class ProductAttributeType extends AttributeType
 {
+
     /**
      * Add field scopable to form builder
      * @param FormBuilderInterface $builder
      */
     protected function addFieldScopable(FormBuilderInterface $builder)
     {
-        // not using scope for customer attributes
-        $builder->add('scopable', 'hidden', array('data' => 0));
+        // use custom scope notion pofor product
+        $builder->add('scopable', 'choice', array(
+            'choices' => array(
+                0 => 'Global',
+                1 =>'Channel'
+            )
+        ));
     }
+
 }
