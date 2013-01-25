@@ -40,6 +40,7 @@ class FlexibleController extends Controller
         $params = array(
             'config' => $this->container->getParameter('oro_flexibleentity.flexible_config'),
         );
+
         return $params;
     }
 }
