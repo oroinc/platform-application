@@ -106,7 +106,7 @@ class CustomerAttributeController extends Controller
                 $manager->persist($attribute);
                 $manager->flush();
 
-                $this->get('session')->setFlash('success', 'attribute %code% has been created');
+                $this->get('session')->setFlash('success', "attribute '{$attribute->getCode()}' has been created");
 
                 return $this->redirect(
                     $this->generateUrl('acme_demoflexibleentity_customerattribute_edit', array('id' => $attribute->getId()))
@@ -189,7 +189,7 @@ class CustomerAttributeController extends Controller
                 $manager->persist($attribute);
                 $manager->flush();
 
-                $this->get('session')->setFlash('success', "Attribute {$id} has been updated");
+                $this->get('session')->setFlash('success', "Attribute '{$attribute->getCode()}' has been updated");
 
                 return $this->redirect(
                     $this->generateUrl('acme_demoflexibleentity_customerattribute_edit', array('id' => $id))
