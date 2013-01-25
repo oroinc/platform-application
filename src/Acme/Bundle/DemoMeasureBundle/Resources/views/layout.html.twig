@@ -1,0 +1,41 @@
+{% extends 'AcmeDemoBundle::layout.bootstrap.html.twig' %}
+
+{% block content %}
+
+    <div class="container-fluid">
+        <div class="row-fluid" id="wrapper">
+            <div class="span3">
+                <div id="sidebar">
+                    <br/>
+                    <ul id="menu-block">
+                        <li class="subtitle"><strong>Examples</strong></li>
+                        <li><a href="{{ path('acme_demomeasure_measure_index') }}">Conversion example</a></li>
+                        <li><a href="{{ path('acme_demomeasure_measure_addedunit') }}">Add a unit in an existent family</a></li>
+                        <li><a href="{{ path('acme_demomeasure_measure_customfamilymeasure') }}">Create a family</a></li>
+                        
+                        <li class="subtitle"><strong>Configuration</strong></li>
+                        <li><a href="{{ path('acme_demomeasure_measure_dumpconfig') }}">Dump configuration</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="span9">
+                <div id="content">
+
+                    {% for flashMessage in app.session.flashbag.get('notice') %}
+                       <div class="alert alert-success">
+                            <button data-dismiss="alert" class="close" type="button">&times;</button>
+                            <strong>Well done!</strong>
+                        {{ flashMessage }}
+                        </div>
+                    {% endfor %}
+
+                    {% block pagecontent %}
+                    {% endblock %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+

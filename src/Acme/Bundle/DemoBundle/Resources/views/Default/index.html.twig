@@ -1,4 +1,4 @@
-{% extends 'AcmeDemoBundle::layout.bootstrap.html.twig' %}
+{% extends bap.layout %}
 
 {% block content %}
     <div class="span3">
@@ -15,6 +15,10 @@
     </div>
     <div class="span3">
         <h2>User</h2>
-        <a class="btn disabled" href="javascript: void(0);">Run demo</a>
+        <a class="btn" href="{{ path('oro_user_index') }}">Run demo</a>
+    </div>
+    <div class="span3">
+        <h2>Measure</h2>
+        <a class="btn" href="{{ path('acme_demomeasure_measure_index') }}">Run demo</a>
     </div>
 {% endblock %}

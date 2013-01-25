@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new JMS\JobQueueBundle\JMSJobQueueBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle($this),
             new FOS\RestBundle\FOSRestBundle(),
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
@@ -32,6 +33,9 @@ class AppKernel extends Kernel
             new Oro\Bundle\UIBundle\OroUIBundle(),
             new Oro\Bundle\SoapBundle\OroSoapBundle(),
             new Oro\Bundle\SearchBundle\OroSearchBundle(),
+            new Oro\Bundle\UserBundle\OroUserBundle(),
+            new Oro\Bundle\MeasureBundle\OroMeasureBundle(),
+            new Acme\Bundle\DemoMeasureBundle\AcmeDemoMeasureBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

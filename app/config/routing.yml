@@ -1,3 +1,8 @@
+acme_demo_measure:
+    resource: "@AcmeDemoMeasureBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 # Internal routing configuration to handle ESI
 # ****** WARNING ******
 # This route should be enabled with caution as it can open a security vulnerability
@@ -6,16 +11,32 @@
 #_internal:
 #    resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
 #    prefix:   /_internal
-OroUIBundle:
-    resource: "@OroUIBundle/Controller/"
+acme_default:
+    pattern:  /{_locale}
+    defaults:
+        template:    AcmeDemoBundle:Default:index.html.twig
+        _locale:     %locale%
+        _controller: FrameworkBundle:Template:template
+    requirements:
+        _locale:  en|fr|de
+
+acme_demo:
+    resource: "@AcmeDemoBundle/Controller/"
     type:     annotation
+
+oro_ui:
+    resource: "@OroUIBundle/Resources/config/routing.yml"
     prefix:   /ui
 
-_oro_search:
+oro_user:
+    resource: "@OroUserBundle/Resources/config/routing.yml"
+    prefix:   /user
+
+oro_search:
     resource: "@OroSearchBundle/Resources/config/routing.yml"
     prefix:   /
 
-oro_api:
+oro_soap:
     resource: "@OroSoapBundle/Resources/config/routing.yml"
     prefix:   /api
 
