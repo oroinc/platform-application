@@ -58,10 +58,7 @@ class CustomerAttributeController extends Controller
         $attClassFullname = $this->getCustomerManager()->getAttributeName();
 
         // create form
-        $form = $this->createForm(
-            new AttributeType($attClassFullname),
-            $attribute
-        );
+        $form = $this->createForm(new AttributeType($attClassFullname), $attribute);
 
         return $form;
     }
@@ -159,8 +156,9 @@ class CustomerAttributeController extends Controller
 
     /**
      * Update an existing attribute
-     * @param Request $request
-     * @param integer $id
+     *
+     * @param Request $request the request
+     * @param integer $id      attribute id
      *
      * @Method("POST")
      * @Route("/{id}/update")

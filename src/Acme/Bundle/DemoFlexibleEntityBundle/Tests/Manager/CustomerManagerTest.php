@@ -181,10 +181,10 @@ class CustomerManagerTest extends KernelAwareTest
     /**
      * Create attribute
      *
-     * @param string    $code           Attribute code
-     * @param string    $title          Attribute title
-     * @param string    $backendType    Attribute backend type
-     * @param multitype $options        Options list
+     * @param string    $code        Attribute code
+     * @param string    $title       Attribute title
+     * @param string    $backendType Attribute backend type
+     * @param multitype $options     Options list
      *
      * @return Attribute
      */
