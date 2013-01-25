@@ -1,6 +1,8 @@
 <?php
 namespace Acme\Bundle\DemoFlexibleEntityBundle\Controller;
 
+use Symfony\Component\HttpFoundation\Request;
+
 use Oro\Bundle\FlexibleEntityBundle\Form\Type\AttributeType;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -22,7 +24,7 @@ class CustomerAttributeController extends Controller
 
     /**
      * Get customer manager
-     * @return SimpleEntityManager
+     * @return Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleEntityManager
      */
     protected function getCustomerManager()
     {
@@ -120,12 +122,39 @@ class CustomerAttributeController extends Controller
 
         // render form
         return $this->render(
-            'DemoFlexibleEntityBundle:CustomerAttribute:new.html.twig',
+            'AcmeDemoFlexibleEntityBundle:CustomerAttribute:new.html.twig',
             array(
                 'entity' => $attribute,
                 'form'   => $form->createView()
             )
         );
+    }
+
+    /**
+     * Displays a form to edit an existing attribute
+     *
+     * @param integer $id Attribute id to edit
+     *
+     * @Method("GET")
+     * @Route("/{id}/edit")
+     * @Template()
+     *
+     * @return multitype
+     */
+    public function editAction($id)
+    {
+        $attribute = $this->getCustomerManager()->getAttributeRepository()->find($id);
+        if (!$attribute) {
+            $this->get('session')->setFlash('error', "Attribute {$id} not found");
+
+            return $this->redirect(
+                $this->generateUrl('acme_demoflexibleentity_customerattribute_index')
+            );
+        }
+        $form = $this->createAttributeForm($attribute);
+
+        // render form
+        return array('entity' => $attribute, 'form' => $form->createView());
     }
 
 }

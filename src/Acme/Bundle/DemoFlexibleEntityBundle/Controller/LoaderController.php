@@ -448,6 +448,7 @@ class LoaderController extends Controller
             $att = $this->getCustomerManager()->createAttribute();
             $att->setCode($attCode);
             $att->setBackendType(AbstractAttributeType::BACKEND_TYPE_VARCHAR);
+            $att->setFrontendType(AbstractAttributeType::FRONTEND_TYPE_TEXTFIELD);
             $this->getCustomerManager()->getStorageManager()->persist($att);
             $messages[]= "Attribute ".$attCode." has been created";
         }
@@ -461,6 +462,7 @@ class LoaderController extends Controller
             $att = $this->getCustomerManager()->createAttribute();
             $att->setCode($attCode);
             $att->setBackendType(AbstractAttributeType::BACKEND_TYPE_DATE);
+            $att->setFrontendType(AbstractAttributeType::FRONTEND_TYPE_DATE);
             $this->getCustomerManager()->getStorageManager()->persist($att);
             $messages[]= "Attribute ".$attCode." has been created";
         }
@@ -474,6 +476,7 @@ class LoaderController extends Controller
             $att = $this->getCustomerManager()->createAttribute();
             $att->setCode($attCode);
             $att->setBackendType(AbstractAttributeType::BACKEND_TYPE_OPTION);
+            $att->setFrontendType(AbstractAttributeType::FRONTEND_TYPE_LIST);
             // add option and related value
             $opt = $this->getCustomerManager()->createAttributeOption();
             $optVal = $this->getCustomerManager()->createAttributeOptionValue();
