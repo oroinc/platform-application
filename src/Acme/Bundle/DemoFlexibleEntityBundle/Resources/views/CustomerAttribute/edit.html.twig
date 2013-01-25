@@ -2,9 +2,9 @@
 
 {% block pagecontent %}
 
-    <h2>{{ "Create attribute" | trans }}</h2>
+    <h2>{{ "Edit attribute" | trans }}</h2>
 
-    <form action="{{ path('acme_demoflexibleentity_customerattribute_create') }}" method="post" {{ form_enctype(form) }}>
+    <form action="{{ path('acme_demoflexibleentity_customerattribute_update', {'id': entity.id}) }}" method="post" {{ form_enctype(form) }}>
         
         {% if form.get('errors') is not empty %}
             <div class="alert alert-error">{{ form_errors(form) }}</div>
