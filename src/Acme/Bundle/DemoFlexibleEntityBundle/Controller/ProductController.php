@@ -209,7 +209,11 @@ class ProductController extends Controller
     }
 
     /**
-     * @param integer $id
+     * Show details
+     *
+     * @param integer $id         id
+     * @param string  $dataLocale data locale
+     * @param string  $dataScope  data scope
      *
      * @Route("/view/{id}/{dataLocale}/{dataScope}", defaults={"dataLocale" = null, "dataScope" = null})
      * @Template()
@@ -218,27 +222,10 @@ class ProductController extends Controller
      */
     public function viewAction($id, $dataLocale, $dataScope)
     {
-        // with lazy loading
-        //$product = $this->getProductManager()->getEntityRepository()->find($id);
-        // with any values
+        // load with any values
         $product = $this->getProductManager()->getEntityRepository()->findWithAttributes($id);
 
         return array('product' => $product);
-    }
-
-    /**
-     * List product attributes
-     * @Route("/attribute")
-     * @Template()
-     *
-     * @return multitype
-     */
-    public function attributeAction()
-    {
-        $attributes = $this->getProductManager()->getAttributeRepository()
-            ->findBy(array('entityType' => $this->getProductManager()->getEntityName()));
-
-        return array('attributes' => $attributes);
     }
 
 }

@@ -1,8 +1,8 @@
 {% extends 'AcmeDemoFlexibleEntityBundle::layout.html.twig' %}
 
-{% block pagecontent %}
+{% block content %}
 
-    <h3>Customer list</h3>
+    <h1>Customers overview <a class="btn btn-primary pull-right" href="{{ path('acme_demoflexibleentity_customerattribute_index') }}">Manage Attributes</a></h1>
 
     <ul id="menu-block">
         <li><a href="{{ path('acme_demoflexibleentity_customer_index') }}">Select entities and all attribute values</a></li>

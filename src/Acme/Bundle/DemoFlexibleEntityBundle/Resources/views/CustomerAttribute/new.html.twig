@@ -1,8 +1,8 @@
 {% extends 'AcmeDemoFlexibleEntityBundle::layout.html.twig' %}
 
-{% block pagecontent %}
+{% block content %}
 
-    <h2>{{ "Create attribute" | trans }}</h2>
+    <h1>{{ "Create attribute" | trans }}</h1>
 
     <form action="{{ path('acme_demoflexibleentity_customerattribute_create') }}" method="post" {{ form_enctype(form) }}>
         
@@ -14,8 +14,8 @@
             {{ form_widget(form) }}
         </div>
         
-        <input id="form-submit" type="submit" value="{{ "Save" | trans }}" class="btn btn-success" role="button" aria-disabled="false" />
-        
+        <button class="btn btn-large btn-primary" type="submit">{{ "Save" | trans }}</button>
+
     </form>
         
     <hr />

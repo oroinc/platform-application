@@ -1,6 +1,8 @@
 {% extends 'AcmeDemoFlexibleEntityBundle::layout.html.twig' %}
 
-{% block pagecontent %}
+{% block content %}
+
+    <h1>Products overview <a class="btn btn-primary pull-right" href="{{ path('acme_demoflexibleentity_productattribute_index') }}">Manage Attributes</a></h1>
 
     {% set route_params = app.request.attributes.get('_route_params') %}
     {% if route_params == "" %}
@@ -35,8 +37,6 @@
     {% endfor %}
     </p>
     <hr/>
-
-    <h3>Product list</h3>
 
     <ul id="menu-block">
         <li><a href="{{ path('acme_demoflexibleentity_product_index', {'dataLocale': dataLocale, 'dataScope': dataScope}) }}">Select entities and all attribute values</a></li>

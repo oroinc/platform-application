@@ -176,19 +176,4 @@ class CustomerController extends Controller
         return array('customer' => $customer);
     }
 
-    /**
-     * List customer attributes
-     * @Route("/attribute")
-     * @Template()
-     *
-     * @return multitype
-     */
-    public function attributeAction()
-    {
-        $attributes = $this->getCustomerManager()->getAttributeRepository()
-            ->findBy(array('entityType' => $this->getCustomerManager()->getEntityName()));
-
-        return array('attributes' => $attributes);
-    }
-
 }
