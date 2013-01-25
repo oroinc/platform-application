@@ -19,7 +19,7 @@ class CustomerController extends Controller
 {
 
     /**
-     * Get product manager
+     * Get customer manager
      * @return SimpleEntityManager
      */
     protected function getCustomerManager()

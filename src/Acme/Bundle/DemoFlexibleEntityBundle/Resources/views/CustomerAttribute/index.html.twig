@@ -1,0 +1,40 @@
+{% extends 'AcmeDemoFlexibleEntityBundle::layout.html.twig' %}
+
+{% block pagecontent %}
+
+    <br/>
+    <a class="btn btn-small btn-primary" href="{{ path('acme_demoflexibleentity_customerattribute_new') }}">{{ 'New' | trans }}</a>
+    <hr/>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Code</th>
+                <th>Backend storage</th>
+                <th>Backend type</th>
+                <th>Required</th>
+                <th>Unique</th>
+                <th>Translatable</th>
+                <th>Created</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for attribute in attributes %}
+            <tr>
+                <td>{{ attribute.id }}</td>
+                <td>{{ attribute.code }}</td>
+                <td>{{ attribute.backendStorage }}</td>
+                <td>{{ attribute.backendType }}</td>
+                <td>{{ attribute.required }}</td>
+                <td>{{ attribute.unique }}</td>
+                <td>{{ attribute.translatable }}</td>
+                <td>{{ attribute.created|date('Y-m-d h:i:s') }}</td>
+            </tr>
+         {% endfor %}
+        </tbody>
+    </table>
+    <hr />
+
+
+{% endblock %}
