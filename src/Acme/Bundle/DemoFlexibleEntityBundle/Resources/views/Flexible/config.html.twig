@@ -1,0 +1,11 @@
+{% extends 'AcmeDemoFlexibleEntityBundle::layout.html.twig' %}
+
+{% block content %}
+
+    <h2>Entities</h2>
+    {{ dump(config['entities_config']) }}
+
+    <h2>Attribute types</h2>
+    {{ dump(config['attributes_config']) }}
+
+{% endblock %}

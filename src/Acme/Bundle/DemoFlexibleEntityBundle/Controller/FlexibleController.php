@@ -30,12 +30,12 @@ class FlexibleController extends Controller
 
     /**
      * Print config
-     * @Route("/entityconfig")
+     * @Route("/config")
      * @Template()
      *
      * @return multitype
      */
-    public function entityConfigAction()
+    public function configAction()
     {
         $params = array(
             'config' => $this->container->getParameter('oro_flexibleentity.flexible_config'),
