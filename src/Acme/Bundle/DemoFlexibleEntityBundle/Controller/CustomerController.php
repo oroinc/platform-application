@@ -43,15 +43,17 @@ class CustomerController extends Controller
     }
 
     /**
+     * Query customers
+     *
+     * @param string $attributes attribute codes
+     * @param string $criteria   criterias
+     * @param string $orderBy    order by
+     * @param int    $limit      limit
+     * @param int    $offset     offset
+     *
      * @Route("/query/{attributes}/{criteria}/{orderBy}/{limit}/{offset}", defaults={"attributes" = null, "criteria" = null, "orderBy" = null, "limit" = null, "offset" = null})
      *
      * @Template("AcmeDemoFlexibleEntityBundle:Customer:index.html.twig")
-     *
-     * @param string     $attributes attribute codes
-     * @param string     $criteria   criterias
-     * @param string     $orderBy    order by
-     * @param int|null   $limit      limit
-     * @param int|null   $offset     offset
      *
      * @return array
      */
@@ -81,7 +83,6 @@ class CustomerController extends Controller
 
         return array('customers' => $customers);
     }
-
 
     /**
      * @Route("/querylazyload")
