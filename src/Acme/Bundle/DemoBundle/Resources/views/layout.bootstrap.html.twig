@@ -98,7 +98,7 @@
                     <div class="alert alert-{{ type }}">
                         <button data-dismiss="alert" class="close" type="button">×</button>
                         {% for message in messages %}
-                        <div>{{ message }}</div>
+                        <div>{{ message|trans|raw }}</div>
                         {% endfor %}
                     </div>
                     {% endfor %}
