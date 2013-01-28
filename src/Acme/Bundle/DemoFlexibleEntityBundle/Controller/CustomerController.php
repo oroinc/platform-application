@@ -94,7 +94,6 @@ class CustomerController extends Controller
         return array('customer' => $customer);
     }
 
-
     /**
      * Create customer
      *
@@ -103,9 +102,9 @@ class CustomerController extends Controller
      */
     public function createAction()
     {
-        $attribute = $this->getCustomerManager()->createEntity();
+        $entity = $this->getCustomerManager()->createEntity();
 
-        return $this->editAction($attribute);
+        return $this->editAction($entity);
     }
 
     /**
