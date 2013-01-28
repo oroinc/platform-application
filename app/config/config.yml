@@ -96,6 +96,9 @@ fos_user:
     db_driver:                orm       # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name:            main
     user_class:               Oro\Bundle\UserBundle\Entity\User
+    from_email:
+        address:              no-reply@bap.dev
+        sender_name:          Oro Admin
     group:
         group_class:          Oro\Bundle\UserBundle\Entity\Group
     service:
