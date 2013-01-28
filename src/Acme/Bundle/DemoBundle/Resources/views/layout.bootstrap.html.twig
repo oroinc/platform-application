@@ -68,6 +68,14 @@
                                     ) }}" data-role="button">{{ locale }}</a>
                         </li>
                         {% endfor %}
+                        <li class="divider-vertical"></li>
+                        {% if app.user %}
+                        <li><p class="navbar-text">Logged in as <strong>{{ app.user.username }}</strong></p></li>
+                        <li class="divider-vertical"></li>
+                        <li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
+                        {% else %}
+                        <li><a href="{{ path('fos_user_security_login') }}">Login</a></li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
