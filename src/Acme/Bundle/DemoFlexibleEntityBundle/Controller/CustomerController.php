@@ -47,9 +47,9 @@ class CustomerController extends Controller
      *
      * @Template("AcmeDemoFlexibleEntityBundle:Customer:index.html.twig")
      *
-     * @param array      $attributes attribute codes
-     * @param array      $criteria   criterias
-     * @param array|null $orderBy    order by
+     * @param string     $attributes attribute codes
+     * @param string     $criteria   criterias
+     * @param string     $orderBy    order by
      * @param int|null   $limit      limit
      * @param int|null   $offset     offset
      *
@@ -57,6 +57,24 @@ class CustomerController extends Controller
      */
     public function queryAction($attributes, $criteria, $orderBy, $limit, $offset)
     {
+        // prepare params
+        if (!is_null($attributes) and $attributes !== 'null') {
+            $attributes = explode('&', $attributes);
+        } else {
+            $attributes = array();
+        }
+        if (!is_null($criteria) and $criteria !== 'null') {
+            parse_str($criteria, $criteria);
+        } else {
+            $criteria = array();
+        }
+        if (!is_null($orderBy) and $orderBy !== 'null') {
+            parse_str($orderBy, $orderBy);
+        } else {
+            $orderBy = array();
+        }
+
+        // get entities
         $customers = $this->getCustomerManager()->getEntityRepository()->findByWithAttributes(
             $attributes, $criteria, $orderBy, $limit, $offset
         );
@@ -155,116 +173,5 @@ class CustomerController extends Controller
 
         return $this->redirect($this->generateUrl('acme_demoflexibleentity_customer_index'));
     }
-
-
-
-
-    /**
-     * @Route("/queryonlydob")
-     * @Template("AcmeDemoFlexibleEntityBundle:Customer:index.html.twig")
-     *
-     * @return multitype
-     */
-    public function queryonlydobAction()
-    {
-        $customers = $this->getCustomerManager()->getEntityRepository()->findByWithAttributes(array('dob'));
-
-        return array('customers' => $customers);
-    }
-
-    /**
-     * @Route("/queryonlydobandgender")
-     * @Template("AcmeDemoFlexibleEntityBundle:Customer:index.html.twig")
-     *
-     * @return multitype
-     */
-    public function queryonlydobandgenderAction()
-    {
-        $customers = $this->getCustomerManager()->getEntityRepository()->findByWithAttributes(array('dob', 'gender'));
-
-        return array('customers' => $customers);
-    }
-
-    /**
-     * @Route("/queryfilterfirstname")
-     * @Template("AcmeDemoFlexibleEntityBundle:Customer:index.html.twig")
-     *
-     * @return multitype
-     */
-    public function queryfilterfirstnameAction()
-    {
-        $customers = $this->getCustomerManager()
-                          ->getEntityRepository()
-                          ->findByWithAttributes(
-                              array(),
-                              array('firstname' => 'Nicolas')
-                          );
-
-        return array('customers' => $customers);
-    }
-
-    /**
-     * @Route("/queryfilterfirstnameandcompany")
-     * @Template("AcmeDemoFlexibleEntityBundle:Customer:index.html.twig")
-     *
-     * @return multitype
-     */
-    public function queryfilterfirstnameandcompanyAction()
-    {
-        $customers = $this->getCustomerManager()
-                          ->getEntityRepository()
-                          ->findByWithAttributes(
-                              array('company', 'dob', 'gender'),
-                              array('firstname' => 'Nicolas', 'company' => 'Akeneo')
-                          );
-
-        return array('customers' => $customers);
-    }
-
-    /**
-     * @Route("/queryfilterfirstnameandlimit")
-     * @Template("AcmeDemoFlexibleEntityBundle:Customer:index.html.twig")
-     *
-     * @return multitype
-     */
-    public function queryfilterfirstnameandlimit()
-    {
-        // initialize vars
-        $limit = 10;
-        $start = 0;
-
-        // get customers filtered by firstname = "Nicolas" and limited
-        $customers = $this->getCustomerManager()
-                          ->getEntityRepository()
-                          ->findByWithAttributes(
-                              array(),
-                              array('firstname' => 'Nicolas'),
-                              null,
-                              $limit,
-                              $start
-                          );
-
-        return array('customers' => $customers);
-    }
-
-    /**
-     * @Route("/queryfilterfirstnameandorderbirthdatedesc")
-     * @Template("AcmeDemoFlexibleEntityBundle:Customer:index.html.twig")
-     *
-     * @return multitype
-     */
-    public function queryfilterfirstnameandorderbirthdatedescAction()
-    {
-        $customers = $this->getCustomerManager()
-                          ->getEntityRepository()
-                          ->findByWithAttributes(
-                              array('dob'),
-                              array('firstname' => 'Nicolas'),
-                              array('dob' => 'desc')
-                          );
-
-        return array('customers' => $customers);
-    }
-
 
 }

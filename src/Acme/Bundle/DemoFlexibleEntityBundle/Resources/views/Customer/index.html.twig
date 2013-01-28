@@ -10,19 +10,17 @@
     <ul id="menu-block">
         <li><a href="{{ path('acme_demoflexibleentity_customer_index') }}">Select entities and all attribute values</a></li>
         <li><a href="{{ path('acme_demoflexibleentity_customer_querylazyload') }}">Select just entities, attributes and values are lazy load</a></li>
-        
-        <li><a href="{{ path('acme_demoflexibleentity_customer_queryonlydob') }}">Select only date of birth</a></li>
-        <li><a href="{{ path('acme_demoflexibleentity_customer_queryonlydobandgender') }}">Select only date of birth and gender</a></li>
-        
-        <li><a href="{{ path('acme_demoflexibleentity_customer_queryfilterfirstname') }}">Select filtered by firstname (firstname = "Nicolas")</a></li>
-        <li><a href="{{ path('acme_demoflexibleentity_customer_queryfilterfirstnameandcompany') }}">Select filtered by firstname and company (firstname = "Nicolas" and company = "Akeneo")</a></li>
-        
-        <li><a href="{{ path('acme_demoflexibleentity_customer_queryfilterfirstnameandlimit') }}">Select filter by firstname (Nicolas) and limit (10)</a></li>
-        <li><a href="{{ path('acme_demoflexibleentity_customer_queryfilterfirstnameandorderbirthdatedesc') }}">Select only birthdate, filter by firstname (Nicolas) and order by birthdate desc</a></li>
+
+        <li><a href="{{ path('acme_demoflexibleentity_customer_query', {'attributes': 'dob'}) }}">Select only date of birth</a></li>
+        <li><a href="{{ path('acme_demoflexibleentity_customer_query', {'attributes': 'dob&gender'}) }}">Select only date of birth and gender</a></li>
+        <li><a href="{{ path('acme_demoflexibleentity_customer_query', {'attributes': 'null', 'criteria': 'firstname=Nicolas' }) }}">Select filtered by firstname (firstname = "Nicolas")</a></li>
+        <li><a href="{{ path('acme_demoflexibleentity_customer_query', {'attributes': 'company&dob&gender', 'criteria': 'firstname=Nicolas&company=Akeneo' }) }}">Select filtered by firstname and company (firstname = "Nicolas" and company = "Akeneo")</a></li>
+        <li><a href="{{ path('acme_demoflexibleentity_customer_query', {'attributes': 'null', 'criteria': 'firstname=Nicolas', 'orderBy': 'null', 'limit': 10, 'offset': 0}) }}">Select filter by firstname (Nicolas) and limit (10)</a></li>
+        <li><a href="{{ path('acme_demoflexibleentity_customer_query', {'attributes': 'company&dob&gender', 'criteria': 'firstname=Nicolas', 'orderBy': 'dob=desc'}) }}">Select only birthdate, filter by firstname (Nicolas) and order by birthdate desc</a></li>
     </ul>
-    
+
     <hr/>
-    
+
     <p>Nb results : {{ customers|length }}</p>
 
     <table class="table table-bordered table-striped table-condensed">
