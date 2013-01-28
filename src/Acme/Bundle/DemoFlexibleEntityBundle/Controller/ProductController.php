@@ -1,11 +1,15 @@
 <?php
 namespace Acme\Bundle\DemoFlexibleEntityBundle\Controller;
 
+
+
+use Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleEntityManager;
+
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Acme\Bundle\DemoFlexibleEntityBundle\Entity\Product;
+use Acme\Bundle\DemoFlexibleEntityBundle\Form\Type\ProductType;
 
 /**
  * Product Controller
@@ -84,7 +88,7 @@ class ProductController extends Controller
     }
 
     /**
-     * Customer query action
+     * Product query action
      *
      * @param string $dataLocale locale
      * @param string $dataScope  scope
@@ -146,6 +150,69 @@ class ProductController extends Controller
         $product = $this->getProductManager()->getEntityRepository()->findWithAttributes($id);
 
         return array('product' => $product);
+    }
+
+    /**
+     * Create product
+     *
+     * @Route("/create/{dataLocale}/{dataScope}", defaults={"dataLocale" = null, "dataScope" = null})
+     * @Template("AcmeDemoFlexibleEntityBundle:Product:edit.html.twig")
+     */
+    public function createAction($dataLocale, $dataScope)
+    {
+        $entity = $this->getProductManager()->createEntity(true);
+
+        return $this->editAction($entity);
+    }
+
+    /**
+     * Edit product
+     *
+     * @Route("/edit/{id}/{dataLocale}/{dataScope}", requirements={"id"="\d+"}, defaults={"id"=0, "dataLocale" = null, "dataScope" = null})
+     * @Template
+     */
+    public function editAction(Product $entity, $dataLocale, $dataScope)
+    {
+        $request = $this->getRequest();
+
+        // create form
+        $entClassName = $this->getProductManager()->getEntityName();
+        $valueClassName = $this->getProductManager()->getEntityValueName();
+        $form = $this->createForm(new ProductType($entClassName, $valueClassName), $entity);
+
+        if ($request->getMethod() == 'POST') {
+            $form->bind($request);
+
+            if ($form->isValid()) {
+                $em = $this->getProductManager()->getStorageManager();
+                $em->persist($entity);
+                $em->flush();
+
+                $this->get('session')->getFlashBag()->add('success', 'Product successfully saved');
+
+                return $this->redirect($this->generateUrl('acme_demoflexibleentity_product_index'));
+            }
+        }
+
+        return array(
+                'form' => $form->createView(),
+        );
+    }
+
+    /**
+     * Remove product
+     *
+     * @Route("/remove/{id}", requirements={"id"="\d+"})
+     */
+    public function removeAction(Product $entity)
+    {
+        $em = $this->getProductManager()->getStorageManager();
+        $em->remove($entity);
+        $em->flush();
+
+        $this->get('session')->getFlashBag()->add('success', 'Product successfully removed');
+
+        return $this->redirect($this->generateUrl('acme_demoflexibleentity_product_index'));
     }
 
 }

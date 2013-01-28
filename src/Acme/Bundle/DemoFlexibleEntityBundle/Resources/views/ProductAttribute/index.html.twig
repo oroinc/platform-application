@@ -2,7 +2,10 @@
 
 {% block content %}
 
-    <h1>Attributes overview <a class="btn btn-primary pull-right" href="{{ path('acme_demoflexibleentity_productattribute_create') }}">Add new</a></h1>
+    <h1>Attributes overview
+        <a class="btn btn-primary pull-right" style="margin-left:10px;" href="{{ path('acme_demoflexibleentity_productattribute_create') }}">New attribute</a>
+        <a class="btn btn-primary pull-right" href="{{ path('acme_demoflexibleentity_product_index') }}">Manage products</a>
+    </h1>
 
     <table class="table table-bordered table-striped table-condensed">
         <thead>

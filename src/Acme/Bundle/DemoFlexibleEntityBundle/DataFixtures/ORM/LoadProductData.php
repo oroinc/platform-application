@@ -151,7 +151,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
             $productAttribute->setName('Color');
             $productAttribute->setCode($attributeCode);
 //            $productAttribute->setBackendType(AbstractAttributeType::BACKEND_TYPE_OPTION);
-            $productAttribute->getAttribute()->setFrontendType(AbstractAttributeType::FRONTEND_TYPE_LIST);
+            $productAttribute->getAttribute()->setFrontendType(AbstractAttributeType::FRONTEND_TYPE_MULTILIST);
 
             $productAttribute->setTranslatable(false); // only one value but option can be translated in option values
             // add translatable option and related value "Red", "Blue", "Green"

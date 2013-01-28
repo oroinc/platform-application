@@ -4,7 +4,7 @@
 
     <h1>Customers overview
         <a class="btn btn-primary pull-right" style="margin-left:10px;" href="{{ path('acme_demoflexibleentity_customer_create') }}">New customer</a> 
-        <a class="btn btn-primary pull-right" href="{{ path('acme_demoflexibleentity_customerattribute_index') }}">Manage Attributes</a>
+        <a class="btn btn-primary pull-right" href="{{ path('acme_demoflexibleentity_customerattribute_index') }}">Manage attributes</a>
     </h1>
 
     <ul id="menu-block">
@@ -33,6 +33,7 @@
                 <th>Birth</th>
                 <th>Gender</th>
                 <th>Company</th>
+                <th>Hobbies</th>
                 <th style="width: 50px">Show</th>
                 <th style="width: 50px">Edit</th>
                 <th style="width: 50px">Remove</th>
@@ -48,6 +49,7 @@
             <td>{{ customer.dob|date('Y-m-d')}}</td>
             <td>{{ customer.gender }}</td>
             <td>{{ customer.company }}</td>
+            <td>{{ customer.hobby }}</td>
 
             <td><a href="{{ path('acme_demoflexibleentity_customer_show', { id: customer.id }) }}"><i class="icon-zoom-in"></i></a></td>
             <td><a href="{{ path('acme_demoflexibleentity_customer_edit', { id: customer.id }) }}"><i class="icon-edit"></i></a></td>

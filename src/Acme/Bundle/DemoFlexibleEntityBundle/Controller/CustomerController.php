@@ -121,7 +121,7 @@ class CustomerController extends Controller
      */
     public function createAction()
     {
-        $entity = $this->getCustomerManager()->createEntity();
+        $entity = $this->getCustomerManager()->createEntity(true);
 
         return $this->editAction($entity);
     }
@@ -138,7 +138,8 @@ class CustomerController extends Controller
 
         // create form
         $entClassName = $this->getCustomerManager()->getEntityName();
-        $form = $this->createForm(new CustomerType($entClassName), $entity);
+        $valueClassName = $this->getCustomerManager()->getEntityValueName();
+        $form = $this->createForm(new CustomerType($entClassName, $valueClassName), $entity);
 
         if ($request->getMethod() == 'POST') {
             $form->bind($request);

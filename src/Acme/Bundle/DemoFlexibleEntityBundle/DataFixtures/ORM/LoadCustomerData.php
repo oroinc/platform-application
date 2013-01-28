@@ -100,6 +100,7 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
             $att->setCode($attCode);
 //            $att->setBackendType(AbstractAttributeType::BACKEND_TYPE_DATE);
             $att->setFrontendType(AbstractAttributeType::FRONTEND_TYPE_DATE);
+            $att->setRequired(true);
             $this->getCustomerManager()->getStorageManager()->persist($att);
             $messages[]= "Attribute ".$attCode." has been created";
         }
@@ -130,6 +131,29 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
             $messages[]= "Attribute ".$attCode." has been created";
         }
 
+        // attribute hobby (if not exists)
+        $attCode = 'hobby';
+        $att = $this->getCustomerManager()->getEntityRepository()->findAttributeByCode($attCode);
+        if ($att) {
+            $messages[]= "Attribute ".$attCode." already exists";
+        } else {
+            $att = $this->getCustomerManager()->createAttribute();
+            $att->setCode($attCode);
+            //            $att->setBackendType(AbstractAttributeType::BACKEND_TYPE_OPTION);
+            $att->setFrontendType(AbstractAttributeType::FRONTEND_TYPE_MULTILIST);
+            // add options and related values
+            $hobbies = array('Sport', 'Cooking', 'Read', 'Coding!');
+            foreach ($hobbies as $hobby) {
+                $opt = $this->getCustomerManager()->createAttributeOption();
+                $optVal = $this->getCustomerManager()->createAttributeOptionValue();
+                $optVal->setValue($hobby);
+                $opt->addOptionValue($optVal);
+                $att->addOption($opt);
+            }
+            $this->getCustomerManager()->getStorageManager()->persist($att);
+            $messages[]= "Attribute ".$attCode." has been created";
+        }
+
         $this->getCustomerManager()->getStorageManager()->flush();
 
         return $messages;
@@ -147,8 +171,15 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
         $attCompany = $this->getCustomerManager()->getEntityRepository()->findAttributeByCode('company');
         $attDob = $this->getCustomerManager()->getEntityRepository()->findAttributeByCode('dob');
         $attGender = $this->getCustomerManager()->getEntityRepository()->findAttributeByCode('gender');
+        $attHobby = $this->getCustomerManager()->getEntityRepository()->findAttributeByCode('hobby');
         // get first attribute option
         $optGender = $this->getCustomerManager()->getAttributeOptionRepository()->findOneBy(array('attribute' => $attGender));
+        // get attribute hobby options
+        $optHobbies = $this->getCustomerManager()->getAttributeOptionRepository()->findBy(array('attribute' => $attHobby));
+        $hobbies = array();
+        foreach ($optHobbies as $option) {
+            $hobbies[]= $option;
+        }
 
         for ($ind= 1; $ind < 100; $ind++) {
 
@@ -202,6 +233,18 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
                     $value = $this->getCustomerManager()->createEntityValue();
                     $value->setAttribute($attGender);
                     $value->setOption($optGender);  // we set option as data, you can use $value->setOption($optGender) too
+                    $customer->addValue($value);
+                }
+                if ($attHobby) {
+                    $value = $this->getCustomerManager()->createEntityValue();
+                    $value->setAttribute($attHobby);
+                    // pick many hobbies (multiselect)
+                    $firstHobbyOpt = $hobbies[rand(0, count($hobbies)-1)];
+                    $value->addOption($firstHobbyOpt);
+                    $secondHobbyOpt = $hobbies[rand(0, count($hobbies)-1)];
+                    if ($firstHobbyOpt->getId() != $secondHobbyOpt->getId()) {
+                        $value->addOption($secondHobbyOpt);
+                    }
                     $customer->addValue($value);
                 }
                 $messages[]= "Customer ".$custEmail." has been created";

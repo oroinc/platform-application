@@ -3,7 +3,8 @@
 {% block content %}
 
     <h1>Products overview 
-        <a class="btn btn-primary pull-right" href="{{ path('acme_demoflexibleentity_productattribute_index') }}">Manage Attributes</a>
+        <a class="btn btn-primary pull-right" style="margin-left:10px;" href="{{ path('acme_demoflexibleentity_product_create') }}">New product</a> 
+        <a class="btn btn-primary pull-right" href="{{ path('acme_demoflexibleentity_productattribute_index') }}">Manage attributes</a>
     </h1>
 
     {% set route_params = app.request.attributes.get('_route_params') %}
@@ -86,7 +87,9 @@
                <th>Price</th>
             {% endif %}
 
-            <th>Action</th>
+            <th>Show</th>
+            <th>Edit</th>
+            <th>Delete</th>
 
         </tr>
         </thead>
@@ -119,11 +122,9 @@
                 <td>{{product.price}} {% if product.price is not null %} {{ product.getValue('price').getCurrency() }} {% endif %}</td>
             {% endif %}
 
-            <td>
-                <a class="btn btn-small btn-primary" href="{{ path('acme_demoflexibleentity_product_show', {'id': product.id, 'dataLocale': dataLocale, 'dataScope': dataScope }) }}">
-                    {{ "Show" | trans }}
-                </a>
-            </td>
+            <td><a href="{{ path('acme_demoflexibleentity_product_show', { id: product.id, 'dataLocale': dataLocale, 'dataScope': dataScope  }) }}"><i class="icon-zoom-in"></i></a></td>
+            <td><a href="{{ path('acme_demoflexibleentity_product_edit', { id: product.id, 'dataLocale': dataLocale, 'dataScope': dataScope  }) }}"><i class="icon-edit"></i></a></td>
+            <td><a href="{{ path('acme_demoflexibleentity_product_remove', { id: product.id, 'dataLocale': dataLocale, 'dataScope': dataScope  }) }}"><i class="icon-remove"></i></a></td>
          </tr>
          {% endfor %}
 
