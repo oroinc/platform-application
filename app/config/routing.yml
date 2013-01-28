@@ -32,9 +32,13 @@ oro_user:
     resource: "@OroUserBundle/Resources/config/routing.yml"
     prefix:   /user
 
-_oro_search:
+oro_search:
     resource: "@OroSearchBundle/Resources/config/routing.yml"
     prefix:   /
+
+oro_soap:
+    resource: "@OroSoapBundle/Resources/config/routing.yml"
+    prefix:   /api
 
 NelmioApiDocBundle:
     resource: "@NelmioApiDocBundle/Resources/config/routing.yml"

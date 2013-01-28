@@ -100,3 +100,20 @@ fos_user:
         group_class:          Oro\Bundle\UserBundle\Entity\Group
     service:
         user_manager:         oro_user.user_manager
+
+be_simple_soap:
+    cache:
+        type:     disk
+        lifetime: 86400
+        limit:    5
+    services:
+        soap:
+            namespace:     http://symfony.loc/Api/1.0/
+            binding:       rpc-literal
+            resource:      "%kernel.root_dir%/../src/Oro/Bundle/SoapBundle/Resources/config/soap.yml"
+            resource_type: yml
+        demo:
+            namespace:     http://symfony.loc/Api/1.0/
+            binding:       rpc-literal
+            resource:      "%kernel.root_dir%/../src/Acme/Bundle/DemoBundle/Resources/config/soap.yml"
+            resource_type: yml
