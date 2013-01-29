@@ -21,6 +21,12 @@ class CustomerControllerTest extends KernelAwareControllerTest
     protected static $controller = 'customer';
 
     /**
+     * List of locales to test
+     * @staticvar multitype:string
+     */
+    protected static $locales = array('en', 'fr');
+
+    /**
      * {@inheritdoc}
      */
     protected function getFixturesToLoad()
@@ -58,54 +64,55 @@ class CustomerControllerTest extends KernelAwareControllerTest
     /**
      * Test related method
      */
-//     public function testIndexAction()
-//     {
-//         $this->client->request('GET', self::prepareUrl('en', 'index'));
-//         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-
-//         $this->client->request('GET', self::prepareUrl('fr', 'index'));
-//         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-//     }
+    public function testIndexAction()
+    {
+        foreach (self::$locales as $locale) {
+            $this->client->request('GET', self::prepareUrl($locale, 'index'));
+            $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+        }
+    }
 
     /**
      * Test related method
      *
      * @throws \Exception
      */
-//     public function testShowAction()
-//     {
-//         // find customer to show
-//         $customer = $this->getCustomerManager()->getEntityRepository()->findOneBy(array());
-//         if (!$customer) {
-//             throw new \Exception('Customer not found');
-//         }
+    public function testShowAction()
+    {
+        // find customer to show
+        $customer = $this->getCustomerManager()->getEntityRepository()->findOneBy(array());
+        if (!$customer) {
+            throw new \Exception('Customer not found');
+        }
 
-//         // call and assert view
-//         $this->client->request('GET', self::prepareUrl('en', 'show/'.$customer->getId()));
-//         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-//     }
+        // call and assert view
+        foreach (self::$locales as $locale) {
+            $this->client->request('GET', self::prepareUrl('en', 'show/'.$customer->getId()));
+            $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+        }
+    }
 
     /**
      * Test related action
      *
      * @throws \Exception
      */
-//     public function testRemoveAction()
-//     {
-//         // find customer to delete
-//         $customer = $this->getCustomerManager()->getEntityRepository()->findOneBy(array());
-//         if (!$customer) {
-//             throw new \Exception('Customer not found');
-//         }
+    public function testRemoveAction()
+    {
+        // find customer to delete
+        $customer = $this->getCustomerManager()->getEntityRepository()->findOneBy(array());
+        if (!$customer) {
+            throw new \Exception('Customer not found');
+        }
 
-//         // count all customers in database
-//         $countCustomers = $this->countCustomers();
+        // count all customers in database
+        $countCustomers = $this->countCustomers();
 
-//         // call and assert view
-//         $this->client->request('GET', self::prepareUrl('en', 'remove/'. $customer->getId()));
-//         $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
-//         $this->assertEquals($countCustomers-1, $this->countCustomers());
-//     }
+        // call and assert view
+        $this->client->request('GET', self::prepareUrl('en', 'remove/'. $customer->getId()));
+        $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
+        $this->assertEquals($countCustomers-1, $this->countCustomers());
+    }
 
     /**
      * Test related method
