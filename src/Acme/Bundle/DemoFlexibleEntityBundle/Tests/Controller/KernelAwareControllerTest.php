@@ -30,6 +30,12 @@ abstract class KernelAwareControllerTest extends WebTestCase
     static protected $testedUrl = '/%%lang%%/flexible-entity/%%controller%%/%%action%%';
 
     /**
+     * List of locales to test
+     * @staticvar multitype:string
+     */
+    protected static $locales = array('en', 'fr');
+
+    /**
      * @var \Symfony\Component\DependencyInjection\ContainerInterface
      */
     protected $container;

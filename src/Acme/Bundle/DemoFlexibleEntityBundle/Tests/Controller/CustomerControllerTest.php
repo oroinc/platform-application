@@ -1,8 +1,6 @@
 <?php
 namespace Acme\Bundle\DemoFlexibleEntityBundle\Tests\Controller;
 
-use Acme\Bundle\DemoFlexibleEntityBundle\Tests\Controller\KernelAwareControllerTest;
-
 /**
  * Test related class
  *
@@ -19,12 +17,6 @@ class CustomerControllerTest extends KernelAwareControllerTest
      * @staticvar string
      */
     protected static $controller = 'customer';
-
-    /**
-     * List of locales to test
-     * @staticvar multitype:string
-     */
-    protected static $locales = array('en', 'fr');
 
     /**
      * {@inheritdoc}

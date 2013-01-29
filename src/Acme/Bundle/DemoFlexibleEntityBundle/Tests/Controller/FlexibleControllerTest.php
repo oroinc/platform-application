@@ -2,8 +2,6 @@
 
 namespace Acme\Bundle\DemoFlexibleEntityBundle\Tests\Controller;
 
-use Acme\Bundle\DemoFlexibleEntityBundle\Tests\Controller\KernelAwareControllerTest;
-
 /**
  * Test related class
  *
@@ -20,12 +18,6 @@ class FlexibleControllerTest extends KernelAwareControllerTest
      * @staticvar string
      */
     protected static $controller = 'flexible';
-
-    /**
-     * List of locales to test
-     * @staticvar multitype:string
-     */
-    protected static $locales = array('en', 'fr');
 
     /**
      * Test related method
