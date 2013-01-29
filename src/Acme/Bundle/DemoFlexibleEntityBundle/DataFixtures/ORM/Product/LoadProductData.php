@@ -8,6 +8,11 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Oro\Bundle\FlexibleEntityBundle\Model\AbstractAttributeType;
 use Acme\Bundle\DemoFlexibleEntityBundle\Entity\ProductAttribute;
+use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\TextType;
+use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\MultiOptionsType;
+use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\MetricType;
+use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\TextAreaType;
+use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\MoneyType;
 
 /**
 * Load products
@@ -76,7 +81,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         // attribute name (if not exists)
         $attributeCode = 'name';
         $attribute = $this->getProductManager()->getEntityRepository()->findAttributeByCode($attributeCode);
-        $productAttribute = $this->getProductManager()->createEntityAttribute(AbstractAttributeType::FRONTEND_TYPE_TEXT);
+        $productAttribute = $this->getProductManager()->createEntityAttribute(new TextType());
         $productAttribute->setName('Name');
         $productAttribute->setCode($attributeCode);
 // TODO : test        $productAttribute->setRequired(true);
@@ -86,7 +91,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
 
         // attribute price (if not exists)
         $attributeCode = 'price';
-        $productAttribute = $this->getProductManager()->createEntityAttribute(AbstractAttributeType::FRONTEND_TYPE_MONEY);
+        $productAttribute = $this->getProductManager()->createEntityAttribute(new MoneyType());
         $productAttribute->setName('Price');
         $productAttribute->setCode($attributeCode);
         $this->getProductManager()->getStorageManager()->persist($productAttribute);
@@ -94,7 +99,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
 
         // attribute description (if not exists)
         $attributeCode = 'description';
-        $productAttribute = $this->getProductManager()->createEntityAttribute(AbstractAttributeType::FRONTEND_TYPE_TEXTAREA);
+        $productAttribute = $this->getProductManager()->createEntityAttribute(new TextAreaType());
         $productAttribute->setName('Description');
         $productAttribute->setCode($attributeCode);
         $productAttribute->setTranslatable(true);
@@ -105,7 +110,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         // attribute size (if not exists)
         $attributeCode= 'size';
         $attribute = $this->getProductManager()->getEntityRepository()->findAttributeByCode($attributeCode);
-        $productAttribute = $this->getProductManager()->createEntityAttribute(AbstractAttributeType::FRONTEND_TYPE_METRIC);
+        $productAttribute = $this->getProductManager()->createEntityAttribute(new MetricType());
         $productAttribute->setName('Size');
         $productAttribute->setCode($attributeCode);
         $this->getProductManager()->getStorageManager()->persist($productAttribute);
@@ -114,7 +119,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         // attribute color (if not exists)
         $attributeCode= 'color';
         $attribute = $this->getProductManager()->getEntityRepository()->findAttributeByCode($attributeCode);
-        $productAttribute = $this->getProductManager()->createEntityAttribute(AbstractAttributeType::FRONTEND_TYPE_MULTICHOICE);
+        $productAttribute = $this->getProductManager()->createEntityAttribute(new MultiOptionsType());
         $productAttribute->setName('Color');
         $productAttribute->setCode($attributeCode);
         $productAttribute->setTranslatable(false); // only one value but option can be translated in option values
