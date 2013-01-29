@@ -121,7 +121,7 @@ class CustomerController extends Controller
      */
     public function createAction()
     {
-        $entity = $this->getCustomerManager()->createEntity(true);
+        $entity = $this->getCustomerManager()->createEntity(FlexibleEntityManager::ALL_VALUES);
 
         return $this->editAction($entity);
     }
