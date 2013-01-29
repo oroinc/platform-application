@@ -76,97 +76,60 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         // attribute name (if not exists)
         $attributeCode = 'name';
         $attribute = $this->getProductManager()->getEntityRepository()->findAttributeByCode($attributeCode);
-        if ($attribute) {
-            $messages[]= "Attribute ".$attributeCode." already exists";
-        } else {
-            $productAttribute = $this->getProductManager()->createEntityAttribute();
-            $productAttribute->setName('Name');
-            $productAttribute->setCode($attributeCode);
-            $productAttribute->setRequired(true);
-//            $productAttribute->setBackendType(AbstractAttributeType::BACKEND_TYPE_VARCHAR);
-            $productAttribute->getAttribute()->setFrontendType(AbstractAttributeType::FRONTEND_TYPE_TEXTFIELD);
-
-            $productAttribute->setTranslatable(true);
-            $this->getProductManager()->getStorageManager()->persist($productAttribute);
-            $messages[]= "Attribute ".$attributeCode." has been created";
-        }
+        $productAttribute = $this->getProductManager()->createEntityAttribute(AbstractAttributeType::FRONTEND_TYPE_TEXT);
+        $productAttribute->setName('Name');
+        $productAttribute->setCode($attributeCode);
+// TODO : test        $productAttribute->setRequired(true);
+        $productAttribute->setTranslatable(true);
+        $this->getProductManager()->getStorageManager()->persist($productAttribute);
+        $messages[]= "Attribute ".$attributeCode." has been created";
 
         // attribute price (if not exists)
         $attributeCode = 'price';
-        $attribute = $this->getProductManager()->getEntityRepository()->findAttributeByCode($attributeCode);
-        if ($attribute) {
-            $messages[]= "Attribute ".$attributeCode." already exists";
-        } else {
-            $productAttribute = $this->getProductManager()->createEntityAttribute();
-            $productAttribute->setName('Price');
-            $productAttribute->setCode($attributeCode);
-//            $productAttribute->setBackendType(AbstractAttributeType::BACKEND_TYPE_DECIMAL);
-            $productAttribute->getAttribute()->setFrontendType(AbstractAttributeType::FRONTEND_TYPE_PRICE);
-
-            $this->getProductManager()->getStorageManager()->persist($productAttribute);
-            $messages[]= "Attribute ".$attributeCode." has been created";
-        }
+        $productAttribute = $this->getProductManager()->createEntityAttribute(AbstractAttributeType::FRONTEND_TYPE_MONEY);
+        $productAttribute->setName('Price');
+        $productAttribute->setCode($attributeCode);
+        $this->getProductManager()->getStorageManager()->persist($productAttribute);
+        $messages[]= "Attribute ".$attributeCode." has been created";
 
         // attribute description (if not exists)
         $attributeCode = 'description';
-        $attribute = $this->getProductManager()->getEntityRepository()->findAttributeByCode($attributeCode);
-        if ($attribute) {
-            $messages[]= "Attribute ".$attributeCode." already exists";
-        } else {
-            $productAttribute = $this->getProductManager()->createEntityAttribute();
-            $productAttribute->setName('Description');
-            $productAttribute->setCode($attributeCode);
-//            $productAttribute->setBackendType(AbstractAttributeType::BACKEND_TYPE_TEXT);
-            $productAttribute->getAttribute()->setFrontendType(AbstractAttributeType::FRONTEND_TYPE_TEXTAREA);
-
-            $productAttribute->setTranslatable(true);
-            $productAttribute->setScopable(true);
-            $this->getProductManager()->getStorageManager()->persist($productAttribute);
-            $messages[]= "Attribute ".$attributeCode." has been created";
-        }
+        $productAttribute = $this->getProductManager()->createEntityAttribute(AbstractAttributeType::FRONTEND_TYPE_TEXTAREA);
+        $productAttribute->setName('Description');
+        $productAttribute->setCode($attributeCode);
+        $productAttribute->setTranslatable(true);
+        $productAttribute->setScopable(true);
+        $this->getProductManager()->getStorageManager()->persist($productAttribute);
+        $messages[]= "Attribute ".$attributeCode." has been created";
 
         // attribute size (if not exists)
         $attributeCode= 'size';
         $attribute = $this->getProductManager()->getEntityRepository()->findAttributeByCode($attributeCode);
-        if ($attribute) {
-            $messages[]= "Attribute ".$attributeCode." already exists";
-        } else {
-            $productAttribute = $this->getProductManager()->createEntityAttribute();
-            $productAttribute->setName('Size');
-            $productAttribute->setCode($attributeCode);
-//            $productAttribute->setBackendType(AbstractAttributeType::BACKEND_TYPE_INTEGER);
-            $productAttribute->getAttribute()->setFrontendType(AbstractAttributeType::FRONTEND_TYPE_TEXTFIELD);
-
-            $this->getProductManager()->getStorageManager()->persist($productAttribute);
-            $messages[]= "Attribute ".$attributeCode." has been created";
-        }
+        $productAttribute = $this->getProductManager()->createEntityAttribute(AbstractAttributeType::FRONTEND_TYPE_METRIC);
+        $productAttribute->setName('Size');
+        $productAttribute->setCode($attributeCode);
+        $this->getProductManager()->getStorageManager()->persist($productAttribute);
+        $messages[]= "Attribute ".$attributeCode." has been created";
 
         // attribute color (if not exists)
         $attributeCode= 'color';
         $attribute = $this->getProductManager()->getEntityRepository()->findAttributeByCode($attributeCode);
-        if ($attribute) {
-            $messages[]= "Attribute ".$attributeCode." already exists";
-        } else {
-            $productAttribute = $this->getProductManager()->createEntityAttribute();
-            $productAttribute->setName('Color');
-            $productAttribute->setCode($attributeCode);
-//            $productAttribute->setBackendType(AbstractAttributeType::BACKEND_TYPE_OPTION);
-            $productAttribute->getAttribute()->setFrontendType(AbstractAttributeType::FRONTEND_TYPE_MULTILIST);
-
-            $productAttribute->setTranslatable(false); // only one value but option can be translated in option values
-            // add translatable option and related value "Red", "Blue", "Green"
-            $colors = array("Red", "Blue", "Green");
-            foreach ($colors as $color) {
-                $option = $this->getProductManager()->createAttributeOption();
-                $option->setTranslatable(true);
-                $optionValue = $this->getProductManager()->createAttributeOptionValue();
-                $optionValue->setValue($color);
-                $option->addOptionValue($optionValue);
-                $productAttribute->addOption($option);
-            }
-            $this->getProductManager()->getStorageManager()->persist($productAttribute);
-            $messages[]= "Attribute ".$attributeCode." has been created";
+        $productAttribute = $this->getProductManager()->createEntityAttribute(AbstractAttributeType::FRONTEND_TYPE_MULTICHOICE);
+        $productAttribute->setName('Color');
+        $productAttribute->setCode($attributeCode);
+        $productAttribute->setTranslatable(false); // only one value but option can be translated in option values
+        // add translatable option and related value "Red", "Blue", "Green"
+        $colors = array("Red", "Blue", "Green");
+        foreach ($colors as $color) {
+            $option = $this->getProductManager()->createAttributeOption();
+            $option->setTranslatable(true);
+            $optionValue = $this->getProductManager()->createAttributeOptionValue();
+            $optionValue->setValue($color);
+            $option->addOptionValue($optionValue);
+            $productAttribute->addOption($option);
         }
+        $this->getProductManager()->getStorageManager()->persist($productAttribute);
+        $messages[]= "Attribute ".$attributeCode." has been created";
 
         $this->getProductManager()->getStorageManager()->flush();
 
@@ -200,112 +163,97 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
 
         $indSku = 1;
         $descriptions = array('my long description', 'my other description');
-        for ($ind= 1; $ind <= 33; $ind++) {
+        for ($ind= 1; $ind <= 3; $ind++) {
 
             // add product with only sku and name
             $prodSku = 'sku-'.$indSku;
-            $newProduct = $this->getProductManager()->getEntityRepository()->findOneBySku($prodSku);
-            if ($newProduct) {
-                $messages[]= "Product ".$prodSku." already exists";
-            } else {
-                $newProduct = $this->getProductManager()->createEntity();
-                $newProduct->setSku($prodSku);
-                if ($attName) {
-                    $valueName = $this->getProductManager()->createEntityValue();
-                    $valueName->setAttribute($attName);
-                    $valueName->setData('my name '.$indSku);
-                    $newProduct->addValue($valueName);
-                }
-                $messages[]= "Product ".$prodSku." has been created";
-                $this->getProductManager()->getStorageManager()->persist($newProduct);
-                $indSku++;
+            $newProduct = $this->getProductManager()->createEntity();
+            $newProduct->setSku($prodSku);
+            if ($attName) {
+                $valueName = $this->getProductManager()->createEntityValue();
+                $valueName->setAttribute($attName);
+                $valueName->setData('my name '.$indSku);
+                $newProduct->addValue($valueName);
             }
+            $messages[]= "Product ".$prodSku." has been created";
+            $this->getProductManager()->getStorageManager()->persist($newProduct);
+            $indSku++;
 
             // add product with sku, name, description, color and size
             $prodSku = 'sku-'.$indSku;
-            $newProduct = $this->getProductManager()->getEntityRepository()->findOneBySku($prodSku);
-            if ($newProduct) {
-                $messages[]= "Product ".$prodSku." already exists";
-            } else {
-                $newProduct = $this->getProductManager()->createEntity();
-                $newProduct->setSku($prodSku);
-                if ($attName) {
-                    $valueName = $this->getProductManager()->createEntityValue();
-                    $valueName->setAttribute($attName);
-                    $valueName->setData('my name '.$indSku);
-                    $newProduct->addValue($valueName);
-                }
-                if ($attDescription) {
-                    // scope ecommerce
-                    $value = $this->getProductManager()->createEntityValue();
-                    $value->setScope(ProductAttribute::SCOPE_ECOMMERCE);
-                    $value->setAttribute($attDescription);
-                    $myDescription = $descriptions[$ind%2];
-                    $value->setData($myDescription.'(ecommerce)');
-                    $newProduct->addValue($value);
-                    // scope mobile
-                    $value = $this->getProductManager()->createEntityValue();
-                    $value->setScope(ProductAttribute::SCOPE_MOBILE);
-                    $value->setAttribute($attDescription);
-                    $value->setData($myDescription.'(mobile)');
-                    $newProduct->addValue($value);
-                }
-                if ($attSize) {
-                    $valueSize = $this->getProductManager()->createEntityValue();
-                    $valueSize->setAttribute($attSize);
-                    $valueSize->setData(175); // single value
-                    $valueSize->setUnit('mm');
-                    $newProduct->addValue($valueSize);
-                }
-                if ($attColor) {
-                    $value = $this->getProductManager()->createEntityValue();
-                    $value->setAttribute($attColor);
-                    // pick many colors (multiselect)
-                    $firstColorOpt = $colors[rand(0, count($colors)-1)];
-                    $value->addOption($firstColorOpt);
-                    $secondColorOpt = $colors[rand(0, count($colors)-1)];
-                    if ($firstColorOpt->getId() != $secondColorOpt->getId()) {
-                        $value->addOption($secondColorOpt);
-                    }
-                    $newProduct->addValue($value);
-                }
-                $this->getProductManager()->getStorageManager()->persist($newProduct);
-                $messages[]= "Product ".$prodSku." has been created";
-                $indSku++;
+            $newProduct = $this->getProductManager()->createEntity();
+            $newProduct->setSku($prodSku);
+            if ($attName) {
+                $valueName = $this->getProductManager()->createEntityValue();
+                $valueName->setAttribute($attName);
+                $valueName->setData('my name '.$indSku);
+                $newProduct->addValue($valueName);
             }
+            if ($attDescription) {
+                // scope ecommerce
+                $value = $this->getProductManager()->createEntityValue();
+                $value->setScope(ProductAttribute::SCOPE_ECOMMERCE);
+                $value->setAttribute($attDescription);
+                $myDescription = $descriptions[$ind%2];
+                $value->setData($myDescription.'(ecommerce)');
+                $newProduct->addValue($value);
+                // scope mobile
+                $value = $this->getProductManager()->createEntityValue();
+                $value->setScope(ProductAttribute::SCOPE_MOBILE);
+                $value->setAttribute($attDescription);
+                $value->setData($myDescription.'(mobile)');
+                $newProduct->addValue($value);
+            }
+            if ($attSize) {
+                $valueSize = $this->getProductManager()->createEntityValue();
+                $valueSize->setAttribute($attSize);
+                $valueSize->setData(175); // single value
+                $valueSize->setUnit('mm');
+                $newProduct->addValue($valueSize);
+            }
+            if ($attColor) {
+                $value = $this->getProductManager()->createEntityValue();
+                $value->setAttribute($attColor);
+                // pick many colors (multiselect)
+                $firstColorOpt = $colors[rand(0, count($colors)-1)];
+                $value->addOption($firstColorOpt);
+                $secondColorOpt = $colors[rand(0, count($colors)-1)];
+                if ($firstColorOpt->getId() != $secondColorOpt->getId()) {
+                    $value->addOption($secondColorOpt);
+                }
+                $newProduct->addValue($value);
+            }
+            $this->getProductManager()->getStorageManager()->persist($newProduct);
+            $messages[]= "Product ".$prodSku." has been created";
+            $indSku++;
 
             // add product with sku, name, size and price
             $prodSku = 'sku-'.$indSku;
-            $newProduct = $this->getProductManager()->getEntityRepository()->findOneBySku($prodSku);
-            if ($newProduct) {
-                $messages[]= "Product ".$prodSku." already exists";
-            } else {
-                $newProduct = $this->getProductManager()->createEntity();
-                $newProduct->setSku($prodSku);
-                if ($attName) {
-                    $valueName = $this->getProductManager()->createEntityValue();
-                    $valueName->setAttribute($attName);
-                    $valueName->setData('my name '.$indSku);
-                    $newProduct->addValue($valueName);
-                }
-                if ($attSize) {
-                    $valueSize = $this->getProductManager()->createEntityValue();
-                    $valueSize->setAttribute($attSize);
-                    $valueSize->setData(175);
-                    $valueSize->setUnit('mm');
-                    $newProduct->addValue($valueSize);
-                }
-                if ($attPrice) {
-                    $valuePrice = $this->getProductManager()->createEntityValue();
-                    $valuePrice->setAttribute($attPrice);
-                    $valuePrice->setData(rand(5, 100));
-                    $valuePrice->setCurrency('USD');
-                    $newProduct->addValue($valuePrice);
-                }
-                $this->getProductManager()->getStorageManager()->persist($newProduct);
-                $messages[]= "Product ".$prodSku." has been created";
-                $indSku++;
+            $newProduct = $this->getProductManager()->createEntity();
+            $newProduct->setSku($prodSku);
+            if ($attName) {
+                $valueName = $this->getProductManager()->createEntityValue();
+                $valueName->setAttribute($attName);
+                $valueName->setData('my name '.$indSku);
+                $newProduct->addValue($valueName);
             }
+            if ($attSize) {
+                $valueSize = $this->getProductManager()->createEntityValue();
+                $valueSize->setAttribute($attSize);
+                $valueSize->setData(175);
+                $valueSize->setUnit('mm');
+                $newProduct->addValue($valueSize);
+            }
+            if ($attPrice) {
+                $valuePrice = $this->getProductManager()->createEntityValue();
+                $valuePrice->setAttribute($attPrice);
+                $valuePrice->setData(rand(5, 100));
+                $valuePrice->setCurrency('USD');
+                $newProduct->addValue($valuePrice);
+            }
+            $this->getProductManager()->getStorageManager()->persist($newProduct);
+            $messages[]= "Product ".$prodSku." has been created";
+            $indSku++;
         }
 
         $this->getProductManager()->getStorageManager()->flush();
