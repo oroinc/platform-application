@@ -11,6 +11,7 @@ use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\MultiOptionsType;
 use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\SingleOptionType;
 use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\DateType;
 use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\TextType;
+use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\UrlType;
 
 /**
 * Load customers
@@ -104,6 +105,18 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
             $messages[]= "Attribute ".$attCode." has been created";
         }
 
+        // attribute date of birth (if not exists)
+        $attCode = 'website';
+        $att = $this->getCustomerManager()->getEntityRepository()->findAttributeByCode($attCode);
+        if ($att) {
+            $messages[]= "Attribute ".$attCode." already exists";
+        } else {
+            $att = $this->getCustomerManager()->createAttribute(new UrlType());
+            $att->setCode($attCode);
+            $this->getCustomerManager()->getStorageManager()->persist($att);
+            $messages[]= "Attribute ".$attCode." has been created";
+        }
+
         // attribute gender (if not exists)
         $attCode = 'gender';
         $att = $this->getCustomerManager()->getEntityRepository()->findAttributeByCode($attCode);
@@ -166,6 +179,7 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
         $attCompany = $this->getCustomerManager()->getEntityRepository()->findAttributeByCode('company');
         $attDob = $this->getCustomerManager()->getEntityRepository()->findAttributeByCode('dob');
         $attGender = $this->getCustomerManager()->getEntityRepository()->findAttributeByCode('gender');
+        $attWebsite = $this->getCustomerManager()->getEntityRepository()->findAttributeByCode('website');
         $attHobby = $this->getCustomerManager()->getEntityRepository()->findAttributeByCode('hobby');
         // get first attribute option
         $optGender = $this->getCustomerManager()->getAttributeOptionRepository()->findOneBy(array('attribute' => $attGender));
@@ -212,6 +226,13 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
                 $value = $this->getCustomerManager()->createEntityValue();
                 $value->setAttribute($attDob);
                 $value->setData(new \DateTime($this->generateBirthDate()));
+                $customer->addValue($value);
+            }
+            // add website
+            if ($attWebsite) {
+                $value = $this->getCustomerManager()->createEntityValue();
+                $value->setAttribute($attWebsite);
+                $value->setData('http://mywebsite'.$ind.'.com');
                 $customer->addValue($value);
             }
             // add gender
