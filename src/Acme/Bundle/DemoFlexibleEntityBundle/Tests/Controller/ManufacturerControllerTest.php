@@ -2,7 +2,7 @@
 
 namespace Acme\Bundle\DemoFlexibleEntityBundle\Tests\Controller;
 
-use Acme\Bundle\DemoFlexibleEntityBundle\Tests\Controller\AbstractControllerTest;
+use Acme\Bundle\DemoFlexibleEntityBundle\Tests\Controller\KernelAwareControllerTest;
 
 /**
  * Test related class
@@ -12,7 +12,7 @@ use Acme\Bundle\DemoFlexibleEntityBundle\Tests\Controller\AbstractControllerTest
  * @license   http://opensource.org/licenses/MIT MIT
  *
  */
-class ManufacturerControllerTest extends AbstractControllerTest
+class ManufacturerControllerTest extends KernelAwareControllerTest
 {
 
     /**

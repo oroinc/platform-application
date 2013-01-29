@@ -1,8 +1,7 @@
 <?php
-
 namespace Acme\Bundle\DemoFlexibleEntityBundle\Tests\Controller;
 
-use Acme\Bundle\DemoFlexibleEntityBundle\Tests\Controller\AbstractControllerTest;
+use Acme\Bundle\DemoFlexibleEntityBundle\Tests\Controller\KernelAwareControllerTest;
 
 /**
  * Test related class
@@ -12,7 +11,7 @@ use Acme\Bundle\DemoFlexibleEntityBundle\Tests\Controller\AbstractControllerTest
  * @license   http://opensource.org/licenses/MIT MIT
  *
  */
-class CustomerControllerTest extends AbstractControllerTest
+class CustomerControllerTest extends KernelAwareControllerTest
 {
 
     /**
@@ -44,118 +43,161 @@ class CustomerControllerTest extends AbstractControllerTest
             'oroflexibleentity_attribute_option',
             'oroflexibleentity_attribute_option_value'
         );
+    }
 
-        return $tables;
+    /**
+     * Get customer manager
+     *
+     * @return Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleEntityManager
+     */
+    protected function getCustomerManager()
+    {
+        return $this->getContainer()->get('customer_manager');
     }
 
     /**
      * Test related method
      */
-    public function testIndexAction()
-    {
-        $this->client->request('GET', self::prepareUrl('en', 'index'));
-        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+//     public function testIndexAction()
+//     {
+//         $this->client->request('GET', self::prepareUrl('en', 'index'));
+//         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
 
-        $this->client->request('GET', self::prepareUrl('fr', 'index'));
-        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+//         $this->client->request('GET', self::prepareUrl('fr', 'index'));
+//         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+//     }
 
-        // load data then test the same urls
-        $this->loadCustomers();
+    /**
+     * Test related method
+     *
+     * @throws \Exception
+     */
+//     public function testShowAction()
+//     {
+//         // find customer to show
+//         $customer = $this->getCustomerManager()->getEntityRepository()->findOneBy(array());
+//         if (!$customer) {
+//             throw new \Exception('Customer not found');
+//         }
 
-        $this->client->request('GET', self::prepareUrl('en', 'index'));
-        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+//         // call and assert view
+//         $this->client->request('GET', self::prepareUrl('en', 'show/'.$customer->getId()));
+//         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+//     }
 
-        $this->client->request('GET', self::prepareUrl('fr', 'index'));
-        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-    }
+    /**
+     * Test related action
+     *
+     * @throws \Exception
+     */
+//     public function testRemoveAction()
+//     {
+//         // find customer to delete
+//         $customer = $this->getCustomerManager()->getEntityRepository()->findOneBy(array());
+//         if (!$customer) {
+//             throw new \Exception('Customer not found');
+//         }
+
+//         // count all customers in database
+//         $countCustomers = $this->countCustomers();
+
+//         // call and assert view
+//         $this->client->request('GET', self::prepareUrl('en', 'remove/'. $customer->getId()));
+//         $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
+//         $this->assertEquals($countCustomers-1, $this->countCustomers());
+//     }
 
     /**
      * Test related method
      */
-    public function testViewAction()
+    public function testCreateAction()
     {
-        // insert attributes data then customers data
-        $this->loadCustomers();
+        // count customers in database
+        $countCustomers = $this->countCustomers();
 
-        // call and assert view
-        $this->client->request('GET', self::prepareUrl('en', 'view/1'));
+        // just call view to show form
+        $this->client->request('GET', self::prepareUrl('en', 'create'));
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-    }
 
-    /**
-     * Test related method
-     */
-    public function testAttributeAction()
-    {
-        // insert attributes data then customers data
-        $this->loadCustomers();
-
-        $this->client->request('GET', self::prepareUrl('en', 'attribute'));
-        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-    }
-
-    /**
-     * Load customer attributes then customer data
-     */
-    protected function loadCustomers()
-    {
-        $this->client->request('GET', self::prepareUrl('en', 'customerattribute', 'loader'));
+        // post data to create a customer entity
+        $postData = array(
+            'firstname' => 'Test',
+            'lastname' => 'Test',
+            'email' => 'mail@mail.com'
+        );
+        $this->client->request('POST', self::prepareUrl('en', 'create'), $postData);
+        var_dump($this->client->getResponse()->getContent());
         $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
-        $this->client->request('GET', self::prepareUrl('en', 'customer', 'loader'));
-        $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
     }
 
     /**
-     * Test query actions
+     * Test related method
      */
-    public function testQueries()
-    {
-        // insert attributes data then customers data
-        $this->loadCustomers();
-
-        $actions = array(
-            'querylazyload',
-            'queryonlydob',
-            'queryonlydobandgender',
-            'queryfilterfirstname',
-            'queryfilterfirstnameandcompany',
-            'queryfilterfirstnameandlimit',
-            'queryfilterfirstnameandorderbirthdatedesc'
-        );
-
-        foreach ($actions as $action) {
-            $this->client->request('GET', self::prepareUrl('en', $action));
-            $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-        }
-    }
+//     public function testEditAction()
+//     {
+//         // count customers in database
+//     }
 
     /**
-     * Test query actions without data
+     * Count customers in database
+     *
+     * @return integer
      */
-    public function testQueriesWithoutData()
+    protected function countCustomers()
     {
-        // actions returning code 200
-        $actions = array(
-            'querylazyload',
-            'queryfilterfirstname',
-            'queryfilterfirstnameandlimit',
-        );
-        foreach ($actions as $action) {
-            $this->client->request('GET', self::prepareUrl('en', $action));
-            $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-        }
+        $customers = $this->getCustomerManager()->getEntityRepository()->findAll();
 
-        // actions returning exception
-        $actions = array(
-            'queryonlydob',
-            'queryonlydobandgender',
-            'queryfilterfirstnameandcompany',
-            'queryfilterfirstnameandorderbirthdatedesc'
-        );
-        foreach ($actions as $action) {
-            $this->client->request('GET', self::prepareUrl('en', $action));
-            $this->assertEquals(500, $this->client->getResponse()->getStatusCode());
-        }
+        return count($customers);
     }
+
+//     /**
+//      * Test query actions
+//      */
+//     public function testQueries()
+//     {
+//         $actions = array(
+//             'querylazyload',
+//             'queryonlydob',
+//             'queryonlydobandgender',
+//             'queryfilterfirstname',
+//             'queryfilterfirstnameandcompany',
+//             'queryfilterfirstnameandlimit',
+//             'queryfilterfirstnameandorderbirthdatedesc'
+//         );
+
+//         foreach ($actions as $action) {
+//             $this->client->request('GET', self::prepareUrl('en', $action));
+//             $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+//         }
+//     }
+
+//     /**
+//      * Test query actions without data
+//      */
+//     public function testQueriesWithoutData()
+//     {
+//         // actions returning code 200
+//         $actions = array(
+//             'querylazyload',
+//             'queryfilterfirstname',
+//             'queryfilterfirstnameandlimit',
+//         );
+//         foreach ($actions as $action) {
+//             $this->client->request('GET', self::prepareUrl('en', $action));
+//             $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+//         }
+
+//         // actions returning exception
+//         $actions = array(
+//             'queryonlydob',
+//             'queryonlydobandgender',
+//             'queryfilterfirstnameandcompany',
+//             'queryfilterfirstnameandorderbirthdatedesc'
+//         );
+//         foreach ($actions as $action) {
+//             $this->client->request('GET', self::prepareUrl('en', $action));
+//             $this->assertEquals(500, $this->client->getResponse()->getStatusCode());
+//         }
+//     }
 
 }

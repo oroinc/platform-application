@@ -20,7 +20,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  *
  * @abstract
  */
-abstract class AbstractControllerTest extends WebTestCase
+abstract class KernelAwareControllerTest extends WebTestCase
 {
 
     /**
@@ -58,8 +58,6 @@ abstract class AbstractControllerTest extends WebTestCase
         $url = str_replace('%%lang%%', $locale, $url);
         $url = str_replace('%%controller%%', $controller, $url);
         $url = str_replace('%%action%%', $action, $url);
-
-        echo $url ."\n";
 
         return $url;
     }
