@@ -2,11 +2,6 @@
 
 {% block content %}
 
-    <h1>Products overview 
-        <a class="btn btn-primary pull-right" style="margin-left:10px;" href="{{ path('acme_demoflexibleentity_product_create') }}">New product</a> 
-        <a class="btn btn-primary pull-right" href="{{ path('acme_demoflexibleentity_productattribute_index') }}">Manage attributes</a>
-    </h1>
-
     {% set route_params = app.request.attributes.get('_route_params') %}
     {% if route_params == "" %}
         {% set route_params = [] %}
@@ -26,6 +21,12 @@
             {% set dataScope = 'ecommerce' %}
         {% endif %}
     {% endif %}
+    
+    <h1>Products overview 
+        <a class="btn btn-primary pull-right" style="margin-left:10px;" href="{{ path('acme_demoflexibleentity_product_create', {'dataLocale': dataLocale, 'dataScope': dataScope}) }}">New product</a> 
+        <a class="btn btn-primary pull-right" href="{{ path('acme_demoflexibleentity_productattribute_index') }}">Manage attributes</a>
+    </h1>
+    
     <br/>
     <p>{{ "Choose data locale : " | trans }}
     {% for locale in ['en_US', 'fr_FR', 'de_DE'] %}

@@ -162,7 +162,7 @@ class ProductController extends Controller
     {
         $entity = $this->getProductManager()->createEntity(true);
 
-        return $this->editAction($entity);
+        return $this->editAction($entity, $dataLocale, $dataScope);
     }
 
     /**
