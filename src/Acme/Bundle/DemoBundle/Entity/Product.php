@@ -3,6 +3,7 @@
 namespace Acme\Bundle\DemoBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Oro\Bundle\UserBundle\Annotation\Acl;
 
 /**
  * Acme\Bundle\DemoBundle\Entity\Product
@@ -97,7 +98,11 @@ class Product
 
     /**
      * Get name
-     *
+     *@Acl(
+     *      id = "acme_demo_entity_product_name",
+     *      name = "get Product name",
+     *      description = "entity product name"
+     * )
      * @return string
      */
     public function getName()

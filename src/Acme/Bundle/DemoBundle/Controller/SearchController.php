@@ -6,6 +6,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Doctrine\Common\Annotations\AnnotationReader;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+
+use Oro\Bundle\UserBundle\Annotation\Acl;
 
 use Acme\Bundle\DemoBundle\Entity\Product;
 use Acme\Bundle\DemoBundle\Form\ProductType;
@@ -18,6 +21,11 @@ class SearchController extends Controller
     /**
      * List of products and add new product
      *
+     * @Acl(
+     *      id = "acme_demo_search",
+     *      name="Product list",
+     *      description = "List of products and add new product"
+     * )
      * @Route("/", name="acme_demo_search")
      * @Template()
      */
@@ -48,7 +56,14 @@ class SearchController extends Controller
      *
      * @Route("/edit/{id}", name="acme_demo_edit")
      * @Template()
+     * @Acl(
+     *      id = "acme_demo_search_edit",
+     *      name = "Edit product",
+     *      description = "Edit product action in search controller, demo bundle",
+     *      parent = "acme_demo_search"
+     * )
      * @param $id
+     * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function editAction($id)
     {
@@ -77,6 +92,11 @@ class SearchController extends Controller
     /**
      * Delete product
      *
+     * @Acl(
+     *      id = "acme_demo_search_delete",
+     *      name = "Delete product",
+     *      description = "Product delete"
+     * )
      * @Route("/delete/{id}", name="acme_demo_delete")
      * @param $id
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
@@ -95,6 +115,12 @@ class SearchController extends Controller
     /**
      * Search request using query builder
      *
+     * @Acl(
+     *      id = "acme_demo_search_query_builder",
+     *      name = "Query builder",
+     *      description = "Search request using query builder",
+     *      parent = "acme_demo_search"
+     * )
      * @Route("/query-builder", name="acme_demo_query_builder")
      * @Template()
      * @return array
