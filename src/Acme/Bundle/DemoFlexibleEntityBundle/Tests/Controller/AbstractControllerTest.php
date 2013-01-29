@@ -1,6 +1,10 @@
 <?php
 namespace Acme\Bundle\DemoFlexibleEntityBundle\Tests\Controller;
 
+use Doctrine\ORM\EntityManager;
+
+use Symfony\Component\Console\Input\ArrayInput;
+
 use Symfony\Component\Console\Input\StringInput;
 
 use Symfony\Bundle\FrameworkBundle\Console\Application;
@@ -77,13 +81,18 @@ abstract class AbstractControllerTest extends WebTestCase
 
     /**
      * Launch a command line
-     * @param string $command
+     * @param string $command command name to run
+     * @param array  $args    args for the command to run
      *
      * @return integer 0 if everything went fine, or an error code
      */
-    protected function runCommand($command)
+    protected function runCommand($command, $args = array())
     {
-        $input = new StringInput($command);
+        // command name must be the first argument
+        $args[0] = $command;
+        $input = new ArrayInput(
+            $args
+        );
 
         return self::getApplication()->run($input);
     }
@@ -91,12 +100,11 @@ abstract class AbstractControllerTest extends WebTestCase
     /**
      * {@inheritdoc}
      */
-    public function tearDown()
+    public function setUp()
     {
-        // reinitialize database
-        $this->initializeDatabase();
+        parent::setUp();
 
-        parent::tearDown();
+        $this->initializeDatabase();
     }
 
     /**
@@ -104,9 +112,23 @@ abstract class AbstractControllerTest extends WebTestCase
      */
     protected function initializeDatabase()
     {
-        self::runCommand('doctrine:database:drop --force');
-        self::runCommand('doctrine:database:create');
-        self::runCommand('doctrine:schema:update --force');
+        $fixtures = $this->getFixturesToLoad();
+
+        $args['--fixtures'] = $fixtures;
+        $args['--no-interaction'] = true;
+        $args['--append'] = true;
+
+        $command = 'doctrine:fixtures:load';
+
+        self::runCommand($command, $args);
+    }
+
+    /**
+     * @return array
+     */
+    protected function getFixturesToLoad()
+    {
+        return array();
     }
 
     /**
@@ -117,6 +139,71 @@ abstract class AbstractControllerTest extends WebTestCase
         $this->client = static::createClient();
 
         parent::runTest();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function tearDown()
+    {
+        // truncate database
+        $this->truncateDatabase();
+
+        parent::tearDown();
+    }
+
+    /**
+     * Truncate tables from database
+     */
+    public function truncateDatabase()
+    {
+        // get connection
+        $connection = $this->getStorageManager()->getConnection();
+
+        // get tables list
+        $tables = $this->getTablesToTruncate();
+
+        // truncate tables
+        try {
+            // start transaction
+            $this->getStorageManager()->getConnection()->beginTransaction();
+
+            // disable foreign keys check
+            $connection->query('SET FOREIGN_KEY_CHECKS = 0');
+
+            foreach ($tables as $table) {
+                $query = $connection->getDatabasePlatform()->getTruncateTableSQL($table);
+                $connection->executeUpdate($query);
+            }
+
+            // enable foreign key check
+            $connection->query('SET FOREIGN_KEY_CHECKS = 0');
+
+            $this->getStorageManager()->getConnection()->commit();
+        } catch (\Exception $e) {
+            // rollback if an exception is caught
+            $connection->rollBack();
+        }
+    }
+
+    /**
+     * Get storage manager.. EntityManager by default
+     * @return Doctrine\ORM\EntityManager
+     */
+    protected function getStorageManager()
+    {
+        return $this->getContainer()->get('doctrine.orm.entity_manager');
+    }
+
+    /**
+     * Get tables to truncate
+     * Must be redefine to truncate a minimum of tables
+     *
+     * @return multitype:string
+     */
+    protected function getTablesToTruncate()
+    {
+        return array();
     }
 
     /**

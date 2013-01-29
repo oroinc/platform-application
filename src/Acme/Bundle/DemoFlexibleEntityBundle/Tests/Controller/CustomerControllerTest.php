@@ -22,6 +22,33 @@ class CustomerControllerTest extends AbstractControllerTest
     protected static $controller = 'customer';
 
     /**
+     * {@inheritdoc}
+     */
+    protected function getFixturesToLoad()
+    {
+        return array(
+            'src/Acme/Bundle/DemoFlexibleEntityBundle/DataFixtures/ORM/Customer'
+        );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getTablesToTruncate()
+    {
+        return array(
+            'acmedemoflexibleentity_customer',
+            'acmedemoflexibleentity_customer_value',
+            'acmedemoflexibleentity_customer_value_option',
+            'oroflexibleentity_attribute',
+            'oroflexibleentity_attribute_option',
+            'oroflexibleentity_attribute_option_value'
+        );
+
+        return $tables;
+    }
+
+    /**
      * Test related method
      */
     public function testIndexAction()

@@ -1,5 +1,5 @@
 <?php
-namespace Acme\Bundle\DemoFlexibleEntityBundle\DataFixtures\ORM;
+namespace Acme\Bundle\DemoFlexibleEntityBundle\DataFixtures\ORM\Manufacturer;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;

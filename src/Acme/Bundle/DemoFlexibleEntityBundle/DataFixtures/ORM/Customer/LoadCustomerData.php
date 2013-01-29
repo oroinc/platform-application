@@ -1,5 +1,5 @@
 <?php
-namespace Acme\Bundle\DemoFlexibleEntityBundle\DataFixtures\ORM;
+namespace Acme\Bundle\DemoFlexibleEntityBundle\DataFixtures\ORM\Customer;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
@@ -100,7 +100,7 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
             $att->setCode($attCode);
 //            $att->setBackendType(AbstractAttributeType::BACKEND_TYPE_DATE);
             $att->setFrontendType(AbstractAttributeType::FRONTEND_TYPE_DATE);
-            $att->setRequired(true);
+//             $att->setRequired(true);
             $this->getCustomerManager()->getStorageManager()->persist($att);
             $messages[]= "Attribute ".$attCode." has been created";
         }
