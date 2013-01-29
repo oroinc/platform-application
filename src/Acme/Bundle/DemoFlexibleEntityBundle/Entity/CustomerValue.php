@@ -21,6 +21,7 @@ class CustomerValue extends AbstractEntityFlexibleValue implements HasDefaultVal
      * @var Oro\Bundle\FlexibleEntityBundle\Entity\Attribute $attribute
      *
      * @ORM\ManyToOne(targetEntity="Oro\Bundle\FlexibleEntityBundle\Entity\Attribute")
+     * @ORM\JoinColumn(name="attribute_id", referencedColumnName="id", onDelete="CASCADE")
      */
     protected $attribute;
 
@@ -37,7 +38,7 @@ class CustomerValue extends AbstractEntityFlexibleValue implements HasDefaultVal
      * @var options ArrayCollection
      *
      * @ORM\ManyToMany(targetEntity="Oro\Bundle\FlexibleEntityBundle\Entity\AttributeOption")
-     * @ORM\JoinTable(name="acmedemoflexibleentity_customer_values_options",
+     * @ORM\JoinTable(name="acmedemoflexibleentity_customer_value_option",
      *      joinColumns={@ORM\JoinColumn(name="value_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="option_id", referencedColumnName="id")}
      * )
