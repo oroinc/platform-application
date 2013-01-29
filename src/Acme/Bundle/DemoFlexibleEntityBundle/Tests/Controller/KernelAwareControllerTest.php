@@ -59,6 +59,8 @@ abstract class KernelAwareControllerTest extends WebTestCase
         $url = str_replace('%%controller%%', $controller, $url);
         $url = str_replace('%%action%%', $action, $url);
 
+        echo "\nURL --> ". $url ."\n";
+
         return $url;
     }
 
@@ -112,13 +114,15 @@ abstract class KernelAwareControllerTest extends WebTestCase
     {
         $fixtures = $this->getFixturesToLoad();
 
-        $args['--fixtures'] = $fixtures;
-        $args['--no-interaction'] = true;
-        $args['--append'] = true;
+        if (!empty($fixtures)) {
+            $args['--fixtures'] = $fixtures;
+            $args['--no-interaction'] = true;
+            $args['--append'] = true;
 
-        $command = 'doctrine:fixtures:load';
+            $command = 'doctrine:fixtures:load';
 
-        self::runCommand($command, $args);
+            self::runCommand($command, $args);
+        }
     }
 
     /**
