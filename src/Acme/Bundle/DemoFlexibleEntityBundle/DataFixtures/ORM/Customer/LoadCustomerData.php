@@ -7,6 +7,10 @@ use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Oro\Bundle\FlexibleEntityBundle\Model\AbstractAttributeType;
+use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\MultiOptionsType;
+use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\SingleOptionType;
+use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\DateType;
+use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\TextType;
 
 /**
 * Load customers
@@ -82,7 +86,7 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
         if ($att) {
             $messages[]= "Attribute ".$attCode." already exists";
         } else {
-            $att = $this->getCustomerManager()->createAttribute(AbstractAttributeType::FRONTEND_TYPE_TEXT);
+            $att = $this->getCustomerManager()->createAttribute(new TextType());
             $att->setCode($attCode);
             $this->getCustomerManager()->getStorageManager()->persist($att);
             $messages[]= "Attribute ".$attCode." has been created";
@@ -94,7 +98,7 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
         if ($att) {
             $messages[]= "Attribute ".$attCode." already exists";
         } else {
-            $att = $this->getCustomerManager()->createAttribute(AbstractAttributeType::FRONTEND_TYPE_DATE);
+            $att = $this->getCustomerManager()->createAttribute(new DateType());
             $att->setCode($attCode);
             $this->getCustomerManager()->getStorageManager()->persist($att);
             $messages[]= "Attribute ".$attCode." has been created";
@@ -106,7 +110,7 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
         if ($att) {
             $messages[]= "Attribute ".$attCode." already exists";
         } else {
-            $att = $this->getCustomerManager()->createAttribute(AbstractAttributeType::FRONTEND_TYPE_SIMPLECHOICE);
+            $att = $this->getCustomerManager()->createAttribute(new SingleOptionType());
             $att->setCode($attCode);
             // add option and related value
             $opt = $this->getCustomerManager()->createAttributeOption();
@@ -130,7 +134,7 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
         if ($att) {
             $messages[]= "Attribute ".$attCode." already exists";
         } else {
-            $att = $this->getCustomerManager()->createAttribute(AbstractAttributeType::FRONTEND_TYPE_MULTICHOICE);
+            $att = $this->getCustomerManager()->createAttribute(new MultiOptionsType());
             $att->setCode($attCode);
             // add options and related values
             $hobbies = array('Sport', 'Cooking', 'Read', 'Coding!');
