@@ -85,12 +85,12 @@ class CustomerController extends Controller
     }
 
     /**
-     * @Route("/querylazyload")
+     * @Route("/query-lazy-load")
      * @Template("AcmeDemoFlexibleEntityBundle:Customer:index.html.twig")
      *
      * @return multitype
      */
-    public function querylazyloadAction()
+    public function queryLazyLoadAction()
     {
         $customers = $this->getCustomerManager()->getEntityRepository()->findBy(array());
 
@@ -118,6 +118,8 @@ class CustomerController extends Controller
      *
      * @Route("/create")
      * @Template("AcmeDemoFlexibleEntityBundle:Customer:edit.html.twig")
+     *
+     * @return multitype
      */
     public function createAction()
     {
@@ -129,8 +131,12 @@ class CustomerController extends Controller
     /**
      * Edit customer
      *
+     * @param Customer $entity
+     *
      * @Route("/edit/{id}", requirements={"id"="\d+"}, defaults={"id"=0})
      * @Template
+     *
+     * @return multitype
      */
     public function editAction(Customer $entity)
     {
@@ -162,8 +168,11 @@ class CustomerController extends Controller
 
     /**
      * Remove customer
+     * @param Customer $entity
      *
      * @Route("/remove/{id}", requirements={"id"="\d+"})
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function removeAction(Customer $entity)
     {
