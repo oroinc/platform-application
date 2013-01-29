@@ -22,33 +22,40 @@ class ManufacturerControllerTest extends KernelAwareControllerTest
     protected static $controller = 'manufacturer';
 
     /**
+     * List of locales to test
+     * @staticvar multitype:string
+     */
+    protected static $locales = array('en', 'fr');
+
+    /**
      * Test related method
      */
     public function testIndexAction()
     {
-        $this->client->request('GET', self::prepareUrl('en', 'index'));
-        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-
-        $this->client->request('GET', self::prepareUrl('fr', 'index'));
-        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-
-        // load data then test the same urls
-        $this->loadManufacturers();
-
-        $this->client->request('GET', self::prepareUrl('en', 'index'));
-        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-
-        $this->client->request('GET', self::prepareUrl('fr', 'index'));
-        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+        foreach (self::$locales as $locale) {
+            $this->client->request('GET', self::prepareUrl($locale, 'index'));
+            $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+        }
     }
 
     /**
-     * Load manufacturers
+     * {@inheritdoc}
      */
-    protected function loadManufacturers()
+    protected function getFixturesToLoad()
     {
-        $this->client->request('GET', self::prepareUrl('en', 'manufacturer', 'loader'));
-        $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
+        return array(
+                'src/Acme/Bundle/DemoFlexibleEntityBundle/DataFixtures/ORM/Manufacturer'
+        );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getTablesToTruncate()
+    {
+        return array(
+                'acmedemoflexibleentity_manufacturer'
+        );
     }
 
 }
