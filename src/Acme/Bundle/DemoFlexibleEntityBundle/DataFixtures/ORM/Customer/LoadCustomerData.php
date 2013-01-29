@@ -82,10 +82,8 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
         if ($att) {
             $messages[]= "Attribute ".$attCode." already exists";
         } else {
-            $att = $this->getCustomerManager()->createAttribute();
+            $att = $this->getCustomerManager()->createAttribute(AbstractAttributeType::FRONTEND_TYPE_TEXT);
             $att->setCode($attCode);
-//            $att->setBackendType(AbstractAttributeType::BACKEND_TYPE_VARCHAR);
-            $att->setFrontendType(AbstractAttributeType::FRONTEND_TYPE_TEXTFIELD);
             $this->getCustomerManager()->getStorageManager()->persist($att);
             $messages[]= "Attribute ".$attCode." has been created";
         }
@@ -96,11 +94,8 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
         if ($att) {
             $messages[]= "Attribute ".$attCode." already exists";
         } else {
-            $att = $this->getCustomerManager()->createAttribute();
+            $att = $this->getCustomerManager()->createAttribute(AbstractAttributeType::FRONTEND_TYPE_DATE);
             $att->setCode($attCode);
-//            $att->setBackendType(AbstractAttributeType::BACKEND_TYPE_DATE);
-            $att->setFrontendType(AbstractAttributeType::FRONTEND_TYPE_DATE);
-//             $att->setRequired(true);
             $this->getCustomerManager()->getStorageManager()->persist($att);
             $messages[]= "Attribute ".$attCode." has been created";
         }
@@ -111,10 +106,8 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
         if ($att) {
             $messages[]= "Attribute ".$attCode." already exists";
         } else {
-            $att = $this->getCustomerManager()->createAttribute();
+            $att = $this->getCustomerManager()->createAttribute(AbstractAttributeType::FRONTEND_TYPE_SIMPLECHOICE);
             $att->setCode($attCode);
-//            $att->setBackendType(AbstractAttributeType::BACKEND_TYPE_OPTION);
-            $att->setFrontendType(AbstractAttributeType::FRONTEND_TYPE_LIST);
             // add option and related value
             $opt = $this->getCustomerManager()->createAttributeOption();
             $optVal = $this->getCustomerManager()->createAttributeOptionValue();
@@ -137,10 +130,8 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
         if ($att) {
             $messages[]= "Attribute ".$attCode." already exists";
         } else {
-            $att = $this->getCustomerManager()->createAttribute();
+            $att = $this->getCustomerManager()->createAttribute(AbstractAttributeType::FRONTEND_TYPE_MULTICHOICE);
             $att->setCode($attCode);
-            //            $att->setBackendType(AbstractAttributeType::BACKEND_TYPE_OPTION);
-            $att->setFrontendType(AbstractAttributeType::FRONTEND_TYPE_MULTILIST);
             // add options and related values
             $hobbies = array('Sport', 'Cooking', 'Read', 'Coding!');
             foreach ($hobbies as $hobby) {
@@ -181,75 +172,65 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
             $hobbies[]= $option;
         }
 
-        for ($ind= 1; $ind < 100; $ind++) {
+        for ($ind= 1; $ind < 10; $ind++) {
 
             // add customer with email, firstname, lastname, dob
             $custEmail = 'email-'.($ind++).'@mail.com';
-            $customer = $this->getCustomerManager()->getEntityRepository()->findOneByEmail($custEmail);
-            if ($customer) {
-                $messages[]= "Customer ".$custEmail." already exists";
-            } else {
-                $customer = $this->getCustomerManager()->createEntity();
-                $customer->setEmail($custEmail);
-                $customer->setFirstname($this->generateFirstname());
-                $customer->setLastname($this->generateLastname());
-                // add dob value
-                if ($attCompany) {
-                    $value = $this->getCustomerManager()->createEntityValue();
-                    $value->setAttribute($attDob);
-                    $value->setData(new \DateTime($this->generateBirthDate()));
-                    $customer->addValue($value);
-                }
-                $messages[]= "Customer ".$custEmail." has been created";
-                $this->getCustomerManager()->getStorageManager()->persist($customer);
+            $customer = $this->getCustomerManager()->createEntity();
+            $customer->setEmail($custEmail);
+            $customer->setFirstname($this->generateFirstname());
+            $customer->setLastname($this->generateLastname());
+            // add dob value
+            if ($attCompany) {
+                $value = $this->getCustomerManager()->createEntityValue();
+                $value->setAttribute($attDob);
+                $value->setData(new \DateTime($this->generateBirthDate()));
+                $customer->addValue($value);
             }
+            $messages[]= "Customer ".$custEmail." has been created";
+            $this->getCustomerManager()->getStorageManager()->persist($customer);
 
             // add customer with email, firstname, lastname, company and gender
             $custEmail = 'email-'.($ind++).'@mail.com';
-            $customer = $this->getCustomerManager()->getEntityRepository()->findOneByEmail($custEmail);
-            if ($customer) {
-                $messages[]= "Customer ".$custEmail." already exists";
-            } else {
-                $customer = $this->getCustomerManager()->createEntity();
-                $customer->setEmail($custEmail);
-                $customer->setFirstname($this->generateFirstname());
-                $customer->setLastname($this->generateLastname());
-                // add company value
-                if ($attCompany) {
-                    $value = $this->getCustomerManager()->createEntityValue();
-                    $value->setAttribute($attCompany);
-                    $value->setData('Akeneo');
-                    $customer->addValue($value);
-                }
-                // add date of birth
-                if ($attDob) {
-                    $value = $this->getCustomerManager()->createEntityValue();
-                    $value->setAttribute($attDob);
-                    $value->setData(new \DateTime($this->generateBirthDate()));
-                    $customer->addValue($value);
-                }
-                // add gender
-                if ($attGender) {
-                    $value = $this->getCustomerManager()->createEntityValue();
-                    $value->setAttribute($attGender);
-                    $value->setOption($optGender);  // we set option as data, you can use $value->setOption($optGender) too
-                    $customer->addValue($value);
-                }
-                if ($attHobby) {
-                    $value = $this->getCustomerManager()->createEntityValue();
-                    $value->setAttribute($attHobby);
-                    // pick many hobbies (multiselect)
-                    $firstHobbyOpt = $hobbies[rand(0, count($hobbies)-1)];
-                    $value->addOption($firstHobbyOpt);
-                    $secondHobbyOpt = $hobbies[rand(0, count($hobbies)-1)];
-                    if ($firstHobbyOpt->getId() != $secondHobbyOpt->getId()) {
-                        $value->addOption($secondHobbyOpt);
-                    }
-                    $customer->addValue($value);
-                }
-                $messages[]= "Customer ".$custEmail." has been created";
-                $this->getCustomerManager()->getStorageManager()->persist($customer);
+            $customer = $this->getCustomerManager()->createEntity();
+            $customer->setEmail($custEmail);
+            $customer->setFirstname($this->generateFirstname());
+            $customer->setLastname($this->generateLastname());
+            // add company value
+            if ($attCompany) {
+                $value = $this->getCustomerManager()->createEntityValue();
+                $value->setAttribute($attCompany);
+                $value->setData('Akeneo');
+                $customer->addValue($value);
             }
+            // add date of birth
+            if ($attDob) {
+                $value = $this->getCustomerManager()->createEntityValue();
+                $value->setAttribute($attDob);
+                $value->setData(new \DateTime($this->generateBirthDate()));
+                $customer->addValue($value);
+            }
+            // add gender
+            if ($attGender) {
+                $value = $this->getCustomerManager()->createEntityValue();
+                $value->setAttribute($attGender);
+                $value->setOption($optGender);  // we set option as data, you can use $value->setOption($optGender) too
+                $customer->addValue($value);
+            }
+            if ($attHobby) {
+                $value = $this->getCustomerManager()->createEntityValue();
+                $value->setAttribute($attHobby);
+                // pick many hobbies (multiselect)
+                $firstHobbyOpt = $hobbies[rand(0, count($hobbies)-1)];
+                $value->addOption($firstHobbyOpt);
+                $secondHobbyOpt = $hobbies[rand(0, count($hobbies)-1)];
+                if ($firstHobbyOpt->getId() != $secondHobbyOpt->getId()) {
+                    $value->addOption($secondHobbyOpt);
+                }
+                $customer->addValue($value);
+            }
+            $messages[]= "Customer ".$custEmail." has been created";
+            $this->getCustomerManager()->getStorageManager()->persist($customer);
         }
 
         $this->getCustomerManager()->getStorageManager()->flush();
