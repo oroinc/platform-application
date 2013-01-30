@@ -29,6 +29,7 @@
         
         {{ form_row(form._token) }}
         
+        {% if form.options is defined %}
             <legend>Options</legend>
             
             <ul id="sortable_options" class="options" data-prototype="{% filter escape %}
@@ -46,6 +47,7 @@
                 </li>
             {% endfor %}
             </ul>
+        {% endif %}
 
         <div class="form-row">
             <button class="btn btn-large btn-primary" type="submit">Save</button>
