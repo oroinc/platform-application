@@ -78,8 +78,6 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
     public function loadAttributes()
     {
         $messages = array();
-        // force in english
-        $this->getCustomerManager()->setLocale('en_US');
 
         // attribute company (if not exists)
         $attCode = 'company';
