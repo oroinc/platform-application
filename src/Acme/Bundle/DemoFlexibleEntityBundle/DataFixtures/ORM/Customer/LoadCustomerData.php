@@ -84,83 +84,60 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
         // attribute company (if not exists)
         $attCode = 'company';
         $att = $this->getCustomerManager()->getEntityRepository()->findAttributeByCode($attCode);
-        if ($att) {
-            $messages[]= "Attribute ".$attCode." already exists";
-        } else {
-            $att = $this->getCustomerManager()->createAttribute(new TextType());
-            $att->setCode($attCode);
-            $this->getCustomerManager()->getStorageManager()->persist($att);
-            $messages[]= "Attribute ".$attCode." has been created";
-        }
+        $att = $this->getCustomerManager()->createAttribute(new TextType());
+        $att->setCode($attCode);
+        $this->getCustomerManager()->getStorageManager()->persist($att);
+        $messages[]= "Attribute ".$attCode." has been created";
 
         // attribute date of birth (if not exists)
         $attCode = 'dob';
         $att = $this->getCustomerManager()->getEntityRepository()->findAttributeByCode($attCode);
-        if ($att) {
-            $messages[]= "Attribute ".$attCode." already exists";
-        } else {
-            $att = $this->getCustomerManager()->createAttribute(new DateType());
-            $att->setCode($attCode);
-            $this->getCustomerManager()->getStorageManager()->persist($att);
-            $messages[]= "Attribute ".$attCode." has been created";
-        }
+        $att = $this->getCustomerManager()->createAttribute(new DateType());
+        $att->setCode($attCode);
+        $this->getCustomerManager()->getStorageManager()->persist($att);
+        $messages[]= "Attribute ".$attCode." has been created";
 
         // attribute date of birth (if not exists)
         $attCode = 'website';
-        $att = $this->getCustomerManager()->getEntityRepository()->findAttributeByCode($attCode);
-        if ($att) {
-            $messages[]= "Attribute ".$attCode." already exists";
-        } else {
-            $att = $this->getCustomerManager()->createAttribute(new UrlType());
-            $att->setCode($attCode);
-            $this->getCustomerManager()->getStorageManager()->persist($att);
-            $messages[]= "Attribute ".$attCode." has been created";
-        }
+        $att = $this->getCustomerManager()->createAttribute(new UrlType());
+        $att->setCode($attCode);
+        $this->getCustomerManager()->getStorageManager()->persist($att);
+        $messages[]= "Attribute ".$attCode." has been created";
 
         // attribute gender (if not exists)
         $attCode = 'gender';
-        $att = $this->getCustomerManager()->getEntityRepository()->findAttributeByCode($attCode);
-        if ($att) {
-            $messages[]= "Attribute ".$attCode." already exists";
-        } else {
-            $att = $this->getCustomerManager()->createAttribute(new SingleOptionType());
-            $att->setCode($attCode);
-            // add option and related value
-            $opt = $this->getCustomerManager()->createAttributeOption();
-            $optVal = $this->getCustomerManager()->createAttributeOptionValue();
-            $optVal->setValue('Mr');
-            $opt->addOptionValue($optVal);
-            $att->addOption($opt);
-            // add another option
-            $opt = $this->getCustomerManager()->createAttributeOption();
-            $optVal = $this->getCustomerManager()->createAttributeOptionValue();
-            $optVal->setValue('Mrs');
-            $opt->addOptionValue($optVal);
-            $att->addOption($opt);
-            $this->getCustomerManager()->getStorageManager()->persist($att);
-            $messages[]= "Attribute ".$attCode." has been created";
-        }
+        $att = $this->getCustomerManager()->createAttribute(new SingleOptionType());
+        $att->setCode($attCode);
+        // add option and related value
+        $opt = $this->getCustomerManager()->createAttributeOption();
+        $optVal = $this->getCustomerManager()->createAttributeOptionValue();
+        $optVal->setValue('Mr');
+        $opt->addOptionValue($optVal);
+        $att->addOption($opt);
+        // add another option
+        $opt = $this->getCustomerManager()->createAttributeOption();
+        $optVal = $this->getCustomerManager()->createAttributeOptionValue();
+        $optVal->setValue('Mrs');
+        $opt->addOptionValue($optVal);
+        $att->addOption($opt);
+        $this->getCustomerManager()->getStorageManager()->persist($att);
+        $messages[]= "Attribute ".$attCode." has been created";
 
         // attribute hobby (if not exists)
         $attCode = 'hobby';
-        $att = $this->getCustomerManager()->getEntityRepository()->findAttributeByCode($attCode);
-        if ($att) {
-            $messages[]= "Attribute ".$attCode." already exists";
-        } else {
-            $att = $this->getCustomerManager()->createAttribute(new MultiOptionsType());
-            $att->setCode($attCode);
-            // add options and related values
-            $hobbies = array('Sport', 'Cooking', 'Read', 'Coding!');
-            foreach ($hobbies as $hobby) {
-                $opt = $this->getCustomerManager()->createAttributeOption();
-                $optVal = $this->getCustomerManager()->createAttributeOptionValue();
-                $optVal->setValue($hobby);
-                $opt->addOptionValue($optVal);
-                $att->addOption($opt);
-            }
-            $this->getCustomerManager()->getStorageManager()->persist($att);
-            $messages[]= "Attribute ".$attCode." has been created";
+        $att = $this->getCustomerManager()->createAttribute(new MultiOptionsType());
+        $att->setCode($attCode);
+        // add options and related values
+        $hobbies = array('Sport', 'Cooking', 'Read', 'Coding!');
+        foreach ($hobbies as $hobby) {
+            $opt = $this->getCustomerManager()->createAttributeOption();
+            $optVal = $this->getCustomerManager()->createAttributeOptionValue();
+            $optVal->setValue($hobby);
+            $opt->addOptionValue($optVal);
+            $att->addOption($opt);
         }
+        $this->getCustomerManager()->getStorageManager()->persist($att);
+        $messages[]= "Attribute ".$attCode." has been created";
 
         $this->getCustomerManager()->getStorageManager()->flush();
 
@@ -190,7 +167,7 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
             $hobbies[]= $option;
         }
 
-        for ($ind= 1; $ind < 10; $ind++) {
+        for ($ind= 1; $ind < 5; $ind++) {
 
             // add customer with email, firstname, lastname, dob
             $custEmail = 'email-'.($ind++).'@mail.com';

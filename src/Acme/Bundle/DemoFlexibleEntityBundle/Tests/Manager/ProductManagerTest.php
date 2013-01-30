@@ -1,6 +1,10 @@
 <?php
 namespace Acme\Bundle\DemoFlexibleEntityBundle\Test\Manager;
 
+use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\IntegerType;
+
+use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\TextType;
+
 use Acme\Bundle\DemoFlexibleEntityBundle\Entity\Product;
 use Oro\Bundle\FlexibleEntityBundle\Model\AbstractAttributeType;
 
@@ -65,18 +69,16 @@ class ProductManagerTest extends KernelAwareTest
         $newProduct->setSku($sku);
 
         // attribute name
-        $attName = $this->manager->createAttribute();
+        $attName = $this->manager->createAttribute(new TextType());
         $attNameCode= 'name'.$timestamp;
         $attName->setCode($attNameCode);
-        $attName->setBackendType(AbstractAttributeType::BACKEND_TYPE_VARCHAR);
         $attName->setTranslatable(true);
         $this->manager->getStorageManager()->persist($attName);
 
         // attribute size
-        $attSize = $this->manager->createAttribute();
+        $attSize = $this->manager->createAttribute(new IntegerType());
         $attSizeCode= 'size'.$timestamp;
         $attSize->setCode($attSizeCode);
-        $attSize->setBackendType(AbstractAttributeType::BACKEND_TYPE_INTEGER);
         $this->manager->getStorageManager()->persist($attSize);
 
         // name value

@@ -29,21 +29,6 @@ class CustomerControllerTest extends KernelAwareControllerTest
     }
 
     /**
-     * {@inheritdoc}
-     */
-    protected function getTablesToTruncate()
-    {
-        return array(
-            'acmedemoflexibleentity_customer',
-            'acmedemoflexibleentity_customer_value',
-            'acmedemoflexibleentity_customer_value_option',
-            'oroflexibleentity_attribute',
-            'oroflexibleentity_attribute_option',
-            'oroflexibleentity_attribute_option_value'
-        );
-    }
-
-    /**
      * Get customer manager
      *
      * @return Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleEntityManager

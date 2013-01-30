@@ -84,7 +84,6 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $productAttribute = $this->getProductManager()->createEntityAttribute(new TextType());
         $productAttribute->setName('Name');
         $productAttribute->setCode($attributeCode);
-// TODO : test        $productAttribute->setRequired(true);
         $productAttribute->setTranslatable(true);
         $this->getProductManager()->getStorageManager()->persist($productAttribute);
         $messages[]= "Attribute ".$attributeCode." has been created";

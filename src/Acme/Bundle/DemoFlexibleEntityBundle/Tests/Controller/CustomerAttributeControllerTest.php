@@ -29,21 +29,6 @@ class CustomerAttributeControllerTest extends KernelAwareControllerTest
     }
 
     /**
-     * {@inheritdoc}
-     */
-    protected function getTablesToTruncate()
-    {
-        return array(
-            'acmedemoflexibleentity_customer',
-            'acmedemoflexibleentity_customer_value',
-            'acmedemoflexibleentity_customer_value_option',
-            'oroflexibleentity_attribute',
-            'oroflexibleentity_attribute_option',
-            'oroflexibleentity_attribute_option_value'
-        );
-    }
-
-    /**
      * Get customer manager
      *
      * @return Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleEntityManager
@@ -103,15 +88,15 @@ class CustomerAttributeControllerTest extends KernelAwareControllerTest
      */
     public function testEditAction()
     {
-        // find customer to edit
-        $customerAttribute = $this->getCustomerManager()->getEntityRepository()->findOneBy(array());
-        if (!$customerAttribute) {
+        // find one to edit
+        $attribute = $this->getCustomerManager()->getAttributeRepository()->findOneBy(array('entityType' => 'Acme\Bundle\DemoFlexibleEntityBundle\Entity\Customer'));
+        if (!$attribute) {
             throw new \Exception('Customer not found');
         }
 
         // just call view to show form
         foreach (self::$locales as $locale) {
-            $this->client->request('GET', self::prepareUrl($locale, 'edit/'. $customerAttribute->getId()));
+            $this->client->request('GET', self::prepareUrl($locale, 'edit/'. $attribute->getId()));
             $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         }
     }
@@ -123,9 +108,9 @@ class CustomerAttributeControllerTest extends KernelAwareControllerTest
      */
     protected function countCustomerAttributes()
     {
-        $customerAttributes = $this->getCustomerManager()->getAttributeRepository()->findAll();
+        $attributes = $this->getCustomerManager()->getAttributeRepository()->findBy(array('entityType' => 'Acme\Bundle\DemoFlexibleEntityBundle\Entity\Customer'));
 
-        return count($customerAttributes);
+        return count($attributes);
     }
 
 }

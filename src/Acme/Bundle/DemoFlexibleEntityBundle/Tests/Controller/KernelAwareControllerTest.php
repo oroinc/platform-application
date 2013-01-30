@@ -33,7 +33,7 @@ abstract class KernelAwareControllerTest extends WebTestCase
      * List of locales to test
      * @staticvar multitype:string
      */
-    protected static $locales = array('en', 'fr');
+    protected static $locales = array('en');
 
     /**
      * @var \Symfony\Component\DependencyInjection\ContainerInterface
@@ -115,15 +115,18 @@ abstract class KernelAwareControllerTest extends WebTestCase
 
     /**
      * Initialize database dropping existent and create tables
+     * @param boolean $appendData if false drop database and insert fixtures
      */
-    protected function initializeDatabase()
+    protected function initializeDatabase($appendData = false)
     {
         $fixtures = $this->getFixturesToLoad();
 
         if (!empty($fixtures)) {
             $args['--fixtures'] = $fixtures;
             $args['--no-interaction'] = true;
-            $args['--append'] = true;
+            if ($appendData) {
+                $args['--append'] = true;
+            }
 
             $command = 'doctrine:fixtures:load';
 
@@ -150,18 +153,7 @@ abstract class KernelAwareControllerTest extends WebTestCase
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public function tearDown()
-    {
-        // truncate database
-        $this->truncateDatabase();
-
-        parent::tearDown();
-    }
-
-    /**
-     * Truncate tables from database
+     * Truncate tables from database (can be usefull if use append param of fixtures)
      */
     public function truncateDatabase()
     {
