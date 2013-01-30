@@ -30,7 +30,6 @@ oro_ui:
 
 oro_user:
     resource: "@OroUserBundle/Resources/config/routing.yml"
-    prefix:   /user
 
 oro_search:
     resource: "@OroSearchBundle/Resources/config/routing.yml"
