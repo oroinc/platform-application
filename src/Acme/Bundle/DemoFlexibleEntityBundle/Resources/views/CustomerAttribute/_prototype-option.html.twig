@@ -1,0 +1,5 @@
+<tr>
+    <td>{{ form_row(form.id) }}</td>
+    <td>{{ form_row(form.sort_order) }}</td>
+    {% include 'AcmeDemoFlexibleEntityBundle:CustomerAttribute:_prototype-option-value.html.twig' with {'form': form.optionValues.get('prototype')} %}
+</tr>

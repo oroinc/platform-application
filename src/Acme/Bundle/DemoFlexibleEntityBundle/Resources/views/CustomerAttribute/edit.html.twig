@@ -9,29 +9,64 @@
     <fieldset>
         <legend>{{ title }} <a class="btn btn-primary pull-right" href="{{ path('acme_demoflexibleentity_customerattribute_index') }}">{{ "Back to list" | trans }}</a></legend>
 
-        {{ form_widget(form) }}
-
-        <br />
-        <legend>Additional information</legend>
-
-        <div class="form-horizontal">
-            <div class="control-group">
-                <label class="control-label">Created at</label>
-                <div class="controls">
-                    <span class="label">{{ form.vars.value.created ? form.vars.value.created|date('Y-m-d h:i:s') : 'N/A' }}</span>
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label">Updated at</label>
-                <div class="controls">
-                    <span class="label">{{ form.vars.value.updated ? form.vars.value.updated|date('Y-m-d h:i:s') : 'N/A' }}</span>
-                </div>
-            </div>
-        </div>
+        {{ form_row(form.id) }}
+        
+        {{ form_row(form.code) }}
+        
+        {{ form_row(form.attributeType) }}
+        
+        {{ form_row(form.required) }}
+        
+        {{ form_row(form.unique) }}
+        
+        {{ form_row(form.default_value) }}
+        
+        {{ form_row(form.searchable) }}
+        
+        {{ form_row(form.translatable) }}
+        
+        {{ form_row(form.scopable) }}
+        
+        {% if form.options %}
+            <legend>Options</legend>
+            
+            <table id="sortable_options" class="options" data-prototype="{% filter escape %}
+                {% include 'AcmeDemoFlexibleEntityBundle:CustomerAttribute:_prototype-option.html.twig' with {'form': form.options.get('prototype')} %}
+            {% endfilter %}">
+            {% for option in form.options %}
+                <tr>
+                    <td>{{ form_row(option.id) }}</td>
+                    <td>{{ form_row(option.sort_order) }}</td>
+                    {% for value in option.optionValues %}
+                        <td>{{ form_row(value.id) }}</td>
+                        <td>{{ form_row(value.value) }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+            </table>
+        {% endif %}
 
         <div class="form-row">
             <button class="btn btn-large btn-primary" type="submit">Save</button>
         </div>
     </fieldset>
 </form>
+{% endblock %}
+
+
+{% block javascripts %}
+<script type="text/javascript">
+    // get the div that holds the collection of options
+    var collectionHolder = $('table.sortable_opotions');
+    
+    // setup link to add option
+    var $addOptionLink = $('<a href="#" class="add_option_link">Add an option</a>');
+    var $newOptionLink = $('<tr><td colspan="4"></td></tr>').append($addOptionLink);
+    
+    jQuery(document).ready(function() {
+        console.log('jQuery is ready');
+    
+        
+    });
+</script>
 {% endblock %}
