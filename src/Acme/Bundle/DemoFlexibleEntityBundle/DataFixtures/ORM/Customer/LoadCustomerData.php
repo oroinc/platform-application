@@ -167,7 +167,7 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
             $hobbies[]= $option;
         }
 
-        for ($ind= 1; $ind < 5; $ind++) {
+        for ($ind= 1; $ind < 10; $ind++) {
 
             // add customer with email, firstname, lastname, dob
             $custEmail = 'email-'.($ind++).'@mail.com';
@@ -186,7 +186,7 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
             $this->getCustomerManager()->getStorageManager()->persist($customer);
 
             // add customer with email, firstname, lastname, company and gender
-            $custEmail = 'email-'.($ind++).'@mail.com';
+            $custEmail = 'email-'.($ind).'@mail.com';
             $customer = $this->getCustomerManager()->createEntity();
             $customer->setEmail($custEmail);
             $customer->setFirstname($this->generateFirstname());
