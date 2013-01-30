@@ -41,7 +41,7 @@ class ProductValue extends AbstractEntityFlexibleValue implements HasDefaultValu
      * @ORM\ManyToMany(targetEntity="Oro\Bundle\FlexibleEntityBundle\Entity\AttributeOption")
      * @ORM\JoinTable(name="acmedemoflexibleentity_product_value_option",
      *      joinColumns={@ORM\JoinColumn(name="value_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="option_id", referencedColumnName="id")}
+     *      inverseJoinColumns={@ORM\JoinColumn(name="option_id", referencedColumnName="id", onDelete="CASCADE")}
      * )
      */
     protected $options;
