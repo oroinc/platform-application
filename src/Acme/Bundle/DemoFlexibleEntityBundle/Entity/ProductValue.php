@@ -1,7 +1,6 @@
 <?php
 namespace Acme\Bundle\DemoFlexibleEntityBundle\Entity;
 
-use Oro\Bundle\FlexibleEntityBundle\Model\Behavior\HasDefaultValueInterface;
 use Oro\Bundle\FlexibleEntityBundle\Entity\Mapping\AbstractEntityFlexibleValue;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -16,7 +15,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\Table(name="acmedemoflexibleentity_product_value")
  * @ORM\Entity
  */
-class ProductValue extends AbstractEntityFlexibleValue implements HasDefaultValueInterface
+class ProductValue extends AbstractEntityFlexibleValue
 {
     /**
      * @var Oro\Bundle\FlexibleEntityBundle\Entity\Attribute $attribute

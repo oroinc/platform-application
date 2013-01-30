@@ -84,6 +84,7 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
         $att = $this->getCustomerManager()->getEntityRepository()->findAttributeByCode($attCode);
         $att = $this->getCustomerManager()->createAttribute(new TextType());
         $att->setCode($attCode);
+        $att->setDefaultValue('Acme');
         $this->getCustomerManager()->getStorageManager()->persist($att);
         $messages[]= "Attribute ".$attCode." has been created";
 
@@ -174,11 +175,14 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
             $customer->setFirstname($this->generateFirstname());
             $customer->setLastname($this->generateLastname());
             // add dob value
-            if ($attCompany) {
-                $value = $this->getCustomerManager()->createEntityValue();
-                $value->setAttribute($attDob);
+            if ($attDob) {
+                $value = $customer->getValue($attDob->getCode());
+                if (!$value) {
+                    $value = $this->getCustomerManager()->createEntityValue();
+                    $value->setAttribute($attDob);
+                    $customer->addValue($value);
+                }
                 $value->setData(new \DateTime($this->generateBirthDate()));
-                $customer->addValue($value);
             }
             $messages[]= "Customer ".$custEmail." has been created";
             $this->getCustomerManager()->getStorageManager()->persist($customer);
@@ -191,35 +195,51 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
             $customer->setLastname($this->generateLastname());
             // add company value
             if ($attCompany) {
-                $value = $this->getCustomerManager()->createEntityValue();
-                $value->setAttribute($attCompany);
+                $value = $customer->getValue($attCompany->getCode());
+                if (!$value) {
+                    $value = $this->getCustomerManager()->createEntityValue();
+                    $value->setAttribute($attCompany);
+                    $customer->addValue($value);
+                }
                 $value->setData('Akeneo');
-                $customer->addValue($value);
             }
             // add date of birth
             if ($attDob) {
-                $value = $this->getCustomerManager()->createEntityValue();
-                $value->setAttribute($attDob);
+                $value = $customer->getValue($attDob->getCode());
+                if (!$value) {
+                    $value = $this->getCustomerManager()->createEntityValue();
+                    $value->setAttribute($attDob);
+                    $customer->addValue($value);
+                }
                 $value->setData(new \DateTime($this->generateBirthDate()));
-                $customer->addValue($value);
             }
             // add website
             if ($attWebsite) {
-                $value = $this->getCustomerManager()->createEntityValue();
-                $value->setAttribute($attWebsite);
+                $value = $customer->getValue($attWebsite->getCode());
+                if (!$value) {
+                    $value = $this->getCustomerManager()->createEntityValue();
+                    $value->setAttribute($attWebsite);
+                    $customer->addValue($value);
+                }
                 $value->setData('http://mywebsite'.$ind.'.com');
-                $customer->addValue($value);
             }
             // add gender
             if ($attGender) {
-                $value = $this->getCustomerManager()->createEntityValue();
-                $value->setAttribute($attGender);
-                $value->setOption($optGender);  // we set option as data, you can use $value->setOption($optGender) too
-                $customer->addValue($value);
+                $value = $customer->getValue($attGender->getCode());
+                if (!$value) {
+                    $value = $this->getCustomerManager()->createEntityValue();
+                    $value->setAttribute($attGender);
+                    $customer->addValue($value);
+                }
+                $value->setOption($optGender);
             }
             if ($attHobby) {
-                $value = $this->getCustomerManager()->createEntityValue();
-                $value->setAttribute($attHobby);
+                $value = $customer->getValue($attHobby->getCode());
+                if (!$value) {
+                    $value = $this->getCustomerManager()->createEntityValue();
+                    $value->setAttribute($attHobby);
+                    $customer->addValue($value);
+                }
                 // pick many hobbies (multiselect)
                 $firstHobbyOpt = $hobbies[rand(0, count($hobbies)-1)];
                 $value->addOption($firstHobbyOpt);
@@ -227,7 +247,6 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
                 if ($firstHobbyOpt->getId() != $secondHobbyOpt->getId()) {
                     $value->addOption($secondHobbyOpt);
                 }
-                $customer->addValue($value);
             }
             $messages[]= "Customer ".$custEmail." has been created";
             $this->getCustomerManager()->getStorageManager()->persist($customer);

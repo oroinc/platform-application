@@ -45,14 +45,6 @@ class ProductManagerTest extends KernelAwareTest
 
         $sku = 'my sku '.str_replace('.', '', microtime(true));
         $newProduct->setSku($sku);
-
-        // persist
-        $this->manager->getStorageManager()->persist($newProduct);
-        $this->manager->getStorageManager()->flush();
-
-        // remove product inserted
-        $this->manager->getStorageManager()->remove($newProduct);
-        $this->manager->getStorageManager()->flush();
     }
 
     /**
@@ -65,7 +57,7 @@ class ProductManagerTest extends KernelAwareTest
         // entity
         $newProduct = $this->manager->createEntity();
         $this->assertTrue($newProduct instanceof Product);
-        $sku = 'my sku '.$timestamp;
+        $sku = 'my-sku-'.$timestamp;
         $newProduct->setSku($sku);
 
         // attribute name
@@ -92,6 +84,13 @@ class ProductManagerTest extends KernelAwareTest
         $valueSize->setAttribute($attSize);
         $valueSize->setData(125);
         $newProduct->addValue($valueSize);
+
+        // required name attribute
+        $attRequiredName = $this->manager->getEntityRepository()->findAttributeByCode('name');
+        $valueRequiredName = $this->manager->createEntityValue();
+        $valueRequiredName->setAttribute($attRequiredName);
+        $valueRequiredName->setData('my name');
+        $newProduct->addValue($valueRequiredName);
 
         // persist
         $this->manager->getStorageManager()->persist($newProduct);

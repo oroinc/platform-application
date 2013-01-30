@@ -85,6 +85,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $productAttribute->setName('Name');
         $productAttribute->setCode($attributeCode);
         $productAttribute->setTranslatable(true);
+        $productAttribute->setRequired(true);
         $this->getProductManager()->getStorageManager()->persist($productAttribute);
         $messages[]= "Attribute ".$attributeCode." has been created";
 
@@ -171,27 +172,33 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
 
             // add product with only sku and name
             $prodSku = 'sku-'.$indSku;
-            $newProduct = $this->getProductManager()->createEntity();
-            $newProduct->setSku($prodSku);
+            $product = $this->getProductManager()->createEntity();
+            $product->setSku($prodSku);
             if ($attName) {
-                $valueName = $this->getProductManager()->createEntityValue();
-                $valueName->setAttribute($attName);
-                $valueName->setData('my name '.$indSku);
-                $newProduct->addValue($valueName);
+                $value = $product->getValue($attName->getCode());
+                if (!$value) {
+                    $value = $this->getProductManager()->createEntityValue();
+                    $value->setAttribute($attName);
+                    $product->addValue($value);
+                }
+                $value->setData('my name '.$indSku);
             }
             $messages[]= "Product ".$prodSku." has been created";
-            $this->getProductManager()->getStorageManager()->persist($newProduct);
+            $this->getProductManager()->getStorageManager()->persist($product);
             $indSku++;
 
             // add product with sku, name, description, color and size
             $prodSku = 'sku-'.$indSku;
-            $newProduct = $this->getProductManager()->createEntity();
-            $newProduct->setSku($prodSku);
+            $product = $this->getProductManager()->createEntity();
+            $product->setSku($prodSku);
             if ($attName) {
-                $valueName = $this->getProductManager()->createEntityValue();
-                $valueName->setAttribute($attName);
-                $valueName->setData('my name '.$indSku);
-                $newProduct->addValue($valueName);
+                $value = $product->getValue($attName->getCode());
+                if (!$value) {
+                    $value = $this->getProductManager()->createEntityValue();
+                    $value->setAttribute($attName);
+                    $product->addValue($value);
+                }
+                $value->setData('my name '.$indSku);
             }
             if ($attDescription) {
                 // scope ecommerce
@@ -200,20 +207,20 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
                 $value->setAttribute($attDescription);
                 $myDescription = $descriptions[$ind%2];
                 $value->setData($myDescription.'(ecommerce)');
-                $newProduct->addValue($value);
+                $product->addValue($value);
                 // scope mobile
                 $value = $this->getProductManager()->createEntityValue();
                 $value->setScope(ProductAttribute::SCOPE_MOBILE);
                 $value->setAttribute($attDescription);
                 $value->setData($myDescription.'(mobile)');
-                $newProduct->addValue($value);
+                $product->addValue($value);
             }
             if ($attSize) {
-                $valueSize = $this->getProductManager()->createEntityValue();
-                $valueSize->setAttribute($attSize);
-                $valueSize->setData(175); // single value
-                $valueSize->setUnit('mm');
-                $newProduct->addValue($valueSize);
+                $value = $this->getProductManager()->createEntityValue();
+                $value->setAttribute($attSize);
+                $value->setData(175); // single value
+                $value->setUnit('mm');
+                $product->addValue($value);
             }
             if ($attColor) {
                 $value = $this->getProductManager()->createEntityValue();
@@ -225,37 +232,40 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
                 if ($firstColorOpt->getId() != $secondColorOpt->getId()) {
                     $value->addOption($secondColorOpt);
                 }
-                $newProduct->addValue($value);
+                $product->addValue($value);
             }
-            $this->getProductManager()->getStorageManager()->persist($newProduct);
+            $this->getProductManager()->getStorageManager()->persist($product);
             $messages[]= "Product ".$prodSku." has been created";
             $indSku++;
 
             // add product with sku, name, size and price
             $prodSku = 'sku-'.$indSku;
-            $newProduct = $this->getProductManager()->createEntity();
-            $newProduct->setSku($prodSku);
+            $product = $this->getProductManager()->createEntity();
+            $product->setSku($prodSku);
             if ($attName) {
-                $valueName = $this->getProductManager()->createEntityValue();
-                $valueName->setAttribute($attName);
-                $valueName->setData('my name '.$indSku);
-                $newProduct->addValue($valueName);
+                $value = $product->getValue($attName->getCode());
+                if (!$value) {
+                    $value = $this->getProductManager()->createEntityValue();
+                    $value->setAttribute($attName);
+                    $product->addValue($value);
+                }
+                $value->setData('my name '.$indSku);
             }
             if ($attSize) {
-                $valueSize = $this->getProductManager()->createEntityValue();
-                $valueSize->setAttribute($attSize);
-                $valueSize->setData(175);
-                $valueSize->setUnit('mm');
-                $newProduct->addValue($valueSize);
+                $value = $this->getProductManager()->createEntityValue();
+                $value->setAttribute($attSize);
+                $value->setData(175);
+                $value->setUnit('mm');
+                $product->addValue($value);
             }
             if ($attPrice) {
-                $valuePrice = $this->getProductManager()->createEntityValue();
-                $valuePrice->setAttribute($attPrice);
-                $valuePrice->setData(rand(5, 100));
-                $valuePrice->setCurrency('USD');
-                $newProduct->addValue($valuePrice);
+                $value = $this->getProductManager()->createEntityValue();
+                $value->setAttribute($attPrice);
+                $value->setData(rand(5, 100));
+                $value->setCurrency('USD');
+                $product->addValue($value);
             }
-            $this->getProductManager()->getStorageManager()->persist($newProduct);
+            $this->getProductManager()->getStorageManager()->persist($product);
             $messages[]= "Product ".$prodSku." has been created";
             $indSku++;
         }
