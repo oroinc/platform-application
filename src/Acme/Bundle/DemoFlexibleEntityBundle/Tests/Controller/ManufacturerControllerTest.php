@@ -20,17 +20,6 @@ class ManufacturerControllerTest extends KernelAwareControllerTest
     protected static $controller = 'manufacturer';
 
     /**
-     * Test related method
-     */
-    public function testIndexAction()
-    {
-        foreach (self::$locales as $locale) {
-            $this->client->request('GET', self::prepareUrl($locale, 'index'));
-            $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-        }
-    }
-
-    /**
      * {@inheritdoc}
      */
     protected function getFixturesToLoad()
@@ -41,13 +30,14 @@ class ManufacturerControllerTest extends KernelAwareControllerTest
     }
 
     /**
-     * {@inheritdoc}
+     * Test related method
      */
-    protected function getTablesToTruncate()
+    public function testIndexAction()
     {
-        return array(
-                'acmedemoflexibleentity_manufacturer'
-        );
+        foreach (self::$locales as $locale) {
+            $this->client->request('GET', self::prepareUrl($locale, 'index'));
+            $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+        }
     }
 
 }

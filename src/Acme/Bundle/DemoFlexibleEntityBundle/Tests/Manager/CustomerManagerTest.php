@@ -1,6 +1,12 @@
 <?php
 namespace Acme\Bundle\DemoFlexibleEntityBundle\Test\Manager;
 
+use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\SingleOptionType;
+
+use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\DateType;
+
+use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\TextType;
+
 use Oro\Bundle\FlexibleEntityBundle\Entity\AttributeOption;
 
 use Acme\Bundle\DemoFlexibleEntityBundle\Entity\CustomerValue;
@@ -71,17 +77,17 @@ class CustomerManagerTest extends KernelAwareTest
         $this->attCompany = $this->createAttribute(
             'company',
             'Company',
-            AbstractAttributeType::BACKEND_TYPE_VARCHAR
+            new TextType()
         );
         $this->attDob = $this->createAttribute(
             'dob',
             'Date of Birth',
-            AbstractAttributeType::BACKEND_TYPE_DATE
+            new DateType()
         );
         $this->attGender = $this->createAttribute(
             'gender',
             'Gender',
-            AbstractAttributeType::BACKEND_TYPE_OPTION,
+            new SingleOptionType(),
             array('Mr', 'Mrs')
         );
 
@@ -181,19 +187,18 @@ class CustomerManagerTest extends KernelAwareTest
     /**
      * Create attribute
      *
-     * @param string    $code        Attribute code
-     * @param string    $title       Attribute title
-     * @param string    $backendType Attribute backend type
-     * @param multitype $options     Options list
+     * @param string    $code          Attribute code
+     * @param string    $title         Attribute title
+     * @param string    $attributeType Attribute type
+     * @param multitype $options       Options list
      *
      * @return Attribute
      */
-    protected function createAttribute($code, $title, $backendType, $options = array())
+    protected function createAttribute($code, $title, $attributeType, $options = array())
     {
         // create attribute
-        $attribute = $this->manager->createAttribute();
+        $attribute = $this->manager->createAttribute($attributeType);
         $attribute->setCode($code);
-        $attribute->setBackendType($backendType);
 
         // create options
         foreach ($options as $option) {

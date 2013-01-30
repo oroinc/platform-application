@@ -9,14 +9,14 @@ namespace Acme\Bundle\DemoFlexibleEntityBundle\Tests\Controller;
  * @license   http://opensource.org/licenses/MIT MIT
  *
  */
-class CustomerAttributeControllerTest extends KernelAwareControllerTest
+class ProductAttributeControllerTest extends KernelAwareControllerTest
 {
 
     /**
      * Define customer controller name for url generation
      * @staticvar string
      */
-    protected static $controller = 'customerattribute';
+    protected static $controller = 'productattribute';
 
     /**
      * {@inheritdoc}
@@ -24,18 +24,18 @@ class CustomerAttributeControllerTest extends KernelAwareControllerTest
     protected function getFixturesToLoad()
     {
         return array(
-            'src/Acme/Bundle/DemoFlexibleEntityBundle/DataFixtures/ORM/Customer'
+            'src/Acme/Bundle/DemoFlexibleEntityBundle/DataFixtures/ORM/Product'
         );
     }
 
     /**
-     * Get customer manager
+     * Get manager
      *
      * @return Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleEntityManager
      */
-    protected function getCustomerManager()
+    protected function getProductManager()
     {
-        return $this->getContainer()->get('customer_manager');
+        return $this->getContainer()->get('product_manager');
     }
 
     /**
@@ -47,28 +47,6 @@ class CustomerAttributeControllerTest extends KernelAwareControllerTest
             $this->client->request('GET', self::prepareUrl($locale, 'index'));
             $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         }
-    }
-
-    /**
-     * Test related action
-     *
-     * @throws \Exception
-     */
-    public function testRemoveAction()
-    {
-        // find customer to delete
-        $customerAttribute = $this->getCustomerManager()->getAttributeRepository()->findOneBy(array());
-        if (!$customerAttribute) {
-            throw new \Exception('Customer not found');
-        }
-
-        // count all customers in database
-        $countCustomerAttributes = $this->countCustomerAttributes();
-
-        // call and assert view
-        $this->client->request('GET', self::prepareUrl('en', 'remove/'. $customerAttribute->getId()));
-        $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
-        $this->assertEquals($countCustomerAttributes-1, $this->countCustomerAttributes());
     }
 
     /**
@@ -89,9 +67,9 @@ class CustomerAttributeControllerTest extends KernelAwareControllerTest
     public function testEditAction()
     {
         // find one to edit
-        $attribute = $this->getCustomerManager()->getAttributeRepository()->findOneBy(array('entityType' => 'Acme\Bundle\DemoFlexibleEntityBundle\Entity\Customer'));
+        $attribute = $this->getProductManager()->getAttributeRepository()->findOneBy(array('entityType' => 'Acme\Bundle\DemoFlexibleEntityBundle\Entity\Product'));
         if (!$attribute) {
-            throw new \Exception('Customer not found');
+            throw new \Exception('Not found');
         }
 
         // just call view to show form
@@ -99,18 +77,6 @@ class CustomerAttributeControllerTest extends KernelAwareControllerTest
             $this->client->request('GET', self::prepareUrl($locale, 'edit/'. $attribute->getId()));
             $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         }
-    }
-
-    /**
-     * Count customer attributes in database
-     *
-     * @return integer
-     */
-    protected function countCustomerAttributes()
-    {
-        $attributes = $this->getCustomerManager()->getAttributeRepository()->findBy(array('entityType' => 'Acme\Bundle\DemoFlexibleEntityBundle\Entity\Customer'));
-
-        return count($attributes);
     }
 
 }
