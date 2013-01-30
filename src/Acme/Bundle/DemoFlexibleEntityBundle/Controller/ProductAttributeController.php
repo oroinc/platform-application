@@ -22,7 +22,7 @@ class ProductAttributeController extends Controller
 
     /**
      * Get product manager
-     * @return FlexibleEntityManager
+     * @return FlexibleManager
      */
     protected function getProductManager()
     {

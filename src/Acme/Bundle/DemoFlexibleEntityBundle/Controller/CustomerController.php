@@ -1,7 +1,7 @@
 <?php
 namespace Acme\Bundle\DemoFlexibleEntityBundle\Controller;
 
-use Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleEntityManager;
+use Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleManager;
 use Acme\Bundle\DemoFlexibleEntityBundle\Form\Type\CustomerType;
 use Acme\Bundle\DemoFlexibleEntityBundle\Entity\Customer;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -22,7 +22,7 @@ class CustomerController extends Controller
 
     /**
      * Get customer manager
-     * @return FlexibleEntityManager
+     * @return FlexibleManager
      */
     protected function getCustomerManager()
     {

@@ -33,7 +33,7 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
 
     /**
      * Flexible entity manager
-     * @var FlexibleEntityManager
+     * @var FlexibleManager
      */
     protected $manager;
 
@@ -47,7 +47,7 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
 
     /**
      * Get product manager
-     * @return SimpleEntityManager
+     * @return SimpleManager
      */
     protected function getCustomerManager()
     {

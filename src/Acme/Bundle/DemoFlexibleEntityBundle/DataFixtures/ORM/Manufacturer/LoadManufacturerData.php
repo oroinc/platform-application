@@ -28,7 +28,7 @@ class LoadManufacturerData extends AbstractFixture implements OrderedFixtureInte
 
     /**
      * Flexible entity manager
-     * @var FlexibleEntityManager
+     * @var FlexibleManager
      */
     protected $manager;
 
@@ -43,7 +43,7 @@ class LoadManufacturerData extends AbstractFixture implements OrderedFixtureInte
     /**
      * Get manager
      *
-     * @return SimpleEntityManager
+     * @return SimpleManager
      */
     protected function getManufacturerManager()
     {

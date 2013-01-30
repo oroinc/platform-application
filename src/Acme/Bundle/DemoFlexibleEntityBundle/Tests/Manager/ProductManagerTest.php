@@ -22,7 +22,7 @@ class ProductManagerTest extends KernelAwareTest
 {
 
     /**
-     * @var FlexibleEntityManager
+     * @var FlexibleManager
      */
     protected $manager;
 

@@ -3,7 +3,7 @@ namespace Acme\Bundle\DemoFlexibleEntityBundle\Controller;
 
 
 
-use Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleEntityManager;
+use Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleManager;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -25,7 +25,7 @@ class ProductController extends Controller
 
     /**
      * Get product manager
-     * @return FlexibleEntityManager
+     * @return FlexibleManager
      */
     protected function getProductManager()
     {

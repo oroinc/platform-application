@@ -34,7 +34,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
 
     /**
      * Flexible entity manager
-     * @var FlexibleEntityManager
+     * @var FlexibleManager
      */
     protected $manager;
 
@@ -48,7 +48,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
 
     /**
      * Get product manager
-     * @return FlexibleEntityManager
+     * @return FlexibleManager
      */
     protected function getProductManager()
     {

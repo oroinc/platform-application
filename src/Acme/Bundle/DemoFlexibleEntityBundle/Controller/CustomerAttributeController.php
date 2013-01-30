@@ -23,7 +23,7 @@ class CustomerAttributeController extends Controller
 
     /**
      * Get customer manager
-     * @return Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleEntityManager
+     * @return Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleManager
      */
     protected function getCustomerManager()
     {

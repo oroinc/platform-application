@@ -31,7 +31,7 @@ class ProductAttributeControllerTest extends KernelAwareControllerTest
     /**
      * Get manager
      *
-     * @return Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleEntityManager
+     * @return Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleManager
      */
     protected function getProductManager()
     {
