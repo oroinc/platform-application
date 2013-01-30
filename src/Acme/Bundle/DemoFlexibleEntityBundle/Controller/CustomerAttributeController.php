@@ -50,6 +50,8 @@ class CustomerAttributeController extends Controller
      *
      * @Route("/create")
      * @Template("AcmeDemoFlexibleEntityBundle:CustomerAttribute:edit.html.twig")
+     *
+     * @return array
      */
     public function createAction()
     {
@@ -61,8 +63,12 @@ class CustomerAttributeController extends Controller
     /**
      * Edit attribute form
      *
+     * @param Attribute $entity
+     *
      * @Route("/edit/{id}", requirements={"id"="\d+"}, defaults={"id"=0})
      * @Template
+     *
+     * @return array
      */
     public function editAction(Attribute $entity)
     {
@@ -94,7 +100,11 @@ class CustomerAttributeController extends Controller
     /**
      * Remove attribute
      *
+     * @param Attribute $entity
+     *
      * @Route("/remove/{id}", requirements={"id"="\d+"})
+     *
+     * @return array
      */
     public function removeAction(Attribute $entity)
     {

@@ -155,8 +155,13 @@ class ProductController extends Controller
     /**
      * Create product
      *
+     * @param string $dataLocale data locale
+     * @param string $dataScope  data scope
+     *
      * @Route("/create/{dataLocale}/{dataScope}", defaults={"dataLocale" = null, "dataScope" = null})
      * @Template("AcmeDemoFlexibleEntityBundle:Product:edit.html.twig")
+     *
+     * @return array
      */
     public function createAction($dataLocale, $dataScope)
     {
@@ -168,8 +173,14 @@ class ProductController extends Controller
     /**
      * Edit product
      *
+     * @param Product $entity     product
+     * @param string  $dataLocale data locale
+     * @param string  $dataScope  data scope
+     *
      * @Route("/edit/{id}/{dataLocale}/{dataScope}", requirements={"id"="\d+"}, defaults={"id"=0, "dataLocale" = null, "dataScope" = null})
      * @Template
+     *
+     * @return array
      */
     public function editAction(Product $entity, $dataLocale, $dataScope)
     {
@@ -202,7 +213,11 @@ class ProductController extends Controller
     /**
      * Remove product
      *
+     * @param Product $entity
+     *
      * @Route("/remove/{id}", requirements={"id"="\d+"})
+     *
+     * @return array
      */
     public function removeAction(Product $entity)
     {
