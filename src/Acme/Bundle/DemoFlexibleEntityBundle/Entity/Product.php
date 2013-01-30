@@ -1,7 +1,6 @@
 <?php
 namespace Acme\Bundle\DemoFlexibleEntityBundle\Entity;
 
-use Oro\Bundle\FlexibleEntityBundle\Model\Behavior\HasRequiredValueInterface;
 use Oro\Bundle\FlexibleEntityBundle\Entity\Mapping\AbstractEntityFlexible;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -15,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="acmedemoflexibleentity_product")
  * @ORM\Entity(repositoryClass="Oro\Bundle\FlexibleEntityBundle\Entity\Repository\FlexibleEntityRepository")
  */
-class Product extends AbstractEntityFlexible implements HasRequiredValueInterface
+class Product extends AbstractEntityFlexible
 {
     /**
      * @var string $sku
