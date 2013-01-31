@@ -9,10 +9,6 @@ acme_demo_data_flow:
     type:     annotation
     prefix:   /dataflow/
 
-_welcome:
-    pattern:  /{_locale}
-    defaults: { _controller: AcmeDemoBundle:Welcome:index, _locale: %locale% }
-
 _wdt:
     resource: "@WebProfilerBundle/Resources/config/routing/wdt.xml"
     prefix:   /_wdt
