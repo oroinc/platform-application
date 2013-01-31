@@ -41,8 +41,6 @@ class LoadUserAttrData extends AbstractFixture implements ContainerAwareInterfac
         /**
          * @var Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleManager
          */
-        // TODO comment until user bundle flexible manager will be fixed
-        /*
         $fm = $this->container->get('oro_user.flexible_manager');
         $sm = $fm->getStorageManager();
 
@@ -81,6 +79,5 @@ class LoadUserAttrData extends AbstractFixture implements ContainerAwareInterfac
 
         $sm->persist($attr);
         $sm->flush();
-        */
     }
 }
