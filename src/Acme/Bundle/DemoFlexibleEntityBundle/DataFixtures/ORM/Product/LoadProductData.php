@@ -9,7 +9,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Oro\Bundle\FlexibleEntityBundle\Model\AbstractAttributeType;
 use Acme\Bundle\DemoFlexibleEntityBundle\Entity\ProductAttribute;
 use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\TextType;
-use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\MultiOptionsType;
+use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\OptionMultiCheckboxType;
 use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\MetricType;
 use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\TextAreaType;
 use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\MoneyType;
@@ -119,7 +119,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         // attribute color (if not exists)
         $attributeCode= 'color';
         $attribute = $this->getProductManager()->getFlexibleRepository()->findAttributeByCode($attributeCode);
-        $productAttribute = $this->getProductManager()->createAttributeExtended(new MultiOptionsType());
+        $productAttribute = $this->getProductManager()->createAttributeExtended(new OptionMultiCheckboxType());
         $productAttribute->setName('Color');
         $productAttribute->setCode($attributeCode);
         $productAttribute->setTranslatable(false); // only one value but option can be translated in option values

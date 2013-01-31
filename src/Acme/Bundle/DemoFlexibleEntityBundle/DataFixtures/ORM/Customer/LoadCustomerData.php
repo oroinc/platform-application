@@ -7,11 +7,11 @@ use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Oro\Bundle\FlexibleEntityBundle\Model\AbstractAttributeType;
-use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\MultiOptionsType;
-use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\SingleOptionType;
 use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\DateType;
 use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\TextType;
 use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\UrlType;
+use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\OptionMultiSelectType;
+use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\OptionSimpleRadioType;
 
 /**
 * Load customers
@@ -105,7 +105,7 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
 
         // attribute gender (if not exists)
         $attCode = 'gender';
-        $att = $this->getCustomerManager()->createAttribute(new SingleOptionType());
+        $att = $this->getCustomerManager()->createAttribute(new OptionSimpleRadioType());
         $att->setCode($attCode);
         // add option and related value
         $opt = $this->getCustomerManager()->createAttributeOption();
@@ -124,7 +124,7 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
 
         // attribute hobby (if not exists)
         $attCode = 'hobby';
-        $att = $this->getCustomerManager()->createAttribute(new MultiOptionsType());
+        $att = $this->getCustomerManager()->createAttribute(new OptionMultiSelectType());
         $att->setCode($attCode);
         // add options and related values
         $hobbies = array('Sport', 'Cooking', 'Read', 'Coding!');
