@@ -2,8 +2,6 @@
 
 namespace Acme\Bundle\DemoFlexibleEntityBundle\Tests\Controller;
 
-use Acme\Bundle\DemoFlexibleEntityBundle\Tests\Controller\AbstractControllerTest;
-
 /**
  * Test related class
  *
@@ -12,7 +10,7 @@ use Acme\Bundle\DemoFlexibleEntityBundle\Tests\Controller\AbstractControllerTest
  * @license   http://opensource.org/licenses/MIT MIT
  *
  */
-class FlexibleControllerTest extends AbstractControllerTest
+class FlexibleControllerTest extends KernelAwareControllerTest
 {
 
     /**
@@ -26,11 +24,10 @@ class FlexibleControllerTest extends AbstractControllerTest
      */
     public function testIndexAction()
     {
-        $this->client->request('GET', self::prepareUrl('en', 'index'));
-        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-
-        $this->client->request('GET', self::prepareUrl('fr', 'index'));
-        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+        foreach (self::$locales as $locale) {
+            $this->client->request('GET', self::prepareUrl($locale, 'index'));
+            $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+        }
     }
 
     /**
@@ -38,8 +35,10 @@ class FlexibleControllerTest extends AbstractControllerTest
      */
     public function testEntityConfigAction()
     {
-        $this->client->request('GET', self::prepareUrl('en', 'entityconfig'));
-        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+        foreach (self::$locales as $locale) {
+            $this->client->request('GET', self::prepareUrl($locale, 'config'));
+            $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+        }
     }
 
 }

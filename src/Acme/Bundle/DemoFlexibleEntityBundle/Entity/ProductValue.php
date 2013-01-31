@@ -1,9 +1,9 @@
 <?php
 namespace Acme\Bundle\DemoFlexibleEntityBundle\Entity;
 
-use Oro\Bundle\FlexibleEntityBundle\Model\Behavior\HasDefaultValueInterface;
 use Oro\Bundle\FlexibleEntityBundle\Entity\Mapping\AbstractEntityFlexibleValue;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Value for a product attribute
@@ -15,12 +15,13 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="acmedemoflexibleentity_product_value")
  * @ORM\Entity
  */
-class ProductValue extends AbstractEntityFlexibleValue implements HasDefaultValueInterface
+class ProductValue extends AbstractEntityFlexibleValue
 {
     /**
      * @var Oro\Bundle\FlexibleEntityBundle\Entity\Attribute $attribute
      *
      * @ORM\ManyToOne(targetEntity="Oro\Bundle\FlexibleEntityBundle\Entity\Attribute")
+     * @ORM\JoinColumn(name="attribute_id", referencedColumnName="id", onDelete="CASCADE")
      */
     protected $attribute;
 
@@ -37,9 +38,9 @@ class ProductValue extends AbstractEntityFlexibleValue implements HasDefaultValu
      * @var options ArrayCollection
      *
      * @ORM\ManyToMany(targetEntity="Oro\Bundle\FlexibleEntityBundle\Entity\AttributeOption")
-     * @ORM\JoinTable(name="acmedemoflexibleentity_product_values_options",
-     *      joinColumns={@ORM\JoinColumn(name="value_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="option_id", referencedColumnName="id")}
+     * @ORM\JoinTable(name="acmedemoflexibleentity_product_value_option",
+     *      joinColumns={@ORM\JoinColumn(name="value_id", referencedColumnName="id", onDelete="CASCADE")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="option_id", referencedColumnName="id", onDelete="CASCADE")}
      * )
      */
     protected $options;

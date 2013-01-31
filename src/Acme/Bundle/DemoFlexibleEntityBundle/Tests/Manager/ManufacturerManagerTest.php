@@ -17,7 +17,7 @@ class ManufacturerManagerTest extends KernelAwareTest
 {
 
     /**
-     * @var SimpleEntityManager
+     * @var SimpleManager
      */
     protected $manager;
 

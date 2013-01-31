@@ -1,6 +1,12 @@
 <?php
 namespace Acme\Bundle\DemoFlexibleEntityBundle\Test\Manager;
 
+use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\OptionSimpleRadioType;
+
+use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\DateType;
+
+use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\TextType;
+
 use Oro\Bundle\FlexibleEntityBundle\Entity\AttributeOption;
 
 use Acme\Bundle\DemoFlexibleEntityBundle\Entity\CustomerValue;
@@ -23,7 +29,7 @@ class CustomerManagerTest extends KernelAwareTest
 {
 
     /**
-     * @var FlexibleEntityManager
+     * @var FlexibleManager
      */
     protected $manager;
 
@@ -71,17 +77,17 @@ class CustomerManagerTest extends KernelAwareTest
         $this->attCompany = $this->createAttribute(
             'company',
             'Company',
-            AbstractAttributeType::BACKEND_TYPE_VARCHAR
+            new TextType()
         );
         $this->attDob = $this->createAttribute(
             'dob',
             'Date of Birth',
-            AbstractAttributeType::BACKEND_TYPE_DATE
+            new DateType()
         );
         $this->attGender = $this->createAttribute(
             'gender',
             'Gender',
-            AbstractAttributeType::BACKEND_TYPE_OPTION,
+            new OptionSimpleRadioType(),
             array('Mr', 'Mrs')
         );
 
@@ -132,14 +138,14 @@ class CustomerManagerTest extends KernelAwareTest
     protected function createCustomer($firstname = "", $lastname = "", $company = "", $dob = "", $gender = null)
     {
         // create values
-        $valueCompany = $this->createValue($this->attCompany, $company);
-        $valueDob     = $this->createValue($this->attDob, new \DateTime($dob));
+        $valueCompany = $this->createFlexibleValue($this->attCompany, $company);
+        $valueDob     = $this->createFlexibleValue($this->attDob, new \DateTime($dob));
         if ($gender !== null) {
-            $valueGender  = $this->createValue($this->attGender, $gender);
+            $valueGender  = $this->createFlexibleValue($this->attGender, $gender);
         }
 
         // create customer
-        $customer = $this->manager->createEntity();
+        $customer = $this->manager->createFlexible();
         $customer->setFirstname($firstname);
         $customer->setLastname($lastname);
         $customer->setEmail('email-'.$firstname.'.'.$lastname.self::$customerCount++.'@mail.com');
@@ -164,10 +170,10 @@ class CustomerManagerTest extends KernelAwareTest
      *
      * @return CustomerValue
      */
-    protected function createValue($attribute, $value)
+    protected function createFlexibleValue($attribute, $value)
     {
         // create value
-        $entityValue = $this->manager->createEntityValue();
+        $entityValue = $this->manager->createFlexibleValue();
         $entityValue->setAttribute($attribute);
         if ($attribute->getCode() == 'gender') {
             $entityValue->setOption($value);
@@ -181,19 +187,18 @@ class CustomerManagerTest extends KernelAwareTest
     /**
      * Create attribute
      *
-     * @param string    $code           Attribute code
-     * @param string    $title          Attribute title
-     * @param string    $backendType    Attribute backend type
-     * @param multitype $options        Options list
+     * @param string    $code          Attribute code
+     * @param string    $title         Attribute title
+     * @param string    $attributeType Attribute type
+     * @param multitype $options       Options list
      *
      * @return Attribute
      */
-    protected function createAttribute($code, $title, $backendType, $options = array())
+    protected function createAttribute($code, $title, $attributeType, $options = array())
     {
         // create attribute
-        $attribute = $this->manager->createAttribute();
+        $attribute = $this->manager->createAttribute($attributeType);
         $attribute->setCode($code);
-        $attribute->setBackendType($backendType);
 
         // create options
         foreach ($options as $option) {
@@ -215,7 +220,7 @@ class CustomerManagerTest extends KernelAwareTest
      */
     public function testCreateEntity()
     {
-        $newCustomer = $this->manager->createEntity();
+        $newCustomer = $this->manager->createFlexible();
         $this->assertTrue($newCustomer instanceof Customer);
         $newCustomer->setFirstname('Nicolas');
         $newCustomer->setLastname('Dupont');
@@ -259,6 +264,6 @@ class CustomerManagerTest extends KernelAwareTest
      */
     protected function getRepo()
     {
-        return $this->manager->getEntityRepository();
+        return $this->manager->getFlexibleRepository();
     }
 }
