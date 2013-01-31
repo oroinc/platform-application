@@ -11,7 +11,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
  *
  * @author    Romain Monceau <romain@akeneo.com>
  * @copyright 2012 Akeneo SAS (http://www.akeneo.com)
- * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @license   http://opensource.org/licenses/MIT MIT
  *
  * @Route("/flexible")
  */
@@ -30,13 +30,17 @@ class FlexibleController extends Controller
 
     /**
      * Print config
-     * @Route("/entityconfig")
+     * @Route("/config")
      * @Template()
      *
      * @return multitype
      */
-    public function entityConfigAction()
+    public function configAction()
     {
-        return array('config' => $this->container->getParameter('oro_flexibleentity.entities_config'));
+        $params = array(
+            'config' => $this->container->getParameter('oro_flexibleentity.flexible_config'),
+        );
+
+        return $params;
     }
 }

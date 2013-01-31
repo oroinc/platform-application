@@ -2,7 +2,7 @@
 
 namespace Acme\Bundle\DemoFlexibleEntityBundle\Tests\Controller;
 
-use Acme\Bundle\DemoFlexibleEntityBundle\Tests\Controller\AbstractControllerTest;
+use Acme\Bundle\DemoFlexibleEntityBundle\Tests\Controller\KernelAwareControllerTest;
 
 /**
  * Test related class
@@ -12,7 +12,7 @@ use Acme\Bundle\DemoFlexibleEntityBundle\Tests\Controller\AbstractControllerTest
  * @license   http://opensource.org/licenses/MIT MIT
  *
  */
-class ProductControllerTest extends AbstractControllerTest
+class ProductControllerTest extends KernelAwareControllerTest
 {
 
     /**
@@ -22,112 +22,83 @@ class ProductControllerTest extends AbstractControllerTest
     protected static $controller = 'product';
 
     /**
+     * {@inheritdoc}
+     */
+    protected function getFixturesToLoad()
+    {
+        return array(
+            'src/Acme/Bundle/DemoFlexibleEntityBundle/DataFixtures/ORM/Product'
+        );
+    }
+
+    /**
+     * Get product manager
+     *
+     * @return Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleManager
+     */
+    protected function getProductManager()
+    {
+        return $this->getContainer()->get('product_manager');
+    }
+
+    /**
      * Test related method
      */
     public function testIndexAction()
     {
-        $this->client->request('GET', self::prepareUrl('en', 'index'));
-        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-
-        $this->client->request('GET', self::prepareUrl('fr', 'index'));
-        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-    }
-
-    /**
-     * Insert attributes, products and translate them
-     */
-    protected function loadProducts()
-    {
-        $this->client->request('GET', self::prepareUrl('en', 'product', 'loader'));
-        $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
-        $this->client->request('GET', self::prepareUrl('en', 'productattribute', 'loader'));
-        $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
-        $this->client->request('GET', self::prepareUrl('en', 'producttranslate', 'loader'));
-        $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
-    }
-
-    /**
-     * Test related method
-     */
-    public function testViewAction()
-    {
-        // insert attributes data then products data
-        $this->loadProducts();
-
-        $this->client->request('GET', self::prepareUrl('en', 'view/1'));
-        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-
-        $this->client->request('GET', self::prepareUrl('fr', 'view/1'));
-        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-    }
-
-    /**
-     * Test related method
-     */
-    public function testAttributeAction()
-    {
-        // insert attributes data then products data
-        $this->loadProducts();
-
-        $this->client->request('GET', self::prepareUrl('en', 'attribute'));
-        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-    }
-
-    /**
-     * Test query actions
-     */
-    public function testQueries()
-    {
-        // insert attributes data then products data
-        $this->loadProducts();
-
-        $actions = array(
-            'querylazyload',
-            'queryonlyname',
-            'querynameanddesc',
-            'querynameanddescforcelocale',
-            'queryfilterskufield',
-            'querynamefilterskufield',
-            'queryfiltersizeattribute',
-            'queryfiltersizeanddescattributes',
-            'querynameanddesclimit',
-            'querynameanddescorderby',
-        );
-        foreach ($actions as $action) {
-            $this->client->request('GET', self::prepareUrl('en', $action));
+        foreach (self::$locales as $locale) {
+            $this->client->request('GET', self::prepareUrl($locale, 'index'));
             $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         }
     }
 
     /**
-     * Test query actions without data
+     * Test related method
+     *
+     * @throws \Exception
      */
-    public function testQueriesWithoutData()
+    public function testShowAction()
     {
-        // actions returning code 200
-        $actions = array(
-            'querylazyload',
-            'queryfilterskufield',
-        );
-        foreach ($actions as $action) {
-            $this->client->request('GET', self::prepareUrl('en', $action));
-            $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+        // find one to show
+        $entity = $this->getProductManager()->getFlexibleRepository()->findOneBy(array());
+        if (!$entity) {
+            throw new \Exception('Customer not found');
         }
 
-        // actions returning exception
-        $actions = array(
-            'queryonlyname',
-            'querynameanddesc',
-            'querynameanddescforcelocale',
-            'querynamefilterskufield',
-            'queryfiltersizeattribute',
-            'queryfiltersizeanddescattributes',
-            'querynameanddesclimit',
-            'querynameanddescorderby',
-        );
-        foreach ($actions as $action) {
-            $this->client->request('GET', self::prepareUrl('en', $action));
-            $this->assertEquals(500, $this->client->getResponse()->getStatusCode());
+        // call and assert view
+        foreach (self::$locales as $locale) {
+            $this->client->request('GET', self::prepareUrl('en', 'show/'.$entity->getId()));
+            $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+        }
+    }
+
+    /**
+     * Test related method
+     */
+    public function testCreateAction()
+    {
+        // just call view to show form
+        foreach (self::$locales as $locale) {
+            $this->client->request('GET', self::prepareUrl($locale, 'create'));
+            $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+        }
+    }
+
+    /**
+     * Test related method
+     */
+    public function testEditAction()
+    {
+        // find one to edit
+        $entity = $this->getProductManager()->getFlexibleRepository()->findOneBy(array());
+        if (!$entity) {
+            throw new \Exception('Customer not found');
+        }
+
+        // just call view to show form
+        foreach (self::$locales as $locale) {
+            $this->client->request('GET', self::prepareUrl($locale, 'edit/'. $entity->getId()));
+            $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         }
     }
 

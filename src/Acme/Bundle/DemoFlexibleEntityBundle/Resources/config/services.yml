@@ -1,9 +1,9 @@
 parameters:
-    customer_manager_class:     Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleEntityManager
+    customer_manager_class:     Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleManager
     customer_entity_class:      Acme\Bundle\DemoFlexibleEntityBundle\Entity\Customer
-    manufacturer_manager_class: Oro\Bundle\FlexibleEntityBundle\Manager\SimpleEntityManager
+    manufacturer_manager_class: Oro\Bundle\FlexibleEntityBundle\Manager\SimpleManager
     manufacturer_entity_class:  Acme\Bundle\DemoFlexibleEntityBundle\Entity\Manufacturer
-    product_manager_class:      Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleEntityManager
+    product_manager_class:      Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleManager
     product_entity_class:       Acme\Bundle\DemoFlexibleEntityBundle\Entity\Product
 
 services:
