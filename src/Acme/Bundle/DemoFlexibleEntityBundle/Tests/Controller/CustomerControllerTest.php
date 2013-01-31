@@ -57,7 +57,7 @@ class CustomerControllerTest extends KernelAwareControllerTest
     public function testShowAction()
     {
         // find customer to show
-        $customer = $this->getCustomerManager()->getEntityRepository()->findOneBy(array());
+        $customer = $this->getCustomerManager()->getFlexibleRepository()->findOneBy(array());
         if (!$customer) {
             throw new \Exception('Customer not found');
         }
@@ -77,7 +77,7 @@ class CustomerControllerTest extends KernelAwareControllerTest
     public function testRemoveAction()
     {
         // find customer to delete
-        $customer = $this->getCustomerManager()->getEntityRepository()->findOneBy(array());
+        $customer = $this->getCustomerManager()->getFlexibleRepository()->findOneBy(array());
         if (!$customer) {
             throw new \Exception('Customer not found');
         }
@@ -109,7 +109,7 @@ class CustomerControllerTest extends KernelAwareControllerTest
     public function testEditAction()
     {
         // find customer to edit
-        $customer = $this->getCustomerManager()->getEntityRepository()->findOneBy(array());
+        $customer = $this->getCustomerManager()->getFlexibleRepository()->findOneBy(array());
         if (!$customer) {
             throw new \Exception('Customer not found');
         }
@@ -128,7 +128,7 @@ class CustomerControllerTest extends KernelAwareControllerTest
      */
     protected function countCustomers()
     {
-        $customers = $this->getCustomerManager()->getEntityRepository()->findAll();
+        $customers = $this->getCustomerManager()->getFlexibleRepository()->findAll();
 
         return count($customers);
     }

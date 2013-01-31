@@ -63,7 +63,7 @@ class ProductController extends Controller
      */
     public function indexAction($dataLocale, $dataScope)
     {
-        $products = $this->getProductManager()->getEntityRepository()->findByWithAttributes();
+        $products = $this->getProductManager()->getFlexibleRepository()->findByWithAttributes();
 
         return array('products' => $products, 'attributes' => $this->getAttributeCodesToDisplay());
     }
@@ -82,7 +82,7 @@ class ProductController extends Controller
     {
         // get only entities, values and attributes are lazy loaded
         // you can use any criteria, order you want it's a classic doctrine query
-        $products = $this->getProductManager()->getEntityRepository()->findBy(array());
+        $products = $this->getProductManager()->getFlexibleRepository()->findBy(array());
 
         return array('products' => $products, 'attributes' => $this->getAttributeCodesToDisplay());
     }
@@ -125,7 +125,7 @@ class ProductController extends Controller
         }
 
         // get entities
-        $products = $this->getProductManager()->getEntityRepository()->findByWithAttributes(
+        $products = $this->getProductManager()->getFlexibleRepository()->findByWithAttributes(
             $attributes, $criteria, $orderBy, $limit, $offset
         );
 
@@ -147,7 +147,7 @@ class ProductController extends Controller
     public function showAction($id, $dataLocale, $dataScope)
     {
         // load with any values
-        $product = $this->getProductManager()->getEntityRepository()->findWithAttributes($id);
+        $product = $this->getProductManager()->getFlexibleRepository()->findWithAttributes($id);
 
         return array('product' => $product);
     }
@@ -165,7 +165,7 @@ class ProductController extends Controller
      */
     public function createAction($dataLocale, $dataScope)
     {
-        $entity = $this->getProductManager()->createEntity(true);
+        $entity = $this->getProductManager()->createFlexible(true);
 
         return $this->editAction($entity, $dataLocale, $dataScope);
     }
@@ -187,8 +187,8 @@ class ProductController extends Controller
         $request = $this->getRequest();
 
         // create form
-        $entClassName = $this->getProductManager()->getEntityName();
-        $valueClassName = $this->getProductManager()->getEntityValueName();
+        $entClassName = $this->getProductManager()->getFlexibleName();
+        $valueClassName = $this->getProductManager()->getFlexibleValueName();
         $form = $this->createForm(new ProductType($entClassName, $valueClassName), $entity);
 
         if ($request->getMethod() == 'POST') {

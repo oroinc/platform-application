@@ -80,8 +80,8 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
 
         // attribute name (if not exists)
         $attributeCode = 'name';
-        $attribute = $this->getProductManager()->getEntityRepository()->findAttributeByCode($attributeCode);
-        $productAttribute = $this->getProductManager()->createEntityAttribute(new TextType());
+        $attribute = $this->getProductManager()->getFlexibleRepository()->findAttributeByCode($attributeCode);
+        $productAttribute = $this->getProductManager()->createAttributeExtended(new TextType());
         $productAttribute->setName('Name');
         $productAttribute->setCode($attributeCode);
         $productAttribute->setTranslatable(true);
@@ -91,7 +91,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
 
         // attribute price (if not exists)
         $attributeCode = 'price';
-        $productAttribute = $this->getProductManager()->createEntityAttribute(new MoneyType());
+        $productAttribute = $this->getProductManager()->createAttributeExtended(new MoneyType());
         $productAttribute->setName('Price');
         $productAttribute->setCode($attributeCode);
         $this->getProductManager()->getStorageManager()->persist($productAttribute);
@@ -99,7 +99,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
 
         // attribute description (if not exists)
         $attributeCode = 'description';
-        $productAttribute = $this->getProductManager()->createEntityAttribute(new TextAreaType());
+        $productAttribute = $this->getProductManager()->createAttributeExtended(new TextAreaType());
         $productAttribute->setName('Description');
         $productAttribute->setCode($attributeCode);
         $productAttribute->setTranslatable(true);
@@ -109,8 +109,8 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
 
         // attribute size (if not exists)
         $attributeCode= 'size';
-        $attribute = $this->getProductManager()->getEntityRepository()->findAttributeByCode($attributeCode);
-        $productAttribute = $this->getProductManager()->createEntityAttribute(new MetricType());
+        $attribute = $this->getProductManager()->getFlexibleRepository()->findAttributeByCode($attributeCode);
+        $productAttribute = $this->getProductManager()->createAttributeExtended(new MetricType());
         $productAttribute->setName('Size');
         $productAttribute->setCode($attributeCode);
         $this->getProductManager()->getStorageManager()->persist($productAttribute);
@@ -118,8 +118,8 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
 
         // attribute color (if not exists)
         $attributeCode= 'color';
-        $attribute = $this->getProductManager()->getEntityRepository()->findAttributeByCode($attributeCode);
-        $productAttribute = $this->getProductManager()->createEntityAttribute(new MultiOptionsType());
+        $attribute = $this->getProductManager()->getFlexibleRepository()->findAttributeByCode($attributeCode);
+        $productAttribute = $this->getProductManager()->createAttributeExtended(new MultiOptionsType());
         $productAttribute->setName('Color');
         $productAttribute->setCode($attributeCode);
         $productAttribute->setTranslatable(false); // only one value but option can be translated in option values
@@ -154,11 +154,11 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $this->getProductManager()->setLocale('en_US');
 
         // get attributes
-        $attName = $this->getProductManager()->getEntityRepository()->findAttributeByCode('name');
-        $attDescription = $this->getProductManager()->getEntityRepository()->findAttributeByCode('description');
-        $attSize = $this->getProductManager()->getEntityRepository()->findAttributeByCode('size');
-        $attColor = $this->getProductManager()->getEntityRepository()->findAttributeByCode('color');
-        $attPrice = $this->getProductManager()->getEntityRepository()->findAttributeByCode('price');
+        $attName = $this->getProductManager()->getFlexibleRepository()->findAttributeByCode('name');
+        $attDescription = $this->getProductManager()->getFlexibleRepository()->findAttributeByCode('description');
+        $attSize = $this->getProductManager()->getFlexibleRepository()->findAttributeByCode('size');
+        $attColor = $this->getProductManager()->getFlexibleRepository()->findAttributeByCode('color');
+        $attPrice = $this->getProductManager()->getFlexibleRepository()->findAttributeByCode('price');
         // get attribute color options
         $optColors = $this->getProductManager()->getAttributeOptionRepository()->findBy(array('attribute' => $attColor));
         $colors = array();
@@ -172,12 +172,12 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
 
             // add product with only sku and name
             $prodSku = 'sku-'.$indSku;
-            $product = $this->getProductManager()->createEntity();
+            $product = $this->getProductManager()->createFlexible();
             $product->setSku($prodSku);
             if ($attName) {
                 $value = $product->getValue($attName->getCode());
                 if (!$value) {
-                    $value = $this->getProductManager()->createEntityValue();
+                    $value = $this->getProductManager()->createFlexibleValue();
                     $value->setAttribute($attName);
                     $product->addValue($value);
                 }
@@ -189,12 +189,12 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
 
             // add product with sku, name, description, color and size
             $prodSku = 'sku-'.$indSku;
-            $product = $this->getProductManager()->createEntity();
+            $product = $this->getProductManager()->createFlexible();
             $product->setSku($prodSku);
             if ($attName) {
                 $value = $product->getValue($attName->getCode());
                 if (!$value) {
-                    $value = $this->getProductManager()->createEntityValue();
+                    $value = $this->getProductManager()->createFlexibleValue();
                     $value->setAttribute($attName);
                     $product->addValue($value);
                 }
@@ -202,28 +202,28 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
             }
             if ($attDescription) {
                 // scope ecommerce
-                $value = $this->getProductManager()->createEntityValue();
+                $value = $this->getProductManager()->createFlexibleValue();
                 $value->setScope(ProductAttribute::SCOPE_ECOMMERCE);
                 $value->setAttribute($attDescription);
                 $myDescription = $descriptions[$ind%2];
                 $value->setData($myDescription.'(ecommerce)');
                 $product->addValue($value);
                 // scope mobile
-                $value = $this->getProductManager()->createEntityValue();
+                $value = $this->getProductManager()->createFlexibleValue();
                 $value->setScope(ProductAttribute::SCOPE_MOBILE);
                 $value->setAttribute($attDescription);
                 $value->setData($myDescription.'(mobile)');
                 $product->addValue($value);
             }
             if ($attSize) {
-                $value = $this->getProductManager()->createEntityValue();
+                $value = $this->getProductManager()->createFlexibleValue();
                 $value->setAttribute($attSize);
                 $value->setData(175); // single value
                 $value->setUnit('mm');
                 $product->addValue($value);
             }
             if ($attColor) {
-                $value = $this->getProductManager()->createEntityValue();
+                $value = $this->getProductManager()->createFlexibleValue();
                 $value->setAttribute($attColor);
                 // pick many colors (multiselect)
                 $firstColorOpt = $colors[rand(0, count($colors)-1)];
@@ -240,26 +240,26 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
 
             // add product with sku, name, size and price
             $prodSku = 'sku-'.$indSku;
-            $product = $this->getProductManager()->createEntity();
+            $product = $this->getProductManager()->createFlexible();
             $product->setSku($prodSku);
             if ($attName) {
                 $value = $product->getValue($attName->getCode());
                 if (!$value) {
-                    $value = $this->getProductManager()->createEntityValue();
+                    $value = $this->getProductManager()->createFlexibleValue();
                     $value->setAttribute($attName);
                     $product->addValue($value);
                 }
                 $value->setData('my name '.$indSku);
             }
             if ($attSize) {
-                $value = $this->getProductManager()->createEntityValue();
+                $value = $this->getProductManager()->createFlexibleValue();
                 $value->setAttribute($attSize);
                 $value->setData(175);
                 $value->setUnit('mm');
                 $product->addValue($value);
             }
             if ($attPrice) {
-                $value = $this->getProductManager()->createEntityValue();
+                $value = $this->getProductManager()->createFlexibleValue();
                 $value->setAttribute($attPrice);
                 $value->setData(rand(5, 100));
                 $value->setCurrency('USD');
@@ -283,17 +283,17 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
     public function loadTranslations()
     {
         // get attributes
-        $attName = $this->getProductManager()->getEntityRepository()->findAttributeByCode('name');
-        $attDescription = $this->getProductManager()->getEntityRepository()->findAttributeByCode('description');
+        $attName = $this->getProductManager()->getFlexibleRepository()->findAttributeByCode('name');
+        $attDescription = $this->getProductManager()->getFlexibleRepository()->findAttributeByCode('description');
 
         // get products
-        $products = $this->getProductManager()->getEntityRepository()->findByWithAttributes();
+        $products = $this->getProductManager()->getFlexibleRepository()->findByWithAttributes();
         $ind = 1;
         foreach ($products as $product) {
             // translate name value
             if ($attName) {
                 if ($product->setLocale('en_US')->getValue('name') != null) {
-                    $value = $this->getProductManager()->createEntityValue();
+                    $value = $this->getProductManager()->createFlexibleValue();
                     $value->setAttribute($attName);
                     $value->setLocale('fr_FR');
                     $value->setData('mon nom FR '.$ind);
@@ -307,7 +307,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
                 // check if a value en_US + scope ecommerce exists
                 if ($product->setLocale('en_US')->setScope('ecommerce')->getValue('description') != null) {
                     // scope ecommerce
-                    $value = $this->getProductManager()->createEntityValue();
+                    $value = $this->getProductManager()->createFlexibleValue();
                     $value->setLocale('fr_FR');
                     $value->setScope(ProductAttribute::SCOPE_ECOMMERCE);
                     $value->setAttribute($attDescription);
@@ -315,7 +315,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
                     $product->addValue($value);
                     $this->getProductManager()->getStorageManager()->persist($value);
                     // scope mobile
-                    $value = $this->getProductManager()->createEntityValue();
+                    $value = $this->getProductManager()->createFlexibleValue();
                     $value->setLocale('fr_FR');
                     $value->setScope(ProductAttribute::SCOPE_MOBILE);
                     $value->setAttribute($attDescription);
@@ -329,7 +329,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         }
 
         // get color attribute options
-        $attColor = $this->getProductManager()->getEntityRepository()->findAttributeByCode('color');
+        $attColor = $this->getProductManager()->getFlexibleRepository()->findAttributeByCode('color');
         $colors = array("Red" => "Rouge", "Blue" => "Bleu", "Green" => "Vert");
         // translate
         foreach ($colors as $colorEn => $colorFr) {

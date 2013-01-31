@@ -40,7 +40,7 @@ class CustomerAttributeController extends Controller
     {
         // TODO : should avoid to explicitely filter on entity type ?
         $attributes = $this->getCustomerManager()->getAttributeRepository()
-            ->findBy(array('entityType' => $this->getCustomerManager()->getEntityName()));
+            ->findBy(array('entityType' => $this->getCustomerManager()->getFlexibleName()));
 
         return array('attributes' => $attributes);
     }

@@ -60,7 +60,7 @@ class ProductControllerTest extends KernelAwareControllerTest
     public function testShowAction()
     {
         // find one to show
-        $entity = $this->getProductManager()->getEntityRepository()->findOneBy(array());
+        $entity = $this->getProductManager()->getFlexibleRepository()->findOneBy(array());
         if (!$entity) {
             throw new \Exception('Customer not found');
         }
@@ -90,7 +90,7 @@ class ProductControllerTest extends KernelAwareControllerTest
     public function testEditAction()
     {
         // find one to edit
-        $entity = $this->getProductManager()->getEntityRepository()->findOneBy(array());
+        $entity = $this->getProductManager()->getFlexibleRepository()->findOneBy(array());
         if (!$entity) {
             throw new \Exception('Customer not found');
         }

@@ -138,14 +138,14 @@ class CustomerManagerTest extends KernelAwareTest
     protected function createCustomer($firstname = "", $lastname = "", $company = "", $dob = "", $gender = null)
     {
         // create values
-        $valueCompany = $this->createValue($this->attCompany, $company);
-        $valueDob     = $this->createValue($this->attDob, new \DateTime($dob));
+        $valueCompany = $this->createFlexibleValue($this->attCompany, $company);
+        $valueDob     = $this->createFlexibleValue($this->attDob, new \DateTime($dob));
         if ($gender !== null) {
-            $valueGender  = $this->createValue($this->attGender, $gender);
+            $valueGender  = $this->createFlexibleValue($this->attGender, $gender);
         }
 
         // create customer
-        $customer = $this->manager->createEntity();
+        $customer = $this->manager->createFlexible();
         $customer->setFirstname($firstname);
         $customer->setLastname($lastname);
         $customer->setEmail('email-'.$firstname.'.'.$lastname.self::$customerCount++.'@mail.com');
@@ -170,10 +170,10 @@ class CustomerManagerTest extends KernelAwareTest
      *
      * @return CustomerValue
      */
-    protected function createValue($attribute, $value)
+    protected function createFlexibleValue($attribute, $value)
     {
         // create value
-        $entityValue = $this->manager->createEntityValue();
+        $entityValue = $this->manager->createFlexibleValue();
         $entityValue->setAttribute($attribute);
         if ($attribute->getCode() == 'gender') {
             $entityValue->setOption($value);
@@ -220,7 +220,7 @@ class CustomerManagerTest extends KernelAwareTest
      */
     public function testCreateEntity()
     {
-        $newCustomer = $this->manager->createEntity();
+        $newCustomer = $this->manager->createFlexible();
         $this->assertTrue($newCustomer instanceof Customer);
         $newCustomer->setFirstname('Nicolas');
         $newCustomer->setLastname('Dupont');
@@ -264,6 +264,6 @@ class CustomerManagerTest extends KernelAwareTest
      */
     protected function getRepo()
     {
-        return $this->manager->getEntityRepository();
+        return $this->manager->getFlexibleRepository();
     }
 }

@@ -40,7 +40,7 @@ class ProductManagerTest extends KernelAwareTest
      */
     public function testcreateEntity()
     {
-        $newProduct = $this->manager->createEntity();
+        $newProduct = $this->manager->createFlexible();
         $this->assertTrue($newProduct instanceof Product);
 
         $sku = 'my sku '.str_replace('.', '', microtime(true));
@@ -55,7 +55,7 @@ class ProductManagerTest extends KernelAwareTest
         $timestamp = str_replace('.', '', microtime(true));
 
         // entity
-        $newProduct = $this->manager->createEntity();
+        $newProduct = $this->manager->createFlexible();
         $this->assertTrue($newProduct instanceof Product);
         $sku = 'my-sku-'.$timestamp;
         $newProduct->setSku($sku);
@@ -74,20 +74,20 @@ class ProductManagerTest extends KernelAwareTest
         $this->manager->getStorageManager()->persist($attSize);
 
         // name value
-        $valueName = $this->manager->createEntityValue();
+        $valueName = $this->manager->createFlexibleValue();
         $valueName->setAttribute($attName);
         $valueName->setData('my name');
         $newProduct->addValue($valueName);
 
         // size value
-        $valueSize = $this->manager->createEntityValue();
+        $valueSize = $this->manager->createFlexibleValue();
         $valueSize->setAttribute($attSize);
         $valueSize->setData(125);
         $newProduct->addValue($valueSize);
 
         // required name attribute
-        $attRequiredName = $this->manager->getEntityRepository()->findAttributeByCode('name');
-        $valueRequiredName = $this->manager->createEntityValue();
+        $attRequiredName = $this->manager->getFlexibleRepository()->findAttributeByCode('name');
+        $valueRequiredName = $this->manager->createFlexibleValue();
         $valueRequiredName->setAttribute($attRequiredName);
         $valueRequiredName->setData('my name');
         $newProduct->addValue($valueRequiredName);

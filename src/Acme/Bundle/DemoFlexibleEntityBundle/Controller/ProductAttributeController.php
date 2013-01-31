@@ -48,7 +48,7 @@ class ProductAttributeController extends Controller
     public function indexAction()
     {
         $attributes = $this->getProductManager()->getAttributeRepository()
-            ->findBy(array('entityType' => $this->getProductManager()->getEntityName()));
+            ->findBy(array('entityType' => $this->getProductManager()->getFlexibleName()));
 
         return array('attributes' => $attributes);
     }

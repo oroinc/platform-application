@@ -37,7 +37,7 @@ class CustomerController extends Controller
      */
     public function indexAction()
     {
-        $customers = $this->getCustomerManager()->getEntityRepository()->findByWithAttributes();
+        $customers = $this->getCustomerManager()->getFlexibleRepository()->findByWithAttributes();
 
         return array('customers' => $customers);
     }
@@ -77,7 +77,7 @@ class CustomerController extends Controller
         }
 
         // get entities
-        $customers = $this->getCustomerManager()->getEntityRepository()->findByWithAttributes(
+        $customers = $this->getCustomerManager()->getFlexibleRepository()->findByWithAttributes(
             $attributes, $criteria, $orderBy, $limit, $offset
         );
 
@@ -92,7 +92,7 @@ class CustomerController extends Controller
      */
     public function queryLazyLoadAction()
     {
-        $customers = $this->getCustomerManager()->getEntityRepository()->findBy(array());
+        $customers = $this->getCustomerManager()->getFlexibleRepository()->findBy(array());
 
         return array('customers' => $customers);
     }
@@ -108,7 +108,7 @@ class CustomerController extends Controller
     public function showAction($id)
     {
         // with any values
-        $customer = $this->getCustomerManager()->getEntityRepository()->findWithAttributes($id);
+        $customer = $this->getCustomerManager()->getFlexibleRepository()->findWithAttributes($id);
 
         return array('customer' => $customer);
     }
@@ -123,7 +123,7 @@ class CustomerController extends Controller
      */
     public function createAction()
     {
-        $entity = $this->getCustomerManager()->createEntity();
+        $entity = $this->getCustomerManager()->createFlexible();
 
         return $this->editAction($entity);
     }
@@ -143,8 +143,8 @@ class CustomerController extends Controller
         $request = $this->getRequest();
 
         // create form
-        $entClassName = $this->getCustomerManager()->getEntityName();
-        $valueClassName = $this->getCustomerManager()->getEntityValueName();
+        $entClassName = $this->getCustomerManager()->getFlexibleName();
+        $valueClassName = $this->getCustomerManager()->getFlexibleValueName();
         $form = $this->createForm(new CustomerType($entClassName, $valueClassName), $entity);
 
         if ($request->getMethod() == 'POST') {

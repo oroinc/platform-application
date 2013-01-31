@@ -81,7 +81,7 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
 
         // attribute company (if not exists)
         $attCode = 'company';
-        $att = $this->getCustomerManager()->getEntityRepository()->findAttributeByCode($attCode);
+        $att = $this->getCustomerManager()->getFlexibleRepository()->findAttributeByCode($attCode);
         $att = $this->getCustomerManager()->createAttribute(new TextType());
         $att->setCode($attCode);
         $att->setDefaultValue('Acme');
@@ -90,7 +90,7 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
 
         // attribute date of birth (if not exists)
         $attCode = 'dob';
-        $att = $this->getCustomerManager()->getEntityRepository()->findAttributeByCode($attCode);
+        $att = $this->getCustomerManager()->getFlexibleRepository()->findAttributeByCode($attCode);
         $att = $this->getCustomerManager()->createAttribute(new DateType());
         $att->setCode($attCode);
         $this->getCustomerManager()->getStorageManager()->persist($att);
@@ -152,11 +152,11 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
         $messages = array();
 
         // get attributes
-        $attCompany = $this->getCustomerManager()->getEntityRepository()->findAttributeByCode('company');
-        $attDob = $this->getCustomerManager()->getEntityRepository()->findAttributeByCode('dob');
-        $attGender = $this->getCustomerManager()->getEntityRepository()->findAttributeByCode('gender');
-        $attWebsite = $this->getCustomerManager()->getEntityRepository()->findAttributeByCode('website');
-        $attHobby = $this->getCustomerManager()->getEntityRepository()->findAttributeByCode('hobby');
+        $attCompany = $this->getCustomerManager()->getFlexibleRepository()->findAttributeByCode('company');
+        $attDob = $this->getCustomerManager()->getFlexibleRepository()->findAttributeByCode('dob');
+        $attGender = $this->getCustomerManager()->getFlexibleRepository()->findAttributeByCode('gender');
+        $attWebsite = $this->getCustomerManager()->getFlexibleRepository()->findAttributeByCode('website');
+        $attHobby = $this->getCustomerManager()->getFlexibleRepository()->findAttributeByCode('hobby');
         // get first attribute option
         $optGender = $this->getCustomerManager()->getAttributeOptionRepository()->findOneBy(array('attribute' => $attGender));
         // get attribute hobby options
@@ -170,7 +170,7 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
 
             // add customer with email, firstname, lastname, dob
             $custEmail = 'email-'.($ind++).'@mail.com';
-            $customer = $this->getCustomerManager()->createEntity();
+            $customer = $this->getCustomerManager()->createFlexible();
             $customer->setEmail($custEmail);
             $customer->setFirstname($this->generateFirstname());
             $customer->setLastname($this->generateLastname());
@@ -178,7 +178,7 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
             if ($attDob) {
                 $value = $customer->getValue($attDob->getCode());
                 if (!$value) {
-                    $value = $this->getCustomerManager()->createEntityValue();
+                    $value = $this->getCustomerManager()->createFlexibleValue();
                     $value->setAttribute($attDob);
                     $customer->addValue($value);
                 }
@@ -189,7 +189,7 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
 
             // add customer with email, firstname, lastname, company and gender
             $custEmail = 'email-'.($ind).'@mail.com';
-            $customer = $this->getCustomerManager()->createEntity();
+            $customer = $this->getCustomerManager()->createFlexible();
             $customer->setEmail($custEmail);
             $customer->setFirstname($this->generateFirstname());
             $customer->setLastname($this->generateLastname());
@@ -197,7 +197,7 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
             if ($attCompany) {
                 $value = $customer->getValue($attCompany->getCode());
                 if (!$value) {
-                    $value = $this->getCustomerManager()->createEntityValue();
+                    $value = $this->getCustomerManager()->createFlexibleValue();
                     $value->setAttribute($attCompany);
                     $customer->addValue($value);
                 }
@@ -207,7 +207,7 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
             if ($attDob) {
                 $value = $customer->getValue($attDob->getCode());
                 if (!$value) {
-                    $value = $this->getCustomerManager()->createEntityValue();
+                    $value = $this->getCustomerManager()->createFlexibleValue();
                     $value->setAttribute($attDob);
                     $customer->addValue($value);
                 }
@@ -217,7 +217,7 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
             if ($attWebsite) {
                 $value = $customer->getValue($attWebsite->getCode());
                 if (!$value) {
-                    $value = $this->getCustomerManager()->createEntityValue();
+                    $value = $this->getCustomerManager()->createFlexibleValue();
                     $value->setAttribute($attWebsite);
                     $customer->addValue($value);
                 }
@@ -227,7 +227,7 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
             if ($attGender) {
                 $value = $customer->getValue($attGender->getCode());
                 if (!$value) {
-                    $value = $this->getCustomerManager()->createEntityValue();
+                    $value = $this->getCustomerManager()->createFlexibleValue();
                     $value->setAttribute($attGender);
                     $customer->addValue($value);
                 }
@@ -236,7 +236,7 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
             if ($attHobby) {
                 $value = $customer->getValue($attHobby->getCode());
                 if (!$value) {
-                    $value = $this->getCustomerManager()->createEntityValue();
+                    $value = $this->getCustomerManager()->createFlexibleValue();
                     $value->setAttribute($attHobby);
                     $customer->addValue($value);
                 }
