@@ -23,7 +23,7 @@ class ManufacturerController extends Controller
     /**
      * Get manager
      *
-     * @return SimpleEntityManager
+     * @return SimpleManager
      */
     protected function getManufacturerManager()
     {

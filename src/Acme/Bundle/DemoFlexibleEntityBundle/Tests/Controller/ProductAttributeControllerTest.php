@@ -1,25 +1,22 @@
 <?php
-
 namespace Acme\Bundle\DemoFlexibleEntityBundle\Tests\Controller;
-
-use Acme\Bundle\DemoFlexibleEntityBundle\Tests\Controller\KernelAwareControllerTest;
 
 /**
  * Test related class
  *
- * @author    Nicolas Dupont <nicolas@akeneo.com>
+ * @author    Romain Monceau <romain@akeneo.com>
  * @copyright 2012 Akeneo SAS (http://www.akeneo.com)
  * @license   http://opensource.org/licenses/MIT MIT
  *
  */
-class ProductControllerTest extends KernelAwareControllerTest
+class ProductAttributeControllerTest extends KernelAwareControllerTest
 {
 
     /**
-     * Define product controller name for url generation
+     * Define customer controller name for url generation
      * @staticvar string
      */
-    protected static $controller = 'product';
+    protected static $controller = 'productattribute';
 
     /**
      * {@inheritdoc}
@@ -32,7 +29,7 @@ class ProductControllerTest extends KernelAwareControllerTest
     }
 
     /**
-     * Get product manager
+     * Get manager
      *
      * @return Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleManager
      */
@@ -48,26 +45,6 @@ class ProductControllerTest extends KernelAwareControllerTest
     {
         foreach (self::$locales as $locale) {
             $this->client->request('GET', self::prepareUrl($locale, 'index'));
-            $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-        }
-    }
-
-    /**
-     * Test related method
-     *
-     * @throws \Exception
-     */
-    public function testShowAction()
-    {
-        // find one to show
-        $entity = $this->getProductManager()->getFlexibleRepository()->findOneBy(array());
-        if (!$entity) {
-            throw new \Exception('Customer not found');
-        }
-
-        // call and assert view
-        foreach (self::$locales as $locale) {
-            $this->client->request('GET', self::prepareUrl('en', 'show/'.$entity->getId()));
             $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         }
     }
@@ -90,14 +67,14 @@ class ProductControllerTest extends KernelAwareControllerTest
     public function testEditAction()
     {
         // find one to edit
-        $entity = $this->getProductManager()->getFlexibleRepository()->findOneBy(array());
-        if (!$entity) {
-            throw new \Exception('Customer not found');
+        $attribute = $this->getProductManager()->getAttributeRepository()->findOneBy(array('entityType' => 'Acme\Bundle\DemoFlexibleEntityBundle\Entity\Product'));
+        if (!$attribute) {
+            throw new \Exception('Not found');
         }
 
         // just call view to show form
         foreach (self::$locales as $locale) {
-            $this->client->request('GET', self::prepareUrl($locale, 'edit/'. $entity->getId()));
+            $this->client->request('GET', self::prepareUrl($locale, 'edit/'. $attribute->getId()));
             $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         }
     }

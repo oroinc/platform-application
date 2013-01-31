@@ -1,7 +1,7 @@
 <?php
 namespace Acme\Bundle\DemoFlexibleEntityBundle\Entity;
 
-use Oro\Bundle\FlexibleEntityBundle\Entity\Mapping\AbstractEntityFlexibleAttribute;
+use Oro\Bundle\FlexibleEntityBundle\Entity\Mapping\AbstractEntityAttributeExtended;
 use Oro\Bundle\FlexibleEntityBundle\Entity\Attribute;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -15,7 +15,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="acmedemoflexibleentity_product_attribute")
  * @ORM\Entity
  */
-class ProductAttribute extends AbstractEntityFlexibleAttribute
+class ProductAttribute extends AbstractEntityAttributeExtended
 {
     const SCOPE_ECOMMERCE = 'ecommerce';
     const SCOPE_MOBILE    = 'mobile';
@@ -24,7 +24,7 @@ class ProductAttribute extends AbstractEntityFlexibleAttribute
      * @var Oro\Bundle\FlexibleEntityBundle\Entity\Attribute $attribute
      *
      * @ORM\OneToOne(targetEntity="Oro\Bundle\FlexibleEntityBundle\Entity\Attribute", cascade={"persist", "merge", "remove"})
-     * @ORM\JoinColumn(name="attribute_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="attribute_id", referencedColumnName="id", onDelete="CASCADE")
      */
     protected $attribute;
 
