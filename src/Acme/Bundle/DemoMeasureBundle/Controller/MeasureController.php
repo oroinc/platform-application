@@ -2,12 +2,12 @@
 
 namespace Acme\Bundle\DemoMeasureBundle\Controller;
 
-use Acme\Bundle\DemoMeasureBundle\Family\CapacitanceFamily;
-use Acme\Bundle\DemoMeasureBundle\Family\MyLengthFamily;
+use Acme\Bundle\DemoMeasureBundle\Family\CapacitanceFamilyInterface;
+use Acme\Bundle\DemoMeasureBundle\Family\MyLengthFamilyInterface;
 
 use Oro\Bundle\MeasureBundle\Convert\MeasureConverter;
 
-use Oro\Bundle\MeasureBundle\Family\LengthFamily;
+use Oro\Bundle\MeasureBundle\Family\LengthFamilyInterface;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -36,8 +36,8 @@ class MeasureController extends Controller
     {
         $converter = $this->getMeasureConverter();
 
-        $converter->setFamily(LengthFamily::FAMILY);
-        $result = $converter->convert(LengthFamily::KILOMETER, LengthFamily::MILE, 1);
+        $converter->setFamily(LengthFamilyInterface::FAMILY);
+        $result = $converter->convert(LengthFamilyInterface::KILOMETER, LengthFamilyInterface::MILE, 1);
 
         return array('result' => $result);
     }
@@ -54,8 +54,8 @@ class MeasureController extends Controller
     {
         $converter = $this->getMeasureConverter();
 
-        $converter->setFamily(CapacitanceFamily::FAMILY);
-        $result = $converter->convert(CapacitanceFamily::FARAD, CapacitanceFamily::KILOFARAD, 1500);
+        $converter->setFamily(CapacitanceFamilyInterface::FAMILY);
+        $result = $converter->convert(CapacitanceFamilyInterface::FARAD, CapacitanceFamilyInterface::KILOFARAD, 1500);
 
         return array('result' => $result);
     }
@@ -72,8 +72,8 @@ class MeasureController extends Controller
     {
         $converter = $this->getMeasureConverter();
 
-        $converter->setFamily(LengthFamily::FAMILY);
-        $result = $converter->convert(LengthFamily::KILOMETER, MyLengthFamily::DONG, 1);
+        $converter->setFamily(LengthFamilyInterface::FAMILY);
+        $result = $converter->convert(LengthFamilyInterface::KILOMETER, MyLengthFamilyInterface::DONG, 1);
 
         return array('result' => $result);
     }
