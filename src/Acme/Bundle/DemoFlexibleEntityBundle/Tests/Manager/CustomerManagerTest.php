@@ -1,7 +1,7 @@
 <?php
 namespace Acme\Bundle\DemoFlexibleEntityBundle\Test\Manager;
 
-use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\SingleOptionType;
+use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\OptionSimpleRadioType;
 
 use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\DateType;
 
@@ -87,7 +87,7 @@ class CustomerManagerTest extends KernelAwareTest
         $this->attGender = $this->createAttribute(
             'gender',
             'Gender',
-            new SingleOptionType(),
+            new OptionSimpleRadioType(),
             array('Mr', 'Mrs')
         );
 
