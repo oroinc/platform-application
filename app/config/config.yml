@@ -91,7 +91,7 @@ fos_rest:
 
 oro_search:
     engine:                   orm
-    realtime_update:          false
+    realtime_update:          true
 
 fos_user:
     db_driver:                orm       # other valid values are 'mongodb', 'couchdb' and 'propel'
