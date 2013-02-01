@@ -10,9 +10,6 @@
 [submodule "src/Oro/Bundle/UserBundle"]
 	path = src/Oro/Bundle/UserBundle
 	url = git@github.com:laboro/UserBundle.git
-[submodule "src/Oro/Bundle/DataFlowBundle"]
-	path = src/Oro/Bundle/DataFlowBundle
-	url = git@github.com:laboro/DataFlowBundle.git
 [submodule "src/Oro/Bundle/MeasureBundle"]
 	path = src/Oro/Bundle/MeasureBundle
 	url = git@github.com:laboro/MeasureBundle.git
