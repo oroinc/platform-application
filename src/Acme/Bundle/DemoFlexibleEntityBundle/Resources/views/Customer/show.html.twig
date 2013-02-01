@@ -1,6 +1,6 @@
 {% extends 'AcmeDemoFlexibleEntityBundle::layout.html.twig' %}
 
-{% block pagecontent %}
+{% block content %}
 
     <h3>Get fields values</h3>
 
@@ -20,6 +20,8 @@
         <li>Dob : {{ customer.dob|date('Y-m-d')}}</li>
         <li>Gender : {{ customer.gender }}</li>
         <li>Company : {{ customer.company }}</li>
+        <li>Hobbies : {{ customer.hobby }}</li>
+        <li>Website : {{ customer.website }}</li>
     </ul>
 
     <hr/>

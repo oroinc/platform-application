@@ -2,6 +2,14 @@
 
 namespace Acme\Bundle\DemoBundle\DataFixtures\ORM;
 
+use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\OptionSimpleSelectType;
+
+use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\DateType;
+
+use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\MoneyType;
+
+use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\TextType;
+
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -31,38 +39,33 @@ class LoadUserAttrData extends AbstractFixture implements ContainerAwareInterfac
     public function load(ObjectManager $manager)
     {
         /**
-         * @var Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleEntityManager
+         * @var Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleManager
          */
         $fm = $this->container->get('oro_user.flexible_manager');
         $sm = $fm->getStorageManager();
 
-        $attr = $fm->createAttribute()
-            ->setCode('firstname')
-            ->setBackendType(AbstractAttributeType::BACKEND_TYPE_VARCHAR);
+        $attr = $fm->createAttribute(new TextType())
+            ->setCode('firstname');
 
         $sm->persist($attr);
 
-        $attr = $fm->createAttribute()
-            ->setCode('lastname')
-            ->setBackendType(AbstractAttributeType::BACKEND_TYPE_VARCHAR);
+        $attr = $fm->createAttribute(new TextType())
+            ->setCode('lastname');
 
         $sm->persist($attr);
 
-        $attr = $fm->createAttribute()
-            ->setCode('salary')
-            ->setBackendType(AbstractAttributeType::BACKEND_TYPE_INTEGER);
+        $attr = $fm->createAttribute(new MoneyType())
+            ->setCode('salary');
 
         $sm->persist($attr);
 
-        $attr = $fm->createAttribute()
-            ->setCode('birthday')
-            ->setBackendType(AbstractAttributeType::BACKEND_TYPE_DATE);
+        $attr = $fm->createAttribute(new DateType())
+            ->setCode('birthday');
 
         $sm->persist($attr);
 
-        $attr = $fm->createAttribute()
+        $attr = $fm->createAttribute(new OptionSimpleSelectType())
             ->setCode('gender')
-            ->setBackendType(AbstractAttributeType::BACKEND_TYPE_OPTION)
             ->addOption(
                 $fm->createAttributeOption()->addOptionValue(
                     $fm->createAttributeOptionValue()->setValue('Male')

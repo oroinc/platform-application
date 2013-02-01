@@ -87,15 +87,19 @@ fos_rest:
             xml: fos_rest.decoder.xml
     routing_loader:
         default_format: json
+    param_fetcher_listener: force
 
 oro_search:
     engine:                   orm
-    realtime_update:          false
+    realtime_update:          true
 
 fos_user:
     db_driver:                orm       # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name:            main
     user_class:               Oro\Bundle\UserBundle\Entity\User
+    from_email:
+        address:              no-reply@bap.dev
+        sender_name:          Oro Admin
     group:
         group_class:          Oro\Bundle\UserBundle\Entity\Group
     service:
