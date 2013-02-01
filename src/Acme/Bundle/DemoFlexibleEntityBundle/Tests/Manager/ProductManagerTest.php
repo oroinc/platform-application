@@ -1,6 +1,10 @@
 <?php
 namespace Acme\Bundle\DemoFlexibleEntityBundle\Test\Manager;
 
+use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\IntegerType;
+
+use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\TextType;
+
 use Acme\Bundle\DemoFlexibleEntityBundle\Entity\Product;
 use Oro\Bundle\FlexibleEntityBundle\Model\AbstractAttributeType;
 
@@ -18,7 +22,7 @@ class ProductManagerTest extends KernelAwareTest
 {
 
     /**
-     * @var FlexibleEntityManager
+     * @var FlexibleManager
      */
     protected $manager;
 
@@ -36,19 +40,11 @@ class ProductManagerTest extends KernelAwareTest
      */
     public function testcreateEntity()
     {
-        $newProduct = $this->manager->createEntity();
+        $newProduct = $this->manager->createFlexible();
         $this->assertTrue($newProduct instanceof Product);
 
         $sku = 'my sku '.str_replace('.', '', microtime(true));
         $newProduct->setSku($sku);
-
-        // persist
-        $this->manager->getStorageManager()->persist($newProduct);
-        $this->manager->getStorageManager()->flush();
-
-        // remove product inserted
-        $this->manager->getStorageManager()->remove($newProduct);
-        $this->manager->getStorageManager()->flush();
     }
 
     /**
@@ -59,37 +55,42 @@ class ProductManagerTest extends KernelAwareTest
         $timestamp = str_replace('.', '', microtime(true));
 
         // entity
-        $newProduct = $this->manager->createEntity();
+        $newProduct = $this->manager->createFlexible();
         $this->assertTrue($newProduct instanceof Product);
-        $sku = 'my sku '.$timestamp;
+        $sku = 'my-sku-'.$timestamp;
         $newProduct->setSku($sku);
 
         // attribute name
-        $attName = $this->manager->createAttribute();
+        $attName = $this->manager->createAttribute(new TextType());
         $attNameCode= 'name'.$timestamp;
         $attName->setCode($attNameCode);
-        $attName->setBackendType(AbstractAttributeType::BACKEND_TYPE_VARCHAR);
         $attName->setTranslatable(true);
         $this->manager->getStorageManager()->persist($attName);
 
         // attribute size
-        $attSize = $this->manager->createAttribute();
+        $attSize = $this->manager->createAttribute(new IntegerType());
         $attSizeCode= 'size'.$timestamp;
         $attSize->setCode($attSizeCode);
-        $attSize->setBackendType(AbstractAttributeType::BACKEND_TYPE_INTEGER);
         $this->manager->getStorageManager()->persist($attSize);
 
         // name value
-        $valueName = $this->manager->createEntityValue();
+        $valueName = $this->manager->createFlexibleValue();
         $valueName->setAttribute($attName);
         $valueName->setData('my name');
         $newProduct->addValue($valueName);
 
         // size value
-        $valueSize = $this->manager->createEntityValue();
+        $valueSize = $this->manager->createFlexibleValue();
         $valueSize->setAttribute($attSize);
         $valueSize->setData(125);
         $newProduct->addValue($valueSize);
+
+        // required name attribute
+        $attRequiredName = $this->manager->getFlexibleRepository()->findAttributeByCode('name');
+        $valueRequiredName = $this->manager->createFlexibleValue();
+        $valueRequiredName->setAttribute($attRequiredName);
+        $valueRequiredName->setData('my name');
+        $newProduct->addValue($valueRequiredName);
 
         // persist
         $this->manager->getStorageManager()->persist($newProduct);

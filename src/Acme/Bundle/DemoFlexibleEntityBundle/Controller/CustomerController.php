@@ -1,7 +1,9 @@
 <?php
-
 namespace Acme\Bundle\DemoFlexibleEntityBundle\Controller;
 
+use Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleManager;
+use Acme\Bundle\DemoFlexibleEntityBundle\Form\Type\CustomerType;
+use Acme\Bundle\DemoFlexibleEntityBundle\Entity\Customer;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -19,8 +21,8 @@ class CustomerController extends Controller
 {
 
     /**
-     * Get product manager
-     * @return SimpleEntityManager
+     * Get customer manager
+     * @return FlexibleManager
      */
     protected function getCustomerManager()
     {
@@ -29,133 +31,68 @@ class CustomerController extends Controller
 
     /**
      * @Route("/index")
-     * @Template()
+     * @Template("AcmeDemoFlexibleEntityBundle:Customer:index.html.twig")
      *
-     * @return multitype
+     * @return array
      */
     public function indexAction()
     {
-        $customers = $this->getCustomerManager()->getEntityRepository()->findByWithAttributes();
+        $customers = $this->getCustomerManager()->getFlexibleRepository()->findByWithAttributes();
 
         return array('customers' => $customers);
     }
 
     /**
-     * @Route("/querylazyload")
+     * Query customers
+     *
+     * @param string $attributes attribute codes
+     * @param string $criteria   criterias
+     * @param string $orderBy    order by
+     * @param int    $limit      limit
+     * @param int    $offset     offset
+     *
+     * @Route("/query/{attributes}/{criteria}/{orderBy}/{limit}/{offset}", defaults={"attributes" = null, "criteria" = null, "orderBy" = null, "limit" = null, "offset" = null})
+     *
      * @Template("AcmeDemoFlexibleEntityBundle:Customer:index.html.twig")
      *
-     * @return multitype
+     * @return array
      */
-    public function querylazyloadAction()
+    public function queryAction($attributes, $criteria, $orderBy, $limit, $offset)
     {
-        $customers = $this->getCustomerManager()->getEntityRepository()->findBy(array());
+        // prepare params
+        if (!is_null($attributes) and $attributes !== 'null') {
+            $attributes = explode('&', $attributes);
+        } else {
+            $attributes = array();
+        }
+        if (!is_null($criteria) and $criteria !== 'null') {
+            parse_str($criteria, $criteria);
+        } else {
+            $criteria = array();
+        }
+        if (!is_null($orderBy) and $orderBy !== 'null') {
+            parse_str($orderBy, $orderBy);
+        } else {
+            $orderBy = array();
+        }
+
+        // get entities
+        $customers = $this->getCustomerManager()->getFlexibleRepository()->findByWithAttributes(
+            $attributes, $criteria, $orderBy, $limit, $offset
+        );
 
         return array('customers' => $customers);
     }
 
     /**
-     * @Route("/queryonlydob")
+     * @Route("/query-lazy-load")
      * @Template("AcmeDemoFlexibleEntityBundle:Customer:index.html.twig")
      *
      * @return multitype
      */
-    public function queryonlydobAction()
+    public function queryLazyLoadAction()
     {
-        $customers = $this->getCustomerManager()->getEntityRepository()->findByWithAttributes(array('dob'));
-
-        return array('customers' => $customers);
-    }
-
-    /**
-     * @Route("/queryonlydobandgender")
-     * @Template("AcmeDemoFlexibleEntityBundle:Customer:index.html.twig")
-     *
-     * @return multitype
-     */
-    public function queryonlydobandgenderAction()
-    {
-        $customers = $this->getCustomerManager()->getEntityRepository()->findByWithAttributes(array('dob', 'gender'));
-
-        return array('customers' => $customers);
-    }
-
-    /**
-     * @Route("/queryfilterfirstname")
-     * @Template("AcmeDemoFlexibleEntityBundle:Customer:index.html.twig")
-     *
-     * @return multitype
-     */
-    public function queryfilterfirstnameAction()
-    {
-        $customers = $this->getCustomerManager()
-                          ->getEntityRepository()
-                          ->findByWithAttributes(
-                              array(),
-                              array('firstname' => 'Nicolas')
-                          );
-
-        return array('customers' => $customers);
-    }
-
-    /**
-     * @Route("/queryfilterfirstnameandcompany")
-     * @Template("AcmeDemoFlexibleEntityBundle:Customer:index.html.twig")
-     *
-     * @return multitype
-     */
-    public function queryfilterfirstnameandcompanyAction()
-    {
-        $customers = $this->getCustomerManager()
-                          ->getEntityRepository()
-                          ->findByWithAttributes(
-                              array('company', 'dob', 'gender'),
-                              array('firstname' => 'Nicolas', 'company' => 'Akeneo')
-                          );
-
-        return array('customers' => $customers);
-    }
-
-    /**
-     * @Route("/queryfilterfirstnameandlimit")
-     * @Template("AcmeDemoFlexibleEntityBundle:Customer:index.html.twig")
-     *
-     * @return multitype
-     */
-    public function queryfilterfirstnameandlimit()
-    {
-        // initialize vars
-        $limit = 10;
-        $start = 0;
-
-        // get customers filtered by firstname = "Nicolas" and limited
-        $customers = $this->getCustomerManager()
-                          ->getEntityRepository()
-                          ->findByWithAttributes(
-                              array(),
-                              array('firstname' => 'Nicolas'),
-                              null,
-                              $limit,
-                              $start
-                          );
-
-        return array('customers' => $customers);
-    }
-
-    /**
-     * @Route("/queryfilterfirstnameandorderbirthdatedesc")
-     * @Template("AcmeDemoFlexibleEntityBundle:Customer:index.html.twig")
-     *
-     * @return multitype
-     */
-    public function queryfilterfirstnameandorderbirthdatedescAction()
-    {
-        $customers = $this->getCustomerManager()
-                          ->getEntityRepository()
-                          ->findByWithAttributes(
-                              array('dob'),
-                              array('firstname' => 'Nicolas'),
-                              array('dob' => 'desc')
-                          );
+        $customers = $this->getCustomerManager()->getFlexibleRepository()->findBy(array());
 
         return array('customers' => $customers);
     }
@@ -163,32 +100,89 @@ class CustomerController extends Controller
     /**
      * @param integer $id
      *
-     * @Route("/view/{id}")
+     * @Route("/show/{id}")
      * @Template()
      *
      * @return multitype
      */
-    public function viewAction($id)
+    public function showAction($id)
     {
         // with any values
-        $customer = $this->getCustomerManager()->getEntityRepository()->findWithAttributes($id);
+        $customer = $this->getCustomerManager()->getFlexibleRepository()->findWithAttributes($id);
 
         return array('customer' => $customer);
     }
 
     /**
-     * List customer attributes
-     * @Route("/attribute")
-     * @Template()
+     * Create customer
+     *
+     * @Route("/create")
+     * @Template("AcmeDemoFlexibleEntityBundle:Customer:edit.html.twig")
      *
      * @return multitype
      */
-    public function attributeAction()
+    public function createAction()
     {
-        $attributes = $this->getCustomerManager()->getAttributeRepository()
-            ->findBy(array('entityType' => $this->getCustomerManager()->getEntityName()));
+        $entity = $this->getCustomerManager()->createFlexible();
 
-        return array('attributes' => $attributes);
+        return $this->editAction($entity);
+    }
+
+    /**
+     * Edit customer
+     *
+     * @param Customer $entity
+     *
+     * @Route("/edit/{id}", requirements={"id"="\d+"}, defaults={"id"=0})
+     * @Template
+     *
+     * @return multitype
+     */
+    public function editAction(Customer $entity)
+    {
+        $request = $this->getRequest();
+
+        // create form
+        $entClassName = $this->getCustomerManager()->getFlexibleName();
+        $valueClassName = $this->getCustomerManager()->getFlexibleValueName();
+        $form = $this->createForm(new CustomerType($entClassName, $valueClassName), $entity);
+
+        if ($request->getMethod() == 'POST') {
+            $form->bind($request);
+
+            if ($form->isValid()) {
+                $em = $this->getCustomerManager()->getStorageManager();
+                $em->persist($entity);
+                $em->flush();
+
+                $this->get('session')->getFlashBag()->add('success', 'Customer successfully saved');
+
+                return $this->redirect($this->generateUrl('acme_demoflexibleentity_customer_index'));
+            }
+        }
+
+        return array(
+            'form' => $form->createView(),
+        );
+    }
+
+    /**
+     * Remove customer
+     * @param Customer $entity
+     *
+     * @Route("/remove/{id}", requirements={"id"="\d+"})
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function removeAction(Customer $entity)
+    {
+        $em = $this->getCustomerManager()->getStorageManager();
+        $em->remove($entity);
+        $em->flush();
+
+        $this->get('session')->getFlashBag()->add('success', 'Customer successfully removed');
+
+        return $this->redirect($this->generateUrl('acme_demoflexibleentity_customer_index'));
     }
 
 }

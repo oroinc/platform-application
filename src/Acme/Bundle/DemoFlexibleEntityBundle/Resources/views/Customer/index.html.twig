@@ -1,28 +1,29 @@
 {% extends 'AcmeDemoFlexibleEntityBundle::layout.html.twig' %}
 
-{% block pagecontent %}
+{% block content %}
 
-    <h3>Customer list</h3>
+    <h1>Customers overview
+        <a class="btn btn-primary pull-right" style="margin-left:10px;" href="{{ path('acme_demoflexibleentity_customer_create') }}">New customer</a> 
+        <a class="btn btn-primary pull-right" href="{{ path('acme_demoflexibleentity_customerattribute_index') }}">Manage attributes</a>
+    </h1>
 
     <ul id="menu-block">
         <li><a href="{{ path('acme_demoflexibleentity_customer_index') }}">Select entities and all attribute values</a></li>
         <li><a href="{{ path('acme_demoflexibleentity_customer_querylazyload') }}">Select just entities, attributes and values are lazy load</a></li>
-        
-        <li><a href="{{ path('acme_demoflexibleentity_customer_queryonlydob') }}">Select only date of birth</a></li>
-        <li><a href="{{ path('acme_demoflexibleentity_customer_queryonlydobandgender') }}">Select only date of birth and gender</a></li>
-        
-        <li><a href="{{ path('acme_demoflexibleentity_customer_queryfilterfirstname') }}">Select filtered by firstname (firstname = "Nicolas")</a></li>
-        <li><a href="{{ path('acme_demoflexibleentity_customer_queryfilterfirstnameandcompany') }}">Select filtered by firstname and company (firstname = "Nicolas" and company = "Akeneo")</a></li>
-        
-        <li><a href="{{ path('acme_demoflexibleentity_customer_queryfilterfirstnameandlimit') }}">Select filter by firstname (Nicolas) and limit (10)</a></li>
-        <li><a href="{{ path('acme_demoflexibleentity_customer_queryfilterfirstnameandorderbirthdatedesc') }}">Select only birthdate, filter by firstname (Nicolas) and order by birthdate desc</a></li>
+
+        <li><a href="{{ path('acme_demoflexibleentity_customer_query', {'attributes': 'dob'}) }}">Select only date of birth</a></li>
+        <li><a href="{{ path('acme_demoflexibleentity_customer_query', {'attributes': 'dob&gender'}) }}">Select only date of birth and gender</a></li>
+        <li><a href="{{ path('acme_demoflexibleentity_customer_query', {'attributes': 'null', 'criteria': 'firstname=Nicolas' }) }}">Select filtered by firstname (firstname = "Nicolas")</a></li>
+        <li><a href="{{ path('acme_demoflexibleentity_customer_query', {'attributes': 'company&dob&gender', 'criteria': 'firstname=Nicolas&company=Akeneo' }) }}">Select filtered by firstname and company (firstname = "Nicolas" and company = "Akeneo")</a></li>
+        <li><a href="{{ path('acme_demoflexibleentity_customer_query', {'attributes': 'null', 'criteria': 'firstname=Nicolas', 'orderBy': 'null', 'limit': 10, 'offset': 0}) }}">Select filter by firstname (Nicolas) and limit (10)</a></li>
+        <li><a href="{{ path('acme_demoflexibleentity_customer_query', {'attributes': 'company&dob&gender', 'criteria': 'firstname=Nicolas', 'orderBy': 'dob=desc'}) }}">Select only birthdate, filter by firstname (Nicolas) and order by birthdate desc</a></li>
     </ul>
-    
+
     <hr/>
-    
+
     <p>Nb results : {{ customers|length }}</p>
 
-    <table class="table table-striped">
+    <table class="table table-bordered table-striped table-condensed">
         <thead>
             <tr>
                 <th>Id</th>
@@ -32,7 +33,11 @@
                 <th>Birth</th>
                 <th>Gender</th>
                 <th>Company</th>
-                <th>Action</th>
+                <th>Hobbies</th>
+                <th>Website</th>
+                <th style="width: 50px">Show</th>
+                <th style="width: 50px">Edit</th>
+                <th style="width: 50px">Remove</th>
             </tr>
         </thead>
         <tbody>
@@ -45,12 +50,12 @@
             <td>{{ customer.dob|date('Y-m-d')}}</td>
             <td>{{ customer.gender }}</td>
             <td>{{ customer.company }}</td>
+            <td>{{ customer.hobby }}</td>
+            <td>{{ customer.website }}</td>
 
-            <td>
-                <a class="btn btn-small btn-primary" href="{{ path('acme_demoflexibleentity_customer_view', {'id': customer.id}) }}">
-                    {{ "View details" | trans }}
-                </a>
-            </td>
+            <td><a href="{{ path('acme_demoflexibleentity_customer_show', { id: customer.id }) }}"><i class="icon-zoom-in"></i></a></td>
+            <td><a href="{{ path('acme_demoflexibleentity_customer_edit', { id: customer.id }) }}"><i class="icon-edit"></i></a></td>
+            <td><a href="{{ path('acme_demoflexibleentity_customer_remove', { id: customer.id }) }}"><i class="icon-remove"></i></a></td>
         </tr>
         {% endfor %}
 

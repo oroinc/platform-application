@@ -1,11 +1,15 @@
 <?php
 namespace Acme\Bundle\DemoFlexibleEntityBundle\Controller;
 
+
+
+use Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleManager;
+
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Acme\Bundle\DemoFlexibleEntityBundle\Entity\Product;
+use Acme\Bundle\DemoFlexibleEntityBundle\Form\Type\ProductType;
 
 /**
  * Product Controller
@@ -21,7 +25,7 @@ class ProductController extends Controller
 
     /**
      * Get product manager
-     * @return FlexibleEntityManager
+     * @return FlexibleManager
      */
     protected function getProductManager()
     {
@@ -47,198 +51,183 @@ class ProductController extends Controller
     }
 
     /**
+     * Index action
+     *
+     * @param string $dataLocale locale
+     * @param string $dataScope  scope
+     *
      * @Route("/index/{dataLocale}/{dataScope}", defaults={"dataLocale" = null, "dataScope" = null})
      * @Template()
      *
-     * @return multitype
+     * @return array
      */
     public function indexAction($dataLocale, $dataScope)
     {
-        $products = $this->getProductManager()->getEntityRepository()->findByWithAttributes();
+        $products = $this->getProductManager()->getFlexibleRepository()->findByWithAttributes();
 
         return array('products' => $products, 'attributes' => $this->getAttributeCodesToDisplay());
     }
 
     /**
+     * Lazy load action
+     * @param string $dataLocale locale
+     * @param string $dataScope  scope
+     *
      * @Route("/querylazyload/{dataLocale}/{dataScope}", defaults={"dataLocale" = null, "dataScope" = null})
      * @Template("AcmeDemoFlexibleEntityBundle:Product:index.html.twig")
      *
-     * @return multitype
+     * @return array
      */
     public function querylazyloadAction($dataLocale, $dataScope)
     {
         // get only entities, values and attributes are lazy loaded
         // you can use any criteria, order you want it's a classic doctrine query
-        $products = $this->getProductManager()->getEntityRepository()->findBy(array());
+        $products = $this->getProductManager()->getFlexibleRepository()->findBy(array());
 
         return array('products' => $products, 'attributes' => $this->getAttributeCodesToDisplay());
     }
 
     /**
-     * @Route("/queryonlyname/{dataLocale}/{dataScope}", defaults={"dataLocale" = null, "dataScope" = null})
+     * Product query action
+     *
+     * @param string $dataLocale locale
+     * @param string $dataScope  scope
+     * @param string $attributes attribute codes
+     * @param string $criteria   criterias
+     * @param string $orderBy    order by
+     * @param int    $limit      limit
+     * @param int    $offset     offset
+     *
+     * @Route("/query/{dataLocale}/{dataScope}/{attributes}/{criteria}/{orderBy}/{limit}/{offset}",
+     *         defaults={"dataLocale" = null, "dataScope" = null, "attributes" = null, "criteria" = null, "orderBy" = null, "limit" = null, "offset" = null})
+     *
      * @Template("AcmeDemoFlexibleEntityBundle:Product:index.html.twig")
      *
-     * @return multitype
+     * @return array
      */
-    public function queryonlynameAction($dataLocale, $dataScope)
+    public function queryAction($dataLocale, $dataScope, $attributes, $criteria, $orderBy, $limit, $offset)
     {
-        // get all entity fields and directly get attributes values
-        $products = $this->getProductManager()->getEntityRepository()->findByWithAttributes(array('name'));
+        // prepare params
+        if (!is_null($attributes) and $attributes !== 'null') {
+            $attributes = explode('&', $attributes);
+        } else {
+            $attributes = array();
+        }
+        if (!is_null($criteria) and $criteria !== 'null') {
+            parse_str($criteria, $criteria);
+        } else {
+            $criteria = array();
+        }
+        if (!is_null($orderBy) and $orderBy !== 'null') {
+            parse_str($orderBy, $orderBy);
+        } else {
+            $orderBy = array();
+        }
 
-        return array('products' => $products, 'attributes' => array('name'));
-    }
-
-    /**
-     * @Route("/querynameanddesc/{dataLocale}/{dataScope}", defaults={"dataLocale" = null, "dataScope" = null})
-     * @Template("AcmeDemoFlexibleEntityBundle:Product:index.html.twig")
-     *
-     * @return multitype
-     */
-    public function querynameanddescAction($dataLocale, $dataScope)
-    {
-        // get all entity fields and directly get attributes values
-        $products = $this->getProductManager()->getEntityRepository()->findByWithAttributes(array('name', 'description'));
-
-        return array('products' => $products, 'attributes' => array('name', 'description'));
-    }
-
-    /**
-     * @Route("/querynameanddescforcelocale/{dataLocale}/{dataScope}", defaults={"dataLocale" = null, "dataScope" = null})
-     * @Template("AcmeDemoFlexibleEntityBundle:Product:index.html.twig")
-     *
-     * @return multitype
-     */
-    public function querynameanddescforcelocaleAction($dataLocale, $dataScope)
-    {
-        // get all entity fields and directly get attributes values
-        $pm = $this->getProductManager();
-        // force, always in french
-        $pm->setLocale('fr_FR');
-        $products = $pm->getEntityRepository()->findByWithAttributes(array('name', 'description'));
-
-        return array('products' => $products, 'attributes' => array('name', 'description'));
-    }
-
-    /**
-     * @Route("/queryfilterskufield/{dataLocale}/{dataScope}", defaults={"dataLocale" = null, "dataScope" = null})
-     * @Template("AcmeDemoFlexibleEntityBundle:Product:index.html.twig")
-     *
-     * @return multitype
-     */
-    public function queryfilterskufieldAction($dataLocale, $dataScope)
-    {
-        // get all entity fields, directly get attributes values, filter on entity field value
-        $products = $this->getProductManager()->getEntityRepository()->findByWithAttributes(array(), array('sku' => 'sku-2'));
-
-        return array('products' => $products, 'attributes' => array());
-    }
-
-    /**
-     * @Route("/querynamefilterskufield/{dataLocale}/{dataScope}", defaults={"dataLocale" = null, "dataScope" = null})
-     * @Template("AcmeDemoFlexibleEntityBundle:Product:index.html.twig")
-     *
-     * @return multitype
-     */
-    public function querynamefilterskufieldAction($dataLocale, $dataScope)
-    {
-        // get all entity fields, directly get attributes values, filter on entity field value
-        $products = $this->getProductManager()->getEntityRepository()->findByWithAttributes(array('name'), array('sku' => 'sku-2'));
-
-        return array('products' => $products, 'attributes' => array('name'));
-    }
-
-    /**
-     * @Route("/queryfiltersizeattribute/{dataLocale}/{dataScope}", defaults={"dataLocale" = null, "dataScope" = null})
-     * @Template("AcmeDemoFlexibleEntityBundle:Product:index.html.twig")
-     *
-     * @return multitype
-     */
-    public function queryfiltersizeattributeAction($dataLocale, $dataScope)
-    {
-        // get all entity fields, directly get attributes values, filter on attribute value
-        $products = $this->getProductManager()->getEntityRepository()->findByWithAttributes(array('description', 'size'), array('size' => 175));
-
-        return array('products' => $products, 'attributes' => array('description', 'size'));
-    }
-
-    /**
-     * @Route("/queryfiltersizeanddescattributes/{dataLocale}/{dataScope}", defaults={"dataLocale" = null, "dataScope" = null})
-     * @Template("AcmeDemoFlexibleEntityBundle:Product:index.html.twig")
-     *
-     * @return multitype
-     */
-    public function queryfiltersizeanddescattributesAction($dataLocale, $dataScope)
-    {
-        // get all entity fields, directly get attributes values, filter on attribute value
-        $products = $this->getProductManager()->getEntityRepository()->findByWithAttributes(
-            array('size', 'description'),
-            array('size' => 175, 'description' => 'my other description(ecommerce)')
+        // get entities
+        $products = $this->getProductManager()->getFlexibleRepository()->findByWithAttributes(
+            $attributes, $criteria, $orderBy, $limit, $offset
         );
 
-        return array('products' => $products, 'attributes' => array('description', 'size'));
+        return array('products' => $products, 'attributes' => $this->getAttributeCodesToDisplay());
     }
 
     /**
-     * @Route("/querynameanddesclimit/{dataLocale}/{dataScope}", defaults={"dataLocale" = null, "dataScope" = null})
-     * @Template("AcmeDemoFlexibleEntityBundle:Product:index.html.twig")
+     * Show details
      *
-     * @return multitype
-     */
-    public function querynameanddesclimitAction($dataLocale, $dataScope)
-    {
-        // get all entity fields and directly get attributes values
-        $products = $this->getProductManager()->getEntityRepository()->findByWithAttributes(array('name', 'description'), null, null, 10, 0);
-
-        return array('products' => $products, 'attributes' => array('name', 'description'));
-    }
-
-    /**
-     * @Route("/querynameanddescorderby/{dataLocale}/{dataScope}", defaults={"dataLocale" = null, "dataScope" = null})
-     * @Template("AcmeDemoFlexibleEntityBundle:Product:index.html.twig")
+     * @param integer $id         id
+     * @param string  $dataLocale data locale
+     * @param string  $dataScope  data scope
      *
-     * @return multitype
-     */
-    public function querynameanddescorderbyAction($dataLocale, $dataScope)
-    {
-        // get all entity fields and directly get attributes values
-        $products = $this->getProductManager()->getEntityRepository()->findByWithAttributes(
-            array('name', 'description'), null, array('description' => 'desc', 'id' => 'asc')
-        );
-
-        return array('products' => $products, 'attributes' => array('name', 'description'));
-    }
-
-    /**
-     * @param integer $id
-     *
-     * @Route("/view/{id}/{dataLocale}/{dataScope}", defaults={"dataLocale" = null, "dataScope" = null})
+     * @Route("/show/{id}/{dataLocale}/{dataScope}", defaults={"dataLocale" = null, "dataScope" = null})
      * @Template()
      *
-     * @return multitype
+     * @return array
      */
-    public function viewAction($id, $dataLocale, $dataScope)
+    public function showAction($id, $dataLocale, $dataScope)
     {
-        // with lazy loading
-        //$product = $this->getProductManager()->getEntityRepository()->find($id);
-        // with any values
-        $product = $this->getProductManager()->getEntityRepository()->findWithAttributes($id);
+        // load with any values
+        $product = $this->getProductManager()->getFlexibleRepository()->findWithAttributes($id);
 
         return array('product' => $product);
     }
 
     /**
-     * List product attributes
-     * @Route("/attribute")
-     * @Template()
+     * Create product
      *
-     * @return multitype
+     * @param string $dataLocale data locale
+     * @param string $dataScope  data scope
+     *
+     * @Route("/create/{dataLocale}/{dataScope}", defaults={"dataLocale" = null, "dataScope" = null})
+     * @Template("AcmeDemoFlexibleEntityBundle:Product:edit.html.twig")
+     *
+     * @return array
      */
-    public function attributeAction()
+    public function createAction($dataLocale, $dataScope)
     {
-        $attributes = $this->getProductManager()->getAttributeRepository()
-            ->findBy(array('entityType' => $this->getProductManager()->getEntityName()));
+        $entity = $this->getProductManager()->createFlexible(true);
 
-        return array('attributes' => $attributes);
+        return $this->editAction($entity, $dataLocale, $dataScope);
+    }
+
+    /**
+     * Edit product
+     *
+     * @param Product $entity     product
+     * @param string  $dataLocale data locale
+     * @param string  $dataScope  data scope
+     *
+     * @Route("/edit/{id}/{dataLocale}/{dataScope}", requirements={"id"="\d+"}, defaults={"id"=0, "dataLocale" = null, "dataScope" = null})
+     * @Template
+     *
+     * @return array
+     */
+    public function editAction(Product $entity, $dataLocale, $dataScope)
+    {
+        $request = $this->getRequest();
+
+        // create form
+        $entClassName = $this->getProductManager()->getFlexibleName();
+        $valueClassName = $this->getProductManager()->getFlexibleValueName();
+        $form = $this->createForm(new ProductType($entClassName, $valueClassName), $entity);
+
+        if ($request->getMethod() == 'POST') {
+            $form->bind($request);
+
+            if ($form->isValid()) {
+                $em = $this->getProductManager()->getStorageManager();
+                $em->persist($entity);
+                $em->flush();
+
+                $this->get('session')->getFlashBag()->add('success', 'Product successfully saved');
+
+                return $this->redirect($this->generateUrl('acme_demoflexibleentity_product_index'));
+            }
+        }
+
+        return array(
+                'form' => $form->createView(),
+        );
+    }
+
+    /**
+     * Remove product
+     *
+     * @param Product $entity
+     *
+     * @Route("/remove/{id}", requirements={"id"="\d+"})
+     *
+     * @return array
+     */
+    public function removeAction(Product $entity)
+    {
+        $em = $this->getProductManager()->getStorageManager();
+        $em->remove($entity);
+        $em->flush();
+
+        $this->get('session')->getFlashBag()->add('success', 'Product successfully removed');
+
+        return $this->redirect($this->generateUrl('acme_demoflexibleentity_product_index'));
     }
 
 }
