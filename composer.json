@@ -37,7 +37,9 @@
         "burti/ass-xmlsecurity": "dev-master",
         "burti/besimple-soap-common": "dev-master",
         "burti/besimple-soap-bundle": "dev-master",
-        "burti/besimple-soap-server": "dev-master"
+        "burti/besimple-soap-server": "dev-master",
+
+        "stof/doctrine-extensions-bundle":      "dev-master"
     },
     "scripts": {
         "post-install-cmd": [

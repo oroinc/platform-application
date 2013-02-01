@@ -15,6 +15,11 @@ use Acme\Bundle\DemoBundle\Form\ProductType;
 
 /**
  * @Route("/search")
+ * @Acl(
+ *      id = "acme_demo_search_controller",
+ *      name="Search controller",
+ *      description = "Search controller"
+ * )
  */
 class SearchController extends Controller
 {
@@ -24,7 +29,8 @@ class SearchController extends Controller
      * @Acl(
      *      id = "acme_demo_search",
      *      name="Product list",
-     *      description = "List of products and add new product"
+     *      description = "List of products and add new product",
+     *      parent = "acme_demo_search_controller"
      * )
      * @Route("/", name="acme_demo_search")
      * @Template()
@@ -92,11 +98,6 @@ class SearchController extends Controller
     /**
      * Delete product
      *
-     * @Acl(
-     *      id = "acme_demo_search_delete",
-     *      name = "Delete product",
-     *      description = "Product delete"
-     * )
      * @Route("/delete/{id}", name="acme_demo_delete")
      * @param $id
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
@@ -139,6 +140,21 @@ class SearchController extends Controller
                 3
             )
         );
+    }
+
+    /**
+     * @Acl(
+     *      id = "acme_demo_search_test",
+     *      name = "Query builder",
+     *      description = "Search request using query builder",
+     *      parent = "acme_demo_search"
+     * )
+     * @Template()
+     * @return array
+     */
+    public function testAction()
+    {
+        return array();
     }
 
     /**
