@@ -37,6 +37,9 @@ class AppKernel extends Kernel
             new Oro\Bundle\UserBundle\OroUserBundle(),
             new Oro\Bundle\MeasureBundle\OroMeasureBundle(),
             new Acme\Bundle\DemoMeasureBundle\AcmeDemoMeasureBundle(),
+
+            // test bundle
+            new Ddeboer\DataImportBundle\DdeboerDataImportBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
