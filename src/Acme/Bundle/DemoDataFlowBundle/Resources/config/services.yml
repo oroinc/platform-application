@@ -1,0 +1,7 @@
+parameters:
+    oro_dataflow.product_manager: ~
+    
+services:
+    oro_dataflow.magento_connector:
+        class: Acme\Bundle\DemoDataFlowBundle\Connector\MagentoConnector
+        arguments: [@product_manager, %oro_measure.measures_config%]
