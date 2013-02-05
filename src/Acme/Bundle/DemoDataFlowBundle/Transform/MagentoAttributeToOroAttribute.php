@@ -1,5 +1,5 @@
 <?php
-namespace Acme\Bundle\DemoDataFlowBundle\DataTransformer;
+namespace Acme\Bundle\DemoDataFlowBundle\Transform;
 
 use Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleManager;
 use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\TextType;
@@ -35,7 +35,7 @@ class MagentoAttributeToOroAttribute implements DataTransformerInterface
     /**
      * Transforms a oro attribute to a magento attribute
      *
-     * @param  mixed $attribute
+     * @param mixed $attribute
      *
      * @return array
      */
@@ -48,7 +48,7 @@ class MagentoAttributeToOroAttribute implements DataTransformerInterface
     /**
      * Transforms a magento attribute to a oro attribute
      *
-     * @param  mixed $magentoAttribute
+     * @param mixed $magentoAttribute
      *
      * @return Attribute $attribute
      * @throws TransformationFailedException if object is not found.

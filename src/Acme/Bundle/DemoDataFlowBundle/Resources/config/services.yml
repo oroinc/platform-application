@@ -1,12 +1,11 @@
 services:
-    connector.magento:
+    connector.magento_catalog:
         class: Acme\Bundle\DemoDataFlowBundle\Connector\MagentoConnector
         arguments: [ @product_manager ]
         tags:
-            - { name: dataflow_connector }
+            - { name: oro_dataflow_connector }
 
     job.import_attributes:
-        class: Acme\Bundle\DemoDataFlowBundle\Job\ImportAttributesJob
+        class: Acme\Bundle\DemoDataFlowBundle\Connector\ImportAttributesJob
         arguments: [ @product_manager ]
-        tags:
-            - { name: dataflow_job }
+

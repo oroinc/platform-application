@@ -1,12 +1,12 @@
 <?php
-namespace Acme\Bundle\DemoDataFlowBundle\Job;
+namespace Acme\Bundle\DemoDataFlowBundle\Connector;
 
 use Doctrine\DBAL\Configuration;
 use Doctrine\DBAL\DriverManager;
-use Oro\Bundle\DataFlowBundle\Job\JobInterface;
+use Oro\Bundle\DataFlowBundle\Connector\JobInterface;
 use Ddeboer\DataImport\Reader\DbalReader;
 use Doctrine\Common\Persistence\ObjectManager;
-use Acme\Bundle\DemoDataFlowBundle\DataTransformer\MagentoAttributeToOroAttribute;
+use Acme\Bundle\DemoDataFlowBundle\Transform\MagentoAttributeToOroAttribute;
 use Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleManager;
 
 /**
@@ -44,11 +44,11 @@ class ImportAttributesJob implements JobInterface
             'dbal' => array(
                     'driver'   => 'pdo_mysql',
                     'host'     => '127.0.0.1',
-                    'dbname'   => 'magento',
+                    'dbname'   => 'magento_ab',
                     'user'     => 'root',
                     'password' => 'root',
             ),
-            'prefix' => ''
+            'prefix' => 'ab_'
         );
         $this->code          = 'import_attribute';
     }

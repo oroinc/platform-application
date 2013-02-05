@@ -2,16 +2,12 @@
 
 namespace Acme\Bundle\DemoDataFlowBundle\Controller;
 
-use Oro\Bundle\DataFlowBundle\CompilerPass\ConnectorCompilerPass;
-
-use Symfony\Component\DependencyInjection\ContainerBuilder;
-
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 use Acme\Bundle\DemoDataFlowBundle\Connector\MagentoConnector;
-use Acme\Bundle\DemoDataFlowBundle\Job\ImportAttributes;
+use Acme\Bundle\DemoDataFlowBundle\Connector\ImportAttributes;
 use Ddeboer\DataImport\Workflow;
 use Ddeboer\DataImport\Source\Http;
 use Ddeboer\DataImport\Source\Filter\Unzip;
@@ -38,7 +34,7 @@ class DefaultController extends Controller
     public function testAction()
     {
         // get connector
-        $connector = $this->container->get('connector.magento');
+        $connector = $this->container->get('connector.magento_catalog');
 
         // get import attributes job
         $job = $this->container->get('job.import_attributes');
@@ -58,13 +54,9 @@ class DefaultController extends Controller
      */
     public function listConnectorsAction()
     {
-        $container = new ContainerBuilder();
+        $connectors = $this->container->get('oro_dataflow.connectors');
 
-        $container->addCompilerPass(new ConnectorCompilerPass());
-        $chain = $this->container->get('dataflow_connector.chain');
-        var_dump($chain);
-
-        return array();
+        return array('connectors' => $connectors->getConnectors());
     }
 
     /**

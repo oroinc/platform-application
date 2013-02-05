@@ -1,0 +1,11 @@
+{% extends bap.layout is defined ? bap.layout : 'AcmeDemoFlexibleEntityBundle::layout.html.twig' %}
+
+{% set title = 'Dataflow connectors' %}
+
+{% block title %}{{ parent() }} - {{ title }}{% endblock %}
+
+{% block content %}
+
+    {{ dump(connectors) }}
+
+{% endblock %}
