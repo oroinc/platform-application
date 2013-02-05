@@ -77,31 +77,44 @@ class ImportAttributesJob implements JobInterface
      */
     public function process()
     {
+        $messages = array();
+
         // prepare connection
         $params = $this->configuration['dbal'];
         $connection = DriverManager::getConnection($params, new Configuration());
 
-        // query on lines
+        // query on magento attributes
         $prefix = $this->configuration['prefix'];
         $sql = 'SELECT * FROM '.$prefix.'eav_attribute AS att '
             .'INNER JOIN '.$prefix.'eav_entity_type AS typ ON att.entity_type_id = typ.entity_type_id AND typ.entity_type_code = "catalog_product"';
-        $reader = new DbalReader($connection, $sql);
+        $magentoReader = new DbalReader($connection, $sql);
 
-        // read all items
+        // query on oro attributes
+        $codeToAttribute = $this->manager->getFlexibleRepository()->getCodeToAttributes(array());
+
+        // read all attribute items
+        $toExcludeCode = array('sku', 'old_id');
         $transformer = new MagentoAttributeToOroAttribute($this->manager);
-        foreach ($reader as $item) {
-
-            $attribute = $transformer->reverseTransform($item);
-            if ($attribute->getId() > 0) {
-                echo 'already exists <br/>';
-            } else {
-                $this->manager->getStorageManager()->persist($attribute);
-                echo $attribute->getCode().' inserted <br/>';
+        foreach ($magentoReader as $attributeItem) {
+            $attributeCode = $attributeItem['attribute_code'];
+            // filter existing (just create new one)
+            if (isset($codeToAttribute[$attributeCode])) {
+                $messages[]= array('notice', $attributeCode.' already exists <br/>');
+                continue;
             }
-
-            $this->manager->getStorageManager()->flush();
+            // exclude from explicit list
+            if (in_array($attributeCode, $toExcludeCode)) {
+                $messages[]= array('notice', $attributeCode.' is in to exclude list <br/>');
+                continue;
+            }
+            // persist new attributes
+            $attribute = $transformer->reverseTransform($attributeItem);
+            $this->manager->getStorageManager()->persist($attribute);
+            $messages[]= array('success', $attributeCode.' inserted <br/>');
         }
-    }
+        $this->manager->getStorageManager()->flush();
 
+        return $messages;
+    }
 
 }

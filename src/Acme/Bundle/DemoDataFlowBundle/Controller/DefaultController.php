@@ -40,10 +40,17 @@ class DefaultController extends Controller
         $job = $this->container->get('job.import_attributes');
 
         // add job to connector and execute it
+        /*
         $connector->addJob($job);
         $connector->process($job->getCode());
+        */
 
-        return array();
+        $messages = $job->process();
+        foreach ($messages as $message) {
+            $this->get('session')->getFlashBag()->add($message[0], $message[1]);
+        }
+
+        return $this->redirect($this->generateUrl('acme_demoflexibleentity_productattribute_index'));
     }
 
     /**

@@ -2,11 +2,23 @@
 namespace Acme\Bundle\DemoDataFlowBundle\Transform;
 
 use Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleManager;
-use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\TextType;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 use Doctrine\Common\Persistence\ObjectManager;
 use Oro\Bundle\FlexibleEntityBundle\Entity\Attribute;
+use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\TextType;
+use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\OptionSimpleSelectType;
+use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\OptionSimpleRadioType;
+use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\OptionMultiSelectType;
+use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\OptionMultiCheckboxType;
+use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\DateType;
+use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\MetricType;
+use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\MoneyType;
+use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\TextAreaType;
+use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\UrlType;
+use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\NumberType;
+use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\MailType;
+use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\IntegerType;
 
 
 /**
@@ -59,23 +71,21 @@ class MagentoAttributeToOroAttribute implements DataTransformerInterface
             return null;
         }
 
+        // mapping
         $magentoCode = $magentoAttribute['attribute_code'];
-        $attribute = $this->manager->getStorageManager()
-            ->getRepository('OroFlexibleEntityBundle:Attribute')
-            ->findOneBy(array('code' => $magentoCode));
-
-        // not exists
-        if (null === $attribute) {
-
-            $attribute = $this->manager->createAttribute(new TextType());
-            $attribute->setCode($magentoCode);
-
-            /*
-            throw new TransformationFailedException(sprintf(
-                'Attribute "%s" is not found!',
-                $magentoAttribute['attribute_code']
-            ));*/
+        $magentoType = $magentoAttribute['frontend_input'];
+        $type = null;
+        switch ($magentoType) {
+            case 'price':    $type = new MoneyType(); break;
+            case 'select':   $type = new OptionSimpleSelectType(); break;
+            case 'date':     $type = new DateType(); break;
+            case 'textarea': $type = new TextAreaType(); break;
+            default: $type = new TextType(); break;
         }
+
+        // create attribute
+        $attribute = $this->manager->createAttribute($type);
+        $attribute->setCode($magentoCode);
 
         return $attribute;
     }
