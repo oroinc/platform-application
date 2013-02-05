@@ -21,8 +21,6 @@
         <testsuite name="Project Unit Tests">
             <directory>../src/Oro/*Bundle/Tests</directory>
             <directory>../src/Oro/Bundle/*Bundle/Tests</directory>
-            <directory>../src/*/*Bundle/Tests/Unit</directory>
-            <directory>../src/*/Bundle/*Bundle/Tests/Unit</directory>
         </testsuite>
         <testsuite name="Project Unit Tests Final">
             <directory>../src/*/*Bundle/Tests/Unit</directory>
