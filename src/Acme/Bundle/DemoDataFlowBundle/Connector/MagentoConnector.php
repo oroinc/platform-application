@@ -29,14 +29,21 @@ class MagentoConnector implements ConnectorInterface
 
     /**
      * @param FlexibleManager $manager
-     * @param \ArrayAccess
      */
-    public function __construct(FlexibleManager $manager, $configuration)
+    public function __construct(FlexibleManager $manager)
     {
         $this->manager = $manager;
-        $this->configuration = $configuration;
+        $this->configuration = array(
+            'dbal' => array(
+                    'driver'   => 'pdo_mysql',
+                    'host'     => '127.0.0.1',
+                    'dbname'   => 'magento',
+                    'user'     => 'root',
+                    'password' => 'root',
+            ),
+            'prefix' => ''
+        );
         $this->jobs = array();
-        $this->addJob(new ImportAttributes($this->manager, $configuration));
     }
 
     /**
@@ -52,7 +59,8 @@ class MagentoConnector implements ConnectorInterface
     /**
      * Get job by code
      *
-     * @string $code
+     * @param string $code
+     *
      * @return JobInterface
      */
     public function getJob($code)
@@ -63,7 +71,7 @@ class MagentoConnector implements ConnectorInterface
     /**
      * Add a job
      * @param JobInterface $job
-    */
+     */
     public function addJob(JobInterface $job)
     {
         $this->jobs[$job->getCode()]= $job;
@@ -71,8 +79,8 @@ class MagentoConnector implements ConnectorInterface
 
     /**
      * Process a job
-     * @param JobInterface $job
-    */
+     * @param string $code
+     */
     public function process($code)
     {
         $job = $this->getJob($code);

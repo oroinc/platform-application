@@ -36,13 +36,26 @@ class ImportAttributes implements JobInterface
 
     /**
      * @param FlexibleManager $manager
-     * @param array           $configuration
      */
-    public function __construct(FlexibleManager $manager, $configuration)
+    public function __construct(FlexibleManager $manager)
     {
         $this->manager       = $manager;
-        $this->configuration = $configuration;
+        $this->configuration = array(
+            'dbal' => array(
+                    'driver'   => 'pdo_mysql',
+                    'host'     => '127.0.0.1',
+                    'dbname'   => 'magento',
+                    'user'     => 'root',
+                    'password' => 'root',
+            ),
+            'prefix' => ''
+        );
         $this->code          = 'import_attribute';
+    }
+
+    public function setManager(FlexibleManager $manager)
+    {
+        $this->manager = $manager;
     }
 
     /**

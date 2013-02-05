@@ -2,6 +2,10 @@
 
 namespace Acme\Bundle\DemoDataFlowBundle\Controller;
 
+use Oro\Bundle\DataFlowBundle\CompilerPass\ConnectorCompilerPass;
+
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -33,19 +37,15 @@ class DefaultController extends Controller
      */
     public function testAction()
     {
-        $manager = $this->container->get('product_manager');
-        $configuration = array(
-            'dbal' => array(
-                    'driver'   => 'pdo_mysql',
-                    'host'     => '127.0.0.1',
-                    'dbname'   => 'magento_ab',
-                    'user'     => 'root',
-                    'password' => 'root',
-            ),
-            'prefix' => 'ab_'
-        );
-        $connector = new MagentoConnector($manager, $configuration);
-        $connector->process('import_attribute');
+        // get connector
+        $connector = $this->container->get('connector.magento');
+
+        // get import attributes job
+        $job = $this->container->get('job.import_attributes');
+
+        // add job to connector and execute it
+        $connector->addJob($job);
+        $connector->process($job->getCode());
 
         return array();
     }
@@ -103,7 +103,8 @@ class DefaultController extends Controller
 
         // Use one of the writers supplied with this bundle, implement your own, or use
         // a closure:
-        ->addWriter(new \Ddeboer\DataImport\Writer\CallbackWriter(
+        ->addWriter(
+            new \Ddeboer\DataImport\Writer\CallbackWriter(
                 function($csvLine) {
                     var_dump($csvLine);
                 }

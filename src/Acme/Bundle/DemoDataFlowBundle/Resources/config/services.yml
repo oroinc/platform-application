@@ -1,7 +1,21 @@
 parameters:
-    oro_dataflow.product_manager: ~
-    
+    dataflow_connector.chain.class: Oro\Bundle\DataFlowBundle\Connector\ConnectorChain
+
 services:
-    oro_dataflow.magento_connector:
+    dataflow_connector.chain:
+        class: "%dataflow_connector.chain.class%"
+
+    connector.magento:
         class: Acme\Bundle\DemoDataFlowBundle\Connector\MagentoConnector
-        arguments: [@product_manager, %oro_measure.measures_config%]
+        arguments: [ @product_manager ]
+        tags:
+            - { name: dataflow_connector }
+        
+
+    job.import_attributes:
+        class: Acme\Bundle\DemoDataFlowBundle\Job\ImportAttributes
+        arguments: [ @product_manager ]
+        tags:
+            - { name: dataflow_job }
+    
+    
