@@ -51,6 +51,23 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/list-jobs")
+     * @Template()
+     *
+     * @return array
+     */
+    public function listJobsAction()
+    {
+        $container = new ContainerBuilder();
+
+        $container->addCompilerPass(new ConnectorCompilerPass());
+        $chain = $this->container->get('dataflow_connector.chain');
+        var_dump($chain);
+
+        return array();
+    }
+
+    /**
      * @Route("/index")
      * @Template()
      *
