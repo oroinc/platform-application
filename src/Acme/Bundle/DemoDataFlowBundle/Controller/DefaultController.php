@@ -51,12 +51,12 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/list-jobs")
+     * @Route("/list-connectors")
      * @Template()
      *
      * @return array
      */
-    public function listJobsAction()
+    public function listConnectorsAction()
     {
         $container = new ContainerBuilder();
 

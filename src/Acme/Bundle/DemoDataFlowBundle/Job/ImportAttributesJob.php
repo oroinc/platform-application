@@ -17,7 +17,7 @@ use Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleManager;
  * @license   http://opensource.org/licenses/MIT MIT
  *
  */
-class ImportAttributes implements JobInterface
+class ImportAttributesJob implements JobInterface
 {
     /**
      * @var string
@@ -53,6 +53,10 @@ class ImportAttributes implements JobInterface
         $this->code          = 'import_attribute';
     }
 
+    /**
+     * set a flexible manager
+     * @param FlexibleManager $manager
+     */
     public function setManager(FlexibleManager $manager)
     {
         $this->manager = $manager;
