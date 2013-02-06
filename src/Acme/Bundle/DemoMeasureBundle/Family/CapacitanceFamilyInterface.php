@@ -1,8 +1,6 @@
 <?php
 namespace Acme\Bundle\DemoMeasureBundle\Family;
 
-use Oro\Bundle\MeasureBundle\Family\AbstractFamily;
-
 /**
  * Capacitance measures constants
  *
@@ -11,7 +9,7 @@ use Oro\Bundle\MeasureBundle\Family\AbstractFamily;
  * @license   http://opensource.org/licenses/MIT MIT
  *
  */
-class CapacitanceFamily extends AbstractFamily
+interface CapacitanceFamilyInterface
 {
 
     /**

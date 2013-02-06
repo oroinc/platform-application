@@ -92,7 +92,7 @@ fos_rest:
 
 oro_search:
     engine:                   orm
-    realtime_update:          false
+    realtime_update:          true
 
 be_simple_soap:
     cache:
