@@ -115,3 +115,8 @@ stof_doctrine_extensions:
     orm:
         default:
             tree: true
+
+services:
+    cache:
+        class: Doctrine\Common\Cache\PhpFileCache
+        arguments: [%kernel.cache_dir%]
