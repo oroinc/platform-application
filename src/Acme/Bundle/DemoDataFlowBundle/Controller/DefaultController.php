@@ -50,7 +50,43 @@ class DefaultController extends Controller
             $this->get('session')->getFlashBag()->add($message[0], $message[1]);
         }
 
-        return $this->redirect($this->generateUrl('acme_demoflexibleentity_productattribute_index'));
+        return array();
+//         return $this->redirect($this->generateUrl('acme_demoflexibleentity_productattribute_index'));
+    }
+
+    /**
+     * Call customer import
+     *
+     * @Route("/customers")
+     * @Template()
+     *
+     * @return array
+     */
+    public function customersAction()
+    {
+        // get magento connector
+//         $connector = $this->container->get('connector.magento_catalog');
+
+        // get import customers job
+        $job = $this->container->get('job.import_customers');
+
+        // Add job to connector and execute it
+//         $connector->addJob($job);
+        $customers = $job->process();
+
+        $this->get('session')->getFlashBag()->add('success', count($customers) .' has been transformed !!!');
+
+        foreach ($customers as $customer) {
+
+            $this->get('session')->getFlashBag()->add('info', 'Email -> '. $customer->getEmail());
+            $this->get('session')->getFlashBag()->add('info', 'Firstname -> '. $customer->getFirstname());
+            $this->get('session')->getFlashBag()->add('info', 'Lastname -> '. $customer->getLastname());
+
+            $this->get('session')->getFlashBag()->add('info', 'Get company mapped from password hash -> '. $customer->getValue('company')->getData());
+            $this->get('session')->getFlashBag()->add('info', 'Website -> '. $customer->getValue('website')->getData());
+        }
+
+        return array();
     }
 
     /**
