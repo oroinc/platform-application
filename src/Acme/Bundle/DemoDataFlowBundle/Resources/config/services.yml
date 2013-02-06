@@ -5,7 +5,3 @@ services:
         tags:
             - { name: oro_dataflow_connector }
 
-    job.import_attributes:
-        class: Acme\Bundle\DemoDataFlowBundle\Connector\Job\ImportAttributesJob
-        arguments: [ @product_manager ]
-
