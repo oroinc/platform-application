@@ -114,35 +114,6 @@ class SearchController extends Controller
     }
 
     /**
-     * Search request using query builder
-     *
-     * @Acl(
-     *      id = "acme_demo_search_query_builder",
-     *      name = "Query builder",
-     *      description = "Search request using query builder",
-     *      parent = "acme_demo_search"
-     * )
-     * @Route("/query-builder", name="acme_demo_query_builder")
-     * @Template()
-     * @return array
-     */
-    public function queryBuilderAction()
-    {
-        $query = $this->getSearchManager()->select()
-            ->from('AcmeDemoBundle:Product')
-            ->andWhere('all_data', '=', 'Functions', 'text')
-            ->orWhere('price', '=', 85, 'decimal');
-
-        return array(
-            'searchResults' => $this->get('knp_paginator')->paginate(
-                $this->getSearchManager()->query($query),
-                $this->get('request')->query->get('page', 1),
-                3
-            )
-        );
-    }
-
-    /**
      * @Acl(
      *      id = "acme_demo_search_test",
      *      name = "Query builder",
