@@ -1,5 +1,5 @@
 <?php
-namespace Acme\Bundle\DemoDataFlowBundle\Model\Mapping;
+namespace Acme\Bundle\DemoDataFlowBundle\Transform\Mapping;
 
 use Oro\Bundle\DataFlowBundle\Model\Mapping\ItemMapping;
 

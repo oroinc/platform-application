@@ -3,7 +3,7 @@ namespace Acme\Bundle\DemoDataFlowBundle\Transform;
 
 use Symfony\Component\Form\DataTransformerInterface;
 use Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleManager;
-use Acme\Bundle\DemoDataFlowBundle\Model\Mapping\MagentoCustomerMapping;
+use Acme\Bundle\DemoDataFlowBundle\Transform\Mapping\MagentoCustomerMapping;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
 /**
