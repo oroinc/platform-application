@@ -8,30 +8,17 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Doctrine\Common\Annotations\AnnotationReader;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
-use Oro\Bundle\UserBundle\Annotation\Acl;
-
 use Acme\Bundle\DemoBundle\Entity\Product;
 use Acme\Bundle\DemoBundle\Form\ProductType;
 
 /**
  * @Route("/search")
- * @Acl(
- *      id = "acme_demo_search_controller",
- *      name="Search controller",
- *      description = "Search controller"
- * )
  */
 class SearchController extends Controller
 {
     /**
      * List of products and add new product
      *
-     * @Acl(
-     *      id = "acme_demo_search",
-     *      name="Product list",
-     *      description = "List of products and add new product",
-     *      parent = "acme_demo_search_controller"
-     * )
      * @Route("/", name="acme_demo_search")
      * @Template()
      */
@@ -62,12 +49,6 @@ class SearchController extends Controller
      *
      * @Route("/edit/{id}", name="acme_demo_edit")
      * @Template()
-     * @Acl(
-     *      id = "acme_demo_search_edit",
-     *      name = "Edit product",
-     *      description = "Edit product action in search controller, demo bundle",
-     *      parent = "acme_demo_search"
-     * )
      * @param $id
      * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
      */
@@ -114,12 +95,6 @@ class SearchController extends Controller
     }
 
     /**
-     * @Acl(
-     *      id = "acme_demo_search_test",
-     *      name = "Query builder",
-     *      description = "Search request using query builder",
-     *      parent = "acme_demo_search"
-     * )
      * @Template()
      * @return array
      */
