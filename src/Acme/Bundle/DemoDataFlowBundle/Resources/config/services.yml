@@ -6,6 +6,6 @@ services:
             - { name: oro_dataflow_connector }
 
     job.import_attributes:
-        class: Acme\Bundle\DemoDataFlowBundle\Connector\ImportAttributesJob
+        class: Acme\Bundle\DemoDataFlowBundle\Connector\Job\ImportAttributesJob
         arguments: [ @product_manager ]
 

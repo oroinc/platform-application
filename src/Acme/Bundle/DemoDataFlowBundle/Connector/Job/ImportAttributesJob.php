@@ -1,9 +1,10 @@
 <?php
-namespace Acme\Bundle\DemoDataFlowBundle\Connector;
+namespace Acme\Bundle\DemoDataFlowBundle\Connector\Job;
+
+use Oro\Bundle\DataFlowBundle\Connector\Job\JobInterface;
 
 use Doctrine\DBAL\Configuration;
 use Doctrine\DBAL\DriverManager;
-use Oro\Bundle\DataFlowBundle\Connector\JobInterface;
 use Ddeboer\DataImport\Reader\DbalReader;
 use Doctrine\Common\Persistence\ObjectManager;
 use Acme\Bundle\DemoDataFlowBundle\Transform\MagentoAttributeToOroAttribute;
@@ -74,6 +75,8 @@ class ImportAttributesJob implements JobInterface
 
     /**
      * Process
+     *
+     * @return multitype
      */
     public function process()
     {
