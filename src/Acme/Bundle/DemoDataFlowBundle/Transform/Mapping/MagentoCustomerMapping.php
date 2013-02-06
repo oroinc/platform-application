@@ -1,7 +1,7 @@
 <?php
 namespace Acme\Bundle\DemoDataFlowBundle\Transform\Mapping;
 
-use Oro\Bundle\DataFlowBundle\Model\Mapping\ItemMapping;
+use Oro\Bundle\DataFlowBundle\Transform\Mapping\ItemMapping;
 
 /**
  * Customer mapping from Magento to Oro
