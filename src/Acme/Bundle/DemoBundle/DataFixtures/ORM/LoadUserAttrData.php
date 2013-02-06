@@ -2,22 +2,16 @@
 
 namespace Acme\Bundle\DemoBundle\DataFixtures\ORM;
 
-use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\OptionSimpleSelectType;
-
-use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\DateType;
-
-use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\MoneyType;
-
-use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\TextType;
-
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
-use Oro\Bundle\FlexibleEntityBundle\Model\AbstractAttributeType;
-use Oro\Bundle\UserBundle\Entity\User;
+use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\OptionSimpleSelectType;
+use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\DateType;
+use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\MoneyType;
+use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\TextType;
 
 class LoadUserAttrData extends AbstractFixture implements ContainerAwareInterface
 {
@@ -39,9 +33,9 @@ class LoadUserAttrData extends AbstractFixture implements ContainerAwareInterfac
     public function load(ObjectManager $manager)
     {
         /**
-         * @var Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleManager
+         * @var Oro\Bundle\UserBundle\Entity\UserManager
          */
-        $fm = $this->container->get('oro_user.flexible_manager');
+        $fm = $this->container->get('oro_user.manager');
         $sm = $fm->getStorageManager();
 
         $attr = $fm->createAttribute(new TextType())
