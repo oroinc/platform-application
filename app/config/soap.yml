@@ -1,2 +1,3 @@
 classes:
   - Oro\Bundle\SearchBundle\Controller\Api\SoapController
+  - Oro\Bundle\UserBundle\Controller\Api\Soap\UserController

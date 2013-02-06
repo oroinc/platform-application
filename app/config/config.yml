@@ -16,7 +16,8 @@ framework:
     default_locale:  "%locale%"
     trust_proxy_headers: false # Deprecated in 2.0; will be removed in 2.3 (used trusted_proxies instead)
     trusted_proxies: ~
-    session:         ~
+    session:
+        name:        BAPID
 
 # Twig Configuration
 twig:
@@ -30,7 +31,7 @@ twig:
 assetic:
     debug:                    "%kernel.debug%"
     use_controller:           false
-    bundles:                  ["AcmeDemoBundle", "FOSUserBundle", "OroUserBundle"]
+    bundles:                  ["AcmeDemoBundle", "OroUserBundle"]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -93,31 +94,19 @@ oro_search:
     engine:                   orm
     realtime_update:          true
 
-fos_user:
-    db_driver:                orm       # other valid values are 'mongodb', 'couchdb' and 'propel'
-    firewall_name:            main
-    user_class:               Oro\Bundle\UserBundle\Entity\User
-    from_email:
-        address:              no-reply@bap.dev
-        sender_name:          Oro Admin
-    group:
-        group_class:          Oro\Bundle\UserBundle\Entity\Group
-    service:
-        user_manager:         oro_user.user_manager
-
 be_simple_soap:
     cache:
-        type:     disk
-        lifetime: 86400
-        limit:    5
+        type:                 disk
+        lifetime:             86400
+        limit:                5
     services:
         soap:
-            namespace:     http://symfony.loc/Api/1.0/
-            binding:       rpc-literal
-            resource:      "%kernel.root_dir%/../app/config/soap.yml"
-            resource_type: yml
+            namespace:        http://symfony.loc/Api/1.0/
+            binding:          rpc-literal
+            resource:         "%kernel.root_dir%/../app/config/soap.yml"
+            resource_type:    yml
         demo:
-            namespace:     http://symfony.loc/Api/1.0/
-            binding:       rpc-literal
-            resource:      "%kernel.root_dir%/../src/Acme/Bundle/DemoBundle/Resources/config/soap.yml"
-            resource_type: yml
+            namespace:        http://symfony.loc/Api/1.0/
+            binding:          rpc-literal
+            resource:         "%kernel.root_dir%/../src/Acme/Bundle/DemoBundle/Resources/config/soap.yml"
+            resource_type:    yml
