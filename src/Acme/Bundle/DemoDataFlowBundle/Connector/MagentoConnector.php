@@ -27,20 +27,4 @@ class MagentoConnector extends AbstractConnector
         $this->manager = $manager;
     }
 
-    /**
-     * Configure connector
-     * TODO: put configuration in cache ?
-     */
-    public function configure()
-    {
-        // parse connector config
-        $configs = Yaml::parse(__DIR__.'/../Resources/config/oro_connector.yml');
-
-        // process configuration
-        $configuration = new MagentoConfiguration($configs);
-        $this->configuration = $configuration->process();
-
-        //$this->addJob(new ImportAttributesJob($this->manager, $this->configuration));
-    }
-
 }
