@@ -38,20 +38,11 @@ class ImportAttributesJob implements JobInterface
     /**
      * @param FlexibleManager $manager
      */
-    public function __construct(FlexibleManager $manager)
+    public function __construct(FlexibleManager $manager, $configuration)
     {
         $this->manager       = $manager;
-        $this->configuration = array(
-            'dbal' => array(
-                    'driver'   => 'pdo_mysql',
-                    'host'     => '127.0.0.1',
-                    'dbname'   => 'magento_ab',
-                    'user'     => 'root',
-                    'password' => 'root',
-            ),
-            'prefix' => 'ab_'
-        );
-        $this->code          = 'import_attribute';
+        $this->configuration = $configuration;
+        $this->code          = 'import_attributes';
     }
 
     /**
@@ -83,11 +74,11 @@ class ImportAttributesJob implements JobInterface
         $messages = array();
 
         // prepare connection
-        $params = $this->configuration['dbal'];
+        $params = $this->configuration['database'];
         $connection = DriverManager::getConnection($params, new Configuration());
 
         // query on magento attributes
-        $prefix = $this->configuration['prefix'];
+        $prefix = $this->configuration['table_prefix'];
         $sql = 'SELECT * FROM '.$prefix.'eav_attribute AS att '
             .'INNER JOIN '.$prefix.'eav_entity_type AS typ ON att.entity_type_id = typ.entity_type_id AND typ.entity_type_code = "catalog_product"';
         $magentoReader = new DbalReader($connection, $sql);

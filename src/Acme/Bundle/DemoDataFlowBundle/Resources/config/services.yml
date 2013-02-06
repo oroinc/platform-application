@@ -12,4 +12,3 @@ services:
     job.import_customers:
         class: Acme\Bundle\DemoDataFlowBundle\Connector\Job\ImportCustomersJob
         arguments: [ @customer_manager ]
-

@@ -26,26 +26,22 @@ use Ddeboer\DataImport\ValueConverter\DateTimeValueConverter;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/test")
+     * @Route("/magento-import-attributes")
      * @Template("AcmeDemoDataFlowBundle:Default:index.html.twig")
      *
      * @return array
      */
-    public function testAction()
+    public function magentoImportAttributesAction()
     {
         // get connector
         $connector = $this->container->get('connector.magento_catalog');
+        $connector->configure();
 
         // get import attributes job
-        $job = $this->container->get('job.import_attributes');
-
-        // add job to connector and execute it
-        /*
-        $connector->addJob($job);
-        $connector->process($job->getCode());
-        */
-
+        $job = $connector->getJob('import_attributes');
         $messages = $job->process();
+
+        // display result message
         foreach ($messages as $message) {
             $this->get('session')->getFlashBag()->add($message[0], $message[1]);
         }
@@ -110,6 +106,15 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
+
+        // get connector
+        $connector = $this->container->get('connector.magento_catalog');
+
+        $connector->configure();
+
+        var_dump($connector->getConfiguration());
+        exit();
+
 
         // Create the source; here we use an HTTP one
         /*
