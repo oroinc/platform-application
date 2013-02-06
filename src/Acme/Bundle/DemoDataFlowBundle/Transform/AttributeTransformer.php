@@ -1,25 +1,15 @@
 <?php
 namespace Acme\Bundle\DemoDataFlowBundle\Transform;
 
-use Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleManager;
 use Symfony\Component\Form\DataTransformerInterface;
+use Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleManager;
 use Symfony\Component\Form\Exception\TransformationFailedException;
-use Doctrine\Common\Persistence\ObjectManager;
 use Oro\Bundle\FlexibleEntityBundle\Entity\Attribute;
 use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\TextType;
 use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\OptionSimpleSelectType;
-use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\OptionSimpleRadioType;
-use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\OptionMultiSelectType;
-use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\OptionMultiCheckboxType;
 use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\DateType;
-use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\MetricType;
 use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\MoneyType;
 use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\TextAreaType;
-use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\UrlType;
-use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\NumberType;
-use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\MailType;
-use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\IntegerType;
-
 
 /**
  * Transform a Magento attribute to BAP attribute
@@ -47,20 +37,19 @@ class AttributeTransformer implements DataTransformerInterface
     /**
      * Transforms a oro attribute to a magento attribute
      *
-     * @param mixed $attribute
+     * @param Attribute $attribute
      *
      * @return array
      */
     public function transform($attribute)
     {
-        // TODO
-        return null;
+        throw new TransformationFailedException('This transformation is not implemented');
     }
 
     /**
      * Transforms a magento attribute to a oro attribute
      *
-     * @param mixed $magentoAttribute
+     * @param array $magentoAttribute
      *
      * @return Attribute $attribute
      * @throws TransformationFailedException if object is not found.
@@ -76,11 +65,16 @@ class AttributeTransformer implements DataTransformerInterface
         $magentoType = $magentoAttribute['frontend_input'];
         $type = null;
         switch ($magentoType) {
-            case 'price':    $type = new MoneyType(); break;
-            case 'select':   $type = new OptionSimpleSelectType(); break;
-            case 'date':     $type = new DateType(); break;
-            case 'textarea': $type = new TextAreaType(); break;
-            default: $type = new TextType(); break;
+            case 'price':    $type = new MoneyType();
+                break;
+            case 'select':   $type = new OptionSimpleSelectType();
+                break;
+            case 'date':     $type = new DateType();
+                break;
+            case 'textarea': $type = new TextAreaType();
+                break;
+            default:         $type = new TextType();
+                break;
         }
 
         // create attribute

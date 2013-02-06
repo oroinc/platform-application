@@ -1,15 +1,10 @@
 <?php
 namespace Acme\Bundle\DemoDataFlowBundle\Transform;
 
-use Oro\Bundle\FlexibleEntityBundle\Model\AbstractAttributeType;
-
-use Oro\Bundle\FlexibleEntityBundle\Entity\Mapping\AbstractEntityFlexibleValue;
-
-use Acme\Bundle\DemoDataFlowBundle\Model\Mapping\MagentoCustomerMapping;
-
-use Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleManager;
-
 use Symfony\Component\Form\DataTransformerInterface;
+use Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleManager;
+use Acme\Bundle\DemoDataFlowBundle\Model\Mapping\MagentoCustomerMapping;
+use Symfony\Component\Form\Exception\TransformationFailedException;
 
 /**
  * Transform a Magento customer to BAP customer
@@ -72,6 +67,6 @@ class CustomerTransformer implements DataTransformerInterface
      */
     public function reverseTransform($customer)
     {
-        return null;
+        throw new TransformationFailedException('This transformation is not implemented');
     }
 }
