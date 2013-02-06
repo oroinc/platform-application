@@ -3,6 +3,7 @@ namespace Acme\Bundle\DemoDataFlowBundle\Connector;
 
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
+use Symfony\Component\Config\Definition\Processor;
 
 /**
  * Connector configuration
@@ -14,6 +15,30 @@ use Symfony\Component\Config\Definition\Builder\TreeBuilder;
  */
 class MagentoConfiguration implements ConfigurationInterface
 {
+
+    /**
+     * @var \ArrayAccess
+     */
+    protected $configuration;
+
+    /**
+     * @param \ArrayAccess $configuration
+     */
+    public function __construct($configuration)
+    {
+        $this->configuration = $configuration;
+    }
+
+    /**
+     * Process configuration
+     */
+    public function process()
+    {
+        $processor = new Processor();
+        $this->configuration = $processor->processConfiguration($this, $this->configuration);
+
+        return $this->configuration;
+    }
 
     /**
      * {@inheritDoc}

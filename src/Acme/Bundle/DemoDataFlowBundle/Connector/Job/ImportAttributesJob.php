@@ -1,13 +1,13 @@
 <?php
 namespace Acme\Bundle\DemoDataFlowBundle\Connector\Job;
 
-use Oro\Bundle\DataFlowBundle\Connector\Job\JobInterface;
+use Oro\Bundle\DataFlowBundle\Connector\Job\AbstractJob;
 
 use Doctrine\DBAL\Configuration;
 use Doctrine\DBAL\DriverManager;
 use Ddeboer\DataImport\Reader\DbalReader;
 use Doctrine\Common\Persistence\ObjectManager;
-use Acme\Bundle\DemoDataFlowBundle\Transform\MagentoAttributeToOroAttribute;
+use Acme\Bundle\DemoDataFlowBundle\Transform\AttributeTransformer;
 use Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleManager;
 
 /**
@@ -18,12 +18,8 @@ use Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleManager;
  * @license   http://opensource.org/licenses/MIT MIT
  *
  */
-class ImportAttributesJob implements JobInterface
+class ImportAttributesJob extends AbstractJob
 {
-    /**
-     * @var string
-     */
-    protected $code;
 
     /**
      * @var FlexibleManager
@@ -38,11 +34,11 @@ class ImportAttributesJob implements JobInterface
     /**
      * @param FlexibleManager $manager
      */
-    public function __construct(FlexibleManager $manager, $configuration)
+    public function __construct(FlexibleManager $manager)
     {
+        parent::__construct('import_attributes');
         $this->manager       = $manager;
-        $this->configuration = $configuration;
-        $this->code          = 'import_attributes';
+        $this->configuration = array();
     }
 
     /**
@@ -65,17 +61,25 @@ class ImportAttributesJob implements JobInterface
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public function configure($parameters)
+    {
+        $configuration = new ImportAttributesConfiguration();
+        $this->configuration = $configuration->process($parameters);
+    }
+
+    /**
      * Process
      *
      * @return multitype
      */
-    public function process()
+    public function run()
     {
         $messages = array();
 
         // prepare connection
-        $params = $this->configuration['database'];
-        $connection = DriverManager::getConnection($params, new Configuration());
+        $connection = DriverManager::getConnection($this->configuration, new Configuration());
 
         // query on magento attributes
         $prefix = $this->configuration['table_prefix'];
@@ -88,7 +92,7 @@ class ImportAttributesJob implements JobInterface
 
         // read all attribute items
         $toExcludeCode = array('sku', 'old_id');
-        $transformer = new MagentoAttributeToOroAttribute($this->manager);
+        $transformer = new AttributeTransformer($this->manager);
         foreach ($magentoReader as $attributeItem) {
             $attributeCode = $attributeItem['attribute_code'];
             // filter existing (just create new one)

@@ -19,27 +19,12 @@ class MagentoConnector extends AbstractConnector
 {
 
     /**
-     * @var \ArrayAccess
-     */
-    protected $configuration;
-
-    /**
      * @param FlexibleManager $manager
      */
     public function __construct(FlexibleManager $manager)
     {
         parent::__construct();
         $this->manager = $manager;
-        $this->configuration = array();
-    }
-
-    /**
-     * Get configuration
-     * @return \ArrayAccess
-     */
-    public function getConfiguration()
-    {
-        return $this->configuration;
     }
 
     /**
@@ -50,13 +35,12 @@ class MagentoConnector extends AbstractConnector
     {
         // parse connector config
         $configs = Yaml::parse(__DIR__.'/../Resources/config/oro_connector.yml');
-        // process configuration
-        $processor = new Processor();
-        $this->configuration = $processor->processConfiguration(new MagentoConfiguration(), $configs);
 
-        // prepare jobs
-        $this->addJob(new ImportAttributesJob($this->manager, $this->configuration));
-        // TODO in dedicated method + allow to register some job from outsite ?
+        // process configuration
+        $configuration = new MagentoConfiguration($configs);
+        $this->configuration = $configuration->process();
+
+        //$this->addJob(new ImportAttributesJob($this->manager, $this->configuration));
     }
 
 }

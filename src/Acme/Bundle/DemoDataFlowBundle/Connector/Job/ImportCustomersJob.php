@@ -1,15 +1,12 @@
 <?php
 namespace Acme\Bundle\DemoDataFlowBundle\Connector\Job;
 
+use Oro\Bundle\DataFlowBundle\Connector\Job\AbstractJob;
 use Acme\Bundle\DemoDataFlowBundle\Transform\CustomerTransformer;
-
-use Ddeboer\DataImport\Source\Stream;
-
 use Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleManager;
 
+use Ddeboer\DataImport\Source\Stream;
 use Ddeboer\DataImport\Reader\CsvReader;
-
-use Oro\Bundle\DataFlowBundle\Connector\Job\JobInterface;
 
 /**
  * Import customers from Magento database
@@ -19,12 +16,8 @@ use Oro\Bundle\DataFlowBundle\Connector\Job\JobInterface;
  * @license   http://opensource.org/licenses/MIT MIT
  *
  */
-class ImportCustomersJob implements JobInterface
+class ImportCustomersJob extends AbstractJob
 {
-    /**
-     * @var string
-     */
-    protected $code;
 
     /**
      * @var FlexibleManager
@@ -41,27 +34,18 @@ class ImportCustomersJob implements JobInterface
      */
     public function __construct(FlexibleManager $manager)
     {
-        $this->manager       = $manager;
-        $this->code          = 'import_customer';
-    }
-
-    /**
-     * set a flexible manager
-     * @param FlexibleManager $manager
-     */
-    public function setManager(FlexibleManager $manager)
-    {
+        parent::__construct('import_customers');
         $this->manager = $manager;
+        $this->configuration = array();
     }
 
     /**
-     * Get job code
-     *
-     * @return string
+     * {@inheritDoc}
      */
-    public function getCode()
+    public function configure($parameters)
     {
-        return $this->code;
+        $configuration = new ImportCustomersConfiguration();
+        $this->configuration = $configuration->process($parameters);
     }
 
     /**
@@ -69,12 +53,12 @@ class ImportCustomersJob implements JobInterface
      *
      * @return multitype
      */
-    public function process()
+    public function run()
     {
         $messages = array();
 
         // Call reader
-        $stream = new Stream('/tmp/export_customers.csv');
+        $stream = new Stream($this->configuration['csv_path']);
         $csvReader = new CsvReader($stream->getFile(), ',');
         $csvReader->setHeaderRowNumber(0);
 
@@ -82,10 +66,13 @@ class ImportCustomersJob implements JobInterface
         $transformer = new CustomerTransformer($this->manager);
         $customers = array();
         foreach ($csvReader as $customerItem) {
-            $customers[] = $transformer->transform($customerItem);
+            $customer = $transformer->transform($customerItem);
+            $customers[] = $customer;
+            $this->manager->getStorageManager()->persist($customer);
         }
 
         // TODO : Call loader to persist customers
+        $this->manager->getStorageManager()->flush();
 
         return $customers;
     }

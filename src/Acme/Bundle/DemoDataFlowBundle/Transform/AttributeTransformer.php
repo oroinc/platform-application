@@ -29,7 +29,7 @@ use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\IntegerType;
  * @license   http://opensource.org/licenses/MIT MIT
  *
  */
-class MagentoAttributeToOroAttribute implements DataTransformerInterface
+class AttributeTransformer implements DataTransformerInterface
 {
     /**
      * @var FlexibleManager

@@ -39,27 +39,27 @@ class CustomerTransformer implements DataTransformerInterface
     /**
      * {@inheritdoc}
      */
-    public function transform($datas)
+    public function transform($data)
     {
         $customer = $this->manager->createFlexible();
 
         // convert without mapper
-        if (isset($datas['email'])) {
-            $customer->setEmail($datas['email']);
+        if (isset($data['email'])) {
+            $customer->setEmail($data['email']);
         }
-        if (isset($datas['firstname'])) {
-            $customer->setFirstname($datas['firstname']);
+        if (isset($data['firstname'])) {
+            $customer->setFirstname($data['firstname']);
         }
-        if (isset($datas['lastname'])) {
-            $customer->setLastname($datas['lastname']);
+        if (isset($data['lastname'])) {
+            $customer->setLastname($data['lastname']);
         }
 
         // convert with mapper
         $mapper = new MagentoCustomerMapping();
         foreach ($mapper->getFields() as $field) {
-            if (isset($datas[$field->getSource()])) {
+            if (isset($data[$field->getSource()])) {
                 $flexibleValue = $customer->getValue($field->getDestination());
-                $flexibleValue->setData($datas[$field->getSource()]);
+                $flexibleValue->setData($data[$field->getSource()]);
             }
         }
 

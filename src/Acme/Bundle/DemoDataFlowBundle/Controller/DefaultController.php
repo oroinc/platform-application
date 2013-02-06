@@ -25,52 +25,86 @@ use Ddeboer\DataImport\ValueConverter\DateTimeValueConverter;
  */
 class DefaultController extends Controller
 {
+
     /**
-     * @Route("/magento-import-attributes")
+     * @Route("/connectors")
+     * @Template()
+     *
+     * @return array
+     */
+    public function connectorsAction()
+    {
+        $connectors = $this->container->get('oro_dataflow.connectors');
+
+        return array('connectors' => $connectors->getConnectors());
+    }
+
+    /**
+     * @Route("/import-attributes")
      * @Template("AcmeDemoDataFlowBundle:Default:index.html.twig")
      *
      * @return array
      */
-    public function magentoImportAttributesAction()
+    public function importAttributesAction()
     {
         // get connector
-        $connector = $this->container->get('connector.magento_catalog');
-        $connector->configure();
+        // $connector = $this->container->get('connector.magento_catalog');
+        //$connector->configure();
 
         // get import attributes job
-        $job = $connector->getJob('import_attributes');
-        $messages = $job->process();
+        //$job = $connector->getJob('import_attributes');
+        $job = $this->container->get('job.import_attributes');
+
+        // configure job
+        $parameters = array(
+            'params' => array(
+                'host'         => '127.0.0.1',
+                'dbname'       => 'magento_ab',
+                'user'         => 'root',
+                'password'     => 'root',
+                'table_prefix' => 'ab_'
+            )
+        );
+        $job->configure($parameters);
+
+        // run
+        $messages = $job->run();
 
         // display result message
         foreach ($messages as $message) {
             $this->get('session')->getFlashBag()->add($message[0], $message[1]);
         }
 
-        return array();
-//         return $this->redirect($this->generateUrl('acme_demoflexibleentity_productattribute_index'));
+        return $this->redirect($this->generateUrl('acme_demoflexibleentity_productattribute_index'));
     }
 
     /**
      * Call customer import
      *
-     * @Route("/customers")
+     * @Route("/import-customer")
      * @Template()
      *
      * @return array
      */
-    public function customersAction()
+    public function importCustomersAction()
     {
-        // get magento connector
-//         $connector = $this->container->get('connector.magento_catalog');
+        // get connector
+        //$connector = $this->container->get('connector.magento_customer');
 
-        // get import customers job
+        // get job
+        //$job = $connector->getJob('import_customers');
+
+        // TODO !!!
         $job = $this->container->get('job.import_customers');
 
-        // Add job to connector and execute it
-//         $connector->addJob($job);
-        $customers = $job->process();
+        // configure job
+        $parameters = array('params' => array('csv_path' => '/tmp/export_customers.csv'));
+        $job->configure($parameters);
 
-        $this->get('session')->getFlashBag()->add('success', count($customers) .' has been transformed !!!');
+        // run job
+        $customers = $job->run();
+
+        $this->get('session')->getFlashBag()->add('success', count($customers) .' has been transformed !');
 
         foreach ($customers as $customer) {
 
@@ -82,95 +116,7 @@ class DefaultController extends Controller
             $this->get('session')->getFlashBag()->add('info', 'Website -> '. $customer->getValue('website')->getData());
         }
 
-        return array();
+        return $this->redirect($this->generateUrl('acme_demoflexibleentity_customer_index'));
     }
 
-    /**
-     * @Route("/list-connectors")
-     * @Template()
-     *
-     * @return array
-     */
-    public function listConnectorsAction()
-    {
-        $connectors = $this->container->get('oro_dataflow.connectors');
-
-        return array('connectors' => $connectors->getConnectors());
-    }
-
-    /**
-     * @Route("/index")
-     * @Template()
-     *
-     * @return array
-     */
-    public function indexAction()
-    {
-
-        // get connector
-        $connector = $this->container->get('connector.magento_catalog');
-
-        $connector->configure();
-
-        var_dump($connector->getConfiguration());
-        exit();
-
-
-        // Create the source; here we use an HTTP one
-        /*
-        $source = new Http('http://www.opta.nl/download/registers/nummers_csv.zip');
-
-        // As the source file is zipped, we add an unzip filter
-        $source->addFilter(new Unzip('nummers.csv'));
-
-        // Retrieve the \SplFileObject from the source
-        $file = $source->getFile();
-        */
-
-        // Create and configure the reader
-        $file = new \SplFileObject('/tmp/truc.csv');
-        $csvReader = new CsvReader($file);
-        $csvReader->setHeaderRowNumber(0);
-
-        // Create the workflow
-        $workflow = new Workflow($csvReader);
-        $dateTimeConverter = new DateTimeValueConverter();
-
-        // Add converters to the workflow
-        $workflow
-        ->addValueConverter('twn_datumbeschikking', $dateTimeConverter)
-        ->addValueConverter('twn_datumeind', $dateTimeConverter)
-        ->addValueConverter('datummutatie', $dateTimeConverter)
-
-        // You can also add closures as converters
-        ->addValueConverter('twn_nummertm',
-            new \Ddeboer\DataImport\ValueConverter\CallbackValueConverter(
-                function($input) {
-                    return str_replace('-', '', $input);
-                }
-            )
-        )
-        ->addValueConverter('twn_nummervan',
-            new \Ddeboer\DataImport\ValueConverter\CallbackValueConverter(
-                function($input) {
-                    return str_replace('-', '', $input);
-                }
-            )
-        )
-
-        // Use one of the writers supplied with this bundle, implement your own, or use
-        // a closure:
-        ->addWriter(
-            new \Ddeboer\DataImport\Writer\CallbackWriter(
-                function($csvLine) {
-                    var_dump($csvLine);
-                }
-            )
-        );
-
-        // Process the workflow
-        $workflow->process();
-
-        return array('name' => $name);
-    }
 }
