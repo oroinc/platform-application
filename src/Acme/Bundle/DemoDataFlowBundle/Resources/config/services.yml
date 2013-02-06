@@ -8,4 +8,8 @@ services:
     job.import_attributes:
         class: Acme\Bundle\DemoDataFlowBundle\Connector\Job\ImportAttributesJob
         arguments: [ @product_manager ]
+        
+    job.import_customers:
+        class: Acme\Bundle\DemoDataFlowBundle\Connector\Job\ImportCustomersJob
+        arguments: [ @customer_manager ]
 
