@@ -18,18 +18,6 @@ use Oro\Bundle\UserBundle\Annotation\Acl;
 class AclAccessController extends Controller
 {
     /**
-     * @Route("/test", name="acme_321")
-     */
-    public function admin321EnabledAction()
-    {
-        var_dump('test');
-        $resources = $this->get('oro_user.acl_manager')->getAclForUser($this->getUser());
-        var_dump($resources);
-        die;
-        return  new Response('Action for ROLE_ADMIN');
-    }
-
-    /**
      * @Acl(
      *      id = "acme_demo_test_1",
      *      name="demo1",
