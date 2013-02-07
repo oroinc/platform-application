@@ -1,7 +1,7 @@
 <?php
-namespace Acme\Bundle\DemoDataFlowBundle\Connector\Job;
+namespace Acme\Bundle\DemoDataFlowBundle\Job;
 
-use Oro\Bundle\DataFlowBundle\Connector\Job\AbstractJob;
+use Oro\Bundle\DataFlowBundle\Job\AbstractJob;
 use Acme\Bundle\DemoDataFlowBundle\Transform\CustomerTransformer;
 use Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleManager;
 
@@ -25,26 +25,11 @@ class ImportCustomersJob extends AbstractJob
     protected $manager;
 
     /**
-     * @var array
-     */
-    protected $configuration;
-
-    /**
      * @param FlexibleManager $manager
      */
     public function __construct(FlexibleManager $manager)
     {
         $this->manager = $manager;
-        $this->configuration = array();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function configure($parameters)
-    {
-        $configuration = new ImportCustomersConfiguration();
-        $this->configuration = $configuration->process($parameters);
     }
 
     /**
@@ -57,8 +42,13 @@ class ImportCustomersJob extends AbstractJob
         $messages = array();
 
         // Call reader
-        $stream = new Stream($this->configuration['file_path']);
-        $csvReader = new CsvReader($stream->getFile(), ',');
+        $stream = new Stream($this->getConfiguration()->getFilePath());
+        $csvReader = new CsvReader(
+            $stream->getFile(),
+            $this->getConfiguration()->getDelimiter(),
+            $this->getConfiguration()->getEnclosure(),
+            $this->getConfiguration()->getEscape()
+        );
         $csvReader->setHeaderRowNumber(0);
 
         // Call transformer

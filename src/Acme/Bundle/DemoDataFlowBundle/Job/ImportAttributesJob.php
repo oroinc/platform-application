@@ -1,9 +1,8 @@
 <?php
-namespace Acme\Bundle\DemoDataFlowBundle\Connector\Job;
+namespace Acme\Bundle\DemoDataFlowBundle\Job;
 
-use Oro\Bundle\DataFlowBundle\Connector\Job\AbstractJob;
-
-use Doctrine\DBAL\Configuration;
+use Oro\Bundle\DataFlowBundle\Job\AbstractJob;
+use Doctrine\DBAL\Configuration as DbalConfiguration;
 use Doctrine\DBAL\DriverManager;
 use Ddeboer\DataImport\Reader\DbalReader;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -27,45 +26,11 @@ class ImportAttributesJob extends AbstractJob
     protected $manager;
 
     /**
-     * @var array
-     */
-    protected $configuration;
-
-    /**
      * @param FlexibleManager $manager
      */
     public function __construct(FlexibleManager $manager)
     {
-        $this->manager       = $manager;
-        $this->configuration = array();
-    }
-
-    /**
-     * set a flexible manager
-     * @param FlexibleManager $manager
-     */
-    public function setManager(FlexibleManager $manager)
-    {
         $this->manager = $manager;
-    }
-
-    /**
-     * Get job code
-     *
-     * @return string
-     */
-    public function getCode()
-    {
-        return $this->code;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function configure($parameters)
-    {
-        $configuration = new ImportAttributesConfiguration();
-        $this->configuration = $configuration->process($parameters);
     }
 
     /**
@@ -78,19 +43,19 @@ class ImportAttributesJob extends AbstractJob
         $messages = array();
 
         // prepare connection
-        $connection = DriverManager::getConnection($this->configuration, new Configuration());
+        $connection = DriverManager::getConnection($this->getConfiguration()->getDatabaseParameters(), new DbalConfiguration());
 
         // query on magento attributes
-        $prefix = $this->configuration['table_prefix'];
+        $prefix = $this->getConfiguration()->getTablePrefix();
         $sql = 'SELECT * FROM '.$prefix.'eav_attribute AS att '
-            .'INNER JOIN '.$prefix.'eav_entity_type AS typ ON att.entity_type_id = typ.entity_type_id AND typ.entity_type_code = "catalog_product"';
+            .'INNER JOIN '.$prefix.'eav_entity_type AS typ '
+            .'ON att.entity_type_id = typ.entity_type_id AND typ.entity_type_code = "catalog_product"';
         $magentoReader = new DbalReader($connection, $sql);
 
         // query on oro attributes
         $codeToAttribute = $this->manager->getFlexibleRepository()->getCodeToAttributes(array());
-
         // read all attribute items
-        $toExcludeCode = array('sku', 'old_id');
+        $toExcludeCode = explode(',', $this->getConfiguration()->getExcludedAttributes());
         $transformer = new AttributeTransformer($this->manager);
         foreach ($magentoReader as $attributeItem) {
             $attributeCode = $attributeItem['attribute_code'];

@@ -4,7 +4,7 @@ services:
         class: Acme\Bundle\DemoDataFlowBundle\Connector\MagentoConnector
 
     job.import_attributes:
-        class: Acme\Bundle\DemoDataFlowBundle\Connector\Job\ImportAttributesJob
+        class: Acme\Bundle\DemoDataFlowBundle\Job\ImportAttributesJob
         arguments: [ @product_manager ]
         tags:
             - { name: oro_dataflow_job, connector: connector.magento_catalog}
@@ -14,7 +14,7 @@ services:
         class: Acme\Bundle\DemoDataFlowBundle\Connector\CsvConnector
 
     job.import_customers:
-        class: Acme\Bundle\DemoDataFlowBundle\Connector\Job\ImportCustomersJob
+        class: Acme\Bundle\DemoDataFlowBundle\Job\ImportCustomersJob
         arguments: [ @customer_manager ]
         tags:
             - { name: oro_dataflow_job, connector: connector.csv }

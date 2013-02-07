@@ -2,7 +2,6 @@
 namespace Acme\Bundle\DemoDataFlowBundle\Connector;
 
 use Oro\Bundle\DataFlowBundle\Connector\AbstractConnector;
-use Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleManager;
 
 /**
  * Magento connector

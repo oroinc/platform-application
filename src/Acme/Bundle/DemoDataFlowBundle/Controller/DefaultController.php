@@ -5,14 +5,12 @@ namespace Acme\Bundle\DemoDataFlowBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\Yaml\Yaml;
 
 use Acme\Bundle\DemoDataFlowBundle\Connector\MagentoConnector;
 use Acme\Bundle\DemoDataFlowBundle\Connector\ImportAttributes;
-use Ddeboer\DataImport\Workflow;
-use Ddeboer\DataImport\Source\Http;
-use Ddeboer\DataImport\Source\Filter\Unzip;
-use Ddeboer\DataImport\Reader\CsvReader;
-use Ddeboer\DataImport\ValueConverter\DateTimeValueConverter;
+use Acme\Bundle\DemoDataFlowBundle\Configuration\ImportAttributesConfiguration;
+use Acme\Bundle\DemoDataFlowBundle\Configuration\ImportCustomersConfiguration;
 
 /**
  * Demo dataflow controller
@@ -58,19 +56,16 @@ class DefaultController extends Controller
         // get job
         $job = $this->container->get('job.import_attributes');
 
-        // configure job
-        $parameters = array(
-            'params' => array(
-                'host'         => '127.0.0.1',
-                'dbname'       => 'magento_ab',
-                'user'         => 'root',
-                'password'     => 'root',
-                'table_prefix' => 'ab_'
-            )
-        );
-        $job->configure($parameters);
+        // load configuration
+        $resource = '@AcmeDemoDataFlowBundle/Resources/files/import_attributes.yml';
+        $file = $this->container->get('kernel')->locateResource($resource);
+        $parameters = Yaml::parse($file);
 
-        // run
+        // configure job
+        $configuration = new ImportAttributesConfiguration($parameters);
+        $job->configure($configuration);
+
+        // run job
         $messages = $job->run();
 
         // display result message
@@ -98,10 +93,16 @@ class DefaultController extends Controller
         // get job
         $job = $this->container->get('job.import_customers');
 
-        // configure job
+        // load configuration
+        $resource = '@AcmeDemoDataFlowBundle/Resources/files/import_customers.yml';
         $csvPath = $this->container->get('kernel')->locateResource('@AcmeDemoDataFlowBundle/Resources/files/export_customers.csv');
-        $parameters = array('params' => array('file_path' => $csvPath));
-        $job->configure($parameters);
+        $file = $this->container->get('kernel')->locateResource($resource);
+        $parameters = Yaml::parse($file);
+        $parameters['parameters']['file_path'] = $csvPath;
+
+        // configure job
+        $configuration = new ImportCustomersConfiguration($parameters);
+        $job->configure($configuration);
 
         // run job
         $customers = $job->run();

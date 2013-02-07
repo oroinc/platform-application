@@ -1,7 +1,6 @@
 <?php
-namespace Acme\Bundle\DemoDataFlowBundle\Connector\Job;
+namespace Acme\Bundle\DemoDataFlowBundle\Configuration;
 
-use Acme\Bundle\DemoDataFlowBundle\Connector\CsvConfiguration;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 
 /**
