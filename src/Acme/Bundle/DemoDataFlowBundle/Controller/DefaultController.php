@@ -36,7 +36,11 @@ class DefaultController extends Controller
     {
         $connectors = $this->container->get('oro_dataflow.connectors');
 
-        return array('connectors' => $connectors->getConnectors());
+        return array(
+            'connectors'       => $connectors->getConnectors(),
+            'jobs'             => $connectors->getJobs(),
+            'connectorsToJobs' => $connectors->getConnectorToJobs()
+        );
     }
 
     /**
@@ -49,10 +53,9 @@ class DefaultController extends Controller
     {
         // get connector
         // $connector = $this->container->get('connector.magento_catalog');
-        //$connector->configure();
+        // $connector->configure();
 
-        // get import attributes job
-        //$job = $connector->getJob('import_attributes');
+        // get job
         $job = $this->container->get('job.import_attributes');
 
         // configure job
@@ -89,12 +92,10 @@ class DefaultController extends Controller
     public function importCustomersAction()
     {
         // get connector
-        //$connector = $this->container->get('connector.csv');
+        // $connector = $this->container->get('connector.csv');
+        // $connector->configure();
 
         // get job
-        //$job = $connector->getJob('job.import_customers');
-
-        // TODO !!!
         $job = $this->container->get('job.import_customers');
 
         // configure job

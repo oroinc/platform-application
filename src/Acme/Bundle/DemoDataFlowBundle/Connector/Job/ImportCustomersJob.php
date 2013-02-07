@@ -34,7 +34,6 @@ class ImportCustomersJob extends AbstractJob
      */
     public function __construct(FlexibleManager $manager)
     {
-        parent::__construct('import_customers');
         $this->manager = $manager;
         $this->configuration = array();
     }

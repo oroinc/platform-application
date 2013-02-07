@@ -15,13 +15,4 @@ use Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleManager;
 class MagentoConnector extends AbstractConnector
 {
 
-    /**
-     * @param FlexibleManager $manager
-     */
-    public function __construct(FlexibleManager $manager)
-    {
-        parent::__construct();
-        $this->manager = $manager;
-    }
-
 }

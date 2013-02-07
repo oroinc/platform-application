@@ -36,7 +36,6 @@ class ImportAttributesJob extends AbstractJob
      */
     public function __construct(FlexibleManager $manager)
     {
-        parent::__construct('import_attributes');
         $this->manager       = $manager;
         $this->configuration = array();
     }
