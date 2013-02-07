@@ -1,6 +1,8 @@
 <?php
 namespace Acme\Bundle\DemoFlexibleEntityBundle\Tests\Controller;
 
+use Acme\Bundle\DemoFlexibleEntityBundle\DataFixtures\ORM\Customer\LoadCustomerData;
+
 /**
  * Test related class
  *
@@ -24,7 +26,22 @@ class CustomerControllerTest extends KernelAwareControllerTest
     protected function getFixturesToLoad()
     {
         return array(
-            'src/Acme/Bundle/DemoFlexibleEntityBundle/DataFixtures/ORM/Customer'
+            new LoadCustomerData()
+        );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getTablesToTruncate()
+    {
+        return array(
+            'acmedemoflexibleentity_customer',
+            'acmedemoflexibleentity_customer_value',
+            'acmedemoflexibleentity_customer_value_option',
+            'oroflexibleentity_attribute',
+            'oroflexibleentity_attribute_option',
+            'oroflexibleentity_attribute_option_value'
         );
     }
 

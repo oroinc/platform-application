@@ -2,6 +2,8 @@
 
 namespace Acme\Bundle\DemoFlexibleEntityBundle\Tests\Controller;
 
+use Acme\Bundle\DemoFlexibleEntityBundle\DataFixtures\ORM\Manufacturer\LoadManufacturerData;
+
 /**
  * Test related class
  *
@@ -25,7 +27,17 @@ class ManufacturerControllerTest extends KernelAwareControllerTest
     protected function getFixturesToLoad()
     {
         return array(
-                'src/Acme/Bundle/DemoFlexibleEntityBundle/DataFixtures/ORM/Manufacturer'
+            new LoadManufacturerData()
+        );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getTablesToTruncate()
+    {
+        return array(
+            'acmedemoflexibleentity_manufacturer'
         );
     }
 
