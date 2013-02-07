@@ -89,16 +89,16 @@ class DefaultController extends Controller
     public function importCustomersAction()
     {
         // get connector
-        //$connector = $this->container->get('connector.magento_customer');
+        //$connector = $this->container->get('connector.csv');
 
         // get job
-        //$job = $connector->getJob('import_customers');
+        //$job = $connector->getJob('job.import_customers');
 
         // TODO !!!
         $job = $this->container->get('job.import_customers');
 
         // configure job
-        $parameters = array('params' => array('csv_path' => '/tmp/export_customers.csv'));
+        $parameters = array('params' => array('file_path' => '/tmp/export_customers.csv'));
         $job->configure($parameters);
 
         // run job
