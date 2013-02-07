@@ -1,6 +1,6 @@
 <?php
 
-namespace Oro\Bundle\SearchBundle\Test\Functional\Api;
+namespace Acme\Bundle\DemoSearchBundle\Test\Functional\Api;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
