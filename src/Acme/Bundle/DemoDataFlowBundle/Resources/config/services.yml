@@ -1,14 +1,21 @@
 services:
+
     connector.magento_catalog:
         class: Acme\Bundle\DemoDataFlowBundle\Connector\MagentoConnector
         arguments: [ @product_manager ]
-        tags:
-            - { name: oro_dataflow_connector }
 
     job.import_attributes:
         class: Acme\Bundle\DemoDataFlowBundle\Connector\Job\ImportAttributesJob
         arguments: [ @product_manager ]
-        
+        tags:
+            - { name: oro_dataflow_job, connector: connector.magento_catalog}
+
+
+    connector.csv:
+        class: Acme\Bundle\DemoDataFlowBundle\Connector\CsvConnector
+
     job.import_customers:
         class: Acme\Bundle\DemoDataFlowBundle\Connector\Job\ImportCustomersJob
         arguments: [ @customer_manager ]
+        tags:
+            - { name: oro_dataflow_job, connector: connector.csv }

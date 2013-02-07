@@ -98,7 +98,8 @@ class DefaultController extends Controller
         $job = $this->container->get('job.import_customers');
 
         // configure job
-        $parameters = array('params' => array('file_path' => '/tmp/export_customers.csv'));
+        $csvPath = $this->container->get('kernel')->locateResource('@AcmeDemoDataFlowBundle/Resources/files/export_customers.csv');
+        $parameters = array('params' => array('file_path' => $csvPath));
         $job->configure($parameters);
 
         // run job
@@ -107,7 +108,6 @@ class DefaultController extends Controller
         $this->get('session')->getFlashBag()->add('success', count($customers) .' has been transformed !');
 
         foreach ($customers as $customer) {
-
             $this->get('session')->getFlashBag()->add('info', 'Email -> '. $customer->getEmail());
             $this->get('session')->getFlashBag()->add('info', 'Firstname -> '. $customer->getFirstname());
             $this->get('session')->getFlashBag()->add('info', 'Lastname -> '. $customer->getLastname());

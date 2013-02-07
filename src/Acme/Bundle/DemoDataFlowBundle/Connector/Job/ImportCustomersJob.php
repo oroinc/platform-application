@@ -58,7 +58,7 @@ class ImportCustomersJob extends AbstractJob
         $messages = array();
 
         // Call reader
-        $stream = new Stream($this->configuration['csv_path']);
+        $stream = new Stream($this->configuration['file_path']);
         $csvReader = new CsvReader($stream->getFile(), ',');
         $csvReader->setHeaderRowNumber(0);
 

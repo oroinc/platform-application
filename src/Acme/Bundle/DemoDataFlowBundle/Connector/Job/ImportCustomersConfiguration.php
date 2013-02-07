@@ -1,7 +1,7 @@
 <?php
 namespace Acme\Bundle\DemoDataFlowBundle\Connector\Job;
 
-use Oro\Bundle\DataFlowBundle\Connector\AbstractConfiguration;
+use Acme\Bundle\DemoDataFlowBundle\Connector\CsvConfiguration;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 
 /**
@@ -12,22 +12,7 @@ use Symfony\Component\Config\Definition\Builder\TreeBuilder;
  * @license   http://opensource.org/licenses/MIT MIT
  *
  */
-class ImportCustomersConfiguration extends AbstractConfiguration
+class ImportCustomersConfiguration extends CsvConfiguration
 {
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getConfigTreeBuilder()
-    {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('params');
-
-        $rootNode->children()
-            ->scalarNode('csv_path')->defaultNull()->end()
-        ->end();
-
-        return $treeBuilder;
-    }
 
 }
