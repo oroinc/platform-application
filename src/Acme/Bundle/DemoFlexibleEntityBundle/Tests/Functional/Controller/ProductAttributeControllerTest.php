@@ -1,5 +1,5 @@
 <?php
-namespace Acme\Bundle\DemoFlexibleEntityBundle\Tests\Controller;
+namespace Acme\Bundle\DemoFlexibleEntityBundle\Tests\Functional\Controller;
 
 /**
  * Test related class
@@ -17,16 +17,6 @@ class ProductAttributeControllerTest extends KernelAwareControllerTest
      * @staticvar string
      */
     protected static $controller = 'productattribute';
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function getFixturesToLoad()
-    {
-        return array(
-            'src/Acme/Bundle/DemoFlexibleEntityBundle/DataFixtures/ORM/Product'
-        );
-    }
 
     /**
      * Get manager
