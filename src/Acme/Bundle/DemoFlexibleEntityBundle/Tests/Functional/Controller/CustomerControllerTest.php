@@ -1,7 +1,5 @@
 <?php
-namespace Acme\Bundle\DemoFlexibleEntityBundle\Tests\Controller;
-
-use Acme\Bundle\DemoFlexibleEntityBundle\DataFixtures\ORM\Customer\LoadCustomerData;
+namespace Acme\Bundle\DemoFlexibleEntityBundle\Tests\Functional\Controller;
 
 /**
  * Test related class

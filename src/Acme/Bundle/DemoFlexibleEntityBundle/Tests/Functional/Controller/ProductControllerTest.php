@@ -1,10 +1,6 @@
 <?php
 
-namespace Acme\Bundle\DemoFlexibleEntityBundle\Tests\Controller;
-
-use Acme\Bundle\DemoFlexibleEntityBundle\DataFixtures\ORM\Product\LoadProductData;
-
-use Acme\Bundle\DemoFlexibleEntityBundle\Tests\Controller\KernelAwareControllerTest;
+namespace Acme\Bundle\DemoFlexibleEntityBundle\Tests\Functional\Controller;
 
 /**
  * Test related class

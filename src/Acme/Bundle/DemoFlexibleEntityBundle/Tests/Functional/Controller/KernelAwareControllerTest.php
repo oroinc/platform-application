@@ -1,5 +1,5 @@
 <?php
-namespace Acme\Bundle\DemoFlexibleEntityBundle\Tests\Controller;
+namespace Acme\Bundle\DemoFlexibleEntityBundle\Tests\Functional\Controller;
 
 use Doctrine\ORM\EntityManager;
 

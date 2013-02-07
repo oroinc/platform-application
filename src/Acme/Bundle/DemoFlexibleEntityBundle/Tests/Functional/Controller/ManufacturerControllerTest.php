@@ -1,8 +1,6 @@
 <?php
 
-namespace Acme\Bundle\DemoFlexibleEntityBundle\Tests\Controller;
-
-use Acme\Bundle\DemoFlexibleEntityBundle\DataFixtures\ORM\Manufacturer\LoadManufacturerData;
+namespace Acme\Bundle\DemoFlexibleEntityBundle\Tests\Functional\Controller;
 
 /**
  * Test related class
