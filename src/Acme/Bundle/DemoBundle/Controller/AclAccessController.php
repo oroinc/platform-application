@@ -19,6 +19,48 @@ class AclAccessController extends Controller
 {
     /**
      * @Acl(
+     *      id = "acme_demo_test_1",
+     *      name="demo1",
+     *      description = "Action for ROLE_USER",
+     *      parent = "acme_demo_test_controller_role_user"
+     * )
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function test1Action()
+    {
+        return  new Response('Action for ROLE_USER');
+    }
+
+    /**
+     * @Acl(
+     *      id = "acme_demo_test_2",
+     *      name="demo2",
+     *      description = "Action for ROLE_USER",
+     *      parent = "acme_demo_test_controller_role_user"
+     * )
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function test2Action()
+    {
+        return  new Response('Action for ROLE_USER');
+    }
+
+    /**
+     * @Acl(
+     *      id = "acme_demo_test_3",
+     *      name="demo3",
+     *      description = "Action for ROLE_USER",
+     *      parent = "acme_demo_test_controller_role_user"
+     * )
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function test3Action()
+    {
+        return  new Response('Action for ROLE_USER');
+    }
+
+    /**
+     * @Acl(
      *      id = "acme_demo_test_controller_role_user",
      *      name="Action for ROLE_USER",
      *      description = "Action for ROLE_USER",
