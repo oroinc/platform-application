@@ -21,31 +21,6 @@ class CustomerControllerTest extends KernelAwareControllerTest
     protected static $controller = 'customer';
 
     /**
-     * {@inheritdoc}
-     */
-    protected function getFixturesToLoad()
-    {
-        return array(
-            new LoadCustomerData()
-        );
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function getTablesToTruncate()
-    {
-        return array(
-            'acmedemoflexibleentity_customer',
-            'acmedemoflexibleentity_customer_value',
-            'acmedemoflexibleentity_customer_value_option',
-            'oroflexibleentity_attribute',
-            'oroflexibleentity_attribute_option',
-            'oroflexibleentity_attribute_option_value'
-        );
-    }
-
-    /**
      * Get customer manager
      *
      * @return Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleManager
@@ -84,28 +59,6 @@ class CustomerControllerTest extends KernelAwareControllerTest
             $this->client->request('GET', self::prepareUrl('en', 'show/'.$customer->getId()));
             $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         }
-    }
-
-    /**
-     * Test related action
-     *
-     * @throws \Exception
-     */
-    public function testRemoveAction()
-    {
-        // find customer to delete
-        $customer = $this->getCustomerManager()->getFlexibleRepository()->findOneBy(array());
-        if (!$customer) {
-            throw new \Exception('Customer not found');
-        }
-
-        // count all customers in database
-        $countCustomers = $this->countCustomers();
-
-        // call and assert view
-        $this->client->request('GET', self::prepareUrl('en', 'remove/'. $customer->getId()));
-        $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
-        $this->assertEquals($countCustomers-1, $this->countCustomers());
     }
 
     /**

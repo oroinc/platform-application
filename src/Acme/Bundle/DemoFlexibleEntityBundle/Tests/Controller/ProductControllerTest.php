@@ -24,32 +24,6 @@ class ProductControllerTest extends KernelAwareControllerTest
     protected static $controller = 'product';
 
     /**
-     * {@inheritdoc}
-     */
-    protected function getFixturesToLoad()
-    {
-        return array(
-            new LoadProductData()
-        );
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function getTablesToTruncate()
-    {
-        return array(
-            'acmedemoflexibleentity_product',
-            'acmedemoflexibleentity_product_attribute',
-            'acmedemoflexibleentity_product_value',
-            'acmedemoflexibleentity_product_value_option',
-            'oroflexibleentity_attribute',
-            'oroflexibleentity_attribute_option',
-            'oroflexibleentity_attribute_option_value'
-        );
-    }
-
-    /**
      * Get product manager
      *
      * @return Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleManager

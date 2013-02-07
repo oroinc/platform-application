@@ -22,26 +22,6 @@ class ManufacturerControllerTest extends KernelAwareControllerTest
     protected static $controller = 'manufacturer';
 
     /**
-     * {@inheritdoc}
-     */
-    protected function getFixturesToLoad()
-    {
-        return array(
-            new LoadManufacturerData()
-        );
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function getTablesToTruncate()
-    {
-        return array(
-            'acmedemoflexibleentity_manufacturer'
-        );
-    }
-
-    /**
      * Test related method
      */
     public function testIndexAction()
