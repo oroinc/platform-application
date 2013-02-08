@@ -1,0 +1,11 @@
+entities_config:
+    Acme\Bundle\DemoSearchBundle\Entity\Customer:
+        flexible_manager:     search_customer_manager
+        flexible_class:       Acme\Bundle\DemoSearchBundle\Entity\Customer
+        flexible_value_class: Acme\Bundle\DemoSearchBundle\Entity\CustomerValue
+    Acme\Bundle\DemoSearchBundle\Entity\Product:
+        flexible_manager:         search_product_manager
+        flexible_class:           Acme\Bundle\DemoSearchBundle\Entity\Product
+        flexible_value_class:     Acme\Bundle\DemoSearchBundle\Entity\ProductValue
+        attribute_extended_class: Acme\Bundle\DemoSearchBundle\Entity\ProductAttribute
+        flexible_init_mode:       required_attributes

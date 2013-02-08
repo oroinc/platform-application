@@ -1,0 +1,18 @@
+parameters:
+    search_customer_manager_class:     Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleManager
+    search_customer_entity_class:      Acme\Bundle\DemoSearchBundle\Entity\Customer
+    search_manufacturer_manager_class: Oro\Bundle\FlexibleEntityBundle\Manager\SimpleManager
+    search_manufacturer_entity_class:  Acme\Bundle\DemoSearchBundle\Entity\Manufacturer
+    search_product_manager_class:      Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleManager
+    search_product_entity_class:       Acme\Bundle\DemoSearchBundle\Entity\Product
+
+services:
+    search_customer_manager:
+        class:     "%search_customer_manager_class%"
+        arguments: [@service_container, %search_customer_entity_class%]
+    search_manufacturer_manager:
+        class:     "%search_manufacturer_manager_class%"
+        arguments: [@service_container, %search_manufacturer_entity_class%]
+    search_product_manager:
+        class:     "%search_product_manager_class%"
+        arguments: [@service_container, %search_product_entity_class%]
