@@ -11,7 +11,7 @@ use Oro\Bundle\DataFlowBundle\Transform\Mapping\ItemMapping;
  * @license   http://opensource.org/licenses/MIT MIT
  *
  */
-class MagentoCustomerMapping extends ItemMapping
+class CustomerMapping extends ItemMapping
 {
 
     /**

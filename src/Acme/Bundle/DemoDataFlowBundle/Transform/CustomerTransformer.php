@@ -3,7 +3,7 @@ namespace Acme\Bundle\DemoDataFlowBundle\Transform;
 
 use Symfony\Component\Form\DataTransformerInterface;
 use Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleManager;
-use Acme\Bundle\DemoDataFlowBundle\Transform\Mapping\MagentoCustomerMapping;
+use Acme\Bundle\DemoDataFlowBundle\Transform\Mapping\CustomerMapping;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
 /**
@@ -50,7 +50,7 @@ class CustomerTransformer implements DataTransformerInterface
         }
 
         // convert with mapper
-        $mapper = new MagentoCustomerMapping();
+        $mapper = new CustomerMapping();
         foreach ($mapper->getFields() as $field) {
             if (isset($data[$field->getSource()])) {
                 $flexibleValue = $customer->getValue($field->getDestination());
