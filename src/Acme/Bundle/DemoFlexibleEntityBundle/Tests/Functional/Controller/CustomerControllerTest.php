@@ -1,5 +1,5 @@
 <?php
-namespace Acme\Bundle\DemoFlexibleEntityBundle\Tests\Controller;
+namespace Acme\Bundle\DemoFlexibleEntityBundle\Tests\Functional\Controller;
 
 /**
  * Test related class
@@ -17,16 +17,6 @@ class CustomerControllerTest extends KernelAwareControllerTest
      * @staticvar string
      */
     protected static $controller = 'customer';
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function getFixturesToLoad()
-    {
-        return array(
-            'src/Acme/Bundle/DemoFlexibleEntityBundle/DataFixtures/ORM/Customer'
-        );
-    }
 
     /**
      * Get customer manager
@@ -67,28 +57,6 @@ class CustomerControllerTest extends KernelAwareControllerTest
             $this->client->request('GET', self::prepareUrl('en', 'show/'.$customer->getId()));
             $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         }
-    }
-
-    /**
-     * Test related action
-     *
-     * @throws \Exception
-     */
-    public function testRemoveAction()
-    {
-        // find customer to delete
-        $customer = $this->getCustomerManager()->getFlexibleRepository()->findOneBy(array());
-        if (!$customer) {
-            throw new \Exception('Customer not found');
-        }
-
-        // count all customers in database
-        $countCustomers = $this->countCustomers();
-
-        // call and assert view
-        $this->client->request('GET', self::prepareUrl('en', 'remove/'. $customer->getId()));
-        $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
-        $this->assertEquals($countCustomers-1, $this->countCustomers());
     }
 
     /**

@@ -1,7 +1,7 @@
 <?php
-namespace Acme\Bundle\DemoFlexibleEntityBundle\Test\Service;
+namespace Acme\Bundle\DemoFlexibleEntityBundle\Test\Unit\Service;
 
-use Acme\Bundle\DemoFlexibleEntityBundle\Tests\KernelAwareTest;
+use Acme\Bundle\DemoFlexibleEntityBundle\Tests\Unit\KernelAwareTest;
 
 use Acme\Bundle\DemoFlexibleEntityBundle\Entity\Manufacturer;
 
@@ -33,7 +33,7 @@ class ManufacturerManagerTest extends KernelAwareTest
     /**
      * Test related method
      */
-    public function testInsert()
+    public function testCreateEntity()
     {
         $newManufacturer = $this->manager->createEntity();
         $this->assertTrue($newManufacturer instanceof Manufacturer);

@@ -1,5 +1,5 @@
 <?php
-namespace Acme\Bundle\DemoFlexibleEntityBundle\Tests\Controller;
+namespace Acme\Bundle\DemoFlexibleEntityBundle\Tests\Functional\Controller;
 
 use Doctrine\ORM\EntityManager;
 
@@ -71,44 +71,14 @@ abstract class KernelAwareControllerTest extends WebTestCase
     }
 
     /**
-     * @return \Symfony\Bundle\FrameworkBundle\Console\Application
-     *
-     * @static
-     */
-    protected static function getApplication()
-    {
-        $client = static::createClient();
-
-        $application = new Application($client->getKernel());
-        $application->setAutoExit(false);
-
-        return $application;
-    }
-
-    /**
-     * Launch a command line
-     * @param string $command command name to run
-     * @param array  $args    args for the command to run
-     *
-     * @return integer 0 if everything went fine, or an error code
-     */
-    protected function runCommand($command, $args = array())
-    {
-        // command name must be the first argument
-        $args[0] = $command;
-        $input = new ArrayInput(
-            $args
-        );
-
-        return self::getApplication()->run($input);
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function setUp()
     {
         parent::setUp();
+
+        // initialize kernel, container and client
+        $this->client = static::createClient();
 
         $this->initializeDatabase();
     }
@@ -121,16 +91,9 @@ abstract class KernelAwareControllerTest extends WebTestCase
     {
         $fixtures = $this->getFixturesToLoad();
 
-        if (!empty($fixtures)) {
-            $args['--fixtures'] = $fixtures;
-            $args['--no-interaction'] = true;
-            if ($appendData) {
-                $args['--append'] = true;
-            }
-
-            $command = 'doctrine:fixtures:load';
-
-            self::runCommand($command, $args);
+        foreach ($fixtures as $fixture) {
+            $fixture->setContainer($this->getContainer());
+            $fixture->load($this->getContainer()->get('doctrine.orm.entity_manager'));
         }
     }
 
@@ -145,11 +108,11 @@ abstract class KernelAwareControllerTest extends WebTestCase
     /**
      * {@inheritdoc}
      */
-    public function runTest()
+    public function tearDown()
     {
-        $this->client = static::createClient();
+        $this->truncateDatabase();
 
-        parent::runTest();
+        parent::tearDown();
     }
 
     /**
