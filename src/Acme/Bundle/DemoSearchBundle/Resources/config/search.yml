@@ -1,0 +1,14 @@
+Acme\Bundle\DemoSearchBundle\Entity\Customer:
+    fields:
+        -
+            name: firstname
+            target_type: text
+            target_fields: [firstname, all_data]
+        -
+            name: lastname
+            target_type: text
+            target_fields: [lastname, all_data]
+        -
+            name: email
+            target_type: text
+            target_fields: [email, all_data]
