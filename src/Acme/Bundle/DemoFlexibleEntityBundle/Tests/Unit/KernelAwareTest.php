@@ -42,5 +42,4 @@ abstract class KernelAwareTest extends \PHPUnit_Framework_TestCase
 
         parent::tearDown();
     }
-
 }
