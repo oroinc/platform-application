@@ -1,7 +1,36 @@
+parameters:
+
+    connector.magento_catalog:               Acme\Bundle\DemoDataFlowBundle\Connector\MagentoConnector
+    connector.type.magento_catalog.class:    Acme\Bundle\DemoDataFlowBundle\Form\Type\MagentoConnectorType
+    connector.handler.magento_catalog.class: Acme\Bundle\DemoDataFlowBundle\Form\Handler\MagentoConnectorHandler
+
+
 services:
 
+    # connector Magento and related form type and handler
+    
     connector.magento_catalog:
         class: Acme\Bundle\DemoDataFlowBundle\Connector\MagentoConnector
+        arguments: ["connector.form.magento_catalog", "connector.form.handler.magento_catalog" ]
+
+    connector.form.magento_catalog:
+        class: Symfony\Component\Form\Form
+        factory_method: createNamed
+        factory_service: form.factory
+        arguments: ["connector_magento_catalog_form", "connector_magento_catalog"]
+
+    connector.form.type.magento_catalog:
+        class: %connector.type.magento_catalog.class%
+        tags:
+            - { name: form.type, alias: connector_magento_catalog}
+
+    connector.form.handler.magento_catalog:
+        class: %connector.handler.magento_catalog.class%
+        scope: request
+        arguments: ["@connector.form.magento_catalog", "@request", "@doctrine.orm.entity_manager"]
+
+
+    ### job import attributes
 
     job.import_attributes:
         class: Acme\Bundle\DemoDataFlowBundle\Job\ImportAttributesJob
