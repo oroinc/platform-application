@@ -16,12 +16,12 @@ class CsvConnector extends AbstractConnector
 
     /**
      * Get configuration
-     * @return \Acme\Bundle\DemoDataFlowBundle\Configuration\NewMagentoConfiguration
+     * @return ConfigurationInterface
      */
     public function getNewConfigurationInstance()
     {
         // TODO : inject existing ?
-        return new \Acme\Bundle\DemoDataFlowBundle\Configuration\NewCsvConfiguration();
+        return new \Acme\Bundle\DemoDataFlowBundle\Configuration\CsvConfiguration();
     }
 
     /**
@@ -30,7 +30,7 @@ class CsvConnector extends AbstractConnector
      */
     public function getFormId()
     {
-        return "connector.form.csv";
+        return "configuration.form.csv";
     }
 
     /**
@@ -41,5 +41,4 @@ class CsvConnector extends AbstractConnector
     {
         return "oro_dataflow.form.handler.configuration";
     }
-
 }

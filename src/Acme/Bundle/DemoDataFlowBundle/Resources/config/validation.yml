@@ -1,4 +1,4 @@
-Acme\Bundle\DemoDataFlowBundle\Configuration\NewMagentoConfiguration:
+Acme\Bundle\DemoDataFlowBundle\Configuration\MagentoConfiguration:
     properties:
         driver:
             - NotBlank: ~

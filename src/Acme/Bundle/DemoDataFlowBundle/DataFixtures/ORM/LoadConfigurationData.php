@@ -7,8 +7,8 @@ use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Acme\Bundle\DemoDataFlowBundle\Configuration\NewMagentoConfiguration;
-use Acme\Bundle\DemoDataFlowBundle\Configuration\NewCsvConfiguration;
+use Acme\Bundle\DemoDataFlowBundle\Configuration\MagentoConfiguration;
+use Acme\Bundle\DemoDataFlowBundle\Configuration\CsvConfiguration;
 use Acme\Bundle\DemoDataFlowBundle\Configuration\ImportCustomerConfiguration;
 use Acme\Bundle\DemoDataFlowBundle\Configuration\ImportAttributeConfiguration;
 
@@ -33,7 +33,7 @@ class LoadConfigurationData extends AbstractFixture implements OrderedFixtureInt
         $format = 'xml';
 
         // prepare conf Magento
-        $magentoConf = new NewMagentoConfiguration();
+        $magentoConf = new MagentoConfiguration();
         $magentoConf->setHost('localhost');
         $magentoConf->setDbname('db_magento1');
         $magentoConf->setUser('admin');
@@ -50,7 +50,7 @@ class LoadConfigurationData extends AbstractFixture implements OrderedFixtureInt
         $manager->persist($configuration);
 
         // prepare conf Magento
-        $magentoConf = new NewMagentoConfiguration();
+        $magentoConf = new MagentoConfiguration();
         $magentoConf->setHost('127.0.0.1');
         $magentoConf->setDbname('db_magento2');
         $serializer = \JMS\Serializer\SerializerBuilder::create()->build();
@@ -79,7 +79,7 @@ class LoadConfigurationData extends AbstractFixture implements OrderedFixtureInt
         $manager->persist($configuration);
 
         // prepare conf CSV
-        $csvConf = new NewCsvConfiguration();
+        $csvConf = new CsvConfiguration();
         $csvConf->setDelimiter(',');
         $serializer = \JMS\Serializer\SerializerBuilder::create()->build();
         $data = $serializer->serialize($csvConf, $format);
@@ -117,5 +117,4 @@ class LoadConfigurationData extends AbstractFixture implements OrderedFixtureInt
     {
         return 42;
     }
-
 }

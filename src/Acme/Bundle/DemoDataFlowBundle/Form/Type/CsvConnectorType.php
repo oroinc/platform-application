@@ -34,7 +34,7 @@ class CsvConnectorType extends AbstractType
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(array('data_class' => 'Acme\Bundle\DemoDataFlowBundle\Configuration\NewCsvConfiguration'));
+        $resolver->setDefaults(array('data_class' => 'Acme\Bundle\DemoDataFlowBundle\Configuration\CsvConfiguration'));
     }
 
     /**
@@ -42,6 +42,6 @@ class CsvConnectorType extends AbstractType
      */
     public function getName()
     {
-        return 'connector_csv';
+        return 'configuration_csv';
     }
 }

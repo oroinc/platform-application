@@ -179,7 +179,6 @@ class ConnectorController extends Controller
         return $this->redirect($this->generateUrl('acme_demodataflow_connector_configurejob', array('connectorId' => $connectorId, 'jobId' => $jobId, 'configurationId' => $configurationId)));
     }
 
-
     /**
      * @Route("/runjob/{connectorId}/{jobId}/{configurationId}", defaults={"configurationId"=0})
      * @Template()
@@ -197,5 +196,4 @@ class ConnectorController extends Controller
             'jobId'          => $jobId,
         );
     }
-
 }

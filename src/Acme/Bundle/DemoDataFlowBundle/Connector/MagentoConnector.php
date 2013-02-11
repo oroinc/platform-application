@@ -28,12 +28,12 @@ class MagentoConnector extends AbstractConnector
 
     /**
      * Get configuration
-     * @return \Acme\Bundle\DemoDataFlowBundle\Configuration\NewMagentoConfiguration
+     * @return ConfigurationInterface
      */
     public function getNewConfigurationInstance()
     {
         // TODO : inject existing ?
-        return new \Acme\Bundle\DemoDataFlowBundle\Configuration\NewMagentoConfiguration();
+        return new \Acme\Bundle\DemoDataFlowBundle\Configuration\MagentoConfiguration();
     }
 
     /**
@@ -42,7 +42,7 @@ class MagentoConnector extends AbstractConnector
      */
     public function getFormId()
     {
-        return "connector.form.magento_catalog";
+        return "configuration.form.magento_catalog";
     }
 
     /**
@@ -53,5 +53,4 @@ class MagentoConnector extends AbstractConnector
     {
         return "oro_dataflow.form.handler.configuration";
     }
-
 }

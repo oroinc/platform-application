@@ -1,9 +1,8 @@
 <?php
 namespace Acme\Bundle\DemoDataFlowBundle\Configuration;
 
-use Oro\Bundle\DataFlowBundle\Configuration\AbstractConfiguration;
-use Symfony\Component\Config\Definition\Builder\TreeBuilder;
-use Symfony\Component\Config\Definition\Builder\NodeDefinition;
+use Oro\Bundle\DataFlowBundle\Configuration\ConfigurationInterface;
+use JMS\Serializer\Annotation\Type;
 
 /**
  * Connector configuration
@@ -13,79 +12,214 @@ use Symfony\Component\Config\Definition\Builder\NodeDefinition;
  * @license   http://opensource.org/licenses/MIT MIT
  *
  */
-class MagentoConfiguration extends AbstractConfiguration
+class MagentoConfiguration implements ConfigurationInterface
 {
 
     /**
-     * {@inheritDoc}
+     * @Type("string")
+     * @var string
      */
-    public function getConfigTreeBuilder()
-    {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root(self::ROOT_NODE);
-        $rootNode
-            ->children()
-                ->append($this->addDatabaseNode())
-            ->end();
-
-        return $treeBuilder;
-    }
+    public $driver = 'pdo_mysql';
 
     /**
-     * Return database configuration node
-     *
-     * @return NodeDefinition
+     * @Type("string")
+     * @var string
      */
-    public function addDatabaseNode()
-    {
-        $builder = new TreeBuilder();
-        $node = $builder->root('database');
-        $node
-            ->children()
-                ->scalarNode('driver')
-                ->defaultValue('pdo_mysql')
-                ->end()
-                ->scalarNode('host')
-                ->defaultValue('localhost')
-                ->end()
-                ->scalarNode('port')
-                ->defaultNull()
-                ->end()
-                ->scalarNode('dbname')
-                ->end()
-                ->scalarNode('user')
-                ->defaultValue('root')
-                ->end()
-                ->scalarNode('password')
-                ->defaultNull()
-                ->end()
-                ->scalarNode('charset')
-                ->defaultValue('UTF8')
-                ->end()
-                ->scalarNode('table_prefix')
-                ->defaultNull()
-                ->end()
-            ->end();
-
-        return $node;
-    }
+    public $host = 'localhost';
 
     /**
-     * Return db parameters
-     * @return /ArrayAccess
+     * @Type("string")
+     * @var string
      */
-    public function getDatabaseParameters()
-    {
-        return $this->parameters['database'];
-    }
+    public $port;
 
     /**
-     * Return table prefix
+     * @Type("string")
+     * @var string
+     */
+    public $dbname;
+
+    /**
+     * @Type("string")
+     * @var string
+     */
+    public $user;
+
+    /**
+     * @Type("string")
+     * @var string
+     */
+    public $password;
+
+    /**
+     * @Type("string")
+     * @var string
+     */
+    public $charset = 'UFT-8';
+
+    /**
+     * @Type("string")
+     * @var string
+     */
+    public $prefix;
+
+    /**
      * @return string
      */
-    public function getTablePrefix()
+    public function getDriver()
     {
-        return $this->parameters['database']['table_prefix'];
+        return $this->driver;
     }
 
+    /**
+     * @param string $driver
+     *
+     * @return MagentoConfiguration
+     */
+    public function setDriver($driver)
+    {
+        $this->driver = $driver;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getHost()
+    {
+        return $this->host;
+    }
+
+    /**
+     * @param string $host
+     *
+     * @return MagentoConfiguration
+     */
+    public function setHost($host)
+    {
+        return $this->host = $host;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPort()
+    {
+        return $this->port;
+    }
+
+    /**
+     * @param string $port
+     *
+     * @return MagentoConfiguration
+     */
+    public function setPort($port)
+    {
+        $this->port = $port;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDbname()
+    {
+        return $this->dbname;
+    }
+
+    /**
+     * @param string $name
+     *
+     * @return MagentoConfiguration
+     */
+    public function setDbname($name)
+    {
+        $this->dbname = $name;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param string $user
+     *
+     * @return MagentoConfiguration
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * @param string $password
+     *
+     * @return MagentoConfiguration
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCharset()
+    {
+        return $this->charset;
+    }
+
+    /**
+     * @param string $charset
+     *
+     * @return MagentoConfiguration
+     */
+    public function setCharset($charset)
+    {
+        $this->charset = $charset;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPrefix()
+    {
+        return $this->prefix;
+    }
+
+    /**
+     * @param string $prefix
+     *
+     * @return MagentoConfiguration
+     */
+    public function setPrefix($prefix)
+    {
+        $this->prefix = $prefix;
+
+        return $this;
+    }
 }

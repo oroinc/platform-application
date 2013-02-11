@@ -82,7 +82,7 @@ class ImportAttributesJob extends AbstractJob
 
     /**
      * Get configuration
-     * @return \Acme\Bundle\DemoDataFlowBundle\Configuration\NewMagentoConfiguration
+     * @return \Acme\Bundle\DemoDataFlowBundle\Configuration\MagentoConfiguration
      */
     public function getNewConfigurationInstance()
     {
@@ -97,7 +97,7 @@ class ImportAttributesJob extends AbstractJob
      */
     public function getFormId()
     {
-        return "connector.form.import_attribute";
+        return "configuration.form.import_attribute";
     }
 
     /**
@@ -108,5 +108,4 @@ class ImportAttributesJob extends AbstractJob
     {
         return "oro_dataflow.form.handler.configuration";
     }
-
 }

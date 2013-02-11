@@ -1,8 +1,8 @@
 <?php
 namespace Acme\Bundle\DemoDataFlowBundle\Configuration;
 
-use Oro\Bundle\DataFlowBundle\Configuration\AbstractConfiguration;
-use Symfony\Component\Config\Definition\Builder\TreeBuilder;
+use Oro\Bundle\DataFlowBundle\Configuration\ConfigurationInterface;
+use JMS\Serializer\Annotation\Type;
 
 /**
  * Connector configuration
@@ -12,76 +12,110 @@ use Symfony\Component\Config\Definition\Builder\TreeBuilder;
  * @license   http://opensource.org/licenses/MIT MIT
  *
  */
-class CsvConfiguration extends AbstractConfiguration
+class CsvConfiguration implements ConfigurationInterface
 {
 
     /**
-     * {@inheritDoc}
+     * @Type("string")
+     * @var string
      */
-    public function getConfigTreeBuilder()
+    public $charset = 'UFT-8';
+
+    /**
+     * @Type("string")
+     * @var string
+     */
+    public $delimiter = ';';
+
+    /**
+     * @Type("string")
+     * @var string
+     */
+    public $enclosure = '"';
+
+    /**
+     * @Type("string")
+     * @var string
+     */
+    public $escape = '\\';
+
+    /**
+     * @return string
+     */
+    public function getCharset()
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root(self::ROOT_NODE);
-
-        $rootNode->children()
-            ->scalarNode('charset')
-            ->defaultValue('UTF8')
-            ->end()
-
-            ->scalarNode('delimiter')
-            ->defaultValue(';')
-            ->end()
-
-            ->scalarNode('enclosure')
-            ->defaultValue('"')
-            ->end()
-
-            ->scalarNode('escape')
-            ->defaultValue('\\')
-            ->end()
-
-            ->scalarNode('file_path')
-            ->defaultNull()
-            ->end()
-        ->end();
-
-        return $treeBuilder;
+        return $this->charset;
     }
 
     /**
-     * Return delimiter
+     * @param string $charset
+     *
+     * @return CsvConfiguration
+     */
+    public function setCharset($charset)
+    {
+        $this->charset = $charset;
+
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function getDelimiter()
     {
-        return $this->parameters['delimiter'];
+        return $this->delimiter;
     }
 
     /**
-     * Return enclosure
+     * @param string $delimiter
+     *
+     * @return CsvConfiguration
+     */
+    public function setDelimiter($delimiter)
+    {
+        $this->delimiter = $delimiter;
+
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function getEnclosure()
     {
-        return $this->parameters['enclosure'];
+        return $this->enclosure;
     }
 
     /**
-     * Return delimiter
+     * @param string $enclosure
+     *
+     * @return CsvConfiguration
+     */
+    public function setEnclosure($enclosure)
+    {
+        $this->enclosure = $enclosure;
+
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function getEscape()
     {
-        return $this->parameters['escape'];
+        return $this->escape;
     }
 
     /**
-     * Return file path
-     * @return string
+     * @param string $escape
+     *
+     * @return CsvConfiguration
      */
-    public function getFilePath()
+    public function setEscape($escape)
     {
-        return $this->parameters['file_path'];
-    }
+        $this->escape = $escape;
 
+        return $this;
+    }
 }

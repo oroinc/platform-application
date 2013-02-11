@@ -1,6 +1,7 @@
 <?php
 namespace Acme\Bundle\DemoDataFlowBundle\Configuration;
 
+use Oro\Bundle\DataFlowBundle\Configuration\ConfigurationInterface;
 use JMS\Serializer\Annotation\Type;
 
 /**
@@ -11,7 +12,7 @@ use JMS\Serializer\Annotation\Type;
  * @license   http://opensource.org/licenses/MIT MIT
  *
  */
-class ImportAttributeConfiguration extends NewMagentoConfiguration
+class ImportAttributeConfiguration implements ConfigurationInterface
 {
 
     /**
@@ -30,7 +31,8 @@ class ImportAttributeConfiguration extends NewMagentoConfiguration
 
     /**
      * @param string $excludedAttributes
-     * @return NewMagentoConfiguration
+     *
+     * @return MagentoConfiguration
      */
     public function setExcludedAttributes($excludedAttributes)
     {
@@ -38,5 +40,4 @@ class ImportAttributeConfiguration extends NewMagentoConfiguration
 
         return $this;
     }
-
 }

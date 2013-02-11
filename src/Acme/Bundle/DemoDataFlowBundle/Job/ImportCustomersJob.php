@@ -70,12 +70,12 @@ class ImportCustomersJob extends AbstractJob
 
     /**
      * Get configuration
-     * @return \Acme\Bundle\DemoDataFlowBundle\Configuration\NewMagentoConfiguration
+     * @return \Acme\Bundle\DemoDataFlowBundle\Configuration\MagentoConfiguration
      */
     public function getNewConfigurationInstance()
     {
         // TODO : inject existing ?
-        return new \Acme\Bundle\DemoDataFlowBundle\Configuration\NewCsvConfiguration();
+        return new \Acme\Bundle\DemoDataFlowBundle\Configuration\ImportCustomerConfiguration();
     }
 
 
@@ -85,7 +85,7 @@ class ImportCustomersJob extends AbstractJob
      */
     public function getFormId()
     {
-        return "connector.form.csv";
+        return "configuration.form.import_customer";
     }
 
     /**
@@ -96,5 +96,4 @@ class ImportCustomersJob extends AbstractJob
     {
         return "oro_dataflow.form.handler.configuration";
     }
-
 }

@@ -120,5 +120,4 @@ class DefaultController extends Controller
 
         return $this->redirect($this->generateUrl('acme_demoflexibleentity_customer_index'));
     }
-
 }
