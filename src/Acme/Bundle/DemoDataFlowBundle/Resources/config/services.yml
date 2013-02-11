@@ -2,16 +2,18 @@ parameters:
 
     connector.magento_catalog:               Acme\Bundle\DemoDataFlowBundle\Connector\MagentoConnector
     connector.type.magento_catalog.class:    Acme\Bundle\DemoDataFlowBundle\Form\Type\MagentoConnectorType
-    connector.handler.magento_catalog.class: Acme\Bundle\DemoDataFlowBundle\Form\Handler\MagentoConnectorHandler
 
+    connector.csv:                           Acme\Bundle\DemoDataFlowBundle\Connector\CsvConnector
+    connector.type.csv.class:                Acme\Bundle\DemoDataFlowBundle\Form\Type\CsvConnectorType
+
+    connector.type.import_attribute.class:   Acme\Bundle\DemoDataFlowBundle\Form\Type\ImportAttributeType
 
 services:
 
-    # connector Magento and related form type and handler
+    # connector Magento and related form type
     
     connector.magento_catalog:
         class: Acme\Bundle\DemoDataFlowBundle\Connector\MagentoConnector
-        arguments: ["connector.form.magento_catalog", "connector.form.handler.magento_catalog" ]
 
     connector.form.magento_catalog:
         class: Symfony\Component\Form\Form
@@ -24,13 +26,7 @@ services:
         tags:
             - { name: form.type, alias: connector_magento_catalog}
 
-    connector.form.handler.magento_catalog:
-        class: %connector.handler.magento_catalog.class%
-        scope: request
-        arguments: ["@connector.form.magento_catalog", "@request", "@doctrine.orm.entity_manager"]
-
-
-    ### job import attributes
+    # job import attributes
 
     job.import_attributes:
         class: Acme\Bundle\DemoDataFlowBundle\Job\ImportAttributesJob
@@ -38,10 +34,35 @@ services:
         tags:
             - { name: oro_dataflow_job, connector: connector.magento_catalog}
 
+    connector.form.import_attribute:
+        class: Symfony\Component\Form\Form
+        factory_method: createNamed
+        factory_service: form.factory
+        arguments: ["connector_import_attribute_form", "import_attribute"]
+
+    connector.form.type.import_attribute:
+        class: %connector.type.import_attribute.class%
+        tags:
+            - { name: form.type, alias: import_attribute}
+
+    # connector csv
 
     connector.csv:
         class: Acme\Bundle\DemoDataFlowBundle\Connector\CsvConnector
 
+    connector.form.csv:
+        class: Symfony\Component\Form\Form
+        factory_method: createNamed
+        factory_service: form.factory
+        arguments: ["connector_csv_form", "connector_csv"]
+
+    connector.form.type.csv:
+        class: %connector.type.csv.class%
+        tags:
+            - { name: form.type, alias: connector_csv}
+
+    # job import customer
+    
     job.import_customers:
         class: Acme\Bundle\DemoDataFlowBundle\Job\ImportCustomersJob
         arguments: [ @customer_manager ]

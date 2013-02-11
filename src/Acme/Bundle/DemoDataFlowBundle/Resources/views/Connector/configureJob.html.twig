@@ -14,23 +14,24 @@
         <div class="navbar-inner">
             <ul class="nav dataflow-steps">
                 <li><a href="{{ path('acme_demodataflow_connector_select') }}">(1) Select connector & job</a></li>
-                <li class="active"><a href="{{ path('acme_demodataflow_connector_configure', { connectorId: connectorId, jobId: jobId, configurationId: 0 }) }}">(2) Configure connector</a></li>
-                <li><a href="#">(3) Configure job</a></li>
+                <li><a href="{{ path('acme_demodataflow_connector_configure', { connectorId: connectorId, jobId: jobId, configurationId: 0 }) }}">(2) Configure connector</a></li>
+                <li class="active"><a href="{{ path('acme_demodataflow_connector_configurejob', { connectorId: connectorId, jobId: jobId, configurationId: 0 }) }}">(3) Configure job</a></li>
                 <li><a href="#">(4) Schedule / run</a></li>
             </ul>
         </div>
     </div>
 
-<form action="{{ path('acme_demodataflow_connector_save', { connectorId: connectorId, jobId: jobId, configurationId: 0 }) }}" method="POST" class="form-register">
+
+<form action="{{ path('acme_demodataflow_connector_savejob', { connectorId: connectorId, jobId: jobId, configurationId: 0 }) }}" method="POST" class="form-register">
 
     <fieldset>
         <legend>{{ "Load configuration" | trans }}</legend>
 
         <ul>
         {% for configuration in configurations %}
-            <li><a href="{{ path('acme_demodataflow_connector_configure', { connectorId: connectorId, jobId: jobId, configurationId: configuration.id }) }}">Load configuration "{{ configuration.description }}"</a></li>
+            <li><a href="{{ path('acme_demodataflow_connector_configurejob', { connectorId: connectorId, jobId: jobId, configurationId: configuration.id }) }}">Load configuration "{{ configuration.description }}"</a></li>
         {% endfor %}
-            <li><a href="{{ path('acme_demodataflow_connector_configure', { connectorId: connectorId, jobId: jobId, configurationId: 0 }) }}">Reset to create a new configuration</a></li>
+            <li><a href="{{ path('acme_demodataflow_connector_configurejob', { connectorId: connectorId, jobId: jobId, configurationId: 0 }) }}">Reset to create a new configuration</a></li>
         </ul>
 
     </fieldset>

@@ -1,0 +1,26 @@
+{% extends bap.layout is defined ? bap.layout : 'AcmeDemoFlexibleEntityBundle::layout.html.twig' %}
+
+{% set title = 'Configure connector' %}
+
+{% block title %}{{ parent() }} - {{ title }}{% endblock %}
+
+{% block content %}
+
+    <STYLE type="text/css">
+        .dataflow-steps li {width:275px;}
+    </STYLE>
+    
+    <div class="navbar">
+        <div class="navbar-inner">
+            <ul class="nav dataflow-steps">
+                <li><a href="{{ path('acme_demodataflow_connector_select') }}">(1) Select connector & job</a></li>
+                <li><a href="{{ path('acme_demodataflow_connector_configure', { connectorId: connectorId, jobId: jobId, configurationId: 0 }) }}">(2) Configure connector</a></li>
+                <li><a href="{{ path('acme_demodataflow_connector_configurejob', { connectorId: connectorId, jobId: jobId, configurationId: 0 }) }}">(3) Configure job</a></li>
+                <li class="active"><a href="#">(4) Schedule / run</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <p>Ready to be run ! </p>
+
+{% endblock %}

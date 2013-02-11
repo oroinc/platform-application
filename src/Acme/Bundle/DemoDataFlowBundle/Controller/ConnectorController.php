@@ -25,20 +25,19 @@ class ConnectorController extends Controller
      */
     public function selectAction()
     {
-        // get connectors ids
-        $connectors = $this->container->get('oro_dataflow.connectors')->getConnectors();
-        $connectorIds = array_keys($connectors);
+        // get connectors ids to job ids
+        $connectorsToJobs = $this->container->get('oro_dataflow.connectors')->getConnectorToJobs();
 
-        return array('connectorIds' => $connectorIds);
+        return array('connectorsToJobs' => $connectorsToJobs);
     }
 
     /**
-     * @Route("/configure/{connectorId}/{configurationId}", defaults={"configurationId"=0})
+     * @Route("/configure/{connectorId}/{jobId}/{configurationId}", defaults={"configurationId"=0})
      * @Template()
      *
      * @return array
      */
-    public function configureAction($connectorId, $configurationId)
+    public function configureAction($connectorId, $jobId, $configurationId)
     {
         // get connector
         $connector = $this->container->get($connectorId);
@@ -58,91 +57,145 @@ class ConnectorController extends Controller
         $form = $this->get($connector->getFormId());
         $form->setData($configuration);
 
-        /*
-        // prepare form submission
-        if ('POST' === $this->request->getMethod()) {
-            if ($this->get($connector->getFormHandlerId())->process($configuration)) {
-                $this->get('session')->getFlashBag()->add('success', 'Configuration successfully saved');
+        // render configuration form
+        return array(
+            'form'           => $form->createView(),
+            'configurations' => $configurations,
+            'connectorId'    => $connectorId,
+            'jobId'          => $jobId,
+        );
+    }
 
-                return $this->redirect($this->generateUrl('acme_demodataflow_connector_edit'));
-            }
+
+    /**
+     * @Route("/save/{connectorId}/{jobId}/{configurationId}", defaults={"configurationId"=0})
+     * @Template()
+     *
+     * @return array
+     */
+    public function saveAction($connectorId, $jobId, $configurationId)
+    {
+        // TODO refactor !
+
+        // get connector
+        $connector = $this->container->get($connectorId);
+
+        // get existing configuration or create a new one
+        $configRepo = $this->get('doctrine.orm.entity_manager')->getRepository('OroDataFlowBundle:Configuration');
+        if ($configurationId > 0) {
+            $confData = $configRepo->find($configurationId);
+            $serializer = \JMS\Serializer\SerializerBuilder::create()->build();
+            $configuration = $serializer->deserialize($confData->getData(), $confData->getTypeName(), $confData->getFormat());
+        } else {
+            $configuration = $connector->getNewConfigurationInstance();
         }
-        */
+
+        // process form
+        $handler = $this->get($connector->getFormHandlerId());
+        $form = $this->get($connector->getFormId());
+        $handler->setForm($form);
+        if ($handler->process($configuration)) {
+            $this->get('session')->getFlashBag()->add('success', 'Configuration successfully saved');
+
+            return $this->redirect($this->generateUrl('acme_demodataflow_connector_configurejob', array('connectorId' => $connectorId, 'jobId' => $jobId)));
+        } else {
+            $this->get('session')->getFlashBag()->add('notice', "Configuration can't be saved");
+        }
+
+        return $this->redirect($this->generateUrl('acme_demodataflow_connector_configure', array('connectorId' => $connectorId, 'jobId' => $jobId, 'configurationId' => $configurationId)));
+    }
+
+    /**
+     * @Route("/configurejob/{connectorId}/{jobId}/{configurationId}", defaults={"configurationId"=0})
+     * @Template()
+     *
+     * @return array
+     */
+    public function configureJobAction($connectorId, $jobId, $configurationId)
+    {
+        // get job
+        $job = $this->container->get($jobId);
+
+        // get existing configuration or create a new one
+        $configRepo = $this->get('doctrine.orm.entity_manager')->getRepository('OroDataFlowBundle:Configuration');
+        if ($configurationId > 0) {
+            $confData = $configRepo->find($configurationId);
+            $serializer = \JMS\Serializer\SerializerBuilder::create()->build();
+            $configuration = $serializer->deserialize($confData->getData(), $confData->getTypeName(), $confData->getFormat());
+        } else {
+            $configuration = $job->getNewConfigurationInstance();
+        }
+        $configurations = $configRepo->findBy(array('typeName' => get_class($configuration)));
+
+        // prepare form
+        $form = $this->get($job->getFormId());
+        $form->setData($configuration);
 
         // render configuration form
         return array(
             'form'           => $form->createView(),
             'configurations' => $configurations,
-            'connectorId'    => $connectorId
+            'connectorId'    => $connectorId,
+            'jobId'          => $jobId,
         );
     }
 
-
     /**
-     * @Route("/edit/{configuration}", requirements={"configuration"="\d+"}, defaults={"configuration"=0})
+     * @Route("/savejob/{connectorId}/{jobId}/{configurationId}", defaults={"configurationId"=0})
      * @Template()
      *
      * @return array
      */
-    public function editAction($configuration/*, $connectorId = null*/)
+    public function saveJobAction($connectorId, $jobId, $configurationId)
     {
+        // TODO refactor !
 
+        // get job
+        $job = $this->container->get($jobId);
 
+        // get existing configuration or create a new one
+        $configRepo = $this->get('doctrine.orm.entity_manager')->getRepository('OroDataFlowBundle:Configuration');
+        if ($configurationId > 0) {
+            $confData = $configRepo->find($configurationId);
+            $serializer = \JMS\Serializer\SerializerBuilder::create()->build();
+            $configuration = $serializer->deserialize($confData->getData(), $confData->getTypeName(), $confData->getFormat());
+        } else {
+            $configuration = $job->getNewConfigurationInstance();
+        }
+        $configurations = $configRepo->findBy(array('typeName' => get_class($configuration)));
 
-        /*if ($connectorId) {
-            $connector = $this->container->get($connectorId);
-        } else {*/
-            $connector = $this->container->get('connector.magento_catalog');
-        //}
-
-            if ($configuration == 0) {
-
-
-                $configuration = $connector->getNewConfigurationInstance();
-            }
-
-        if ($this->get($connector->getFormHandlerId())->process($configuration)) {
+        // process form
+        $handler = $this->get($job->getFormHandlerId());
+        $form = $this->get($job->getFormId());
+        $handler->setForm($form);
+        if ($handler->process($configuration)) {
             $this->get('session')->getFlashBag()->add('success', 'Configuration successfully saved');
 
-            return $this->redirect($this->generateUrl('acme_demodataflow_connector_edit'));
+            return $this->redirect($this->generateUrl('acme_demodataflow_connector_runjob', array('connectorId' => $connectorId, 'jobId' => $jobId)));
+        } else {
+            $this->get('session')->getFlashBag()->add('notice', "Configuration can't be saved");
         }
 
+        return $this->redirect($this->generateUrl('acme_demodataflow_connector_configurejob', array('connectorId' => $connectorId, 'jobId' => $jobId, 'configurationId' => $configurationId)));
+    }
+
+
+    /**
+     * @Route("/runjob/{connectorId}/{jobId}/{configurationId}", defaults={"configurationId"=0})
+     * @Template()
+     *
+     * @return array
+     */
+    public function runJobAction($connectorId, $jobId, $configurationId)
+    {
+        // $configuration = jobservice-> getConfiguration()
+        // jobservice-> getFormType($configuration)
+        //
+
         return array(
-            'form' => $this->get($connector->getFormId())->createView(),
+            'connectorId'    => $connectorId,
+            'jobId'          => $jobId,
         );
-    }
-
-    /**
-     * @Route("/configure-job")
-     * @Template()
-     *
-     * @return array
-     */
-    public function configureJobAction()
-    {
-        // TODO : get existing stored conf by conftype
-        // select conf or create a new one and save
-
-        // $configuration = jobservice-> getConfiguration()
-        // jobservice-> getFormType($configuration)
-        //
-
-        return array();
-    }
-
-    /**
-     * @Route("/run-job")
-     * @Template()
-     *
-     * @return array
-     */
-    public function runJobAction()
-    {
-        // $configuration = jobservice-> getConfiguration()
-        // jobservice-> getFormType($configuration)
-        //
-
-        return array();
     }
 
 }

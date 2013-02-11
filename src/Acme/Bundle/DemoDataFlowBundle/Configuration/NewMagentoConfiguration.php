@@ -1,6 +1,7 @@
 <?php
 namespace Acme\Bundle\DemoDataFlowBundle\Configuration;
 
+use Oro\Bundle\DataFlowBundle\Configuration\ConfigurationInterface;
 use JMS\Serializer\Annotation\Type;
 
 /**
@@ -11,7 +12,7 @@ use JMS\Serializer\Annotation\Type;
  * @license   http://opensource.org/licenses/MIT MIT
  *
  */
-class NewMagentoConfiguration
+class NewMagentoConfiguration implements ConfigurationInterface
 {
 
     /**
@@ -71,11 +72,14 @@ class NewMagentoConfiguration
     }
 
     /**
-     * @return string
+     * @param string $driver
+     * @return NewMagentoConfiguration
      */
     public function setDriver($driver)
     {
-        return $this->driver = $driver;
+        $this->driver = $driver;
+
+        return $this;
     }
 
     /**
@@ -135,14 +139,23 @@ class NewMagentoConfiguration
         return $this;
     }
 
-
-
     /**
      * @return string
      */
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * @param string $user
+     * @return NewMagentoConfiguration
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+
+        return $this;
     }
 
     /**
@@ -154,6 +167,17 @@ class NewMagentoConfiguration
     }
 
     /**
+     * @param string $password
+     * @return NewMagentoConfiguration
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function getCharset()
@@ -162,11 +186,33 @@ class NewMagentoConfiguration
     }
 
     /**
+     * @param string $charset
+     * @return NewMagentoConfiguration
+     */
+    public function setCharset($charset)
+    {
+        $this->charset = $charset;
+
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function getPrefix()
     {
         return $this->prefix;
+    }
+
+    /**
+     * @param string $prefix
+     * @return NewMagentoConfiguration
+     */
+    public function setPrefix($prefix)
+    {
+        $this->prefix = $prefix;
+
+        return $this;
     }
 
 }

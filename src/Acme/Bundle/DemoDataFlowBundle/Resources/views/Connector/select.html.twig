@@ -7,25 +7,36 @@
 {% block content %}
 
     <STYLE type="text/css">
-        .dataflow-steps li {width:225px;}
+        .dataflow-steps li {width:275px;}
     </STYLE>
     
     <div class="navbar">
         <div class="navbar-inner">
             <ul class="nav dataflow-steps">
-                <li class="active"><a href="{{ path('acme_demodataflow_connector_select') }}">(1) Select connector</a></li>
-                <li><a href="{{ path('acme_demodataflow_connector_select') }}">(2) Configure connector</a></li>
-                <li><a href="{{ path('acme_demodataflow_connector_select') }}">(3) Select job</a></li>
-                <li><a href="{{ path('acme_demodataflow_connector_select') }}">(4) Configure job</a></li>
-                <li><a href="{{ path('acme_demodataflow_connector_select') }}">(5) Schedule / run</a></li>
+                <li class="active"><a href="{{ path('acme_demodataflow_connector_select') }}">(1) Select connector & job</a></li>
+                <li><a href="#">(2) Configure connector</a></li>
+                <li><a href="#">(3) Configure job</a></li>
+                <li><a href="#">(4) Schedule / run</a></li>
             </ul>
         </div>
     </div>
 
-    <ul>
-    {% for connectorId in connectorIds %}
-        <li class="active"><a href="{{ path('acme_demodataflow_connector_configure', {'connectorId': connectorId}) }}">{{ connectorId }}</a></li>
-    {% endfor %}
-    </ul>
+    <fieldset>
+        <legend>{{ "Available connectors" | trans }}</legend>
+
+        <ul>
+        {% for connectorId, jobs in connectorsToJobs %}
+            <li>Connector {{ connectorId }}
+            <ul>
+            {% for jobId in jobs %}
+                <li><a href="{{ path('acme_demodataflow_connector_configure', {'connectorId': connectorId, 'jobId': jobId}) }}">Job {{ jobId }}</a></li>
+            {% endfor %}
+            </ul>
+            </li>
+            
+        {% endfor %}
+        </ul>
+    </fieldset>
+
 
 {% endblock %}

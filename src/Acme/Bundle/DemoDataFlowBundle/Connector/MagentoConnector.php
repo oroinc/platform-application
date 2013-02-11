@@ -17,11 +17,6 @@ class MagentoConnector extends AbstractConnector
 {
 
     /**
-     * @var ConnectorRegistry
-     */
-    protected $registry;
-
-    /**
      * @var string
      */
     protected $formId;
@@ -30,19 +25,6 @@ class MagentoConnector extends AbstractConnector
      * @var string
      */
     protected $formHandlerId;
-
-    /**
-     * Constructor
-     * @param ConnectorRegistry $registry the form service id
-     * @param string $form                the form service id
-     * @param string $formHandler         the form handler service id
-     */
-    public function __construct(/*$registry,*/ $form, $formHandler)
-    {
-//        $this->registry     = $registry;
-        $this->formId        = $form;
-        $this->formHandlerId = $formHandler;
-    }
 
     /**
      * Get configuration
@@ -55,32 +37,12 @@ class MagentoConnector extends AbstractConnector
     }
 
     /**
-     * Get configurations
-     * @return \ArrayAccess
-     */
-    public function getConfigurations()
-    {
-        $typeConfiguration = 'Acme\Bundle\DemoDataFlowBundle\Configuration\NewMagentoConfiguration';
-
-        return $this->registry->getConfigurations($typeConfiguration);
-    }
-
-    /**
-     * Get jobs
-     * @return \ArrayAccess
-     */
-    public function getJobs()
-    {
-        // TODO
-    }
-
-    /**
      * Get form
      * @return string
      */
     public function getFormId()
     {
-        return $this->formId;
+        return "connector.form.magento_catalog";
     }
 
     /**
@@ -89,7 +51,7 @@ class MagentoConnector extends AbstractConnector
      */
     public function getFormHandlerId()
     {
-        return $this->formHandlerId;
+        return "oro_dataflow.form.handler.configuration";
     }
 
 }
