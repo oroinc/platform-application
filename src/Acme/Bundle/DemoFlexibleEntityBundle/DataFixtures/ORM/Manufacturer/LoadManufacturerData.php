@@ -78,5 +78,4 @@ class LoadManufacturerData extends AbstractFixture implements OrderedFixtureInte
     {
         return 3;
     }
-
 }

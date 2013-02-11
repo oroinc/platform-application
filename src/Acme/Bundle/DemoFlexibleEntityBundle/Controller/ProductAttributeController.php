@@ -96,7 +96,12 @@ class ProductAttributeController extends Controller
 
                 $this->get('session')->getFlashBag()->add('success', 'Attribute successfully saved');
 
-                return $this->redirect($this->generateUrl('acme_demoflexibleentity_productattribute_edit', array('id' => $entity->getId())));
+                return $this->redirect(
+                    $this->generateUrl(
+                        'acme_demoflexibleentity_productattribute_edit',
+                        array('id' => $entity->getId())
+                    )
+                );
             }
         }
 
@@ -124,5 +129,4 @@ class ProductAttributeController extends Controller
 
         return $this->redirect($this->generateUrl('acme_demoflexibleentity_productattribute_index'));
     }
-
 }

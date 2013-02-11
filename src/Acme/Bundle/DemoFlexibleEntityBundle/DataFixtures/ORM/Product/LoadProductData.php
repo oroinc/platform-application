@@ -160,7 +160,9 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $attColor = $this->getProductManager()->getFlexibleRepository()->findAttributeByCode('color');
         $attPrice = $this->getProductManager()->getFlexibleRepository()->findAttributeByCode('price');
         // get attribute color options
-        $optColors = $this->getProductManager()->getAttributeOptionRepository()->findBy(array('attribute' => $attColor));
+        $optColors = $this->getProductManager()->getAttributeOptionRepository()->findBy(
+            array('attribute' => $attColor)
+        );
         $colors = array();
         foreach ($optColors as $option) {
             $colors[]= $option;
@@ -333,8 +335,12 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $colors = array("Red" => "Rouge", "Blue" => "Bleu", "Green" => "Vert");
         // translate
         foreach ($colors as $colorEn => $colorFr) {
-            $optValueEn = $this->getProductManager()->getAttributeOptionValueRepository()->findOneBy(array('value' => $colorEn));
-            $optValueFr = $this->getProductManager()->getAttributeOptionValueRepository()->findOneBy(array('value' => $colorFr));
+            $optValueEn = $this->getProductManager()->getAttributeOptionValueRepository()->findOneBy(
+                array('value' => $colorEn)
+            );
+            $optValueFr = $this->getProductManager()->getAttributeOptionValueRepository()->findOneBy(
+                array('value' => $colorFr)
+            );
             if ($optValueEn and !$optValueFr) {
                 $option = $optValueEn->getOption();
                 $optValueFr = $this->getProductManager()->createAttributeOptionValue();
