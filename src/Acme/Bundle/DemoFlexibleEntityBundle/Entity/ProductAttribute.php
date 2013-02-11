@@ -23,7 +23,9 @@ class ProductAttribute extends AbstractEntityAttributeExtended
     /**
      * @var Oro\Bundle\FlexibleEntityBundle\Entity\Attribute $attribute
      *
-     * @ORM\OneToOne(targetEntity="Oro\Bundle\FlexibleEntityBundle\Entity\Attribute", cascade={"persist", "merge", "remove"})
+     * @ORM\OneToOne(
+     *     targetEntity="Oro\Bundle\FlexibleEntityBundle\Entity\Attribute", cascade={"persist", "merge", "remove"}
+     * )
      * @ORM\JoinColumn(name="attribute_id", referencedColumnName="id", onDelete="CASCADE")
      */
     protected $attribute;
@@ -115,5 +117,4 @@ class ProductAttribute extends AbstractEntityAttributeExtended
 
         return $this;
     }
-
 }
