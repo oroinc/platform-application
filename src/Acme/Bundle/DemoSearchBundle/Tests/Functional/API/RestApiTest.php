@@ -39,11 +39,12 @@ class RestApiTest extends WebTestCase
      *
      * @return array
      */
-    public function requestsApi()
-    {
+    public function requestsApi() {
         $parameters = array();
-        $testFiles = new RecursiveDirectoryIterator(__DIR__ . DIRECTORY_SEPARATOR . 'requests', RecursiveDirectoryIterator::CURRENT_AS_FILEINFO);
-        foreach ($testFiles as $fileName => $object) {
+        $testFiles = new RecursiveDirectoryIterator(__DIR__ . DIRECTORY_SEPARATOR . 'requests',
+            RecursiveDirectoryIterator::CURRENT_AS_FILEINFO
+        );
+        foreach ($testFiles as $fileName => $object ) {
             $parameters[$fileName] = Yaml::parse($fileName);
             if (is_null($parameters[$fileName]['response']['data'])) {
                 unset($parameters[$fileName]['response']['data']);
@@ -86,9 +87,9 @@ class RestApiTest extends WebTestCase
     {
         $this->assertEquals($response['records_count'], $result['records_count']);
         $this->assertEquals($response['count'], $result['count']);
-        if (isset ($response['data']) ) {
-            foreach ($response['data'] as $key => $object) {
-                foreach ($object as $property => $value) {
+        if (isset($response['data']) && is_array($response['data'])) {
+            foreach($response['data'] as $key => $object) {
+                foreach($object as $property => $value) {
                     $this->assertEquals($value, $result['data'][$key][$property]);
                 }
             }
