@@ -30,7 +30,7 @@ class MagentoConnectorType extends AbstractType
         $builder->add('user', 'text', array('required' => true));
         $builder->add('password', 'password', array('required' => true));
         $builder->add('charset', 'text', array('required' => true));
-        $builder->add('prefix', 'text', array('required' => false));
+        $builder->add('tablePrefix', 'text', array('required' => false));
     }
 
     /**
