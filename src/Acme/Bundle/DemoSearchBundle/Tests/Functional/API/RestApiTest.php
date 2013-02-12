@@ -42,7 +42,7 @@ class RestApiTest extends WebTestCase
     public function requestsApi() {
         $parameters = array();
         $testFiles = new RecursiveDirectoryIterator(__DIR__ . DIRECTORY_SEPARATOR . 'requests',
-            RecursiveDirectoryIterator::CURRENT_AS_FILEINFO
+            RecursiveDirectoryIterator::SKIP_DOTS
         );
         foreach ($testFiles as $fileName => $object ) {
             $parameters[$fileName] = Yaml::parse($fileName);
