@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Doctrine\Common\Annotations\AnnotationReader;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 use Acme\Bundle\DemoBundle\Entity\Product;
 use Acme\Bundle\DemoBundle\Form\ProductType;
@@ -49,6 +50,7 @@ class SearchController extends Controller
      * @Route("/edit/{id}", name="acme_demo_edit")
      * @Template()
      * @param $id
+     * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function editAction($id)
     {
@@ -93,26 +95,12 @@ class SearchController extends Controller
     }
 
     /**
-     * Search request using query builder
-     *
-     * @Route("/query-builder", name="acme_demo_query_builder")
      * @Template()
      * @return array
      */
-    public function queryBuilderAction()
+    public function testAction()
     {
-        $query = $this->getSearchManager()->select()
-            ->from('AcmeDemoBundle:Product')
-            ->andWhere('all_data', '=', 'Functions', 'text')
-            ->orWhere('price', '=', 85, 'decimal');
-
-        return array(
-            'searchResults' => $this->get('knp_paginator')->paginate(
-                $this->getSearchManager()->query($query),
-                $this->get('request')->query->get('page', 1),
-                3
-            )
-        );
+        return array();
     }
 
     /**
