@@ -27,5 +27,4 @@ class ProductType extends FlexibleType
         // customer fields
         $builder->add('sku', 'text', array('required' => true, 'read_only' => $builder->getData()->getId()));
     }
-
 }

@@ -57,7 +57,9 @@ class CustomerAttributeControllerTest extends KernelAwareControllerTest
     public function testEditAction()
     {
         // find one to edit
-        $attribute = $this->getCustomerManager()->getAttributeRepository()->findOneBy(array('entityType' => 'Acme\Bundle\DemoFlexibleEntityBundle\Entity\Customer'));
+        $attribute = $this->getCustomerManager()->getAttributeRepository()->findOneBy(
+            array('entityType' => 'Acme\Bundle\DemoFlexibleEntityBundle\Entity\Customer')
+        );
         if (!$attribute) {
             throw new \Exception('Customer not found');
         }
@@ -76,9 +78,10 @@ class CustomerAttributeControllerTest extends KernelAwareControllerTest
      */
     protected function countCustomerAttributes()
     {
-        $attributes = $this->getCustomerManager()->getAttributeRepository()->findBy(array('entityType' => 'Acme\Bundle\DemoFlexibleEntityBundle\Entity\Customer'));
+        $attributes = $this->getCustomerManager()->getAttributeRepository()->findBy(
+            array('entityType' => 'Acme\Bundle\DemoFlexibleEntityBundle\Entity\Customer')
+        );
 
         return count($attributes);
     }
-
 }

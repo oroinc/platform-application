@@ -51,7 +51,10 @@ class CustomerController extends Controller
      * @param int    $limit      limit
      * @param int    $offset     offset
      *
-     * @Route("/query/{attributes}/{criteria}/{orderBy}/{limit}/{offset}", defaults={"attributes" = null, "criteria" = null, "orderBy" = null, "limit" = null, "offset" = null})
+     * @Route(
+     *     "/query/{attributes}/{criteria}/{orderBy}/{limit}/{offset}",
+     *     defaults={"attributes" = null, "criteria" = null, "orderBy" = null, "limit" = null, "offset" = null}
+     * )
      *
      * @Template("AcmeDemoFlexibleEntityBundle:Customer:index.html.twig")
      *
@@ -78,7 +81,11 @@ class CustomerController extends Controller
 
         // get entities
         $customers = $this->getCustomerManager()->getFlexibleRepository()->findByWithAttributes(
-            $attributes, $criteria, $orderBy, $limit, $offset
+            $attributes,
+            $criteria,
+            $orderBy,
+            $limit,
+            $offset
         );
 
         return array('customers' => $customers);
@@ -184,5 +191,4 @@ class CustomerController extends Controller
 
         return $this->redirect($this->generateUrl('acme_demoflexibleentity_customer_index'));
     }
-
 }

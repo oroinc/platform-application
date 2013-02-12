@@ -89,5 +89,4 @@ class ProductControllerTest extends KernelAwareControllerTest
             $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         }
     }
-
 }

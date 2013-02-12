@@ -57,7 +57,9 @@ class ProductAttributeControllerTest extends KernelAwareControllerTest
     public function testEditAction()
     {
         // find one to edit
-        $attribute = $this->getProductManager()->getAttributeRepository()->findOneBy(array('entityType' => 'Acme\Bundle\DemoFlexibleEntityBundle\Entity\Product'));
+        $attribute = $this->getProductManager()->getAttributeRepository()->findOneBy(
+            array('entityType' => 'Acme\Bundle\DemoFlexibleEntityBundle\Entity\Product')
+        );
         if (!$attribute) {
             throw new \Exception('Not found');
         }
@@ -68,5 +70,4 @@ class ProductAttributeControllerTest extends KernelAwareControllerTest
             $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         }
     }
-
 }

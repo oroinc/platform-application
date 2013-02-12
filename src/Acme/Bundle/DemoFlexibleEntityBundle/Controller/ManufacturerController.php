@@ -42,5 +42,4 @@ class ManufacturerController extends Controller
 
         return array('manufacturers' => $manufacturers);
     }
-
 }
