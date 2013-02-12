@@ -8,12 +8,12 @@ use Symfony\Component\Finder\Iterator\RecursiveDirectoryIterator;
 
 class RestApiTest extends WebTestCase
 {
-    /** @var Client */
-    protected $_client;
+
+    protected $client;
 
     public function setUp()
     {
-        $this->_client = static::createClient();
+        $this->client = static::createClient();
     }
 
     /**
@@ -24,9 +24,9 @@ class RestApiTest extends WebTestCase
      */
     public function testApi($request, $response)
     {
-        $this->_client->request('GET', "api/rest/latest/search?search={$request}");
+        $this->client->request('GET', "api/rest/latest/search?search={$request}");
 
-        $result = $this->_client->getResponse();
+        $result = $this->client->getResponse();
 
         $this->assertJsonResponse($result, 200);
         $result = json_decode($result->getContent(), true);
@@ -39,12 +39,14 @@ class RestApiTest extends WebTestCase
      *
      * @return array
      */
-    public function requestsApi() {
+    public function requestsApi()
+    {
         $parameters = array();
-        $testFiles = new RecursiveDirectoryIterator(__DIR__ . DIRECTORY_SEPARATOR . 'requests',
+        $testFiles = new RecursiveDirectoryIterator(
+            __DIR__ . DIRECTORY_SEPARATOR . 'requests',
             RecursiveDirectoryIterator::SKIP_DOTS
         );
-        foreach ($testFiles as $fileName => $object ) {
+        foreach ($testFiles as $fileName => $object) {
             $parameters[$fileName] = Yaml::parse($fileName);
             if (is_null($parameters[$fileName]['response']['data'])) {
                 unset($parameters[$fileName]['response']['data']);
@@ -56,7 +58,7 @@ class RestApiTest extends WebTestCase
 
     protected function tearDown()
     {
-        unset($this->_client);
+        unset($this->client);
     }
 
     /**
@@ -68,7 +70,8 @@ class RestApiTest extends WebTestCase
     protected function assertJsonResponse($response, $statusCode = 200)
     {
         $this->assertEquals(
-            $statusCode, $response->getStatusCode(),
+            $statusCode,
+            $response->getStatusCode(),
             $response->getContent()
         );
         $this->assertTrue(
@@ -88,8 +91,8 @@ class RestApiTest extends WebTestCase
         $this->assertEquals($response['records_count'], $result['records_count']);
         $this->assertEquals($response['count'], $result['count']);
         if (isset($response['data']) && is_array($response['data'])) {
-            foreach($response['data'] as $key => $object) {
-                foreach($object as $property => $value) {
+            foreach ($response['data'] as $key => $object) {
+                foreach ($object as $property => $value) {
                     $this->assertEquals($value, $result['data'][$key][$property]);
                 }
             }

@@ -12,70 +12,70 @@ use Doctrine\ORM\Mapping as ORM;
 class Item extends AbstractEntityFlexible
 {
  
-   /**
+    /**
      * @var string $stringValue
      *
      * @ORM\Column(name="stringValue", type="string", nullable=true)
      */
     protected $stringValue;
 
-   /**
+    /**
      * @var integer $integerValue
      *
      * @ORM\Column(name="integerValue", type="integer", nullable=true)
      */
     protected $integerValue;
 
-   /**
+    /**
      * @var decimal $decimalValue
      *
      * @ORM\Column(name="decimalValue", type="decimal", scale=2, nullable=true)
      */
     protected $decimalValue;
 
-   /**
+    /**
      * @var float $floatValue
      *
      * @ORM\Column(name="floatValue", type="float", nullable=true)
      */
     protected $floatValue;
 
-   /**
+    /**
      * @var boolean $booleanValue
      *
      * @ORM\Column(name="booleanValue", type="boolean", nullable=true)
      */
     protected $booleanValue;
 
-   /**
+    /**
      * @var blob $blobValue
      *
      * @ORM\Column(name="blobValue", type="blob", nullable=true)
      */
     protected $blobValue;
 
-   /**
+    /**
      * @var array $arrayValue
      *
      * @ORM\Column(name="arrayValue", type="array", nullable=true)
      */
     protected $arrayValue;
 
-   /**
+    /**
      * @var datetime $arrayValue
      *
      * @ORM\Column(name="datetimeValue", type="datetime", nullable=true)
      */
     protected $datetimeValue;
 
-   /**
+    /**
      * @var guid $arrayValue
      *
      * @ORM\Column(name="guidValue", type="guid", nullable=true)
      */
     protected $guidValue;
 
-   /**
+    /**
      * @var object $objectValue
      *
      * @ORM\Column(name="objectValue", type="object", nullable=true)
@@ -99,7 +99,7 @@ class Item extends AbstractEntityFlexible
         return $this->$name;
     }
 
-   public function __toString()
+    public function __toString()
     {
         return $this->stringValue;
     }
