@@ -8,6 +8,7 @@ use Symfony\Component\Finder\Iterator\RecursiveDirectoryIterator;
 
 class RestApiTest extends WebTestCase
 {
+    /** @var Client */
     protected $_client;
 
     public function setUp()
@@ -17,7 +18,7 @@ class RestApiTest extends WebTestCase
 
     /**
      * @param string $request
-     * @param string $response
+     * @param array $response
      *
      * @dataProvider requestsApi
      */
@@ -28,7 +29,9 @@ class RestApiTest extends WebTestCase
         $result = $this->_client->getResponse();
 
         $this->assertJsonResponse($result, 200);
-        $this->assertEquals($response, $result->getContent());
+        $result = json_decode($result->getContent(), true);
+        //compare result
+        $this->assertEqualsResponse($response, $result);
     }
 
     /**
@@ -41,10 +44,9 @@ class RestApiTest extends WebTestCase
         $testFiles = new RecursiveDirectoryIterator(__DIR__ . DIRECTORY_SEPARATOR . 'requests', RecursiveDirectoryIterator::CURRENT_AS_FILEINFO);
         foreach ($testFiles as $fileName => $object ) {
             $parameters[$fileName] = Yaml::parse($fileName);
-            if (is_null($parameters[$fileName]['response']['records_set'])) {
-                unset($parameters[$fileName]['response']['records_set']);
+            if (is_null($parameters[$fileName]['response']['data'])) {
+                unset($parameters[$fileName]['response']['data']);
             }
-            $parameters[$fileName]['response'] = json_encode($parameters[$fileName]['response']);
         }
         return
             $parameters;
@@ -73,4 +75,20 @@ class RestApiTest extends WebTestCase
         );
     }
 
+    /**
+     * Test API response
+     *
+     * @param array $response
+     * @param array $result
+     */
+    protected function assertEqualsResponse($response, $result)
+    {
+        $this->assertEquals($response['records_count'], $result['records_count']);
+        $this->assertEquals($response['count'], $result['count']);
+        foreach($response['data'] as $key => $object) {
+            foreach($object as $property => $value) {
+                $this->assertEquals($value, $result['data'][$key][$property]);
+            }
+        }
+    }
 }

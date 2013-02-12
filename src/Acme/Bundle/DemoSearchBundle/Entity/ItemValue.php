@@ -6,16 +6,10 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * Value for a customer attribute
- *
- * @author    Nicolas Dupont <nicolas@akeneo.com>
- * @copyright 2012 Akeneo SAS (http://www.akeneo.com)
- * @license   http://opensource.org/licenses/MIT MIT
- *
- * @ORM\Table(name="acmedemosearch_customer_value")
+ * @ORM\Table(name="acmedemosearch_item_value")
  * @ORM\Entity
  */
-class CustomerValue extends AbstractEntityFlexibleValue
+class ItemValue extends AbstractEntityFlexibleValue
 {
     /**
      * @var Oro\Bundle\FlexibleEntityBundle\Entity\Attribute $attribute
@@ -28,7 +22,7 @@ class CustomerValue extends AbstractEntityFlexibleValue
     /**
      * @var Customer $entity
      *
-     * @ORM\ManyToOne(targetEntity="Customer", inversedBy="values")
+     * @ORM\ManyToOne(targetEntity="Item", inversedBy="values")
      */
     protected $entity;
 
@@ -39,7 +33,7 @@ class CustomerValue extends AbstractEntityFlexibleValue
      *
      * @ORM\ManyToMany(targetEntity="Oro\Bundle\FlexibleEntityBundle\Entity\AttributeOption")
      * @ORM\JoinTable(
-     *     name="acmedemosearch_customer_value_option",
+     *     name="acmedemosearch_item_value_option",
      *     joinColumns={@ORM\JoinColumn(name="value_id", referencedColumnName="id", onDelete="CASCADE")},
      *     inverseJoinColumns={@ORM\JoinColumn(name="option_id", referencedColumnName="id", onDelete="CASCADE")}
      * )
