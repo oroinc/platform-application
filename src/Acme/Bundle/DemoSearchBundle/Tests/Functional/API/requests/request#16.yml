@@ -1,0 +1,9 @@
+# offset test case
+request: email&offset=8&max_results=1
+response:
+    records_count: 9
+    count: 1
+    data:
+        -
+            entity_name: Acme\Bundle\DemoSearchBundle\Entity\Item
+            record_string: email-9@mail.com
