@@ -1,8 +1,0 @@
-parameters:
-    database:
-        host:         127.0.0.1
-        dbname:       magento_ab
-        user:         root
-        password:     root
-        table_prefix: ab_
-    excluded_attributes: sku,old_id,created_at,updated_at

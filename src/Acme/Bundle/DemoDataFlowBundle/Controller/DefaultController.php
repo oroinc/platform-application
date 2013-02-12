@@ -52,28 +52,28 @@ class DefaultController extends Controller
         // get connector
         $connector = $this->container->get('connector.magento_catalog');
 
-        // get Magento configuration
+        // get connector configuration TODO: refactor serialization
         $configRepo = $this->get('doctrine.orm.entity_manager')->getRepository('OroDataFlowBundle:Configuration');
-        $criteria = array('typeName' => get_class($connector->getNewConfigurationInstance()), 'description' => 'Magento 2');
-        $configuration =  $configRepo->findOneBy($criteria);
+        $typeName = get_class($connector->getNewConfigurationInstance());
+        $confData =  $configRepo->findOneByTypeAndDescription($typeName, 'Magento 2');
+        $serializer = \JMS\Serializer\SerializerBuilder::create()->build();
+        $configuration = $serializer->deserialize($confData->getData(), $confData->getTypeName(), $confData->getFormat());
 
-
-        var_dump($configuration);
-        exit();
-
-        // $connector->configure();
+        // configure connector
+        $connector->configure($configuration);
 
         // get job
         $job = $this->container->get('job.import_attributes');
 
-        // load configuration
-        $resource = '@AcmeDemoDataFlowBundle/Resources/files/import_attributes.yml';
-        $file = $this->container->get('kernel')->locateResource($resource);
-        $parameters = Yaml::parse($file);
+        // get job configuration TODO: refactor serialization
+        $configRepo = $this->get('doctrine.orm.entity_manager')->getRepository('OroDataFlowBundle:Configuration');
+        $typeName = get_class($job->getNewConfigurationInstance());
+        $confData =  $configRepo->findOneByTypeAndDescription($typeName, 'Import attributes');
+        $serializer = \JMS\Serializer\SerializerBuilder::create()->build();
+        $configuration = $serializer->deserialize($confData->getData(), $confData->getTypeName(), $confData->getFormat());
 
         // configure job
-        $configuration = new ImportAttributesConfiguration($parameters);
-        $job->configure($configuration);
+        $job->configure($connector->getConfiguration(), $configuration);
 
         // run job
         $messages = $job->run();
@@ -97,22 +97,30 @@ class DefaultController extends Controller
     public function importCustomersAction()
     {
         // get connector
-        // $connector = $this->container->get('connector.csv');
-        // $connector->configure();
+        $connector = $this->container->get('connector.csv');
+
+        // get connector configuration TODO: refactor serialization
+        $configRepo = $this->get('doctrine.orm.entity_manager')->getRepository('OroDataFlowBundle:Configuration');
+        $typeName = get_class($connector->getNewConfigurationInstance());
+        $confData =  $configRepo->findOneByTypeAndDescription($typeName, 'Magento CSV');
+        $serializer = \JMS\Serializer\SerializerBuilder::create()->build();
+        $configuration = $serializer->deserialize($confData->getData(), $confData->getTypeName(), $confData->getFormat());
+
+        // configure connector
+        $connector->configure($configuration);
 
         // get job
         $job = $this->container->get('job.import_customers');
 
-        // load configuration
-        $resource = '@AcmeDemoDataFlowBundle/Resources/files/import_customers.yml';
-        $csvPath = $this->container->get('kernel')->locateResource('@AcmeDemoDataFlowBundle/Resources/files/export_customers.csv');
-        $file = $this->container->get('kernel')->locateResource($resource);
-        $parameters = Yaml::parse($file);
-        $parameters['parameters']['file_path'] = $csvPath;
+        // get job configuration TODO: refactor serialization
+        $configRepo = $this->get('doctrine.orm.entity_manager')->getRepository('OroDataFlowBundle:Configuration');
+        $typeName = get_class($job->getNewConfigurationInstance());
+        $confData =  $configRepo->findOneByTypeAndDescription($typeName, 'Import customer CSV');
+        $serializer = \JMS\Serializer\SerializerBuilder::create()->build();
+        $configuration = $serializer->deserialize($confData->getData(), $confData->getTypeName(), $confData->getFormat());
 
         // configure job
-        $configuration = new ImportCustomersConfiguration($parameters);
-        $job->configure($configuration);
+        $job->configure($connector->getConfiguration(), $configuration);
 
         // run job
         $customers = $job->run();

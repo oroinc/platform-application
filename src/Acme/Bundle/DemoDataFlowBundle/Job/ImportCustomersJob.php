@@ -46,9 +46,9 @@ class ImportCustomersJob extends AbstractJob implements EditableConfigurationInt
         $stream = new Stream($this->getConfiguration()->getFilePath());
         $csvReader = new CsvReader(
             $stream->getFile(),
-            $this->getConfiguration()->getDelimiter(),
-            $this->getConfiguration()->getEnclosure(),
-            $this->getConfiguration()->getEscape()
+            $this->getConnectorConfiguration()->getDelimiter(),
+            $this->getConnectorConfiguration()->getEnclosure(),
+            $this->getConnectorConfiguration()->getEscape()
         );
         $csvReader->setHeaderRowNumber(0);
 

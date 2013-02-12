@@ -61,7 +61,7 @@ class MagentoConfiguration implements ConfigurationInterface
      * @Type("string")
      * @var string
      */
-    public $prefix;
+    public $tablePrefix;
 
     /**
      * @return string
@@ -206,9 +206,9 @@ class MagentoConfiguration implements ConfigurationInterface
     /**
      * @return string
      */
-    public function getPrefix()
+    public function getTablePrefix()
     {
-        return $this->prefix;
+        return $this->tablePrefix;
     }
 
     /**
@@ -216,10 +216,29 @@ class MagentoConfiguration implements ConfigurationInterface
      *
      * @return MagentoConfiguration
      */
-    public function setPrefix($prefix)
+    public function setTablePrefix($prefix)
     {
-        $this->prefix = $prefix;
+        $this->tablePrefix = $prefix;
 
         return $this;
+    }
+
+    /**
+     * Prepare dbal parameters
+     *
+     * @return \ArrayAccess
+     */
+    public function getDbalParameters()
+    {
+        $params = array(
+            'dbname'   => $this->getDbname(),
+            'user'     => $this->getUser(),
+            'password' => $this->getPassword(),
+            'host'     => $this->getHost(),
+            'port'     => $this->getPort(),
+            'driver'   => $this->getDriver(),
+        );
+
+        return $params;
     }
 }

@@ -55,7 +55,7 @@ class LoadConfigurationData extends AbstractFixture implements OrderedFixtureInt
         $magentoConf->setUser('root');
         $magentoConf->setPassword('root');
         $magentoConf->setDbname('magento_ab');
-        $magentoConf->setPrefix('ab_');
+        $magentoConf->setTablePrefix('ab_');
         $serializer = \JMS\Serializer\SerializerBuilder::create()->build();
         $data = $serializer->serialize($magentoConf, $format);
 
@@ -97,7 +97,7 @@ class LoadConfigurationData extends AbstractFixture implements OrderedFixtureInt
 
         // prepare conf ImportCustomer
         $csvConf = new ImportCustomerConfiguration();
-        $csvConf->setFilePath('/tmp/my-file.csv');
+        $csvConf->setFilePath(__DIR__.'/../../Resources/files/export_customers.csv');
         $serializer = \JMS\Serializer\SerializerBuilder::create()->build();
         $data = $serializer->serialize($csvConf, $format);
 

@@ -44,10 +44,11 @@ class ImportAttributesJob extends AbstractJob implements EditableConfigurationIn
         $messages = array();
 
         // prepare connection
-        $connection = DriverManager::getConnection($this->getConfiguration()->getDatabaseParameters(), new DbalConfiguration());
+        $dbalParams = $this->getConnectorConfiguration()->getDbalParameters();
+        $connection = DriverManager::getConnection($dbalParams, new DbalConfiguration());
 
         // query on magento attributes
-        $prefix = $this->getConfiguration()->getTablePrefix();
+        $prefix = $this->getConnectorConfiguration()->getTablePrefix();
         $sql = 'SELECT * FROM '.$prefix.'eav_attribute AS att '
             .'INNER JOIN '.$prefix.'eav_entity_type AS typ '
             .'ON att.entity_type_id = typ.entity_type_id AND typ.entity_type_code = "catalog_product"';
