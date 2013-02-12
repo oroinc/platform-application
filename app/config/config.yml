@@ -23,6 +23,7 @@ framework:
 twig:
     debug:                    "%kernel.debug%"
     strict_variables:         "%kernel.debug%"
+    exception_controller:     "FOS\RestBundle\Controller\ExceptionController::showAction"
     globals:
         bap:
             layout:           AcmeDemoBundle::layout.bootstrap.html.twig  # default layout across all Oro bundles
