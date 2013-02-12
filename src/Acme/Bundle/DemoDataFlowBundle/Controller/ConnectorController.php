@@ -24,19 +24,61 @@ class ConnectorController extends Controller
 {
 
     /**
-     * Select a job
+     * Build contextual navigation menu wit steps
      *
-     * @Route("/select")
-     * @Template()
-     *
-     * @return array
+     * @return \ArrayAccess
      */
-    public function selectAction()
+    public function getNavigationMenu()
     {
-        // get connectors ids to job ids
-        $connectorsToJobs = $this->container->get('oro_dataflow.connectors')->getConnectorToJobs();
+        // get params
+        $request   = $this->container->get('request');
+        $conId     = $request->get('conId');
+        $jobId     = $request->get('jobId');
+        $conConfId = $request->get('conConfId');
+        $jobConfId = $request->get('jobConfId');
 
-        return array('connectorsToJobs' => $connectorsToJobs);
+        // prepare steps
+        $translator = $this->container->get('translator');
+        $items = array(
+            // select
+            array(
+                'label'  => $translator->trans('(1) Select connector & job'),
+                'route'  => 'acme_demodataflow_connector_select',
+                'params' => array()
+            ),
+            // configure connector
+            array(
+                'label' => $translator->trans('(2) Configure connector'),
+                'route' => 'acme_demodataflow_connector_configure',
+                'params' => array('conId' => $conId, 'jobId' => $jobId)
+            ),
+            // configure job
+            array(
+                'label'  => $translator->trans('(3) Configure job'),
+                'route'  => 'acme_demodataflow_connector_configurejob',
+                'params' => array('conId' => $conId, 'jobId' => $jobId, 'conConfId' => $conConfId)
+            ),
+            // schedule / run
+            array(
+                'label'  => $translator->trans('(4) Schedule / run'),
+                'route'  => 'acme_demodataflow_connector_runjob',
+                'params' => array('conId' => $conId, 'jobId' => $jobId, 'conConfId' => $conConfId, 'jobConfId' => $jobConfId)
+            )
+        );
+
+        // highlight current step, disable following
+        $currentRoute = $request->get('_route');
+        $toDisable    = false;
+        foreach ($items as &$item) {
+            if ($item['route'] == $currentRoute) {
+                $item['class']= 'active';
+                $toDisable = true;
+            } elseif ($toDisable) {
+                $item['route']= false;
+            }
+        }
+
+        return $items;
     }
 
     /**
@@ -88,6 +130,8 @@ class ConnectorController extends Controller
             $confData      = $configRepo->find($configurationId);
             $serializer    = \JMS\Serializer\SerializerBuilder::create()->build();
             $configuration = $serializer->deserialize($confData->getData(), $confData->getTypeName(), $confData->getFormat());
+            $configuration->setId($confData->getId());
+            $configuration->setDescription($confData->getDescription());
         } else {
             $configuration = $configurable->getNewConfigurationInstance();
         }
@@ -110,24 +154,43 @@ class ConnectorController extends Controller
     }
 
     /**
-     * Configure connector
+     * Select a job
      *
-     * @param integer $connectorId     the connector id
-     * @param integer $jobId           the job id
-     * @param integer $configurationId the configuration id
-     *
-     * @Route("/configure/{connectorId}/{jobId}/{configurationId}", defaults={"configurationId"=0})
+     * @Route("/select")
      * @Template()
      *
      * @return array
      */
-    public function configureAction($connectorId, $jobId, $configurationId)
+    public function selectAction()
+    {
+        // get connectors ids to job ids
+        $connectorsToJobs = $this->container->get('oro_dataflow.connectors')->getConnectorToJobs();
+
+        return array(
+            'connectorsToJobs' => $connectorsToJobs,
+            'steps'            => $this->getNavigationMenu()
+        );
+    }
+
+    /**
+     * Configure connector
+     *
+     * @param integer $conId     the connector id
+     * @param integer $jobId     the job id
+     * @param integer $conConfId the connector configuration id
+     *
+     * @Route("/configure/{conId}/{jobId}/{conConfId}", defaults={"conConfId"=0})
+     * @Template()
+     *
+     * @return array
+     */
+    public function configureAction($conId, $jobId, $conConfId)
     {
         // get connector
-        $connector = $this->container->get($connectorId);
+        $connector = $this->container->get($conId);
 
         // get existing configuration or create a new one
-        $configuration = $this->getConfiguration($connector, $configurationId);
+        $configuration = $this->getConfiguration($connector, $conConfId);
         $configurations = $this->getAvailableConfigurations(get_class($configuration));
 
         // prepare form
@@ -135,67 +198,73 @@ class ConnectorController extends Controller
 
         // render configuration form
         return array(
-            'form'           => $form->createView(),
-            'configurations' => $configurations,
-            'connectorId'    => $connectorId,
-            'jobId'          => $jobId,
+            'form'            => $form->createView(),
+            'configurations'  => $configurations,
+            'conId'           => $conId,
+            'jobId'           => $jobId,
+            'conConfId'       => $conConfId,
+            'steps'           => $this->getNavigationMenu()
         );
     }
 
     /**
      * Save connector
      *
-     * @param integer $connectorId     the connector id
-     * @param integer $jobId           the job id
-     * @param integer $configurationId the configuration id
+     * @param integer $conId     the connector id
+     * @param integer $jobId     the job id
+     * @param integer $conConfId the connector configuration id
      *
-     * @Route("/save/{connectorId}/{jobId}/{configurationId}", defaults={"configurationId"=0})
+     * @Route("/save/{conId}/{jobId}/{conConfId}", defaults={"conConfId"=0})
      * @Template()
      *
      * @return array
      */
-    public function saveAction($connectorId, $jobId, $configurationId)
+    public function saveAction($conId, $jobId, $conConfId)
     {
-        // TODO refactor !
-
         // get connector
-        $connector = $this->container->get($connectorId);
+        $connector = $this->container->get($conId);
 
         // get existing configuration or create a new one
-        $configuration = $this->getConfiguration($connector, $configurationId);
+        $configuration = $this->getConfiguration($connector, $conConfId);
 
         // process form
         $handler = $this->getConfigurationHandler($connector);
         if ($handler->process($configuration)) {
             $this->get('session')->getFlashBag()->add('success', 'Configuration successfully saved');
 
-            return $this->redirect($this->generateUrl('acme_demodataflow_connector_configurejob', array('connectorId' => $connectorId, 'jobId' => $jobId)));
+            $params = array('conId' => $conId, 'jobId' => $jobId, 'conConfId' => $configuration->getId());
+            return $this->redirect($this->generateUrl('acme_demodataflow_connector_configurejob', $params));
         } else {
             $this->get('session')->getFlashBag()->add('error', "Configuration can't be saved");
+            // TODO : add validation message
         }
 
-        return $this->redirect($this->generateUrl('acme_demodataflow_connector_configure', array('connectorId' => $connectorId, 'jobId' => $jobId, 'configurationId' => $configurationId)));
+        $params = array('conId' => $conId, 'jobId' => $jobId, 'conConfId' => $conConfId);
+        $url = $this->generateUrl('acme_demodataflow_connector_configure', $params);
+
+        return $this->redirect($url);
     }
 
     /**
      * Configure job
      *
-     * @param integer $connectorId     the connector id
-     * @param integer $jobId           the job id
-     * @param integer $configurationId the configuration id
+     * @param integer $conId     the connector id
+     * @param integer $jobId     the job id
+     * @param integer $conConfId the connector configuration id
+     * @param integer $jobConfId the job configuration id
      *
-     * @Route("/configurejob/{connectorId}/{jobId}/{configurationId}", defaults={"configurationId"=0})
+     * @Route("/configurejob/{conId}/{jobId}/{conConfId}/{jobConfId}", defaults={"jobConfId"=0})
      * @Template()
      *
      * @return array
      */
-    public function configureJobAction($connectorId, $jobId, $configurationId)
+    public function configureJobAction($conId, $jobId, $conConfId, $jobConfId)
     {
         // get job
         $job = $this->container->get($jobId);
 
         // get existing configuration or create a new one
-        $configuration = $this->getConfiguration($job, $configurationId);
+        $configuration = $this->getConfiguration($job, $jobConfId);
         $configurations = $this->getAvailableConfigurations(get_class($configuration));
 
         // prepare form
@@ -205,64 +274,74 @@ class ConnectorController extends Controller
         return array(
             'form'           => $form->createView(),
             'configurations' => $configurations,
-            'connectorId'    => $connectorId,
+            'conId'          => $conId,
+            'conConfId'      => $conConfId,
             'jobId'          => $jobId,
+            'jobConfId'      => $jobConfId,
+            'steps'          => $this->getNavigationMenu()
         );
     }
 
     /**
      * Save job
      *
-     * @param integer $connectorId     the connector id
-     * @param integer $jobId           the job id
-     * @param integer $configurationId the configuration id
+     * @param integer $conId     the connector id
+     * @param integer $jobId     the job id
+     * @param integer $conConfId the connector configuration id
+     * @param integer $jobConfId the job configuration id
      *
-     * @Route("/savejob/{connectorId}/{jobId}/{configurationId}", defaults={"configurationId"=0})
+     * @Route("/savejob/{conId}/{jobId}/{conConfId}/{jobConfId}", defaults={"jobConfId"=0})
      * @Template()
      *
      * @return array
      */
-    public function saveJobAction($connectorId, $jobId, $configurationId)
+    public function saveJobAction($conId, $jobId, $conConfId, $jobConfId)
     {
         // get job
         $job = $this->container->get($jobId);
 
         // get existing configuration or create a new one
-        $configuration = $this->getConfiguration($job, $configurationId);
+        $configuration = $this->getConfiguration($job, $jobConfId);
         $configurations = $this->getAvailableConfigurations(get_class($configuration));
 
         // process form
         $handler = $this->getConfigurationHandler($job);
         if ($handler->process($configuration)) {
             $this->get('session')->getFlashBag()->add('success', 'Configuration successfully saved');
+            $params = array('conId' => $conId, 'jobId' => $jobId, 'conConfId' => $conConfId, 'jobConfId' => $configuration->getId());
 
-            return $this->redirect($this->generateUrl('acme_demodataflow_connector_runjob', array('connectorId' => $connectorId, 'jobId' => $jobId)));
-        } else {
-            $this->get('session')->getFlashBag()->add('error', "Configuration can't be saved");
+            return $this->redirect($this->generateUrl('acme_demodataflow_connector_runjob', $params));
         }
 
         // TODO : build form here to keep errors and setted data
 
-        return $this->redirect($this->generateUrl('acme_demodataflow_connector_configurejob', array('connectorId' => $connectorId, 'jobId' => $jobId, 'configurationId' => $configurationId)));
+        $params = array('conId' => $conId, 'jobId' => $jobId, 'conConfId' => $conConfId, 'jobConfId' => $jobConfId);
+        $url = $this->generateUrl('acme_demodataflow_connector_configurejob', $params);
+
+        return $this->redirect($url);
     }
 
     /**
      * Run job
      *
-     * @param integer $connectorId     the connector id
-     * @param integer $jobId           the job id
-     * @param integer $configurationId the configuration id
+     * @param integer $conId     the connector id
+     * @param integer $jobId     the job id
+     * @param integer $conConfId the connector configuration id
+     * @param integer $jobConfId the job configuration id
      *
-     * @Route("/runjob/{connectorId}/{jobId}/{configurationId}", defaults={"configurationId"=0})
+     * @Route("/runjob/{conId}/{jobId}/{conConfId}/{jobConfId}")
      * @Template()
      *
      * @return array
      */
-    public function runJobAction($connectorId, $jobId, $configurationId)
+    public function runJobAction($conId, $jobId, $conConfId, $jobConfId)
     {
         return array(
-            'connectorId'    => $connectorId,
+            'conId'          => $conId,
+            'conConfId'      => $conConfId,
             'jobId'          => $jobId,
+            'jobConfId'      => $jobConfId,
+            'steps' => $this->getNavigationMenu()
         );
     }
 }

@@ -1,50 +1,36 @@
 {% extends bap.layout is defined ? bap.layout : 'AcmeDemoFlexibleEntityBundle::layout.html.twig' %}
 
-{% set title = 'Configure connector' %}
+{% set title = jobConfId ? "Edit configuration" : "Add configuration" %}
 
 {% block title %}{{ parent() }} - {{ title }}{% endblock %}
 
 {% block content %}
 
-    <STYLE type="text/css">
-        .dataflow-steps li {width:275px;}
-    </STYLE>
+    {% include 'AcmeDemoDataFlowBundle:Connector:steps.html.twig' with {'steps': steps} %}
+
+    <form action="{{ path('acme_demodataflow_connector_savejob', { conId: conId, jobId: jobId, conConfId: conConfId, jobConfId: jobConfId }) }}" method="POST" class="form-register">
     
-    <div class="navbar">
-        <div class="navbar-inner">
-            <ul class="nav dataflow-steps">
-                <li><a href="{{ path('acme_demodataflow_connector_select') }}">(1) Select connector & job</a></li>
-                <li><a href="{{ path('acme_demodataflow_connector_configure', { connectorId: connectorId, jobId: jobId, configurationId: 0 }) }}">(2) Configure connector</a></li>
-                <li class="active"><a href="{{ path('acme_demodataflow_connector_configurejob', { connectorId: connectorId, jobId: jobId, configurationId: 0 }) }}">(3) Configure job</a></li>
-                <li><a href="#">(4) Schedule / run</a></li>
+        <fieldset>
+            <legend>{{ "Load configuration" | trans }}</legend>
+    
+            <ul>
+            {% for configuration in configurations %}
+                <li><a href="{{ path('acme_demodataflow_connector_configurejob', { conId: conId, jobId: jobId, conConfId: conConfId, jobConfId: configuration.id }) }}">Load configuration "{{ configuration.description }}"</a></li>
+            {% endfor %}
+                <li><a href="{{ path('acme_demodataflow_connector_configurejob', { conId: conId, jobId: jobId, conConfId: conConfId, jobConfId: 0 }) }}">Reset to create a new configuration</a></li>
             </ul>
-        </div>
-    </div>
-
-
-<form action="{{ path('acme_demodataflow_connector_savejob', { connectorId: connectorId, jobId: jobId, configurationId: 0 }) }}" method="POST" class="form-register">
-
-    <fieldset>
-        <legend>{{ "Load configuration" | trans }}</legend>
-
-        <ul>
-        {% for configuration in configurations %}
-            <li><a href="{{ path('acme_demodataflow_connector_configurejob', { connectorId: connectorId, jobId: jobId, configurationId: configuration.id }) }}">Load configuration "{{ configuration.description }}"</a></li>
-        {% endfor %}
-            <li><a href="{{ path('acme_demodataflow_connector_configurejob', { connectorId: connectorId, jobId: jobId, configurationId: 0 }) }}">Reset to create a new configuration</a></li>
-        </ul>
-
-    </fieldset>
-
-    <fieldset>
-        <legend>{{ "Edit configuration" | trans }}</legend>
-
-        {{ form_widget(form) }}
-
-        <div class="form-row">
-            <button class="btn btn-large btn-primary pull-right" type="submit">{{ "Save" | trans }}</button>
-        </div>
-    </fieldset>
-</form>
+    
+        </fieldset>
+    
+        <fieldset>
+            <legend>{{ title | trans }}</legend>
+    
+            {{ form_widget(form) }}
+    
+            <div class="form-row">
+                <button class="btn btn-large btn-primary pull-right" type="submit">{{ "Next" | trans }}</button>
+            </div>
+        </fieldset>
+    </form>
 
 {% endblock %}

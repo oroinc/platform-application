@@ -1,6 +1,7 @@
 <?php
 namespace Acme\Bundle\DemoDataFlowBundle\Form\Type;
 
+use Oro\Bundle\DataFlowBundle\Form\Type\AbstractConfigurationType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -16,13 +17,14 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
  * @license   http://opensource.org/licenses/MIT MIT
  *
  */
-class CsvConnectorType extends AbstractType
+class CsvConnectorType extends AbstractConfigurationType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        parent::buildForm($builder, $options);
         $builder->add('charset', 'text', array('required' => true));
         $builder->add('delimiter', 'text', array('required' => true));
         $builder->add('enclosure', 'text', array('required' => true));

@@ -1,7 +1,7 @@
 <?php
 namespace Acme\Bundle\DemoDataFlowBundle\Configuration;
 
-use Oro\Bundle\DataFlowBundle\Configuration\ConfigurationInterface;
+use Oro\Bundle\DataFlowBundle\Configuration\AbstractConfiguration;
 use JMS\Serializer\Annotation\Type;
 
 /**
@@ -12,7 +12,7 @@ use JMS\Serializer\Annotation\Type;
  * @license   http://opensource.org/licenses/MIT MIT
  *
  */
-class ImportAttributeConfiguration implements ConfigurationInterface
+class ImportAttributeConfiguration extends AbstractConfiguration
 {
 
     /**
