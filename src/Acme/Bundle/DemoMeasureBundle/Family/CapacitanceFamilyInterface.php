@@ -32,5 +32,4 @@ interface CapacitanceFamilyInterface
      * @staticvar string
      */
     const MEGAFARAD = 'MEGAFARAD';
-
 }

@@ -88,7 +88,12 @@ class CustomerAttributeController extends Controller
 
                 $this->get('session')->getFlashBag()->add('success', 'Attribute successfully saved');
 
-                return $this->redirect($this->generateUrl('acme_demoflexibleentity_customerattribute_edit', array('id' => $entity->getId())));
+                return $this->redirect(
+                    $this->generateUrl(
+                        'acme_demoflexibleentity_customerattribute_edit',
+                        array('id' => $entity->getId())
+                    )
+                );
             }
         }
 
@@ -116,5 +121,4 @@ class CustomerAttributeController extends Controller
 
         return $this->redirect($this->generateUrl('acme_demoflexibleentity_customerattribute_index'));
     }
-
 }

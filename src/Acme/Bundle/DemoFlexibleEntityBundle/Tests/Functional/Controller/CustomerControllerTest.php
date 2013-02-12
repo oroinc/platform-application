@@ -147,10 +147,10 @@ class CustomerControllerTest extends KernelAwareControllerTest
         $this->callQueryActionUrl($params);
 
         // test filtered by firstname and company
-//         $params = array(
-//             'criteria'   => 'firstname=Romain&company=Akeneo'
-//         );
-//         $this->callQueryActionUrl($params);
+        /*$params = array(
+            'criteria'   => 'firstname=Romain&company=Akeneo'
+        );
+        $this->callQueryActionUrl($params);*/
 
         // test dob, company and gender filtered by firstname and company
         $params = array(
@@ -210,5 +210,4 @@ class CustomerControllerTest extends KernelAwareControllerTest
     {
         return $attributes .'/'. $criteria .'/'. $orderBy .'/'. $limit .'/'. $offset;
     }
-
 }
