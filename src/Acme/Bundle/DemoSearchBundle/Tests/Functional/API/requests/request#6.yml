@@ -1,0 +1,15 @@
+# max_results test case
+request: email&max_results=3&offse=0
+response:
+    records_count: 9
+    count: 3
+    data:
+        -
+            entity_name: Acme\Bundle\DemoSearchBundle\Entity\Item
+            record_string: email-1@mail.com
+        -
+            entity_name: Acme\Bundle\DemoSearchBundle\Entity\Item
+            record_string: email-2@mail.com
+        -
+            entity_name: Acme\Bundle\DemoSearchBundle\Entity\Item
+            record_string: email-3@mail.com
