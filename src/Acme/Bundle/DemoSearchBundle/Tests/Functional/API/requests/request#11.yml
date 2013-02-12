@@ -1,0 +1,6 @@
+# offset test case
+request: email&offset=9&max_results=100
+response:
+    records_count: 9
+    count: 0
+    data: ~

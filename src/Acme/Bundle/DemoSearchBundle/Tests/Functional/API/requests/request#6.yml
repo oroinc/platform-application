@@ -1,5 +1,5 @@
 # max_results test case
-request: email&max_results=3&offse=0
+request: email&max_results=3&offset=0
 response:
     records_count: 9
     count: 3

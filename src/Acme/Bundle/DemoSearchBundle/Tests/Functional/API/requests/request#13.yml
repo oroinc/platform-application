@@ -1,0 +1,6 @@
+# offset test case
+request: \"email-1@mail.com\"&offset=1&max_results=1
+response:
+    records_count: 1
+    count: 0
+    data: ~
