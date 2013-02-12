@@ -1,6 +1,7 @@
 <?php
 namespace Acme\Bundle\DemoDataFlowBundle\Job;
 
+use Oro\Bundle\DataFlowBundle\Configuration\EditableConfigurationInterface;
 use Oro\Bundle\DataFlowBundle\Job\AbstractJob;
 use Acme\Bundle\DemoDataFlowBundle\Transform\CustomerTransformer;
 use Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleManager;
@@ -16,7 +17,7 @@ use Ddeboer\DataImport\Reader\CsvReader;
  * @license   http://opensource.org/licenses/MIT MIT
  *
  */
-class ImportCustomersJob extends AbstractJob
+class ImportCustomersJob extends AbstractJob implements EditableConfigurationInterface
 {
 
     /**
@@ -83,7 +84,7 @@ class ImportCustomersJob extends AbstractJob
      * Get form
      * @return string
      */
-    public function getFormId()
+    public function getConfigurationFormServiceId()
     {
         return "configuration.form.import_customer";
     }
@@ -92,7 +93,7 @@ class ImportCustomersJob extends AbstractJob
      * Get form handler
      * @return string
      */
-    public function getFormHandlerId()
+    public function getConfigurationFormHandlerServiceId()
     {
         return "oro_dataflow.form.handler.configuration";
     }

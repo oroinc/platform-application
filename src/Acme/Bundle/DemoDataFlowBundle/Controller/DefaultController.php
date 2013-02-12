@@ -50,7 +50,17 @@ class DefaultController extends Controller
     public function importAttributesAction()
     {
         // get connector
-        // $connector = $this->container->get('connector.magento_catalog');
+        $connector = $this->container->get('connector.magento_catalog');
+
+        // get Magento configuration
+        $configRepo = $this->get('doctrine.orm.entity_manager')->getRepository('OroDataFlowBundle:Configuration');
+        $criteria = array('typeName' => get_class($connector->getNewConfigurationInstance()), 'description' => 'Magento 2');
+        $configuration =  $configRepo->findOneBy($criteria);
+
+
+        var_dump($configuration);
+        exit();
+
         // $connector->configure();
 
         // get job

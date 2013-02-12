@@ -4,6 +4,7 @@ namespace Acme\Bundle\DemoDataFlowBundle\Connector;
 use Oro\Bundle\DataFlowBundle\Connector\AbstractConnector;
 use Acme\Bundle\DemoDataFlowBundle\Form\Type\MagentoConnectorType;
 use Acme\Bundle\DemoDataFlowBundle\Form\Handler\MagentoConnectorHandler;
+use Oro\Bundle\DataFlowBundle\Configuration\EditableConfigurationInterface;
 
 /**
  * Magento connector
@@ -13,7 +14,7 @@ use Acme\Bundle\DemoDataFlowBundle\Form\Handler\MagentoConnectorHandler;
  * @license   http://opensource.org/licenses/MIT MIT
  *
  */
-class MagentoConnector extends AbstractConnector
+class MagentoConnector extends AbstractConnector implements EditableConfigurationInterface
 {
 
     /**
@@ -40,7 +41,7 @@ class MagentoConnector extends AbstractConnector
      * Get form
      * @return string
      */
-    public function getFormId()
+    public function getConfigurationFormServiceId()
     {
         return "configuration.form.magento_catalog";
     }
@@ -49,7 +50,7 @@ class MagentoConnector extends AbstractConnector
      * Get form handler
      * @return string
      */
-    public function getFormHandlerId()
+    public function getConfigurationFormHandlerServiceId()
     {
         return "oro_dataflow.form.handler.configuration";
     }

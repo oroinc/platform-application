@@ -2,6 +2,7 @@
 namespace Acme\Bundle\DemoDataFlowBundle\Connector;
 
 use Oro\Bundle\DataFlowBundle\Connector\AbstractConnector;
+use Oro\Bundle\DataFlowBundle\Configuration\EditableConfigurationInterface;
 
 /**
  * Csv connector
@@ -11,7 +12,7 @@ use Oro\Bundle\DataFlowBundle\Connector\AbstractConnector;
  * @license   http://opensource.org/licenses/MIT MIT
  *
  */
-class CsvConnector extends AbstractConnector
+class CsvConnector extends AbstractConnector implements EditableConfigurationInterface
 {
 
     /**
@@ -28,7 +29,7 @@ class CsvConnector extends AbstractConnector
      * Get form
      * @return string
      */
-    public function getFormId()
+    public function getConfigurationFormServiceId()
     {
         return "configuration.form.csv";
     }
@@ -37,7 +38,7 @@ class CsvConnector extends AbstractConnector
      * Get form handler
      * @return string
      */
-    public function getFormHandlerId()
+    public function getConfigurationFormHandlerServiceId()
     {
         return "oro_dataflow.form.handler.configuration";
     }

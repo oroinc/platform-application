@@ -52,7 +52,10 @@ class LoadConfigurationData extends AbstractFixture implements OrderedFixtureInt
         // prepare conf Magento
         $magentoConf = new MagentoConfiguration();
         $magentoConf->setHost('127.0.0.1');
-        $magentoConf->setDbname('db_magento2');
+        $magentoConf->setUser('root');
+        $magentoConf->setPassword('root');
+        $magentoConf->setDbname('magento_ab');
+        $magentoConf->setPrefix('ab_');
         $serializer = \JMS\Serializer\SerializerBuilder::create()->build();
         $data = $serializer->serialize($magentoConf, $format);
 
