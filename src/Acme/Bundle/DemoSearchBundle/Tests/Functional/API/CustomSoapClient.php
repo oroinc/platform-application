@@ -1,5 +1,5 @@
 <?php
-namespace Acme\Bundle\DemoSearchBundle\Tests\Functional\Api;
+namespace Acme\Bundle\DemoSearchBundle\Tests\Functional\API;
 
 class CustomSoapClient extends \SoapClient
 {
@@ -15,7 +15,7 @@ class CustomSoapClient extends \SoapClient
      */
     public function __construct($wsdl, $options, $client)
     {
-        // save custom trasport layer
+        // save custom transport layer
         $this->client = $client;
         //save wsdl as temporary file
         $file=tempnam(sys_get_temp_dir(), date("Ymd") . '_') . '.xml';

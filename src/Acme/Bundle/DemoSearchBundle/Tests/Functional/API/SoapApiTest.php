@@ -1,6 +1,6 @@
 <?php
 
-namespace Acme\Bundle\DemoSearchBundle\Tests\Functional\Api;
+namespace Acme\Bundle\DemoSearchBundle\Tests\Functional\API;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\Yaml\Yaml;
