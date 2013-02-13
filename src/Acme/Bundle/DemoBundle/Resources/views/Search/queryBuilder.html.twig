@@ -3,6 +3,7 @@
 {% block content_header '' %}
 
     {% block content %}
+        {% render "AcmeDemoBundle:Search:test" %}
         <h1>Search Results:</h1>
         {% if searchResults|length %}
             <table border="1">
