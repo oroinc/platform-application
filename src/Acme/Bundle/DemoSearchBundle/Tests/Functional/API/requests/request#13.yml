@@ -1,5 +1,8 @@
 # offset test case
-request: \"email-1@mail.com\"&offset=1&max_results=1
+request:
+    search: \"email-1@mail.com\"
+    offset: 1
+    max_results: 3
 response:
     records_count: 1
     count: 0

@@ -6,14 +6,20 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\Finder\Iterator\RecursiveDirectoryIterator;
 
-class RestApiTest extends WebTestCase
+class SoapApiTest extends WebTestCase
 {
-
-    protected $client;
+    /** @var CustomSoapClient */
+    static private $clientSoap = null;
 
     public function setUp()
     {
-        $this->client = static::createClient();
+        if (is_null(self::$clientSoap)) {
+            $client = static::createClient();
+            //get wsdl
+            $client->request('GET', 'api/soap');
+            $wsdl = $client->getResponse()->getContent();
+            self::$clientSoap = new CustomSoapClient($wsdl, array('location' =>'soap'), $client);
+        }
     }
 
     /**
@@ -24,16 +30,17 @@ class RestApiTest extends WebTestCase
      */
     public function testApi($request, $response)
     {
-        $requestUrl = (is_null($request['search'])) ? '' : 'search=' . $request['search'];
-        $requestUrl .= (is_null($request['offset'])) ? '' : (($requestUrl!=='') ? '&':'') . 'offset=' . $request['offset'];
-        $requestUrl .= (is_null($request['max_results'])) ? '' : (($requestUrl!=='') ? '&':'') . 'max_results=' . $request['max_results'];
-        $this->client->request('GET', "api/rest/latest/search?search={$requestUrl}");
-
-        $result = $this->client->getResponse();
-
-        $this->assertJsonResponse($result, 200);
-        $result = json_decode($result->getContent(), true);
-        //compare result
+        if (is_null($request['search'])) {
+            unset($request['search']);
+        }
+        if (is_null($request['offset'])) {
+            unset($request['offset']);
+        }
+        if (is_null($request['max_results'])) {
+            unset($request['max_results']);
+        }
+        $result = call_user_func_array(array(self::$clientSoap, 'search'), $request);
+        $result = json_decode(json_encode($result), true);
         $this->assertEqualsResponse($response, $result);
     }
 
@@ -59,30 +66,6 @@ class RestApiTest extends WebTestCase
             $parameters;
     }
 
-    protected function tearDown()
-    {
-        unset($this->client);
-    }
-
-    /**
-     * Test API response status
-     *
-     * @param string $response
-     * @param int $statusCode
-     */
-    protected function assertJsonResponse($response, $statusCode = 200)
-    {
-        $this->assertEquals(
-            $statusCode,
-            $response->getStatusCode(),
-            $response->getContent()
-        );
-        $this->assertTrue(
-            $response->headers->contains('Content-Type', 'application/json'),
-            $response->headers
-        );
-    }
-
     /**
      * Test API response
      *
@@ -91,12 +74,14 @@ class RestApiTest extends WebTestCase
      */
     protected function assertEqualsResponse($response, $result)
     {
-        $this->assertEquals($response['records_count'], $result['records_count']);
+        $this->assertEquals($response['records_count'], $result['recordsCount']);
         $this->assertEquals($response['count'], $result['count']);
         if (isset($response['data']) && is_array($response['data'])) {
             foreach ($response['data'] as $key => $object) {
                 foreach ($object as $property => $value) {
-                    $this->assertEquals($value, $result['data'][$key][$property]);
+                    list($part1, $part2) = explode('_', $property);
+                    $property = $part1 . ucfirst($part2);
+                    $this->assertEquals($value, $result['elements']['item'][$key][$property]);
                 }
             }
         }

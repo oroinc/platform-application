@@ -1,5 +1,8 @@
 # common test case
-request: \"email-1@mail.com\"
+request:
+    search: \"email-1@mail.com\"
+    offset: ~
+    max_results: ~
 response:
     records_count: 1
     count: 1
