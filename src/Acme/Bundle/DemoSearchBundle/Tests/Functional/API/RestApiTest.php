@@ -25,8 +25,10 @@ class RestApiTest extends WebTestCase
     public function testApi($request, $response)
     {
         $requestUrl = (is_null($request['search'])) ? '' : 'search=' . $request['search'];
-        $requestUrl .= (is_null($request['offset'])) ? '' : (($requestUrl!=='') ? '&':'') . 'offset=' . $request['offset'];
-        $requestUrl .= (is_null($request['max_results'])) ? '' : (($requestUrl!=='') ? '&':'') . 'max_results=' . $request['max_results'];
+        $requestUrl .= (is_null($request['offset'])) ? '' :
+            (($requestUrl!=='') ? '&':'') . 'offset=' . $request['offset'];
+        $requestUrl .= (is_null($request['max_results'])) ? '' :
+            (($requestUrl!=='') ? '&':'') . 'max_results=' . $request['max_results'];
         $this->client->request('GET', "api/rest/latest/search?search={$requestUrl}");
 
         $result = $this->client->getResponse();
