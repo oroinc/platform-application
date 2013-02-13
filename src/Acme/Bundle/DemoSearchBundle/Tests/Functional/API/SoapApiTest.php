@@ -81,7 +81,12 @@ class SoapApiTest extends WebTestCase
                 foreach ($object as $property => $value) {
                     list($part1, $part2) = explode('_', $property);
                     $property = $part1 . ucfirst($part2);
-                    $this->assertEquals($value, $result['elements']['item'][$key][$property]);
+                    if (isset($result['elements']['item'][0])) {
+                        $this->assertEquals($value, $result['elements']['item'][$key][$property]);
+                    } else {
+                        $this->assertEquals($value, $result['elements']['item'][$property]);
+                    }
+
                 }
             }
         }

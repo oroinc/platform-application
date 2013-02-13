@@ -5,7 +5,7 @@ request:
     max_results: -1
 response:
     records_count: 9
-    count: 3
+    count: 6
     data:
         -
             entity_name: Acme\Bundle\DemoSearchBundle\Entity\Item
