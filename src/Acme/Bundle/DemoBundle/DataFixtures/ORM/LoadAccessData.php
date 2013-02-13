@@ -17,10 +17,6 @@ class LoadAccessData extends AbstractFixture
      */
     public function load(ObjectManager $manager)
     {
-        $roleUser = new Role('ROLE_USER');
-
-        $roleUser->setLabel('Registered user');
-
         $roleManager = new Role('ROLE_MANAGER');
 
         $roleManager->setLabel('Manager');
@@ -33,12 +29,10 @@ class LoadAccessData extends AbstractFixture
 
         $roleSuper->setLabel('Superman');
 
-        $manager->persist($roleUser);
         $manager->persist($roleManager);
         $manager->persist($roleAdmin);
         $manager->persist($roleSuper);
 
-        $manager->persist(new Group('Users', array($roleUser)));
         $manager->persist(new Group('Managers', array($roleManager)));
         $manager->persist(new Group('Administrators', array($roleAdmin, $roleSuper)));
 
