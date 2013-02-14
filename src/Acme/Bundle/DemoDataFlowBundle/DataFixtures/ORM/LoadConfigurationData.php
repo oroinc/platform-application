@@ -30,87 +30,64 @@ class LoadConfigurationData extends AbstractFixture implements OrderedFixtureInt
      */
     public function load(ObjectManager $manager)
     {
-        $format = 'json';
+        // prepare magento connector and job configuration
 
-        // prepare conf Magento
-        $magentoConf = new MagentoConfiguration();
-        $magentoConf->setHost('localhost');
-        $magentoConf->setDbname('db_magento1');
-        $magentoConf->setUser('admin');
-        $magentoConf->setPassword('mypassword');
-        $serializer = \JMS\Serializer\SerializerBuilder::create()->build();
-        $data = $serializer->serialize($magentoConf, $format);
-
-        // prepare persist
-        $configuration = new Configuration();
-        $configuration->setDescription('Magento 1');
-        $configuration->setTypeName(get_class($magentoConf));
-        $configuration->setFormat($format);
-        $configuration->setData($data);
-        $manager->persist($configuration);
-
-        // prepare conf Magento
         $magentoConf = new MagentoConfiguration();
         $magentoConf->setHost('127.0.0.1');
         $magentoConf->setUser('root');
         $magentoConf->setPassword('root');
         $magentoConf->setDbname('magento_ab');
         $magentoConf->setTablePrefix('ab_');
-        $serializer = \JMS\Serializer\SerializerBuilder::create()->build();
-        $data = $serializer->serialize($magentoConf, $format);
+        $entity = $this->prepareConfigurationEntity('Magento 2', $magentoConf);
+        $manager->persist($entity);
+        $this->addReference('magento-configuration', $entity);
 
-        // prepare persist
-        $configuration = new Configuration();
-        $configuration->setDescription('Magento 2');
-        $configuration->setTypeName(get_class($magentoConf));
-        $configuration->setFormat($format);
-        $configuration->setData($data);
-        $manager->persist($configuration);
+        $magentoJobConf = new ImportAttributeConfiguration();
+        $magentoJobConf->setExcludedAttributes('sku,old_id,created_at,updated_at');
+        $entity = $this->prepareConfigurationEntity('Import attributes', $magentoJobConf);
+        $manager->persist($entity);
+        $this->addReference('import-attribute-configuration', $entity);
 
-        // prepare conf Import attribute
-        $magentoConf = new ImportAttributeConfiguration();
-        $magentoConf->setExcludedAttributes('sku,old_id,created_at,updated_at');
-        $serializer = \JMS\Serializer\SerializerBuilder::create()->build();
-        $data = $serializer->serialize($magentoConf, $format);
+        // prepare csv connector and job configuration
 
-        // prepare persist
-        $configuration = new Configuration();
-        $configuration->setDescription('Import attributes');
-        $configuration->setTypeName(get_class($magentoConf));
-        $configuration->setFormat($format);
-        $configuration->setData($data);
-        $manager->persist($configuration);
-
-        // prepare conf CSV
         $csvConf = new CsvConfiguration();
         $csvConf->setDelimiter(',');
-        $serializer = \JMS\Serializer\SerializerBuilder::create()->build();
-        $data = $serializer->serialize($csvConf, $format);
+        $entity = $this->prepareConfigurationEntity('Magento CSV', $csvConf);
+        $manager->persist($entity);
+        $this->addReference('csv-configuration', $entity);
 
-        // prepare persist
-        $configuration = new Configuration();
-        $configuration->setDescription('Magento CSV');
-        $configuration->setTypeName(get_class($csvConf));
-        $configuration->setFormat($format);
-        $configuration->setData($data);
-        $manager->persist($configuration);
-
-        // prepare conf ImportCustomer
-        $csvConf = new ImportCustomerConfiguration();
-        $csvConf->setFilePath(__DIR__.'/../../Resources/files/export_customers.csv');
-        $serializer = \JMS\Serializer\SerializerBuilder::create()->build();
-        $data = $serializer->serialize($csvConf, $format);
-
-        // prepare persist
-        $configuration = new Configuration();
-        $configuration->setDescription('Import customer CSV');
-        $configuration->setTypeName(get_class($csvConf));
-        $configuration->setFormat($format);
-        $configuration->setData($data);
-        $manager->persist($configuration);
+        $csvJobConf = new ImportCustomerConfiguration();
+        $csvJobConf->setFilePath(__DIR__.'/../../Resources/files/export_customers.csv');
+        $entity = $this->prepareConfigurationEntity('Import customer CSV', $csvJobConf);
+        $manager->persist($entity);
+        $this->addReference('import-customer-configuration', $entity);
 
         // save
         $manager->flush();
+    }
+
+    /**
+     * Prepare configuration entity
+     *
+     * @param string        $description   description
+     * @param Configuration $configuration configuration
+     *
+     * @return Configuration
+     */
+    protected function prepareConfigurationEntity($description, $configuration)
+    {
+        // serialize data
+        $format = 'json';
+        $serializer = \JMS\Serializer\SerializerBuilder::create()->build();
+        $data = $serializer->serialize($configuration, $format);
+        // prepare configuration entity
+        $entity = new Configuration();
+        $entity->setDescription($description);
+        $entity->setTypeName(get_class($configuration));
+        $entity->setFormat($format);
+        $entity->setData($data);
+
+        return $entity;
     }
 
     /**
@@ -118,6 +95,6 @@ class LoadConfigurationData extends AbstractFixture implements OrderedFixtureInt
      */
     public function getOrder()
     {
-        return 42;
+        return 40;
     }
 }
