@@ -11,7 +11,7 @@ use Oro\Bundle\DataFlowBundle\Configuration\EditableConfigurationInterface;
 use Oro\Bundle\DataFlowBundle\Form\Handler\ConfigurationHandler;
 
 /**
- * Connector controller
+ * Configure controller
  *
  * @author    Nicolas Dupont <nicolas@akeneo.com>
  * @copyright 2012 Akeneo SAS (http://www.akeneo.com)
@@ -139,7 +139,8 @@ class ConnectorController extends Controller
             $configuration->setId($confData->getId());
             $configuration->setDescription($confData->getDescription());
         } else {
-            $configuration = $configurable->getNewConfigurationInstance();
+            $configurationClass = $configurable->getConfigurationName();
+            $configuration = new $configurationClass();
         }
 
         return $configuration;

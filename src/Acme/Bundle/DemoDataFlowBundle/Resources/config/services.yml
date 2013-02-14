@@ -1,15 +1,19 @@
 parameters:
 
     connector.magento_catalog.class:           Acme\Bundle\DemoDataFlowBundle\Connector\MagentoConnector
+    configuration.magento_catalog.class:       Acme\Bundle\DemoDataFlowBundle\Configuration\MagentoConfiguration
     configuration.type.magento_catalog.class:  Acme\Bundle\DemoDataFlowBundle\Form\Type\MagentoConnectorType
 
     connector.csv.class:                       Acme\Bundle\DemoDataFlowBundle\Connector\CsvConnector
+    configuration.csv.class:                   Acme\Bundle\DemoDataFlowBundle\Configuration\CsvConfiguration
     configuration.type.csv.class:              Acme\Bundle\DemoDataFlowBundle\Form\Type\CsvConnectorType
     
     job.type.import_attribute.class:           Acme\Bundle\DemoDataFlowBundle\Job\ImportAttributesJob
+    configuration.import_attribute.class:      Acme\Bundle\DemoDataFlowBundle\Configuration\ImportAttributeConfiguration
     configuration.type.import_attribute.class: Acme\Bundle\DemoDataFlowBundle\Form\Type\ImportAttributeType
 
     job.type.import_customer.class:            Acme\Bundle\DemoDataFlowBundle\Job\ImportCustomersJob
+    configuration.import_customer.class:       Acme\Bundle\DemoDataFlowBundle\Configuration\ImportCustomerConfiguration
     configuration.type.import_customer.class:  Acme\Bundle\DemoDataFlowBundle\Form\Type\ImportCustomerType
 
 services:
@@ -18,6 +22,7 @@ services:
     
     connector.magento_catalog:
         class: %connector.magento_catalog.class%
+        arguments: [%configuration.magento_catalog.class%]
 
     configuration.form.magento_catalog:
         class: Symfony\Component\Form\Form
@@ -34,7 +39,7 @@ services:
 
     job.import_attributes:
         class: %job.type.import_attribute.class%
-        arguments: [ @product_manager ]
+        arguments: [%configuration.magento_catalog.class%, %configuration.import_attribute.class%, @product_manager ]
         tags:
             - { name: oro_dataflow_job, connector: connector.magento_catalog}
 
@@ -53,6 +58,7 @@ services:
 
     connector.csv:
         class: %connector.csv.class%
+        arguments: [%configuration.csv.class%]
 
     configuration.form.csv:
         class: Symfony\Component\Form\Form
@@ -69,7 +75,7 @@ services:
     
     job.import_customers:
         class: %job.type.import_customer.class%
-        arguments: [ @customer_manager ]
+        arguments: [%configuration.csv.class%, %configuration.import_customer.class%, @customer_manager]
         tags:
             - { name: oro_dataflow_job, connector: connector.csv }
 

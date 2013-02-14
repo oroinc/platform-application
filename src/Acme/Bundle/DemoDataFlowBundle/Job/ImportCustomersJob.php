@@ -26,63 +26,82 @@ class ImportCustomersJob extends AbstractJob implements EditableConfigurationInt
     protected $manager;
 
     /**
-     * @param FlexibleManager $manager
+     *@var CsvReader
      */
-    public function __construct(FlexibleManager $manager)
+    protected $reader;
+
+    /**
+     *@var /ArrayAccess
+     */
+    protected $customers;
+
+    /**
+     * @var \ArrayAccess
+     */
+    protected $messages;
+
+    /**
+     * Constructor
+     * @param string          $confConnectorName the configuration FQCN
+     * @param string          $confJobName       the configuration FQCN
+     * @param FlexibleManager $manager           the customer manager
+     */
+    public function __construct($confConnectorName, $confJobName, FlexibleManager $manager)
     {
+        parent::__construct($confConnectorName, $confJobName);
         $this->manager = $manager;
     }
 
     /**
-     * Process
-     *
-     * @return multitype
+     * {@inheritDoc}
      */
-    public function run()
+    protected function extract()
     {
-        $messages = array();
-
-        // Call reader
+        $this->messages = array();
         $stream = new Stream($this->getConfiguration()->getFilePath());
-        $csvReader = new CsvReader(
+        $this->csvReader = new CsvReader(
             $stream->getFile(),
             $this->getConnectorConfiguration()->getDelimiter(),
             $this->getConnectorConfiguration()->getEnclosure(),
             $this->getConnectorConfiguration()->getEscape()
         );
-        $csvReader->setHeaderRowNumber(0);
-
-        // Call transformer
-        $transformer = new CustomerTransformer($this->manager);
-        $customers = array();
-        foreach ($csvReader as $customerItem) {
-            $customer = $transformer->transform($customerItem);
-            $customers[] = $customer;
-            $this->manager->getStorageManager()->persist($customer);
-        }
-
-        // TODO : Call loader to persist customers
-        $this->manager->getStorageManager()->flush();
-
-        return $customers;
+        $this->csvReader->setHeaderRowNumber(0);
     }
 
-
-
     /**
-     * Get configuration
-     * @return \Acme\Bundle\DemoDataFlowBundle\Configuration\MagentoConfiguration
+     * {@inheritDoc}
      */
-    public function getNewConfigurationInstance()
+    protected function transform()
     {
-        // TODO : inject existing ?
-        return new \Acme\Bundle\DemoDataFlowBundle\Configuration\ImportCustomerConfiguration();
+        $transformer = new CustomerTransformer($this->manager);
+        $this->customers = array();
+        foreach ($this->csvReader as $customerItem) {
+            $this->customers[] = $transformer->transform($customerItem);
+        }
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    protected function load()
+    {
+        foreach ($this->customers as $customer) {
+            $this->manager->getStorageManager()->persist($customer);
+            $this->messages[]= array('success', $customer->getEmail().' inserted <br/>');
+        }
+        $this->manager->getStorageManager()->flush();
+    }
 
     /**
-     * Get form
-     * @return string
+     * @return \ArrayAccess
+     */
+    public function getMessages()
+    {
+        return $this->messages;
+    }
+
+    /**
+     * {@inheritDoc}
      */
     public function getConfigurationFormServiceId()
     {
@@ -90,8 +109,7 @@ class ImportCustomersJob extends AbstractJob implements EditableConfigurationInt
     }
 
     /**
-     * Get form handler
-     * @return string
+     * {@inheritDoc}
      */
     public function getConfigurationFormHandlerServiceId()
     {

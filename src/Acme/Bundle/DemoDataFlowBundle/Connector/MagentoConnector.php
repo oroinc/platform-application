@@ -28,16 +28,6 @@ class MagentoConnector extends AbstractConnector implements EditableConfiguratio
     protected $formHandlerId;
 
     /**
-     * Get configuration
-     * @return ConfigurationInterface
-     */
-    public function getNewConfigurationInstance()
-    {
-        // TODO : inject existing ?
-        return new \Acme\Bundle\DemoDataFlowBundle\Configuration\MagentoConfiguration();
-    }
-
-    /**
      * Get form
      * @return string
      */

@@ -27,75 +27,98 @@ class ImportAttributesJob extends AbstractJob implements EditableConfigurationIn
     protected $manager;
 
     /**
-     * @param FlexibleManager $manager
+     * @var DbalReader
      */
-    public function __construct(FlexibleManager $manager)
+    protected $dbalReader;
+
+    /**
+     * @var \ArrayAccess
+     */
+    protected $attributes;
+
+    /**
+     * @var \ArrayAccess
+     */
+    protected $messages;
+
+    /**
+     * Constructor
+     * @param string          $confConnectorName the configuration FQCN
+     * @param string          $confJobName       the configuration FQCN
+     * @param FlexibleManager $manager           the customer manager
+     */
+    public function __construct($confConnectorName, $confJobName, FlexibleManager $manager)
     {
+        parent::__construct($confConnectorName, $confJobName);
         $this->manager = $manager;
     }
 
     /**
-     * Process
-     *
-     * @return multitype
+     * {@inheritDoc}
      */
-    public function run()
+    protected function extract()
     {
-        $messages = array();
-
         // prepare connection
+        $this->messages = array();
         $dbalParams = $this->getConnectorConfiguration()->getDbalParameters();
         $connection = DriverManager::getConnection($dbalParams, new DbalConfiguration());
 
-        // query on magento attributes
+        // read data from Magento
         $prefix = $this->getConnectorConfiguration()->getTablePrefix();
         $sql = 'SELECT * FROM '.$prefix.'eav_attribute AS att '
             .'INNER JOIN '.$prefix.'eav_entity_type AS typ '
             .'ON att.entity_type_id = typ.entity_type_id AND typ.entity_type_code = "catalog_product"';
-        $magentoReader = new DbalReader($connection, $sql);
+        $this->dbalReader = new DbalReader($connection, $sql);
+    }
 
-        // query on oro attributes
+    /**
+     * {@inheritDoc}
+     */
+    protected function transform()
+    {
         $codeToAttribute = $this->manager->getFlexibleRepository()->getCodeToAttributes(array());
-        // read all attribute items
         $toExcludeCode = explode(',', $this->getConfiguration()->getExcludedAttributes());
         $transformer = new AttributeTransformer($this->manager);
-        foreach ($magentoReader as $attributeItem) {
+        $this->attributes = array();
+        foreach ($this->dbalReader as $attributeItem) {
             $attributeCode = $attributeItem['attribute_code'];
             // filter existing (just create new one)
             if (isset($codeToAttribute[$attributeCode])) {
-                $messages[]= array('notice', $attributeCode.' already exists <br/>');
+                $this->messages[]= array('notice', $attributeCode.' already exists <br/>');
                 continue;
             }
             // exclude from explicit list
             if (in_array($attributeCode, $toExcludeCode)) {
-                $messages[]= array('notice', $attributeCode.' is in to exclude list <br/>');
+                $this->messages[]= array('notice', $attributeCode.' is in to exclude list <br/>');
                 continue;
             }
-            // persist new attributes
-            $attribute = $transformer->reverseTransform($attributeItem);
+            // attributes to save
+            $this->attributes[] = $transformer->reverseTransform($attributeItem);
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function load()
+    {
+        foreach ($this->attributes as $attribute) {
             $this->manager->getStorageManager()->persist($attribute);
-            $messages[]= array('success', $attributeCode.' inserted <br/>');
+            $this->messages[]= array('success', $attribute->getCode().' inserted <br/>');
         }
         $this->manager->getStorageManager()->flush();
-
-        return $messages;
     }
 
-
     /**
-     * Get configuration
-     * @return \Acme\Bundle\DemoDataFlowBundle\Configuration\MagentoConfiguration
+     * @return \ArrayAccess
      */
-    public function getNewConfigurationInstance()
+    public function getMessages()
     {
-        // TODO : inject existing ?
-        return new \Acme\Bundle\DemoDataFlowBundle\Configuration\ImportAttributeConfiguration();
+        return $this->messages;
     }
 
-
     /**
-     * Get form
-     * @return string
+     * {@inheritDoc}
      */
     public function getConfigurationFormServiceId()
     {
@@ -103,8 +126,7 @@ class ImportAttributesJob extends AbstractJob implements EditableConfigurationIn
     }
 
     /**
-     * Get form handler
-     * @return string
+     * {@inheritDoc}
      */
     public function getConfigurationFormHandlerServiceId()
     {

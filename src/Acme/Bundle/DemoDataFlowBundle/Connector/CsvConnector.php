@@ -16,16 +16,6 @@ class CsvConnector extends AbstractConnector implements EditableConfigurationInt
 {
 
     /**
-     * Get configuration
-     * @return ConfigurationInterface
-     */
-    public function getNewConfigurationInstance()
-    {
-        // TODO : inject empty conf in constructor (typed arg)
-        return new \Acme\Bundle\DemoDataFlowBundle\Configuration\CsvConfiguration();
-    }
-
-    /**
      * Get form
      * @return string
      */

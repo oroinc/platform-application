@@ -54,7 +54,7 @@ class DefaultController extends Controller
 
         // get connector configuration TODO: refactor serialization
         $configRepo = $this->get('doctrine.orm.entity_manager')->getRepository('OroDataFlowBundle:Configuration');
-        $typeName = get_class($connector->getNewConfigurationInstance());
+        $typeName = $connector->getConfigurationName();
         $confData =  $configRepo->findOneByTypeAndDescription($typeName, 'Magento 2');
         $serializer = \JMS\Serializer\SerializerBuilder::create()->build();
         $configuration = $serializer->deserialize($confData->getData(), $confData->getTypeName(), $confData->getFormat());
@@ -67,7 +67,7 @@ class DefaultController extends Controller
 
         // get job configuration TODO: refactor serialization
         $configRepo = $this->get('doctrine.orm.entity_manager')->getRepository('OroDataFlowBundle:Configuration');
-        $typeName = get_class($job->getNewConfigurationInstance());
+        $typeName = $job->getConfigurationName();
         $confData =  $configRepo->findOneByTypeAndDescription($typeName, 'Import attributes');
         $serializer = \JMS\Serializer\SerializerBuilder::create()->build();
         $configuration = $serializer->deserialize($confData->getData(), $confData->getTypeName(), $confData->getFormat());
@@ -76,9 +76,10 @@ class DefaultController extends Controller
         $job->configure($connector->getConfiguration(), $configuration);
 
         // run job
-        $messages = $job->run();
+        $job->run();
+        $messages = $job->getMessages();
 
-        // display result message
+        // display result messages
         foreach ($messages as $message) {
             $this->get('session')->getFlashBag()->add($message[0], $message[1]);
         }
@@ -101,7 +102,7 @@ class DefaultController extends Controller
 
         // get connector configuration TODO: refactor serialization
         $configRepo = $this->get('doctrine.orm.entity_manager')->getRepository('OroDataFlowBundle:Configuration');
-        $typeName = get_class($connector->getNewConfigurationInstance());
+        $typeName = $connector->getConfigurationName();
         $confData =  $configRepo->findOneByTypeAndDescription($typeName, 'Magento CSV');
         $serializer = \JMS\Serializer\SerializerBuilder::create()->build();
         $configuration = $serializer->deserialize($confData->getData(), $confData->getTypeName(), $confData->getFormat());
@@ -114,7 +115,7 @@ class DefaultController extends Controller
 
         // get job configuration TODO: refactor serialization
         $configRepo = $this->get('doctrine.orm.entity_manager')->getRepository('OroDataFlowBundle:Configuration');
-        $typeName = get_class($job->getNewConfigurationInstance());
+        $typeName = $job->getConfigurationName();
         $confData =  $configRepo->findOneByTypeAndDescription($typeName, 'Import customer CSV');
         $serializer = \JMS\Serializer\SerializerBuilder::create()->build();
         $configuration = $serializer->deserialize($confData->getData(), $confData->getTypeName(), $confData->getFormat());
@@ -123,17 +124,12 @@ class DefaultController extends Controller
         $job->configure($connector->getConfiguration(), $configuration);
 
         // run job
-        $customers = $job->run();
+        $job->run();
+        $messages = $job->getMessages();
 
-        $this->get('session')->getFlashBag()->add('success', count($customers) .' has been transformed !');
-
-        foreach ($customers as $customer) {
-            $this->get('session')->getFlashBag()->add('info', 'Email -> '. $customer->getEmail());
-            $this->get('session')->getFlashBag()->add('info', 'Firstname -> '. $customer->getFirstname());
-            $this->get('session')->getFlashBag()->add('info', 'Lastname -> '. $customer->getLastname());
-
-            $this->get('session')->getFlashBag()->add('info', 'Get company mapped from password hash -> '. $customer->getValue('company')->getData());
-            $this->get('session')->getFlashBag()->add('info', 'Website -> '. $customer->getValue('website')->getData());
+        // display result messages
+        foreach ($messages as $message) {
+            $this->get('session')->getFlashBag()->add($message[0], $message[1]);
         }
 
         return $this->redirect($this->generateUrl('acme_demoflexibleentity_customer_index'));
