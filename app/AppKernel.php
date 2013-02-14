@@ -35,6 +35,7 @@ class AppKernel extends Kernel
             new Oro\Bundle\SearchBundle\OroSearchBundle(),
             new Oro\Bundle\UserBundle\OroUserBundle(),
             new Oro\Bundle\MeasureBundle\OroMeasureBundle(),
+            new Oro\Bundle\GridBundle\OroGridBundle(),
             new Acme\Bundle\DemoBundle\AcmeDemoBundle(),
             new Acme\Bundle\DemoMeasureBundle\AcmeDemoMeasureBundle(),
         );
@@ -43,8 +44,10 @@ class AppKernel extends Kernel
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
+
             // BAP test bundles
             $bundles[] = new Acme\Bundle\DemoFlexibleEntityBundle\AcmeDemoFlexibleEntityBundle();
+            $bundles[] = new Acme\Bundle\DemoGridBundle\AcmeDemoGridBundle();
         }
 
         return $bundles;
