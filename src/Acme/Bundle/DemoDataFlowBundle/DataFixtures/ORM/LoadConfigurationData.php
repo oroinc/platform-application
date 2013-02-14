@@ -30,7 +30,7 @@ class LoadConfigurationData extends AbstractFixture implements OrderedFixtureInt
      */
     public function load(ObjectManager $manager)
     {
-        $format = 'xml';
+        $format = 'json';
 
         // prepare conf Magento
         $magentoConf = new MagentoConfiguration();

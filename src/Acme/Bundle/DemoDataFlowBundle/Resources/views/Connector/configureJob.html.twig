@@ -8,7 +8,7 @@
 
     {% include 'AcmeDemoDataFlowBundle:Connector:steps.html.twig' with {'steps': steps} %}
 
-    <form action="{{ path('acme_demodataflow_connector_savejob', { conId: conId, jobId: jobId, conConfId: conConfId, jobConfId: jobConfId }) }}" method="POST" class="form-register">
+    <form action="{{ path('acme_demodataflow_connector_configurejob', { conId: conId, jobId: jobId, conConfId: conConfId, jobConfId: jobConfId }) }}" method="POST" class="form-register">
     
         <fieldset>
             <legend>{{ "Load configuration" | trans }}</legend>

@@ -50,19 +50,23 @@ class ConnectorController extends Controller
             array(
                 'label' => $translator->trans('(2) Configure connector'),
                 'route' => 'acme_demodataflow_connector_configure',
-                'params' => array('conId' => $conId, 'jobId' => $jobId)
+                'params' => array('conId' => $conId, 'jobId' => $jobId, 'conConfId' => $conConfId)
             ),
             // configure job
             array(
                 'label'  => $translator->trans('(3) Configure job'),
                 'route'  => 'acme_demodataflow_connector_configurejob',
-                'params' => array('conId' => $conId, 'jobId' => $jobId, 'conConfId' => $conConfId)
+                'params' => array(
+                    'conId' => $conId, 'jobId' => $jobId, 'conConfId' => $conConfId, 'jobConfId' => $jobConfId
+                )
             ),
             // schedule / run
             array(
                 'label'  => $translator->trans('(4) Schedule / run'),
                 'route'  => 'acme_demodataflow_connector_runjob',
-                'params' => array('conId' => $conId, 'jobId' => $jobId, 'conConfId' => $conConfId, 'jobConfId' => $jobConfId)
+                'params' => array(
+                    'conId' => $conId, 'jobId' => $jobId, 'conConfId' => $conConfId, 'jobConfId' => $jobConfId
+                )
             )
         );
 
@@ -129,7 +133,9 @@ class ConnectorController extends Controller
         if ($configurationId > 0) {
             $confData      = $configRepo->find($configurationId);
             $serializer    = \JMS\Serializer\SerializerBuilder::create()->build();
-            $configuration = $serializer->deserialize($confData->getData(), $confData->getTypeName(), $confData->getFormat());
+            $configuration = $serializer->deserialize(
+                $confData->getData(), $confData->getTypeName(), $confData->getFormat()
+            );
             $configuration->setId($confData->getId());
             $configuration->setDescription($confData->getDescription());
         } else {
@@ -196,6 +202,18 @@ class ConnectorController extends Controller
         // prepare form
         $form = $this->getConfigurationForm($connector, $configuration);
 
+        // process form
+        if ('POST' === $this->get('request')->getMethod()) {
+            $handler = $this->getConfigurationHandler($connector);
+            $handler->setForm($form);
+            if ($handler->process($configuration)) {
+                $this->get('session')->getFlashBag()->add('success', 'Configuration successfully saved');
+                $params = array('conId' => $conId, 'jobId' => $jobId, 'conConfId' => $configuration->getId());
+
+                return $this->redirect($this->generateUrl('acme_demodataflow_connector_configurejob', $params));
+            }
+        }
+
         // render configuration form
         return array(
             'form'            => $form->createView(),
@@ -205,44 +223,6 @@ class ConnectorController extends Controller
             'conConfId'       => $conConfId,
             'steps'           => $this->getNavigationMenu()
         );
-    }
-
-    /**
-     * Save connector
-     *
-     * @param integer $conId     the connector id
-     * @param integer $jobId     the job id
-     * @param integer $conConfId the connector configuration id
-     *
-     * @Route("/save/{conId}/{jobId}/{conConfId}", defaults={"conConfId"=0})
-     * @Template()
-     *
-     * @return array
-     */
-    public function saveAction($conId, $jobId, $conConfId)
-    {
-        // get connector
-        $connector = $this->container->get($conId);
-
-        // get existing configuration or create a new one
-        $configuration = $this->getConfiguration($connector, $conConfId);
-
-        // process form
-        $handler = $this->getConfigurationHandler($connector);
-        if ($handler->process($configuration)) {
-            $this->get('session')->getFlashBag()->add('success', 'Configuration successfully saved');
-
-            $params = array('conId' => $conId, 'jobId' => $jobId, 'conConfId' => $configuration->getId());
-            return $this->redirect($this->generateUrl('acme_demodataflow_connector_configurejob', $params));
-        } else {
-            $this->get('session')->getFlashBag()->add('error', "Configuration can't be saved");
-            // TODO : add validation message
-        }
-
-        $params = array('conId' => $conId, 'jobId' => $jobId, 'conConfId' => $conConfId);
-        $url = $this->generateUrl('acme_demodataflow_connector_configure', $params);
-
-        return $this->redirect($url);
     }
 
     /**
@@ -270,6 +250,17 @@ class ConnectorController extends Controller
         // prepare form
         $form = $this->getConfigurationForm($job, $configuration);
 
+        // process form
+        if ('POST' === $this->get('request')->getMethod()) {
+            $handler = $this->getConfigurationHandler($job);
+            if ($handler->process($configuration)) {
+                $this->get('session')->getFlashBag()->add('success', 'Configuration successfully saved');
+                $params = array('conId' => $conId, 'jobId' => $jobId, 'conConfId' => $conConfId, 'jobConfId' => $configuration->getId());
+
+                return $this->redirect($this->generateUrl('acme_demodataflow_connector_runjob', $params));
+            }
+        }
+
         // render configuration form
         return array(
             'form'           => $form->createView(),
@@ -280,45 +271,6 @@ class ConnectorController extends Controller
             'jobConfId'      => $jobConfId,
             'steps'          => $this->getNavigationMenu()
         );
-    }
-
-    /**
-     * Save job
-     *
-     * @param integer $conId     the connector id
-     * @param integer $jobId     the job id
-     * @param integer $conConfId the connector configuration id
-     * @param integer $jobConfId the job configuration id
-     *
-     * @Route("/savejob/{conId}/{jobId}/{conConfId}/{jobConfId}", defaults={"jobConfId"=0})
-     * @Template()
-     *
-     * @return array
-     */
-    public function saveJobAction($conId, $jobId, $conConfId, $jobConfId)
-    {
-        // get job
-        $job = $this->container->get($jobId);
-
-        // get existing configuration or create a new one
-        $configuration = $this->getConfiguration($job, $jobConfId);
-        $configurations = $this->getAvailableConfigurations(get_class($configuration));
-
-        // process form
-        $handler = $this->getConfigurationHandler($job);
-        if ($handler->process($configuration)) {
-            $this->get('session')->getFlashBag()->add('success', 'Configuration successfully saved');
-            $params = array('conId' => $conId, 'jobId' => $jobId, 'conConfId' => $conConfId, 'jobConfId' => $configuration->getId());
-
-            return $this->redirect($this->generateUrl('acme_demodataflow_connector_runjob', $params));
-        }
-
-        // TODO : build form here to keep errors and setted data
-
-        $params = array('conId' => $conId, 'jobId' => $jobId, 'conConfId' => $conConfId, 'jobConfId' => $jobConfId);
-        $url = $this->generateUrl('acme_demodataflow_connector_configurejob', $params);
-
-        return $this->redirect($url);
     }
 
     /**
@@ -336,12 +288,19 @@ class ConnectorController extends Controller
      */
     public function runJobAction($conId, $jobId, $conConfId, $jobConfId)
     {
+        // get existing configuration or create a new one
+        $repo = $this->get('doctrine.orm.entity_manager')->getRepository('OroDataFlowBundle:Configuration');
+        $conConfiguration = $repo->find($conConfId);
+        $jobConfiguration = $repo->find($jobConfId);
+
         return array(
-            'conId'          => $conId,
-            'conConfId'      => $conConfId,
-            'jobId'          => $jobId,
-            'jobConfId'      => $jobConfId,
-            'steps' => $this->getNavigationMenu()
+            'conId'     => $conId,
+            'conConfId' => $conConfId,
+            'jobId'     => $jobId,
+            'jobConfId' => $jobConfId,
+            'steps'     => $this->getNavigationMenu(),
+            'conConf'   => $conConfiguration,
+            'jobConf'   => $jobConfiguration,
         );
     }
 }

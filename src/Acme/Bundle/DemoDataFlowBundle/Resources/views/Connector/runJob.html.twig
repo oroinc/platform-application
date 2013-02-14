@@ -10,8 +10,8 @@
 
     <p>{{ "Ready to run" | trans }}</p>
     <ul>
-        <li>{{ "Connector " | trans }} {{ conId }} {{ "with configuration" | trans }} {{ conConfId }} </li>
-        <li>{{ "Job " | trans }} {{ jobId }} {{ "with configuration" | trans }} {{ jobConfId }} </li>
+        <li>{{ "Connector " | trans }} {{ (conId ~ ".label") | trans }} {{ "with configuration" | trans }} "{{ conConf.description }}" </li>
+        <li>{{ "Job " | trans }} {{ (jobId ~ ".label") | trans }} {{ "with configuration" | trans }} "{{ jobConf.description }}" </li>
     </ul>
 
 {% endblock %}

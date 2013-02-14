@@ -19,7 +19,7 @@ class CsvConfiguration extends AbstractConfiguration
      * @Type("string")
      * @var string
      */
-    public $charset = 'UFT-8';
+    public $charset = 'UTF-8';
 
     /**
      * @Type("string")
