@@ -1,5 +1,5 @@
 <?php
-namespace Acme\Bundle\DemoFlexibleEntityBundle\Tests\Controller;
+namespace Acme\Bundle\DemoFlexibleEntityBundle\Tests\Functional\Controller;
 
 /**
  * Test related class
@@ -9,33 +9,23 @@ namespace Acme\Bundle\DemoFlexibleEntityBundle\Tests\Controller;
  * @license   http://opensource.org/licenses/MIT MIT
  *
  */
-class ProductAttributeControllerTest extends KernelAwareControllerTest
+class CustomerAttributeControllerTest extends KernelAwareControllerTest
 {
 
     /**
      * Define customer controller name for url generation
      * @staticvar string
      */
-    protected static $controller = 'productattribute';
+    protected static $controller = 'customerattribute';
 
     /**
-     * {@inheritdoc}
-     */
-    protected function getFixturesToLoad()
-    {
-        return array(
-            'src/Acme/Bundle/DemoFlexibleEntityBundle/DataFixtures/ORM/Product'
-        );
-    }
-
-    /**
-     * Get manager
+     * Get customer manager
      *
      * @return Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleManager
      */
-    protected function getProductManager()
+    protected function getCustomerManager()
     {
-        return $this->getContainer()->get('product_manager');
+        return $this->getContainer()->get('customer_manager');
     }
 
     /**
@@ -67,9 +57,11 @@ class ProductAttributeControllerTest extends KernelAwareControllerTest
     public function testEditAction()
     {
         // find one to edit
-        $attribute = $this->getProductManager()->getAttributeRepository()->findOneBy(array('entityType' => 'Acme\Bundle\DemoFlexibleEntityBundle\Entity\Product'));
+        $attribute = $this->getCustomerManager()->getAttributeRepository()->findOneBy(
+            array('entityType' => 'Acme\Bundle\DemoFlexibleEntityBundle\Entity\Customer')
+        );
         if (!$attribute) {
-            throw new \Exception('Not found');
+            throw new \Exception('Customer not found');
         }
 
         // just call view to show form
@@ -79,4 +71,17 @@ class ProductAttributeControllerTest extends KernelAwareControllerTest
         }
     }
 
+    /**
+     * Count customer attributes in database
+     *
+     * @return integer
+     */
+    protected function countCustomerAttributes()
+    {
+        $attributes = $this->getCustomerManager()->getAttributeRepository()->findBy(
+            array('entityType' => 'Acme\Bundle\DemoFlexibleEntityBundle\Entity\Customer')
+        );
+
+        return count($attributes);
+    }
 }

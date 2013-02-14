@@ -106,7 +106,17 @@ be_simple_soap:
             resource:         "%kernel.root_dir%/../app/config/soap.yml"
             resource_type:    yml
         demo:
-            namespace:        http://symfony.loc/Api/1.0/
-            binding:          rpc-literal
-            resource:         "%kernel.root_dir%/../src/Acme/Bundle/DemoBundle/Resources/config/soap.yml"
-            resource_type:    yml
+            namespace:     http://symfony.loc/Api/1.0/
+            binding:       rpc-literal
+            resource:      "%kernel.root_dir%/../src/Acme/Bundle/DemoBundle/Resources/config/soap.yml"
+            resource_type: yml
+
+stof_doctrine_extensions:
+    orm:
+        default:
+            tree: true
+
+services:
+    cache:
+        class: Doctrine\Common\Cache\PhpFileCache
+        arguments: [%kernel.cache_dir%]

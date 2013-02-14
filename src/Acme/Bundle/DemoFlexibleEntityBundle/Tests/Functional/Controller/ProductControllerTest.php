@@ -1,8 +1,6 @@
 <?php
 
-namespace Acme\Bundle\DemoFlexibleEntityBundle\Tests\Controller;
-
-use Acme\Bundle\DemoFlexibleEntityBundle\Tests\Controller\KernelAwareControllerTest;
+namespace Acme\Bundle\DemoFlexibleEntityBundle\Tests\Functional\Controller;
 
 /**
  * Test related class
@@ -20,16 +18,6 @@ class ProductControllerTest extends KernelAwareControllerTest
      * @staticvar string
      */
     protected static $controller = 'product';
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function getFixturesToLoad()
-    {
-        return array(
-            'src/Acme/Bundle/DemoFlexibleEntityBundle/DataFixtures/ORM/Product'
-        );
-    }
 
     /**
      * Get product manager
@@ -101,5 +89,4 @@ class ProductControllerTest extends KernelAwareControllerTest
             $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         }
     }
-
 }
