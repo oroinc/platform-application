@@ -1,0 +1,3 @@
+<?
+ob_start();
+require __DIR__.'/bootstrap.php.cache';
