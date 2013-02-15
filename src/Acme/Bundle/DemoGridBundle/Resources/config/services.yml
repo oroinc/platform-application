@@ -1,0 +1,29 @@
+parameters:
+    acme_demo_grid.user_grid.manager.class: Acme\Bundle\DemoGridBundle\Datagrid\UserDatagridManager
+
+services:
+    acme_demo_grid.user_grid.manager:
+        class: %acme_demo_grid.user_grid.manager.class%
+        tags:
+            - name: oro_grid.datagrid.manager
+              query_entity: Acme\Bundle\DemoFlexibleEntityBundle\Entity\Customer
+#              datagrid_builder: ~
+#              list_builder: ~
+#              query_factory: ~
+#              translator: ~
+#              validator: ~
+#              request: ~
+
+#
+#<service id="sonata.user.admin.user" class="%sonata.user.admin.user.class%">
+#            <tag name="sonata.admin" manager_type="orm" group="%sonata.user.admin.groupname%" label="users" label_catalogue="SonataUserBundle" label_translator_strategy="sonata.admin.label.strategy.underscore" />
+#            <argument />
+#            <argument>%sonata.user.admin.user.entity%</argument>
+#            <argument>%sonata.user.admin.user.controller%</argument>
+#            <call method="setUserManager">
+#                <argument type="service" id="fos_user.user_manager" />
+#            </call>
+#            <call method="setTranslationDomain">
+#                <argument>%sonata.user.admin.user.translation_domain%</argument>
+#            </call>
+#        </service>

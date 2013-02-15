@@ -9,9 +9,11 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\Form\FormBuilderInterface;
 use Sonata\DoctrineORMAdminBundle\Datagrid\Pager as SonataDoctrineORMPager;
 use Oro\Bundle\GridBundle\Datagrid\Datagrid;
-use Oro\Bundle\GridBundle\Datagrid\ORM\QueryFactory;
+use Oro\Bundle\GridBundle\Datagrid\ORM\QueryFactory\QueryFactory;
 use Oro\Bundle\GridBundle\Field\FieldDescriptionCollection;
 use Oro\Bundle\GridBundle\Field\FieldDescription;
+
+use Acme\Bundle\DemoGridBundle\Datagrid\UserDatagridManager;
 
 /**
  * @Route("/grid")
@@ -24,25 +26,9 @@ class GridController extends Controller
      */
     public function listAction()
     {
-        $doctrineManager = $this->getDoctrine();
-        $className = 'Acme\\Bundle\\DemoFlexibleEntityBundle\\Entity\\Customer';
-        $queryFactory = new QueryFactory($doctrineManager, $className);
-
-        $fieldDescriptions = new FieldDescriptionCollection();
-        $fieldDescriptions->add(new FieldDescription());
-        $pager = new SonataDoctrineORMPager(10);
-
-        $formData = array();
-        $formOptions = array();
-        /** @var $formBuilder FormBuilderInterface */
-        $formBuilder = $this->container->get('form.factory')->createBuilder('form', $formData, $formOptions);
-
-        $datagrid = new Datagrid(
-            $queryFactory->createQuery(),
-            $fieldDescriptions,
-            $pager,
-            $formBuilder
-        );
+        /** @var $userGridManager UserDatagridManager */
+        $userGridManager = $this->get('acme_demo_grid.user_grid.manager');
+        $datagrid = $userGridManager->getDatagrid();
 
         return array(
             'datagrid' => $datagrid
