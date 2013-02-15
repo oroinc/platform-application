@@ -6,18 +6,18 @@
 
 {% block content %}
 
-    {% include 'AcmeDemoDataFlowBundle:Connector:steps.html.twig' with {'steps': steps} %}
+    {% include 'AcmeDemoDataFlowBundle:Configure:steps.html.twig' with {'steps': steps} %}
 
-    <form action="{{ path('acme_demodataflow_connector_configurejob', { conId: conId, jobId: jobId, conConfId: conConfId, jobConfId: jobConfId }) }}" method="POST" class="form-register">
+    <form action="{{ path('acme_demodataflow_configure_job', { conId: conId, jobId: jobId, conConfId: conConfId, jobConfId: jobConfId }) }}" method="POST" class="form-register">
     
         <fieldset>
             <legend>{{ "Load configuration" | trans }}</legend>
     
             <ul>
             {% for configuration in configurations %}
-                <li><a href="{{ path('acme_demodataflow_connector_configurejob', { conId: conId, jobId: jobId, conConfId: conConfId, jobConfId: configuration.id }) }}">Load configuration "{{ configuration.description }}"</a></li>
+                <li><a href="{{ path('acme_demodataflow_configure_job', { conId: conId, jobId: jobId, conConfId: conConfId, jobConfId: configuration.id }) }}">Load configuration "{{ configuration.description }}"</a></li>
             {% endfor %}
-                <li><a href="{{ path('acme_demodataflow_connector_configurejob', { conId: conId, jobId: jobId, conConfId: conConfId, jobConfId: 0 }) }}">Reset to create a new configuration</a></li>
+                <li><a href="{{ path('acme_demodataflow_configure_job', { conId: conId, jobId: jobId, conConfId: conConfId, jobConfId: 0 }) }}">Reset to create a new configuration</a></li>
             </ul>
     
         </fieldset>

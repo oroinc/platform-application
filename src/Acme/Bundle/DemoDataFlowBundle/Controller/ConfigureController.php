@@ -17,10 +17,10 @@ use Oro\Bundle\DataFlowBundle\Form\Handler\ConfigurationHandler;
  * @copyright 2012 Akeneo SAS (http://www.akeneo.com)
  * @license   http://opensource.org/licenses/MIT MIT
  *
- * @Route("/connector")
+ * @Route("/configure")
  *
  */
-class ConnectorController extends Controller
+class ConfigureController extends Controller
 {
 
     /**
@@ -42,28 +42,28 @@ class ConnectorController extends Controller
         $items = array(
             // select
             array(
-                'label'  => $translator->trans('(1) Select connector & job'),
-                'route'  => 'acme_demodataflow_connector_select',
+                'label'  => $translator->trans('(1) Select connector'),
+                'route'  => 'acme_demodataflow_configure_select',
                 'params' => array()
             ),
             // configure connector
             array(
                 'label' => $translator->trans('(2) Configure connector'),
-                'route' => 'acme_demodataflow_connector_configure',
+                'route' => 'acme_demodataflow_configure_connector',
                 'params' => array('conId' => $conId, 'jobId' => $jobId, 'conConfId' => $conConfId)
             ),
             // configure job
             array(
-                'label'  => $translator->trans('(3) Configure job'),
-                'route'  => 'acme_demodataflow_connector_configurejob',
+                'label'  => $translator->trans('(3) Configure import / export'),
+                'route'  => 'acme_demodataflow_configure_job',
                 'params' => array(
                     'conId' => $conId, 'jobId' => $jobId, 'conConfId' => $conConfId, 'jobConfId' => $jobConfId
                 )
             ),
             // schedule / run
             array(
-                'label'  => $translator->trans('(4) Schedule / run'),
-                'route'  => 'acme_demodataflow_connector_runjob',
+                'label'  => $translator->trans('(4) Run'),
+                'route'  => 'acme_demodataflow_configure_run',
                 'params' => array(
                     'conId' => $conId, 'jobId' => $jobId, 'conConfId' => $conConfId, 'jobConfId' => $jobConfId
                 )
@@ -173,7 +173,13 @@ class ConnectorController extends Controller
         // get connectors ids to job ids
         $connectorsToJobs = $this->container->get('oro_dataflow.connectors')->getConnectorToJobs();
 
+        $connectors = $this->get('doctrine.orm.entity_manager')->getRepository('OroDataFlowBundle:Connector')->findAll();
+
+        $jobs = $this->get('doctrine.orm.entity_manager')->getRepository('OroDataFlowBundle:Job')->findAll();
+
         return array(
+            'connectors'       => $connectors,
+            'jobs'             => $jobs,
             'connectorsToJobs' => $connectorsToJobs,
             'steps'            => $this->getNavigationMenu()
         );
@@ -186,12 +192,12 @@ class ConnectorController extends Controller
      * @param integer $jobId     the job id
      * @param integer $conConfId the connector configuration id
      *
-     * @Route("/configure/{conId}/{jobId}/{conConfId}", defaults={"conConfId"=0})
+     * @Route("/connector/{conId}/{jobId}/{conConfId}", defaults={"conConfId"=0})
      * @Template()
      *
      * @return array
      */
-    public function configureAction($conId, $jobId, $conConfId)
+    public function connectorAction($conId, $jobId, $conConfId)
     {
         // get connector
         $connector = $this->container->get($conId);
@@ -211,7 +217,7 @@ class ConnectorController extends Controller
                 $this->get('session')->getFlashBag()->add('success', 'Configuration successfully saved');
                 $params = array('conId' => $conId, 'jobId' => $jobId, 'conConfId' => $configuration->getId());
 
-                return $this->redirect($this->generateUrl('acme_demodataflow_connector_configurejob', $params));
+                return $this->redirect($this->generateUrl('acme_demodataflow_configure_job', $params));
             }
         }
 
@@ -234,12 +240,12 @@ class ConnectorController extends Controller
      * @param integer $conConfId the connector configuration id
      * @param integer $jobConfId the job configuration id
      *
-     * @Route("/configurejob/{conId}/{jobId}/{conConfId}/{jobConfId}", defaults={"jobConfId"=0})
+     * @Route("/job/{conId}/{jobId}/{conConfId}/{jobConfId}", defaults={"jobConfId"=0})
      * @Template()
      *
      * @return array
      */
-    public function configureJobAction($conId, $jobId, $conConfId, $jobConfId)
+    public function jobAction($conId, $jobId, $conConfId, $jobConfId)
     {
         // get job
         $job = $this->container->get($jobId);
@@ -258,7 +264,7 @@ class ConnectorController extends Controller
                 $this->get('session')->getFlashBag()->add('success', 'Configuration successfully saved');
                 $params = array('conId' => $conId, 'jobId' => $jobId, 'conConfId' => $conConfId, 'jobConfId' => $configuration->getId());
 
-                return $this->redirect($this->generateUrl('acme_demodataflow_connector_runjob', $params));
+                return $this->redirect($this->generateUrl('acme_demodataflow_configure_run', $params));
             }
         }
 
@@ -282,12 +288,12 @@ class ConnectorController extends Controller
      * @param integer $conConfId the connector configuration id
      * @param integer $jobConfId the job configuration id
      *
-     * @Route("/runjob/{conId}/{jobId}/{conConfId}/{jobConfId}")
+     * @Route("/run/{conId}/{jobId}/{conConfId}/{jobConfId}")
      * @Template()
      *
      * @return array
      */
-    public function runJobAction($conId, $jobId, $conConfId, $jobConfId)
+    public function runAction($conId, $jobId, $conConfId, $jobConfId)
     {
         // get existing configuration or create a new one
         $repo = $this->get('doctrine.orm.entity_manager')->getRepository('OroDataFlowBundle:Configuration');

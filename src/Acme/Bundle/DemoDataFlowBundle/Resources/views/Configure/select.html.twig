@@ -1,0 +1,46 @@
+{% extends bap.layout is defined ? bap.layout : 'AcmeDemoFlexibleEntityBundle::layout.html.twig' %}
+
+{% set title = 'Select connector' %}
+
+{% block title %}{{ parent() }} - {{ title }}{% endblock %}
+
+{% block content %}
+
+    {% include 'AcmeDemoDataFlowBundle:Configure:steps.html.twig' with {'steps': steps} %}
+
+    <fieldset>
+        <legend>{{ "Use an existing connector" | trans }}</legend>
+
+        <ul>
+        {% for connector in connectors %}
+            <li>
+                {{ connector.configuration.description }} ({{ (connector.serviceId ~ ".label") | trans }})
+                <ul>
+                    <li>[configure connector -> step 2]</li>
+                    <li>[configure import / export -> step 3]</li>
+                    <li>[run -> step 3]</li>
+                </ul>
+            </li>
+        {% endfor %}
+        </ul>
+    </fieldset>
+
+    <fieldset>
+        <legend>{{ "Add a new connector" | trans }}</legend>
+
+        <ul>
+        {% for connectorId, jobs in connectorsToJobs %}
+            <li>{{ (connectorId ~ ".label") | trans }}
+            <ul>
+            {% for jobId in jobs %}
+                <li><a href="{{ path('acme_demodataflow_configure_connector', {'conId': connectorId, 'jobId': jobId}) }}">{{ (jobId ~ ".label") | trans }}</a></li>
+            {% endfor %}
+            </ul>
+            </li>
+            
+        {% endfor %}
+        </ul>
+    </fieldset>
+
+
+{% endblock %}
