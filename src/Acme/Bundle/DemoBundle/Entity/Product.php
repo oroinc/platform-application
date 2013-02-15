@@ -2,6 +2,8 @@
 
 namespace Acme\Bundle\DemoBundle\Entity;
 
+use Oro\Bundle\FlexibleEntityBundle\Entity\Mapping\AbstractEntityFlexible;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -10,17 +12,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="demo_product")
  * @ORM\Entity(repositoryClass="Acme\Bundle\DemoBundle\Entity\ProductRepository")
  */
-class Product
+class Product extends AbstractEntityFlexible
 {
-    /**
-     * @var integer $id
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
     /**
      * @var string $name
      *
@@ -71,16 +64,12 @@ class Product
      */
     private $categories;
 
-
     /**
-     * Get id
+     * @var Value
      *
-     * @return integer
+     * @ORM\OneToMany(targetEntity="ProductValue", mappedBy="entity", cascade={"persist", "remove"})
      */
-    public function getId()
-    {
-        return $this->id;
-    }
+    protected $values;
 
     /**
      * Set name
