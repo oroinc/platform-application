@@ -4,10 +4,13 @@ namespace Acme\Bundle\DemoSearchBundle\Tests\Functional\API;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\Yaml\Yaml;
-use Symfony\Component\Finder\Iterator\RecursiveDirectoryIterator;
+use Symfony\Component\Finder\Iterator;
 
 class SoapApiTest extends WebTestCase
 {
+    /** Default value for offset and max_records */
+    const DEFAULT_VALUE = 0;
+
     /** @var CustomSoapClient */
     static private $clientSoap = null;
 
@@ -34,10 +37,10 @@ class SoapApiTest extends WebTestCase
             unset($request['search']);
         }
         if (is_null($request['offset'])) {
-            unset($request['offset']);
+            $request['offset'] = self::DEFAULT_VALUE;
         }
         if (is_null($request['max_results'])) {
-            unset($request['max_results']);
+            $request['max_results'] = self::DEFAULT_VALUE;
         }
         $result = call_user_func_array(array(self::$clientSoap, 'search'), $request);
         $result = json_decode(json_encode($result), true);
@@ -52,9 +55,9 @@ class SoapApiTest extends WebTestCase
     public function requestsApi()
     {
         $parameters = array();
-        $testFiles = new RecursiveDirectoryIterator(
+        $testFiles = new \RecursiveDirectoryIterator(
             __DIR__ . DIRECTORY_SEPARATOR . 'requests',
-            RecursiveDirectoryIterator::SKIP_DOTS
+            \RecursiveDirectoryIterator::SKIP_DOTS
         );
         foreach ($testFiles as $fileName => $object) {
             $parameters[$fileName] = Yaml::parse($fileName);

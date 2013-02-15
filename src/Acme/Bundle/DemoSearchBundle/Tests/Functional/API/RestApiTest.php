@@ -4,7 +4,7 @@ namespace Acme\Bundle\DemoSearchBundle\Tests\Functional\API;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\Yaml\Yaml;
-use Symfony\Component\Finder\Iterator\RecursiveDirectoryIterator;
+use Symfony\Component\Finder\Iterator;
 
 class RestApiTest extends WebTestCase
 {
@@ -47,9 +47,9 @@ class RestApiTest extends WebTestCase
     public function requestsApi()
     {
         $parameters = array();
-        $testFiles = new RecursiveDirectoryIterator(
+        $testFiles = new \RecursiveDirectoryIterator(
             __DIR__ . DIRECTORY_SEPARATOR . 'requests',
-            RecursiveDirectoryIterator::SKIP_DOTS
+            \RecursiveDirectoryIterator::SKIP_DOTS
         );
         foreach ($testFiles as $fileName => $object) {
             $parameters[$fileName] = Yaml::parse($fileName);
