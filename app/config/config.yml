@@ -89,7 +89,6 @@ fos_rest:
             xml: fos_rest.decoder.xml
     routing_loader:
         default_format: json
-    param_fetcher_listener: force
 
 oro_search:
     engine:                   orm
