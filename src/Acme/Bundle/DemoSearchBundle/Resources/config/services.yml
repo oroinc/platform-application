@@ -4,4 +4,4 @@ parameters:
 services:
     search_item_manager:
         class:     "%search_item_manager_class%"
-        arguments: [@service_container, %search_item_entity_class%]
+        arguments: [%search_item_entity_class%, %oro_flexibleentity.flexible_config%, "@doctrine.orm.entity_manager", "@event_dispatcher"]
