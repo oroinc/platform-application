@@ -29,23 +29,21 @@ class LoadJobData extends AbstractFixture implements OrderedFixtureInterface
     public function load(ObjectManager $manager)
     {
         // create a job instance
-        $conConfiguration = $this->getReference('magento-configuration');
-        $jobConfiguration = $this->getReference('import-attribute-configuration');
+        $configuration = $this->getReference('configuration-import-attribute');
+        $connector = $this->getReference('connector-magento');
         $magentoJob = new Job();
-        $magentoJob->setConnectorService('connector.magento_catalog');
-        $magentoJob->setConnectorConfiguration($conConfiguration);
-        $magentoJob->setJobService('job.import_attributes');
-        $magentoJob->setJobConfiguration($jobConfiguration);
+        $magentoJob->setServiceId('job.import_attributes');
+        $magentoJob->setConfiguration($configuration);
+        $magentoJob->setConnector($connector);
         $manager->persist($magentoJob);
 
         // create a job instance
-        $conConfiguration = $this->getReference('csv-configuration');
-        $jobConfiguration = $this->getReference('import-customer-configuration');
+        $configuration = $this->getReference('configuration-import-customer');
+        $connector = $this->getReference('connector-csv');
         $csvJob = new Job();
-        $csvJob->setConnectorService('connector.csv');
-        $csvJob->setConnectorConfiguration($conConfiguration);
-        $csvJob->setJobService('job.import_customers');
-        $csvJob->setJobConfiguration($jobConfiguration);
+        $csvJob->setServiceId('job.import_customers');
+        $csvJob->setConfiguration($configuration);
+        $csvJob->setConnector($connector);
         $manager->persist($csvJob);
 
         $manager->flush();

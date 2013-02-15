@@ -40,13 +40,13 @@ class LoadConfigurationData extends AbstractFixture implements OrderedFixtureInt
         $magentoConf->setTablePrefix('ab_');
         $entity = $this->prepareConfigurationEntity('Magento 2', $magentoConf);
         $manager->persist($entity);
-        $this->addReference('magento-configuration', $entity);
+        $this->addReference('configuration-magento', $entity);
 
         $magentoJobConf = new ImportAttributeConfiguration();
         $magentoJobConf->setExcludedAttributes('sku,old_id,created_at,updated_at');
         $entity = $this->prepareConfigurationEntity('Import attributes', $magentoJobConf);
         $manager->persist($entity);
-        $this->addReference('import-attribute-configuration', $entity);
+        $this->addReference('configuration-import-attribute', $entity);
 
         // prepare csv connector and job configuration
 
@@ -54,13 +54,13 @@ class LoadConfigurationData extends AbstractFixture implements OrderedFixtureInt
         $csvConf->setDelimiter(',');
         $entity = $this->prepareConfigurationEntity('Magento CSV', $csvConf);
         $manager->persist($entity);
-        $this->addReference('csv-configuration', $entity);
+        $this->addReference('configuration-csv', $entity);
 
         $csvJobConf = new ImportCustomerConfiguration();
         $csvJobConf->setFilePath(__DIR__.'/../../Resources/files/export_customers.csv');
         $entity = $this->prepareConfigurationEntity('Import customer CSV', $csvJobConf);
         $manager->persist($entity);
-        $this->addReference('import-customer-configuration', $entity);
+        $this->addReference('configuration-import-customer', $entity);
 
         // save
         $manager->flush();
