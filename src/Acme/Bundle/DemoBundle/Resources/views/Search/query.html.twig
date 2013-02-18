@@ -32,7 +32,7 @@
                     searchDiv.html('');
                 } else {
                     $.ajax({
-                        url:"{{ path('get_search') }}",
+                        url:"{{ path('oro_api_get_search') }}",
                         dataType:"json",
                         data:{
                             search:query,

@@ -121,6 +121,7 @@ class Product extends AbstractEntityFlexible
     public function __construct()
     {
         $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->values = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**

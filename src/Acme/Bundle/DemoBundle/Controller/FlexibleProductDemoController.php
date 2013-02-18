@@ -37,7 +37,7 @@ class FlexibleProductDemoController extends Controller
      * @Route("/edit/{id}", requirements={"id"="\d+"}, defaults={"id"=0})
      * @Template
      *
-     * @return array
+     * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function editAction(Attribute $entity)
     {
@@ -58,10 +58,7 @@ class FlexibleProductDemoController extends Controller
                 $this->get('session')->getFlashBag()->add('success', 'Attribute successfully saved');
 
                 return $this->redirect(
-                    $this->generateUrl(
-                        'acme_demo_search',
-                        array('id' => $entity->getId())
-                    )
+                    $this->generateUrl('acme_demo_search')
                 );
             }
         }
