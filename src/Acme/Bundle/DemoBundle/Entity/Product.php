@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Acme\Bundle\DemoBundle\Entity\Product
  *
  * @ORM\Table(name="demo_product")
- * @ORM\Entity(repositoryClass="Acme\Bundle\DemoBundle\Entity\ProductRepository")
+ * @ORM\Entity(repositoryClass="Oro\Bundle\FlexibleEntityBundle\Entity\Repository\FlexibleEntityRepository")
  */
 class Product extends AbstractEntityFlexible
 {

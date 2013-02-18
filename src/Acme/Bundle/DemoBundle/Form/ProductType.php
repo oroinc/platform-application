@@ -32,18 +32,4 @@ class ProductType extends FlexibleType
             ))
         ;
     }
-
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        $resolver->setDefaults(
-            array(
-                'data_class' => $this->flexibleClass,
-            )
-        );
-    }
-
-    public function getName()
-    {
-        return 'oro_bundle_databundle_producttype';
-    }
 }

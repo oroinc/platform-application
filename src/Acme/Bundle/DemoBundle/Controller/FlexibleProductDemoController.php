@@ -10,7 +10,7 @@ use Oro\Bundle\FlexibleEntityBundle\Entity\Attribute;
 use Acme\Bundle\DemoBundle\Form\ProductAttributeType;
 
 /**
- * @Route("/search")
+ * @Route("/search/flexible")
  */
 class FlexibleProductDemoController extends Controller
 {
