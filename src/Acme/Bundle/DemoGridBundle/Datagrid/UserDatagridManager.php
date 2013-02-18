@@ -26,4 +26,12 @@ class UserDatagridManager extends DatagridManager
 
         return array($email, $firstName, $lastName);
     }
+
+    /**
+     * @return array
+     */
+    protected function getSorters()
+    {
+        return array();
+    }
 }
