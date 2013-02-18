@@ -38,13 +38,13 @@ class LoadConfigurationData extends AbstractFixture implements OrderedFixtureInt
         $magentoConf->setPassword('root');
         $magentoConf->setDbname('magento_ab');
         $magentoConf->setTablePrefix('ab_');
-        $entity = $this->prepareConfigurationEntity('Magento 2', $magentoConf);
+        $entity = $this->prepareConfigurationEntity($magentoConf);
         $manager->persist($entity);
         $this->addReference('configuration-magento', $entity);
 
         $magentoJobConf = new ImportAttributeConfiguration();
         $magentoJobConf->setExcludedAttributes('sku,old_id,created_at,updated_at');
-        $entity = $this->prepareConfigurationEntity('Import attributes', $magentoJobConf);
+        $entity = $this->prepareConfigurationEntity($magentoJobConf);
         $manager->persist($entity);
         $this->addReference('configuration-import-attribute', $entity);
 
@@ -52,13 +52,13 @@ class LoadConfigurationData extends AbstractFixture implements OrderedFixtureInt
 
         $csvConf = new CsvConfiguration();
         $csvConf->setDelimiter(',');
-        $entity = $this->prepareConfigurationEntity('Magento CSV', $csvConf);
+        $entity = $this->prepareConfigurationEntity($csvConf);
         $manager->persist($entity);
         $this->addReference('configuration-csv', $entity);
 
         $csvJobConf = new ImportCustomerConfiguration();
         $csvJobConf->setFilePath(__DIR__.'/../../Resources/files/export_customers.csv');
-        $entity = $this->prepareConfigurationEntity('Import customer CSV', $csvJobConf);
+        $entity = $this->prepareConfigurationEntity($csvJobConf);
         $manager->persist($entity);
         $this->addReference('configuration-import-customer', $entity);
 
@@ -69,12 +69,11 @@ class LoadConfigurationData extends AbstractFixture implements OrderedFixtureInt
     /**
      * Prepare configuration entity
      *
-     * @param string        $description   description
      * @param Configuration $configuration configuration
      *
      * @return Configuration
      */
-    protected function prepareConfigurationEntity($description, $configuration)
+    protected function prepareConfigurationEntity($configuration)
     {
         // serialize data
         $format = 'json';
@@ -82,7 +81,6 @@ class LoadConfigurationData extends AbstractFixture implements OrderedFixtureInt
         $data = $serializer->serialize($configuration, $format);
         // prepare configuration entity
         $entity = new Configuration();
-        $entity->setDescription($description);
         $entity->setTypeName(get_class($configuration));
         $entity->setFormat($format);
         $entity->setData($data);

@@ -42,3 +42,6 @@ oro_soap:
 NelmioApiDocBundle:
     resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
     prefix:   /api/doc
+
+oro_dataflow:
+    resource: "@OroDataFlowBundle/Resources/config/routing.yml"

@@ -37,11 +37,6 @@ class ImportAttributesJob extends AbstractJob implements EditableConfigurationIn
     protected $attributes;
 
     /**
-     * @var \ArrayAccess
-     */
-    protected $messages;
-
-    /**
      * Constructor
      * @param string          $confConnectorName the configuration FQCN
      * @param string          $confJobName       the configuration FQCN
@@ -107,14 +102,6 @@ class ImportAttributesJob extends AbstractJob implements EditableConfigurationIn
             $this->messages[]= array('success', $attribute->getCode().' inserted <br/>');
         }
         $this->manager->getStorageManager()->flush();
-    }
-
-    /**
-     * @return \ArrayAccess
-     */
-    public function getMessages()
-    {
-        return $this->messages;
     }
 
     /**

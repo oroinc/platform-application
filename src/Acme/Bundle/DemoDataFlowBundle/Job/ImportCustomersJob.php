@@ -36,11 +36,6 @@ class ImportCustomersJob extends AbstractJob implements EditableConfigurationInt
     protected $customers;
 
     /**
-     * @var \ArrayAccess
-     */
-    protected $messages;
-
-    /**
      * Constructor
      * @param string          $confConnectorName the configuration FQCN
      * @param string          $confJobName       the configuration FQCN
@@ -90,14 +85,6 @@ class ImportCustomersJob extends AbstractJob implements EditableConfigurationInt
             $this->messages[]= array('success', $customer->getEmail().' inserted <br/>');
         }
         $this->manager->getStorageManager()->flush();
-    }
-
-    /**
-     * @return \ArrayAccess
-     */
-    public function getMessages()
-    {
-        return $this->messages;
     }
 
     /**
