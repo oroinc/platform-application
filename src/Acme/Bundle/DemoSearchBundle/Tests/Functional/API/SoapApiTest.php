@@ -34,7 +34,7 @@ class SoapApiTest extends WebTestCase
     public function testApi($request, $response)
     {
         if (is_null($request['search'])) {
-            unset($request['search']);
+            $request['search'] ='';
         }
         if (is_null($request['offset'])) {
             $request['offset'] = self::DEFAULT_VALUE;
@@ -42,7 +42,7 @@ class SoapApiTest extends WebTestCase
         if (is_null($request['max_results'])) {
             $request['max_results'] = self::DEFAULT_VALUE;
         }
-        $result = call_user_func_array(array(self::$clientSoap, 'search'), $request);
+        $result = self::$clientSoap->search($request['search'], $request['offset'], $request['max_results']);
         $result = json_decode(json_encode($result), true);
         $this->assertEqualsResponse($response, $result);
     }
