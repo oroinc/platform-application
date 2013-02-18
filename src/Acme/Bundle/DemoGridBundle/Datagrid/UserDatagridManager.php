@@ -8,23 +8,43 @@ use Oro\Bundle\GridBundle\Field\FieldDescription;
 class UserDatagridManager extends DatagridManager
 {
     /**
+     * @var array
+     */
+    protected $datagridFields = array(
+        'email' => array(
+            'label'      => 'Email',
+            'type'       => 'oro_grid_orm_string',
+            'field_type' => 'text',
+            'field_name' => 'email',
+        ),
+        'firstname' => array(
+            'label'      => 'Firstname',
+            'type'       => 'oro_grid_orm_string',
+            'field_type' => 'text',
+            'field_name' => 'firstname',
+        ),
+        'lastname' => array(
+            'label'      => 'Lastname',
+            'type'       => 'oro_grid_orm_string',
+            'field_type' => 'text',
+            'field_name' => 'lastname',
+        ),
+    );
+
+    /**
      * {@inheritdoc}
      */
     protected function getListFields()
     {
-        $email = new FieldDescription();
-        $email->setName('email');
-        $email->setOption('label', 'Email');
+        $fields = array();
+        foreach ($this->datagridFields as $fieldName => $fieldParameters) {
+            $field = new FieldDescription();
+            $field->setName($fieldName);
+            $field->setOption('label', $fieldParameters['label']);
+            $fields[] = $field;
+        }
 
-        $firstName = new FieldDescription();
-        $firstName->setName('firstname');
-        $firstName->setOption('label', 'Firstname');
-
-        $lastName = new FieldDescription();
-        $lastName->setName('lastname');
-        $lastName->setOption('label', 'Lastname');
-
-        return array($email, $firstName, $lastName);
+        return $fields;
     }
 
     /**
@@ -33,5 +53,25 @@ class UserDatagridManager extends DatagridManager
     protected function getSorters()
     {
         return array();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getFilters()
+    {
+        $fields = array();
+        foreach ($this->datagridFields as $fieldName => $fieldParameters) {
+            $field = new FieldDescription();
+            $field->setName($fieldName);
+            $field->setType($fieldParameters['type']);
+            $field->setOption('label', $fieldParameters['label']);
+            $field->setOption('field_type', $fieldParameters['field_type']);
+            $field->setOption('field_name', $fieldParameters['field_name']);
+            $field->setOption('required', false);
+            $fields[] = $field;
+        }
+
+        return $fields;
     }
 }
