@@ -10,15 +10,12 @@
 
     <fieldset>
         <legend>{{ "Use an existing connector" | trans }}</legend>
-
         <ul>
         {% for connector in connectors %}
-            <li>
-                {{ connector.configuration.description }} ({{ (connector.serviceId ~ ".label") | trans }})
+            <li>{{ connector.configuration.description }} ({{ (connector.serviceId ~ ".label") | trans }})
                 <ul>
-                    <li>[configure connector -> step 2]</li>
-                    <li>[configure import / export -> step 3]</li>
-                    <li>[run -> step 3]</li>
+                    <li><a href="{{ path('acme_demodataflow_configure_edit', {'id': connector.id}) }}">{{ "Configure" | trans }}</a></li>
+                    <li><a href="{{ path('acme_demodataflow_configure_run', {'id': connector.id}) }}">{{ "Use" | trans }}</a></li>
                 </ul>
             </li>
         {% endfor %}
@@ -27,20 +24,15 @@
 
     <fieldset>
         <legend>{{ "Add a new connector" | trans }}</legend>
-
         <ul>
-        {% for connectorId, jobs in connectorsToJobs %}
-            <li>{{ (connectorId ~ ".label") | trans }}
-            <ul>
-            {% for jobId in jobs %}
-                <li><a href="{{ path('acme_demodataflow_configure_connector', {'conId': connectorId, 'jobId': jobId}) }}">{{ (jobId ~ ".label") | trans }}</a></li>
-            {% endfor %}
-            </ul>
+        {% for connector in connectors %}
+            <li>
+                <a href="{{ path('acme_demodataflow_configure_create', {'serviceId': connector.serviceId}) }}">
+                    {{ (connector.serviceId ~ ".label") | trans }}
+                </a>
             </li>
-            
         {% endfor %}
         </ul>
     </fieldset>
-
 
 {% endblock %}

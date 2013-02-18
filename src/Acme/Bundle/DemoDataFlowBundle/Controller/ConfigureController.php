@@ -9,6 +9,7 @@ use Symfony\Component\Form\FormInterface;
 use Oro\Bundle\DataFlowBundle\Configuration\ConfigurationInterface;
 use Oro\Bundle\DataFlowBundle\Configuration\EditableConfigurationInterface;
 use Oro\Bundle\DataFlowBundle\Form\Handler\ConfigurationHandler;
+use Oro\Bundle\DataFlowBundle\Entity\Connector;
 
 /**
  * Configure controller
@@ -31,11 +32,8 @@ class ConfigureController extends Controller
     public function getNavigationMenu()
     {
         // get params
-        $request   = $this->container->get('request');
-        $conId     = $request->get('conId');
-        $jobId     = $request->get('jobId');
-        $conConfId = $request->get('conConfId');
-        $jobConfId = $request->get('jobConfId');
+        $request     = $this->container->get('request');
+        $connectorId = $request->get('id');
 
         // prepare steps
         $translator = $this->container->get('translator');
@@ -49,24 +47,20 @@ class ConfigureController extends Controller
             // configure connector
             array(
                 'label' => $translator->trans('(2) Configure connector'),
-                'route' => 'acme_demodataflow_configure_connector',
-                'params' => array('conId' => $conId, 'jobId' => $jobId, 'conConfId' => $conConfId)
+                'route' => 'acme_demodataflow_configure_edit',
+                'params' => array('id' => $connectorId)
             ),
             // configure job
             array(
                 'label'  => $translator->trans('(3) Configure import / export'),
-                'route'  => 'acme_demodataflow_configure_job',
-                'params' => array(
-                    'conId' => $conId, 'jobId' => $jobId, 'conConfId' => $conConfId, 'jobConfId' => $jobConfId
-                )
+                'route'  => 'acme_demodataflow_configure_configure',
+                'params' => array('id' => $connectorId)
             ),
             // schedule / run
             array(
                 'label'  => $translator->trans('(4) Run'),
                 'route'  => 'acme_demodataflow_configure_run',
-                'params' => array(
-                    'conId' => $conId, 'jobId' => $jobId, 'conConfId' => $conConfId, 'jobConfId' => $jobConfId
-                )
+                'params' => array('id' => $connectorId)
             )
         );
 
@@ -186,6 +180,101 @@ class ConfigureController extends Controller
     }
 
     /**
+     * Create connector
+     *
+     * @Route("/create/{serviceId}")
+     * @Template("AcmeDemoDataFlowBundle:Configure:edit.html.twig")
+     *
+     * @return null
+     */
+    public function createAction($serviceId)
+    {
+        $connector = new Connector();
+        $connector->setServiceId($serviceId);
+
+        return $this->editAction($connector);
+    }
+
+    /**
+     * Edit Connector
+     *
+     * @Route("/edit/{id}", requirements={"id"="\d+"}, defaults={"id"=0})
+     * @Template
+     */
+    public function editAction(Connector $entity)
+    {
+        // get connector
+        $connectorService = $this->container->get($entity->getServiceId());
+        $confId = ($entity->getConfiguration()) ? $entity->getConfiguration()->getId() : 0;
+        $configuration = $this->getConfiguration($connectorService, $confId);
+
+        // prepare form
+        $form = $this->getConfigurationForm($connectorService, $configuration);
+
+        // process form
+        if ('POST' === $this->get('request')->getMethod()) {
+            $handler = $this->getConfigurationHandler($connectorService);
+            $handler->setForm($form);
+            if ($handler->process($configuration)) {
+
+                die('redirect');
+
+                $this->get('session')->getFlashBag()->add('success', 'Configuration successfully saved');
+                $url = $this->generateUrl('acme_demodataflow_configure_configure', array('id' => $entity->getId()));
+
+                return $this->redirect($url);
+            }
+        }
+
+        // render configuration form
+        return array(
+            'form'      => $form->createView(),
+            'connector' => $entity,
+            'steps'     => $this->getNavigationMenu()
+        );
+    }
+
+    /**
+     * Configure connector
+     *
+     * @Route("/configure/{id}", requirements={"id"="\d+"}, defaults={"id"=0})
+     * @Template("AcmeDemoDataFlowBundle:Configure:edit.html.twig")
+     */
+    public function configureAction(Connector $entity)
+    {
+        // get connector
+        $connectorService = $this->container->get($entity->getServiceId());
+        $confId = ($entity->getConfiguration()) ? $entity->getConfiguration()->getId() : 0;
+        $configuration = $this->getConfiguration($connectorService, $confId);
+
+        // prepare form
+        $form = $this->getConfigurationForm($connectorService, $configuration);
+
+        // process form
+        if ('POST' === $this->get('request')->getMethod()) {
+            $handler = $this->getConfigurationHandler($connectorService);
+            $handler->setForm($form);
+            if ($handler->process($configuration)) {
+                $this->get('session')->getFlashBag()->add('success', 'Configuration successfully saved');
+                $url = $this->generateUrl('acme_demodataflow_configure_job', array('id' => $entity->getId()));
+
+                return $this->redirect($url);
+            }
+        }
+
+        // render configuration form
+        return array(
+            'form'      => $form->createView(),
+            'connector' => $entity,
+            'steps'     => $this->getNavigationMenu()
+        );
+    }
+
+
+
+
+
+    /**
      * Configure connector
      *
      * @param integer $conId     the connector id
@@ -281,33 +370,21 @@ class ConfigureController extends Controller
     }
 
     /**
-     * Run job
+     * Run
      *
-     * @param integer $conId     the connector id
-     * @param integer $jobId     the job id
-     * @param integer $conConfId the connector configuration id
-     * @param integer $jobConfId the job configuration id
+     * @param Connector $connector
      *
-     * @Route("/run/{conId}/{jobId}/{conConfId}/{jobConfId}")
+     * @Route("/run/{id}", requirements={"id"="\d+"}, defaults={"id"=0})
      * @Template()
      *
      * @return array
      */
-    public function runAction($conId, $jobId, $conConfId, $jobConfId)
+    public function runAction(Connector $entity)
     {
-        // get existing configuration or create a new one
-        $repo = $this->get('doctrine.orm.entity_manager')->getRepository('OroDataFlowBundle:Configuration');
-        $conConfiguration = $repo->find($conConfId);
-        $jobConfiguration = $repo->find($jobConfId);
 
         return array(
-            'conId'     => $conId,
-            'conConfId' => $conConfId,
-            'jobId'     => $jobId,
-            'jobConfId' => $jobConfId,
-            'steps'     => $this->getNavigationMenu(),
-            'conConf'   => $conConfiguration,
-            'jobConf'   => $jobConfiguration,
+            'connector' => $entity,
+            'steps'     => $this->getNavigationMenu()
         );
     }
 }
