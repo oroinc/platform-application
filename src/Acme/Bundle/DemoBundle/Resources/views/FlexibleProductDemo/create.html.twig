@@ -5,55 +5,57 @@
 {% block title %}{{ parent() }} - {{ title }}{% endblock %}
 
 {% block content %}
-    <h1>Add attribute</h1>
-    <form action="{{ path('acme_demo_create_attribute') }}" method="POST" class="form-register">
-        <fieldset>
+    <div style="background: #FFF">
+        <h1>Add attribute</h1>
+        <form action="{{ path('acme_demo_create_attribute') }}" method="POST" class="form-register">
+            <fieldset>
 
-            {{ form_row(form.id) }}
+                {{ form_row(form.id) }}
 
-            {{ form_row(form.code) }}
+                {{ form_row(form.code) }}
 
-            {{ form_row(form.attributeType) }}
+                {{ form_row(form.attributeType) }}
 
-            {{ form_row(form.required) }}
+                {{ form_row(form.required) }}
 
-            {{ form_row(form.unique) }}
+                {{ form_row(form.unique) }}
 
-            {{ form_row(form.default_value) }}
+                {{ form_row(form.default_value) }}
 
-            {{ form_row(form.searchable) }}
+                {{ form_row(form.searchable) }}
 
-            {{ form_row(form.translatable) }}
+                {{ form_row(form.translatable) }}
 
-            {{ form_row(form.scopable) }}
+                {{ form_row(form.scopable) }}
 
-            {{ form_row(form._token) }}
+                {{ form_row(form._token) }}
 
-            {% if form.options is defined %}
-                <legend>Options</legend>
+                {% if form.options is defined %}
+                    <legend>Options</legend>
 
-                <ul id="sortable_options" class="options" data-prototype="{% filter escape %}
-                {% include 'AcmeDemoFlexibleEntityBundle:CustomerAttribute:_prototype-option.html.twig' with {'form': form.options.get('prototype')} %}
-            {% endfilter %}">
-                    {% for option in form.options %}
-                        <li class="att-option">
-                            {{ form_row(option.id) }}
-                            {{ form_row(option.sort_order) }}
-                            {% for value in option.optionValues %}
-                                {{ form_row(value.id) }}
-                                {{ form_row(value.value) }}
-                                {{ form_row(value.locale) }}
-                            {% endfor %}
-                        </li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
+                    <ul id="sortable_options" class="options" data-prototype="{% filter escape %}
+                    {% include 'AcmeDemoFlexibleEntityBundle:CustomerAttribute:_prototype-option.html.twig' with {'form': form.options.get('prototype')} %}
+                {% endfilter %}">
+                        {% for option in form.options %}
+                            <li class="att-option">
+                                {{ form_row(option.id) }}
+                                {{ form_row(option.sort_order) }}
+                                {% for value in option.optionValues %}
+                                    {{ form_row(value.id) }}
+                                    {{ form_row(value.value) }}
+                                    {{ form_row(value.locale) }}
+                                {% endfor %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
 
-            <div class="form-row">
-                <button class="btn btn-large btn-primary" type="submit">Save</button>
-            </div>
-        </fieldset>
-    </form>
+                <div class="form-row">
+                    <button class="btn btn-large btn-primary" type="submit">Save</button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
 {% endblock %}
 
 {% block javascripts %}

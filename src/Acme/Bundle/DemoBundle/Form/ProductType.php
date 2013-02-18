@@ -9,7 +9,7 @@ use Oro\Bundle\FlexibleEntityBundle\Form\Type\FlexibleType;
 
 class ProductType extends FlexibleType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function addEntityFields(FormBuilderInterface $builder)
     {
         parent::addEntityFields($builder);
         $builder
@@ -31,5 +31,19 @@ class ProductType extends FlexibleType
                'required' => true,
             ))
         ;
+    }
+
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(
+            array(
+                'data_class' => $this->flexibleClass,
+            )
+        );
+    }
+
+    public function getName()
+    {
+        return 'oro_bundle_databundle_producttype';
     }
 }
