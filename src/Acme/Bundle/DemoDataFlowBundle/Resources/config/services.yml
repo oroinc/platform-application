@@ -2,19 +2,19 @@ parameters:
 
     connector.magento_catalog.class:           Acme\Bundle\DemoDataFlowBundle\Connector\MagentoConnector
     configuration.magento_catalog.class:       Acme\Bundle\DemoDataFlowBundle\Configuration\MagentoConfiguration
-    configuration.type.magento_catalog.class:  Acme\Bundle\DemoDataFlowBundle\Form\Type\MagentoConnectorType
+    configuration.type.magento_catalog.class:  Acme\Bundle\DemoDataFlowBundle\Form\Type\MagentoConfigurationType
 
     connector.csv.class:                       Acme\Bundle\DemoDataFlowBundle\Connector\CsvConnector
     configuration.csv.class:                   Acme\Bundle\DemoDataFlowBundle\Configuration\CsvConfiguration
-    configuration.type.csv.class:              Acme\Bundle\DemoDataFlowBundle\Form\Type\CsvConnectorType
+    configuration.type.csv.class:              Acme\Bundle\DemoDataFlowBundle\Form\Type\CsvConfigurationType
     
     job.type.import_attribute.class:           Acme\Bundle\DemoDataFlowBundle\Job\ImportAttributesJob
     configuration.import_attribute.class:      Acme\Bundle\DemoDataFlowBundle\Configuration\ImportAttributeConfiguration
-    configuration.type.import_attribute.class: Acme\Bundle\DemoDataFlowBundle\Form\Type\ImportAttributeType
+    configuration.type.import_attribute.class: Acme\Bundle\DemoDataFlowBundle\Form\Type\ImportAttributeConfigurationType
 
     job.type.import_customer.class:            Acme\Bundle\DemoDataFlowBundle\Job\ImportCustomersJob
     configuration.import_customer.class:       Acme\Bundle\DemoDataFlowBundle\Configuration\ImportCustomerConfiguration
-    configuration.type.import_customer.class:  Acme\Bundle\DemoDataFlowBundle\Form\Type\ImportCustomerType
+    configuration.type.import_customer.class:  Acme\Bundle\DemoDataFlowBundle\Form\Type\ImportCustomerConfigurationType
 
 services:
 
@@ -24,16 +24,11 @@ services:
         class: %connector.magento_catalog.class%
         arguments: [%configuration.magento_catalog.class%]
 
-    configuration.form.magento_catalog:
-        class: Symfony\Component\Form\Form
-        factory_method: createNamed
-        factory_service: form.factory
-        arguments: ["configuration_magento_catalog_form", "configuration_magento_catalog"]
-
     configuration.form.type.magento_catalog:
         class: %configuration.type.magento_catalog.class%
+        arguments: ["@doctrine.orm.entity_manager"]
         tags:
-            - { name: form.type, alias: configuration_magento_catalog}
+            - { name: form.type, alias: configuration_magento}
 
     # job import attributes
 
@@ -43,16 +38,11 @@ services:
         tags:
             - { name: oro_dataflow_job, connector: connector.magento_catalog}
 
-    configuration.form.import_attribute:
-        class: Symfony\Component\Form\Form
-        factory_method: createNamed
-        factory_service: form.factory
-        arguments: ["configuration_import_attribute_form", "import_attribute"]
-
     configuration.form.type.import_attribute:
         class: %configuration.type.import_attribute.class%
+        arguments: ["@doctrine.orm.entity_manager"]
         tags:
-            - { name: form.type, alias: import_attribute}
+            - { name: form.type, alias: configuration_import_attribute}
 
     # connector csv
 
@@ -60,14 +50,9 @@ services:
         class: %connector.csv.class%
         arguments: [%configuration.csv.class%]
 
-    configuration.form.csv:
-        class: Symfony\Component\Form\Form
-        factory_method: createNamed
-        factory_service: form.factory
-        arguments: ["configuration_csv_form", "configuration_csv"]
-
     configuration.form.type.csv:
         class: %configuration.type.csv.class%
+        arguments: ["@doctrine.orm.entity_manager"]
         tags:
             - { name: form.type, alias: configuration_csv}
 
@@ -79,13 +64,8 @@ services:
         tags:
             - { name: oro_dataflow_job, connector: connector.csv }
 
-    configuration.form.import_customer:
-        class: Symfony\Component\Form\Form
-        factory_method: createNamed
-        factory_service: form.factory
-        arguments: ["configuration_import_customer_form", "configuration_import_customer"]
-
     configuration.form.type.import_customer:
         class: %configuration.type.import_customer.class%
+        arguments: ["@doctrine.orm.entity_manager"]
         tags:
             - { name: form.type, alias: configuration_import_customer}

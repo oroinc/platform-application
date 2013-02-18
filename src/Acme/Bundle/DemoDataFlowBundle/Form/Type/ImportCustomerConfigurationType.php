@@ -17,7 +17,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
  * @license   http://opensource.org/licenses/MIT MIT
  *
  */
-class CsvConnectorType extends AbstractConfigurationType
+class ImportCustomerConfigurationType extends AbstractConfigurationType
 {
     /**
      * {@inheritdoc}
@@ -25,10 +25,7 @@ class CsvConnectorType extends AbstractConfigurationType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         parent::buildForm($builder, $options);
-        $builder->add('charset', 'text', array('required' => true));
-        $builder->add('delimiter', 'text', array('required' => true));
-        $builder->add('enclosure', 'text', array('required' => true));
-        $builder->add('escape', 'text', array('required' => true));
+        $builder->add('file_path', 'text', array('required' => true));
     }
 
     /**
@@ -36,7 +33,7 @@ class CsvConnectorType extends AbstractConfigurationType
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(array('data_class' => 'Acme\Bundle\DemoDataFlowBundle\Configuration\CsvConfiguration'));
+        $resolver->setDefaults(array('data_class' => 'Acme\Bundle\DemoDataFlowBundle\Configuration\ImportCustomerConfiguration'));
     }
 
     /**
@@ -44,6 +41,6 @@ class CsvConnectorType extends AbstractConfigurationType
      */
     public function getName()
     {
-        return 'configuration_csv';
+        return 'configuration_import_customer';
     }
 }

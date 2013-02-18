@@ -1,7 +1,6 @@
 <?php
 namespace Acme\Bundle\DemoDataFlowBundle\Job;
 
-use Oro\Bundle\DataFlowBundle\Configuration\EditableConfigurationInterface;
 use Oro\Bundle\DataFlowBundle\Job\AbstractJob;
 use Doctrine\DBAL\Configuration as DbalConfiguration;
 use Doctrine\DBAL\DriverManager;
@@ -18,7 +17,7 @@ use Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleManager;
  * @license   http://opensource.org/licenses/MIT MIT
  *
  */
-class ImportAttributesJob extends AbstractJob implements EditableConfigurationInterface
+class ImportAttributesJob extends AbstractJob
 {
 
     /**
@@ -107,16 +106,8 @@ class ImportAttributesJob extends AbstractJob implements EditableConfigurationIn
     /**
      * {@inheritDoc}
      */
-    public function getConfigurationFormServiceId()
+    public function getFormTypeServiceId()
     {
-        return "configuration.form.import_attribute";
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getConfigurationFormHandlerServiceId()
-    {
-        return "oro_dataflow.form.handler.configuration";
+        return "configuration_import_attribute";
     }
 }

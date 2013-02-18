@@ -17,7 +17,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
  * @license   http://opensource.org/licenses/MIT MIT
  *
  */
-class MagentoConnectorType extends AbstractConfigurationType
+class CsvConfigurationType extends AbstractConfigurationType
 {
     /**
      * {@inheritdoc}
@@ -25,14 +25,10 @@ class MagentoConnectorType extends AbstractConfigurationType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         parent::buildForm($builder, $options);
-        $builder->add('driver', 'text', array('required' => true));
-        $builder->add('host', 'text', array('required' => true));
-        $builder->add('port', 'text', array('required' => false));
-        $builder->add('dbname', 'text', array('required' => true));
-        $builder->add('user', 'text', array('required' => true));
-        $builder->add('password', 'password', array('required' => true));
         $builder->add('charset', 'text', array('required' => true));
-        $builder->add('tablePrefix', 'text', array('required' => false));
+        $builder->add('delimiter', 'text', array('required' => true));
+        $builder->add('enclosure', 'text', array('required' => true));
+        $builder->add('escape', 'text', array('required' => true));
     }
 
     /**
@@ -40,7 +36,7 @@ class MagentoConnectorType extends AbstractConfigurationType
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(array('data_class' => 'Acme\Bundle\DemoDataFlowBundle\Configuration\MagentoConfiguration'));
+        $resolver->setDefaults(array('data_class' => 'Acme\Bundle\DemoDataFlowBundle\Configuration\CsvConfiguration'));
     }
 
     /**
@@ -48,6 +44,6 @@ class MagentoConnectorType extends AbstractConfigurationType
      */
     public function getName()
     {
-        return 'configuration_magento_catalog';
+        return 'configuration_csv';
     }
 }

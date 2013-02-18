@@ -17,7 +17,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
  * @license   http://opensource.org/licenses/MIT MIT
  *
  */
-class ImportAttributeType extends AbstractConfigurationType
+class MagentoConfigurationType extends AbstractConfigurationType
 {
     /**
      * {@inheritdoc}
@@ -25,7 +25,13 @@ class ImportAttributeType extends AbstractConfigurationType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         parent::buildForm($builder, $options);
-        $builder->add('excluded_attributes', 'text', array('required' => false));
+        $builder->add('host', 'text', array('required' => true));
+        $builder->add('port', 'text', array('required' => false));
+        $builder->add('dbname', 'text', array('required' => true));
+        $builder->add('user', 'text', array('required' => true));
+        $builder->add('password', 'password', array('required' => true));
+        $builder->add('charset', 'text', array('required' => true));
+        $builder->add('tablePrefix', 'text', array('required' => false));
     }
 
     /**
@@ -33,7 +39,7 @@ class ImportAttributeType extends AbstractConfigurationType
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(array('data_class' => 'Acme\Bundle\DemoDataFlowBundle\Configuration\ImportAttributeConfiguration'));
+        $resolver->setDefaults(array('data_class' => 'Acme\Bundle\DemoDataFlowBundle\Configuration\MagentoConfiguration'));
     }
 
     /**
@@ -41,6 +47,6 @@ class ImportAttributeType extends AbstractConfigurationType
      */
     public function getName()
     {
-        return 'import_attribute';
+        return 'configuration_magento';
     }
 }

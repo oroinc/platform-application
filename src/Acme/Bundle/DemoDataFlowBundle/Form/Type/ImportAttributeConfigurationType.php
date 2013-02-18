@@ -17,7 +17,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
  * @license   http://opensource.org/licenses/MIT MIT
  *
  */
-class ImportCustomerType extends AbstractConfigurationType
+class ImportAttributeConfigurationType extends AbstractConfigurationType
 {
     /**
      * {@inheritdoc}
@@ -25,7 +25,7 @@ class ImportCustomerType extends AbstractConfigurationType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         parent::buildForm($builder, $options);
-        $builder->add('file_path', 'text', array('required' => true));
+        $builder->add('excluded_attributes', 'text', array('required' => false));
     }
 
     /**
@@ -33,7 +33,7 @@ class ImportCustomerType extends AbstractConfigurationType
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(array('data_class' => 'Acme\Bundle\DemoDataFlowBundle\Configuration\ImportCustomerConfiguration'));
+        $resolver->setDefaults(array('data_class' => 'Acme\Bundle\DemoDataFlowBundle\Configuration\ImportAttributeConfiguration'));
     }
 
     /**
@@ -41,6 +41,6 @@ class ImportCustomerType extends AbstractConfigurationType
      */
     public function getName()
     {
-        return 'configuration_import_customer';
+        return 'configuration_import_attribute';
     }
 }

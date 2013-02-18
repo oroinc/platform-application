@@ -31,7 +31,7 @@ class LoadConnectorData extends AbstractFixture implements OrderedFixtureInterfa
         // create a connector instance
         $configuration = $this->getReference('configuration-magento');
         $magentoConnector = new Connector();
-        $magentoConnector->setDescription('Magento 2');
+        $magentoConnector->setDescription('Magento http://mysite.com');
         $magentoConnector->setServiceId('connector.magento_catalog');
         $magentoConnector->setConfiguration($configuration);
         $manager->persist($magentoConnector);
@@ -40,7 +40,7 @@ class LoadConnectorData extends AbstractFixture implements OrderedFixtureInterfa
         // create a csv instance
         $configuration = $this->getReference('configuration-csv');
         $csvConnector = new Connector();
-        $csvConnector->setDescription('Magento Csv');
+        $csvConnector->setDescription('Csv import');
         $csvConnector->setServiceId('connector.csv');
         $csvConnector->setConfiguration($configuration);
         $manager->persist($csvConnector);
