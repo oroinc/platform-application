@@ -52,7 +52,16 @@ class UserDatagridManager extends DatagridManager
      */
     protected function getSorters()
     {
-        return array();
+        $email = new FieldDescription();
+        $email->setName('o.email');
+
+        $firstName = new FieldDescription();
+        $firstName->setName('o.firstname');
+
+        $lastName = new FieldDescription();
+        $lastName->setName('o.lastname');
+
+        return array($email, $firstName, $lastName);
     }
 
     /**
