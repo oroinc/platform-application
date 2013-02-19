@@ -16,18 +16,21 @@ class UserDatagridManager extends DatagridManager
             'type'       => 'oro_grid_orm_string',
             'field_type' => 'text',
             'field_name' => 'email',
+            'sortable'   => true
         ),
         'firstname' => array(
             'label'      => 'Firstname',
             'type'       => 'oro_grid_orm_string',
             'field_type' => 'text',
             'field_name' => 'firstname',
+            'sortable'   => true
         ),
         'lastname' => array(
             'label'      => 'Lastname',
             'type'       => 'oro_grid_orm_string',
             'field_type' => 'text',
             'field_name' => 'lastname',
+            'sortable'   => false
         ),
     );
 
@@ -52,16 +55,16 @@ class UserDatagridManager extends DatagridManager
      */
     protected function getSorters()
     {
-        $email = new FieldDescription();
-        $email->setName('o.email');
+        $fields = array();
+        foreach ($this->datagridFields as $fieldName => $fieldParameters) {
+            if ($fieldParameters['sortable']) {
+                $field = new FieldDescription();
+                $field->setName($fieldName);
+                $fields[] = $field;
+            }
+        }
 
-        $firstName = new FieldDescription();
-        $firstName->setName('o.firstname');
-
-        $lastName = new FieldDescription();
-        $lastName->setName('o.lastname');
-
-        return array($email, $firstName, $lastName);
+        return $fields;
     }
 
     /**
