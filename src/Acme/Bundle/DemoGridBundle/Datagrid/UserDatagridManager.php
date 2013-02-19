@@ -2,10 +2,10 @@
 
 namespace Acme\Bundle\DemoGridBundle\Datagrid;
 
-use Oro\Bundle\GridBundle\Datagrid\DatagridManager;
+use Oro\Bundle\GridBundle\Datagrid\FlexibleDatagridManager;
 use Oro\Bundle\GridBundle\Field\FieldDescription;
 
-class UserDatagridManager extends DatagridManager
+class UserDatagridManager extends FlexibleDatagridManager
 {
     /**
      * @var array
@@ -58,7 +58,7 @@ class UserDatagridManager extends DatagridManager
     }
 
     /**
-     * @return array
+     * {@inheritdoc}
      */
     protected function getSorters()
     {

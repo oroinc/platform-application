@@ -7,6 +7,7 @@ services:
         tags:
             - name: oro_grid.datagrid.manager
               query_entity: Acme\Bundle\DemoFlexibleEntityBundle\Entity\Customer
+              flexible_manager: customer_manager
 #              datagrid_builder: ~
 #              list_builder: ~
 #              query_factory: ~
