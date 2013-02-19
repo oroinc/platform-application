@@ -21,7 +21,7 @@ use Acme\Bundle\DemoGridBundle\Datagrid\UserDatagridManager;
 class GridController extends Controller
 {
     /**
-     * @Route("/list")
+     * @Route("/list", name="acme_demo_gridbundle_grid_list")
      * @Template()
      */
     public function listAction()
@@ -31,7 +31,9 @@ class GridController extends Controller
         $datagrid = $userGridManager->getDatagrid();
 
         return array(
-            'datagrid' => $datagrid
+            'datagrid'  => $datagrid,
+            'form'      => $datagrid->getForm()->createView(),
+            'routeName' => 'acme_demo_gridbundle_grid_list',
         );
     }
 }
