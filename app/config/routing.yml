@@ -3,6 +3,12 @@ acme_demo_measure:
     type:     annotation
     prefix:   /
 
+acme_demo_flexible_entity:
+    resource: "@AcmeDemoFlexibleEntityBundle/Controller/"
+    type:     annotation
+    prefix:   /{_locale}/flexible-entity/
+    defaults: { _locale: %locale% }
+
 # Internal routing configuration to handle ESI
 # ****** WARNING ******
 # This route should be enabled with caution as it can open a security vulnerability
