@@ -32,7 +32,7 @@ class LoadConnectorData extends AbstractFixture implements OrderedFixtureInterfa
         $configuration = $this->getReference('configuration-magento');
         $magentoConnector = new Connector();
         $magentoConnector->setDescription('Magento http://mysite.com');
-        $magentoConnector->setServiceId('connector.magento_catalog');
+        $magentoConnector->setServiceId('connector.magento');
         $magentoConnector->setConfiguration($configuration);
         $manager->persist($magentoConnector);
         $this->addReference('connector-magento', $magentoConnector);

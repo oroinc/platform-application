@@ -40,4 +40,12 @@ class ImportCustomerConfiguration extends AbstractConfiguration
 
         return $this;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getFormTypeServiceId()
+    {
+        return "configuration_import_customer";
+    }
 }

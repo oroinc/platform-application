@@ -241,4 +241,12 @@ class MagentoConfiguration extends AbstractConfiguration
 
         return $params;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getFormTypeServiceId()
+    {
+        return "configuration_magento";
+    }
 }

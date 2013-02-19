@@ -102,12 +102,4 @@ class ImportAttributesJob extends AbstractJob
         }
         $this->manager->getStorageManager()->flush();
     }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getFormTypeServiceId()
-    {
-        return "configuration_import_attribute";
-    }
 }

@@ -1,8 +1,8 @@
 parameters:
 
-    connector.magento_catalog.class:           Acme\Bundle\DemoDataFlowBundle\Connector\MagentoConnector
-    configuration.magento_catalog.class:       Acme\Bundle\DemoDataFlowBundle\Configuration\MagentoConfiguration
-    configuration.type.magento_catalog.class:  Acme\Bundle\DemoDataFlowBundle\Form\Type\MagentoConfigurationType
+    connector.magento.class:                   Acme\Bundle\DemoDataFlowBundle\Connector\MagentoConnector
+    configuration.magento.class:               Acme\Bundle\DemoDataFlowBundle\Configuration\MagentoConfiguration
+    configuration.type.magento.class:          Acme\Bundle\DemoDataFlowBundle\Form\Type\MagentoConfigurationType
 
     connector.csv.class:                       Acme\Bundle\DemoDataFlowBundle\Connector\CsvConnector
     configuration.csv.class:                   Acme\Bundle\DemoDataFlowBundle\Configuration\CsvConfiguration
@@ -20,13 +20,12 @@ services:
 
     # connector Magento and related form type
     
-    connector.magento_catalog:
-        class: %connector.magento_catalog.class%
-        arguments: [%configuration.magento_catalog.class%]
+    connector.magento:
+        class: %connector.magento.class%
+        arguments: [%configuration.magento.class%]
 
-    configuration.form.type.magento_catalog:
-        class: %configuration.type.magento_catalog.class%
-        arguments: ["@doctrine.orm.entity_manager"]
+    configuration.form.type.magento:
+        class: %configuration.type.magento.class%
         tags:
             - { name: form.type, alias: configuration_magento}
 
@@ -34,13 +33,12 @@ services:
 
     job.import_attributes:
         class: %job.type.import_attribute.class%
-        arguments: [%configuration.magento_catalog.class%, %configuration.import_attribute.class%, @product_manager ]
+        arguments: [%configuration.magento.class%, %configuration.import_attribute.class%, @product_manager ]
         tags:
-            - { name: oro_dataflow_job, connector: connector.magento_catalog}
+            - { name: oro_dataflow_job, connector: connector.magento}
 
     configuration.form.type.import_attribute:
         class: %configuration.type.import_attribute.class%
-        arguments: ["@doctrine.orm.entity_manager"]
         tags:
             - { name: form.type, alias: configuration_import_attribute}
 
@@ -52,7 +50,6 @@ services:
 
     configuration.form.type.csv:
         class: %configuration.type.csv.class%
-        arguments: ["@doctrine.orm.entity_manager"]
         tags:
             - { name: form.type, alias: configuration_csv}
 
@@ -66,6 +63,5 @@ services:
 
     configuration.form.type.import_customer:
         class: %configuration.type.import_customer.class%
-        arguments: ["@doctrine.orm.entity_manager"]
         tags:
             - { name: form.type, alias: configuration_import_customer}

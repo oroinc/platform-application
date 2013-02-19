@@ -1,5 +1,31 @@
 Acme\Bundle\DemoDataFlowBundle\Configuration\MagentoConfiguration:
     properties:
+        host:
+            - NotNull: ~
         port:
             - Type:
                 type: numeric
+        dbname:
+            - NotNull: ~
+        user:
+            - NotNull: ~
+        password:
+            - NotNull: ~
+        charset:
+            - NotNull: ~
+Acme\Bundle\DemoDataFlowBundle\Configuration\CsvConfiguration:
+    properties:
+        charset:
+            - NotNull: ~
+        delimiter:
+            - NotNull: ~
+        escape:
+            - NotNull: ~
+Acme\Bundle\DemoDataFlowBundle\Configuration\ImportAttributeConfiguration:
+    properties:
+        excludedAttributes:
+            - NotNull: ~
+Acme\Bundle\DemoDataFlowBundle\Configuration\ImportCustomerConfiguration:
+    properties:
+        filePath:
+            - NotNull: ~

@@ -118,4 +118,12 @@ class CsvConfiguration extends AbstractConfiguration
 
         return $this;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getFormTypeServiceId()
+    {
+        return "configuration_csv";
+    }
 }

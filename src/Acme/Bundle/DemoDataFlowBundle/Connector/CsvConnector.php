@@ -13,11 +13,4 @@ use Oro\Bundle\DataFlowBundle\Connector\AbstractConnector;
  */
 class CsvConnector extends AbstractConnector
 {
-    /**
-     * {@inheritDoc}
-     */
-    public function getFormTypeServiceId()
-    {
-        return "configuration_csv";
-    }
 }
