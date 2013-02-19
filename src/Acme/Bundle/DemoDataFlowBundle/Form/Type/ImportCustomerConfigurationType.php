@@ -33,7 +33,9 @@ class ImportCustomerConfigurationType extends AbstractConfigurationType
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(array('data_class' => 'Acme\Bundle\DemoDataFlowBundle\Configuration\ImportCustomerConfiguration'));
+        $resolver->setDefaults(
+            array('data_class' => 'Acme\Bundle\DemoDataFlowBundle\Configuration\ImportCustomerConfiguration')
+        );
     }
 
     /**
