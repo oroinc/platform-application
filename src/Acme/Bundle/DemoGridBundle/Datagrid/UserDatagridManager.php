@@ -11,6 +11,13 @@ class UserDatagridManager extends DatagridManager
      * @var array
      */
     protected $datagridFields = array(
+        'id' => array(
+            'label'      => 'ID',
+            'type'       => 'oro_grid_orm_number',
+            'field_type' => 'number',
+            'field_name' => 'id',
+            'sortable'   => true
+        ),
         'email' => array(
             'label'      => 'Email',
             'type'       => 'oro_grid_orm_string',
