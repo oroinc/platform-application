@@ -54,6 +54,14 @@ class UserDatagridManager extends FlexibleDatagridManager
             $fields[] = $field;
         }
 
+        foreach ($this->getFlexibleAttributes() as $attribute) {
+            $field = new FieldDescription();
+            $field->setName($attribute->getCode());
+            $field->setOption('label', $attribute->getCode());
+            $field->setType($attribute->getBackendType());
+            $fields[] = $field;
+        }
+
         return $fields;
     }
 
@@ -87,6 +95,18 @@ class UserDatagridManager extends FlexibleDatagridManager
             $field->setOption('label', $fieldParameters['label']);
             $field->setOption('field_type', $fieldParameters['field_type']);
             $field->setOption('field_name', $fieldParameters['field_name']);
+            $field->setOption('required', false);
+            $fields[] = $field;
+        }
+
+        foreach ($this->getFlexibleAttributes() as $attribute) {
+            $field = new FieldDescription();
+            $field->setName($attribute->getCode());
+            $field->setType('oro_grid_orm_flexible_string');
+            $field->setOption('label', $attribute->getCode());
+            $field->setOption('field_type', $attribute->getBackendType());
+            $field->setOption('field_name', $attribute->getCode());
+            $field->setOption('flexible_manager', $this->flexibleManagerServiceId);
             $field->setOption('required', false);
             $fields[] = $field;
         }
