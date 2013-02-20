@@ -1,5 +1,7 @@
 {% extends 'AcmeDemoGridBundle::layout.html.twig' %}
 
 {% block content %}
-    {% include 'OroGridBundle:Datagrid:view.html.twig' with {'datagrid': datagrid} %}
+    <div style="background-color: #ffffff; padding: 20px;">
+        {% include 'OroGridBundle:Datagrid:view.html.twig' with {'datagrid': datagrid} %}
+    </div>
 {% endblock %}
