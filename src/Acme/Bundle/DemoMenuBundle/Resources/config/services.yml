@@ -1,0 +1,26 @@
+parameters:
+    demo_menu.navbar_first_builder.class: Acme\Bundle\DemoMenuBundle\Menu\FirstBuilder
+    demo_menu.navbar_second_builder.class: Acme\Bundle\DemoMenuBundle\Menu\SecondBuilder
+    demo_menu.load_builder.class: Acme\Bundle\DemoMenuBundle\Menu\LoadBuilder
+    demo_menu.navbar_menu_listener.class: Acme\Bundle\DemoMenuBundle\EventListener\ConfigureMenuListener
+
+services:
+    oro_menu.main_menu:
+        class: %demo_menu.navbar_first_builder.class%
+        tags:
+            - { name: oro_menu.builder, alias: navbar }
+
+    test_menu.main_menu:
+        class: %demo_menu.navbar_second_builder.class%
+        tags:
+            - { name: oro_menu.builder, alias: navbar }
+
+#    load.menu:
+#        class: %demo_menu.load_builder.class%
+#        tags:
+#            - { name: oro_menu.builder, alias: navbar }
+
+    acme_other.configure_menu_listener:
+        class: %demo_menu.navbar_menu_listener.class%
+        tags:
+            - { name: kernel.event_listener, event: oro_menu.configure.navbar, method: onMenuConfigure }

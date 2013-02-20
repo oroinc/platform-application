@@ -1,0 +1,172 @@
+{% extends 'AcmeDemoBundle::layout.bootstrap.html.twig' %}
+
+{% block content %}
+    <style>
+        .-right-el {
+            float: right;
+            margin-right: -8px !important;
+        }
+
+        .-bap-tabbed-menu .nav-tabs {
+            margin-bottom: 0px;
+            border-radius: 5px 5px 0 0;
+            background-color: #232426;
+            border-bottom: none;
+        }
+
+        .-bap-tabbed-menu .nav-tabs .active a {
+            color: #cfd2d5;
+            font-weight: bold;
+            background: #7b95b5;
+        }
+
+        .-bap-tabbed-menu .nav-tabs > li > a:hover {
+            border: none;
+            background-color: #cfd2d5;
+            color: #7b95b5;
+        }
+
+        .-bap-tabbed-menu .nav-tabs a {
+            color: #a2a2a2;
+            margin-top: 3px;
+            border: none;
+        }
+
+        .-bap-tabbed-menu .navbar-inner a {
+            color: #cfd2d5 !important;
+            text-shadow: none !important;
+        }
+
+        .-bap-tabbed-menu .navbar-inner {
+            background: #7b95b5;
+            border: none;
+            border-radius: 0;
+            box-shadow: none;
+        }
+
+        .-bap-tabbed-vert-menu .nav-tabs > li > a {
+            border-radius: 0;
+        }
+
+        .-bap-tabbed-vert-menu .nav-tabs {
+            margin: 0px !important;
+            background-color: #eff2f5;
+        }
+
+        .-bap-tabbed-vert-menu .nav-tabs a {
+            color: #5c5d5d;
+        }
+
+        .-bap-tabbed-vert-menu .nav-tabs > .active > a, .-bap-tabbed-vert-menu .nav-tabs > .active > a:hover {
+            background-color: #d8e3ef !important;
+            border-color: #dadee2;
+        }
+    </style>
+    <h2>Navbar in twitter bootstrap style</h2>
+    <div class="navbar">
+        <div class="navbar-inner">
+            <ul class="nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#">Logout</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        Dropdown
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Dropdown item</a></li>
+                        <li><a href="#">Dropdown item</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <h2>Dropdown</h2>
+
+    <div class="dropdown clearfix">
+        <!-- Link or button to toggle dropdown -->
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel" style="display: block; position: static; margin-bottom: 5px; *width: 180px;">
+            <li><a tabindex="-1" href="#">Action</a></li>
+            <li><a tabindex="-1" href="#">Another action</a></li>
+            <li><a tabindex="-1" href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a tabindex="-1" href="#">Separated link</a></li>
+        </ul>
+    </div>
+
+    <h2>Tabbed menus - Main</h2>
+
+    <div class="top-menu -bap-tabbed-menu">
+        <ul class="nav nav-tabs">
+            <li><a href="#"><i class="icon-home icon-white"></i></a></li>
+            <li class="active"><a href="#profile" data-toggle="tab">Profile</a>
+            </li>
+            <li><a href="#messages" data-toggle="tab">Messages</a></li>
+            <li><a href="#settings" data-toggle="tab">Settings</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane navbar active" id="profile">
+                <div class="navbar-inner">
+                    <ul class="nav">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="tab-pane navbar" id="messages">
+                <div class="navbar-inner">
+                    <ul class="nav">
+                        <li><a href="#">Home L2</a></li>
+                        <li><a href="#">Logout L2</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="tab-pane navbar" id="settings">
+                <div class="navbar-inner">
+                    <ul class="nav">
+                        <li><a href="#">Home L3</a></li>
+                        <li><a href="#">Logout L3</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2>Tabbed menu - Tabs</h2>
+
+    <div class="well -bap-tabbed-vert-menu" style="width: 400px;background-color: white;padding: 0px;height: 200px">
+        <div class="tabbable tabs-left">
+            <ul class="nav nav-tabs" style="margin-right: 0px;height: 200px">
+                <li class="active"><a href="#tabs" data-toggle="tab"><i class="icon-th-list"></i> Tabs</a></li>
+                <li><a href="#history" data-toggle="tab"><i class="icon-time"></i> History</a></li>
+                <li><a href="#mostviewed" data-toggle="tab"><i class="icon-star"></i> Most Viewed</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="tabs">
+                    <ul class="nav nav-list">
+                        <li><a href="#">Home item number 1 <i class="icon-remove -right-el"></i></a></li>
+                        <li><a href="#">Item some text <i class="icon-remove -right-el"></i></a></li>
+                        <li><a href="#">Other Item ordered<i class="icon-remove -right-el"></i></a></li>
+                        <li><a href="#">Library items<i class="icon-remove -right-el"></i></a></li>
+                    </ul>
+                </div>
+                <div class="tab-pane" id="history">
+                    <ul class="nav nav-list">
+                        <li><a href="#">Home #3</a></li>
+                        <li><a href="#">Item #3</a></li>
+                        <li><a href="#">Other Item #3</a></li>
+                        <li><a href="#">Library #3</a></li>
+                    </ul>
+                </div>
+                <div class="tab-pane" id="mostviewed">
+                    <ul class="nav nav-list">
+                        <li><a href="#">Home #4</a></li>
+                        <li><a href="#">Item #4</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
