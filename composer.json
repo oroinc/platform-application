@@ -34,7 +34,7 @@
         "burti/besimple-soap-bundle": "dev-master",
         "burti/besimple-soap-server": "dev-master",
         "ddeboer/data-import": "dev-master",
-        "ddeboer/data-import-bundle": "dev-master"
+        "ddeboer/data-import-bundle": "dev-master",
         "stof/doctrine-extensions-bundle": "dev-master",
         "jms/aop-bundle": "dev-master"
     },
