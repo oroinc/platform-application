@@ -11,8 +11,8 @@ class FirstBuilder implements BuilderInterface
     {
         $menu->setExtra('type', 'navbar');
         $menu->setExtra('brand', 'BAP Dev');
-        $menu->setExtra('brandLink', '/menu/test');
+        $menu->setExtra('brandLink', '/menu/index');
         $menu->addChild('Homepage', array('route' => 'oro_menu_index', 'extras' => array('position' => 10)));
-        $menu->addChild('Users', array('route' => 'oro_menu_test', 'extras' => array('position' => 2)));
+        $menu->addChild('Users', array('route' => 'oro_menu_index', 'extras' => array('position' => 2)));
     }
 }

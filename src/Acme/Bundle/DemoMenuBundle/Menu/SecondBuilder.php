@@ -22,9 +22,10 @@ class SecondBuilder implements BuilderInterface
         );
 
         $users = $menu->getChild('Users');
-        $users->addChild('Subitem pos 10', array('route' => 'oro_menu_test', 'extras' => array('position' => 10)));
-        $users->addChild('Subitem pos 1', array('route' => 'oro_menu_test', 'extras' => array('position' => 1)))
-            ->addChild('Level 3.1', array('route' => 'oro_menu_test'))
-            ->addChild('Level 4.1', array('route' => 'oro_menu_test'));
+        $users->addChild('Subitem pos 10', array('route' => 'oro_menu_index', 'extras' => array('position' => 10)));
+        $users->addChild('Subitem pos 1', array('route' => 'oro_menu_index', 'extras' => array('position' => 1)))
+            ->addChild('Level 3.1', array('route' => 'oro_menu_index'))
+            ->addChild('Level 4.1', array('route' => 'oro_menu_index'));
+        $users->addChild('Current item', array('route' => 'oro_menu_test'));
     }
 }

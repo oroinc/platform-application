@@ -1,24 +1,36 @@
 oro_menu_config:
     items:
+        home:
+            name: 'Home'
+            label: ''
+            extras:
+                icon: 'icon-home icon-white'
+            uri: '/'
         homepage:
             name: 'Home page 2'
-            translateDomain: 'SomeBundle'
+            translateDomain: 'menu'
             route: 'oro_menu_index'
         user_registration_register:
-            translateDomain: 'SomeBundle'
+            translateDomain: 'menu'
             route: 'oro_menu_submenu'
         user_profile_show:
             translateDomain: 'menu'
             showNonAuthorized: true
             route: 'oro_menu_submenu'
         user_change_password:
-            translateDomain: 'FOSUserBundle'
-            label: 'change_password.submit'
+            translateDomain: 'menu'
+            label: 'Change Password'
             route: 'oro_menu_index'
         test:
-            translateDomain: 'FOSUserBundle'
-            label: 'change_password.submit'
-            uri: 'http://www.google.com'
+            translateDomain: 'menu'
+            label: 'Menu test'
+            route: 'oro_menu_test'
+        my_crm:
+            label: 'My CRM'
+            uri: '#'
+        my_pim:
+            label: 'My PIM'
+            uri: '#'
 
     tree:
         navbar:
@@ -36,3 +48,17 @@ oro_menu_config:
                     position: 7
                 user_registration_register:
                     position: 5
+
+    tree:
+        application_menu:
+            type: application_menu
+            children:
+                home: ~
+                my_crm:
+                    children:
+                        user_change_password: ~
+                        test: ~
+                my_pim:
+                    children:
+                        homepage: ~
+                        user_change_password: ~
