@@ -1,0 +1,107 @@
+{% extends bap.layout %}
+{% block title %}Search{% endblock %}
+{% block content %}
+    <div style="background: #FFF">
+        <script>
+            $(function () {
+                $("#sendButton").click(function () {
+                    ajaxsearch();
+                });
+                $("#next").click(function () {
+                    var offsetInput = $('#offset');
+                    var nextVal = parseInt(offsetInput.val()) + parseInt($('#maxResults').val());
+                    if (nextVal < parseInt($("#recordsCount").val())) {
+                        offsetInput.val(nextVal);
+                    }
+                    ajaxsearch();
+                    return false;
+                });
+                $("#pre").click(function () {
+                    var offsetInput = $('#offset');
+                    offsetInput.val(parseInt(offsetInput.val()) - $('#maxResults').val());
+                    if (offsetInput.val() < 0) {
+                        offsetInput.val(0);
+                    }
+                    ajaxsearch();
+                    return false;
+                });
+                function ajaxsearch() {
+                    var searchDiv = $(".search_stats");
+                    query = $("#query").val();
+                    if (query == '') {
+                        searchDiv.html('');
+                    } else {
+                        $.ajax({
+                            url:"{{ path('oro_api_get_advanced_search') }}",
+                            dataType:"json",
+                            data:{
+                                query:query,
+                                from: $('#from').val()
+                            },
+                            success:function (data) {
+                                searchDiv.html('');
+                                $("#recordsCount").val(data['records_count']);
+                                if (data['count'] > 0) {
+                                    for (var i = 0; i < data['count']; i++) {
+                                        searchDiv.append('<div class="alert alert-success">'
+                                                + data['data'][i]['entity_name']
+                                                + ', id:' + data['data'][i]['record_id']
+                                                + '<h3>' + data['data'][i]['record_string'] + '</h3>'
+                                                + '</div>')
+                                    }
+                                } else {
+                                    searchDiv.html("<h2>Sorry, I can't find any result for your request '<i>" + query + "</i>'</h2>");
+                                }
+                                if (data['count'] < data['records_count']) {
+                                    $('#pager').show();
+                                } else {
+                                    $('#pager').hide();
+                                }
+                            }
+                        });
+                    }
+                }
+            });
+        </script>
+
+        <div class="container-fluid">
+            <h1>Advanced search</h1>
+            <table>
+                <tr>
+                    <td>
+                        <h3>Query:</h3>
+                        <textarea id="query" name="query"></textarea>
+                    </td>
+                    <td>
+                        <h3>From:</h3>
+                        <textarea id="from" name="from"></textarea>
+                    </td>
+                </tr>
+            </table>
+
+
+            <p><input type="button" class="btn" id="sendButton" value="Send Request"/></p>
+
+            <!--<p>Max results in request:</p>
+            <input id="maxResults"  type="text" placeholder="count"/>
+            <p>offset:</p>
+            <input id="offset"  type="text" value="0"/>-->
+            <p>number of records in result:</p>
+            <input id="recordsCount"  disabled="" type="text" value="0"/>
+
+            <h2>Search results</h2>
+
+            <div class="search_stats alert alert-info"><h2>Type your search request in search field</h2></div>
+            <div id="pager" style="display: none">
+                <ul class="pager">
+                    <li>
+                        <a id="pre" href="#">Previous</a>
+                    </li>
+                    <li>
+                        <a id="next" href="#">Next</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

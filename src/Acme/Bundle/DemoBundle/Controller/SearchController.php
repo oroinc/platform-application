@@ -121,4 +121,19 @@ class SearchController extends Controller
     {
         return $this->get('demo_product_manager');
     }
+
+    /**
+     * @Route("/advanced-search", name="acme_demo_advanced_search")
+     * @Template()
+     * @return array
+     */
+    public function advancedSearchAction()
+    {
+        return array();
+    }
+
+    private function getSearchManager()
+    {
+        return $this->get('oro_search.index');
+    }
 }
