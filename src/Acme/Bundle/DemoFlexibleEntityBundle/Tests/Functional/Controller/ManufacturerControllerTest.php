@@ -1,6 +1,6 @@
 <?php
 
-namespace Acme\Bundle\DemoFlexibleEntityBundle\Tests\Controller;
+namespace Acme\Bundle\DemoFlexibleEntityBundle\Tests\Functional\Controller;
 
 /**
  * Test related class
@@ -20,16 +20,6 @@ class ManufacturerControllerTest extends KernelAwareControllerTest
     protected static $controller = 'manufacturer';
 
     /**
-     * {@inheritdoc}
-     */
-    protected function getFixturesToLoad()
-    {
-        return array(
-                'src/Acme/Bundle/DemoFlexibleEntityBundle/DataFixtures/ORM/Manufacturer'
-        );
-    }
-
-    /**
      * Test related method
      */
     public function testIndexAction()
@@ -39,5 +29,4 @@ class ManufacturerControllerTest extends KernelAwareControllerTest
             $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         }
     }
-
 }

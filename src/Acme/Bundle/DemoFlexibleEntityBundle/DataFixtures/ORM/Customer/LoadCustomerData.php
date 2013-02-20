@@ -158,9 +158,13 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
         $attWebsite = $this->getCustomerManager()->getFlexibleRepository()->findAttributeByCode('website');
         $attHobby = $this->getCustomerManager()->getFlexibleRepository()->findAttributeByCode('hobby');
         // get first attribute option
-        $optGender = $this->getCustomerManager()->getAttributeOptionRepository()->findOneBy(array('attribute' => $attGender));
+        $optGender = $this->getCustomerManager()->getAttributeOptionRepository()->findOneBy(
+            array('attribute' => $attGender)
+        );
         // get attribute hobby options
-        $optHobbies = $this->getCustomerManager()->getAttributeOptionRepository()->findBy(array('attribute' => $attHobby));
+        $optHobbies = $this->getCustomerManager()->getAttributeOptionRepository()->findBy(
+            array('attribute' => $attHobby)
+        );
         $hobbies = array();
         foreach ($optHobbies as $option) {
             $hobbies[]= $option;

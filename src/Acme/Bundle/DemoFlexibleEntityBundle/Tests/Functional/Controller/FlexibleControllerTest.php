@@ -1,6 +1,6 @@
 <?php
 
-namespace Acme\Bundle\DemoFlexibleEntityBundle\Tests\Controller;
+namespace Acme\Bundle\DemoFlexibleEntityBundle\Tests\Functional\Controller;
 
 /**
  * Test related class
@@ -40,5 +40,4 @@ class FlexibleControllerTest extends KernelAwareControllerTest
             $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         }
     }
-
 }

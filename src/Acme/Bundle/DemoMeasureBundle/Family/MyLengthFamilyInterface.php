@@ -18,5 +18,4 @@ interface MyLengthFamilyInterface extends LengthFamilyInterface
      * @staticvar string
      */
     const DONG = 'DONG';
-
 }

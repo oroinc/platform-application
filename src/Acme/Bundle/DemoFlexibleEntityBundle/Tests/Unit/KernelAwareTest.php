@@ -1,7 +1,7 @@
 <?php
-namespace Acme\Bundle\DemoFlexibleEntityBundle\Tests;
+namespace Acme\Bundle\DemoFlexibleEntityBundle\Tests\Unit;
 
-require_once dirname(__DIR__).'/../../../../app/AppKernel.php';
+require_once dirname(__DIR__).'/../../../../../app/AppKernel.php';
 
 /**
  * Test case class helpful with Entity tests requiring the database interaction.
@@ -42,5 +42,4 @@ abstract class KernelAwareTest extends \PHPUnit_Framework_TestCase
 
         parent::tearDown();
     }
-
 }
