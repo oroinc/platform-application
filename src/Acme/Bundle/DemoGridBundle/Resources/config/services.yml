@@ -6,8 +6,11 @@ services:
         class: %acme_demo_grid.user_grid.manager.class%
         tags:
             - name: oro_grid.datagrid.manager
+              datagrid_name: user_grid
               query_entity: Acme\Bundle\DemoFlexibleEntityBundle\Entity\Customer
               flexible_manager: customer_manager
+              route_name: acme_demo_gridbundle_grid_list
+              form_name: customers_grid
 #              datagrid_builder: ~
 #              list_builder: ~
 #              query_factory: ~
