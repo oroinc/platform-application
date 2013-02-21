@@ -8,7 +8,6 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\UrlType;
 use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\OptionMultiSelectType;
 
-use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\OptionSimpleRadioType;
 use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\DateType;
 use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\TextType;
 
