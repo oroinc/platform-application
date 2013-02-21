@@ -22,3 +22,6 @@
 [submodule "src/Oro/Bundle/GridBundle"]
 	path = src/Oro/Bundle/GridBundle
 	url = git@github.com:laboro/GridBundle.git
+[submodule "src/Oro/Bundle/ClassificationTreeBundle"]
+	path = src/Oro/Bundle/ClassificationTreeBundle
+	url = git@github.com:laboro/ClassificationTreeBundle.git
