@@ -3,11 +3,13 @@ namespace Acme\Bundle\DemoGridBundle\DataFixtures\ORM;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
+
 use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\UrlType;
 use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\OptionMultiSelectType;
-
 use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\DateType;
 use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\TextType;
 
@@ -16,11 +18,12 @@ use Oro\Bundle\FlexibleEntityBundle\Model\AbstractFlexible;
 use Oro\Bundle\FlexibleEntityBundle\Model\AbstractAttributeOption;
 use Oro\Bundle\FlexibleEntityBundle\Model\AbstractAttributeType;
 use Oro\Bundle\FlexibleEntityBundle\Model\AbstractAttribute;
-use Oro\Bundle\UserBundle\Entity\UserManager;
 use Oro\Bundle\FlexibleEntityBundle\Entity\Repository\FlexibleEntityRepository;
+
+use Oro\Bundle\UserBundle\Entity\UserManager;
 use Oro\Bundle\UserBundle\Entity\User;
 
-class LoadUserData extends AbstractFixture implements ContainerAwareInterface
+class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
     /**
      * @var UserManager
@@ -532,5 +535,15 @@ class LoadUserData extends AbstractFixture implements ContainerAwareInterface
     private function flush()
     {
         $this->userManager->getStorageManager()->flush();
+    }
+
+    /**
+     * Get the order of this fixture
+     *
+     * @return integer
+     */
+    public function getOrder()
+    {
+        return 3;
     }
 }
