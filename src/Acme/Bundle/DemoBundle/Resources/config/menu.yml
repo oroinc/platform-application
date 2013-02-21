@@ -30,10 +30,16 @@ oro_menu_config:
         demo_ui:
             label: 'UI Components'
             route: 'oro_ui_index'
+        demo_dashboard:
+            label: 'Dashboard'
+            route: 'acme_default'
 
     tree:
         application_menu:
             children:
+                home:
+                    children:
+                        demo_dashboard: ~
                 demo_ui_tab:
                     children:
                         demo_ui: ~
