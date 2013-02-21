@@ -18,27 +18,20 @@ class UserDatagridManager extends FlexibleDatagridManager
             'field_name' => 'id',
             'sortable'   => true
         ),
+        'username' => array(
+            'label'      => 'Username',
+            'type'       => 'oro_grid_orm_string',
+            'field_type' => 'text',
+            'field_name' => 'username',
+            'sortable'   => true
+        ),
         'email' => array(
             'label'      => 'Email',
             'type'       => 'oro_grid_orm_string',
             'field_type' => 'text',
             'field_name' => 'email',
             'sortable'   => true
-        ),
-        'firstname' => array(
-            'label'      => 'Firstname',
-            'type'       => 'oro_grid_orm_string',
-            'field_type' => 'text',
-            'field_name' => 'firstname',
-            'sortable'   => true
-        ),
-        'lastname' => array(
-            'label'      => 'Lastname',
-            'type'       => 'oro_grid_orm_string',
-            'field_type' => 'text',
-            'field_name' => 'lastname',
-            'sortable'   => false
-        ),
+        )
     );
 
     /**
