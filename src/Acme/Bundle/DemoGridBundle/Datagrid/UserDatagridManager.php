@@ -72,6 +72,13 @@ class UserDatagridManager extends FlexibleDatagridManager
             }
         }
 
+        foreach ($this->getFlexibleAttributes() as $attribute) {
+            $field = new FieldDescription();
+            $field->setName($attribute->getCode());
+            $field->setOption('flexible_manager', $this->getFlexibleManagerServiceId());
+            $fields[] = $field;
+        }
+
         return $fields;
     }
 
