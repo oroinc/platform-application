@@ -75,7 +75,7 @@ class UserDatagridManager extends FlexibleDatagridManager
         foreach ($this->getFlexibleAttributes() as $attribute) {
             $field = new FieldDescription();
             $field->setName($attribute->getCode());
-            $field->setOption('flexible_manager', $this->getFlexibleManagerServiceId());
+            $field->setOption('flexible_name', $this->flexibleManager->getFlexibleName());
             $fields[] = $field;
         }
 
@@ -111,7 +111,7 @@ class UserDatagridManager extends FlexibleDatagridManager
             $field->setOption('label', $attribute->getCode());
             $field->setOption('field_type', $attribute->getBackendType());
             $field->setOption('field_name', $attribute->getCode());
-            $field->setOption('flexible_manager', $this->getFlexibleManagerServiceId());
+            $field->setOption('flexible_name', $this->flexibleManager->getFlexibleName());
             $field->setOption('required', false);
             $fields[] = $field;
         }
