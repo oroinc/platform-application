@@ -1,0 +1,50 @@
+oro_menu_config:
+    items:
+        demo_ui_tab:
+            label: 'UI'
+            uri: '#'
+        demo_user_tab:
+            label: 'Users'
+            uri: '#'
+        demo_search_tab:
+            label: 'Search'
+            uri: '#'
+        demo_jobs_tab:
+            label: 'Jobs'
+            uri: '#'
+        demo_jobs:
+            label: 'Jobs examples'
+            route: 'acme_demo_job_index'
+        demo_users:
+            label: 'Users'
+            route: 'oro_user_index'
+        demo_roles:
+            label: 'Roles'
+            route: 'oro_user_role_index'
+        demo_groups:
+            label: 'Groups'
+            route: 'oro_user_group_index'
+        demo_search:
+            label: 'Search examples'
+            route: 'acme_demo_search'
+        demo_ui:
+            label: 'UI Components'
+            route: 'oro_ui_index'
+
+    tree:
+        application_menu:
+            children:
+                demo_ui_tab:
+                    children:
+                        demo_ui: ~
+                demo_user_tab:
+                    children:
+                        demo_users: ~
+                        demo_roles: ~
+                        demo_groups: ~
+                demo_search_tab:
+                    children:
+                        demo_search: ~
+                demo_jobs_tab:
+                    children:
+                        demo_jobs: ~

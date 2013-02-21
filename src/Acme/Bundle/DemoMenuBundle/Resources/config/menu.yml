@@ -1,11 +1,5 @@
 oro_menu_config:
     items:
-        home:
-            name: 'Home'
-            label: ''
-            extras:
-                icon: 'icon-home icon-white'
-            uri: '/'
         homepage:
             name: 'Home page 2'
             translateDomain: 'menu'
@@ -32,6 +26,10 @@ oro_menu_config:
             label: 'My PIM'
             uri: '#'
 
+        menu_demo:
+            label: 'Menu demonstration'
+            route: 'oro_menu_test'
+
     tree:
         navbar:
             type: 'navbar'
@@ -49,16 +47,8 @@ oro_menu_config:
                 user_registration_register:
                     position: 5
 
-    tree:
         application_menu:
-            type: application_menu
             children:
-                home: ~
-                my_crm:
+                demo_ui_tab:
                     children:
-                        user_change_password: ~
-                        test: ~
-                my_pim:
-                    children:
-                        homepage: ~
-                        user_change_password: ~
+                        menu_demo: ~
