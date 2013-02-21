@@ -1,13 +1,14 @@
 Acme\Bundle\DemoBundle\Entity\Product:
+    alias: demo_product
     fields:
         -
             name: name
             target_type: text
-            target_fields: [name, all_data]
+            target_fields: []
         -
             name: description
             target_type: text
-            target_fields: [description, all_data]
+            target_fields: []
         -
             name: price
             target_type: decimal
@@ -27,11 +28,11 @@ Acme\Bundle\DemoBundle\Entity\Product:
                 -
                     name: name
                     target_type: text
-                    target_fields: [manufacturer, all_data]
+                    target_fields: []
                 -
                     name: id
                     target_type: integer
-                    target_fields: [manufacturer]
+                    target_fields: []
         -
             name: categories
             relation_type: many-to-many
@@ -39,10 +40,11 @@ Acme\Bundle\DemoBundle\Entity\Product:
                 -
                     name: name
                     target_type: text
-                    target_fields: [all_data]
+                    target_fields: [categories]
     flexible_manager: demo_product_manager
 
 Acme\Bundle\DemoBundle\Entity\Customer:
+    alias: demo_customer
     fields:
         -
             name: first_name:
