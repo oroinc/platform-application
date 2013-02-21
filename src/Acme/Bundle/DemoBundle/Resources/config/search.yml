@@ -1,5 +1,4 @@
 Acme\Bundle\DemoBundle\Entity\Product:
-    entity_name: AcmeDemoBundle:Product
     alias: demo_product
     flexible_manager: demo_product_manager
     fields:
