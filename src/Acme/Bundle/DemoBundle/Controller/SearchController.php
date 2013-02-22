@@ -5,8 +5,6 @@ namespace Acme\Bundle\DemoBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Doctrine\Common\Annotations\AnnotationReader;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 use Acme\Bundle\DemoBundle\Entity\Product;
 use Acme\Bundle\DemoBundle\Form\ProductType;
@@ -24,10 +22,13 @@ class SearchController extends Controller
      */
     public function indexAction()
     {
+        $entClassName = $this->getProductManager()->getFlexibleName();
+        $valueClassName = $this->getProductManager()->getFlexibleValueName();
+
         $request = $this->getRequest();
-        $em      = $this->getDoctrine()->getManager();
-        $product = new Product();
-        $form    = $this->createForm(new ProductType(), $product);
+        $em      = $this->getProductManager()->getStorageManager();
+        $product = $this->getProductManager()->createFlexible();
+        $form    = $this->createForm(new ProductType($entClassName, $valueClassName), $product);
 
         if ($request->getMethod() == 'POST') {
             $form->bind($request);
@@ -54,10 +55,13 @@ class SearchController extends Controller
      */
     public function editAction($id)
     {
+        $entClassName = $this->getProductManager()->getFlexibleName();
+        $valueClassName = $this->getProductManager()->getFlexibleValueName();
+
         $request = $this->getRequest();
-        $em      = $this->getDoctrine()->getManager();
+        $em      = $this->getProductManager()->getStorageManager();
         $product = $this->getDoctrine()->getRepository('AcmeDemoBundle:Product')->find($id);
-        $form    = $this->createForm(new ProductType(), $product);
+        $form    = $this->createForm(new ProductType($entClassName, $valueClassName), $product);
 
         if ($request->getMethod() == 'POST') {
             $form->bind($request);
@@ -85,7 +89,7 @@ class SearchController extends Controller
      */
     public function deleteAction($id)
     {
-        $em      = $this->getDoctrine()->getManager();
+        $em      = $this->getProductManager()->getStorageManager();
         $product = $this->getDoctrine()->getRepository('AcmeDemoBundle:Product')->find($id);
 
         $em->remove($product);
@@ -113,13 +117,8 @@ class SearchController extends Controller
         return array();
     }
 
-    /**
-     * Get search service manager (wheel implement in controllers parent class)
-     *
-     * @return \Oro\Bundle\SearchBundle\Engine\Indexer
-     */
-    private function getSearchManager()
+    private function getProductManager()
     {
-        return $this->get('oro_search.index');
+        return $this->get('demo_product_manager');
     }
 }
