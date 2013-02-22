@@ -27,6 +27,7 @@ class AppKernel extends Kernel
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
             new BeSimple\SoapBundle\BeSimpleSoapBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
 
             // BAP bundles
             new Oro\Bundle\FlexibleEntityBundle\OroFlexibleEntityBundle(),
@@ -36,20 +37,24 @@ class AppKernel extends Kernel
             new Oro\Bundle\DataFlowBundle\OroDataFlowBundle(),
             new Oro\Bundle\UserBundle\OroUserBundle(),
             new Oro\Bundle\MeasureBundle\OroMeasureBundle(),
+            new Oro\Bundle\MenuBundle\OroMenuBundle(),
+
+            // BAP Demo bundles
             new Acme\Bundle\DemoBundle\AcmeDemoBundle(),
             new Acme\Bundle\DemoMeasureBundle\AcmeDemoMeasureBundle(),
 
             // test bundle
             new Ddeboer\DataImportBundle\DdeboerDataImportBundle()
+            new Acme\Bundle\DemoMenuBundle\AcmeDemoMenuBundle(),
+            new Acme\Bundle\DemoFlexibleEntityBundle\AcmeDemoFlexibleEntityBundle(),
+            new Acme\Bundle\DemoDataFlowBundle\AcmeDemoDataFlowBundle()
+
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
-            // BAP test bundles
-            $bundles[] = new Acme\Bundle\DemoFlexibleEntityBundle\AcmeDemoFlexibleEntityBundle();
-            $bundles[] = new Acme\Bundle\DemoDataFlowBundle\AcmeDemoDataFlowBundle();
         }
 
         return $bundles;

@@ -1,0 +1,15 @@
+oro_menu_config:
+    items:
+        measure_demo_tab:
+            name: 'Measure'
+            uri: '#'
+        measure_demo:
+            name: 'Examples'
+            route: 'acme_demomeasure_measure_index'
+
+    tree:
+        application_menu:
+            children:
+                measure_demo_tab:
+                    children:
+                        measure_demo: ~
