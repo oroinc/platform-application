@@ -13,22 +13,22 @@
     <hashTree>
       <kg.apc.jmeter.threads.UltimateThreadGroup guiclass="kg.apc.jmeter.threads.UltimateThreadGroupGui" testclass="kg.apc.jmeter.threads.UltimateThreadGroup" testname="Ultimate Thread Group" enabled="true">
         <collectionProp name="ultimatethreadgroupdata">
-          <collectionProp name="1490981123">
-            <stringProp name="49586">200</stringProp>
+          <collectionProp name="1926467393">
+            <stringProp name="1567">10</stringProp>
             <stringProp name="0">0</stringProp>
             <stringProp name="1567">10</stringProp>
             <stringProp name="1629">30</stringProp>
             <stringProp name="48">0</stringProp>
           </collectionProp>
-          <collectionProp name="1103421825">
-            <stringProp name="50547">300</stringProp>
+          <collectionProp name="-720394670">
+            <stringProp name="1598">20</stringProp>
             <stringProp name="1629">30</stringProp>
             <stringProp name="1567">10</stringProp>
             <stringProp name="1660">40</stringProp>
             <stringProp name="1598">20</stringProp>
           </collectionProp>
-          <collectionProp name="-998637653">
-            <stringProp name="48780">150</stringProp>
+          <collectionProp name="-690545190">
+            <stringProp name="1691">50</stringProp>
             <stringProp name="1629">30</stringProp>
             <stringProp name="1567">10</stringProp>
             <stringProp name="1629">30</stringProp>
@@ -468,4 +468,3 @@
     </hashTree>
   </hashTree>
 </jmeterTestPlan>
-ruby -pi.bak -e "gsub(/<httpsampler guiclass="""HttpTestSampleGui""" testclass="""HTTPSampler"""/, '/, 'HTTPSampler2>')" *.jmx
