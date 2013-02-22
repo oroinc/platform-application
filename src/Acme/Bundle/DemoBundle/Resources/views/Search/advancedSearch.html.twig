@@ -14,7 +14,7 @@
                         searchDiv.html('');
                     } else {
                         $.ajax({
-                            url:"{{ path('oro_api_get_advanced_search') }}",
+                            url:"{{ path('oro_api_get_search_advanced') }}",
                             dataType:"json",
                             data:{
                                 query:query
