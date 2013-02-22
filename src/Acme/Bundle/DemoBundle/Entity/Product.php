@@ -2,25 +2,18 @@
 
 namespace Acme\Bundle\DemoBundle\Entity;
 
+use Oro\Bundle\FlexibleEntityBundle\Entity\Mapping\AbstractEntityFlexible;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Acme\Bundle\DemoBundle\Entity\Product
  *
  * @ORM\Table(name="demo_product")
- * @ORM\Entity(repositoryClass="Acme\Bundle\DemoBundle\Entity\ProductRepository")
+ * @ORM\Entity(repositoryClass="Oro\Bundle\FlexibleEntityBundle\Entity\Repository\FlexibleEntityRepository")
  */
-class Product
+class Product extends AbstractEntityFlexible
 {
-    /**
-     * @var integer $id
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
     /**
      * @var string $name
      *
@@ -71,16 +64,12 @@ class Product
      */
     private $categories;
 
-
     /**
-     * Get id
+     * @var Value
      *
-     * @return integer
+     * @ORM\OneToMany(targetEntity="ProductValue", mappedBy="entity", cascade={"persist", "remove"})
      */
-    public function getId()
-    {
-        return $this->id;
-    }
+    protected $values;
 
     /**
      * Set name
@@ -132,6 +121,7 @@ class Product
     public function __construct()
     {
         $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->values = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**

@@ -40,6 +40,8 @@ Acme\Bundle\DemoBundle\Entity\Product:
                     name: name
                     target_type: text
                     target_fields: [all_data]
+    flexible_manager: demo_product_manager
+
 Acme\Bundle\DemoBundle\Entity\Customer:
     fields:
         -
