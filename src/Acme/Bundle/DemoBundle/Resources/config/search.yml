@@ -43,10 +43,13 @@ Acme\Bundle\DemoBundle\Entity\Customer:
     alias: demo_customer
     fields:
         -
-            name: first_name:
+            name: firstName
             target_type: text
-            target_fields: [first_name, all_data]
+            target_fields: [name]
         -
-            name: second_name:
+            name: lastName
             target_type: text
-            target_fields: [second_name, all_data]
+            target_fields: [name]
+        -
+            name: city
+            target_type: text

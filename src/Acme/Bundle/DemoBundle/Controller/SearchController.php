@@ -9,6 +9,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Acme\Bundle\DemoBundle\Entity\Product;
 use Acme\Bundle\DemoBundle\Form\ProductType;
 
+use Acme\Bundle\DemoBundle\Entity\Customer;
+use Acme\Bundle\DemoBundle\Form\CustomerType;
+
 /**
  * @Route("/search")
  */
@@ -96,6 +99,33 @@ class SearchController extends Controller
         $em->flush();
 
         return $this->redirect($this->generateUrl('acme_demo_search'));
+    }
+
+    /**
+     * List of customers and add new customer
+     *
+     * @Route("/customers", name="acme_demo_customers")
+     * @Template()
+     */
+    public function customersAction()
+    {
+        $request = $this->getRequest();
+        $em      = $this->getDoctrine()->getManager();
+        $customer = new Customer();
+        $form    = $this->createForm(new CustomerType(), $customer);
+
+        if ($request->getMethod() == 'POST') {
+            $form->bind($request);
+            if ($form->isValid()) {
+                $em->persist($customer);
+                $em->flush();
+            }
+        }
+
+        return array(
+            'customers' => $em->getRepository('AcmeDemoBundle:Customer')->findAll(),
+            'form'     => $form->createView(),
+        );
     }
 
     /**
