@@ -1,9 +1,3 @@
-acme_demo_grid:
-    resource: "@AcmeDemoGridBundle/Controller/"
-    type:     annotation
-    prefix:   /{_locale}/grid/
-    defaults: { _locale: %locale% }
-    
 _wdt:
     resource: "@WebProfilerBundle/Resources/config/routing/wdt.xml"
     prefix:   /_wdt

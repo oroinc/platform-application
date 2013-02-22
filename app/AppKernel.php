@@ -38,18 +38,19 @@ class AppKernel extends Kernel
             new Oro\Bundle\MeasureBundle\OroMeasureBundle(),
             new Oro\Bundle\MenuBundle\OroMenuBundle(),
             new Oro\Bundle\GridBundle\OroGridBundle(),
+
+            // BAP Demo bundles
+            new Acme\Bundle\DemoBundle\AcmeDemoBundle(),
+            new Acme\Bundle\DemoMeasureBundle\AcmeDemoMeasureBundle(),
+            new Acme\Bundle\DemoFlexibleEntityBundle\AcmeDemoFlexibleEntityBundle(),
+            new Acme\Bundle\DemoMenuBundle\AcmeDemoMenuBundle(),
+            new Acme\Bundle\DemoGridBundle\AcmeDemoGridBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
-
-            // BAP Demo bundles
-            $bundles[] = new Acme\Bundle\DemoBundle\AcmeDemoBundle();
-            $bundles[] = new Acme\Bundle\DemoMeasureBundle\AcmeDemoMeasureBundle();
-            $bundles[] = new Acme\Bundle\DemoFlexibleEntityBundle\AcmeDemoFlexibleEntityBundle();
-            $bundles[] = new Acme\Bundle\DemoGridBundle\AcmeDemoGridBundle();
         }
 
         return $bundles;
