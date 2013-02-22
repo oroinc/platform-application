@@ -32,7 +32,7 @@ twig:
 assetic:
     debug:                    "%kernel.debug%"
     use_controller:           false
-    bundles:                  ["AcmeDemoBundle", "OroUserBundle", "OroGridBundle"]
+    bundles:                  ["AcmeDemoBundle", "OroUserBundle", "AcmeDemoGridBundle"]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~

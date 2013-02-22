@@ -1,7 +1,34 @@
 {% extends 'AcmeDemoGridBundle::layout.html.twig' %}
 
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts
+        '@OroGridBundle/Resources/public/lib/backgrid/backgrid.js'
+        '@OroGridBundle/Resources/public/js/app/datagrid.js'
+        '@AcmeDemoGridBundle/Resources/public/js/app/usermodel.js'
+        '@AcmeDemoGridBundle/Resources/public/js/app/usercollection.js'
+        '@AcmeDemoGridBundle/Resources/public/js/setup.js'
+        output='js/acme.grid.js'
+    %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% stylesheets
+        'bundles/orogrid/lib/backgrid/backgrid.css'
+        output='css/acme.grid.css'
+        filter='cssrewrite'
+    %}
+        <link rel="stylesheet" type="text/css" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+
 {% block content %}
     <div style="background-color: #ffffff; padding: 20px;">
         {% include 'OroGridBundle:Datagrid:view.html.twig' with {'datagrid': datagrid} %}
+        <div id="backgrid"></div>
     </div>
 {% endblock %}
+
