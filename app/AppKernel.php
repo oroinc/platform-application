@@ -28,6 +28,7 @@ class AppKernel extends Kernel
             new BeSimple\SoapBundle\BeSimpleSoapBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+            new Ddeboer\DataImportBundle\DdeboerDataImportBundle(),
 
             // BAP bundles
             new Oro\Bundle\FlexibleEntityBundle\OroFlexibleEntityBundle(),
@@ -42,9 +43,6 @@ class AppKernel extends Kernel
             // BAP Demo bundles
             new Acme\Bundle\DemoBundle\AcmeDemoBundle(),
             new Acme\Bundle\DemoMeasureBundle\AcmeDemoMeasureBundle(),
-
-            // test bundle
-            new Ddeboer\DataImportBundle\DdeboerDataImportBundle()
             new Acme\Bundle\DemoMenuBundle\AcmeDemoMenuBundle(),
             new Acme\Bundle\DemoFlexibleEntityBundle\AcmeDemoFlexibleEntityBundle(),
             new Acme\Bundle\DemoDataFlowBundle\AcmeDemoDataFlowBundle()

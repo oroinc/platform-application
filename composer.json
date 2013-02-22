@@ -33,14 +33,10 @@
         "burti/besimple-soap-common": "dev-master",
         "burti/besimple-soap-bundle": "dev-master",
         "burti/besimple-soap-server": "dev-master",
-<<<<<<< HEAD
-        "ddeboer/data-import": "dev-master",
-        "ddeboer/data-import-bundle": "dev-master",
-=======
         "knplabs/knp-menu-bundle": "dev-master",
         "knplabs/knp-menu": "dev-master",
-
->>>>>>> master
+        "ddeboer/data-import": "dev-master",
+        "ddeboer/data-import-bundle": "dev-master",
         "stof/doctrine-extensions-bundle": "dev-master",
         "jms/aop-bundle": "dev-master"
     },
