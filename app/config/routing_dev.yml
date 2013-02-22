@@ -1,15 +1,9 @@
-acme_demo_flexible_entity:
-    resource: "@AcmeDemoFlexibleEntityBundle/Controller/"
-    type:     annotation
-    prefix:   /{_locale}/flexible-entity/
-    defaults: { _locale: %locale% }
-
 acme_demo_grid:
     resource: "@AcmeDemoGridBundle/Controller/"
     type:     annotation
     prefix:   /{_locale}/grid/
     defaults: { _locale: %locale% }
-
+    
 _wdt:
     resource: "@WebProfilerBundle/Resources/config/routing/wdt.xml"
     prefix:   /_wdt

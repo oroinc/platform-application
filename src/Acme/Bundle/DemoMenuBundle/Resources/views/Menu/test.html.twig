@@ -1,0 +1,21 @@
+{% extends 'AcmeDemoMenuBundle::layout.html.twig' %}
+
+{% block content %}
+    <h1>Example menu</h1>
+
+    {{ oro_menu_render('navbar') }}
+
+    <h1>Example user menu</h1>
+    <div class="btn-group">
+        <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+            <i class="icon-user"></i>
+            SomeUser
+            <span class="caret"/>
+        </button>
+        {{  oro_menu_render('usermenu') }}
+    </div>
+
+    <h1>Application menu</h1>
+
+    {{ oro_menu_render('application_menu') }}
+{% endblock content %}
