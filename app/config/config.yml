@@ -26,7 +26,7 @@ twig:
     exception_controller:     "FOS\RestBundle\Controller\ExceptionController::showAction"
     globals:
         bap:
-            layout:           AcmeDemoBundle::layout.bootstrap.html.twig  # default layout across all Oro bundles
+            layout:           OroUIBundle:Default:index.html.twig  # default layout across all Oro bundles
 
 # Assetic Configuration
 assetic:
