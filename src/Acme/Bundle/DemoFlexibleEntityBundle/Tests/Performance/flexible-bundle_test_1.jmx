@@ -890,7 +890,7 @@
               <subresults>true</subresults>
               <responseData>false</responseData>
               <samplerData>false</samplerData>
-              <xml>false</xml>
+              <xml>true</xml>
               <fieldNames>false</fieldNames>
               <responseHeaders>false</responseHeaders>
               <requestHeaders>false</requestHeaders>
@@ -900,7 +900,7 @@
               <bytes>true</bytes>
             </value>
           </objProp>
-          <stringProp name="filename">flexible-bundle_test_1.jmx.perf</stringProp>
+          <stringProp name="filename">${__P(basedir,)}/build/performance/flexible-bundle_test_1.jmx.perf.jtl</stringProp>
           <longProp name="interval_grouping">1000</longProp>
           <boolProp name="graph_aggregated">false</boolProp>
           <stringProp name="include_sample_labels"></stringProp>
