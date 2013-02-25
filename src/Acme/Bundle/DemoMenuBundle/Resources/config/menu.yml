@@ -1,0 +1,54 @@
+oro_menu_config:
+    items:
+        homepage:
+            name: 'Home page 2'
+            translateDomain: 'menu'
+            route: 'oro_menu_index'
+        user_registration_register:
+            translateDomain: 'menu'
+            route: 'oro_menu_submenu'
+        user_profile_show:
+            translateDomain: 'menu'
+            showNonAuthorized: true
+            route: 'oro_menu_submenu'
+        user_change_password:
+            translateDomain: 'menu'
+            label: 'Change Password'
+            route: 'oro_menu_index'
+        test:
+            translateDomain: 'menu'
+            label: 'Menu test'
+            route: 'oro_menu_test'
+        my_crm:
+            label: 'My CRM'
+            uri: '#'
+        my_pim:
+            label: 'My PIM'
+            uri: '#'
+
+        menu_demo:
+            label: 'Menu demonstration'
+            route: 'oro_menu_test'
+
+    tree:
+        navbar:
+            type: 'navbar'
+            extras:
+                brand: 'Oro'
+                brandLink: '/'
+            children:
+                user_profile_show:
+                    position: 10
+                    children:
+                        user_change_password: ~
+                        test: ~
+                homepage:
+                    position: 7
+                user_registration_register:
+                    position: 5
+
+        application_menu:
+            children:
+                demo_ui_tab:
+                    children:
+                        menu_demo: ~

@@ -1,4 +1,4 @@
-{% extends 'AcmeDemoBundle::layout.bootstrap.html.twig' %}
+{% extends bap.layout is defined ? bap.layout : 'OroUIBundle:Default:index.html.twig' %}
 {% import 'JMSJobQueueBundle:Job:macros.html.twig' as macros %}
 {% use 'AcmeDemoBundle:Job:sidebar.html.twig' %}
 
