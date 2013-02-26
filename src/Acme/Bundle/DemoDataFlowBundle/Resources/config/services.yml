@@ -1,0 +1,67 @@
+parameters:
+
+    connector.magento.class:                   Acme\Bundle\DemoDataFlowBundle\Connector\MagentoConnector
+    configuration.magento.class:               Acme\Bundle\DemoDataFlowBundle\Configuration\MagentoConfiguration
+    configuration.type.magento.class:          Acme\Bundle\DemoDataFlowBundle\Form\Type\MagentoConfigurationType
+
+    connector.csv.class:                       Acme\Bundle\DemoDataFlowBundle\Connector\CsvConnector
+    configuration.csv.class:                   Acme\Bundle\DemoDataFlowBundle\Configuration\CsvConfiguration
+    configuration.type.csv.class:              Acme\Bundle\DemoDataFlowBundle\Form\Type\CsvConfigurationType
+    
+    job.type.import_attribute.class:           Acme\Bundle\DemoDataFlowBundle\Job\ImportAttributesJob
+    configuration.import_attribute.class:      Acme\Bundle\DemoDataFlowBundle\Configuration\ImportAttributeConfiguration
+    configuration.type.import_attribute.class: Acme\Bundle\DemoDataFlowBundle\Form\Type\ImportAttributeConfigurationType
+
+    job.type.import_customer.class:            Acme\Bundle\DemoDataFlowBundle\Job\ImportCustomersJob
+    configuration.import_customer.class:       Acme\Bundle\DemoDataFlowBundle\Configuration\ImportCustomerConfiguration
+    configuration.type.import_customer.class:  Acme\Bundle\DemoDataFlowBundle\Form\Type\ImportCustomerConfigurationType
+
+services:
+
+    # connector Magento and related form type
+    
+    connector.magento:
+        class: %connector.magento.class%
+        arguments: [%configuration.magento.class%]
+
+    configuration.form.type.magento:
+        class: %configuration.type.magento.class%
+        tags:
+            - { name: form.type, alias: configuration_magento}
+
+    # job import attributes
+
+    job.import_attributes:
+        class: %job.type.import_attribute.class%
+        arguments: [%configuration.magento.class%, %configuration.import_attribute.class%, @product_manager ]
+        tags:
+            - { name: oro_dataflow_job, connector: connector.magento}
+
+    configuration.form.type.import_attribute:
+        class: %configuration.type.import_attribute.class%
+        tags:
+            - { name: form.type, alias: configuration_import_attribute}
+
+    # connector csv
+
+    connector.csv:
+        class: %connector.csv.class%
+        arguments: [%configuration.csv.class%]
+
+    configuration.form.type.csv:
+        class: %configuration.type.csv.class%
+        tags:
+            - { name: form.type, alias: configuration_csv}
+
+    # job import customer
+    
+    job.import_customers:
+        class: %job.type.import_customer.class%
+        arguments: [%configuration.csv.class%, %configuration.import_customer.class%, @customer_manager]
+        tags:
+            - { name: oro_dataflow_job, connector: connector.csv }
+
+    configuration.form.type.import_customer:
+        class: %configuration.type.import_customer.class%
+        tags:
+            - { name: form.type, alias: configuration_import_customer}
