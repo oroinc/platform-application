@@ -1,7 +1,7 @@
 <?php
 namespace Acme\Bundle\DemoDataFlowBundle\DataFixtures\ORM;
 
-use Oro\Bundle\DataFlowBundle\Entity\Configuration;
+use Oro\Bundle\DataFlowBundle\Entity\RawConfiguration;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
@@ -38,13 +38,13 @@ class LoadConfigurationData extends AbstractFixture implements OrderedFixtureInt
         $magentoConf->setPassword('root');
         $magentoConf->setDbname('magento_ab');
         $magentoConf->setTablePrefix('ab_');
-        $entity = $this->prepareConfigurationEntity($magentoConf);
+        $entity = new RawConfiguration($magentoConf);
         $manager->persist($entity);
         $this->addReference('configuration-magento', $entity);
 
         $magentoJobConf = new ImportAttributeConfiguration();
         $magentoJobConf->setExcludedAttributes('sku,old_id,created_at,updated_at');
-        $entity = $this->prepareConfigurationEntity($magentoJobConf);
+        $entity = new RawConfiguration($magentoJobConf);
         $manager->persist($entity);
         $this->addReference('configuration-import-attribute', $entity);
 
@@ -52,40 +52,18 @@ class LoadConfigurationData extends AbstractFixture implements OrderedFixtureInt
 
         $csvConf = new CsvConfiguration();
         $csvConf->setDelimiter(',');
-        $entity = $this->prepareConfigurationEntity($csvConf);
+        $entity = new RawConfiguration($csvConf);
         $manager->persist($entity);
         $this->addReference('configuration-csv', $entity);
 
         $csvJobConf = new ImportCustomerConfiguration();
         $csvJobConf->setFilePath(__DIR__.'/../../Resources/files/export_customers.csv');
-        $entity = $this->prepareConfigurationEntity($csvJobConf);
+        $entity = new RawConfiguration($csvJobConf);
         $manager->persist($entity);
         $this->addReference('configuration-import-customer', $entity);
 
         // save
         $manager->flush();
-    }
-
-    /**
-     * Prepare configuration entity
-     *
-     * @param Configuration $configuration configuration
-     *
-     * @return Configuration
-     */
-    protected function prepareConfigurationEntity($configuration)
-    {
-        // serialize data
-        $format = 'json';
-        $serializer = \JMS\Serializer\SerializerBuilder::create()->build();
-        $data = $serializer->serialize($configuration, $format);
-        // prepare configuration entity
-        $entity = new Configuration();
-        $entity->setTypeName(get_class($configuration));
-        $entity->setFormat($format);
-        $entity->setData($data);
-
-        return $entity;
     }
 
     /**

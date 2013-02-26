@@ -2,7 +2,6 @@
 namespace Acme\Bundle\DemoDataFlowBundle\DataFixtures\ORM;
 
 use Oro\Bundle\DataFlowBundle\Configuration\ConfigurationInterface;
-use Oro\Bundle\DataFlowBundle\Entity\Configuration;
 use Oro\Bundle\DataFlowBundle\Entity\Job;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
@@ -34,7 +33,7 @@ class LoadJobData extends AbstractFixture implements OrderedFixtureInterface
         $magentoJob = new Job();
         $magentoJob->setServiceId('job.import_attributes');
         $magentoJob->setDescription('Import attributes');
-        $magentoJob->setConfiguration($configuration);
+        $magentoJob->setRawConfiguration($configuration);
         $magentoJob->setConnector($connector);
         $manager->persist($magentoJob);
 
@@ -44,7 +43,7 @@ class LoadJobData extends AbstractFixture implements OrderedFixtureInterface
         $csvJob = new Job();
         $csvJob->setServiceId('job.import_customers');
         $csvJob->setDescription('Import customers');
-        $csvJob->setConfiguration($configuration);
+        $csvJob->setRawConfiguration($configuration);
         $csvJob->setConnector($connector);
         $manager->persist($csvJob);
 

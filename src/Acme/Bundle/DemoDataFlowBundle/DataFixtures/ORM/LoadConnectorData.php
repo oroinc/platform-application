@@ -2,7 +2,6 @@
 namespace Acme\Bundle\DemoDataFlowBundle\DataFixtures\ORM;
 
 use Oro\Bundle\DataFlowBundle\Configuration\ConfigurationInterface;
-use Oro\Bundle\DataFlowBundle\Entity\Configuration;
 use Oro\Bundle\DataFlowBundle\Entity\Connector;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
@@ -33,7 +32,7 @@ class LoadConnectorData extends AbstractFixture implements OrderedFixtureInterfa
         $magentoConnector = new Connector();
         $magentoConnector->setDescription('Magento http://mysite.com');
         $magentoConnector->setServiceId('connector.magento');
-        $magentoConnector->setConfiguration($configuration);
+        $magentoConnector->setRawConfiguration($configuration);
         $manager->persist($magentoConnector);
         $this->addReference('connector-magento', $magentoConnector);
 
@@ -42,7 +41,7 @@ class LoadConnectorData extends AbstractFixture implements OrderedFixtureInterfa
         $csvConnector = new Connector();
         $csvConnector->setDescription('Csv import');
         $csvConnector->setServiceId('connector.csv');
-        $csvConnector->setConfiguration($configuration);
+        $csvConnector->setRawConfiguration($configuration);
         $manager->persist($csvConnector);
         $this->addReference('connector-csv', $csvConnector);
 
