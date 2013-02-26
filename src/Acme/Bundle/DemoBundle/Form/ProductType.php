@@ -2,14 +2,16 @@
 
 namespace Acme\Bundle\DemoBundle\Form;
 
-use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class ProductType extends AbstractType
+use Oro\Bundle\FlexibleEntityBundle\Form\Type\FlexibleType;
+
+class ProductType extends FlexibleType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function addEntityFields(FormBuilderInterface $builder)
     {
+        parent::addEntityFields($builder);
         $builder
             ->add('name')
             ->add('price')
@@ -33,10 +35,11 @@ class ProductType extends AbstractType
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => 'Acme\Bundle\DemoBundle\Entity\Product',
-            'csrf_protection'   => false,
-        ));
+        $resolver->setDefaults(
+            array(
+                'data_class' => $this->flexibleClass,
+            )
+        );
     }
 
     public function getName()
