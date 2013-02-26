@@ -3,3 +3,9 @@ imports:
 
 framework:
     test: ~
+
+web_profiler:
+    toolbar: false
+
+swiftmailer:
+    disable_delivery: true
