@@ -129,6 +129,17 @@ class SearchController extends Controller
     }
 
     /**
+     * @Route("/product/{id}", name="acme_demo_search_product")
+     * @Template()
+     */
+    public function productPageAction($id)
+    {
+        return array(
+            'product' => $this->getDoctrine()->getRepository('AcmeDemoBundle:Product')->find($id)
+        );
+    }
+
+    /**
      * @Template()
      * @return array
      */
