@@ -1,6 +1,0 @@
-security:
-    firewalls:
-        main:
-            form_login:
-                csrf_provider:              ~
-

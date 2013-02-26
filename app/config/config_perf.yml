@@ -2,4 +2,4 @@ imports:
     - { resource: config_dev.yml }
 
 framework:
-    csrf_protection: false
+    test: ~
