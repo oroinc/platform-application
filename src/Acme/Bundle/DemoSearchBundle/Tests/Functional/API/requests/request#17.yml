@@ -1,0 +1,21 @@
+# offset test case
+request:
+    search: email
+    offset: 5
+    max_results: 5
+response:
+    records_count: 9
+    count: 4
+    data:
+        -
+            entity_name: Acme\Bundle\DemoSearchBundle\Entity\Item
+            record_string: email-6@mail.com
+        -
+            entity_name: Acme\Bundle\DemoSearchBundle\Entity\Item
+            record_string: email-7@mail.com
+        -
+            entity_name: Acme\Bundle\DemoSearchBundle\Entity\Item
+            record_string: email-8@mail.com
+        -
+            entity_name: Acme\Bundle\DemoSearchBundle\Entity\Item
+            record_string: email-9@mail.com
