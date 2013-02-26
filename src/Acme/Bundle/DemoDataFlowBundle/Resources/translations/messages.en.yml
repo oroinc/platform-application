@@ -1,0 +1,4 @@
+connector.magento.label: Magento
+job.import_attributes.label: Import attributes
+connector.csv.label: Csv
+job.import_customers.label: Import customers
