@@ -1,0 +1,18 @@
+{% extends 'OroMenuBundle:Menu:menu.html.twig' %}
+
+{% block root %}
+    {% set listAttributes = item.childrenAttributes %}
+    {% import 'OroMenuBundle:Menu:menu.html.twig' as oro_menu %}
+    {% set listAttributes = listAttributes|merge(
+        {
+            'class': oro_menu.add_attribute_values(listAttributes, 'class', ['list-bar']),
+        }
+    ) %}
+    {{ block('list') -}}
+{% endblock %}
+
+{% block linkElement %}
+    {% import 'OroMenuBundle:Menu:menu.html.twig' as oro_menu %}
+    <a class="btn-close" href="#">close</a>
+    <a href="{{ item.uri }}"{{ oro_menu.attributes(linkAttributes) }}>{{ block('label') }}</a>
+{% endblock %}

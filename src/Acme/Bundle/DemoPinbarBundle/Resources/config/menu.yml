@@ -1,0 +1,49 @@
+oro_menu_config:
+    templates:
+        pinbar:
+            template: 'AcmeDemoPinbarBundle:Menu:pinbar.html.twig'
+
+    items:
+        tabs_tab:
+            label: 'Tabs'
+            uri: '#'
+            extras:
+                icon: 'icon-folder-close'
+        history_tab:
+            label: 'History'
+            uri: '#'
+            extras:
+                icon: 'icon-time'
+        most_viewed_tab:
+            label: 'Most Viewed'
+            uri: '#'
+            extras:
+                icon: 'icon-star-empty'
+
+        not_pinned_1:
+            label: 'Yoav asked to do this'
+            uri: '#'
+        not_pinned_2:
+            label: 'Finish this before lea...'
+            uri: '#'
+        not_pinned_3:
+            label: 'Jary asked to do this'
+            uri: '#'
+        not_pinned_4:
+            label: 'Portland Office'
+            uri: '#'
+
+    tree:
+        dots_menu:
+            type: vertical_tabs
+            children:
+                tabs_tab: ~
+                history_tab: ~
+                most_viewed_tab: ~
+        pinbar:
+            type: pinbar
+            children:
+                not_pinned_1: ~
+                not_pinned_2: ~
+                not_pinned_3: ~
+                not_pinned_4: ~

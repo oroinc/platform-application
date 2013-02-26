@@ -1,0 +1,44 @@
+{% extends bap.layout is defined ? bap.layout : "OroUIBundle:Default:index.html.twig" %}
+
+{% block title %}Menu - {{ parent() }}{% endblock %}
+
+{% block head_script %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('bundles/oroui/lib/underscore.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/oroui/lib/backbone.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/acmedemopinbar/js/models/pinbar.item.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/acmedemopinbar/js/collections/pinbar.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/acmedemopinbar/js/views/pinbar.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/acmedemopinbar/js/views/pinbar.item.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/acmedemopinbar/js/pinbar.js') }}"></script>
+
+    <style type="text/css">
+        .pin-bar .list-bar, .pin-bar .list-bar li a {
+            color: #B2BAC2;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+<h1>Pinbar example</h1>
+
+<a href="#" id="testAdd" class="btn btn-primary">Add new item</a>
+
+<script type="text/javascript">
+$(function () {
+    pinbar.Items.add([
+        {title: 'Test JS item'},
+        {title: 'Test item'},
+        {title: 'Test - item'},
+        {title: 'Test / item'},
+        {title: 'Test :: item'}
+    ]);
+
+    $('#testAdd').click(function() {
+        pinbar.Items.unshift(
+            new pinbar.Item({title: 'Added item #' + pinbar.Items.length})
+        );
+    });
+});
+</script>
+{% endblock %}
