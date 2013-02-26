@@ -42,8 +42,9 @@ class AppKernel extends Kernel
             // BAP Demo bundles
             new Acme\Bundle\DemoBundle\AcmeDemoBundle(),
             new Acme\Bundle\DemoMeasureBundle\AcmeDemoMeasureBundle(),
-            new Acme\Bundle\DemoFlexibleEntityBundle\AcmeDemoFlexibleEntityBundle(),
             new Acme\Bundle\DemoMenuBundle\AcmeDemoMenuBundle(),
+            new Acme\Bundle\DemoFlexibleEntityBundle\AcmeDemoFlexibleEntityBundle(),
+            new Acme\Bundle\DemoSearchBundle\AcmeDemoSearchBundle(),
             new Acme\Bundle\DemoGridBundle\AcmeDemoGridBundle(),
         );
 
