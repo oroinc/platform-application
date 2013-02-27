@@ -4,13 +4,13 @@
 
 {% block head_script %}
     {{ parent() }}
+    {% include 'AcmeDemoPinbarBundle:Js:pinbar.js.twig' %}
     <script type="text/javascript" src="{{ asset('bundles/oroui/lib/underscore.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bundles/oroui/lib/backbone.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bundles/acmedemopinbar/js/models/pinbar.item.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bundles/acmedemopinbar/js/collections/pinbar.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/acmedemopinbar/js/views/pinbar.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bundles/acmedemopinbar/js/views/pinbar.item.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/acmedemopinbar/js/pinbar.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/acmedemopinbar/js/views/pinbar.js') }}"></script>
 
     <style type="text/css">
         .pin-bar .list-bar, .pin-bar .list-bar li a {
@@ -26,14 +26,10 @@
 
 <script type="text/javascript">
 $(function () {
-    pinbar.Items.add([
-        {title: 'Test JS item'},
-        {title: 'Test item'},
-        {title: 'Test - item'},
-        {title: 'Test / item'},
-        {title: 'Test :: item'}
-    ]);
+    new pinbar.MainView({maxPinbarItems: {{ pinbar.maxPinbarItems|raw|default(10) }} });
+    pinbar.Items.reset({{ pinbar.items|json_encode|raw }});
 
+    // TODO: this is prototype button and will be removed
     $('#testAdd').click(function() {
         pinbar.Items.unshift(
             new pinbar.Item({title: 'Added item #' + pinbar.Items.length})

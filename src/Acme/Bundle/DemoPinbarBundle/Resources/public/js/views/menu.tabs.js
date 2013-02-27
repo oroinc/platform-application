@@ -1,1 +1,0 @@
-var MenuTabsView = Backbone.View.extend({});

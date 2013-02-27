@@ -1,11 +1,17 @@
 var pinbar = pinbar || {};
 
-$(function ($) {
-    'use strict';
+pinbar.ItemsList = Backbone.Collection.extend({
+    model: pinbar.Item,
 
-    var ItemsList = Backbone.Collection.extend({
-        model: pinbar.Item
-    })
+    initialize: function() {
+        this.on('change:position', this.onPositionChange, this);
+    },
 
-    pinbar.Items = new ItemsList();
-});
+    onPositionChange: function(item) {
+        if (item.get('position') != item.get('oldPosition')) {
+            this.trigger('positionChange', item);
+        }
+    }
+})
+
+pinbar.Items = new pinbar.ItemsList();
