@@ -76,7 +76,8 @@ class CustomerAttributeController extends Controller
 
         // create form
         $attClassName = $this->getCustomerManager()->getAttributeName();
-        $form = $this->createForm(new CustomerAttributeType($attClassName), $entity);
+        $form = $this->createForm(new CustomerAttributeType($attClassName));
+        $form->setData($entity);
 
         if ($request->getMethod() == 'POST') {
             $form->bind($request);
