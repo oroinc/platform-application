@@ -5,6 +5,7 @@ namespace Acme\Bundle\DemoGridBundle\Datagrid;
 use Oro\Bundle\GridBundle\Datagrid\FlexibleDatagridManager;
 use Oro\Bundle\GridBundle\Field\FieldDescription;
 use Oro\Bundle\GridBundle\Field\FieldDescriptionCollection;
+use Oro\Bundle\GridBundle\Field\FieldDescriptionInterface;
 
 class UserDatagridManager extends FlexibleDatagridManager
 {
@@ -25,9 +26,9 @@ class UserDatagridManager extends FlexibleDatagridManager
             $fieldId->setName('id');
             $fieldId->setOptions(
                 array(
-                    'type'        => 'number',
+                    'type'        => FieldDescriptionInterface::TYPE_INTEGER,
                     'label'       => 'ID',
-                    'field_type'  => 'number',
+                    'field_type'  => FieldDescriptionInterface::TYPE_INTEGER,
                     'field_name'  => 'id',
                     'filter_type' => 'oro_grid_orm_number',
                     'required'    => false,
@@ -40,9 +41,9 @@ class UserDatagridManager extends FlexibleDatagridManager
             $fieldUsername->setName('username');
             $fieldUsername->setOptions(
                 array(
-                    'type'        => 'text',
+                    'type'        => FieldDescriptionInterface::TYPE_TEXT,
                     'label'       => 'Username',
-                    'field_type'  => 'text',
+                    'field_type'  => FieldDescriptionInterface::TYPE_TEXT,
                     'field_name'  => 'username',
                     'filter_type' => 'oro_grid_orm_string',
                     'required'    => false,
@@ -55,9 +56,9 @@ class UserDatagridManager extends FlexibleDatagridManager
             $fieldEmail->setName('email');
             $fieldEmail->setOptions(
                 array(
-                    'type'        => 'text',
+                    'type'        => FieldDescriptionInterface::TYPE_TEXT,
                     'label'       => 'Email',
-                    'field_type'  => 'text',
+                    'field_type'  => FieldDescriptionInterface::TYPE_TEXT,
                     'field_name'  => 'email',
                     'filter_type' => 'oro_grid_orm_string',
                     'required'    => false,
@@ -67,18 +68,20 @@ class UserDatagridManager extends FlexibleDatagridManager
             $this->fieldsCollection->add($fieldEmail);
 
             foreach ($this->getFlexibleAttributes() as $attribute) {
-                $filterType = $attribute->getBackendType() == 'options'
+                $attributeType = $this->convertFlexibleTypeToFieldType($attribute->getBackendType());
+
+                $filterType = $attributeType == FieldDescriptionInterface::TYPE_OPTIONS
                     ? 'oro_grid_orm_flexible_options'
                     : 'oro_grid_orm_flexible_string';
-                $sortable = $attribute->getBackendType() != 'options';
+                $sortable = $attributeType != FieldDescriptionInterface::TYPE_OPTIONS;
 
                 $field = new FieldDescription();
                 $field->setName($attribute->getCode());
                 $field->setOptions(
                     array(
-                        'type'          => $attribute->getBackendType(),
+                        'type'          => $attributeType,
                         'label'         => $attribute->getCode(),
-                        'field_type'    => $attribute->getBackendType(),
+                        'field_type'    => $attributeType,
                         'field_name'    => $attribute->getCode(),
                         'filter_type'   => $filterType,
                         'required'      => false,
