@@ -84,7 +84,8 @@ class ProductAttributeController extends Controller
 
         // create form
         $attClassName = $this->getProductManager()->getAttributeName();
-        $form = $this->createForm(new ProductAttributeType($attClassName), $entity);
+        $form = $this->createForm(new ProductAttributeType($attClassName));
+        $form->setData($entity);
 
         if ($request->getMethod() == 'POST') {
             $form->bind($request);

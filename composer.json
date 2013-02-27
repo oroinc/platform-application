@@ -35,7 +35,7 @@
         "burti/besimple-soap-server": "dev-master",
         "knplabs/knp-menu-bundle": "1.1.0",
         "knplabs/knp-menu": "1.1.2",
-
+        "ddeboer/data-import": "dev-master",
         "stof/doctrine-extensions-bundle": "dev-master",
         "jms/aop-bundle": "dev-master",
 
