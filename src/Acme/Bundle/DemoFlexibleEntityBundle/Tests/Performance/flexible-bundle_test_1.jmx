@@ -43,7 +43,7 @@
         <stringProp name="variableName">skuId</stringProp>
         <stringProp name="outputFormat">sku-000000</stringProp>
         <stringProp name="minimumValue">1</stringProp>
-        <stringProp name="maximumValue">1000000</stringProp>
+        <stringProp name="maximumValue">100000</stringProp>
         <stringProp name="randomSeed"></stringProp>
         <boolProp name="perThread">true</boolProp>
       </RandomVariableConfig>
@@ -52,7 +52,7 @@
         <stringProp name="variableName">customId</stringProp>
         <stringProp name="outputFormat">0</stringProp>
         <stringProp name="minimumValue">1</stringProp>
-        <stringProp name="maximumValue">9</stringProp>
+        <stringProp name="maximumValue">10</stringProp>
         <stringProp name="randomSeed"></stringProp>
         <boolProp name="perThread">true</boolProp>
       </RandomVariableConfig>
@@ -76,7 +76,7 @@
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
-          <stringProp name="HTTPSampler.domain">${__P(srvhost,localhost.com/app_dev.php)}</stringProp>
+          <stringProp name="HTTPSampler.domain">${__P(srvhost,localhost.com/app_perf.php)}</stringProp>
           <stringProp name="HTTPSampler.port"></stringProp>
           <stringProp name="HTTPSampler.connect_timeout"></stringProp>
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
@@ -388,7 +388,7 @@
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
               <collectionProp name="Arguments.arguments"/>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">${__P(srvhost,localhost.com/app_dev.php)}</stringProp>
+            <stringProp name="HTTPSampler.domain">${__P(srvhost,localhost.com/app_perf.php)}</stringProp>
             <stringProp name="HTTPSampler.port"></stringProp>
             <stringProp name="HTTPSampler.connect_timeout"></stringProp>
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
@@ -424,7 +424,7 @@
                 </elementProp>
                 <elementProp name="Referer" elementType="Header">
                   <stringProp name="Header.name">Referer</stringProp>
-                  <stringProp name="Header.value">${__P(srvhost,localhost.com/app_dev.php)}</stringProp>
+                  <stringProp name="Header.value">${__P(srvhost,localhost.com/app_perf.php)}</stringProp>
                 </elementProp>
                 <elementProp name="Accept-Encoding" elementType="Header">
                   <stringProp name="Header.name">Accept-Encoding</stringProp>
@@ -537,7 +537,7 @@
                 </elementProp>
               </collectionProp>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">${__P(srvhost,localhost.com/app_dev.php)}</stringProp>
+            <stringProp name="HTTPSampler.domain">${__P(srvhost,localhost.com/app_perf.php)}</stringProp>
             <stringProp name="HTTPSampler.port"></stringProp>
             <stringProp name="HTTPSampler.connect_timeout"></stringProp>
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
@@ -573,7 +573,7 @@
                 </elementProp>
                 <elementProp name="Referer" elementType="Header">
                   <stringProp name="Header.name">Referer</stringProp>
-                  <stringProp name="Header.value">${__P(srvhost,localhost.com/app_dev.php)}/en/flexible-entity/customer/create</stringProp>
+                  <stringProp name="Header.value">${__P(srvhost,localhost.com/app_perf.php)}/en/flexible-entity/customer/create</stringProp>
                 </elementProp>
                 <elementProp name="Accept-Encoding" elementType="Header">
                   <stringProp name="Header.name">Accept-Encoding</stringProp>
@@ -591,7 +591,7 @@
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
               <collectionProp name="Arguments.arguments"/>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">${__P(srvhost,localhost.com/app_dev.php)}</stringProp>
+            <stringProp name="HTTPSampler.domain">${__P(srvhost,localhost.com/app_perf.php)}</stringProp>
             <stringProp name="HTTPSampler.port"></stringProp>
             <stringProp name="HTTPSampler.connect_timeout"></stringProp>
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
@@ -623,7 +623,7 @@
                 </elementProp>
                 <elementProp name="Referer" elementType="Header">
                   <stringProp name="Header.name">Referer</stringProp>
-                  <stringProp name="Header.value">${__P(srvhost,localhost.com/app_dev.php)}/en/flexible-entity/customer/create</stringProp>
+                  <stringProp name="Header.value">${__P(srvhost,localhost.com/app_perf.php)}/en/flexible-entity/customer/create</stringProp>
                 </elementProp>
                 <elementProp name="Accept-Encoding" elementType="Header">
                   <stringProp name="Header.name">Accept-Encoding</stringProp>
@@ -656,7 +656,7 @@
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
               <collectionProp name="Arguments.arguments"/>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">${__P(srvhost,localhost.com/app_dev.php)}</stringProp>
+            <stringProp name="HTTPSampler.domain">${__P(srvhost,localhost.com/app_perf.php)}</stringProp>
             <stringProp name="HTTPSampler.port"></stringProp>
             <stringProp name="HTTPSampler.connect_timeout"></stringProp>
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
@@ -692,7 +692,7 @@
                 </elementProp>
                 <elementProp name="Referer" elementType="Header">
                   <stringProp name="Header.name">Referer</stringProp>
-                  <stringProp name="Header.value">${__P(srvhost,localhost.com/app_dev.php)}/en/flexible-entity/customer/edit/1</stringProp>
+                  <stringProp name="Header.value">${__P(srvhost,localhost.com/app_perf.php)}/en/flexible-entity/customer/edit/1</stringProp>
                 </elementProp>
                 <elementProp name="Accept-Encoding" elementType="Header">
                   <stringProp name="Header.name">Accept-Encoding</stringProp>
@@ -812,7 +812,7 @@
                 </elementProp>
               </collectionProp>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">${__P(srvhost,localhost.com/app_dev.php)}</stringProp>
+            <stringProp name="HTTPSampler.domain">${__P(srvhost,localhost.com/app_perf.php)}</stringProp>
             <stringProp name="HTTPSampler.port"></stringProp>
             <stringProp name="HTTPSampler.connect_timeout"></stringProp>
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
@@ -820,7 +820,7 @@
             <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
             <stringProp name="HTTPSampler.path">/en/flexible-entity/customer/edit/${CustomerId}</stringProp>
             <stringProp name="HTTPSampler.method">POST</stringProp>
-            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
             <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
             <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
@@ -848,7 +848,7 @@
                 </elementProp>
                 <elementProp name="Referer" elementType="Header">
                   <stringProp name="Header.name">Referer</stringProp>
-                  <stringProp name="Header.value">${__P(srvhost,localhost.com/app_dev.php)}/en/flexible-entity/customer/edit/10</stringProp>
+                  <stringProp name="Header.value">${__P(srvhost,localhost.com/app_perf.php)}/en/flexible-entity/customer/edit/10</stringProp>
                 </elementProp>
                 <elementProp name="Accept-Encoding" elementType="Header">
                   <stringProp name="Header.name">Accept-Encoding</stringProp>
@@ -862,7 +862,7 @@
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
               <collectionProp name="Arguments.arguments"/>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">${__P(srvhost,localhost.com/app_dev.php)}</stringProp>
+            <stringProp name="HTTPSampler.domain">${__P(srvhost,localhost.com/app_perf.php)}</stringProp>
             <stringProp name="HTTPSampler.port"></stringProp>
             <stringProp name="HTTPSampler.connect_timeout"></stringProp>
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
@@ -898,7 +898,7 @@
                 </elementProp>
                 <elementProp name="Referer" elementType="Header">
                   <stringProp name="Header.name">Referer</stringProp>
-                  <stringProp name="Header.value">${__P(srvhost,localhost.com/app_dev.php)}/en/flexible-entity/customer/edit/1</stringProp>
+                  <stringProp name="Header.value">${__P(srvhost,localhost.com/app_perf.php)}/en/flexible-entity/customer/edit/1</stringProp>
                 </elementProp>
                 <elementProp name="Accept-Encoding" elementType="Header">
                   <stringProp name="Header.name">Accept-Encoding</stringProp>
@@ -931,7 +931,7 @@
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
               <collectionProp name="Arguments.arguments"/>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">${__P(srvhost,localhost.com/app_dev.php)}</stringProp>
+            <stringProp name="HTTPSampler.domain">${__P(srvhost,localhost.com/app_perf.php)}</stringProp>
             <stringProp name="HTTPSampler.port"></stringProp>
             <stringProp name="HTTPSampler.connect_timeout"></stringProp>
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
@@ -943,7 +943,6 @@
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
             <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
             <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-            <stringProp name="HTTPSampler.implementation">Java</stringProp>
             <boolProp name="HTTPSampler.monitor">false</boolProp>
             <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
           </HTTPSamplerProxy>
@@ -968,7 +967,7 @@
                 </elementProp>
                 <elementProp name="Referer" elementType="Header">
                   <stringProp name="Header.name">Referer</stringProp>
-                  <stringProp name="Header.value">${__P(srvhost,localhost.com/app_dev.php)}/en/flexible-entity/customer/index</stringProp>
+                  <stringProp name="Header.value">${__P(srvhost,localhost.com/app_perf.php)}/en/flexible-entity/customer/index</stringProp>
                 </elementProp>
                 <elementProp name="Accept-Encoding" elementType="Header">
                   <stringProp name="Header.name">Accept-Encoding</stringProp>
@@ -982,7 +981,7 @@
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
               <collectionProp name="Arguments.arguments"/>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">${__P(srvhost,localhost.com/app_dev.php)}</stringProp>
+            <stringProp name="HTTPSampler.domain">${__P(srvhost,localhost.com/app_perf.php)}</stringProp>
             <stringProp name="HTTPSampler.port"></stringProp>
             <stringProp name="HTTPSampler.connect_timeout"></stringProp>
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
@@ -990,11 +989,10 @@
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">/en/flexible-entity/product/create/en_US/ecommerce</stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
-            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
             <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
             <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-            <stringProp name="HTTPSampler.implementation">Java</stringProp>
             <boolProp name="HTTPSampler.monitor">false</boolProp>
             <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
           </HTTPSamplerProxy>
@@ -1015,7 +1013,7 @@
                 </elementProp>
                 <elementProp name="Referer" elementType="Header">
                   <stringProp name="Header.name">Referer</stringProp>
-                  <stringProp name="Header.value">${__P(srvhost,localhost.com/app_dev.php)}/en/flexible-entity/product/index</stringProp>
+                  <stringProp name="Header.value">${__P(srvhost,localhost.com/app_perf.php)}/en/flexible-entity/product/index</stringProp>
                 </elementProp>
                 <elementProp name="Accept-Encoding" elementType="Header">
                   <stringProp name="Header.name">Accept-Encoding</stringProp>
@@ -1058,7 +1056,7 @@
                 </elementProp>
               </collectionProp>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">${__P(srvhost,localhost.com/app_dev.php)}</stringProp>
+            <stringProp name="HTTPSampler.domain">${__P(srvhost,localhost.com/app_perf.php)}</stringProp>
             <stringProp name="HTTPSampler.port"></stringProp>
             <stringProp name="HTTPSampler.connect_timeout"></stringProp>
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
@@ -1066,11 +1064,10 @@
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">/en/flexible-entity/product/create</stringProp>
             <stringProp name="HTTPSampler.method">POST</stringProp>
-            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
             <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
             <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-            <stringProp name="HTTPSampler.implementation">Java</stringProp>
             <boolProp name="HTTPSampler.monitor">false</boolProp>
             <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
           </HTTPSamplerProxy>
@@ -1095,7 +1092,7 @@
                 </elementProp>
                 <elementProp name="Referer" elementType="Header">
                   <stringProp name="Header.name">Referer</stringProp>
-                  <stringProp name="Header.value">${__P(srvhost,localhost.com/app_dev.php)}/en/flexible-entity/product/create/en_US/ecommerce</stringProp>
+                  <stringProp name="Header.value">${__P(srvhost,localhost.com/app_perf.php)}/en/flexible-entity/product/create/en_US/ecommerce</stringProp>
                 </elementProp>
                 <elementProp name="Accept-Encoding" elementType="Header">
                   <stringProp name="Header.name">Accept-Encoding</stringProp>
@@ -1111,7 +1108,7 @@
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
               <collectionProp name="Arguments.arguments"/>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">${__P(srvhost,localhost.com/app_dev.php)}</stringProp>
+            <stringProp name="HTTPSampler.domain">${__P(srvhost,localhost.com/app_perf.php)}</stringProp>
             <stringProp name="HTTPSampler.port"></stringProp>
             <stringProp name="HTTPSampler.connect_timeout"></stringProp>
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
@@ -1123,7 +1120,6 @@
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
             <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
             <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-            <stringProp name="HTTPSampler.implementation">Java</stringProp>
             <boolProp name="HTTPSampler.monitor">false</boolProp>
             <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
           </HTTPSamplerProxy>
@@ -1144,7 +1140,7 @@
                 </elementProp>
                 <elementProp name="Referer" elementType="Header">
                   <stringProp name="Header.name">Referer</stringProp>
-                  <stringProp name="Header.value">${__P(srvhost,localhost.com/app_dev.php)}/en/flexible-entity/product/create/en_US/ecommerce</stringProp>
+                  <stringProp name="Header.value">${__P(srvhost,localhost.com/app_perf.php)}/en/flexible-entity/product/create/en_US/ecommerce</stringProp>
                 </elementProp>
                 <elementProp name="Accept-Encoding" elementType="Header">
                   <stringProp name="Header.name">Accept-Encoding</stringProp>
@@ -1177,7 +1173,7 @@
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
               <collectionProp name="Arguments.arguments"/>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">${__P(srvhost,localhost.com/app_dev.php)}</stringProp>
+            <stringProp name="HTTPSampler.domain">${__P(srvhost,localhost.com/app_perf.php)}</stringProp>
             <stringProp name="HTTPSampler.port"></stringProp>
             <stringProp name="HTTPSampler.connect_timeout"></stringProp>
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
@@ -1209,7 +1205,7 @@
                 </elementProp>
                 <elementProp name="Referer" elementType="Header">
                   <stringProp name="Header.name">Referer</stringProp>
-                  <stringProp name="Header.value">${__P(srvhost,localhost.com/app_dev.php)}/en/flexible-entity/product/index</stringProp>
+                  <stringProp name="Header.value">${__P(srvhost,localhost.com/app_perf.php)}/en/flexible-entity/product/index</stringProp>
                 </elementProp>
                 <elementProp name="Accept-Encoding" elementType="Header">
                   <stringProp name="Header.name">Accept-Encoding</stringProp>
@@ -1223,7 +1219,7 @@
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
               <collectionProp name="Arguments.arguments"/>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">${__P(srvhost,localhost.com/app_dev.php)}</stringProp>
+            <stringProp name="HTTPSampler.domain">${__P(srvhost,localhost.com/app_perf.php)}</stringProp>
             <stringProp name="HTTPSampler.port"></stringProp>
             <stringProp name="HTTPSampler.connect_timeout"></stringProp>
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
@@ -1231,7 +1227,7 @@
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">/en/flexible-entity/product/edit/${customId}/en_US/ecommerce</stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
-            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
             <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
             <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
@@ -1255,7 +1251,7 @@
                 </elementProp>
                 <elementProp name="Referer" elementType="Header">
                   <stringProp name="Header.name">Referer</stringProp>
-                  <stringProp name="Header.value">${__P(srvhost,localhost.com/app_dev.php)}/en/flexible-entity/product/index</stringProp>
+                  <stringProp name="Header.value">${__P(srvhost,localhost.com/app_perf.php)}/en/flexible-entity/product/index</stringProp>
                 </elementProp>
                 <elementProp name="Accept-Encoding" elementType="Header">
                   <stringProp name="Header.name">Accept-Encoding</stringProp>
@@ -1298,7 +1294,7 @@
                 </elementProp>
               </collectionProp>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">${__P(srvhost,localhost.com/app_dev.php)}</stringProp>
+            <stringProp name="HTTPSampler.domain">${__P(srvhost,localhost.com/app_perf.php)}</stringProp>
             <stringProp name="HTTPSampler.port"></stringProp>
             <stringProp name="HTTPSampler.connect_timeout"></stringProp>
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
@@ -1306,7 +1302,7 @@
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
             <stringProp name="HTTPSampler.path">/en/flexible-entity/product/edit/${customId}</stringProp>
             <stringProp name="HTTPSampler.method">POST</stringProp>
-            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
             <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
             <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
@@ -1334,7 +1330,7 @@
                 </elementProp>
                 <elementProp name="Referer" elementType="Header">
                   <stringProp name="Header.name">Referer</stringProp>
-                  <stringProp name="Header.value">${__P(srvhost,localhost.com/app_dev.php)}/en/flexible-entity/product/edit/20/en_US/ecommerce</stringProp>
+                  <stringProp name="Header.value">${__P(srvhost,localhost.com/app_perf.php)}/en/flexible-entity/product/edit/20/en_US/ecommerce</stringProp>
                 </elementProp>
                 <elementProp name="Accept-Encoding" elementType="Header">
                   <stringProp name="Header.name">Accept-Encoding</stringProp>
@@ -1348,7 +1344,7 @@
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
               <collectionProp name="Arguments.arguments"/>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">${__P(srvhost,localhost.com/app_dev.php)}</stringProp>
+            <stringProp name="HTTPSampler.domain">${__P(srvhost,localhost.com/app_perf.php)}</stringProp>
             <stringProp name="HTTPSampler.port"></stringProp>
             <stringProp name="HTTPSampler.connect_timeout"></stringProp>
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
@@ -1380,7 +1376,7 @@
                 </elementProp>
                 <elementProp name="Referer" elementType="Header">
                   <stringProp name="Header.name">Referer</stringProp>
-                  <stringProp name="Header.value">${__P(srvhost,localhost.com/app_dev.php)}/en/flexible-entity/product/edit/20/en_US/ecommerce</stringProp>
+                  <stringProp name="Header.value">${__P(srvhost,localhost.com/app_perf.php)}/en/flexible-entity/product/edit/20/en_US/ecommerce</stringProp>
                 </elementProp>
                 <elementProp name="Accept-Encoding" elementType="Header">
                   <stringProp name="Header.name">Accept-Encoding</stringProp>
