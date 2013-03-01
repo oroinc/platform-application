@@ -13,4 +13,41 @@
 
 {% block application_menu %}
     {{ oro_menu_render('application_menu') }}
+    {{ block('pin_button') }}
 {% endblock application_menu %}
+
+{% block head_script %}
+    {{ parent() }}
+    {% include 'OroPinbarBundle:Js:pinbar.js.twig' %}
+    <script type="text/javascript" src="{{ asset('bundles/oroui/lib/underscore.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/oroui/lib/backbone.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/oropinbar/js/models/pinbar.item.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/oropinbar/js/collections/pinbar.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/oropinbar/js/views/pinbar.item.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/oropinbar/js/views/pinbar.js') }}"></script>
+
+    <style type="text/css">
+        .pin-bar .list-bar, .pin-bar .list-bar li a {
+            color: #B2BAC2;
+        }
+    </style>
+{% endblock %}
+
+{% block pin_button %}
+<div class="navigation clearfix">
+    <div class="container-fluid">
+        <div class="top-action-box">
+            <div class="btn-group icons-holder">
+                <button class="btn pin-btn" data-title="{{ block('title') }}"><i class="icon-magnet hide-text">pin page</i></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    {% set pinbar = {'maxPinbarItems': 4}%}
+    $(function () {
+        new pinbar.MainView({maxPinbarItems: {{ pinbar.maxPinbarItems|raw|default(10) }} });
+    });
+</script>
+{% endblock %}
