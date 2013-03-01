@@ -22,19 +22,20 @@
 {% block content %}
 <h1>Pinbar example</h1>
 
-<a href="#" id="testAdd" class="btn btn-primary">Add new item</a>
+<div class="navigation clearfix">
+    <div class="container-fluid">
+        <div class="top-action-box">
+            <div class="btn-group icons-holder">
+                <button class="btn pin-btn" data-title="{{ block('title') }}"><i class="icon-magnet hide-text">pin page</i></button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script type="text/javascript">
 $(function () {
     new pinbar.MainView({maxPinbarItems: {{ pinbar.maxPinbarItems|raw|default(10) }} });
     pinbar.Items.reset({{ pinbar.items|json_encode|raw }});
-
-    // TODO: this is prototype button and will be removed
-    $('#testAdd').click(function() {
-        pinbar.Items.unshift(
-            new pinbar.Item({title: 'Added item #' + pinbar.Items.length})
-        );
-    });
 });
 </script>
 {% endblock %}
