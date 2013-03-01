@@ -38,6 +38,7 @@ class AppKernel extends Kernel
             new Oro\Bundle\UserBundle\OroUserBundle(),
             new Oro\Bundle\MeasureBundle\OroMeasureBundle(),
             new Oro\Bundle\MenuBundle\OroMenuBundle(),
+            new Oro\Bundle\PinbarBundle\OroPinbarBundle(),
 
             // BAP Demo bundles
             new Acme\Bundle\DemoBundle\AcmeDemoBundle(),

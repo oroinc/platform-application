@@ -56,6 +56,6 @@
     "extra": {
         "symfony-app-dir": "app",
         "symfony-web-dir": "web",
-        "symfony-assets-install": "relative"
+        "symfony-assets-install": "symlink"
     }
 }
