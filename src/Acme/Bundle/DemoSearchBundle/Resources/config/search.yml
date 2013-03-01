@@ -25,3 +25,10 @@ Acme\Bundle\DemoSearchBundle\Entity\Item:
             target_type: text
             target_fields: [blobValue, all_data]
 
+Acme\Bundle\DemoFlexibleEntityBundle\Entity\Product:
+    fields:
+        -
+            name: sku
+            target_type: text
+            target_fields: [sku, all_data]
+    flexible_manager: product_manager
