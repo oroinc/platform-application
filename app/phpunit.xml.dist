@@ -15,24 +15,24 @@
 
     <testsuites>
         <testsuite name="Project Test Suite">
-            <directory>../src/*/*Bundle/Tests</directory>
-            <directory>../src/*/Bundle/*Bundle/Tests</directory>
+            <directory suffix="Test.php">../src/*/*Bundle/Tests</directory>
+            <directory suffix="Test.php">../src/*/Bundle/*Bundle/Tests</directory>
         </testsuite>
         <testsuite name="Project Unit Tests">
-            <directory>../src/Oro/*Bundle/Tests</directory>
-            <directory>../src/Oro/Bundle/*Bundle/Tests</directory>
+            <directory suffix="Test.php">../src/Oro/*Bundle/Tests</directory>
+            <directory suffix="Test.php">../src/Oro/Bundle/*Bundle/Tests</directory>
         </testsuite>
         <testsuite name="Project Unit Tests Final">
-            <directory>../src/*/*Bundle/Tests/Unit</directory>
-            <directory>../src/*/Bundle/*Bundle/Tests/Unit</directory>
+            <directory suffix="Test.php">../src/*/*Bundle/Tests/Unit</directory>
+            <directory suffix="Test.php">../src/*/Bundle/*Bundle/Tests/Unit</directory>
         </testsuite>
         <testsuite name="Project Functional Tests">
-            <directory>../src/Acme/*Bundle/Tests</directory>
-            <directory>../src/Acme/Bundle/*Bundle/Tests</directory>
+            <directory suffix="Test.php">../src/Acme/*Bundle/Tests</directory>
+            <directory suffix="Test.php">../src/Acme/Bundle/*Bundle/Tests</directory>
         </testsuite>
         <testsuite name="Project Functional Tests Final">
-            <directory>../src/*/*Bundle/Tests/Functional</directory>
-            <directory>../src/*/Bundle/*Bundle/Tests/Functional</directory>
+            <directory suffix="Test.php">../src/*/*Bundle/Tests/Functional</directory>
+            <directory suffix="Test.php">../src/*/Bundle/*Bundle/Tests/Functional</directory>
         </testsuite>
     </testsuites>
 
