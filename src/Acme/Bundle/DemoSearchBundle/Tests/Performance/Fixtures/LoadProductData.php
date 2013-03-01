@@ -27,6 +27,7 @@ use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\MoneyType;
 class LoadProductData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
 
+    const DEFAULT_COUNTER_VALUE = 90;
     /**
      * @var ContainerInterface
      */
@@ -54,7 +55,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         if (isset($container->counter)) {
             $this->counter = $container->counter;
         } else {
-            $this->counter = 10;
+            $this->counter = self::DEFAULT_COUNTER_VALUE;
         }
     }
 

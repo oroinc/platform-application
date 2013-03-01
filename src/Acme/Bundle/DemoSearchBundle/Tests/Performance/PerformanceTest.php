@@ -50,6 +50,7 @@ class PerformanceTest extends WebTestCase
         $options['--fixtures'] = __DIR__ . DIRECTORY_SEPARATOR . "Fixtures";
         $options['--env'] = "test";
         $options['--no-interaction'] = null;
+        $options['--no-debug'] = null;
         list($msec, $sec) = explode(" ", microtime());
         $start=$sec + $msec;
 
