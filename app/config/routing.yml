@@ -1,3 +1,8 @@
+acme_demo_pinbar:
+    resource: "@AcmeDemoPinbarBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 acme_demo_flexible_entity:
     resource: "@AcmeDemoFlexibleEntityBundle/Controller/"
     type:     annotation
