@@ -39,8 +39,8 @@
         "stof/doctrine-extensions-bundle": "dev-master",
         "jms/aop-bundle": "dev-master",
 
-        "sonata-project/admin-bundle": "dev-master",
-        "sonata-project/doctrine-orm-admin-bundle": "dev-master"
+        "sonata-project/admin-bundle": "2.1.x-dev",
+        "sonata-project/doctrine-orm-admin-bundle": "2.1.x-dev"
     },
     "scripts": {
         "post-install-cmd": [
