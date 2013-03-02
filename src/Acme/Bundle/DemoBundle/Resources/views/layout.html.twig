@@ -14,3 +14,7 @@
 {% block application_menu %}
     {{ oro_menu_render('application_menu') }}
 {% endblock application_menu %}
+
+{% block searchbar %}
+    {% render "OroSearchBundle:Search:searchBar" %}
+{% endblock searchbar %}
