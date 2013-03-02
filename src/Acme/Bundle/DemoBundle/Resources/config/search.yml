@@ -7,6 +7,7 @@ Acme\Bundle\DemoBundle\Entity\Product:
         parameters:
             id: id
     title_fields: [name]
+    search_template: AcmeDemoBundle:Search:demoProductResult.html.twig
     fields:
         -
             name: name
