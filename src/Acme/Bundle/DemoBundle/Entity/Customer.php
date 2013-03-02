@@ -122,8 +122,8 @@ class Customer
         return $this->city;
     }
 
-    public function __toString()
+   public function __toString()
     {
-        return $this->firstName . ' ' . $this->lastName;
+        return 'test DemoBundle';
     }
 }
