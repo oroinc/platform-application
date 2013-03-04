@@ -1,3 +1,14 @@
+acme_demo_flexible_entity:
+    resource: "@AcmeDemoFlexibleEntityBundle/Controller/"
+    type:     annotation
+    prefix:   /{_locale}/flexible-entity/
+    defaults: { _locale: %locale% }
+
+acme_demo_menu:
+    resource: "@AcmeDemoMenuBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 acme_demo_measure:
     resource: "@AcmeDemoMeasureBundle/Controller/"
     type:     annotation
@@ -42,3 +53,6 @@ oro_soap:
 NelmioApiDocBundle:
     resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
     prefix:   /api/doc
+
+oro_dataflow:
+    resource: "@OroDataFlowBundle/Resources/config/routing.yml"

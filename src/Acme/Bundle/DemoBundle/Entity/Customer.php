@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Acme\DemoBundle\Entity\Customer
  *
  * @ORM\Table(name="demo_customer")
- * @ORM\Entity(repositoryClass="Acme\Bundle\DemoBundle\Entity\CustomerRepository")
+ * @ORM\Entity()
  */
 class Customer
 {
@@ -22,18 +22,18 @@ class Customer
     private $id;
 
     /**
-     * @var string $first_name
+     * @var string $firstName
      *
      * @ORM\Column(name="first_name", type="string", length=255)
      */
-    private $first_name;
+    private $firstName;
 
     /**
-     * @var string $last_name
+     * @var string $lastName
      *
      * @ORM\Column(name="last_name", type="string", length=255)
      */
-    private $last_name;
+    private $lastName;
 
     /**
      * @var string $city
@@ -61,7 +61,7 @@ class Customer
      */
     public function setFirstName($firstName)
     {
-        $this->first_name = $firstName;
+        $this->firstName = $firstName;
     
         return $this;
     }
@@ -73,7 +73,7 @@ class Customer
      */
     public function getFirstName()
     {
-        return $this->first_name;
+        return $this->firstName;
     }
 
     /**
@@ -84,7 +84,7 @@ class Customer
      */
     public function setLastName($lastName)
     {
-        $this->last_name = $lastName;
+        $this->lastName = $lastName;
     
         return $this;
     }
@@ -96,7 +96,7 @@ class Customer
      */
     public function getLastName()
     {
-        return $this->last_name;
+        return $this->lastName;
     }
 
     /**
@@ -120,5 +120,10 @@ class Customer
     public function getCity()
     {
         return $this->city;
+    }
+
+   public function __toString()
+    {
+        return 'test DemoBundle';
     }
 }

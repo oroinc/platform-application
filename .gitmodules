@@ -19,3 +19,9 @@
 [submodule "src/Oro/Bundle/DataFlowBundle"]
 	path = src/Oro/Bundle/DataFlowBundle
 	url = git@github.com:laboro/DataFlowBundle.git
+[submodule "src/Oro/Bundle/ClassificationTreeBundle"]
+	path = src/Oro/Bundle/ClassificationTreeBundle
+	url = git@github.com:laboro/ClassificationTreeBundle.git
+[submodule "src/Oro/Bundle/MenuBundle"]
+	path = src/Oro/Bundle/MenuBundle
+	url = git@github.com:laboro/MenuBundle.git

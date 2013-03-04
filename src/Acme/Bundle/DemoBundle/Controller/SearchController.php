@@ -5,11 +5,12 @@ namespace Acme\Bundle\DemoBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Doctrine\Common\Annotations\AnnotationReader;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 use Acme\Bundle\DemoBundle\Entity\Product;
 use Acme\Bundle\DemoBundle\Form\ProductType;
+
+use Acme\Bundle\DemoBundle\Entity\Customer;
+use Acme\Bundle\DemoBundle\Form\CustomerType;
 
 /**
  * @Route("/search")
@@ -24,10 +25,13 @@ class SearchController extends Controller
      */
     public function indexAction()
     {
+        $entClassName = $this->getProductManager()->getFlexibleName();
+        $valueClassName = $this->getProductManager()->getFlexibleValueName();
+
         $request = $this->getRequest();
-        $em      = $this->getDoctrine()->getManager();
-        $product = new Product();
-        $form    = $this->createForm(new ProductType(), $product);
+        $em      = $this->getProductManager()->getStorageManager();
+        $product = $this->getProductManager()->createFlexible();
+        $form    = $this->createForm(new ProductType($entClassName, $valueClassName), $product);
 
         if ($request->getMethod() == 'POST') {
             $form->bind($request);
@@ -54,10 +58,13 @@ class SearchController extends Controller
      */
     public function editAction($id)
     {
+        $entClassName = $this->getProductManager()->getFlexibleName();
+        $valueClassName = $this->getProductManager()->getFlexibleValueName();
+
         $request = $this->getRequest();
-        $em      = $this->getDoctrine()->getManager();
+        $em      = $this->getProductManager()->getStorageManager();
         $product = $this->getDoctrine()->getRepository('AcmeDemoBundle:Product')->find($id);
-        $form    = $this->createForm(new ProductType(), $product);
+        $form    = $this->createForm(new ProductType($entClassName, $valueClassName), $product);
 
         if ($request->getMethod() == 'POST') {
             $form->bind($request);
@@ -85,13 +92,51 @@ class SearchController extends Controller
      */
     public function deleteAction($id)
     {
-        $em      = $this->getDoctrine()->getManager();
+        $em      = $this->getProductManager()->getStorageManager();
         $product = $this->getDoctrine()->getRepository('AcmeDemoBundle:Product')->find($id);
 
         $em->remove($product);
         $em->flush();
 
         return $this->redirect($this->generateUrl('acme_demo_search'));
+    }
+
+    /**
+     * List of customers and add new customer
+     *
+     * @Route("/customers", name="acme_demo_customers")
+     * @Template()
+     */
+    public function customersAction()
+    {
+        $request = $this->getRequest();
+        $em      = $this->getDoctrine()->getManager();
+        $customer = new Customer();
+        $form    = $this->createForm(new CustomerType(), $customer);
+
+        if ($request->getMethod() == 'POST') {
+            $form->bind($request);
+            if ($form->isValid()) {
+                $em->persist($customer);
+                $em->flush();
+            }
+        }
+
+        return array(
+            'customers' => $em->getRepository('AcmeDemoBundle:Customer')->findAll(),
+            'form'     => $form->createView(),
+        );
+    }
+
+    /**
+     * @Route("/product/{id}", name="acme_demo_search_product")
+     * @Template()
+     */
+    public function productPageAction($id)
+    {
+        return array(
+            'product' => $this->getDoctrine()->getRepository('AcmeDemoBundle:Product')->find($id)
+        );
     }
 
     /**
@@ -113,11 +158,21 @@ class SearchController extends Controller
         return array();
     }
 
+    private function getProductManager()
+    {
+        return $this->get('demo_product_manager');
+    }
+
     /**
-     * Get search service manager (wheel implement in controllers parent class)
-     *
-     * @return \Oro\Bundle\SearchBundle\Engine\Indexer
+     * @Route("/advanced-search", name="acme_demo_advanced_search")
+     * @Template()
+     * @return array
      */
+    public function advancedSearchAction()
+    {
+        return array();
+    }
+
     private function getSearchManager()
     {
         return $this->get('oro_search.index');

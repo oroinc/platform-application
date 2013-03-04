@@ -1,6 +1,7 @@
-{% extends bap.layout %}
+{% extends bap.layout is defined ? bap.layout : 'OroUIBundle:Default:index.html.twig' %}
 {% block title %}Search{% endblock %}
 {% block content %}
+    <div style="background: #FFF">
     <script>
         $(function () {
             $("#searchInput").keyup(function () {
@@ -31,7 +32,7 @@
                     searchDiv.html('');
                 } else {
                     $.ajax({
-                        url:"{{ path('get_search') }}",
+                        url:"{{ path('oro_api_get_search') }}",
                         dataType:"json",
                         data:{
                             search:query,
@@ -88,5 +89,6 @@
                 </li>
             </ul>
         </div>
+    </div>
     </div>
 {% endblock content %}

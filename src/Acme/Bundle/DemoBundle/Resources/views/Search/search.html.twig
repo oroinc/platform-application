@@ -1,8 +1,9 @@
-{% extends bap.layout %}
+{% extends bap.layout is defined ? bap.layout : 'OroUIBundle:Default:index.html.twig' %}
 
 {% block content_header '' %}
 
 {% block content %}
+<div style="background: #FFF">
     <h1>Search Results for query: {{ searchString }}</h1>
     {% if searchResults|length %}
         <table border="1">
@@ -34,4 +35,5 @@
     {% else %}
         <h2>Where is no results. Sorry.</h2>
     {% endif %}
+</div>
 {% endblock %}

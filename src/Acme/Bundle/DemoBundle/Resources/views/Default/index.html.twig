@@ -1,8 +1,8 @@
-{% extends bap.layout %}
+{% extends bap.layout is defined ? bap.layout : 'OroUIBundle:Default:index.html.twig' %}
 
 {% block content %}
     <div class="span3">
-        <h2>Flexible Entity</h2>
+        <h2>Flexible</h2>
         <a class="btn" href="{{ path('acme_demoflexibleentity_customer_index') }}">Run demo</a>
     </div>
     <div class="span2">
@@ -20,5 +20,9 @@
     <div class="span3">
         <h2>Measure</h2>
         <a class="btn" href="{{ path('acme_demomeasure_measure_index') }}">Run demo</a>
+    </div>
+    <div class="span3">
+        <h2>DataFlow</h2>
+        <a class="btn" href="{{ path('oro_dataflow_connector_index') }}">Run demo</a>
     </div>
 {% endblock %}
