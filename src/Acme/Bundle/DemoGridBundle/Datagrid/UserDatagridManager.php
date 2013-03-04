@@ -6,6 +6,7 @@ use Oro\Bundle\GridBundle\Datagrid\FlexibleDatagridManager;
 use Oro\Bundle\GridBundle\Field\FieldDescription;
 use Oro\Bundle\GridBundle\Field\FieldDescriptionCollection;
 use Oro\Bundle\GridBundle\Field\FieldDescriptionInterface;
+use Oro\Bundle\GridBundle\Filter\FilterInterface;
 
 class UserDatagridManager extends FlexibleDatagridManager
 {
@@ -30,7 +31,7 @@ class UserDatagridManager extends FlexibleDatagridManager
                     'label'       => 'ID',
                     'field_type'  => FieldDescriptionInterface::TYPE_INTEGER,
                     'field_name'  => 'id',
-                    'filter_type' => 'oro_grid_orm_number',
+                    'filter_type' => FilterInterface::TYPE_NUMBER,
                     'required'    => false,
                     'sortable'    => true,
                 )
@@ -45,7 +46,7 @@ class UserDatagridManager extends FlexibleDatagridManager
                     'label'       => 'Username',
                     'field_type'  => FieldDescriptionInterface::TYPE_TEXT,
                     'field_name'  => 'username',
-                    'filter_type' => 'oro_grid_orm_string',
+                    'filter_type' => FilterInterface::TYPE_STRING,
                     'required'    => false,
                     'sortable'    => true,
                 )
@@ -60,7 +61,7 @@ class UserDatagridManager extends FlexibleDatagridManager
                     'label'       => 'Email',
                     'field_type'  => FieldDescriptionInterface::TYPE_TEXT,
                     'field_name'  => 'email',
-                    'filter_type' => 'oro_grid_orm_string',
+                    'filter_type' => FilterInterface::TYPE_STRING,
                     'required'    => false,
                     'sortable'    => true,
                 )
@@ -71,8 +72,8 @@ class UserDatagridManager extends FlexibleDatagridManager
                 $attributeType = $this->convertFlexibleTypeToFieldType($attribute->getBackendType());
 
                 $filterType = $attributeType == FieldDescriptionInterface::TYPE_OPTIONS
-                    ? 'oro_grid_orm_flexible_options'
-                    : 'oro_grid_orm_flexible_string';
+                    ? FilterInterface::TYPE_FLEXIBLE_OPTIONS
+                    : FilterInterface::TYPE_FLEXIBLE_STRING;
                 $sortable = $attributeType != FieldDescriptionInterface::TYPE_OPTIONS;
 
                 $field = new FieldDescription();
