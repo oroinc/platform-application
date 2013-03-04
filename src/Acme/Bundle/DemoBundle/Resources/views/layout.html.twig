@@ -18,9 +18,9 @@
 
 {% block head_script %}
     {{ parent() }}
-    {% include 'OroPinbarBundle:Js:pinbar.js.twig' %}
     <script type="text/javascript" src="{{ asset('bundles/oroui/lib/underscore.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bundles/oroui/lib/backbone.js') }}"></script>
+    {% include 'OroPinbarBundle:Js:pinbar.js.twig' %}
     <script type="text/javascript" src="{{ asset('bundles/oropinbar/js/models/pinbar.item.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bundles/oropinbar/js/collections/pinbar.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bundles/oropinbar/js/views/pinbar.item.js') }}"></script>
@@ -44,10 +44,6 @@
     </div>
 </div>
 
-<script type="text/javascript">
-    {% set pinbar = {'maxPinbarItems': 4}%}
-    $(function () {
-        new pinbar.MainView({maxPinbarItems: {{ pinbar.maxPinbarItems|raw|default(10) }} });
-    });
-</script>
+{{ oro_menu_render('pinbar') }}
+
 {% endblock %}
