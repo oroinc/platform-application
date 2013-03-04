@@ -52,12 +52,12 @@ class PerformanceTest extends WebTestCase
         $options['--no-interaction'] = null;
         $options['--no-debug'] = null;
         list($msec, $sec) = explode(" ", microtime());
-        $start=$sec + $msec;
+        $start = $sec + $msec;
 
         $application->run(new \Symfony\Component\Console\Input\ArrayInput($options));
 
         list($msec, $sec) = explode(" ", microtime());
-        $stop=$sec + $msec;
+        $stop = $sec + $msec;
         $counter = $counter * 3;
         echo "\nUploading execution time of {$counter} entities is " . round($stop - $start, 4) . " sec";
     }
