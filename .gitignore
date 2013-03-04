@@ -7,5 +7,7 @@ composer.lock
 /vendor
 /cov
 /web/bundles
+/web/css
+/web/js
 /app/config/parameters.yml
 *~
