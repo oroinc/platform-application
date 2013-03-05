@@ -38,7 +38,8 @@ class FlexibleController extends Controller
     public function configAction()
     {
         $params = array(
-            'config' => $this->container->getParameter('oro_flexibleentity.flexible_config'),
+            'registry' => $this->container->get('oro_flexibleentity.registry')->getEntityToManager(),
+            'config'   => $this->container->getParameter('oro_flexibleentity.flexible_config'),
         );
 
         return $params;
