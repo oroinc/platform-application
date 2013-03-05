@@ -20,9 +20,12 @@
     {{ parent() }}
     <script type="text/javascript" src="{{ asset('bundles/oroui/lib/underscore.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bundles/oroui/lib/backbone.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/oropinbar/js/backbone.localStorage.js') }}"></script>
     {% include 'OroPinbarBundle:Js:pinbar.js.twig' %}
     <script type="text/javascript" src="{{ asset('bundles/oropinbar/js/models/pinbar.item.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/oropinbar/js/models/pinbar.history.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bundles/oropinbar/js/collections/pinbar.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/oropinbar/js/collections/pinbar.history.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bundles/oropinbar/js/views/pinbar.item.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bundles/oropinbar/js/views/pinbar.js') }}"></script>
 
@@ -34,15 +37,20 @@
 {% endblock %}
 
 {% block pin_button %}
+
+{% block top_action_box %}
 <div class="navigation clearfix">
     <div class="container-fluid">
         <div class="top-action-box">
-            <div class="btn-group icons-holder">
-                <button class="btn pin-btn" data-title="{{ block('title') }}"><i class="icon-magnet hide-text">pin page</i></button>
+            <div class="btn-group icons-holder icons-small">
+                <button class="btn minimize-button" data-title="{{ block('title') }}"><i class="icon-minimize hide-text">minimaze tab</i></button>
+                <button class="btn maximize-button"><i class="icon-fullscreen hide-text">full screen</i></button>
+                <button class="btn close-button"><i class="icon-remove hide-text">Close</i></button>
             </div>
         </div>
     </div>
 </div>
+{% endblock top_action_box %}
 
 {{ oro_menu_render('pinbar') }}
 
