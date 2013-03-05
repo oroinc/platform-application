@@ -34,6 +34,8 @@ class UserDatagridManager extends FlexibleDatagridManager
                     'filter_type' => FilterInterface::TYPE_NUMBER,
                     'required'    => false,
                     'sortable'    => true,
+                    'filterable'  => true,
+                    'show_filter' => true,
                 )
             );
             $this->fieldsCollection->add($fieldId);
@@ -49,6 +51,8 @@ class UserDatagridManager extends FlexibleDatagridManager
                     'filter_type' => FilterInterface::TYPE_STRING,
                     'required'    => false,
                     'sortable'    => true,
+                    'filterable'  => true,
+                    'show_filter' => true,
                 )
             );
             $this->fieldsCollection->add($fieldUsername);
@@ -64,6 +68,8 @@ class UserDatagridManager extends FlexibleDatagridManager
                     'filter_type' => FilterInterface::TYPE_STRING,
                     'required'    => false,
                     'sortable'    => true,
+                    'filterable'  => true,
+                    'show_filter' => true,
                 )
             );
             $this->fieldsCollection->add($fieldEmail);
@@ -87,6 +93,7 @@ class UserDatagridManager extends FlexibleDatagridManager
                         'filter_type'   => $filterType,
                         'required'      => false,
                         'sortable'      => $sortable,
+                        'filterable'    => true,
                         'flexible_name' => $this->flexibleManager->getFlexibleName()
                     )
                 );
@@ -126,6 +133,14 @@ class UserDatagridManager extends FlexibleDatagridManager
      */
     protected function getFilters()
     {
-        return $this->getFieldDescriptionCollection()->getElements();
+        $fields = array();
+        /** @var $fieldDescription FieldDescription */
+        foreach ($this->getFieldDescriptionCollection() as $fieldDescription) {
+            if ($fieldDescription->getOption('filterable')) {
+                $fields[] = $fieldDescription;
+            }
+        }
+
+        return $fields;
     }
 }
