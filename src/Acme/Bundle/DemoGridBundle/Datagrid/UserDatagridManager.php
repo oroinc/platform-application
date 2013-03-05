@@ -97,6 +97,13 @@ class UserDatagridManager extends FlexibleDatagridManager
                         'flexible_name' => $this->flexibleManager->getFlexibleName()
                     )
                 );
+
+                if ($attributeType == FieldDescriptionInterface::TYPE_OPTIONS
+                    && $attribute->getCode() == 'hobby'
+                ) {
+                    $field->setOption('multiple', true);
+                }
+
                 $this->fieldsCollection->add($field);
             }
         }
