@@ -12,7 +12,7 @@ class PerformanceTest extends WebTestCase
 
     public function setUp()
     {
-        $this->client = static::createClient();
+        $this->client = static::createClient(array("debug"=>false));
         $container = $this->client->getContainer();
         $doctrine = $container->get('doctrine');
         $em = $doctrine->getEntityManager();
@@ -26,6 +26,7 @@ class PerformanceTest extends WebTestCase
 
         $schemaTool->dropDatabase();
         $schemaTool->createSchema($classes);
+
 
         list($msec, $sec) = explode(" ", microtime());
         $stop=$sec + $msec;
@@ -46,6 +47,10 @@ class PerformanceTest extends WebTestCase
 
         $application = new \Symfony\Bundle\FrameworkBundle\Console\Application($kernel);
         $application->setAutoExit(false);
+        $options = array('command' => 'oro:search:create-index');
+        $options['--env'] = "test";
+        $application->run(new \Symfony\Component\Console\Input\ArrayInput($options));
+
         $options = array('command' => 'doctrine:fixtures:load');
         $options['--fixtures'] = __DIR__ . DIRECTORY_SEPARATOR . "Fixtures";
         $options['--env'] = "test";
@@ -65,10 +70,10 @@ class PerformanceTest extends WebTestCase
     public function dataSearchLoad()
     {
         return array(
-            '9' => array('999' => 3),
-            '30' => array('2997' => 10),
-            '60' => array('5997' => 20),
-            '90' => array('9999' => 30)
+            '999' => array('999' => 33),
+            //'3000' => array('2997' => 1000),
+            //'6000' => array('5997' => 2000),
+            //'9000' => array('9999' => 3000)
         );
     }
 
