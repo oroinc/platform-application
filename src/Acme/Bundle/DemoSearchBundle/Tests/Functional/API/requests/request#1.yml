@@ -6,7 +6,14 @@ request:
 response:
     records_count: 1
     count: 1
-    data:
-        -
-            entity_name: Acme\Bundle\DemoSearchBundle\Entity\Item
-            record_string: email-1@mail.com
+    rest:
+        data:
+            -
+                entity_name: Acme\Bundle\DemoSearchBundle\Entity\Item
+                record_string: email-1@mail.com
+    soap:
+        item:
+            -
+                entityName: Acme\Bundle\DemoSearchBundle\Entity\Item
+                recordTitle: email-1@mail.com
+                recordUrl: http://localhost/search/
