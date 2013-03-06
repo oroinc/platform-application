@@ -21,7 +21,7 @@ class SoapApiTest extends WebTestCase
             //get wsdl
             $client->request('GET', 'api/soap');
             $wsdl = $client->getResponse()->getContent();
-            self::$clientSoap = new CustomSoapClient($wsdl, array('location' =>'soap'), $client);
+            self::$clientSoap = new CustomSoapClient($wsdl, array('location' =>'http://localhost/api/soap'), $client);
         }
     }
 
