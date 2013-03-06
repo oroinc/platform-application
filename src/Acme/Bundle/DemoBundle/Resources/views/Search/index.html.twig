@@ -1,12 +1,17 @@
-{% extends bap.layout %}
+{% extends bap.layout is defined ? bap.layout : 'OroUIBundle:Default:index.html.twig' %}
 
 {% block content_header '' %}
 
 {% block content %}
     <div style="background: #FFF">
         <h1>Product List</h1>
-        <p><a href="{{ path('acme_demo_create_attribute')}}">Add new attribute</a> <a href="{{ path('acme_demo_query')}}">Demo search</a></p>
-        <table border="1">
+        <p>
+            <a href="{{ path('acme_demo_customers')}}">Customers</a>
+            <a href="{{ path('acme_demo_create_attribute')}}">Add new attribute</a>
+            <a href="{{ path('acme_demo_query')}}">Demo search</a>
+            <a href="{{ path('acme_demo_advanced_search')}}">Advanced search</a>
+        </p>
+        <table class="table">
             <tr>
                 <td>
                     Name

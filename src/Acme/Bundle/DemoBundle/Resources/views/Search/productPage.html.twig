@@ -1,0 +1,9 @@
+{% extends bap.layout is defined ? bap.layout : 'OroUIBundle:Default:index.html.twig' %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block content %}
+    <h1>Page for demo product: {{ product.name }}</h1>
+    <h2>Product description:</h2>
+    {{ product.description|raw }}
+{% endblock %}

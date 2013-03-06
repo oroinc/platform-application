@@ -1,0 +1,82 @@
+{% extends bap.layout %}
+{% block title %}Search{% endblock %}
+{% block content %}
+    <div style="background: #FFF">
+        <script>
+            $(function () {
+                $("#sendButton").click(function () {
+                    ajaxsearch();
+                });
+                function ajaxsearch() {
+                    var searchDiv = $(".search_stats");
+                    query = $("#query").val();
+                    if (query == '') {
+                        searchDiv.html('');
+                    } else {
+                        $.ajax({
+                            url:"{{ path('oro_api_get_search_advanced') }}",
+                            dataType:"json",
+                            data:{
+                                query:query
+                            },
+                            success:function (data) {
+                                searchDiv.html('');
+                                $("#recordsCount").val(data['records_count']);
+                                if (data['count'] > 0) {
+                                    for (var i = 0; i < data['count']; i++) {
+                                        searchDiv.append('<div class="alert alert-success">'
+                                                + data['data'][i]['entity_name']
+                                                + ', id:' + data['data'][i]['record_id']
+                                                + '<h3>' + data['data'][i]['record_string'] + '</h3>'
+                                                + '</div>')
+                                    }
+                                } else {
+                                    searchDiv.html("<h2>Sorry, I can't find any result for your request '<i>" + query + "</i>'</h2>");
+                                }
+                            }
+                        });
+                    }
+                }
+            });
+        </script>
+
+        <div class="container-fluid">
+            <h1>Advanced search</h1>
+            <table class="table">
+                <tr>
+                    <td>
+                        <h3>Query:</h3>
+                        <textarea id="query" name="query"></textarea>
+                        <p><input type="button" class="btn" id="sendButton" value="Send Request"/></p>
+                    </td>
+                    <td>
+                        <h3>Keywords:</h3>
+                        <p><strong>from</strong>: single or list<br/>
+                           <strong>where</strong><br/>
+                           <strong>and</strong><br/>
+                           <strong>or</strong><br/>
+                           <strong>order_by</strong> work only for one field and if from contain one db alias<br/>
+                           <strong>offset</strong><br/>
+                           <strong>results</strong></p>
+                    </td>
+                    <td>
+                        <h3>Operators:</h3>
+                        <h4>string fields:</h4>
+                        <p>~, !~</p>
+                        <h4>integer fields:</h4>
+                        <p>=, !=, <, >, <=, >=, in, !in</p>
+                        <h4>decimal fields:</h4>
+                        <p>=, !=, <, >, <=, >=, in, !in</p>
+                    </td>
+                </tr>
+            </table>
+
+            <p>number of records in result:</p>
+            <input id="recordsCount"  disabled="" type="text" value="0"/>
+
+            <h2>Search results</h2>
+
+            <div class="search_stats alert alert-info"><h2>Type your search request in search field</h2></div>
+        </div>
+    </div>
+{% endblock content %}

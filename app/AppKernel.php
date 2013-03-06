@@ -34,6 +34,7 @@ class AppKernel extends Kernel
             new Oro\Bundle\UIBundle\OroUIBundle(),
             new Oro\Bundle\SoapBundle\OroSoapBundle(),
             new Oro\Bundle\SearchBundle\OroSearchBundle(),
+            new Oro\Bundle\DataFlowBundle\OroDataFlowBundle(),
             new Oro\Bundle\UserBundle\OroUserBundle(),
             new Oro\Bundle\MeasureBundle\OroMeasureBundle(),
             new Oro\Bundle\MenuBundle\OroMenuBundle(),
@@ -42,7 +43,9 @@ class AppKernel extends Kernel
             new Acme\Bundle\DemoBundle\AcmeDemoBundle(),
             new Acme\Bundle\DemoMeasureBundle\AcmeDemoMeasureBundle(),
             new Acme\Bundle\DemoMenuBundle\AcmeDemoMenuBundle(),
-            new Acme\Bundle\DemoFlexibleEntityBundle\AcmeDemoFlexibleEntityBundle()
+            new Acme\Bundle\DemoFlexibleEntityBundle\AcmeDemoFlexibleEntityBundle(),
+            new Acme\Bundle\DemoDataFlowBundle\AcmeDemoDataFlowBundle(),
+            new Acme\Bundle\DemoSearchBundle\AcmeDemoSearchBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
