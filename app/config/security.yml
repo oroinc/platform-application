@@ -9,14 +9,29 @@ security:
             memory:
                 users:
                     admin:
-                        password:           admin,
+                        password:           admin
                         roles:              ['ROLE_ADMIN']
 
     encoders:
-        Oro\Bundle\UserBundle\Entity\User:  sha512
+        Oro\Bundle\UserBundle\Entity\User: sha512
         Symfony\Component\Security\Core\User\User: plaintext
 
     firewalls:
+        pinbarrest:
+            pattern:                        ^/api/rest/latest/pinbars
+            provider:                       chain_provider
+            form_login:
+                csrf_provider:              form.csrf_provider
+                check_path:                 /user/login-check
+                login_path:                 /user/login
+            logout:
+                path:                       /user/logout
+            remember_me:
+                key:                        %secret%
+                name:                       BAPRM
+                lifetime:                   1209600
+            anonymous:                      false
+
         dev:
             pattern:                        ^/(_(profiler|wdt)|css|images|js)/
             security:                       false
@@ -41,3 +56,4 @@ security:
         - { path: ^/user/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/user/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, role: ROLE_ADMIN }
+        - { path: ^/api/rest/latest/pinbars, role: ROLE_USER }

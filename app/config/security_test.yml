@@ -1,0 +1,7 @@
+security:
+    firewalls:
+        pinbarrest:
+            pattern:                        ^/api/rest/latest/pinbars
+            provider:                       oro_user
+            http_basic:
+                realm: "Secured REST Area"
