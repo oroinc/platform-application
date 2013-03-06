@@ -8,6 +8,7 @@ services:
             - name: oro_grid.datagrid.manager
               datagrid_name: users
               entity_name: Oro\Bundle\UserBundle\Entity\User
+              entity_hint: users
               flexible: true
               route_name: acme_demo_gridbundle_user_list
               form_name: customers_grid
