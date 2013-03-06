@@ -80,7 +80,6 @@ class UserDatagridManager extends FlexibleDatagridManager
                 $filterType = $attributeType == FieldDescriptionInterface::TYPE_OPTIONS
                     ? FilterInterface::TYPE_FLEXIBLE_OPTIONS
                     : FilterInterface::TYPE_FLEXIBLE_STRING;
-                $sortable = $attributeType != FieldDescriptionInterface::TYPE_OPTIONS;
 
                 $field = new FieldDescription();
                 $field->setName($attribute->getCode());
@@ -92,7 +91,7 @@ class UserDatagridManager extends FlexibleDatagridManager
                         'field_name'    => $attribute->getCode(),
                         'filter_type'   => $filterType,
                         'required'      => false,
-                        'sortable'      => $sortable,
+                        'sortable'      => true,
                         'filterable'    => true,
                         'flexible_name' => $this->flexibleManager->getFlexibleName()
                     )
@@ -102,6 +101,7 @@ class UserDatagridManager extends FlexibleDatagridManager
                     && $attribute->getCode() == 'hobby'
                 ) {
                     $field->setOption('multiple', true);
+                    $field->setOption('sortable', false);
                 }
 
                 $this->fieldsCollection->add($field);
