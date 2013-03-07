@@ -18,7 +18,7 @@ security:
 
     firewalls:
         pinbarrest:
-            pattern:                        ^/api/rest/(latest|v1))/pinbars
+            pattern:                        ^/api/rest/(latest|v1)/pinbars
             provider:                       chain_provider
             api:
                 parent_context:             main
