@@ -1,5 +1,6 @@
 parameters:
     acme_demo_grid.user_grid.manager.class: Acme\Bundle\DemoGridBundle\Datagrid\UserDatagridManager
+    acme_demo_grid.product_grid.manager.class: Acme\Bundle\DemoGridBundle\Datagrid\ProductDatagridManager
 
 services:
     acme_demo_grid.user_grid.manager:
@@ -18,6 +19,24 @@ services:
 #              translator: ~
 #              validator: ~
 #              request: ~
+
+    acme_demo_grid.product_grid.manager:
+        class: %acme_demo_grid.product_grid.manager.class%
+        tags:
+            - name: oro_grid.datagrid.manager
+              datagrid_name: product
+              entity_hint: products
+              route_name: acme_demo_gridbundle_product_list
+              form_name: manufacturers_grid
+              query_factory: acme_demo_grid.product_query_factory
+#              datagrid_builder: ~
+#              list_builder: ~
+#              translator: ~
+#              validator: ~
+#              request: ~
+
+    acme_demo_grid.product_query_factory:
+        class: %oro_grid.orm.query_factory.query.class%
 
 #
 #<service id="sonata.user.admin.user" class="%sonata.user.admin.user.class%">
