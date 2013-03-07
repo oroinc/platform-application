@@ -62,7 +62,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
     {
         $this->loadAttributes();
         $this->loadProducts();
-        $this->loadTranslations();
+//        $this->loadTranslations();
 
     }
 
@@ -124,14 +124,23 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $productAttribute->setCode($attributeCode);
         $productAttribute->setTranslatable(false); // only one value but option can be translated in option values
         // add translatable option and related value "Red", "Blue", "Green"
-        $colors = array("Red", "Blue", "Green");
+        $colors = array(
+            array('en_US' => 'Red',    'fr_FR' => 'Rouge'),
+            array('en_US' => 'Blue',   'fr_FR' => 'Bleu'),
+            array('en_US' => 'Green',  'fr_FR' => 'Vert'),
+            array('en_US' => 'Purple', 'fr_FR' => 'Violet'),
+            array('en_US' => 'Orange', 'fr_FR' => 'Orange'),
+        );
         foreach ($colors as $color) {
             $option = $this->getProductManager()->createAttributeOption();
             $option->setTranslatable(true);
-            $optionValue = $this->getProductManager()->createAttributeOptionValue();
-            $optionValue->setValue($color);
-            $option->addOptionValue($optionValue);
             $productAttribute->addOption($option);
+            foreach ($color as $locale => $translated) {
+                $optionValue = $this->getProductManager()->createAttributeOptionValue();
+                $optionValue->setValue($translated);
+                $optionValue->setLocale($locale);
+                $option->addOptionValue($optionValue);
+            }
         }
         $this->getProductManager()->getStorageManager()->persist($productAttribute);
         $messages[]= "Attribute ".$attributeCode." has been created";
@@ -148,7 +157,8 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function loadProducts()
     {
-        $messages = array();
+        $nbProducts = 100;
+        $batchSize = 2000;
 
         // force in english because product is translatable
         $this->getProductManager()->setLocale('en_US');
@@ -168,113 +178,69 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
             $colors[]= $option;
         }
 
-        $indSku = 1;
         $descriptions = array('my long description', 'my other description');
-        for ($ind= 1; $ind <= 3; $ind++) {
-
-            // add product with only sku and name
-            $prodSku = 'sku-'.$indSku;
-            $product = $this->getProductManager()->createFlexible();
-            $product->setSku($prodSku);
-            if ($attName) {
-                $value = $product->getValue($attName->getCode());
-                if (!$value) {
-                    $value = $this->getProductManager()->createFlexibleValue();
-                    $value->setAttribute($attName);
-                    $product->addValue($value);
-                }
-                $value->setData('my name '.$indSku);
-            }
-            $messages[]= "Product ".$prodSku." has been created";
-            $this->getProductManager()->getStorageManager()->persist($product);
-            $indSku++;
-
+        for ($ind= 1; $ind <= $nbProducts; $ind++) {
+            
             // add product with sku, name, description, color and size
-            $prodSku = 'sku-'.$indSku;
+            $prodSku = 'sku-'.$ind;
             $product = $this->getProductManager()->createFlexible();
             $product->setSku($prodSku);
-            if ($attName) {
-                $value = $product->getValue($attName->getCode());
-                if (!$value) {
-                    $value = $this->getProductManager()->createFlexibleValue();
-                    $value->setAttribute($attName);
-                    $product->addValue($value);
-                }
-                $value->setData('my name '.$indSku);
+                
+            $names = array('en_US' => 'my product name', 'fr_FR' => 'mon nom de produit');
+            foreach ($names as $locale => $data) {
+               $value = $this->getProductManager()->createFlexibleValue();
+               $value->setAttribute($attName);
+               $value->setLocale($locale);
+               $value->setData($data.' '.$ind);
+               $product->addValue($value);
             }
-            if ($attDescription) {
-                // scope ecommerce
-                $value = $this->getProductManager()->createFlexibleValue();
-                $value->setScope(ProductAttribute::SCOPE_ECOMMERCE);
-                $value->setAttribute($attDescription);
-                $myDescription = $descriptions[$ind%2];
-                $value->setData($myDescription.'(ecommerce)');
-                $product->addValue($value);
-                // scope mobile
-                $value = $this->getProductManager()->createFlexibleValue();
-                $value->setScope(ProductAttribute::SCOPE_MOBILE);
-                $value->setAttribute($attDescription);
-                $value->setData($myDescription.'(mobile)');
-                $product->addValue($value);
-            }
-            if ($attSize) {
-                $value = $this->getProductManager()->createFlexibleValue();
-                $value->setAttribute($attSize);
-                $value->setData(175); // single value
-                $value->setUnit('mm');
-                $product->addValue($value);
-            }
-            if ($attColor) {
-                $value = $this->getProductManager()->createFlexibleValue();
-                $value->setAttribute($attColor);
-                // pick many colors (multiselect)
-                $firstColorOpt = $colors[rand(0, count($colors)-1)];
-                $value->addOption($firstColorOpt);
-                $secondColorOpt = $colors[rand(0, count($colors)-1)];
-                if ($firstColorOpt->getId() != $secondColorOpt->getId()) {
-                    $value->addOption($secondColorOpt);
-                }
-                $product->addValue($value);
-            }
-            $this->getProductManager()->getStorageManager()->persist($product);
-            $messages[]= "Product ".$prodSku." has been created";
-            $indSku++;
 
-            // add product with sku, name, size and price
-            $prodSku = 'sku-'.$indSku;
-            $product = $this->getProductManager()->createFlexible();
-            $product->setSku($prodSku);
-            if ($attName) {
-                $value = $product->getValue($attName->getCode());
-                if (!$value) {
+            $locales = array('en_US', 'fr_FR', 'de_DE');
+            $scopes = array(ProductAttribute::SCOPE_ECOMMERCE, ProductAttribute::SCOPE_MOBILE);
+            foreach ($locales as $locale) {
+                foreach ($scopes as $scope) {
                     $value = $this->getProductManager()->createFlexibleValue();
-                    $value->setAttribute($attName);
+                    $value->setLocale($locale);
+                    $value->setScope($scope);
+                    $value->setAttribute($attDescription);
                     $product->addValue($value);
-                }
-                $value->setData('my name '.$indSku);
+                    $value->setData('description ('.$locale.') ('.$scope.') '.$ind);
+                 }
             }
-            if ($attSize) {
-                $value = $this->getProductManager()->createFlexibleValue();
-                $value->setAttribute($attSize);
-                $value->setData(175);
-                $value->setUnit('mm');
-                $product->addValue($value);
+            
+            $value = $this->getProductManager()->createFlexibleValue();
+            $value->setAttribute($attSize);
+            $value->setData(175);
+            $value->setUnit('mm');
+            $product->addValue($value);
+
+            $value = $this->getProductManager()->createFlexibleValue();
+            $value->setAttribute($attColor);
+            // pick many colors (multiselect)
+            $firstColorOpt = $colors[rand(0, count($colors)-1)];
+            $value->addOption($firstColorOpt);
+            $secondColorOpt = $colors[rand(0, count($colors)-1)];
+            if ($firstColorOpt->getId() != $secondColorOpt->getId()) {
+                $value->addOption($secondColorOpt);
             }
-            if ($attPrice) {
-                $value = $this->getProductManager()->createFlexibleValue();
-                $value->setAttribute($attPrice);
-                $value->setData(rand(5, 100));
-                $value->setCurrency('USD');
-                $product->addValue($value);
-            }
+            $product->addValue($value);
+             
+            $value = $this->getProductManager()->createFlexibleValue();
+            $value->setAttribute($attPrice);
+            $value->setData(rand(5, 100));
+            $value->setCurrency('USD');
+            $product->addValue($value);
+            
             $this->getProductManager()->getStorageManager()->persist($product);
-            $messages[]= "Product ".$prodSku." has been created";
-            $indSku++;
+            
+            if (($ind % $batchSize) == 0) {
+                $this->getProductManager()->getStorageManager()->flush();
+                $this->getProductManager()->getStorageManager()->clear(); // Detaches all objects from Doctrine!
+                echo 'flush '.$ind;
+            }
         }
 
         $this->getProductManager()->getStorageManager()->flush();
-
-        return $messages;
     }
 
     /**
