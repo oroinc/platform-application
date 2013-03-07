@@ -69,9 +69,10 @@ class ProductDatagridManager extends DatagridManager
                     'field_name'   => 'COUNT(p.id)',
                     'filter_type'  => FilterInterface::TYPE_NUMBER,
                     'required'     => false,
-                    'sortable'     => false,
+                    'sortable'     => true,
                     'filterable'   => false,
                     'show_filter'  => false,
+                    'complex_data' => true
                 )
             );
             $this->fieldsCollection->add($fieldManufacturerId);

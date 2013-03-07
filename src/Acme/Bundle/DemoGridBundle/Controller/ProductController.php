@@ -42,8 +42,6 @@ class ProductController extends Controller
             ->leftJoin('m.products', 'p')
             ->groupBy('m.id');
 
-        $data = $queryBuilder->getQuery()->getResult();
-
         /** @var $queryFactory QueryFactory */
         $queryFactory = $this->get('acme_demo_grid.product_query_factory');
         $queryFactory->setQueryBuilder($queryBuilder);
