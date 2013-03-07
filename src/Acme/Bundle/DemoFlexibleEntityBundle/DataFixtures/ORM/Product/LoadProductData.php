@@ -62,8 +62,6 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
     {
         $this->loadAttributes();
         $this->loadProducts();
-//        $this->loadTranslations();
-
     }
 
     /**
@@ -158,7 +156,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
     public function loadProducts()
     {
         $nbProducts = 100;
-        $batchSize = 2000;
+        $batchSize = 500;
 
         // force in english because product is translatable
         $this->getProductManager()->setLocale('en_US');
@@ -180,12 +178,12 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
 
         $descriptions = array('my long description', 'my other description');
         for ($ind= 1; $ind <= $nbProducts; $ind++) {
-            
+
             // add product with sku, name, description, color and size
             $prodSku = 'sku-'.$ind;
             $product = $this->getProductManager()->createFlexible();
             $product->setSku($prodSku);
-                
+
             $names = array('en_US' => 'my product name', 'fr_FR' => 'mon nom de produit');
             foreach ($names as $locale => $data) {
                $value = $this->getProductManager()->createFlexibleValue();
@@ -207,7 +205,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
                     $value->setData('description ('.$locale.') ('.$scope.') '.$ind);
                  }
             }
-            
+
             $value = $this->getProductManager()->createFlexibleValue();
             $value->setAttribute($attSize);
             $value->setData(175);
@@ -224,18 +222,20 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
                 $value->addOption($secondColorOpt);
             }
             $product->addValue($value);
-             
+
             $value = $this->getProductManager()->createFlexibleValue();
             $value->setAttribute($attPrice);
             $value->setData(rand(5, 100));
             $value->setCurrency('USD');
             $product->addValue($value);
-            
+
             $this->getProductManager()->getStorageManager()->persist($product);
-            
+
             if (($ind % $batchSize) == 0) {
                 $this->getProductManager()->getStorageManager()->flush();
-                $this->getProductManager()->getStorageManager()->clear(); // Detaches all objects from Doctrine!
+                // Detaches all objects from Doctrine!
+                $this->getProductManager()->getStorageManager()->clear('Acme\Bundle\DemoFlexibleEntityBundle\Entity\Product');
+                $this->getProductManager()->getStorageManager()->clear('Acme\Bundle\DemoFlexibleEntityBundle\Entity\ProductValue');
                 echo 'flush '.$ind;
             }
         }
@@ -244,127 +244,10 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
     }
 
     /**
-     * Load translated data
-     *
-     * @return array
-     */
-    public function loadTranslations()
-    {
-        // get attributes
-        $attName = $this->getProductManager()->getFlexibleRepository()->findAttributeByCode('name');
-        $attDescription = $this->getProductManager()->getFlexibleRepository()->findAttributeByCode('description');
-
-        // get products
-        $products = $this->getProductManager()->getFlexibleRepository()->findByWithAttributes();
-        $ind = 1;
-        foreach ($products as $product) {
-            // translate name value
-            if ($attName) {
-                if ($product->setLocale('en_US')->getValue('name') != null) {
-                    $value = $this->getProductManager()->createFlexibleValue();
-                    $value->setAttribute($attName);
-                    $value->setLocale('fr_FR');
-                    $value->setData('mon nom FR '.$ind);
-                    $product->addValue($value);
-                    $this->getProductManager()->getStorageManager()->persist($value);
-                    $messages[]= "Value 'name' has been translated";
-                }
-            }
-            // translate description value
-            if ($attDescription) {
-                // check if a value en_US + scope ecommerce exists
-                if ($product->setLocale('en_US')->setScope('ecommerce')->getValue('description') != null) {
-                    // scope ecommerce
-                    $value = $this->getProductManager()->createFlexibleValue();
-                    $value->setLocale('fr_FR');
-                    $value->setScope(ProductAttribute::SCOPE_ECOMMERCE);
-                    $value->setAttribute($attDescription);
-                    $value->setData('ma description FR (ecommerce) '.$ind);
-                    $product->addValue($value);
-                    $this->getProductManager()->getStorageManager()->persist($value);
-                    // scope mobile
-                    $value = $this->getProductManager()->createFlexibleValue();
-                    $value->setLocale('fr_FR');
-                    $value->setScope(ProductAttribute::SCOPE_MOBILE);
-                    $value->setAttribute($attDescription);
-                    $value->setData('ma description FR (mobile) '.$ind);
-                    $product->addValue($value);
-                    $this->getProductManager()->getStorageManager()->persist($value);
-                    $messages[]= "Value 'description' has been translated";
-                }
-            }
-            $ind++;
-        }
-
-        // get color attribute options
-        $attColor = $this->getProductManager()->getFlexibleRepository()->findAttributeByCode('color');
-        $colors = array("Red" => "Rouge", "Blue" => "Bleu", "Green" => "Vert");
-        // translate
-        foreach ($colors as $colorEn => $colorFr) {
-            $optValueEn = $this->getProductManager()->getAttributeOptionValueRepository()->findOneBy(
-                array('value' => $colorEn)
-            );
-            $optValueFr = $this->getProductManager()->getAttributeOptionValueRepository()->findOneBy(
-                array('value' => $colorFr)
-            );
-            if ($optValueEn and !$optValueFr) {
-                $option = $optValueEn->getOption();
-                $optValueFr = $this->getProductManager()->createAttributeOptionValue();
-                $optValueFr->setValue($colorFr);
-                $optValueFr->setLocale('fr_FR');
-                $option->addOptionValue($optValueFr);
-                $this->getProductManager()->getStorageManager()->persist($optValueFr);
-                $messages[]= "Option '".$colorEn."' has been translated";
-            }
-        }
-
-        $this->getProductManager()->getStorageManager()->flush();
-
-        return $messages;
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function getOrder()
     {
         return 3;
-    }
-
-    /**
-     * Generate firstname
-     * @return string
-     */
-    protected function generateFirstname()
-    {
-        $listFirstname = array('Nicolas', 'Romain');
-        $random = rand(0, count($listFirstname)-1);
-
-        return $listFirstname[$random];
-    }
-
-    /**
-     * Generate lastname
-     * @return string
-     */
-    protected function generateLastname()
-    {
-        $listLastname = array('Dupont', 'Monceau');
-        $random = rand(0, count($listLastname)-1);
-
-        return $listLastname[$random];
-    }
-
-    /**
-     * Generate birthdate
-     * @return string
-     */
-    protected function generateBirthDate()
-    {
-        $year  = rand(1980, 2000);
-        $month = rand(1, 12);
-        $day   = rand(1, 28);
-
-        return $year .'-'. $month .'-'. $day;
     }
 }
