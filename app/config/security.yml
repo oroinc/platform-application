@@ -20,16 +20,8 @@ security:
         pinbarrest:
             pattern:                        ^/api/rest/latest/pinbars
             provider:                       chain_provider
-            form_login:
-                csrf_provider:              form.csrf_provider
-                check_path:                 /user/login-check
-                login_path:                 /user/login
-            logout:
-                path:                       /user/logout
-            remember_me:
-                key:                        %secret%
-                name:                       BAPRM
-                lifetime:                   1209600
+            api:
+                parent_context:             main
             anonymous:                      false
 
         dev:
