@@ -46,14 +46,14 @@ class ProductController extends Controller
         $queryFactory = $this->get('acme_demo_grid.product_query_factory');
         $queryFactory->setQueryBuilder($queryBuilder);
 
-        /** @var $manufacturerGridManager UserDatagridManager */
-        $manufacturerGridManager = $this->get('acme_demo_grid.product_grid.manager');
-        $datagrid = $manufacturerGridManager->getDatagrid();
+        /** @var $productGridManager UserDatagridManager */
+        $productGridManager = $this->get('acme_demo_grid.product_grid.manager');
+        $datagrid = $productGridManager->getDatagrid();
 
         if ('json' == $request->getRequestFormat()) {
             $view = 'OroGridBundle:Datagrid:list.json.php';
         } else {
-            $view = 'AcmeDemoGridBundle:User:list.html.twig';
+            $view = 'AcmeDemoGridBundle:Product:list.html.twig';
         }
         return $this->render(
             $view,
