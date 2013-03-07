@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\Finder\Iterator;
 
-class SoapApiTest extends WebTestCase
+class SoapApiTest extends \PHPUnit_Framework_TestCase
 {
     /** Default value for offset and max_records */
     const DEFAULT_VALUE = 0;
