@@ -18,7 +18,7 @@ security:
 
     firewalls:
         pinbarrest:
-            pattern:                        ^/api/rest/latest/pinbars
+            pattern:                        ^/api/rest/(latest|v1))/pinbars
             provider:                       chain_provider
             api:
                 parent_context:             main
@@ -48,4 +48,4 @@ security:
         - { path: ^/user/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/user/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, role: ROLE_ADMIN }
-        - { path: ^/api/rest/latest/pinbars, role: ROLE_USER }
+        - { path: ^/api/rest/(latest|v1)/pinbars, role: ROLE_USER }
