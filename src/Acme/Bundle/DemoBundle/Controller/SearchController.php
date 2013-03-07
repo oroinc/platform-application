@@ -9,6 +9,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Acme\Bundle\DemoBundle\Entity\Product;
 use Acme\Bundle\DemoBundle\Form\ProductType;
 
+use Acme\Bundle\DemoBundle\Entity\Customer;
+use Acme\Bundle\DemoBundle\Form\CustomerType;
+
 /**
  * @Route("/search")
  */
@@ -99,6 +102,44 @@ class SearchController extends Controller
     }
 
     /**
+     * List of customers and add new customer
+     *
+     * @Route("/customers", name="acme_demo_customers")
+     * @Template()
+     */
+    public function customersAction()
+    {
+        $request = $this->getRequest();
+        $em      = $this->getDoctrine()->getManager();
+        $customer = new Customer();
+        $form    = $this->createForm(new CustomerType(), $customer);
+
+        if ($request->getMethod() == 'POST') {
+            $form->bind($request);
+            if ($form->isValid()) {
+                $em->persist($customer);
+                $em->flush();
+            }
+        }
+
+        return array(
+            'customers' => $em->getRepository('AcmeDemoBundle:Customer')->findAll(),
+            'form'     => $form->createView(),
+        );
+    }
+
+    /**
+     * @Route("/product/{id}", name="acme_demo_search_product")
+     * @Template()
+     */
+    public function productPageAction($id)
+    {
+        return array(
+            'product' => $this->getDoctrine()->getRepository('AcmeDemoBundle:Product')->find($id)
+        );
+    }
+
+    /**
      * @Template()
      * @return array
      */
@@ -120,5 +161,20 @@ class SearchController extends Controller
     private function getProductManager()
     {
         return $this->get('demo_product_manager');
+    }
+
+    /**
+     * @Route("/advanced-search", name="acme_demo_advanced_search")
+     * @Template()
+     * @return array
+     */
+    public function advancedSearchAction()
+    {
+        return array();
+    }
+
+    private function getSearchManager()
+    {
+        return $this->get('oro_search.index');
     }
 }

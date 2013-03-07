@@ -6,4 +6,7 @@ request:
 response:
     records_count: 9
     count: 0
-    data: ~
+    rest:
+        data: ~
+    soap:
+        item: ~

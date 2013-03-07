@@ -16,6 +16,10 @@
     {{ block('pin_button') }}
 {% endblock application_menu %}
 
+{% block searchbar %}
+    {% render "OroSearchBundle:Search:searchBar" %}
+{% endblock searchbar %}
+
 {% block head_script %}
     {{ parent() }}
     <script type="text/javascript" src="{{ asset('bundles/oroui/lib/underscore.js') }}"></script>
