@@ -61,11 +61,6 @@ class RestApiTest extends WebTestCase
             $parameters;
     }
 
-    protected function tearDown()
-    {
-        unset($this->client);
-    }
-
     /**
      * Test API response status
      *
