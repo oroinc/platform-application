@@ -71,12 +71,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function loadAttributes()
     {
-        $messages = array();
-
-        // force in english
-        $this->getProductManager()->setLocale('en_US');
-
-        // attribute name (if not exists)
+        // attribute name
         $attributeCode = 'name';
         $attribute = $this->getProductManager()->getFlexibleRepository()->findAttributeByCode($attributeCode);
         $productAttribute = $this->getProductManager()->createAttributeExtended(new TextType());
@@ -85,17 +80,15 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $productAttribute->setTranslatable(true);
         $productAttribute->setRequired(true);
         $this->getProductManager()->getStorageManager()->persist($productAttribute);
-        $messages[]= "Attribute ".$attributeCode." has been created";
 
-        // attribute price (if not exists)
+        // attribute price
         $attributeCode = 'price';
         $productAttribute = $this->getProductManager()->createAttributeExtended(new MoneyType());
         $productAttribute->setName('Price');
         $productAttribute->setCode($attributeCode);
         $this->getProductManager()->getStorageManager()->persist($productAttribute);
-        $messages[]= "Attribute ".$attributeCode." has been created";
 
-        // attribute description (if not exists)
+        // attribute description
         $attributeCode = 'description';
         $productAttribute = $this->getProductManager()->createAttributeExtended(new TextAreaType());
         $productAttribute->setName('Description');
@@ -103,31 +96,28 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $productAttribute->setTranslatable(true);
         $productAttribute->setScopable(true);
         $this->getProductManager()->getStorageManager()->persist($productAttribute);
-        $messages[]= "Attribute ".$attributeCode." has been created";
 
-        // attribute size (if not exists)
+        // attribute size
         $attributeCode= 'size';
         $attribute = $this->getProductManager()->getFlexibleRepository()->findAttributeByCode($attributeCode);
         $productAttribute = $this->getProductManager()->createAttributeExtended(new MetricType());
         $productAttribute->setName('Size');
         $productAttribute->setCode($attributeCode);
         $this->getProductManager()->getStorageManager()->persist($productAttribute);
-        $messages[]= "Attribute ".$attributeCode." has been created";
 
-        // attribute color (if not exists)
+        // attribute color and translated options
         $attributeCode= 'color';
         $attribute = $this->getProductManager()->getFlexibleRepository()->findAttributeByCode($attributeCode);
         $productAttribute = $this->getProductManager()->createAttributeExtended(new OptionMultiCheckboxType());
         $productAttribute->setName('Color');
         $productAttribute->setCode($attributeCode);
         $productAttribute->setTranslatable(false); // only one value but option can be translated in option values
-        // add translatable option and related value "Red", "Blue", "Green"
         $colors = array(
-            array('en_US' => 'Red',    'fr_FR' => 'Rouge'),
-            array('en_US' => 'Blue',   'fr_FR' => 'Bleu'),
-            array('en_US' => 'Green',  'fr_FR' => 'Vert'),
-            array('en_US' => 'Purple', 'fr_FR' => 'Violet'),
-            array('en_US' => 'Orange', 'fr_FR' => 'Orange'),
+            array('en_US' => 'Red',    'fr_FR' => 'Rouge',  'de_DE' => 'Rot'),
+            array('en_US' => 'Blue',   'fr_FR' => 'Bleu',   'de_DE' => 'Blau'),
+            array('en_US' => 'Green',  'fr_FR' => 'Vert',   'de_DE' => 'Grün'),
+            array('en_US' => 'Purple', 'fr_FR' => 'Violet', 'de_DE' => 'Lila'),
+            array('en_US' => 'Orange', 'fr_FR' => 'Orange', 'de_DE' => 'Orange'),
         );
         foreach ($colors as $color) {
             $option = $this->getProductManager()->createAttributeOption();
@@ -141,11 +131,8 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
             }
         }
         $this->getProductManager()->getStorageManager()->persist($productAttribute);
-        $messages[]= "Attribute ".$attributeCode." has been created";
 
         $this->getProductManager()->getStorageManager()->flush();
-
-        return $messages;
     }
 
     /**
@@ -157,9 +144,6 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
     {
         $nbProducts = 100;
         $batchSize = 500;
-
-        // force in english because product is translatable
-        $this->getProductManager()->setLocale('en_US');
 
         // get attributes
         $attName = $this->getProductManager()->getFlexibleRepository()->findAttributeByCode('name');
@@ -179,12 +163,13 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $descriptions = array('my long description', 'my other description');
         for ($ind= 1; $ind <= $nbProducts; $ind++) {
 
-            // add product with sku, name, description, color and size
+            // sku
             $prodSku = 'sku-'.$ind;
             $product = $this->getProductManager()->createFlexible();
             $product->setSku($prodSku);
 
-            $names = array('en_US' => 'my product name', 'fr_FR' => 'mon nom de produit');
+            // name
+            $names = array('en_US' => 'my product name', 'fr_FR' => 'mon nom de produit', 'de_DE' => 'produkt namen');
             foreach ($names as $locale => $data) {
                $value = $this->getProductManager()->createFlexibleValue();
                $value->setAttribute($attName);
@@ -193,6 +178,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
                $product->addValue($value);
             }
 
+            // description
             $locales = array('en_US', 'fr_FR', 'de_DE');
             $scopes = array(ProductAttribute::SCOPE_ECOMMERCE, ProductAttribute::SCOPE_MOBILE);
             foreach ($locales as $locale) {
@@ -206,15 +192,16 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
                  }
             }
 
+            // size
             $value = $this->getProductManager()->createFlexibleValue();
             $value->setAttribute($attSize);
             $value->setData(175);
             $value->setUnit('mm');
             $product->addValue($value);
 
+            // color
             $value = $this->getProductManager()->createFlexibleValue();
             $value->setAttribute($attColor);
-            // pick many colors (multiselect)
             $firstColorOpt = $colors[rand(0, count($colors)-1)];
             $value->addOption($firstColorOpt);
             $secondColorOpt = $colors[rand(0, count($colors)-1)];
@@ -223,6 +210,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
             }
             $product->addValue($value);
 
+            // price
             $value = $this->getProductManager()->createFlexibleValue();
             $value->setAttribute($attPrice);
             $value->setData(rand(5, 100));
@@ -233,10 +221,9 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
 
             if (($ind % $batchSize) == 0) {
                 $this->getProductManager()->getStorageManager()->flush();
-                // Detaches all objects from Doctrine!
+                // detaches all products and values from doctrine
                 $this->getProductManager()->getStorageManager()->clear('Acme\Bundle\DemoFlexibleEntityBundle\Entity\Product');
                 $this->getProductManager()->getStorageManager()->clear('Acme\Bundle\DemoFlexibleEntityBundle\Entity\ProductValue');
-                echo 'flush '.$ind;
             }
         }
 
