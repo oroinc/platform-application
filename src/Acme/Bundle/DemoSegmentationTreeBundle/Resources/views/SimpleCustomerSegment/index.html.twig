@@ -82,7 +82,7 @@ $("#tree")
             "dots" : true,
             "icons" : true,
             "themes" : "bap",
-            "url" : "/bundles/orosegmentationtree/css/style.css"
+            "url" : "{{ asset('bundles/orosegmentationtree/css/style.css') }}"
         },
         // I usually configure the plugin that handles the data first
         // This example uses JSON as it is most common
@@ -131,13 +131,13 @@ $("#tree")
                 "default" : {
                     "valid_children" : "folder",
                     "icon" : {
-                        "image" : "/bundles/orosegmentationtree/images/folder.png"
+                        "image" : "{{ asset('bundles/orosegmentationtree/images/folder.png') }}"
                     }
                 },
                 // The `folder` type
                 "folder" : {
                     "icon" : {
-                        "image" : "/bundles/orosegmentationtree/images/folder.png"
+                        "image" : "{{ asset('bundles/orosegmentationtree/images/folder.png') }}"
                     }
                 }
             }
