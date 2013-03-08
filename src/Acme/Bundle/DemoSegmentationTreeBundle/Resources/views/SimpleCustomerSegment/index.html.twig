@@ -1,0 +1,315 @@
+{% extends 'AcmeDemoSegmentationTreeBundle::layout.html.twig' %}
+
+{% set title = 'Simple customer segmentation tree' %}
+
+{% block title %}{{ title }} - {{ parent() }}{% endblock %}
+
+{% block content %}
+
+<div id="description">
+<div id="mmenu" style="overflow:auto;">
+    <a href="#" id="refresh" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" role="button" value="refresh" onclick="$('#tree').jstree('refresh',-1);">
+        <span class="ui-button-text">{{ "acme.demosegmentationtree.simplecustomersegment.button.refresh" | trans }}</span>
+    </a>
+    <br />
+    <a href="#" id="add_segment" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" role="button" value="add segment">
+        <span class="ui-button-text">{{ "acme.demosegmentationtree.simplecustomersegment.button.add_segment" | trans }}</span>
+    </a>
+    <a href="#" id="rename" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" role="button" value="rename">
+        <span class="ui-button-text">{{ "acme.demosegmentationtree.simplecustomersegment.button.rename" | trans }}</span>
+    </a>
+    <a href="#" id="remove" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" role="button" value="remove">
+        <span class="ui-button-text">{{ "acme.demosegmentationtree.simplecustomersegment.button.remove" | trans }}</span>
+    </a>
+    <a href="#" id="cut" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" role="button" value="cut">
+        <span class="ui-button-text">{{ "acme.demosegmentationtree.simplecustomersegment.button.cut" | trans }}</span>
+    </a>
+<!--
+    <a href="#" id="copy" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" role="button" value="copy">
+        <span class="ui-button-text">{{ "acme.demosegmentationtree.simplecustomersegment.button.copy" | trans }}</span>
+    </a>
+-->
+    <a href="#" id="paste" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" role="button" value="paste">
+        <span class="ui-button-text">{{ "acme.demosegmentationtree.simplecustomersegment.button.paste" | trans }}</span>
+    </a>
+    <div>
+        <input type="text" id="text" value="" />
+        <a href="#" id="search" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" role="button" value="search">
+            <span class="ui-button-text">{{ "acme.demosegmentationtree.simplecustomersegment.button.search" | trans }}</span>
+        </a>
+        <a href="#" id="clear_search" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" role="button" value="clear search">
+            <span class="ui-button-text">{{ "acme.demosegmentationtree.simplecustomersegment.button.clear_search" | trans }}</span>
+        </a>
+    </div>
+    <div>
+        <input type="text" id="add_customer_id" value="" />
+        <a href="#" id="add_customer" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" role="button" value="add customer">
+            <span class="ui-button-text">{{ "acme.demosegmentationtree.simplecustomersegment.button.add_customer_by_id" | trans }}</span>
+        </a>
+    </div>
+    <div>
+        <input type="text" id="remove_customer_id" value="" />
+        <a href="#" id="remove_customer" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" role="button" value="remove customer">
+            <span class="ui-button-text">{{ "acme.demosegmentationtree.simplecustomersegment.button.remove_customer_by_id" | trans }}</span>
+        </a>
+    </div>
+</div>
+
+<div class="wrap">
+    <!-- the tree container (notice NOT an UL node) -->
+    <div id="tree" class="tree"></div>
+    <div id="list" class="list">
+    </div>
+</div>
+<!--
+{% endblock %}
+
+
+{% block javascripts %}
+
+<!-- JavaScript for the tree -->
+<script type="text/javascript">
+
+$(function () {
+
+$("#tree")
+    .jstree({
+        // List of active plugins
+        "plugins" : [
+            "themes","json_data","ui","crrm","cookies","dnd","search","types","hotkeys","contextmenu"
+        ],
+        "themes" : {
+            "dots" : true,
+            "icons" : true,
+            "themes" : "bap",
+            "url" : "/bundles/orosegmentationtree/css/style.css"
+        },
+        // I usually configure the plugin that handles the data first
+        // This example uses JSON as it is most common
+        "json_data" : {
+            // This tree is ajax enabled - as this is most common, and maybe a bit more complex
+            // All the options are almost the same as jQuery's AJAX (read the docs)
+            "ajax" : {
+                // the URL to fetch the data
+                "url" : "children",
+                // the `data` function is executed in the instance's scope
+                // the parameter is the node being loaded
+                // (may be -1, 0, or undefined when loading the root nodes)
+                "data" : function (n) {
+                    // the result is fed to the AJAX request `data` option
+                    return {
+                        "id" : n.attr ? n.attr("id").replace("node_","") : null
+                    };
+                }
+            }
+        },
+        // Configuring the search plugin
+        "search" : {
+            // As this has been a common question - async search
+            // Same as above - the `ajax` config option is actually jQuery's AJAX object
+            "ajax" : {
+                "url" : "search",
+                // You get the search string as a parameter
+                "data" : function (str) {
+                    return {
+                        "search_str" : str
+                    };
+                }
+            }
+        },
+        // Using types - most of the time this is an overkill
+        // read the docs carefully to decide whether you need types
+        "types" : {
+            // I set both options to -2, as I do not need depth and children count checking
+            // Those two checks may slow jstree a lot, so use only when needed
+            "max_depth" : -2,
+            "max_children" : -2,
+            // I want only `drive` nodes to be root nodes
+            // This will prevent moving or creating any other type as a root node
+            "valid_children" : [ "folder" ],
+            "types" : {
+                "default" : {
+                    "valid_children" : "folder",
+                    "icon" : {
+                        "image" : "/bundles/orosegmentationtree/images/folder.png"
+                    }
+                },
+                // The `folder` type
+                "folder" : {
+                    "icon" : {
+                        "image" : "/bundles/orosegmentationtree/images/folder.png"
+                    }
+                }
+            }
+        }
+    })
+    .bind("create.jstree", function (e, data) {
+        $.post(
+            "create-node",
+            {
+                "id" : data.rslt.parent.attr("id").replace("node_",""),
+                "position" : data.rslt.position,
+                "title" : data.rslt.name,
+                "type" : data.rslt.obj.attr("rel")
+            },
+            function (r) {
+                if(r.status) {
+                    $(data.rslt.obj).attr("id", "node_" + r.id);
+                }
+                else {
+                    $.jstree.rollback(data.rlbk);
+                }
+            }
+        );
+    })
+    .bind("remove.jstree", function (e, data) {
+        data.rslt.obj.each(function () {
+            $.ajax({
+                async : false,
+                type: 'POST',
+                url: "remove-node",
+                data : {
+                    "id" : this.id.replace("node_","")
+                },
+                success : function (r) {
+                    if(!r.status) {
+                        data.inst.refresh();
+                    }
+                }
+            });
+        });
+    })
+    .bind("rename.jstree", function (e, data) {
+        $.post(
+            "rename-node",
+            {
+                "id" : data.rslt.obj.attr("id").replace("node_",""),
+                "title" : data.rslt.new_name
+            },
+            function (r) {
+                if(!r.status) {
+                    $.jstree.rollback(data.rlbk);
+                }
+            }
+        );
+    })
+    .bind("move_node.jstree", function (e, data) {
+        data.rslt.o.each(function (i) {
+            $.ajax({
+                async : false,
+                type: 'POST',
+                url: "move-node",
+                data : {
+                    "id" : $(this).attr("id").replace("node_",""),
+                    "ref" : data.rslt.cr === -1 ? 1 : data.rslt.np.attr("id").replace("node_",""),
+                    "position" : data.rslt.cp + i,
+                    "title" : data.rslt.name,
+                    "copy" : data.rslt.cy ? 1 : 0
+                },
+                success : function (r) {
+                    if(!r.status) {
+                        $.jstree.rollback(data.rlbk);
+                    }
+                    else {
+                        $(data.rslt.oc).attr("id", "node_" + r.id);
+                        if(data.rslt.cy && $(data.rslt.oc).children("UL").length) {
+                            data.inst.refresh(data.inst._get_parent(data.rslt.oc));
+                        }
+                    }
+                }
+            });
+        });
+    })
+    .bind("select_node.jstree", function (e, data) {
+            var a = $.jstree._focused().get_selected();
+            var node_id = a.attr('id');
+            var segment_id = node_id.replace('node_','');
+            paintCustomerList(segment_id);
+    });
+
+});
+
+function paintCustomerList(segment_id) {
+    $.ajax({
+        async : false,
+        type: "GET",
+        url: "list-customers",
+        data : {
+            "segment_id" : segment_id
+        },
+        success: function(r) {
+            var a = ['<table border=1><tr><th>Id</th><th>Name</th><th>Phone</th></tr>'];
+            $.each(r, function(i,cust) {
+                a.push('<tr id="cust_' + cust.id + '">');
+                a.push('<td>' + cust.id + '</td>');
+                a.push('<td>' + cust.name + '</td>');
+                a.push('<td>' + cust.phone + '</td>');
+                a.push('</tr>');
+            });
+            a.push("</table>");
+            var s = a.join('');
+            $('#list').html(s);
+        }
+    });
+        
+}
+
+</script>
+<script type="text/javascript" class="source below">
+// Code for the menu buttons
+$(function () {
+    $("#mmenu a").click(function () {
+        switch(this.id) {
+            case "add_segment":
+                $("#tree").jstree("create", null, "last", { "attr" : { "rel" : this.id.toString().replace("add_", "") } });
+                break;
+            case "search":
+                $("#tree").jstree("search", $("#text").val());
+                break;
+            case "text": break;
+            case "add_customer":
+                a = $.jstree._focused().get_selected();
+                node_id = a.attr('id');
+                segment_id = node_id.replace('node_','');
+                customer_id = $("#add_customer_id").val();
+                
+                $.ajax({
+                    async : false,
+                    type: 'POST',
+                    url: "associate-customer",
+                    data : {
+                        "segment_id" : segment_id,
+                        "customer_id" : customer_id
+                    },
+                    success : function (r) {
+                        paintCustomerList(segment_id);
+                    }
+                });
+                break;
+            case "remove_customer":
+                a = $.jstree._focused().get_selected();
+                node_id = a.attr('id');
+                segment_id = node_id.replace('node_','');
+                customer_id = $("#remove_customer_id").val();
+                
+                $.ajax({
+                    async : false,
+                    type: 'POST',
+                    url: "detach-customer",
+                    data : {
+                        "segment_id" : segment_id,
+                        "customer_id" : customer_id
+                    },
+                    success : function (r) {
+                        paintCustomerList(segment_id);
+                    }
+                });
+                break;
+            default:
+                $("#tree").jstree(this.id);
+                break;
+        }
+    });
+});
+</script>
+{% endblock %}

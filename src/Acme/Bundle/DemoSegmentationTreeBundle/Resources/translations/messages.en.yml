@@ -1,0 +1,23 @@
+acme.demosegmentationtree.simpleproductsegment.button.add_segment: Add segment
+acme.demosegmentationtree.simpleproductsegment.button.rename: Rename
+acme.demosegmentationtree.simpleproductsegment.button.remove: Remove
+acme.demosegmentationtree.simpleproductsegment.button.cut: Cut
+acme.demosegmentationtree.simpleproductsegment.button.copy: Copy
+acme.demosegmentationtree.simpleproductsegment.button.paste: Paste
+acme.demosegmentationtree.simpleproductsegment.button.refresh: Refresh
+acme.demosegmentationtree.simpleproductsegment.button.search: Search tree
+acme.demosegmentationtree.simpleproductsegment.button.clear_search: Clear search
+acme.demosegmentationtree.simpleproductsegment.button.add_product_by_id: Add product by id
+acme.demosegmentationtree.simpleproductsegment.button.remove_product_by_id: Remove product by id
+acme.demosegmentationtree.simplecustomersegment.button.add_segment: Add segment
+acme.demosegmentationtree.simplecustomersegment.button.rename: Rename
+acme.demosegmentationtree.simplecustomersegment.button.remove: Remove
+acme.demosegmentationtree.simplecustomersegment.button.cut: Cut
+acme.demosegmentationtree.simplecustomersegment.button.copy: Copy
+acme.demosegmentationtree.simplecustomersegment.button.paste: Paste
+acme.demosegmentationtree.simplecustomersegment.button.refresh: Refresh
+acme.demosegmentationtree.simplecustomersegment.button.search: Search tree
+acme.demosegmentationtree.simplecustomersegment.button.clear_search: Clear search
+acme.demosegmentationtree.simplecustomersegment.button.add_customer_by_id: Add customer by id
+acme.demosegmentationtree.simplecustomersegment.button.remove_customer_by_id: Remove customer by id
+
