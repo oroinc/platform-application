@@ -13,15 +13,16 @@ class CustomerType extends AbstractType
         $builder
             ->add('firstName')
             ->add('lastName')
-            ->add('city')
-        ;
+            ->add('city');
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => 'Acme\Bundle\DemoBundle\Entity\Customer'
-        ));
+        $resolver->setDefaults(
+            array(
+                'data_class' => 'Acme\Bundle\DemoBundle\Entity\Customer'
+            )
+        );
     }
 
     public function getName()

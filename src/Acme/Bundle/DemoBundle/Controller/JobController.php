@@ -49,7 +49,7 @@ class JobController extends Controller
         );
     }
 
-   /**
+    /**
      * @Route("/show/{id}", name="acme_demo_job_show", requirements={"id"="\d+"})
      * @Template
      */
@@ -70,7 +70,9 @@ class JobController extends Controller
 
         if ($this->statisticsEnabled) {
             $dataPerCharacteristic = array();
-            foreach ($this->getDoctrine()->getManagerForClass('JMSJobQueueBundle:Job')->getConnection()->query("SELECT * FROM jms_job_statistics WHERE job_id = ".$job->getId()) as $row) {
+            foreach ($this->getDoctrine()->getManagerForClass('JMSJobQueueBundle:Job')->getConnection()->query(
+                "SELECT * FROM jms_job_statistics WHERE job_id = ".$job->getId()
+            ) as $row) {
                 $dataPerCharacteristic[$row['characteristic']][] = array(
                     $row['createdAt'],
                     $row['charValue'],
@@ -132,7 +134,12 @@ class JobController extends Controller
             /**
              * @todo Move parameters to config
              */
-            $process = new Process(sprintf('php %sconsole jms-job-queue:run --max-runtime=999999999 --max-concurrent-jobs=5 >> /dev/null &', $this->get('kernel')->getRootDir() . DIRECTORY_SEPARATOR));
+            $process = new Process(
+                sprintf(
+                    'php %sconsole jms-job-queue:run --max-runtime=999999999 --max-concurrent-jobs=5 >> /dev/null &',
+                    $this->get('kernel')->getRootDir() . DIRECTORY_SEPARATOR
+                )
+            );
 
             $process->start();
 
@@ -240,7 +247,7 @@ class JobController extends Controller
         $pid = null;
 
         if (preg_match('#^.+app/console jms-job-queue:run#Usm', $process->getOutput(), $matches)) {
-            $pid = (int)$matches[0];
+            $pid = (int) $matches[0];
         }
 
         return $pid;
