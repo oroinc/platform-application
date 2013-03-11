@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\Finder\Iterator;
 
-class SoapApiTest extends WebTestCase
+class SoapApiTest extends \PHPUnit_Framework_TestCase
 {
     /** Default value for offset and max_records */
     const DEFAULT_VALUE = 0;
@@ -17,12 +17,17 @@ class SoapApiTest extends WebTestCase
     public function setUp()
     {
         if (is_null(self::$clientSoap)) {
-            $client = static::createClient();
-            //get wsdl
-            $client->request('GET', 'api/soap');
-            $wsdl = $client->getResponse()->getContent();
-            self::$clientSoap = new CustomSoapClient($wsdl, array('location' =>'soap'), $client);
+            try {
+                self::$clientSoap = @new \SoapClient('http://localhost.com/app_test.php/api/soap');
+            } catch (\SoapFault $e) {
+                $this->markTestSkipped('Test skipped due to http://localhost.com is not available!');
+            }
         }
+    }
+
+    public static function tearDownAfterClass()
+    {
+        self::$clientSoap = null;
     }
 
     /**
@@ -33,10 +38,6 @@ class SoapApiTest extends WebTestCase
      */
     public function testApi($request, $response)
     {
-        $this->markTestIncomplete(
-            'Need fix tests.'
-        );
-
         if (is_null($request['search'])) {
             $request['search'] ='';
         }
@@ -65,8 +66,8 @@ class SoapApiTest extends WebTestCase
         );
         foreach ($testFiles as $fileName => $object) {
             $parameters[$fileName] = Yaml::parse($fileName);
-            if (is_null($parameters[$fileName]['response']['data'])) {
-                unset($parameters[$fileName]['response']['data']);
+            if (is_null($parameters[$fileName]['response']['soap']['item'])) {
+                unset($parameters[$fileName]['response']['soap']['item']);
             }
         }
         return
@@ -83,11 +84,9 @@ class SoapApiTest extends WebTestCase
     {
         $this->assertEquals($response['records_count'], $result['recordsCount']);
         $this->assertEquals($response['count'], $result['count']);
-        if (isset($response['data']) && is_array($response['data'])) {
-            foreach ($response['data'] as $key => $object) {
+        if (isset($response['soap']['item']) && is_array($response['soap']['item'])) {
+            foreach ($response['soap']['item'] as $key => $object) {
                 foreach ($object as $property => $value) {
-                    list($part1, $part2) = explode('_', $property);
-                    $property = $part1 . ucfirst($part2);
                     if (isset($result['elements']['item'][0])) {
                         $this->assertEquals($value, $result['elements']['item'][$key][$property]);
                     } else {
