@@ -15,15 +15,15 @@ use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\TextAreaType;
 use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\MoneyType;
 
 /**
-* Load products
-*
-* Execute with "php app/console doctrine:fixtures:load"
-*
- * @author    Nicolas Dupont <nicolas@akeneo.com>
+ * Load products
+ *
+ * Execute with "php app/console doctrine:fixtures:load"
+ *
+ * @author Nicolas Dupont <nicolas@akeneo.com>
  * @copyright 2012 Akeneo SAS (http://www.akeneo.com)
- * @license   http://opensource.org/licenses/MIT MIT
-*
-*/
+ * @license http://opensource.org/licenses/MIT MIT
+ *
+ */
 class LoadProductData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
 
@@ -113,9 +113,9 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $productAttribute->setCode($attributeCode);
         $productAttribute->setTranslatable(false); // only one value but option can be translated in option values
         $colors = array(
-            array('en_US' => 'Red',    'fr_FR' => 'Rouge',  'de_DE' => 'Rot'),
-            array('en_US' => 'Blue',   'fr_FR' => 'Bleu',   'de_DE' => 'Blau'),
-            array('en_US' => 'Green',  'fr_FR' => 'Vert',   'de_DE' => 'Grün'),
+            array('en_US' => 'Red', 'fr_FR' => 'Rouge', 'de_DE' => 'Rot'),
+            array('en_US' => 'Blue', 'fr_FR' => 'Bleu', 'de_DE' => 'Blau'),
+            array('en_US' => 'Green', 'fr_FR' => 'Vert', 'de_DE' => 'Grün'),
             array('en_US' => 'Purple', 'fr_FR' => 'Violet', 'de_DE' => 'Lila'),
             array('en_US' => 'Orange', 'fr_FR' => 'Orange', 'de_DE' => 'Orange'),
         );
@@ -171,11 +171,11 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
             // name
             $names = array('en_US' => 'my product name', 'fr_FR' => 'mon nom de produit', 'de_DE' => 'produkt namen');
             foreach ($names as $locale => $data) {
-               $value = $this->getProductManager()->createFlexibleValue();
-               $value->setAttribute($attName);
-               $value->setLocale($locale);
-               $value->setData($data.' '.$ind);
-               $product->addValue($value);
+                $value = $this->getProductManager()->createFlexibleValue();
+                $value->setAttribute($attName);
+                $value->setLocale($locale);
+                $value->setData($data.' '.$ind);
+                $product->addValue($value);
             }
 
             // description
@@ -189,7 +189,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
                     $value->setAttribute($attDescription);
                     $product->addValue($value);
                     $value->setData('description ('.$locale.') ('.$scope.') '.$ind);
-                 }
+                }
             }
 
             // size
