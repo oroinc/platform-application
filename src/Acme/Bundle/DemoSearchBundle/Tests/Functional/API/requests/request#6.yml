@@ -6,13 +6,25 @@ request:
 response:
     records_count: 9
     count: 3
-    data:
-        -
-            entity_name: Acme\Bundle\DemoSearchBundle\Entity\Item
-            record_string: email-1@mail.com
-        -
-            entity_name: Acme\Bundle\DemoSearchBundle\Entity\Item
-            record_string: email-2@mail.com
-        -
-            entity_name: Acme\Bundle\DemoSearchBundle\Entity\Item
-            record_string: email-3@mail.com
+    rest:
+        data:
+            -
+                entity_name: Acme\Bundle\DemoSearchBundle\Entity\Item
+                record_string: email-1@mail.com
+            -
+                entity_name: Acme\Bundle\DemoSearchBundle\Entity\Item
+                record_string: email-2@mail.com
+            -
+                entity_name: Acme\Bundle\DemoSearchBundle\Entity\Item
+                record_string: email-3@mail.com
+    soap:
+        item:
+            -
+                entityName: Acme\Bundle\DemoSearchBundle\Entity\Item
+                recordTitle: email-1@mail.com
+            -
+                entityName: Acme\Bundle\DemoSearchBundle\Entity\Item
+                recordTitle: email-2@mail.com
+            -
+                entityName: Acme\Bundle\DemoSearchBundle\Entity\Item
+                recordTitle: email-3@mail.com

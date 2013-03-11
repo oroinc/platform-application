@@ -17,7 +17,7 @@ class RestApiTest extends WebTestCase
     }
 
     /**
-     * @param string $request
+     * @param array $request
      * @param array $response
      *
      * @dataProvider requestsApi
@@ -53,17 +53,12 @@ class RestApiTest extends WebTestCase
         );
         foreach ($testFiles as $fileName => $object) {
             $parameters[$fileName] = Yaml::parse($fileName);
-            if (is_null($parameters[$fileName]['response']['data'])) {
-                unset($parameters[$fileName]['response']['data']);
+            if (is_null($parameters[$fileName]['response']['rest']['data'])) {
+                unset($parameters[$fileName]['response']['rest']['data']);
             }
         }
         return
             $parameters;
-    }
-
-    protected function tearDown()
-    {
-        unset($this->client);
     }
 
     /**
@@ -95,8 +90,8 @@ class RestApiTest extends WebTestCase
     {
         $this->assertEquals($response['records_count'], $result['records_count']);
         $this->assertEquals($response['count'], $result['count']);
-        if (isset($response['data']) && is_array($response['data'])) {
-            foreach ($response['data'] as $key => $object) {
+        if (isset($response['rest']['data']) && is_array($response['rest']['data'])) {
+            foreach ($response['rest']['data'] as $key => $object) {
                 foreach ($object as $property => $value) {
                     $this->assertEquals($value, $result['data'][$key][$property]);
                 }
