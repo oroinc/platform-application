@@ -24,6 +24,12 @@
     {{ parent() }}
     <script type="text/javascript" src="{{ asset('bundles/oroui/lib/underscore.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bundles/oroui/lib/backbone.js') }}"></script>
+
+    {% include 'OroPinbarBundle:Js:dot.menu.js.twig' %}
+    <script type="text/javascript" src="{{ asset('bundles/oropinbar/js/models/navigation.item.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/oropinbar/js/views/dot.menu.item.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/oropinbar/js/views/dot.menu.js') }}"></script>
+
     {% include 'OroPinbarBundle:Js:pinbar.js.twig' %}
     <script type="text/javascript" src="{{ asset('bundles/oropinbar/js/models/pinbar.item.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bundles/oropinbar/js/collections/pinbar.js') }}"></script>
@@ -53,6 +59,6 @@
 </div>
 {% endblock top_action_box %}
 
-{{ oro_menu_render('pinbar') }}
+{{ oro_menu_render('pinbar', {'tabTitle': 'Tabs'|trans(), 'defaultUrl': path('acme_default')}) }}
 
 {% endblock %}
