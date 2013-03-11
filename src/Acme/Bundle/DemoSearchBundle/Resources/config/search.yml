@@ -29,3 +29,17 @@ Acme\Bundle\DemoSearchBundle\Entity\Item:
             target_type: text
             target_fields: [blobValue, all_data]
 
+Acme\Bundle\DemoFlexibleEntityBundle\Entity\Product:
+     alias: demo_flexible_product
+     label: Demo Products
+     flexible_manager: product_manager
+     route:
+         name: acme_demo_search_product
+         parameters:
+             id: id
+     title_fields: [sku]
+     fields:
+         -
+            name: sku
+            target_type: text
+            target_fields: [sku, all_data]
