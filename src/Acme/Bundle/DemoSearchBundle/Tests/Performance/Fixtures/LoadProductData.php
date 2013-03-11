@@ -115,7 +115,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $productAttribute = $this->getProductManager()->getFlexibleRepository()->findAttributeByCode($attributeCode);
         if (is_null($productAttribute)) {
             $productAttribute = $this->getProductManager()->createAttributeExtended(new MoneyType());
-            //$productAttribute->setSearchable(true);
+            $productAttribute->setSearchable(true);
             $productAttribute->setName('Price');
             $productAttribute->setCode($attributeCode);
             $this->getProductManager()->getStorageManager()->persist($productAttribute);
@@ -126,7 +126,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $productAttribute = $this->getProductManager()->getFlexibleRepository()->findAttributeByCode($attributeCode);
         if (is_null($productAttribute)) {
             $productAttribute = $this->getProductManager()->createAttributeExtended(new TextAreaType());
-            //$productAttribute->setSearchable(true);
+            $productAttribute->setSearchable(true);
             $productAttribute->setName('Description');
             $productAttribute->setCode($attributeCode);
             $productAttribute->setTranslatable(true);
@@ -139,7 +139,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $productAttribute = $this->getProductManager()->getFlexibleRepository()->findAttributeByCode($attributeCode);
         if (is_null($productAttribute)) {
             $productAttribute = $this->getProductManager()->createAttributeExtended(new MetricType());
-            //$productAttribute->setSearchable(true);
+            $productAttribute->setSearchable(true);
             $productAttribute->setName('Size');
             $productAttribute->setCode($attributeCode);
             $this->getProductManager()->getStorageManager()->persist($productAttribute);
@@ -150,7 +150,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $productAttribute = $this->getProductManager()->getFlexibleRepository()->findAttributeByCode($attributeCode);
         if (is_null($productAttribute)) {
             $productAttribute = $this->getProductManager()->createAttributeExtended(new OptionMultiCheckboxType());
-            //$productAttribute->setSearchable(true);
+            $productAttribute->setSearchable(true);
             $productAttribute->setName('Color');
             $productAttribute->setCode($attributeCode);
             $productAttribute->setTranslatable(false); // only one value but option can be translated in option values

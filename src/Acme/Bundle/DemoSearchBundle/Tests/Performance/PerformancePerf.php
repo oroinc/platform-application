@@ -70,7 +70,7 @@ class PerformanceTest extends WebTestCase
     public function dataSearchLoad()
     {
         return array(
-            '999' => array('999' => 33),
+            '999' => array('999' => 333),
             '3000' => array('2997' => 1000),
             '6000' => array('5997' => 2000),
             '9000' => array('9999' => 3000)
@@ -80,24 +80,5 @@ class PerformanceTest extends WebTestCase
     protected function tearDown()
     {
         unset($this->client);
-    }
-
-    /**
-     * Test API response status
-     *
-     * @param string $response
-     * @param int $statusCode
-     */
-    protected function assertJsonResponse($response, $statusCode = 200)
-    {
-        $this->assertEquals(
-            $statusCode,
-            $response->getStatusCode(),
-            $response->getContent()
-        );
-        $this->assertTrue(
-            $response->headers->contains('Content-Type', 'application/json'),
-            $response->headers
-        );
     }
 }

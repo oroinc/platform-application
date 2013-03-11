@@ -31,8 +31,8 @@ Acme\Bundle\DemoSearchBundle\Entity\Item:
 
 Acme\Bundle\DemoFlexibleEntityBundle\Entity\Product:
      alias: demo_flexible_product
-     flexible_manager: product_manager
      label: Demo Products
+     flexible_manager: product_manager
      route:
          name: acme_demo_search_product
          parameters:
@@ -43,4 +43,3 @@ Acme\Bundle\DemoFlexibleEntityBundle\Entity\Product:
             name: sku
             target_type: text
             target_fields: [sku, all_data]
-     flexible_manager: product_manager
