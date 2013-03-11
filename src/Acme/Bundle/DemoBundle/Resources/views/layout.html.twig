@@ -25,8 +25,11 @@
     <script type="text/javascript" src="{{ asset('bundles/oroui/lib/underscore.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bundles/oroui/lib/backbone.js') }}"></script>
 
+
     {% include 'OroPinbarBundle:Js:dot.menu.js.twig' %}
     <script type="text/javascript" src="{{ asset('bundles/oropinbar/js/models/navigation.item.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/oropinbar/js/collections/navigation.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/oropinbar/js/views/navigation.abstract.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bundles/oropinbar/js/views/dot.menu.item.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bundles/oropinbar/js/views/dot.menu.js') }}"></script>
 
@@ -35,6 +38,8 @@
     <script type="text/javascript" src="{{ asset('bundles/oropinbar/js/collections/pinbar.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bundles/oropinbar/js/views/pinbar.item.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bundles/oropinbar/js/views/pinbar.js') }}"></script>
+
+    <script type="text/javascript" src="{{ asset('bundles/oropinbar/js/views/favorites.js') }}"></script>
 
     <style type="text/css">
         .pin-bar .list-bar, .pin-bar .list-bar li a {
@@ -51,7 +56,8 @@
         <div class="top-action-box">
             <div class="btn-group icons-holder icons-small">
                 <button class="btn minimize-button" data-title="{{ block('title') }}"><i class="icon-minimize hide-text">minimaze tab</i></button>
-                <button class="btn maximize-button"><i class="icon-fullscreen hide-text">full screen</i></button>
+                {# <button class="btn maximize-button"><i class="icon-fullscreen hide-text">full screen</i></button> #}
+                <button class="btn favorite-button" data-title="{{ block('title') }}"><i class="icon-star icon-white hide-text">favorites</i></button>
                 <button class="btn close-button"><i class="icon-remove hide-text">Close</i></button>
             </div>
         </div>
@@ -59,6 +65,7 @@
 </div>
 {% endblock top_action_box %}
 
-{{ oro_menu_render('pinbar', {'tabTitle': 'Tabs'|trans(), 'defaultUrl': path('acme_default')}) }}
+{{ oro_menu_render('pinbar', {'maxPinbarItems': 2, 'tabTitle': 'Tabs'|trans(), 'defaultUrl': path('acme_default')}) }}
+{{ oro_menu_render('favorites', {'tabTitle': 'Favorites'|trans()}) }}
 
 {% endblock %}
