@@ -71,9 +71,9 @@ class PerformanceTest extends WebTestCase
     {
         return array(
             '999' => array('999' => 33),
-            //'3000' => array('2997' => 1000),
-            //'6000' => array('5997' => 2000),
-            //'9000' => array('9999' => 3000)
+            '3000' => array('2997' => 1000),
+            '6000' => array('5997' => 2000),
+            '9000' => array('9999' => 3000)
         );
     }
 
