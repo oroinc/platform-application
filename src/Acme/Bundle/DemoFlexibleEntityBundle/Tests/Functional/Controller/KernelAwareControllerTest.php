@@ -22,6 +22,11 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  */
 abstract class KernelAwareControllerTest extends WebTestCase
 {
+    /**  Default user name */
+    const AUTH_USER = 'admin@example.com';
+
+    /**  Default user password */
+    const AUTH_PW = 'admin';
 
     /**
      * Tested url pattern
@@ -65,7 +70,7 @@ abstract class KernelAwareControllerTest extends WebTestCase
         $url = str_replace('%%controller%%', $controller, $url);
         $url = str_replace('%%action%%', $action, $url);
 
-        echo "\nURL --> ". $url ."\n";
+        //echo "\nURL --> ". $url ."\n";
 
         return $url;
     }
@@ -151,7 +156,7 @@ abstract class KernelAwareControllerTest extends WebTestCase
 
     /**
      * Get storage manager.. EntityManager by default
-     * @return Doctrine\ORM\EntityManager
+     * @return \Doctrine\ORM\EntityManager
      */
     protected function getStorageManager()
     {
@@ -162,7 +167,7 @@ abstract class KernelAwareControllerTest extends WebTestCase
      * Get tables to truncate
      * Must be redefine to truncate a minimum of tables
      *
-     * @return multitype:string
+     * @return array
      */
     protected function getTablesToTruncate()
     {

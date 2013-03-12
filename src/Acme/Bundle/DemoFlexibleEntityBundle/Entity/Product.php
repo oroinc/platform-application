@@ -53,4 +53,10 @@ class Product extends AbstractEntityFlexible
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return $this->sku;
+    }
 }
+
