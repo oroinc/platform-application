@@ -16,7 +16,7 @@ use Doctrine\Common\Persistence\ObjectManager;
  *
  * Execute with "php app/console doctrine:fixtures:load"
  *
- * @author Benoit Jacquemont <benoit@akeneo.com>
+ * @author    Benoit Jacquemont <benoit@akeneo.com>
  * @copyright 2012 Akeneo SAS (http://www.akeneo.com)
  * @license   http://opensource.org/licenses/MIT MIT
  */
@@ -49,23 +49,24 @@ class LoadSimpleCustomerSegmentData extends AbstractFixture implements OrderedFi
 
         $prospects = $this->createSegment('Prospects');
 
-        $cust1 = $this->createCustomer('Mr Foo','555-12345');
-        $cust2 = $this->createCustomer('Mr Bar','555-56788');
-        $cust3 = $this->createCustomer('Ms Toto','555-3330');
+        $cust1 = $this->createCustomer('Mr Foo', '555-12345');
+        $cust2 = $this->createCustomer('Mr Bar', '555-56788');
+        $cust3 = $this->createCustomer('Ms Toto', '555-3330');
         $custs1 = array($cust1,$cust2,$cust3);
 
-        $potentialCustomers = $this->createSegment('Potential customers', $prospects, $custs1);
+        $this->createSegment('Potential customers', $prospects, $custs1);
 
-        $customers = $this->createSegment('Customers');
+        $this->createSegment('Customers');
 
         $this->manager->flush();
     }
 
     /**
      * Create a Segment entity
-     * @param string $title Title of the segment
-     * @param SimpleCustomerSegment $parent parent segment
-     * @param array $customers Customers that should be associated to this segment
+     *
+     * @param string                $title     Title of the segment
+     * @param SimpleCustomerSegment $parent    parent segment
+     * @param array                 $customers Customers that should be associated to this segment
      *
      * @return SimpleCustomerSegment
      */
@@ -75,7 +76,7 @@ class LoadSimpleCustomerSegmentData extends AbstractFixture implements OrderedFi
         $segment->setTitle($title);
         $segment->setParent($parent);
 
-        foreach($customers as $customer) {
+        foreach ($customers as $customer) {
             $segment->addCustomer($customer);
         }
 
@@ -86,8 +87,9 @@ class LoadSimpleCustomerSegmentData extends AbstractFixture implements OrderedFi
 
     /**
      * Create a SimpleCustomer entity
-     * @param string $name Name of the customer
-     * @param string $phone phone of the customer
+     *
+     * @param string $name  Name of the customer
+     * @param string $phone Phone of the customer
      *
      * @return SimpleCustomer
      */

@@ -12,7 +12,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Segment node entity class implementing tree associated with SimpleProduct
  *
- * @author Benoit Jacquemont <benoit@akeneo.com>
+ * @author    Benoit Jacquemont <benoit@akeneo.com>
  * @copyright 2012 Akeneo SAS (http://www.akeneo.com)
  * @license   http://opensource.org/licenses/MIT MIT
  *
@@ -49,6 +49,9 @@ class SimpleProductSegment extends AbstractSegment
      **/
     protected $simpleProducts;
 
+    /**
+     * Constructor
+     */
     public function __construct()
     {
         $this->simpleProducts = new ArrayCollection();
@@ -64,7 +67,7 @@ class SimpleProductSegment extends AbstractSegment
     public function addProduct(SimpleProduct $product)
     {
         $this->simpleProducts[] = $product;
-    
+
         return $this;
     }
 

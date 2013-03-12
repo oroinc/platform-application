@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Category entity class implementing tree
  *
- * @author Benoit Jacquemont <benoit@akeneo.com>
+ * @author    Benoit Jacquemont <benoit@akeneo.com>
  * @copyright 2012 Akeneo SAS (http://www.akeneo.com)
  * @license   http://opensource.org/licenses/MIT MIT
  *
@@ -37,7 +37,7 @@ class SimpleProduct
      * @ORM\Column(name="description", type="string", length=255)
      */
     protected $description;
-    
+
 
     /**
      * Get id
@@ -53,12 +53,13 @@ class SimpleProduct
      * Set name
      *
      * @param string $name
+     *
      * @return SimpleProduct
      */
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
@@ -76,12 +77,13 @@ class SimpleProduct
      * Set description
      *
      * @param string $description
+     *
      * @return SimpleProduct
      */
     public function setDescription($description)
     {
         $this->description = $description;
-    
+
         return $this;
     }
 

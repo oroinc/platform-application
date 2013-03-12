@@ -12,7 +12,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Segment node entity class implementing tree associated with SimpleCustomer
  *
- * @author Benoit Jacquemont <benoit@akeneo.com>
+ * @author    Benoit Jacquemont <benoit@akeneo.com>
  * @copyright 2012 Akeneo SAS (http://www.akeneo.com)
  * @license   http://opensource.org/licenses/MIT MIT
  *
@@ -49,6 +49,9 @@ class SimpleCustomerSegment extends AbstractSegment
      **/
     protected $simpleCustomers;
 
+    /**
+     * Constructor
+     */
     public function __construct()
     {
         $this->simpleCustomers = new ArrayCollection();
@@ -64,7 +67,7 @@ class SimpleCustomerSegment extends AbstractSegment
     public function addCustomer(SimpleCustomer $customer)
     {
         $this->simpleCustomers[] = $customer;
-    
+
         return $this;
     }
 

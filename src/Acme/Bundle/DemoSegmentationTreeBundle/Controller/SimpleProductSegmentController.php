@@ -4,7 +4,7 @@ namespace Acme\Bundle\DemoSegmentationTreeBundle\Controller;
 use Acme\Bundle\DemoSegmentationTreeBundle\Helper\JsonItemsHelper;
 use Oro\Bundle\SegmentationTreeBundle\Helper\JsonSegmentHelper;
 
-use Oro\Bundle\SegmentationTreeBundle\Controller\BaseSegmentController;
+use Oro\Bundle\SegmentationTreeBundle\BaseSegmentController;
 use Oro\Bundle\SegmentationTreeBundle\Model\AbstractSegment;
 
 use Doctrine\ORM\EntityManager;
@@ -23,7 +23,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 /**
  * Simple product Segment controller
  *
- * @author Benoit Jacquemont <benoit@akeneo.com>
+ * @author    Benoit Jacquemont <benoit@akeneo.com>
  * @copyright 2012 Akeneo SAS (http://www.akeneo.com)
  * @license   http://opensource.org/licenses/MIT MIT
  *
@@ -90,11 +90,11 @@ class SimpleProductSegmentController extends BaseSegmentController
         if ($request->isXmlHttpRequest()) {
             $segmentId = $request->get('segment_id');
             $productId = $request->get('item_id');
-            
+
             $repo = $this->getSegmentManager()->getEntityRepository();
             $segment = $repo->find($segmentId);
             $product = $this->getDoctrine()->getManager()
-                ->find('AcmeDemoSegmentationTreeBundle:SimpleProduct',$productId);
+                ->find('AcmeDemoSegmentationTreeBundle:SimpleProduct', $productId);
 
             $segment->addProduct($product);
             $this->getSegmentManager()->getStorageManager()->persist($segment);
@@ -119,11 +119,11 @@ class SimpleProductSegmentController extends BaseSegmentController
         if ($request->isXmlHttpRequest()) {
             $segmentId = $request->get('segment_id');
             $productId = $request->get('item_id');
-            
+
             $repo = $this->getSegmentManager()->getEntityRepository();
             $segment = $repo->find($segmentId);
             $product = $this->getDoctrine()->getManager()
-                ->find('AcmeDemoSegmentationTreeBundle:SimpleProduct',$productId);
+                ->find('AcmeDemoSegmentationTreeBundle:SimpleProduct', $productId);
 
             $segment->removeProduct($product);
             $this->getSegmentManager()->getStorageManager()->persist($segment);
@@ -137,5 +137,5 @@ class SimpleProductSegmentController extends BaseSegmentController
         }
     }
 
-    
+
 }

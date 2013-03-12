@@ -16,7 +16,7 @@ use Doctrine\Common\Persistence\ObjectManager;
  *
  * Execute with "php app/console doctrine:fixtures:load"
  *
- * @author Romain Monceau <romain@akeneo.com>
+ * @author    Romain Monceau <romain@akeneo.com>
  * @copyright 2012 Akeneo SAS (http://www.akeneo.com)
  * @license   http://opensource.org/licenses/MIT MIT
  */
@@ -49,9 +49,9 @@ class LoadSimpleProductSegmentData extends AbstractFixture implements OrderedFix
 
         $computer = $this->createSegment('computers');
 
-        $lap1 = $this->createProduct('Laptop 1','Nice laptop 1');
-        $lap2 = $this->createProduct('Laptop 2','Nice laptop 2');
-        $lap3 = $this->createProduct('Laptop 3','Nice laptop 3');
+        $lap1 = $this->createProduct('Laptop 1', 'Nice laptop 1');
+        $lap2 = $this->createProduct('Laptop 2', 'Nice laptop 2');
+        $lap3 = $this->createProduct('Laptop 3', 'Nice laptop 3');
         $laptops = array($lap1,$lap2,$lap3);
 
         $laptop = $this->createSegment('laptop', $computer, $laptops);
@@ -78,17 +78,18 @@ class LoadSimpleProductSegmentData extends AbstractFixture implements OrderedFix
         $this->createSegment('usb keys', $dataStore);
         $disks = $this->createSegment('Disks', $dataStore);
 
-        $dvds = $this->createSegment('DVD', $disks);
-        $cds = $this->createSegment('CD', $disks);
+        $this->createSegment('DVD', $disks);
+        $this->createSegment('CD', $disks);
 
         $this->manager->flush();
     }
 
     /**
      * Create a Segment entity
-     * @param string $title Title of the segment
-     * @param SimpleProductSegment $parent parent segment
-     * @param array $products Products that should be associated to this segment
+     *
+     * @param string               $title    Title of the segment
+     * @param SimpleProductSegment $parent   Parent segment
+     * @param array                $products Products that should be associated to this segment
      *
      * @return SimpleProductSegment
      */
@@ -98,7 +99,7 @@ class LoadSimpleProductSegmentData extends AbstractFixture implements OrderedFix
         $segment->setTitle($title);
         $segment->setParent($parent);
 
-        foreach($products as $product) {
+        foreach ($products as $product) {
             $segment->addProduct($product);
         }
 
@@ -109,7 +110,7 @@ class LoadSimpleProductSegmentData extends AbstractFixture implements OrderedFix
 
     /**
      * Create a SimpleProduct entity
-     * @param string $name Name of the product
+     * @param string $name        Name of the product
      * @param string $description Description of the product
      *
      * @return SimpleProduct

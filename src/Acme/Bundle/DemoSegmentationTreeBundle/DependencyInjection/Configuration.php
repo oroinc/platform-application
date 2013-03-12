@@ -20,7 +20,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('acme_demo_segmentation_tree');
+        $treeBuilder->root('acme_demo_segmentation_tree');
 
         return $treeBuilder;
     }

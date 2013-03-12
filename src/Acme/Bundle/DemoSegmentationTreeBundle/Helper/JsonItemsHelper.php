@@ -4,7 +4,7 @@ namespace Acme\Bundle\DemoSegmentationTreeBundle\Helper;
 /**
  * Helper for the items controller to format items data to 
  *
- * @author Benoit Jacquemont <benoit@akeneo.com>
+ * @author    Benoit Jacquemont <benoit@akeneo.com>
  * @copyright 2012 Akeneo SAS (http://www.akeneo.com)
  * @license   http://opensource.org/licenses/MIT MIT
  */

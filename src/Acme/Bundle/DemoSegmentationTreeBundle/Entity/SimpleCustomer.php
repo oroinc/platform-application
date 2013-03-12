@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Category entity class implementing tree
  *
- * @author Benoit Jacquemont <benoit@akeneo.com>
+ * @author    Benoit Jacquemont <benoit@akeneo.com>
  * @copyright 2012 Akeneo SAS (http://www.akeneo.com)
  * @license   http://opensource.org/licenses/MIT MIT
  *
@@ -37,10 +37,10 @@ class SimpleCustomer
      * @ORM\Column(name="phone", type="string", length=255)
      */
     protected $phone;
-    
+
 
     /**
-     * Get id
+     * Get id of the current customer
      *
      * @return integer 
      */
@@ -53,12 +53,13 @@ class SimpleCustomer
      * Set name
      *
      * @param string $name
+     *
      * @return SimpleCustomer
      */
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
@@ -76,13 +77,13 @@ class SimpleCustomer
      * Set phone
      *
      * @param string $phone
+     *
      * @return SimpleCustomer
-
      */
     public function setPhone($phone)
     {
         $this->phone = $phone;
-    
+
         return $this;
     }
 
