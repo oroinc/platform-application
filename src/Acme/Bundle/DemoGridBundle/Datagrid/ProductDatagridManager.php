@@ -167,23 +167,23 @@ class ProductDatagridManager extends DatagridManager
             );
             $this->fieldsCollection->add($fieldDescription);
 
-//            $fieldCreateDate = new FieldDescription();
-//            $fieldCreateDate->setName('createDate');
-//            $fieldCreateDate->setOptions(
-//                array(
-//                    'type'        => FieldDescriptionInterface::TYPE_DATETIME,
-//                    'label'       => 'Create Date',
-//                    'field_type'  => FieldDescriptionInterface::TYPE_DATETIME,
-//                    'entity_alias' => 'p',
-//                    'field_name'  => 'createDate',
-//                    'filter_type' => FilterInterface::TYPE_DATETIME,
-//                    'required'    => false,
-//                    'sortable'    => true,
-//                    'filterable'  => true,
-//                    'show_filter' => true,
-//                )
-//            );
-//            $this->fieldsCollection->add($fieldCreateDate);
+            $fieldCreateDate = new FieldDescription();
+            $fieldCreateDate->setName('createDate');
+            $fieldCreateDate->setOptions(
+                array(
+                    'type'        => FieldDescriptionInterface::TYPE_DATETIME,
+                    'label'       => 'Create Date',
+                    'field_type'  => FieldDescriptionInterface::TYPE_DATETIME,
+                    'entity_alias' => 'p',
+                    'field_name'  => 'createDate',
+                    'filter_type' => FilterInterface::TYPE_DATETIME,
+                    'required'    => false,
+                    'sortable'    => true,
+                    'filterable'  => true,
+                    'show_filter' => true,
+                )
+            );
+            $this->fieldsCollection->add($fieldCreateDate);
         }
 
         return $this->fieldsCollection;
