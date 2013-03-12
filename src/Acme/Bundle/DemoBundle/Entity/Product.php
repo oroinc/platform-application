@@ -74,7 +74,7 @@ class Product extends AbstractEntityFlexible
     /**
      * Set name
      *
-     * @param string $name
+     * @param  string  $name
      * @return Product
      */
     public function setName($name)
@@ -96,7 +96,7 @@ class Product extends AbstractEntityFlexible
     /**
      * Set description
      *
-     * @param string $description
+     * @param  string  $description
      * @return Product
      */
     public function setDescription($description)
@@ -127,7 +127,7 @@ class Product extends AbstractEntityFlexible
     /**
      * Set manufacturer
      *
-     * @param \Acme\Bundle\DemoBundle\Entity\Manufacturer $manufacturer
+     * @param  \Acme\Bundle\DemoBundle\Entity\Manufacturer $manufacturer
      * @return Product
      */
     public function setManufacturer(\Acme\Bundle\DemoBundle\Entity\Manufacturer $manufacturer = null)
@@ -150,7 +150,7 @@ class Product extends AbstractEntityFlexible
     /**
      * Add categories
      *
-     * @param \Acme\Bundle\DemoBundle\Entity\Category $category
+     * @param  \Acme\Bundle\DemoBundle\Entity\Category $category
      * @return Product
      */
     public function addCategorie(\Acme\Bundle\DemoBundle\Entity\Category $category)
@@ -183,7 +183,7 @@ class Product extends AbstractEntityFlexible
     /**
      * Set price
      *
-     * @param float $price
+     * @param  float   $price
      * @return Product
      */
     public function setPrice($price)
@@ -206,7 +206,7 @@ class Product extends AbstractEntityFlexible
     /**
      * Set count
      *
-     * @param integer $count
+     * @param  integer $count
      * @return Product
      */
     public function setCount($count)
@@ -229,7 +229,7 @@ class Product extends AbstractEntityFlexible
     /**
      * Set createDate
      *
-     * @param \DateTime $createDate
+     * @param  \DateTime $createDate
      * @return Product
      */
     public function setCreateDate($createDate)
