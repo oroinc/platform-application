@@ -22,7 +22,7 @@ class ProductControllerTest extends KernelAwareControllerTest
     /**
      * Get product manager
      *
-     * @return Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleManager
+     * @return \Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleManager
      */
     protected function getProductManager()
     {
@@ -35,7 +35,13 @@ class ProductControllerTest extends KernelAwareControllerTest
     public function testIndexAction()
     {
         foreach (self::$locales as $locale) {
-            $this->client->request('GET', self::prepareUrl($locale, 'index'));
+            $this->client->request(
+                'GET',
+                self::prepareUrl($locale, 'index'),
+                array(),
+                array(),
+                array('PHP_AUTH_USER' =>  self::AUTH_USER, 'PHP_AUTH_PW' => self::AUTH_PW)
+            );
             $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         }
     }
@@ -55,7 +61,13 @@ class ProductControllerTest extends KernelAwareControllerTest
 
         // call and assert view
         foreach (self::$locales as $locale) {
-            $this->client->request('GET', self::prepareUrl('en', 'show/'.$entity->getId()));
+            $this->client->request(
+                'GET',
+                self::prepareUrl('en', 'show/'.$entity->getId()),
+                array(),
+                array(),
+                array('PHP_AUTH_USER' =>  self::AUTH_USER, 'PHP_AUTH_PW' => self::AUTH_PW)
+            );
             $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         }
     }
@@ -67,7 +79,13 @@ class ProductControllerTest extends KernelAwareControllerTest
     {
         // just call view to show form
         foreach (self::$locales as $locale) {
-            $this->client->request('GET', self::prepareUrl($locale, 'create'));
+            $this->client->request(
+                'GET',
+                self::prepareUrl($locale, 'create'),
+                array(),
+                array(),
+                array('PHP_AUTH_USER' =>  self::AUTH_USER, 'PHP_AUTH_PW' => self::AUTH_PW)
+            );
             $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         }
     }
@@ -85,7 +103,13 @@ class ProductControllerTest extends KernelAwareControllerTest
 
         // just call view to show form
         foreach (self::$locales as $locale) {
-            $this->client->request('GET', self::prepareUrl($locale, 'edit/'. $entity->getId()));
+            $this->client->request(
+                'GET',
+                self::prepareUrl($locale, 'edit/'. $entity->getId()),
+                array(),
+                array(),
+                array('PHP_AUTH_USER' =>  self::AUTH_USER, 'PHP_AUTH_PW' => self::AUTH_PW)
+            );
             $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         }
     }

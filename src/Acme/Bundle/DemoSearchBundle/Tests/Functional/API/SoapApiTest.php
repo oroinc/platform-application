@@ -2,21 +2,26 @@
 
 namespace Acme\Bundle\DemoSearchBundle\Tests\Functional\API;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\Finder\Iterator;
 
-class SoapApiTest extends WebTestCase
+class SoapApiTest extends \PHPUnit_Framework_TestCase
 {
     /** Default value for offset and max_records */
     const DEFAULT_VALUE = 0;
 
-    /** @var CustomSoapClient */
+    /** @var \SoapClient */
     static private $clientSoap = null;
 
-    public static function setUpBeforeClass()
+    public function setUp()
     {
-        self::$clientSoap = new \SoapClient('http://localhost.com/app_test.php/api/soap');
+        if (is_null(self::$clientSoap)) {
+            try {
+                self::$clientSoap = @new \SoapClient('http://localhost.com/app_test.php/api/soap');
+            } catch (\SoapFault $e) {
+                $this->markTestSkipped('Test skipped due to http://localhost.com is not available!');
+            }
+        }
     }
 
     public static function tearDownAfterClass()

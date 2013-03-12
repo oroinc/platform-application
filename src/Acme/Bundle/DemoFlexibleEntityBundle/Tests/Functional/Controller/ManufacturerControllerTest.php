@@ -25,7 +25,13 @@ class ManufacturerControllerTest extends KernelAwareControllerTest
     public function testIndexAction()
     {
         foreach (self::$locales as $locale) {
-            $this->client->request('GET', self::prepareUrl($locale, 'index'));
+            $this->client->request(
+                'GET',
+                self::prepareUrl($locale, 'index'),
+                array(),
+                array(),
+                array('PHP_AUTH_USER' =>  self::AUTH_USER, 'PHP_AUTH_PW' => self::AUTH_PW)
+            );
             $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         }
     }
