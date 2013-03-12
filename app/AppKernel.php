@@ -38,6 +38,7 @@ class AppKernel extends Kernel
             new Oro\Bundle\UserBundle\OroUserBundle(),
             new Oro\Bundle\MeasureBundle\OroMeasureBundle(),
             new Oro\Bundle\MenuBundle\OroMenuBundle(),
+            new Oro\Bundle\ConfigBundle\OroConfigBundle(),
 
             // BAP Demo bundles
             new Acme\Bundle\DemoBundle\AcmeDemoBundle(),
@@ -45,10 +46,10 @@ class AppKernel extends Kernel
             new Acme\Bundle\DemoMenuBundle\AcmeDemoMenuBundle(),
             new Acme\Bundle\DemoFlexibleEntityBundle\AcmeDemoFlexibleEntityBundle(),
             new Acme\Bundle\DemoDataFlowBundle\AcmeDemoDataFlowBundle(),
-            new Acme\Bundle\DemoSearchBundle\AcmeDemoSearchBundle()
+            new Acme\Bundle\DemoSearchBundle\AcmeDemoSearchBundle(),
         );
 
-        if (in_array($this->getEnvironment(), array('dev', 'test'))) {
+        if (in_array($this->getEnvironment(), array('dev', 'test', 'perf'))) {
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();

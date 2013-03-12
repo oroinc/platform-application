@@ -12,25 +12,32 @@ class ProductType extends FlexibleType
     public function addEntityFields(FormBuilderInterface $builder)
     {
         parent::addEntityFields($builder);
-        $builder
-            ->add('name')
-            ->add('price')
-            ->add('description')
-            ->add('count')
-            ->add('createDate')
-            ->add('manufacturer', 'entity', array(
+
+        $builder->add('name');
+        $builder->add('price');
+        $builder->add('description');
+        $builder->add('count');
+        $builder->add('createDate');
+        $builder->add(
+            'manufacturer',
+            'entity',
+            array(
                 'class' => "Acme\\Bundle\\DemoBundle\\Entity\\Manufacturer",
                 'multiple' => false,
                 'expanded' => false,
                 'required' => true,
-            ))
-            ->add('categories', 'entity', array(
+            )
+        );
+        $builder->add(
+            'categories',
+            'entity',
+            array(
                'class' => "Acme\\Bundle\\DemoBundle\\Entity\\Category",
                'multiple' => true,
                'expanded' => false,
                'required' => true,
-            ))
-        ;
+            )
+        );
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

@@ -7,10 +7,7 @@ security:
             id:                             oro_user.security.provider
         in_memory:
             memory:
-                users:
-                    admin:
-                        password:           admin,
-                        roles:              ['ROLE_ADMIN']
+                users:                      []
 
     encoders:
         Oro\Bundle\UserBundle\Entity\User:  sha512
