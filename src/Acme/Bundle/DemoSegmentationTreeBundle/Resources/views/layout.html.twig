@@ -10,4 +10,160 @@
     <script type="text/javascript" src="{{ asset('bundles/orosegmentationtree/js/jquery.jstree.js') }}"></script>
 {% endblock %}
 
+{% block content %}
 
+<div id="description">
+<div id="tree_menu" style="overflow:auto;">
+    <button id="refresh" class="btn">{{ "acme.demosegmentationtree.button.refresh" | trans }}</button>
+    <br />
+    <button id="add_segment" class="btn">{{ "acme.demosegmentationtree.button.add_segment" | trans }}</button>
+    <button id="rename" class="btn">{{ "acme.demosegmentationtree.button.rename" | trans }}</button>
+    <button id="remove" class="btn">{{ "acme.demosegmentationtree.button.remove" | trans }}</button>
+    <button id="cut" class="btn">{{ "acme.demosegmentationtree.button.cut" | trans }}</button>
+<!--
+    <button id="copy" class="btn">{{ "acme.demosegmentationtree.button.copy" | trans }}</button>
+-->
+    <button id="paste" class="btn">{{ "acme.demosegmentationtree.button.paste" | trans }}</button>
+    <div>
+        <input id="search_text" class="input" type="text" value="" />
+        <button id="search" class="btn">{{ "acme.demosegmentationtree.button.search" | trans }}</button>
+        <button id="clear_search" class="btn">{{ "acme.demosegmentationtree.button.clear_search" | trans }}</button>
+    </div>
+    <div>
+        <input id="add_item_id" class="input" type="text" value="" />
+        <button id="add_item" class="btn">{{ "acme.demosegmentationtree.button.add_item_by_id" | trans }}</button>
+    </div>
+    <div>
+        <input id="remove_item_id" class="input" type="text" value="" />
+        <button id="remove_item" class="btn">{{ "acme.demosegmentationtree.button.remove_item_by_id" | trans }}</button>
+    </div>
+</div>
+
+<div class="wrap">
+    <div id="tree" class="tree"></div>
+    <div id="list" class="list"></div>
+</div>
+
+<!-- JavaScript for the tree -->
+<script>
+    var assetsPath = "{{ asset('bundles/orosegmentationtree/') }}";
+</script>
+<script type="text/javascript" src="{{ asset('bundles/orosegmentationtree/js/orosegmentationtree.jstree.js') }}"></script>
+
+<script type="text/javascript">
+$(function () {
+// Code for the menu buttons
+    $("#tree_menu button").click(function () {
+        switch(this.id) {
+            case "refresh":
+                $('#tree').jstree('refresh',-1);
+                break;
+            case "add":
+                $("#tree").jstree("create", null, "last", { "attr" : { "rel" : this.id.toString().replace("add_", "") } });
+                break;
+            case "search":
+                $("#tree").jstree("search", $("#search_text").val());
+                break;
+            case "rename":
+                $("#tree").jstree("rename");
+                break;
+            case "add_segment":
+                $("#tree").jstree("create");
+                break;
+            case "add_item":
+                node = $.jstree._focused().get_selected();
+                node_id = node.attr('id');
+                segment_id = node_id.replace('node_','');
+                item_id = $("#add_item_id").val();
+
+                addItem(segment_id, item_id);
+                break;
+            case "remove_item":
+                node = $.jstree._focused().get_selected();
+                node_id = node.attr('id');
+                segment_id = node_id.replace('node_','');
+                item_id = $("#remove_item_id").val();
+
+                removeItem(segment_id, item_id);
+                break;
+            default:
+                $("#tree").jstree(this.id);
+                break;
+        }
+    });
+
+    function renderItemList(segment_id) {
+        $.ajax({
+            async : false,
+            type: "GET",
+            url: "list-items",
+            data : {
+                "segment_id" : segment_id
+            },
+            success: function(data) {
+                var html_table = ['<table border="1">'];
+
+                if (data.length > 0) {
+                    html_table.push('<tr>');
+                    for (var attribute in data[0]) {
+                        html_table.push('<th>');
+                        html_table.push(attribute);
+                        html_table.push('</th>');
+                    }
+                    html_table.push('</tr>');
+                    $.each(data, function(i,item) {
+                        html_table.push('<tr>');
+                        for (var attribute in item) {
+                            html_table.push('<td>' + item[attribute] + '</td>');
+                        }
+                        html_table.push('</tr>');
+                    });
+                }
+                html_table.push("</table>");
+                var s = html_table.join('');
+                $('#list').html(s);
+            }
+        });
+    }
+
+    function addItem(segment_id, item_id) {
+        $.ajax({
+            async : false,
+            type: 'POST',
+            url: "add-item",
+            data : {
+                "segment_id" : segment_id,
+                "item_id" : item_id
+            },
+            success : function (r) {
+                renderItemList(segment_id);
+            }
+        });
+    }
+
+    function removeItem(segment_id, item_id) {
+        $.ajax({
+            async : false,
+            type: 'POST',
+            url: "remove-item",
+            data : {
+                "segment_id" : segment_id,
+                "item_id" : item_id
+            },
+            success : function (r) {
+                renderItemList(segment_id);
+            }
+        });
+    }
+
+$("#tree")
+    .bind("select_node.jstree", function (e, data) {
+            var a = $.jstree._focused().get_selected();
+            var node_id = a.attr('id');
+            var segment_id = node_id.replace('node_','');
+            renderItemList(segment_id);
+    });
+
+});
+</script>
+{% endblock %}

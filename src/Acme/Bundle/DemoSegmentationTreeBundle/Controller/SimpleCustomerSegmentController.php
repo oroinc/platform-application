@@ -1,7 +1,11 @@
 <?php
 namespace Acme\Bundle\DemoSegmentationTreeBundle\Controller;
 
-use Acme\Bundle\DemoSegmentationTreeBundle\Helper\JsonTreeHelper;
+use Acme\Bundle\DemoSegmentationTreeBundle\Helper\JsonItemsHelper;
+use Oro\Bundle\SegmentationTreeBundle\Helper\JsonSegmentHelper;
+
+use Oro\Bundle\SegmentationTreeBundle\Controller\BaseSegmentController;
+use Oro\Bundle\SegmentationTreeBundle\Model\AbstractSegment;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -26,10 +30,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
  * @Route("/simple-customer-segment")
  *
  */
-class SimpleCustomerSegmentController extends Controller
+class SimpleCustomerSegmentController extends BaseSegmentController
 {
     /**
-     * Redirect to index action
+     * {@inheritdoc}
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
@@ -39,267 +43,64 @@ class SimpleCustomerSegmentController extends Controller
     }
 
     /**
-     * Display index screen
+     * {@inheritdoc}
      *
-     * @return Response
      *
-     * @Route("/index")
-     * @Template()
-     */
+     * @ Route("/index")
+     * @ Template()
     public function indexAction()
     {
         return $this->render('AcmeDemoSegmentationTreeBundle:SimpleCustomerSegment:index.html.twig');
     }
-
-    /**
-     * Send children segments linked to the one which id is provided
-     *
-     * @param Request $request
-     *
-     * @return Response
-     *
-     * @Method("GET")
-     * @Route("/children")
-     * @Template()
-     *
      */
-    public function childrenAction(Request $request)
-    {
-        if ($request->isXmlHttpRequest()) {
-            $parentId = $request->get('id');
-
-            $segments = $this->getManager()->getChildren($parentId);
-
-            $data = JsonTreeHelper::childrenResponse($segments);
-
-            return $this->prepareJsonResponse($data);
-        } else {
-            return $this->redirectToIndex();
-        }
-    }
 
     /**
-     * Search for a segment by its title
-     *
-     * @param Request $request
-     *
-     * @return Response
-     *
-     * @Route("/search")
-     * @Template()
-     */
-    public function searchAction(Request $request)
-    {
-        if ($request->isXmlHttpRequest()) {
-            $search = $request->get('search_str');
-
-            $segments = $this->getManager()->search(array('title' => $search));
-
-            $data = JsonTreeHelper::searchResponse($segments);
-
-            return $this->prepareJsonResponse($data);
-        } else {
-            return $this->redirectToIndex();
-        }
-    }
-
-    /**
-     * Create a new node
-     *
-     * @param Request $request
-     *
-     * @return \Symfony\Component\HttpFoundation\Response
-     *
-     * @Method("POST")
-     * @Route("/create-node")
-     * @Template()
-     */
-    public function createNodeAction(Request $request)
-    {
-        if ($request->isXmlHttpRequest()) {
-            $parentId = $request->get('id');
-            $title = $request->get('title');
-            
-            $segment = $this->getManager()->createSegment();
-
-            $segment->setTitle($title);
-
-            $repo = $this->getManager()->getEntityRepository();
-            $parent = $repo->find($parentId);
-
-            $segment->setParent($parent);
-
-            $this->getManager()->getStorageManager()->persist($segment);
-            $this->getManager()->getStorageManager()->flush();
-
-            $data = JsonTreeHelper::createNodeResponse(1, $segment->getId());
-
-            return $this->prepareJsonResponse($data);
-        } else {
-            return $this->redirectToIndex();
-        }
-    }
-
-    /**
-     * Rename a node
-     * @param Request $request
-     *
-     * @return Response
-     *
-     * @Method("POST")
-     * @Route("/rename-node")
-     * @Template()
-     */
-    public function renameNodeAction(Request $request)
-    {
-        if ($request->isXmlHttpRequest()) {
-            $this->getManager()->rename($request->get('id'), $request->get('title'));
-
-            $data = JsonTreeHelper::statusOKResponse();
-
-            return $this->prepareJsonResponse($data);
-        } else {
-            return $this->redirectToIndex();
-        }
-    }
-
-    /**
-     * Remove a node
-     * @param Request $request
-     *
-     * @return Response
-     *
-     * @Method("POST")
-     * @Route("/remove-node")
-     * @Template()
-     */
-    public function removeAction(Request $request)
-    {
-        if ($request->isXmlHttpRequest()) {
-            $this->getManager()->removeFromId($request->get('id'));
-
-            $data = JsonTreeHelper::statusOKResponse();
-
-            return $this->prepareJsonResponse($data);
-        } else {
-            return $this->redirectToIndex();
-        }
-    }
-
-    /**
-     * Move a node
-     * @param Request $request
-     *
-     * @return Response
-     *
-     * @Method("POST")
-     * @Route("/move-node")
-     * @Template()
-     */
-    public function moveNodeAction(Request $request)
-    {
-        if ($request->isXmlHttpRequest()) {
-            $segmentId = $request->get('id');
-            $referenceId = $request->get('ref');
-
-            if ($request->get('copy') == 1) {
-                $this->getManager()->copy($segmentId, $referenceId);
-            } else {
-                $this->getManager()->move($segmentId, $referenceId);
-            }
-
-            // format response to json content
-            $data = JsonTreeHelper::statusOKResponse();
-
-            return $this->prepareJsonResponse($data);
-        } else {
-            return $this->redirectToIndex();
-        }
-    }
-
-    /**
-     * Return a response in json content type with well formated data
-     * @param mixed $data
-     *
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    protected function prepareJsonResponse($data)
-    {
-        $response = new Response(json_encode($data));
-        $response->headers->set('Content-Type', 'application/json');
-
-        return $response;
-    }
-
-    /**
+     * Get the Segment manager associated with this controller
+     * 
      * @return SegmentManager
      */
-    protected function getManager()
+    protected function getSegmentManager()
     {
         return $this->get('acme_demo_segmentation_tree.simplecustomer_segment_manager');
     }
 
     /**
-     * List simple customers associated with the provided segment
-     *
-     * @param Request $request
-     *
-     * @return Response
-     *
-     * @Method("GET")
-     * @Route("/list-customers")
-     * @Template()
-     *
+     * {@inheritdoc}
      */
-    public function listCustomerAction(Request $request)
+    protected function prepareItemListResponse(AbstractSegment $segment)
     {
-        if ($request->isXmlHttpRequest()) {
-            $segmentId = $request->get('segment_id');
-            $simpleCustomers = new ArrayCollection();
+        $simpleCustomers = new ArrayCollection();
 
-            $repo = $this->getManager()->getEntityRepository();
-            $segment = $repo->find($segmentId);
-
-            if (is_object($segment)) {
-                $simpleCustomers = $segment->getSimpleCustomers();
-            }
-
-            $response = JsonTreeHelper::simpleCustomersResponse($simpleCustomers);
-            return $this->prepareJsonResponse($response);
-        } else {
-            return $this->redirectToIndex();
+        if (is_object($segment)) {
+            $simpleCustomers = $segment->getSimpleCustomers();
         }
+
+        return JsonItemsHelper::simpleCustomersResponse($simpleCustomers);
     }
 
+
     /**
-     * Associate customer to the specified segment
-     *
-     * @param Request $request
-     *
-     * @return Response
+     * {@inheritdoc}
      *
      * @Method("POST")
-     * @Route("/associate-customer")
-     * @Template()
-     *
-     * TODO: Manage multiple customer addition for future grid use
+     * @Route("/add-item")
      */
-    public function associateCustomerAction(Request $request)
+    public function addItemAction(Request $request)
     {
         if ($request->isXmlHttpRequest()) {
             $segmentId = $request->get('segment_id');
-            $customerId = $request->get('customer_id');
+            $customerId = $request->get('item_id');
             
-            $repo = $this->getManager()->getEntityRepository();
+            $repo = $this->getSegmentManager()->getEntityRepository();
             $segment = $repo->find($segmentId);
             $customer = $this->getDoctrine()->getManager()
                 ->find('AcmeDemoSegmentationTreeBundle:SimpleCustomer',$customerId);
 
             $segment->addCustomer($customer);
-            $this->getManager()->getStorageManager()->persist($segment);
-            $this->getManager()->getStorageManager()->flush();
+            $this->getSegmentManager()->getStorageManager()->persist($segment);
+            $this->getSegmentManager()->getStorageManager()->flush();
 
-            $response = JsonTreeHelper::statusOKResponse();
+            $response = JsonSegmentHelper::statusOKResponse();
 
             return $this->prepareJsonResponse($response);
         } else {
@@ -308,34 +109,27 @@ class SimpleCustomerSegmentController extends Controller
     }
 
     /**
-     * Remove association with customer to the specified segment
-     *
-     * @param Request $request
-     *
-     * @return Response
+     * {@inheritdoc}
      *
      * @Method("POST")
-     * @Route("/detach-customer")
-     * @Template()
-     *
-     * TODO: Manage multiple customer addition for future grid use
+     * @Route("/remove-item")
      */
-    public function detachCustomerAction(Request $request)
+    public function removeItemAction(Request $request)
     {
         if ($request->isXmlHttpRequest()) {
             $segmentId = $request->get('segment_id');
-            $customerId = $request->get('customer_id');
+            $customerId = $request->get('item_id');
             
-            $repo = $this->getManager()->getEntityRepository();
+            $repo = $this->getSegmentManager()->getEntityRepository();
             $segment = $repo->find($segmentId);
             $customer = $this->getDoctrine()->getManager()
                 ->find('AcmeDemoSegmentationTreeBundle:SimpleCustomer',$customerId);
 
             $segment->removeCustomer($customer);
-            $this->getManager()->getStorageManager()->persist($segment);
-            $this->getManager()->getStorageManager()->flush();
+            $this->getSegmentManager()->getStorageManager()->persist($segment);
+            $this->getSegmentManager()->getStorageManager()->flush();
 
-            $response = JsonTreeHelper::statusOKResponse();
+            $response = JsonSegmentHelper::statusOKResponse();
 
             return $this->prepareJsonResponse($response);
         } else {
