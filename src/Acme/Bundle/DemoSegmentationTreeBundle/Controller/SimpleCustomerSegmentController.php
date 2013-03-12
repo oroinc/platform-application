@@ -19,7 +19,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
-
 /**
  * Simple customer Segment controller
  *
@@ -136,6 +135,4 @@ class SimpleCustomerSegmentController extends BaseSegmentController
             return $this->redirectToIndex();
         }
     }
-
-
 }

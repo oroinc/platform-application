@@ -94,5 +94,4 @@ class SimpleProductSegment extends AbstractSegment
     {
         return $this->simpleProducts;
     }
-
 }
