@@ -42,18 +42,6 @@ class SimpleCustomerSegmentController extends BaseSegmentController
     }
 
     /**
-     * {@inheritdoc}
-     *
-     *
-     * @ Route("/index")
-     * @ Template()
-    public function indexAction()
-    {
-        return $this->render('AcmeDemoSegmentationTreeBundle:SimpleCustomerSegment:index.html.twig');
-    }
-     */
-
-    /**
      * Get the Segment manager associated with this controller
      * 
      * @return SegmentManager
