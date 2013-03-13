@@ -29,7 +29,6 @@ class UserDatagridManager extends FlexibleDatagridManager
                 array(
                     'type'        => FieldDescriptionInterface::TYPE_INTEGER,
                     'label'       => 'ID',
-                    'field_type'  => FieldDescriptionInterface::TYPE_INTEGER,
                     'field_name'  => 'id',
                     'filter_type' => FilterInterface::TYPE_NUMBER,
                     'required'    => false,
@@ -46,7 +45,6 @@ class UserDatagridManager extends FlexibleDatagridManager
                 array(
                     'type'        => FieldDescriptionInterface::TYPE_TEXT,
                     'label'       => 'Username',
-                    'field_type'  => FieldDescriptionInterface::TYPE_TEXT,
                     'field_name'  => 'username',
                     'filter_type' => FilterInterface::TYPE_STRING,
                     'required'    => false,
@@ -63,7 +61,6 @@ class UserDatagridManager extends FlexibleDatagridManager
                 array(
                     'type'        => FieldDescriptionInterface::TYPE_TEXT,
                     'label'       => 'Email',
-                    'field_type'  => FieldDescriptionInterface::TYPE_TEXT,
                     'field_name'  => 'email',
                     'filter_type' => FilterInterface::TYPE_STRING,
                     'required'    => false,
@@ -87,7 +84,6 @@ class UserDatagridManager extends FlexibleDatagridManager
                     array(
                         'type'          => $attributeType,
                         'label'         => $attribute->getCode(),
-                        'field_type'    => $attributeType,
                         'field_name'    => $attribute->getCode(),
                         'filter_type'   => $filterType,
                         'required'      => false,
@@ -101,7 +97,6 @@ class UserDatagridManager extends FlexibleDatagridManager
                     && $attribute->getCode() == 'hobby'
                 ) {
                     $field->setOption('multiple', true);
-                    $field->setOption('sortable', false);
                 }
 
                 $this->fieldsCollection->add($field);

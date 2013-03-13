@@ -29,7 +29,6 @@ class ProductDatagridManager extends DatagridManager
                 array(
                     'type'         => FieldDescriptionInterface::TYPE_INTEGER,
                     'label'        => 'Manufacturer ID',
-                    'field_type'   => FieldDescriptionInterface::TYPE_INTEGER,
                     'entity_alias' => 'm',
                     'field_name'   => 'id',
                     'filter_type'  => FilterInterface::TYPE_NUMBER,
@@ -47,7 +46,6 @@ class ProductDatagridManager extends DatagridManager
                 array(
                     'type'        => FieldDescriptionInterface::TYPE_TEXT,
                     'label'        => 'Manufacturer name',
-                    'field_type'   => FieldDescriptionInterface::TYPE_TEXT,
                     'entity_alias' => 'm',
                     'field_name'   => 'name',
                     'filter_type'  => FilterInterface::TYPE_STRING,
@@ -65,7 +63,6 @@ class ProductDatagridManager extends DatagridManager
                 array(
                     'type'         => FieldDescriptionInterface::TYPE_INTEGER,
                     'label'        => 'Number of products',
-                    'field_type'   => FieldDescriptionInterface::TYPE_INTEGER,
                     'field_name'   => 'COUNT(p.id)',
                     'filter_type'  => FilterInterface::TYPE_NUMBER,
                     'required'     => false,
@@ -83,7 +80,6 @@ class ProductDatagridManager extends DatagridManager
                 array(
                     'type'        => FieldDescriptionInterface::TYPE_INTEGER,
                     'label'       => 'Product ID',
-                    'field_type'  => FieldDescriptionInterface::TYPE_INTEGER,
                     'entity_alias' => 'p',
                     'field_name'  => 'id',
                     'filter_type' => FilterInterface::TYPE_NUMBER,
@@ -101,7 +97,6 @@ class ProductDatagridManager extends DatagridManager
                 array(
                     'type'        => FieldDescriptionInterface::TYPE_TEXT,
                     'label'       => 'Name',
-                    'field_type'  => FieldDescriptionInterface::TYPE_TEXT,
                     'entity_alias' => 'p',
                     'field_name'  => 'name',
                     'filter_type' => FilterInterface::TYPE_STRING,
@@ -119,7 +114,6 @@ class ProductDatagridManager extends DatagridManager
                 array(
                     'type'        => FieldDescriptionInterface::TYPE_DECIMAL,
                     'label'       => 'Price',
-                    'field_type'  => FieldDescriptionInterface::TYPE_INTEGER,
                     'entity_alias' => 'p',
                     'field_name'  => 'price',
                     'filter_type' => FilterInterface::TYPE_NUMBER,
@@ -137,7 +131,6 @@ class ProductDatagridManager extends DatagridManager
                 array(
                     'type'        => FieldDescriptionInterface::TYPE_INTEGER,
                     'label'       => 'Count',
-                    'field_type'  => FieldDescriptionInterface::TYPE_INTEGER,
                     'entity_alias' => 'p',
                     'field_name'  => 'count',
                     'filter_type' => FilterInterface::TYPE_NUMBER,
@@ -155,7 +148,6 @@ class ProductDatagridManager extends DatagridManager
                 array(
                     'type'        => FieldDescriptionInterface::TYPE_TEXT,
                     'label'       => 'Description',
-                    'field_type'  => FieldDescriptionInterface::TYPE_TEXT,
                     'entity_alias' => 'p',
                     'field_name'  => 'description',
                     'filter_type' => FilterInterface::TYPE_STRING,
@@ -173,7 +165,6 @@ class ProductDatagridManager extends DatagridManager
                 array(
                     'type'        => FieldDescriptionInterface::TYPE_DATETIME,
                     'label'       => 'Create Date',
-                    'field_type'  => FieldDescriptionInterface::TYPE_DATETIME,
                     'entity_alias' => 'p',
                     'field_name'  => 'createDate',
                     'filter_type' => FilterInterface::TYPE_DATETIME,
