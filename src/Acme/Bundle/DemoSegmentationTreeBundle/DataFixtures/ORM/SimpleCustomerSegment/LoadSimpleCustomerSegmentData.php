@@ -52,7 +52,7 @@ class LoadSimpleCustomerSegmentData extends AbstractFixture implements OrderedFi
         $cust1 = $this->createCustomer('Mr Foo', '555-12345');
         $cust2 = $this->createCustomer('Mr Bar', '555-56788');
         $cust3 = $this->createCustomer('Ms Toto', '555-3330');
-        $custs1 = array($cust1,$cust2,$cust3);
+        $custs1 = array($cust1, $cust2, $cust3);
 
         $this->createSegment('Potential customers', $prospects, $custs1);
 

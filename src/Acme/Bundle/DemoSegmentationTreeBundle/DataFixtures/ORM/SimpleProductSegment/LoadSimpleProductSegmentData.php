@@ -52,11 +52,11 @@ class LoadSimpleProductSegmentData extends AbstractFixture implements OrderedFix
         $lap1 = $this->createProduct('Laptop 1', 'Nice laptop 1');
         $lap2 = $this->createProduct('Laptop 2', 'Nice laptop 2');
         $lap3 = $this->createProduct('Laptop 3', 'Nice laptop 3');
-        $laptops = array($lap1,$lap2,$lap3);
+        $laptops = array($lap1, $lap2, $lap3);
 
         $laptop = $this->createSegment('laptop', $computer, $laptops);
 
-        $notebooks = array($lap1,$lap3);
+        $notebooks = array($lap1, $lap3);
         $this->createSegment('notebook', $laptop, $notebooks);
 
         $this->createSegment('tablet', $computer);
