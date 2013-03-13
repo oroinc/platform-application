@@ -28,3 +28,6 @@
 [submodule "src/Oro/Bundle/PinbarBundle"]
 	path = src/Oro/Bundle/PinbarBundle
 	url = git@github.com:laboro/PinbarBundle.git
+[submodule "src/Oro/Bundle/ConfigBundle"]
+	path = src/Oro/Bundle/ConfigBundle
+	url = git@github.com:laboro/ConfigBundle.git

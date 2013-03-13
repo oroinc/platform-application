@@ -14,14 +14,6 @@ acme_demo_measure:
     type:     annotation
     prefix:   /
 
-# Internal routing configuration to handle ESI
-# ****** WARNING ******
-# This route should be enabled with caution as it can open a security vulnerability
-# see http://symfony.com/blog/security-release-symfony-2-0-20-and-2-1-5-released for more information
-# ****** WARNING ******
-#_internal:
-#    resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
-#    prefix:   /_internal
 acme_default:
     pattern:  /{_locale}
     defaults:
@@ -54,9 +46,12 @@ oro_soap:
     resource: "@OroSoapBundle/Resources/config/routing.yml"
     prefix:   /api
 
+oro_dataflow:
+    resource: "@OroDataFlowBundle/Resources/config/routing.yml"
+
+oro_config:
+    resource: "@OroConfigBundle/Resources/config/routing.yml"
+
 NelmioApiDocBundle:
     resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
     prefix:   /api/doc
-
-oro_dataflow:
-    resource: "@OroDataFlowBundle/Resources/config/routing.yml"

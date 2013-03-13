@@ -100,4 +100,12 @@ class AclAccessController extends Controller
     {
         return  new Response('Action for ROLE_ADMIN');
     }
+
+    /**
+     * @Route("/wo-acl", name="acme_demo_acl_manager_only")
+     */
+    public function actionWOAclAction()
+    {
+        return  new Response('Action without ACL Resource');
+    }
 }

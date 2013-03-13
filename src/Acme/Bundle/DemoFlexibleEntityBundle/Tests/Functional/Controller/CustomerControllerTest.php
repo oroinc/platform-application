@@ -21,7 +21,7 @@ class CustomerControllerTest extends KernelAwareControllerTest
     /**
      * Get customer manager
      *
-     * @return Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleManager
+     * @return \Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleManager
      */
     protected function getCustomerManager()
     {
@@ -34,7 +34,13 @@ class CustomerControllerTest extends KernelAwareControllerTest
     public function testIndexAction()
     {
         foreach (self::$locales as $locale) {
-            $this->client->request('GET', self::prepareUrl($locale, 'index'));
+            $this->client->request(
+                'GET',
+                self::prepareUrl($locale, 'index'),
+                array(),
+                array(),
+                array('PHP_AUTH_USER' =>  self::AUTH_USER, 'PHP_AUTH_PW' => self::AUTH_PW)
+            );
             $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         }
     }
@@ -54,7 +60,13 @@ class CustomerControllerTest extends KernelAwareControllerTest
 
         // call and assert view
         foreach (self::$locales as $locale) {
-            $this->client->request('GET', self::prepareUrl('en', 'show/'.$customer->getId()));
+            $this->client->request(
+                'GET',
+                self::prepareUrl('en', 'show/'.$customer->getId()),
+                array(),
+                array(),
+                array('PHP_AUTH_USER' =>  self::AUTH_USER, 'PHP_AUTH_PW' => self::AUTH_PW)
+            );
             $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         }
     }
@@ -66,7 +78,13 @@ class CustomerControllerTest extends KernelAwareControllerTest
     {
         // just call view to show form
         foreach (self::$locales as $locale) {
-            $this->client->request('GET', self::prepareUrl($locale, 'create'));
+            $this->client->request(
+                'GET',
+                self::prepareUrl($locale, 'create'),
+                array(),
+                array(),
+                array('PHP_AUTH_USER' =>  self::AUTH_USER, 'PHP_AUTH_PW' => self::AUTH_PW)
+            );
             $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         }
     }
@@ -84,7 +102,13 @@ class CustomerControllerTest extends KernelAwareControllerTest
 
         // just call view to show form
         foreach (self::$locales as $locale) {
-            $this->client->request('GET', self::prepareUrl($locale, 'edit/'. $customer->getId()));
+            $this->client->request(
+                'GET',
+                self::prepareUrl($locale, 'edit/'. $customer->getId()),
+                array(),
+                array(),
+                array('PHP_AUTH_USER' =>  self::AUTH_USER, 'PHP_AUTH_PW' => self::AUTH_PW)
+            );
             $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         }
     }
@@ -107,7 +131,13 @@ class CustomerControllerTest extends KernelAwareControllerTest
     public function testQueryLazyLoadAction()
     {
         foreach (self::$locales as $locale) {
-            $this->client->request('GET', self::prepareUrl($locale, 'query-lazy-load'));
+            $this->client->request(
+                'GET',
+                self::prepareUrl($locale, 'query-lazy-load'),
+                array(),
+                array(),
+                array('PHP_AUTH_USER' =>  self::AUTH_USER, 'PHP_AUTH_PW' => self::AUTH_PW)
+            );
             $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         }
     }
@@ -178,7 +208,7 @@ class CustomerControllerTest extends KernelAwareControllerTest
 
     /**
      * Call query action and assert result
-     * @param multitype $params
+     * @param mixed $params
      */
     protected function callQueryActionUrl($params)
     {
@@ -190,7 +220,13 @@ class CustomerControllerTest extends KernelAwareControllerTest
 
         $urlSuffix = $this->prepareUrlForQueryAction($attributes, $criteria, $orderBy, $limit, $offset);
         foreach (self::$locales as $locale) {
-            $this->client->request('GET', self::prepareUrl($locale, 'query/'. $urlSuffix));
+            $this->client->request(
+                'GET',
+                self::prepareUrl($locale, 'query/'. $urlSuffix),
+                array(),
+                array(),
+                array('PHP_AUTH_USER' =>  self::AUTH_USER, 'PHP_AUTH_PW' => self::AUTH_PW)
+            );
             $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         }
     }
