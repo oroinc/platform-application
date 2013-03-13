@@ -4,7 +4,7 @@ namespace Acme\Bundle\DemoSegmentationTreeBundle\Controller;
 use Acme\Bundle\DemoSegmentationTreeBundle\Helper\JsonItemsHelper;
 use Oro\Bundle\SegmentationTreeBundle\Helper\JsonSegmentHelper;
 
-use Oro\Bundle\SegmentationTreeBundle\BaseSegmentController;
+use Oro\Bundle\SegmentationTreeBundle\AbstractSegmentController;
 use Oro\Bundle\SegmentationTreeBundle\Model\AbstractSegment;
 
 use Doctrine\ORM\EntityManager;
@@ -29,7 +29,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
  * @Route("/simple-customer-segment")
  *
  */
-class SimpleCustomerSegmentController extends BaseSegmentController
+class SimpleCustomerSegmentController extends AbstractSegmentController
 {
     /**
      * {@inheritdoc}
