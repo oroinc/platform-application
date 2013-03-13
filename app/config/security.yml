@@ -17,8 +17,8 @@ security:
         Symfony\Component\Security\Core\User\User: plaintext
 
     firewalls:
-        pinbarrest:
-            pattern:                        ^/api/rest/(latest|v1)/pinbars
+        navigationrest:
+            pattern:                        ^/api/rest/(latest|v1)/navigationitems
             provider:                       chain_provider
             api:
                 parent_context:             main

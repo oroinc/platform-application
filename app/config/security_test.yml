@@ -1,7 +1,7 @@
 security:
     firewalls:
-        pinbarrest:
-            pattern:                        ^/api/rest/latest/pinbars
+        navigationrest:
+            pattern:                        ^/api/rest/latest/navigationitems
             provider:                       oro_user
             api:                            false
             http_basic:
