@@ -72,11 +72,9 @@ class UserDatagridManager extends FlexibleDatagridManager
             $this->fieldsCollection->add($fieldEmail);
 
             foreach ($this->getFlexibleAttributes() as $attribute) {
-                $attributeType = $this->convertFlexibleTypeToFieldType($attribute->getBackendType());
-
-                $filterType = $attributeType == FieldDescriptionInterface::TYPE_OPTIONS
-                    ? FilterInterface::TYPE_FLEXIBLE_OPTIONS
-                    : FilterInterface::TYPE_FLEXIBLE_STRING;
+                $backendType   = $attribute->getBackendType();
+                $attributeType = $this->convertFlexibleTypeToFieldType($backendType);
+                $filterType    = $this->convertFlexibleTypeToFilterType($backendType);
 
                 $field = new FieldDescription();
                 $field->setName($attribute->getCode());
