@@ -31,3 +31,6 @@
 [submodule "src/Oro/Bundle/ConfigBundle"]
 	path = src/Oro/Bundle/ConfigBundle
 	url = git@github.com:laboro/ConfigBundle.git
+[submodule "src/Oro/Bundle/NavigationBundle"]
+	path = src/Oro/Bundle/NavigationBundle
+	url = git@github.com:laboro/NavigationBundle.git
