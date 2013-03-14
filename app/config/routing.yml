@@ -38,8 +38,8 @@ oro_search:
     resource: "@OroSearchBundle/Resources/config/routing.yml"
     prefix:   /
 
-oro_pinbar:
-    resource: "@OroPinbarBundle/Resources/config/routing.yml"
+oro_navigation:
+    resource: "@OroNavigationBundle/Resources/config/routing.yml"
     prefix:   /
 
 oro_soap:
