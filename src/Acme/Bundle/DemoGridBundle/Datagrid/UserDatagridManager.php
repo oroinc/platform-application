@@ -7,6 +7,7 @@ use Oro\Bundle\GridBundle\Field\FieldDescription;
 use Oro\Bundle\GridBundle\Field\FieldDescriptionCollection;
 use Oro\Bundle\GridBundle\Field\FieldDescriptionInterface;
 use Oro\Bundle\GridBundle\Filter\FilterInterface;
+use Oro\Bundle\GridBundle\Action\ActionInterface;
 
 class UserDatagridManager extends FlexibleDatagridManager
 {
@@ -142,5 +143,36 @@ class UserDatagridManager extends FlexibleDatagridManager
         }
 
         return $fields;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getRowActions()
+    {
+        $editAction = array(
+            'name'    => 'edit',
+            'type'    => ActionInterface::TYPE_REDIRECT,
+            'options' => array(
+                'route'        => 'oro_user_edit',
+                'placeholders' => array(
+                    '{id}' => 'id',
+                ),
+            )
+        );
+
+        $deleteAction = array(
+            'name'    => 'delete',
+            'type'    => ActionInterface::TYPE_REST,
+            'options' => array(
+                'method'       => 'DELETE',
+                'route'        => 'oro_api_delete_profile',
+                'placeholders' => array(
+                    '{id}' => 'id',
+                ),
+            )
+        );
+
+        return array($editAction, $deleteAction);
     }
 }
