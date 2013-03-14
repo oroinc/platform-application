@@ -42,7 +42,7 @@ class SimpleProductSegment extends AbstractSegment
 
     /**
      * @ORM\ManyToMany(targetEntity="SimpleProduct")
-     * @ORM\JoinTable(name="acmesegmentationtree_segments_simpleproducts",
+     * @ORM\JoinTable(name="acmedemosegmentationtree_segments_simpleproducts",
      *      joinColumns={@ORM\JoinColumn(name="category_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="product_id", referencedColumnName="id")}
      *      )
