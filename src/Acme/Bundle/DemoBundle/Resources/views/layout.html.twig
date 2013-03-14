@@ -41,6 +41,10 @@
 
     <script type="text/javascript" src="{{ asset('bundles/oronavigation/js/views/favorites.js') }}"></script>
 
+    <script type="text/javascript">
+        navigation.Item.prototype.urlRoot = {{ path('oro_api_get_navigationitems', {'type': ''})|json_encode|raw }};
+    </script>
+
     <style type="text/css">
         .pin-bar .list-bar, .pin-bar .list-bar li a {
             color: #B2BAC2;
