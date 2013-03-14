@@ -22,9 +22,6 @@
 [submodule "src/Oro/Bundle/ClassificationTreeBundle"]
 	path = src/Oro/Bundle/ClassificationTreeBundle
 	url = git@github.com:laboro/ClassificationTreeBundle.git
-[submodule "src/Oro/Bundle/MenuBundle"]
-	path = src/Oro/Bundle/MenuBundle
-	url = git@github.com:laboro/MenuBundle.git
 [submodule "src/Oro/Bundle/PinbarBundle"]
 	path = src/Oro/Bundle/PinbarBundle
 	url = git@github.com:laboro/PinbarBundle.git
