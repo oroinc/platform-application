@@ -151,9 +151,10 @@ class UserDatagridManager extends FlexibleDatagridManager
     protected function getRowActions()
     {
         $editAction = array(
-            'name'    => 'edit',
-            'type'    => ActionInterface::TYPE_REDIRECT,
-            'options' => array(
+            'name'         => 'edit',
+            'type'         => ActionInterface::TYPE_REDIRECT,
+            'acl_resource' => 'root',
+            'options'      => array(
                 'route'        => 'oro_user_edit',
                 'placeholders' => array(
                     '{id}' => 'id',
@@ -162,10 +163,10 @@ class UserDatagridManager extends FlexibleDatagridManager
         );
 
         $deleteAction = array(
-            'name'    => 'delete',
-            'type'    => ActionInterface::TYPE_REST,
-            'options' => array(
-                'method'       => 'DELETE',
+            'name'         => 'delete',
+            'type'         => ActionInterface::TYPE_DELETE,
+            'acl_resource' => 'root',
+            'options'      => array(
                 'route'        => 'oro_api_delete_profile',
                 'placeholders' => array(
                     '{id}' => 'id',
