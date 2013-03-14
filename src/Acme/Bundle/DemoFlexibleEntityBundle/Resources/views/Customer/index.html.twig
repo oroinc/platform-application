@@ -8,20 +8,19 @@
     </h1>
 
     <ul id="menu-block">
-        <li><a href="{{ path('acme_demoflexibleentity_customer_index') }}">Select entities and all attribute values</a></li>
-        <li><a href="{{ path('acme_demoflexibleentity_customer_querylazyload') }}">Select just entities, attributes and values are lazy load</a></li>
+        <li><a href="{{ path('acme_demoflexibleentity_customer_index') }}">Select entities and all attribute values (USE FLEXIBLE QUERY BUILDER)</a></li>
+        <li><a href="{{ path('acme_demoflexibleentity_customer_querylazyload') }}">Select just entities, attributes, values and options are lazy loaded (USE QUERY BUILDER)</a></li>
 
-        <li><a href="{{ path('acme_demoflexibleentity_customer_query', {'attributes': 'dob'}) }}">Select only date of birth</a></li>
         <li><a href="{{ path('acme_demoflexibleentity_customer_query', {'attributes': 'dob&gender'}) }}">Select only date of birth and gender</a></li>
         <li><a href="{{ path('acme_demoflexibleentity_customer_query', {'attributes': 'null', 'criteria': 'firstname=Nicolas' }) }}">Select filtered by firstname (firstname = "Nicolas")</a></li>
-        <li><a href="{{ path('acme_demoflexibleentity_customer_query', {'attributes': 'company&dob&gender', 'criteria': 'firstname=Nicolas&company=Akeneo' }) }}">Select filtered by firstname and company (firstname = "Nicolas" and company = "Akeneo")</a></li>
+        <li><a href="{{ path('acme_demoflexibleentity_customer_query', {'attributes': 'null', 'criteria': 'firstname=Nicolas&company=akeneo' }) }}">Select filtered by firstname and company (firstname = "Nicolas" and company = "akeneo")</a></li>
         <li><a href="{{ path('acme_demoflexibleentity_customer_query', {'attributes': 'null', 'criteria': 'firstname=Nicolas', 'orderBy': 'null', 'limit': 10, 'offset': 0}) }}">Select filter by firstname (Nicolas) and limit (10)</a></li>
-        <li><a href="{{ path('acme_demoflexibleentity_customer_query', {'attributes': 'company&dob&gender', 'criteria': 'firstname=Nicolas', 'orderBy': 'dob=desc'}) }}">Select only birthdate, filter by firstname (Nicolas) and order by birthdate desc</a></li>
+        <li><a href="{{ path('acme_demoflexibleentity_customer_query', {'attributes': 'null', 'criteria': 'firstname=Nicolas', 'orderBy': 'dob=desc'}) }}">Select only birthdate, filter by firstname (Nicolas) and order by birthdate desc</a></li>
     </ul>
 
     <hr/>
 
-    <p>Nb results : {{ customers|length }}</p>
+    <p>Nb total results : {{ customers|length }}</p>
 
     <table class="table table-bordered table-striped table-condensed">
         <thead>
