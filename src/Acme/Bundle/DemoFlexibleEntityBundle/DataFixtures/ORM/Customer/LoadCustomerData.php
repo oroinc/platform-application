@@ -73,35 +73,26 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
 
     /**
      * Load attributes
-     * @return array()
      */
     public function loadAttributes()
     {
-        $messages = array();
-
         // attribute company (if not exists)
         $attCode = 'company';
-        $att = $this->getCustomerManager()->getFlexibleRepository()->findAttributeByCode($attCode);
         $att = $this->getCustomerManager()->createAttribute(new TextType());
         $att->setCode($attCode);
-        $att->setDefaultValue('Acme');
         $this->getCustomerManager()->getStorageManager()->persist($att);
-        $messages[]= "Attribute ".$attCode." has been created";
 
         // attribute date of birth (if not exists)
         $attCode = 'dob';
-        $att = $this->getCustomerManager()->getFlexibleRepository()->findAttributeByCode($attCode);
         $att = $this->getCustomerManager()->createAttribute(new DateType());
         $att->setCode($attCode);
         $this->getCustomerManager()->getStorageManager()->persist($att);
-        $messages[]= "Attribute ".$attCode." has been created";
 
         // attribute date of birth (if not exists)
         $attCode = 'website';
         $att = $this->getCustomerManager()->createAttribute(new UrlType());
         $att->setCode($attCode);
         $this->getCustomerManager()->getStorageManager()->persist($att);
-        $messages[]= "Attribute ".$attCode." has been created";
 
         // attribute gender (if not exists)
         $attCode = 'gender';
@@ -120,7 +111,6 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
         $opt->addOptionValue($optVal);
         $att->addOption($opt);
         $this->getCustomerManager()->getStorageManager()->persist($att);
-        $messages[]= "Attribute ".$attCode." has been created";
 
         // attribute hobby (if not exists)
         $attCode = 'hobby';
@@ -136,20 +126,16 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
             $att->addOption($opt);
         }
         $this->getCustomerManager()->getStorageManager()->persist($att);
-        $messages[]= "Attribute ".$attCode." has been created";
 
         $this->getCustomerManager()->getStorageManager()->flush();
-
-        return $messages;
     }
 
     /**
      * Load customers
-     * @return array
      */
     public function loadCustomers()
     {
-        $messages = array();
+        $nbCustomers = 25;
 
         // get attributes
         $attCompany = $this->getCustomerManager()->getFlexibleRepository()->findAttributeByCode('company');
@@ -170,95 +156,54 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
             $hobbies[]= $option;
         }
 
-        for ($ind= 1; $ind < 10; $ind++) {
+        for ($ind= 0; $ind <= $nbCustomers; $ind++) {
 
-            // add customer with email, firstname, lastname, dob
-            $custEmail = 'email-'.($ind++).'@mail.com';
-            $customer = $this->getCustomerManager()->createFlexible();
-            $customer->setEmail($custEmail);
-            $customer->setFirstname($this->generateFirstname());
-            $customer->setLastname($this->generateLastname());
-            // add dob value
-            if ($attDob) {
-                $value = $customer->getValue($attDob->getCode());
-                if (!$value) {
-                    $value = $this->getCustomerManager()->createFlexibleValue();
-                    $value->setAttribute($attDob);
-                    $customer->addValue($value);
-                }
-                $value->setData(new \DateTime($this->generateBirthDate()));
-            }
-            $messages[]= "Customer ".$custEmail." has been created";
-            $this->getCustomerManager()->getStorageManager()->persist($customer);
-
-            // add customer with email, firstname, lastname, company and gender
+            // add customer with email, firstname, lastname
             $custEmail = 'email-'.($ind).'@mail.com';
             $customer = $this->getCustomerManager()->createFlexible();
             $customer->setEmail($custEmail);
             $customer->setFirstname($this->generateFirstname());
             $customer->setLastname($this->generateLastname());
+
+            // add dob value
+            $value = $this->getCustomerManager()->createFlexibleValue();
+            $value->setAttribute($attDob);
+            $customer->addValue($value);
+            $value->setData(new \DateTime($this->generateBirthDate()));
+
             // add company value
-            if ($attCompany) {
-                $value = $customer->getValue($attCompany->getCode());
-                if (!$value) {
-                    $value = $this->getCustomerManager()->createFlexibleValue();
-                    $value->setAttribute($attCompany);
-                    $customer->addValue($value);
-                }
-                $value->setData('Akeneo');
-            }
-            // add date of birth
-            if ($attDob) {
-                $value = $customer->getValue($attDob->getCode());
-                if (!$value) {
-                    $value = $this->getCustomerManager()->createFlexibleValue();
-                    $value->setAttribute($attDob);
-                    $customer->addValue($value);
-                }
-                $value->setData(new \DateTime($this->generateBirthDate()));
-            }
+            $value = $this->getCustomerManager()->createFlexibleValue();
+            $value->setAttribute($attCompany);
+            $customer->addValue($value);
+            $value->setData('Akeneo');
+
             // add website
-            if ($attWebsite) {
-                $value = $customer->getValue($attWebsite->getCode());
-                if (!$value) {
-                    $value = $this->getCustomerManager()->createFlexibleValue();
-                    $value->setAttribute($attWebsite);
-                    $customer->addValue($value);
-                }
-                $value->setData('http://mywebsite'.$ind.'.com');
-            }
+            $value = $this->getCustomerManager()->createFlexibleValue();
+            $value->setAttribute($attWebsite);
+            $customer->addValue($value);
+            $value->setData('http://mywebsite'.$ind.'.com');
+
             // add gender
-            if ($attGender) {
-                $value = $customer->getValue($attGender->getCode());
-                if (!$value) {
-                    $value = $this->getCustomerManager()->createFlexibleValue();
-                    $value->setAttribute($attGender);
-                    $customer->addValue($value);
-                }
-                $value->setOption($optGender);
+            $value = $this->getCustomerManager()->createFlexibleValue();
+            $value->setAttribute($attGender);
+            $customer->addValue($value);
+            $value->setOption($optGender);
+
+            // pick many hobbies (multiselect)
+            $value = $this->getCustomerManager()->createFlexibleValue();
+            $value->setAttribute($attHobby);
+            $customer->addValue($value);
+            $firstHobbyOpt = $hobbies[rand(0, count($hobbies)-1)];
+            $value->addOption($firstHobbyOpt);
+            $secondHobbyOpt = $hobbies[rand(0, count($hobbies)-1)];
+            if ($firstHobbyOpt->getId() != $secondHobbyOpt->getId()) {
+                $value->addOption($secondHobbyOpt);
             }
-            if ($attHobby) {
-                $value = $customer->getValue($attHobby->getCode());
-                if (!$value) {
-                    $value = $this->getCustomerManager()->createFlexibleValue();
-                    $value->setAttribute($attHobby);
-                    $customer->addValue($value);
-                }
-                // pick many hobbies (multiselect)
-                $firstHobbyOpt = $hobbies[rand(0, count($hobbies)-1)];
-                $value->addOption($firstHobbyOpt);
-                $secondHobbyOpt = $hobbies[rand(0, count($hobbies)-1)];
-                if ($firstHobbyOpt->getId() != $secondHobbyOpt->getId()) {
-                    $value->addOption($secondHobbyOpt);
-                }
-            }
-            $messages[]= "Customer ".$custEmail." has been created";
+
             $this->getCustomerManager()->getStorageManager()->persist($customer);
         }
 
         $this->getCustomerManager()->getStorageManager()->flush();
-
-        return $messages;
     }
 
     /**
@@ -267,7 +212,7 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
      */
     protected function generateFirstname()
     {
-        $listFirstname = array('Nicolas', 'Romain');
+        $listFirstname = array('Nicolas', 'Romain', 'Benoit', 'Filips', 'Frederic');
         $random = rand(0, count($listFirstname)-1);
 
         return $listFirstname[$random];
@@ -279,7 +224,7 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
      */
     protected function generateLastname()
     {
-        $listLastname = array('Dupont', 'Monceau');
+        $listLastname = array('Dupont', 'Monceau', 'Jacquemont', 'Alpe', 'De Gombert');
         $random = rand(0, count($listLastname)-1);
 
         return $listLastname[$random];
