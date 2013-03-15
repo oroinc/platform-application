@@ -157,7 +157,7 @@ class UserDatagridManager extends FlexibleDatagridManager
             'options'      => array(
                 'route'        => 'oro_user_edit',
                 'placeholders' => array(
-                    '{id}' => 'id',
+                    'id' => 'id',
                 ),
             )
         );
@@ -169,7 +169,7 @@ class UserDatagridManager extends FlexibleDatagridManager
             'options'      => array(
                 'route'        => 'oro_api_delete_profile',
                 'placeholders' => array(
-                    '{id}' => 'id',
+                    'id' => 'id',
                 ),
             )
         );
