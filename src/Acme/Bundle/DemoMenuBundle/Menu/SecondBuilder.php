@@ -3,7 +3,7 @@
 namespace Acme\Bundle\DemoMenuBundle\Menu;
 
 use Knp\Menu\ItemInterface;
-use Oro\Bundle\MenuBundle\Menu\BuilderInterface;
+use Oro\Bundle\NavigationBundle\Menu\BuilderInterface;
 
 class SecondBuilder implements BuilderInterface
 {
