@@ -155,6 +155,8 @@ class UserDatagridManager extends FlexibleDatagridManager
             'type'         => ActionInterface::TYPE_REDIRECT,
             'acl_resource' => 'root',
             'options'      => array(
+                'label'        => 'Edit',
+                'icon'         => 'edit',
                 'route'        => 'oro_user_edit',
                 'placeholders' => array(
                     'id' => 'id',
@@ -167,6 +169,8 @@ class UserDatagridManager extends FlexibleDatagridManager
             'type'         => ActionInterface::TYPE_DELETE,
             'acl_resource' => 'root',
             'options'      => array(
+                'label'        => 'Delete',
+                'icon'         => 'trash',
                 'route'        => 'oro_api_delete_profile',
                 'placeholders' => array(
                     'id' => 'id',
