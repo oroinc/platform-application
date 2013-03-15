@@ -11,7 +11,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 use Acme\Bundle\DemoBundle\Entity\Manufacturer;
 
-class LoadManufacturerData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
+class LoadManufacturesData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
     private $container;
 

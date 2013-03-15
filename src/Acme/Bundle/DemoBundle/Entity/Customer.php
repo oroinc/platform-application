@@ -42,11 +42,10 @@ class Customer
      */
     private $city;
 
-
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -56,20 +55,20 @@ class Customer
     /**
      * Set first_name
      *
-     * @param string $firstName
+     * @param  string   $firstName
      * @return Customer
      */
     public function setFirstName($firstName)
     {
         $this->firstName = $firstName;
-    
+
         return $this;
     }
 
     /**
      * Get first_name
      *
-     * @return string 
+     * @return string
      */
     public function getFirstName()
     {
@@ -79,20 +78,20 @@ class Customer
     /**
      * Set last_name
      *
-     * @param string $lastName
+     * @param  string   $lastName
      * @return Customer
      */
     public function setLastName($lastName)
     {
         $this->lastName = $lastName;
-    
+
         return $this;
     }
 
     /**
      * Get last_name
      *
-     * @return string 
+     * @return string
      */
     public function getLastName()
     {
@@ -102,27 +101,27 @@ class Customer
     /**
      * Set city
      *
-     * @param string $city
+     * @param  string   $city
      * @return Customer
      */
     public function setCity($city)
     {
         $this->city = $city;
-    
+
         return $this;
     }
 
     /**
      * Get city
      *
-     * @return string 
+     * @return string
      */
     public function getCity()
     {
         return $this->city;
     }
 
-   public function __toString()
+    public function __toString()
     {
         return 'test DemoBundle';
     }

@@ -142,7 +142,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function loadProducts()
     {
-        $nbProducts = 100;
+        $nbProducts = 25;
         $batchSize = 500;
 
         // get attributes
@@ -161,7 +161,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         }
 
         $descriptions = array('my long description', 'my other description');
-        for ($ind= 1; $ind <= $nbProducts; $ind++) {
+        for ($ind= 0; $ind < $nbProducts; $ind++) {
 
             // sku
             $prodSku = 'sku-'.$ind;
@@ -195,7 +195,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
             // size
             $value = $this->getProductManager()->createFlexibleValue();
             $value->setAttribute($attSize);
-            $value->setData(175);
+            $value->setData(rand(5, 10));
             $value->setUnit('mm');
             $product->addValue($value);
 

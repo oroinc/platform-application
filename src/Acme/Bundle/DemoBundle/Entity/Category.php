@@ -33,11 +33,10 @@ class Category
      */
     private $products;
 
-
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -47,20 +46,20 @@ class Category
     /**
      * Set name
      *
-     * @param string $name
+     * @param  string   $name
      * @return Category
      */
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -73,17 +72,17 @@ class Category
     {
         $this->products = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Add products
      *
-     * @param Acme\Bundle\DemoBundle\Entity\Product $products
+     * @param  Acme\Bundle\DemoBundle\Entity\Product $products
      * @return Category
      */
     public function addProduct(\Acme\Bundle\DemoBundle\Entity\Product $products)
     {
         $this->products[] = $products;
-    
+
         return $this;
     }
 
@@ -100,7 +99,7 @@ class Category
     /**
      * Get products
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getProducts()
     {

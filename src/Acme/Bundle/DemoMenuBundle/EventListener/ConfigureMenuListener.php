@@ -1,7 +1,7 @@
 <?php
 namespace Acme\Bundle\DemoMenuBundle\EventListener;
 
-use Oro\Bundle\MenuBundle\Event\ConfigureMenuEvent;
+use Oro\Bundle\NavigationBundle\Event\ConfigureMenuEvent;
 
 class ConfigureMenuListener
 {

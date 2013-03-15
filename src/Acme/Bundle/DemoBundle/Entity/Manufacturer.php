@@ -33,11 +33,10 @@ class Manufacturer
      */
     private $products;
 
-
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -47,20 +46,20 @@ class Manufacturer
     /**
      * Set name
      *
-     * @param string $name
+     * @param  string       $name
      * @return Manufacturer
      */
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -73,17 +72,17 @@ class Manufacturer
     {
         $this->products = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Add products
      *
-     * @param Acme\Bundle\DemoBundle\Entity\Product $products
+     * @param  Acme\Bundle\DemoBundle\Entity\Product $products
      * @return Manufacturer
      */
     public function addProduct(\Acme\Bundle\DemoBundle\Entity\Product $products)
     {
         $this->products[] = $products;
-    
+
         return $this;
     }
 
@@ -100,7 +99,7 @@ class Manufacturer
     /**
      * Get products
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getProducts()
     {
