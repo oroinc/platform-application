@@ -40,43 +40,15 @@
     <script type="text/javascript" src="{{ asset('bundles/oronavigation/js/views/pinbar.js') }}"></script>
 
     <script type="text/javascript" src="{{ asset('bundles/oronavigation/js/views/favorites.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/oronavigation/js/views/shortcuts.js') }}"></script>
 
     <script type="text/javascript">
         navigation.Item.prototype.urlRoot = {{ path('oro_api_get_navigationitems', {'type': ''})|json_encode|raw }};
-    </script>
 
-    <style type="text/css">
-        .pin-bar .list-bar, .pin-bar .list-bar li a {
-            color: #B2BAC2;
-        }
-    </style>
-
-    <script type="text/javascript">
         $(function() {
-            var shortcutInput = $(".shortcuts .input-large");
-            shortcutInput.val('');
-            shortcutInput.typeahead({
-                source: function(query, process) {
-                    $.get('http://bap-dev.localhost/app_dev.php/api/rest/latest/shortcuts/' + encodeURIComponent(query), function(data) {
-                        this.$element.data('items', data);
-                        var result = [];
-                        _.each(data, function(item, key) {
-                            result.push(key);
-                        });
-                        process(result);
-                    }.bind(this));
-                }
-            });
-            shortcutInput.change(function(e) {
-                if (e && e.target) {
-                    var $el = $(e.target);
-                    var items = $el.data('items');
-                    var key = $el.val();
-                    if (!_.isUndefined(items) && !_.isUndefined(items[key])) {
-                        var dataItem = items[key];
-                        $el.closest('form').attr("action", dataItem.url).submit();
-                    }
-                }
+            new navigation.shortcut.MainView({
+                el: '.shortcuts .input-large',
+                source: {{ path('oro_api_get_shortcuts', {query: ''})|json_encode|raw }}
             });
         });
     </script>
