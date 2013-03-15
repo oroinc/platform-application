@@ -54,3 +54,11 @@ oro_menu_config:
                 demo_jobs_tab:
                     children:
                         demo_jobs: ~
+
+        shortcuts:
+            children:
+                demo_jobs: ~
+                demo_users: ~
+                demo_roles: ~
+                demo_groups: ~
+                demo_search: ~

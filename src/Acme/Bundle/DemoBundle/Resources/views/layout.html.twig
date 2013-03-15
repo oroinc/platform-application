@@ -50,6 +50,36 @@
             color: #B2BAC2;
         }
     </style>
+
+    <script type="text/javascript">
+        $(function() {
+            var shortcutInput = $(".shortcuts .input-large");
+            shortcutInput.val('');
+            shortcutInput.typeahead({
+                source: function(query, process) {
+                    $.get('http://bap-dev.localhost/app_dev.php/api/rest/latest/shortcuts/' + encodeURIComponent(query), function(data) {
+                        this.$element.data('items', data);
+                        var result = [];
+                        _.each(data, function(item, key) {
+                            result.push(key);
+                        });
+                        process(result);
+                    }.bind(this));
+                }
+            });
+            shortcutInput.change(function(e) {
+                if (e && e.target) {
+                    var $el = $(e.target);
+                    var items = $el.data('items');
+                    var key = $el.val();
+                    if (!_.isUndefined(items) && !_.isUndefined(items[key])) {
+                        var dataItem = items[key];
+                        $el.closest('form').attr("action", dataItem.url).submit();
+                    }
+                }
+            });
+        });
+    </script>
 {% endblock %}
 
 {% block pin_button %}
