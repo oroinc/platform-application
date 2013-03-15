@@ -37,7 +37,7 @@ class AppKernel extends Kernel
             new Oro\Bundle\DataFlowBundle\OroDataFlowBundle(),
             new Oro\Bundle\UserBundle\OroUserBundle(),
             new Oro\Bundle\MeasureBundle\OroMeasureBundle(),
-            new Oro\Bundle\MenuBundle\OroMenuBundle(),
+            new Oro\Bundle\NavigationBundle\OroNavigationBundle(),
             new Oro\Bundle\ConfigBundle\OroConfigBundle(),
             new Oro\Bundle\GridBundle\OroGridBundle(),
 

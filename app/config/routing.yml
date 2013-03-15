@@ -44,6 +44,10 @@ oro_search:
     resource: "@OroSearchBundle/Resources/config/routing.yml"
     prefix:   /
 
+oro_navigation:
+    resource: "@OroNavigationBundle/Resources/config/routing.yml"
+    prefix:   /
+
 oro_soap:
     resource: "@OroSoapBundle/Resources/config/routing.yml"
     prefix:   /api
