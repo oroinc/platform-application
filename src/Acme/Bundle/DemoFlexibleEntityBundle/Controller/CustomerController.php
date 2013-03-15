@@ -21,6 +21,15 @@ class CustomerController extends Controller
 {
 
     /**
+     * Get attribute codes
+     * @return array
+     */
+    protected function getAttributeCodesToDisplay()
+    {
+        return array('company', 'dob', 'gender', 'website', 'hobby');
+    }
+
+    /**
      * Get customer manager
      * @return FlexibleManager
      */
@@ -37,9 +46,10 @@ class CustomerController extends Controller
      */
     public function indexAction()
     {
-        $customers = $this->getCustomerManager()->getFlexibleRepository()->findByWithAttributes();
+        // explicit attribute code list means only load values for this attributes
+        $attributes = $this->getAttributeCodesToDisplay();
 
-        return array('customers' => $customers);
+        return $this->queryAction(implode('&', $attributes), null, null, null, null);
     }
 
     /**

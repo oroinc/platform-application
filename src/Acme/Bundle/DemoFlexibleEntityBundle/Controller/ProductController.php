@@ -63,9 +63,10 @@ class ProductController extends Controller
      */
     public function indexAction($dataLocale, $dataScope)
     {
-        $products = $this->getProductManager()->getFlexibleRepository()->findByWithAttributes();
+        // explicit attribute code list means only load values for this attributes
+        $attributes = $this->getAttributeCodesToDisplay();
 
-        return array('products' => $products, 'attributes' => $this->getAttributeCodesToDisplay());
+        return $this->queryAction($dataLocale, $dataScope, implode('&', $attributes), null, null, null, null);
     }
 
     /**
