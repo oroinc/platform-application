@@ -34,6 +34,24 @@ oro_menu_config:
             label: 'Dashboard'
             route: 'acme_default'
 
+        shortcut_jobs:
+            label: Jobs List
+            route: acme_demo_job_index
+            extras:
+                description: Create new user instance
+        shortcut_new_user:
+            label: Create New User
+            route: oro_user_create
+            extras:
+                description: Create new user instance
+                isCustomAction: true
+        shortcut_list_users:
+            label: Users List
+            route: oro_user_index
+            extras:
+                description: List of users
+                isCustomAction: true
+
     tree:
         application_menu:
             children:
@@ -57,8 +75,6 @@ oro_menu_config:
 
         shortcuts:
             children:
-                demo_jobs: ~
-                demo_users: ~
-                demo_roles: ~
-                demo_groups: ~
-                demo_search: ~
+                shortcut_jobs: ~
+                shortcut_new_user: ~
+                shortcut_list_users: ~
