@@ -17,7 +17,7 @@
 {% endblock application_menu %}
 
 {% block searchbar %}
-    {% render "OroSearchBundle:Search:searchBar" %}
+    {% render "OroSearchBundle:Search:searchBar" with {'searchString':app.request.get('search'), 'fromString':app.request.get('from')} %}
 {% endblock searchbar %}
 
 {% block head_script %}
