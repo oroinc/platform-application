@@ -43,7 +43,7 @@ class SimpleCustomerSegment extends AbstractSegment
     /**
      * @ORM\ManyToMany(targetEntity="SimpleCustomer")
      * @ORM\JoinTable(name="acmedemosegmentationtree_segments_simplecustomers",
-     *      joinColumns={@ORM\JoinColumn(name="category_id", referencedColumnName="id")},
+     *      joinColumns={@ORM\JoinColumn(name="segment_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="customer_id", referencedColumnName="id")}
      *      )
      **/
