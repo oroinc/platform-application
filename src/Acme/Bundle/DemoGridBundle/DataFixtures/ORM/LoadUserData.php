@@ -479,7 +479,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
     private function generateWebsite($firstName, $lastName)
     {
         $domain = 'example.com';
-        return sprintf("%s%s.%s", strtolower($firstName), strtolower($lastName), $domain);
+        return sprintf("http://%s%s.%s", strtolower($firstName), strtolower($lastName), $domain);
     }
 
     /**
