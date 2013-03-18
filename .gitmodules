@@ -19,12 +19,12 @@
 [submodule "src/Oro/Bundle/DataFlowBundle"]
 	path = src/Oro/Bundle/DataFlowBundle
 	url = git@github.com:laboro/DataFlowBundle.git
+[submodule "src/Oro/Bundle/SegmentationTreeBundle"]
+	path = src/Oro/Bundle/SegmentationTreeBundle
+	url = git@github.com:laboro/SegmentationTreeBundle.git
 [submodule "src/Oro/Bundle/GridBundle"]
 	path = src/Oro/Bundle/GridBundle
 	url = git@github.com:laboro/GridBundle.git
-[submodule "src/Oro/Bundle/ClassificationTreeBundle"]
-	path = src/Oro/Bundle/ClassificationTreeBundle
-	url = git@github.com:laboro/ClassificationTreeBundle.git
 [submodule "src/Oro/Bundle/ConfigBundle"]
 	path = src/Oro/Bundle/ConfigBundle
 	url = git@github.com:laboro/ConfigBundle.git

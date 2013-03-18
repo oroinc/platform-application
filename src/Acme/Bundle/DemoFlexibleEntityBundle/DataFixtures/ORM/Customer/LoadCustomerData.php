@@ -135,7 +135,7 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
      */
     public function loadCustomers()
     {
-        $nbCustomers = 25;
+        $nbCustomers = 50;
 
         // get attributes
         $attCompany = $this->getCustomerManager()->getFlexibleRepository()->findAttributeByCode('company');
@@ -144,9 +144,13 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
         $attWebsite = $this->getCustomerManager()->getFlexibleRepository()->findAttributeByCode('website');
         $attHobby = $this->getCustomerManager()->getFlexibleRepository()->findAttributeByCode('hobby');
         // get first attribute option
-        $optGender = $this->getCustomerManager()->getAttributeOptionRepository()->findOneBy(
+        $optGenders = $this->getCustomerManager()->getAttributeOptionRepository()->findBy(
             array('attribute' => $attGender)
         );
+        $genders = array();
+        foreach ($optGenders as $option) {
+            $genders[]= $option;
+        }
         // get attribute hobby options
         $optHobbies = $this->getCustomerManager()->getAttributeOptionRepository()->findBy(
             array('attribute' => $attHobby)
@@ -156,7 +160,7 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
             $hobbies[]= $option;
         }
 
-        for ($ind= 0; $ind <= $nbCustomers; $ind++) {
+        for ($ind= 0; $ind < $nbCustomers; $ind++) {
 
             // add customer with email, firstname, lastname
             $custEmail = 'email-'.($ind).'@mail.com';
@@ -175,7 +179,7 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
             $value = $this->getCustomerManager()->createFlexibleValue();
             $value->setAttribute($attCompany);
             $customer->addValue($value);
-            $value->setData('Akeneo');
+            $value->setData($this->generateCompany());
 
             // add website
             $value = $this->getCustomerManager()->createFlexibleValue();
@@ -187,6 +191,7 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
             $value = $this->getCustomerManager()->createFlexibleValue();
             $value->setAttribute($attGender);
             $customer->addValue($value);
+            $optGender = $genders[rand(0, count($genders)-1)];
             $value->setOption($optGender);
 
             // pick many hobbies (multiselect)
@@ -241,5 +246,17 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
         $day   = rand(1, 28);
 
         return $year .'-'. $month .'-'. $day;
+    }
+
+    /**
+     * Generate company
+     * @return string
+     */
+    protected function generateCompany()
+    {
+        $list = array('oro', 'akeneo');
+        $random = rand(0, count($list)-1);
+
+        return $list[$random];
     }
 }
