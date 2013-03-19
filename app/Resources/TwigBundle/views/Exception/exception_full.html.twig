@@ -11,12 +11,7 @@
     {% block content %}
         <div class="alert alert-block pagination-centered popup-box">
             <h1>{{ status_code }} {{ status_text }}</h1>
-            {% if 404 == status_code %}
-                <p>The URL you requested was not found.</p>
-                <img src="{{ asset('bundles/oroui/img/no.png') }}" alt="Error page" />
-            {% else %}
-                <img src="{{ asset('bundles/oroui/img/503.png') }}" alt="Error page" />
-            {% endif %}
+            <img src="{{ asset('bundles/oroui/img/503.png') }}" alt="Error page" />
         </div>
     {% endblock %}
 {% endif %}
