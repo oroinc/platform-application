@@ -1,11 +1,10 @@
 <?php
+
 namespace Acme\Bundle\TestsBundle\Tests\Performance\Fixtures;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
-
-use Oro\Bundle\UserBundle\Entity\Acl;
 
 class LoadAclData extends AbstractFixture implements OrderedFixtureInterface
 {
