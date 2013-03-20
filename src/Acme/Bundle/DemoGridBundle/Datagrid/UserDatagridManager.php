@@ -121,7 +121,7 @@ class UserDatagridManager extends FlexibleDatagridManager
         $fields = array();
         /** @var $fieldDescription FieldDescription */
         foreach ($this->getFieldDescriptionCollection() as $fieldDescription) {
-            if ($fieldDescription->getOption('sortable')) {
+            if ($fieldDescription->isSortable()) {
                 $fields[] = $fieldDescription;
             }
         }
@@ -137,7 +137,7 @@ class UserDatagridManager extends FlexibleDatagridManager
         $fields = array();
         /** @var $fieldDescription FieldDescription */
         foreach ($this->getFieldDescriptionCollection() as $fieldDescription) {
-            if ($fieldDescription->getOption('filterable')) {
+            if ($fieldDescription->isFilterable()) {
                 $fields[] = $fieldDescription;
             }
         }
