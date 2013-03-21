@@ -78,7 +78,6 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $productAttribute->setName('Name');
         $productAttribute->setCode($attributeCode);
         $productAttribute->setTranslatable(true);
-        $productAttribute->setRequired(true);
         $this->getProductManager()->getStorageManager()->persist($productAttribute);
 
         // attribute price
