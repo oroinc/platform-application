@@ -40,6 +40,7 @@ class AppKernel extends Kernel
             new Oro\Bundle\SegmentationTreeBundle\OroSegmentationTreeBundle(),
             new Oro\Bundle\NavigationBundle\OroNavigationBundle(),
             new Oro\Bundle\ConfigBundle\OroConfigBundle(),
+            new Oro\Bundle\WindowsBundle\OroWindowsBundle(),
 
             // BAP Demo bundles
             new Acme\Bundle\DemoBundle\AcmeDemoBundle(),

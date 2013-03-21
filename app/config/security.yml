@@ -21,6 +21,13 @@ security:
                 parent_context:             main
             anonymous:                      false
 
+        windowsrest:
+            pattern:                        ^/api/rest/(latest|v1)/windows
+            provider:                       chain_provider
+            api:
+                parent_context:             main
+            anonymous:                      false
+
         dev:
             pattern:                        ^/(_(profiler|wdt)|css|images|js)/
             security:                       false
