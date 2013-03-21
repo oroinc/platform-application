@@ -31,3 +31,6 @@
 [submodule "src/Oro/Bundle/SegmentationTreeBundle"]
 	path = src/Oro/Bundle/SegmentationTreeBundle
 	url = git@github.com:laboro/SegmentationTreeBundle.git
+[submodule "src/Oro/Bundle/WindowsBundle"]
+	path = src/Oro/Bundle/WindowsBundle
+	url = git@github.com:laboro/WindowsBundle.git
