@@ -9,26 +9,8 @@
     <fieldset>
         <legend>{{ title }} <a class="btn btn-primary pull-right" href="{{ path('acme_demoflexibleentity_customerattribute_index') }}">{{ "Back to list" | trans }}</a></legend>
 
-        {{ form_row(form.id) }}
-        
-        {{ form_row(form.code) }}
-        
-        {{ form_row(form.attributeType) }}
-        
-        {{ form_row(form.required) }}
-        
-        {{ form_row(form.unique) }}
-        
-        {{ form_row(form.default_value) }}
-        
-        {{ form_row(form.searchable) }}
-        
-        {{ form_row(form.translatable) }}
-        
-        {{ form_row(form.scopable) }}
-        
-        {{ form_row(form._token) }}
-        
+        {{ form_rest(form) }}
+
         {% if form.options is defined %}
             <legend>Options</legend>
             
