@@ -1,0 +1,16 @@
+oro_menu_config:
+    items:
+        demo_dataflow_tab:
+            label: 'Data Flow'
+            uri: '#'
+        demo_dataflow_connectors:
+            label: 'Connectors'
+            route: 'oro_dataflow_connector_index'
+
+    tree:
+        application_menu:
+            children:
+                demo_dataflow_tab:
+                    children:
+                        demo_dataflow_connectors: ~
+

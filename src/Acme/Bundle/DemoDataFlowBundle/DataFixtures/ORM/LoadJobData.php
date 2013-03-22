@@ -32,7 +32,7 @@ class LoadJobData extends AbstractFixture implements OrderedFixtureInterface
         $connector = $this->getReference('connector-magento');
         $magentoJob = new Job();
         $magentoJob->setServiceId('job.import_attributes');
-        $magentoJob->setDescription('Import attributes');
+        $magentoJob->setDescription('Import products attributes');
         $magentoJob->setRawConfiguration($configuration);
         $magentoJob->setConnector($connector);
         $manager->persist($magentoJob);
@@ -42,7 +42,7 @@ class LoadJobData extends AbstractFixture implements OrderedFixtureInterface
         $connector = $this->getReference('connector-csv');
         $csvJob = new Job();
         $csvJob->setServiceId('job.import_customers');
-        $csvJob->setDescription('Import customers');
+        $csvJob->setDescription('Import customers from csv');
         $csvJob->setRawConfiguration($configuration);
         $csvJob->setConnector($connector);
         $manager->persist($csvJob);
