@@ -12,7 +12,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @copyright 2012 Akeneo SAS (http://www.akeneo.com)
  * @license   http://opensource.org/licenses/MIT MIT
  *
- * @ORM\Table(name="acmedemoflexibleentity_product_value")
+ * @ORM\Table(name="acme_demoflexibleentity_product_value")
  * @ORM\Entity
  */
 class ProductValue extends AbstractEntityFlexibleValue
@@ -38,7 +38,7 @@ class ProductValue extends AbstractEntityFlexibleValue
      * @var options ArrayCollection
      *
      * @ORM\ManyToMany(targetEntity="Oro\Bundle\FlexibleEntityBundle\Entity\AttributeOption")
-     * @ORM\JoinTable(name="acmedemoflexibleentity_product_value_option",
+     * @ORM\JoinTable(name="acme_demoflexibleentity_product_value_option",
      *      joinColumns={@ORM\JoinColumn(name="value_id", referencedColumnName="id", onDelete="CASCADE")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="option_id", referencedColumnName="id", onDelete="CASCADE")}
      * )
