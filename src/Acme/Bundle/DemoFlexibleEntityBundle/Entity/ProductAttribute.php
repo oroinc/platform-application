@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @copyright 2012 Akeneo SAS (http://www.akeneo.com)
  * @license   http://opensource.org/licenses/MIT MIT
  *
- * @ORM\Table(name="acmedemoflexibleentity_product_attribute")
+ * @ORM\Table(name="acme_demoflexibleentity_product_attribute")
  * @ORM\Entity
  */
 class ProductAttribute extends AbstractEntityAttributeExtended
