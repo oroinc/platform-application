@@ -12,7 +12,6 @@ services:
               entity_hint: users
               flexible: true
               route_name: acme_demo_gridbundle_user_list
-              form_name: customers_grid
 #              datagrid_builder: ~
 #              list_builder: ~
 #              query_factory: ~
@@ -27,27 +26,9 @@ services:
               datagrid_name: product
               entity_hint: products
               route_name: acme_demo_gridbundle_product_list
-              form_name: manufacturers_grid
-              query_factory: acme_demo_grid.product_query_factory
+#              query_factory: ~
 #              datagrid_builder: ~
 #              list_builder: ~
 #              translator: ~
 #              validator: ~
 #              request: ~
-
-    acme_demo_grid.product_query_factory:
-        class: %oro_grid.orm.query_factory.query.class%
-
-#
-#<service id="sonata.user.admin.user" class="%sonata.user.admin.user.class%">
-#            <tag name="sonata.admin" manager_type="orm" group="%sonata.user.admin.groupname%" label="users" label_catalogue="SonataUserBundle" label_translator_strategy="sonata.admin.label.strategy.underscore" />
-#            <argument />
-#            <argument>%sonata.user.admin.user.entity%</argument>
-#            <argument>%sonata.user.admin.user.controller%</argument>
-#            <call method="setUserManager">
-#                <argument type="service" id="fos_user.user_manager" />
-#            </call>
-#            <call method="setTranslationDomain">
-#                <argument>%sonata.user.admin.user.translation_domain%</argument>
-#            </call>
-#        </service>

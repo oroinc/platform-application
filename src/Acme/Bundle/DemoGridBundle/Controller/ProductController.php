@@ -43,7 +43,7 @@ class ProductController extends Controller
             ->groupBy('m.id');
 
         /** @var $queryFactory QueryFactory */
-        $queryFactory = $this->get('acme_demo_grid.product_query_factory');
+        $queryFactory = $this->get('acme_demo_grid.product_grid.manager.default_query_factory');
         $queryFactory->setQueryBuilder($queryBuilder);
 
         /** @var $productGridManager UserDatagridManager */
