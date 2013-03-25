@@ -40,8 +40,8 @@ class PerformanceTest extends WebTestCase
 
         list($msec, $sec) = explode(" ", microtime());
         $stop = $sec + $msec;
-        $counter = $counter * 3;
-        echo "\nUploading execution time of {$counter} entities is " . round($stop - $start, 4) . " sec";
+
+        echo "\nUploading execution time of {$container->counter} customers and is " . round($stop - $start, 4) . " sec";
     }
 
     protected function tearDown()
