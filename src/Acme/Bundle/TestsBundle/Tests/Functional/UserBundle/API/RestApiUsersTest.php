@@ -6,7 +6,6 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
  * @outputBuffering enabled
- * @runTestsInSeparateProcesses
  */
 class RestUsersApiTest extends WebTestCase
 {

@@ -7,7 +7,6 @@ use Acme\Bundle\TestsBundle\Test\ToolsAPI;
 
 /**
  * @outputBuffering enabled
- * @runTestsInSeparateProcesses
  */
 class RestSearchApiTest extends WebTestCase
 {
