@@ -26,6 +26,7 @@ use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\MoneyType;
  */
 class LoadProductData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
+    const DEFAULT_COUNTER_VALUE = 25;
 
     /**
      * @var ContainerInterface
@@ -39,11 +40,32 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
     protected $manager;
 
     /**
+     * Entities Counter
+     * @var integer
+     */
+    protected $counter;
+
+    /**
      * {@inheritDoc}
      */
     public function setContainer(ContainerInterface $container = null)
     {
         $this->container = $container;
+        $this->setProductManager();
+        //prepare entity counter
+        if (isset($container->counter)) {
+            $this->counter = $container->counter;
+        } else {
+            $this->counter = self::DEFAULT_COUNTER_VALUE;
+        }
+    }
+
+    /**
+     * Set product manager
+     */
+    public function setProductManager()
+    {
+        $this->manager = $this->container->get('product_manager');
     }
 
     /**
@@ -52,7 +74,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
      */
     protected function getProductManager()
     {
-        return $this->container->get('product_manager');
+        return $this->manager;
     }
 
     /**
@@ -78,6 +100,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $productAttribute->setName('Name');
         $productAttribute->setCode($attributeCode);
         $productAttribute->setTranslatable(true);
+        $productAttribute->setSearchable(true);
         $this->getProductManager()->getStorageManager()->persist($productAttribute);
 
         // attribute price
@@ -85,6 +108,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $productAttribute = $this->getProductManager()->createAttributeExtended(new MoneyType());
         $productAttribute->setName('Price');
         $productAttribute->setCode($attributeCode);
+        $productAttribute->setSearchable(true);
         $this->getProductManager()->getStorageManager()->persist($productAttribute);
 
         // attribute description
@@ -94,6 +118,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $productAttribute->setCode($attributeCode);
         $productAttribute->setTranslatable(true);
         $productAttribute->setScopable(true);
+        $productAttribute->setSearchable(true);
         $this->getProductManager()->getStorageManager()->persist($productAttribute);
 
         // attribute size
@@ -102,6 +127,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $productAttribute = $this->getProductManager()->createAttributeExtended(new MetricType());
         $productAttribute->setName('Size');
         $productAttribute->setCode($attributeCode);
+        $productAttribute->setSearchable(true);
         $this->getProductManager()->getStorageManager()->persist($productAttribute);
 
         // attribute color and translated options
@@ -110,6 +136,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $productAttribute = $this->getProductManager()->createAttributeExtended(new OptionMultiCheckboxType());
         $productAttribute->setName('Color');
         $productAttribute->setCode($attributeCode);
+        $productAttribute->setSearchable(true);
         $productAttribute->setTranslatable(false); // only one value but option can be translated in option values
         $colors = array(
             array('en_US' => 'Red', 'fr_FR' => 'Rouge', 'de_DE' => 'Rot'),
@@ -141,7 +168,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function loadProducts()
     {
-        $nbProducts = 25;
+        $nbProducts = $this->counter;
         $batchSize = 500;
 
         // get attributes
@@ -221,8 +248,12 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
             if (($ind % $batchSize) == 0) {
                 $this->getProductManager()->getStorageManager()->flush();
                 // detaches all products and values from doctrine
-                $this->getProductManager()->getStorageManager()->clear('Acme\Bundle\DemoFlexibleEntityBundle\Entity\Product');
-                $this->getProductManager()->getStorageManager()->clear('Acme\Bundle\DemoFlexibleEntityBundle\Entity\ProductValue');
+                $this->getProductManager()
+                    ->getStorageManager()
+                    ->clear('Acme\Bundle\DemoFlexibleEntityBundle\Entity\Product');
+                $this->getProductManager()
+                    ->getStorageManager()
+                    ->clear('Acme\Bundle\DemoFlexibleEntityBundle\Entity\ProductValue');
             }
         }
 
