@@ -1,32 +1,30 @@
 <?php
 
-namespace Acme\Bundle\DemoSearchBundle\Tests\Functional\API;
+namespace Acme\Bundle\TestsBundle\Tests\Functional\API;
 
-use Symfony\Component\Yaml\Yaml;
-use Symfony\Component\Finder\Iterator;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Acme\Bundle\TestsBundle\Test\ToolsAPI;
 
-class SoapApiTest extends \PHPUnit_Framework_TestCase
+/**
+ * @outputBuffering enabled
+ * @runTestsInSeparateProcesses
+ */
+class SoapSearchApiTest extends WebTestCase
 {
     /** Default value for offset and max_records */
     const DEFAULT_VALUE = 0;
 
-    /** @var \SoapClient */
-    static private $clientSoap = null;
+    protected $clientSoap = null;
 
     public function setUp()
     {
-        if (is_null(self::$clientSoap)) {
-            try {
-                self::$clientSoap = @new \SoapClient('http://localhost.com/app_test.php/api/soap');
-            } catch (\SoapFault $e) {
-                $this->markTestSkipped('Test skipped due to http://localhost.com is not available!');
-            }
-        }
-    }
-
-    public static function tearDownAfterClass()
-    {
-        self::$clientSoap = null;
+        $this->clientSoap = static::createClient();
+        $this->clientSoap->soap(
+            "http://localhost/api/soap",
+            array('location' => 'http://localhost/api/soap',
+                'soap_version' => SOAP_1_2
+            )
+        );
     }
 
     /**
@@ -46,31 +44,23 @@ class SoapApiTest extends \PHPUnit_Framework_TestCase
         if (is_null($request['max_results'])) {
             $request['max_results'] = self::DEFAULT_VALUE;
         }
-        $result = self::$clientSoap->search($request['search'], $request['offset'], $request['max_results']);
-        $result = json_decode(json_encode($result), true);
+        $result = $this->clientSoap->soapClient->search(
+            $request['search'],
+            $request['offset'],
+            $request['max_results']
+        );
+        $result = ToolsAPI::classToArray($result);
         $this->assertEqualsResponse($response, $result);
     }
 
     /**
-     * Data provider for REST API tests
+     * Data provider for SOAP API tests
      *
      * @return array
      */
     public function requestsApi()
     {
-        $parameters = array();
-        $testFiles = new \RecursiveDirectoryIterator(
-            __DIR__ . DIRECTORY_SEPARATOR . 'requests',
-            \RecursiveDirectoryIterator::SKIP_DOTS
-        );
-        foreach ($testFiles as $fileName => $object) {
-            $parameters[$fileName] = Yaml::parse($fileName);
-            if (is_null($parameters[$fileName]['response']['soap']['item'])) {
-                unset($parameters[$fileName]['response']['soap']['item']);
-            }
-        }
-        return
-            $parameters;
+        return ToolsAPI::requestsApi(__DIR__ . DIRECTORY_SEPARATOR . 'requests');
     }
 
     /**

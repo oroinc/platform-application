@@ -24,7 +24,7 @@
         "knplabs/knp-paginator-bundle": "dev-master",
         "friendsofsymfony/rest-bundle": "dev-master",
         "jms/serializer": "0.11.0",
-        "jms/serializer-bundle": "dev-master",
+        "jms/serializer-bundle": "0.12.*@dev",
         "nelmio/api-doc-bundle": "dev-master",
         "ass/xmlsecurity": "dev-master",
         "besimple/soap-common": "dev-master",
