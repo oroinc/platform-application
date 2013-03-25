@@ -7,6 +7,7 @@ use Acme\Bundle\TestsBundle\Test\ToolsAPI;
 
 /**
  * @outputBuffering enabled
+ * @runTestsInSeparateProcesses
  */
 class SoapUsersApiTest extends WebTestCase
 {

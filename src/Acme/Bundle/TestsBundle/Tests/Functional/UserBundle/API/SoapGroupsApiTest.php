@@ -33,6 +33,7 @@ class SoapGroupsApiTest extends WebTestCase
      * @param array  $response
      *
      * @dataProvider requestsApi
+     * @runInSeparateProcess
      */
     public function testCreateGroup($request, $response)
     {
