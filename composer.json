@@ -23,7 +23,7 @@
         "doctrine/doctrine-fixtures-bundle": "@dev",
         "knplabs/knp-paginator-bundle": "dev-master",
         "friendsofsymfony/rest-bundle": "dev-master",
-        "jms/serializer": "0.11.0",
+        "jms/serializer": "0.12.*@dev",
         "jms/serializer-bundle": "0.12.*@dev",
         "nelmio/api-doc-bundle": "dev-master",
         "ass/xmlsecurity": "dev-master",
@@ -36,6 +36,12 @@
         "stof/doctrine-extensions-bundle": "dev-master",
         "jms/aop-bundle": "dev-master"
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/schmittjoh/serializer.git"
+        }
+    ],
     "scripts": {
         "post-install-cmd": [
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
