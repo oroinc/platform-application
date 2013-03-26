@@ -178,8 +178,8 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
         $user->setEmail($email);
         $user->setUsername($username);
 
-        $this->setFlexibleAttributeValue($user, 'firstName', $firstName);
-        $this->setFlexibleAttributeValue($user, 'lastName', $lastName);
+        $this->setFlexibleAttributeValue($user, 'firstname', $firstName);
+        $this->setFlexibleAttributeValue($user, 'lastname', $lastName);
         $this->setFlexibleAttributeValue($user, 'salary', $salary);
         $this->setFlexibleAttributeValue($user, 'birthday', $birthday);
         $this->setFlexibleAttributeValue($user, 'companyName', $companyName);
