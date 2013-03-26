@@ -120,3 +120,6 @@ services:
     cache:
         class: Doctrine\Common\Cache\PhpFileCache
         arguments: [%kernel.cache_dir%]
+
+escape_wsse_authentication:
+    authentication_provider_class: Oro\Bundle\UserBundle\Security\WsseUserProvider

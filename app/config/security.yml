@@ -25,6 +25,14 @@ security:
             pattern:                        ^/(_(profiler|wdt)|css|images|js)/
             security:                       false
 
+        wsse_secured:
+            pattern:                        ^/api/(rest|soap)/.*
+            wsse:
+                nonce_dir:                  null
+                lifetime:                   3600
+                realm:                      "Secured API"
+                profile:                    "UsernameToken"
+
         main:
             pattern:                        ^/
             provider:                       chain_provider
