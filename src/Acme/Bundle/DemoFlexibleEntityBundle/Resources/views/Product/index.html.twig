@@ -46,21 +46,20 @@
         <li><a href="{{ path('acme_demoflexibleentity_product_index', {'dataLocale': dataLocale, 'dataScope': dataScope}) }}">Select entities and all attribute values</a></li>
         <li><a href="{{ path('acme_demoflexibleentity_product_querylazyload', {'dataLocale': dataLocale, 'dataScope': dataScope}) }}">Select just entities, attributes and values are lazy loaded</a></li>
         
-        <li><a href="{{ path('acme_demoflexibleentity_product_query', {'dataLocale': dataLocale, 'dataScope': dataScope, 'attributes': 'name'}) }}">Select with only attribute name</a></li>
         <li><a href="{{ path('acme_demoflexibleentity_product_query', {'dataLocale': dataLocale, 'dataScope': dataScope, 'attributes': 'name&description'}) }}">Select with only attribute name and description</a></li>
         <li><a href="{{ path('acme_demoflexibleentity_product_query', {'dataLocale': dataLocale, 'dataScope': dataScope, 'attributes': 'null', 'criteria': 'sku=sku-2'}) }}">Select filtered on field sku = 'sku-2'</a></li>
-        <li><a href="{{ path('acme_demoflexibleentity_product_query', {'dataLocale': dataLocale, 'dataScope': dataScope, 'attributes': 'name', 'criteria': 'sku=sku-2'}) }}">Select with only attribute name and filtered on field sku = 'sku-2'</a></li>
+        <li><a href="{{ path('acme_demoflexibleentity_product_query', {'dataLocale': dataLocale, 'dataScope': dataScope, 'attributes': 'name', 'criteria': 'sku=sku-2'}) }}">Select with only attribute name and filters on field sku = 'sku-2'</a></li>
         
-        <li><a href="{{ path('acme_demoflexibleentity_product_query', {'dataLocale': dataLocale, 'dataScope': dataScope, 'attributes': 'description&size', 'criteria': 'size=175'}) }}">Select with attribute description, size filtered on attribute size = 175</a></li>
-        <li><a href="{{ path('acme_demoflexibleentity_product_query', {'dataLocale': dataLocale, 'dataScope': dataScope, 'attributes': 'description&size', 'criteria': 'size=175&description=my other description(ecommerce)'}) }}">Select with attribute description, size filtered on attribute size = 175 and description = 'my other description(ecommerce)'</a></li>
+        <li><a href="{{ path('acme_demoflexibleentity_product_query', {'dataLocale': dataLocale, 'dataScope': dataScope, 'attributes': 'null', 'criteria': 'size=7'}) }}">Select all filtered on attribute size = 7</a></li>
+        <li><a href="{{ path('acme_demoflexibleentity_product_query', {'dataLocale': dataLocale, 'dataScope': dataScope, 'attributes': 'null', 'criteria': 'size=7&description=my other description(ecommerce)'}) }}">Select all with filters on attribute size = 7 and description = 'description (en_US) (ecommerce)'</a></li>
 
-        <li><a href="{{ path('acme_demoflexibleentity_product_query', {'dataLocale': dataLocale, 'dataScope': dataScope, 'attributes': 'name&description', 'criteria': 'null', 'orderBy': 'description=desc&id=asc'}) }}">Select with attribute name and description order by description DESC and id ASC</a></li>
-        <li><a href="{{ path('acme_demoflexibleentity_product_query', {'dataLocale': dataLocale, 'dataScope': dataScope, 'attributes': 'name&description', 'criteria': 'null', 'orderBy': 'null', 'limit':10, 'offset':0}) }}">Select with attribute name and description limit 0, 10</a></li>
+        <li><a href="{{ path('acme_demoflexibleentity_product_query', {'dataLocale': dataLocale, 'dataScope': dataScope, 'attributes': 'null', 'criteria': 'null', 'orderBy': 'description=desc&id=asc'}) }}">Select all with order by description DESC and id ASC</a></li>
+        <li><a href="{{ path('acme_demoflexibleentity_product_query', {'dataLocale': dataLocale, 'dataScope': dataScope, 'attributes': 'null', 'criteria': 'null', 'orderBy': 'null', 'limit':10, 'offset':0}) }}">Select all limit 0, 10</a></li>
     </ul>
 
     <hr/>
 
-    <p>Nb results : {{ products|length }}</p>
+    <p>Nb total results : {{ products|length }}</p>
 
     <table class="table table-bordered table-striped table-condensed">
         <thead>

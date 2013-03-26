@@ -38,6 +38,7 @@ class AppKernel extends Kernel
             new Oro\Bundle\DataFlowBundle\OroDataFlowBundle(),
             new Oro\Bundle\UserBundle\OroUserBundle(),
             new Oro\Bundle\MeasureBundle\OroMeasureBundle(),
+            new Oro\Bundle\SegmentationTreeBundle\OroSegmentationTreeBundle(),
             new Oro\Bundle\NavigationBundle\OroNavigationBundle(),
             new Oro\Bundle\ConfigBundle\OroConfigBundle(),
 
@@ -48,6 +49,7 @@ class AppKernel extends Kernel
             new Acme\Bundle\DemoFlexibleEntityBundle\AcmeDemoFlexibleEntityBundle(),
             new Acme\Bundle\DemoDataFlowBundle\AcmeDemoDataFlowBundle(),
             new Acme\Bundle\DemoSearchBundle\AcmeDemoSearchBundle(),
+            new Acme\Bundle\DemoSegmentationTreeBundle\AcmeDemoSegmentationTreeBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test', 'perf'))) {
