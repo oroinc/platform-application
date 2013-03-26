@@ -49,6 +49,8 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
      */
     public function load(ObjectManager $manager)
     {
+        return;
+
         $this->loadAttributes();
         $this->loadUsers();
     }
