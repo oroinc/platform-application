@@ -53,10 +53,13 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
         $this->container = $container;
         $this->setCustomerManager();
         //prepare entity counter
+        $this->counter = self::DEFAULT_COUNTER_VALUE;
         if (isset($container->counter)) {
             $this->counter = $container->counter;
         } else {
-            $this->counter = self::DEFAULT_COUNTER_VALUE;
+            if ($container->hasParameter('performance.customers')) {
+                $this->counter = $container->getParameter('performance.customers');
+            }
         }
     }
 

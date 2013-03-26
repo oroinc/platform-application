@@ -53,10 +53,14 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $this->container = $container;
         $this->setProductManager();
         //prepare entity counter
+        $this->counter = self::DEFAULT_COUNTER_VALUE;
         if (isset($container->counter)) {
             $this->counter = $container->counter;
         } else {
-            $this->counter = self::DEFAULT_COUNTER_VALUE;
+            if ( $this->container->getParameter('kernel.environment') == 'perf'
+                && $container->hasParameter('performance.products')) {
+                $this->counter = $container->getParameter('performance.products');
+            }
         }
     }
 
