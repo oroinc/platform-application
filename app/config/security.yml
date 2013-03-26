@@ -25,6 +25,19 @@ security:
             pattern:                        ^/(_(profiler|wdt)|css|images|js)/
             security:                       false
 
+        wsse_secured:
+            pattern:                        ^/api/(rest|soap)/.*
+            wsse:
+                nonce_dir:                  null
+                lifetime:                   3600
+                realm:                      "Secured API"
+                profile:                    "UsernameToken"
+
+        login:
+            pattern:                        ^/user/login$
+            provider:                       chain_provider
+            anonymous:                      true
+
         main:
             pattern:                        ^/
             provider:                       chain_provider
@@ -38,7 +51,7 @@ security:
                 key:                        %secret%
                 name:                       BAPRM
                 lifetime:                   1209600   # stay logged for two weeks
-            anonymous:                      true
+            anonymous:                      false
 
     access_control:
         - { path: ^/user/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
