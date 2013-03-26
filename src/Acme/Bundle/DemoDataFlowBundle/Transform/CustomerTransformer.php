@@ -54,7 +54,19 @@ class CustomerTransformer implements DataTransformerInterface
         foreach ($mapper->getFields() as $field) {
             if (isset($data[$field->getSource()])) {
                 $flexibleValue = $customer->getValue($field->getDestination());
-                $flexibleValue->setData($data[$field->getSource()]);
+                if ($flexibleValue) {
+                    $flexibleValue->setData($data[$field->getSource()]);
+                } else {
+                    $attributes = $this->manager->getFlexibleRepository()->getCodeToAttributes(
+                        array($field->getDestination())
+                    );
+                    if (isset($attributes[$field->getDestination()])) {
+                        $flexibleValue = $this->manager->createFlexibleValue();
+                        $flexibleValue->setAttribute($attributes[$field->getDestination()]);
+                        $flexibleValue->setData($data[$field->getSource()]);
+                        $customer->addValue($flexibleValue);
+                    }
+                }
             }
         }
 

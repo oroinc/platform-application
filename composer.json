@@ -28,6 +28,8 @@
         "knplabs/knp-menu-bundle": "dev-master",
         "knplabs/knp-paginator-bundle": "dev-master",
         "friendsofsymfony/rest-bundle": "0.11.*",
+        "jms/serializer": "0.12.*@dev",
+        "jms/serializer-bundle": "0.12.*@dev",
         "nelmio/api-doc-bundle": "dev-master",
         "ass/xmlsecurity": "dev-master",
         "besimple/soap-common": "dev-master",
@@ -37,6 +39,12 @@
         "stof/doctrine-extensions-bundle": "dev-master",
         "escapestudios/wsse-authentication-bundle": "2.1.x-dev"
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/schmittjoh/serializer.git"
+        }
+    ],
     "scripts": {
         "post-install-cmd": [
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
