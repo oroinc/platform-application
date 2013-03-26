@@ -6,8 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Acme\Bundle\TestsBundle\Test\ToolsAPI;
 
 /**
- * @outputBuffering enabled
- * @runTestsInSeparateProcesses
+ * outputBuffering enabled
+ * runTestsInSeparateProcesses
  */
 class RestSearchApiTest extends WebTestCase
 {
