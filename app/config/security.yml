@@ -15,14 +15,7 @@ security:
 
     firewalls:
         navigationrest:
-            pattern:                        ^/api/rest/(latest|v1)/navigationitems
-            provider:                       chain_provider
-            api:
-                parent_context:             main
-            anonymous:                      false
-
-        windowsrest:
-            pattern:                        ^/api/rest/(latest|v1)/windows
+            pattern:                        ^/api/rest/(latest|v1)/(navigationitems|windows)
             provider:                       chain_provider
             api:
                 parent_context:             main
