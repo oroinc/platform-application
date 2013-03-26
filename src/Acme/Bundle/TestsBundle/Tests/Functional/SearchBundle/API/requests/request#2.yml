@@ -1,6 +1,6 @@
 # max_results test case
 request:
-    search: email
+    search: item
     offset: ~
     max_results: 1
 response:
@@ -10,9 +10,9 @@ response:
         data:
             -
                 entity_name: Acme\Bundle\DemoSearchBundle\Entity\Item
-                record_string: email-1@mail.com
+                record_string: item-1@mail.com
     soap:
         item:
             -
                 entityName: Acme\Bundle\DemoSearchBundle\Entity\Item
-                recordTitle: email-1@mail.com
+                recordTitle: item-1@mail.com
