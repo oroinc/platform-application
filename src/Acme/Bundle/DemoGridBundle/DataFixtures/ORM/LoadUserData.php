@@ -36,6 +36,11 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
     protected $userRepository;
 
     /**
+     * @var array
+     */
+    protected $requiredAttributes = array(/*'firstname', 'lastname',*/ 'salary', /*'birthday',*/ 'gender');
+
+    /**
      * {@inheritDoc}
      */
     public function setContainer(ContainerInterface $container = null)
@@ -49,8 +54,6 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
      */
     public function load(ObjectManager $manager)
     {
-        return;
-
         $this->loadAttributes();
         $this->loadUsers();
     }
@@ -62,10 +65,10 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
      */
     public function loadAttributes()
     {
-        $this->assertHasRequiredAttributes(array('firstname', 'lastname', 'salary', 'birthday', 'gender'));
+        $this->assertHasRequiredAttributes($this->requiredAttributes);
 
-        if (!$this->findAttribute('companyName')) {
-            $websiteAttribute = $this->createAttribute(new TextType(), 'companyName');
+        if (!$this->findAttribute('company')) {
+            $websiteAttribute = $this->createAttribute(new TextType(), 'company');
             $this->persist($websiteAttribute);
         }
 
@@ -180,11 +183,11 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
         $user->setEmail($email);
         $user->setUsername($username);
 
-        $this->setFlexibleAttributeValue($user, 'firstname', $firstName);
-        $this->setFlexibleAttributeValue($user, 'lastname', $lastName);
+        // $this->setFlexibleAttributeValue($user, 'firstname', $firstName);
+        // $this->setFlexibleAttributeValue($user, 'lastname', $lastName);
         $this->setFlexibleAttributeValue($user, 'salary', $salary);
-        $this->setFlexibleAttributeValue($user, 'birthday', $birthday);
-        $this->setFlexibleAttributeValue($user, 'companyName', $companyName);
+        // $this->setFlexibleAttributeValue($user, 'birthday', $birthday);
+        $this->setFlexibleAttributeValue($user, 'company', $companyName);
         $this->setFlexibleAttributeValue($user, 'website', $website);
         $this->setFlexibleAttributeValueOption($user, 'gender', $gender);
         $this->addFlexibleAttributeValueOptions($user, 'hobby', $hobbies);
