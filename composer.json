@@ -37,7 +37,8 @@
         "stof/doctrine-extensions-bundle": "dev-master",
         "escapestudios/wsse-authentication-bundle": "2.1.x-dev",
         "sonata-project/admin-bundle": "2.1.x-dev",
-        "sonata-project/doctrine-orm-admin-bundle": "2.1.x-dev"
+        "sonata-project/doctrine-orm-admin-bundle": "2.1.x-dev",
+        "zendframework/zend-stdlib": "2.1.1"
     },
     "repositories": [
         {
