@@ -16,4 +16,16 @@ class DefaultController extends Controller
     {
         return array('name' => $name);
     }
+
+    /**
+     * Windows demo
+     *
+     * @Route("/windows")
+     * @Template()
+     */
+    public function windowsAction()
+    {
+        return array();
+    }
+
 }
