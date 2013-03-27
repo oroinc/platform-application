@@ -26,7 +26,7 @@ security:
             security:                       false
 
         wsse_secured:
-            pattern:                        ^/api/(rest|soap)/.*
+            pattern:                        ^/api/(rest|soap).*
             wsse:
                 nonce_dir:                  null
                 lifetime:                   3600
