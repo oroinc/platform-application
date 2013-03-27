@@ -30,9 +30,10 @@
                 </div>
             </div>
 
-{% set containerAttrs = {"style": "display: none;"} %}
-{{ oro_windows_render(containerAttrs) }}
-
+            <div id="widget-state-container">
+                {% set containerAttrs = {'style': ''} %}
+                {{ oro_windows_render(containerAttrs) }}
+            </div>
         </div>
     </div>
 

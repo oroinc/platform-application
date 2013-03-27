@@ -1,17 +1,15 @@
 {% block content %}
-            <div id="{{ containerId|default("") }}" style="{{ containerStyle|default("") }}" title="{{ containerTitle|default("Form") }}">
-                <form action="#" class="form form-horizontal">
-                    <fieldset>
-                        <div class="scroll-holder">
-                            {{ form_widget(form) }}
-                        </div>
-                        <div class="bottom-action widget-actions">
-                            <div class="pull-right">
-                                <button type="reset" class="btn">Cancel</button>
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </div>
-                        </div>
-                    </fieldset>
-                </form>
+    <form action="{{ path('acme_demowindows_forms_test') }}" class="form form-horizontal" method="post">
+        <fieldset>
+            <div class="scroll-holder">
+                {{ form_widget(form) }}
             </div>
+            <div class="bottom-action widget-actions">
+                <div class="pull-right">
+                    <button type="reset" class="btn">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
 {% endblock %}
