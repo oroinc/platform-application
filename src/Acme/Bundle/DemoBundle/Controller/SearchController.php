@@ -18,117 +18,6 @@ use Acme\Bundle\DemoBundle\Form\CustomerType;
 class SearchController extends Controller
 {
     /**
-     * List of products and add new product
-     *
-     * @Route("/", name="acme_demo_search")
-     * @Template()
-     */
-    public function indexAction()
-    {
-        $entClassName = $this->getProductManager()->getFlexibleName();
-        $valueClassName = $this->getProductManager()->getFlexibleValueName();
-
-        $request = $this->getRequest();
-        $em      = $this->getProductManager()->getStorageManager();
-        $product = $this->getProductManager()->createFlexible();
-        $form    = $this->createForm(new ProductType($entClassName, $valueClassName), $product);
-
-        if ($request->getMethod() == 'POST') {
-            $form->bind($request);
-
-            if ($form->isValid()) {
-                $em->persist($product);
-                $em->flush();
-            }
-        }
-
-        return array(
-            'products' => $em->getRepository('AcmeDemoBundle:Product')->findAll(),
-            'form'     => $form->createView(),
-        );
-    }
-
-    /**
-     * Edit product
-     *
-     * @Route("/edit/{id}", name="acme_demo_edit")
-     * @Template()
-     * @param $id
-     * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
-     */
-    public function editAction($id)
-    {
-        $entClassName = $this->getProductManager()->getFlexibleName();
-        $valueClassName = $this->getProductManager()->getFlexibleValueName();
-
-        $request = $this->getRequest();
-        $em      = $this->getProductManager()->getStorageManager();
-        $product = $this->getDoctrine()->getRepository('AcmeDemoBundle:Product')->find($id);
-        $form    = $this->createForm(new ProductType($entClassName, $valueClassName), $product);
-
-        if ($request->getMethod() == 'POST') {
-            $form->bind($request);
-
-            if ($form->isValid()) {
-                $em->persist($product);
-                $em->flush();
-
-                return $this->redirect($this->generateUrl('acme_demo_search'));
-            }
-        }
-
-        return array(
-            'product' => $product,
-            'form'    => $form->createView(),
-        );
-    }
-
-    /**
-     * Delete product
-     *
-     * @Route("/delete/{id}", name="acme_demo_delete")
-     * @param $id
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     */
-    public function deleteAction($id)
-    {
-        $em      = $this->getProductManager()->getStorageManager();
-        $product = $this->getDoctrine()->getRepository('AcmeDemoBundle:Product')->find($id);
-
-        $em->remove($product);
-        $em->flush();
-
-        return $this->redirect($this->generateUrl('acme_demo_search'));
-    }
-
-    /**
-     * List of customers and add new customer
-     *
-     * @Route("/customers", name="acme_demo_customers")
-     * @Template()
-     */
-    public function customersAction()
-    {
-        $request = $this->getRequest();
-        $em      = $this->getDoctrine()->getManager();
-        $customer = new Customer();
-        $form    = $this->createForm(new CustomerType(), $customer);
-
-        if ($request->getMethod() == 'POST') {
-            $form->bind($request);
-            if ($form->isValid()) {
-                $em->persist($customer);
-                $em->flush();
-            }
-        }
-
-        return array(
-            'customers' => $em->getRepository('AcmeDemoBundle:Customer')->findAll(),
-            'form'     => $form->createView(),
-        );
-    }
-
-    /**
      * @Route("/product/{id}", name="acme_demo_search_product")
      * @Template()
      */
@@ -140,41 +29,12 @@ class SearchController extends Controller
     }
 
     /**
-     * @Template()
-     * @return array
-     */
-    public function testAction()
-    {
-        return array();
-    }
-
-    /**
-     * @Route("/query", name="acme_demo_query")
-     * @Template()
-     * @return array
-     */
-    public function queryAction()
-    {
-        return array();
-    }
-
-    private function getProductManager()
-    {
-        return $this->get('demo_product_manager');
-    }
-
-    /**
-     * @Route("/advanced-search", name="acme_demo_advanced_search")
+     * @Route("/advanced-search-page", name="acme_demo_advanced_search")
      * @Template()
      * @return array
      */
     public function advancedSearchAction()
     {
         return array();
-    }
-
-    private function getSearchManager()
-    {
-        return $this->get('oro_search.index');
     }
 }
