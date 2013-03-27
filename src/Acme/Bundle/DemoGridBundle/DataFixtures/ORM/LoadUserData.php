@@ -49,8 +49,6 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
      */
     public function load(ObjectManager $manager)
     {
-        return;
-
         $this->loadAttributes();
         $this->loadUsers();
     }
@@ -62,12 +60,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
      */
     public function loadAttributes()
     {
-        $this->assertHasRequiredAttributes(array('firstname', 'lastname', 'salary', 'birthday', 'gender'));
-
-        if (!$this->findAttribute('companyName')) {
-            $websiteAttribute = $this->createAttribute(new TextType(), 'companyName');
-            $this->persist($websiteAttribute);
-        }
+        $this->assertHasRequiredAttributes(array('company', 'salary','gender'));
 
         if (!$this->findAttribute('website')) {
             $websiteAttribute = $this->createAttribute(new UrlType(), 'website');
@@ -117,11 +110,12 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
         for ($i = 0; $i < 50; ++$i) {
             $firstName = $this->generateFirstName();
             $lastName = $this->generateLastName();
+            $middleName = $this->generateMiddleName();
+            $birthday = $this->generateBirthday();
             $salary = $this->generateSalary();
             $username = $this->generateUsername($firstName, $lastName);
             $email = $this->generateEmail($firstName, $lastName);
-            $birthday = $this->generateBirthday();
-            $companyName = $this->generateCompanyName();
+            $company = $this->generateCompany();
             $website = $this->generateWebsite($firstName, $lastName);
             $gender = $this->generateGender();
             $hobbies = $this->generateHobbies();
@@ -131,9 +125,10 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
                 $email,
                 $firstName,
                 $lastName,
-                $salary,
+                $middleName,
                 $birthday,
-                $companyName,
+                $salary,
+                $company,
                 $website,
                 $gender,
                 $hobbies
@@ -154,9 +149,10 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
      * @param string $email
      * @param string $firstName
      * @param string $lastName
-     * @param int $salary
+     * @param string $middleName
      * @param \DateTime $birthday
-     * @param string $companyName
+     * @param int $salary
+     * @param string $company
      * @param string $website
      * @param string $gender
      * @param array $hobbies
@@ -167,9 +163,10 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
         $email,
         $firstName,
         $lastName,
-        $salary,
+        $middleName,
         $birthday,
-        $companyName,
+        $salary,
+        $company,
         $website,
         $gender,
         array $hobbies
@@ -179,14 +176,16 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
 
         $user->setEmail($email);
         $user->setUsername($username);
+        $user->setFirstname($firstName);
+        $user->setMiddlename($middleName);
+        $user->setLastname($lastName);
+        $user->setBirthday($birthday);
 
-        $this->setFlexibleAttributeValue($user, 'firstname', $firstName);
-        $this->setFlexibleAttributeValue($user, 'lastname', $lastName);
+
+        $this->setFlexibleAttributeValue($user, 'company', $company);
         $this->setFlexibleAttributeValue($user, 'salary', $salary);
-        $this->setFlexibleAttributeValue($user, 'birthday', $birthday);
-        $this->setFlexibleAttributeValue($user, 'companyName', $companyName);
-        $this->setFlexibleAttributeValue($user, 'website', $website);
         $this->setFlexibleAttributeValueOption($user, 'gender', $gender);
+        $this->setFlexibleAttributeValue($user, 'website', $website);
         $this->addFlexibleAttributeValueOptions($user, 'hobby', $hobbies);
 
         return $user;
@@ -396,6 +395,16 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
     }
 
     /**
+     * Generate a middle name
+     *
+     * @return string
+     */
+    private function generateMiddleName()
+    {
+        return $this->generateFirstName();
+    }
+
+    /**
      * Loads dictionary from file by name
      *
      * @param string $name
@@ -433,7 +442,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
     /**
      * Generates a salary
      *
-     * @return string
+     * @return int
      */
     private function generateSalary()
     {
@@ -445,7 +454,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
      *
      * @return string
      */
-    private function generateCompanyName()
+    private function generateCompany()
     {
         $companyNamesDictionary = $this->loadDictionary('company_names.txt');
         $randomIndex = rand(0, count($companyNamesDictionary) - 1);
