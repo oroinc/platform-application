@@ -54,7 +54,7 @@ oro_navigation:
 
 oro_windows:
     resource: "@OroWindowsBundle/Resources/config/routing.yml"
-    prefix:   /windows
+    prefix: /
 
 oro_soap:
     resource: "@OroSoapBundle/Resources/config/routing.yml"

@@ -1,9 +1,14 @@
 {% extends 'AcmeDemoWindowsBundle::layout.html.twig' %}
 {% block head %}
     {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/orowindows/css/jquery.dialog.extended.css') }}" media="all" />
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="{{ asset('bundles/oroui/lib/jquery.dialog.extended/jquery.dialog.extended.js') }}"></script>
-    <link rel="stylesheet" href="{{ asset('bundles/oroui/lib/jquery.dialog.extended/jquery.dialog.extended.css') }}" media="all" />
+    <script type="text/javascript" src="{{ asset('bundles/orowindows/js/jquery.dialog.extended.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/orowindows/js/views/dialog.js') }}"></script>
+
+    <script type="text/javascript" src="{{ asset('bundles/orowindows/js/models/state.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/orowindows/js/collections/state.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/orowindows/js/views/dialog.js') }}"></script>
 {% endblock head %}
 {% block header %}
 {% endblock %}
