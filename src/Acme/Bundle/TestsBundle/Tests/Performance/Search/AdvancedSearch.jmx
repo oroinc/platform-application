@@ -15,7 +15,7 @@
         <collectionProp name="Arguments.arguments">
           <elementProp name="users" elementType="Argument">
             <stringProp name="Argument.name">users</stringProp>
-            <stringProp name="Argument.value">200</stringProp>
+            <stringProp name="Argument.value">10</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>
@@ -55,7 +55,7 @@
           <collectionProp name="AuthManager.auth_list">
             <elementProp name="" elementType="Authorization">
               <stringProp name="Authorization.url">http://${__P(srvhost,localhost.com)}/app_test.php</stringProp>
-              <stringProp name="Authorization.username">admin</stringProp>
+              <stringProp name="Authorization.username">admin@example.com</stringProp>
               <stringProp name="Authorization.password">admin</stringProp>
               <stringProp name="Authorization.domain"></stringProp>
               <stringProp name="Authorization.realm"></stringProp>
@@ -63,7 +63,7 @@
           </collectionProp>
         </AuthManager>
         <hashTree/>
-        <ConstantThroughputTimer guiclass="TestBeanGUI" testclass="ConstantThroughputTimer" testname="Constant Throughput Timer" enabled="true">
+        <ConstantThroughputTimer guiclass="TestBeanGUI" testclass="ConstantThroughputTimer" testname="Constant Throughput Timer" enabled="false">
           <doubleProp>
             <name>throughput</name>
             <value>60.0</value>
