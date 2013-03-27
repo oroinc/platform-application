@@ -43,10 +43,6 @@
         {
             "type": "vcs",
             "url": "https://github.com/laboro/SonataAdminBundle.git"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/schmittjoh/serializer.git"
         }
     ],
     "scripts": {
