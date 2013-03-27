@@ -1,3 +1,8 @@
+acme_demo_windows:
+    resource: "@AcmeDemoWindowsBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 acme_demo_segmentation_tree:
     resource:     "@AcmeDemoSegmentationTreeBundle/Controller"
     type:         annotation
