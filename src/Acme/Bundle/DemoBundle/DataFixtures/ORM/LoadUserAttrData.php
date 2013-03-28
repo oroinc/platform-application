@@ -11,6 +11,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\OptionSimpleSelectType;
 use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\MoneyType;
 use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\TextType;
+use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\TextAreaType;
 
 class LoadUserAttrData extends AbstractFixture implements ContainerAwareInterface
 {
@@ -46,6 +47,18 @@ class LoadUserAttrData extends AbstractFixture implements ContainerAwareInterfac
         $attr = $fm
             ->createAttribute(new MoneyType())
             ->setCode('salary');
+
+        $sm->persist($attr);
+
+        $attr = $fm
+            ->createAttribute(new TextAreaType())
+            ->setCode('address');
+
+        $sm->persist($attr);
+
+        $attr = $fm
+            ->createAttribute(new TextType())
+            ->setCode('middlename');
 
         $sm->persist($attr);
 

@@ -92,6 +92,54 @@ class UserDatagridManager extends FlexibleDatagridManager
             );
             $this->fieldsCollection->add($fieldEmail);
 
+            $fieldFirstName = new FieldDescription();
+            $fieldFirstName->setName('firstName');
+            $fieldFirstName->setOptions(
+                array(
+                    'type'        => FieldDescriptionInterface::TYPE_TEXT,
+                    'label'       => 'First name',
+                    'field_name'  => 'firstName',
+                    'filter_type' => FilterInterface::TYPE_STRING,
+                    'required'    => false,
+                    'sortable'    => true,
+                    'filterable'  => true,
+                    'show_filter' => true,
+                )
+            );
+            $this->fieldsCollection->add($fieldFirstName);
+
+            $fieldLastName = new FieldDescription();
+            $fieldLastName->setName('lastName');
+            $fieldLastName->setOptions(
+                array(
+                    'type'        => FieldDescriptionInterface::TYPE_TEXT,
+                    'label'       => 'Last name',
+                    'field_name'  => 'lastName',
+                    'filter_type' => FilterInterface::TYPE_STRING,
+                    'required'    => false,
+                    'sortable'    => true,
+                    'filterable'  => true,
+                    'show_filter' => true,
+                )
+            );
+            $this->fieldsCollection->add($fieldLastName);
+
+            $fieldBirthday = new FieldDescription();
+            $fieldBirthday->setName('birthday');
+            $fieldBirthday->setOptions(
+                array(
+                    'type'        => FieldDescriptionInterface::TYPE_DATE,
+                    'label'       => 'Birthday',
+                    'field_name'  => 'birthday',
+                    'filter_type' => FilterInterface::TYPE_DATE,
+                    'required'    => false,
+                    'sortable'    => true,
+                    'filterable'  => true,
+                    'show_filter' => true,
+                )
+            );
+            $this->fieldsCollection->add($fieldBirthday);
+
             foreach ($this->getFlexibleAttributes() as $attribute) {
                 $backendType   = $attribute->getBackendType();
                 $attributeType = $this->convertFlexibleTypeToFieldType($backendType);

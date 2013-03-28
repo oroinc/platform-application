@@ -9,5 +9,7 @@ composer.lock
 /web/bundles
 /web/css
 /web/js
+/web/uploads/users/*
+/web/media/cache
 /app/config/parameters.yml
 *~
