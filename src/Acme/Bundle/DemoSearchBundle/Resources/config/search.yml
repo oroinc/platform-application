@@ -2,7 +2,7 @@ Acme\Bundle\DemoSearchBundle\Entity\Item:
     label: Demo Search bundle item
     alias: demoSearchBundle:Item
     route:
-        name: acme_demo_search
+        name: acme_demo_advanced_search
     fields:
         -
             name: stringValue
