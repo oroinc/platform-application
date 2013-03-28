@@ -42,8 +42,6 @@
     <script type="text/javascript">
         navigation.Item.prototype.urlRoot = {{ path('oro_api_get_navigationitems', {'type': ''})|json_encode|raw }};
     </script>
-    <link href="http://code.jquery.com/ui/1.8.22/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="http://code.jquery.com/ui/1.8.22/jquery-ui.min.js"></script>
 
     <script type="text/javascript" src="{{ asset('bundles/orouser/js/status.js') }}"></script>
 {% endblock %}
