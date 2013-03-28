@@ -28,6 +28,7 @@ class AppKernel extends Kernel
             new BeSimple\SoapBundle\BeSimpleSoapBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+            new Escape\WSSEAuthenticationBundle\EscapeWSSEAuthenticationBundle(),
 
             // BAP bundles
             new Oro\Bundle\FlexibleEntityBundle\OroFlexibleEntityBundle(),
@@ -40,6 +41,7 @@ class AppKernel extends Kernel
             new Oro\Bundle\SegmentationTreeBundle\OroSegmentationTreeBundle(),
             new Oro\Bundle\NavigationBundle\OroNavigationBundle(),
             new Oro\Bundle\ConfigBundle\OroConfigBundle(),
+            new Oro\Bundle\GridBundle\OroGridBundle(),
 
             // BAP Demo bundles
             new Acme\Bundle\DemoBundle\AcmeDemoBundle(),
@@ -48,7 +50,8 @@ class AppKernel extends Kernel
             new Acme\Bundle\DemoFlexibleEntityBundle\AcmeDemoFlexibleEntityBundle(),
             new Acme\Bundle\DemoDataFlowBundle\AcmeDemoDataFlowBundle(),
             new Acme\Bundle\DemoSearchBundle\AcmeDemoSearchBundle(),
-            new Acme\Bundle\DemoSegmentationTreeBundle\AcmeDemoSegmentationTreeBundle()
+            new Acme\Bundle\DemoSegmentationTreeBundle\AcmeDemoSegmentationTreeBundle(),
+            new Acme\Bundle\DemoGridBundle\AcmeDemoGridBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test', 'perf'))) {

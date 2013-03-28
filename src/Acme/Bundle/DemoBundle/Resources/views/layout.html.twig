@@ -22,9 +22,20 @@
 
 {% block head_script %}
     {{ parent() }}
-    <script type="text/javascript" src="{{ asset('bundles/oroui/lib/underscore.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/oroui/lib/backbone.js') }}"></script>
+    {% javascripts
+        '@OroUIBundle/Resources/public/lib/underscore.js'
+        '@OroUIBundle/Resources/public/lib/backbone.js'
 
+        '@OroUIBundle/Resources/public/js/backbone/app.js'
+        '@OroUIBundle/Resources/public/js/backbone/app/model.js'
+        '@OroUIBundle/Resources/public/js/backbone/app/view.js'
+        '@OroUIBundle/Resources/public/js/backbone/app/router.js'
+        '@OroUIBundle/Resources/public/js/backbone/app/collection.js'
+        '@OroUIBundle/Resources/public/js/backbone/setup.js'
+        output='js/oroapp.all.js'
+    %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 
     {% include 'OroNavigationBundle:Js:dot.menu.js.twig' %}
     <script type="text/javascript" src="{{ asset('bundles/oronavigation/js/models/navigation.item.js') }}"></script>

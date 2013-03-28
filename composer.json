@@ -7,8 +7,10 @@
     "require": {
         "php": ">=5.3.3",
         "symfony/symfony": "2.1.*",
-        "doctrine/orm": ">=2.2.3,<2.4-dev",
-        "doctrine/doctrine-bundle": "1.0.*",
+        "doctrine/orm": ">=2.2.3,<2.5-dev",
+        "doctrine/doctrine-bundle": "1.1.*",
+        "doctrine/data-fixtures": "@dev",
+        "doctrine/doctrine-fixtures-bundle": "@dev",
         "twig/extensions": "1.0.*@dev",
         "symfony/assetic-bundle": "2.1.*",
         "symfony/swiftmailer-bundle": "2.1.*",
@@ -18,11 +20,12 @@
         "sensio/generator-bundle": "2.1.*",
         "jms/di-extra-bundle": "1.3.*@dev",
         "jms/job-queue-bundle": "dev-master",
+        "jms/aop-bundle": "dev-master",
         "kriswallsmith/assetic": "1.1.*@dev",
-        "doctrine/data-fixtures": "@dev",
-        "doctrine/doctrine-fixtures-bundle": "@dev",
+        "knplabs/knp-menu": "dev-master",
+        "knplabs/knp-menu-bundle": "dev-master",
         "knplabs/knp-paginator-bundle": "dev-master",
-        "friendsofsymfony/rest-bundle": "dev-master",
+        "friendsofsymfony/rest-bundle": "0.11.*",
         "jms/serializer": "0.12.*@dev",
         "jms/serializer-bundle": "0.12.*@dev",
         "nelmio/api-doc-bundle": "dev-master",
@@ -30,16 +33,17 @@
         "besimple/soap-common": "dev-master",
         "besimple/soap-server": "dev-master",
         "besimple/soap-bundle": "dev-master",
-        "knplabs/knp-menu-bundle": "dev-master",
-        "knplabs/knp-menu": "dev-master",
         "ddeboer/data-import": "dev-master",
         "stof/doctrine-extensions-bundle": "dev-master",
-        "jms/aop-bundle": "dev-master"
+        "escapestudios/wsse-authentication-bundle": "2.1.x-dev",
+        "sonata-project/admin-bundle": "2.1.x-dev",
+        "sonata-project/doctrine-orm-admin-bundle": "2.1.x-dev",
+        "zendframework/zend-stdlib": "2.1.1"
     },
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/schmittjoh/serializer.git"
+            "url": "https://github.com/laboro/SonataAdminBundle.git"
         }
     ],
     "scripts": {

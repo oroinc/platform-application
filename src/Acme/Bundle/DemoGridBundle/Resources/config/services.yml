@@ -1,0 +1,36 @@
+parameters:
+    acme_demo_grid.user_grid.manager.class: Acme\Bundle\DemoGridBundle\Datagrid\UserDatagridManager
+    acme_demo_grid.product_grid.manager.class: Acme\Bundle\DemoGridBundle\Datagrid\ProductDatagridManager
+
+services:
+    acme_demo_grid.user_grid.manager:
+        class: %acme_demo_grid.user_grid.manager.class%
+        tags:
+            - name: oro_grid.datagrid.manager
+              datagrid_name: users
+              entity_name: Oro\Bundle\UserBundle\Entity\User
+              entity_hint: users
+              flexible: true
+              route_name: acme_demo_gridbundle_user_list
+#              datagrid_builder: ~
+#              list_builder: ~
+#              query_factory: ~
+#              translator: ~
+#              validator: ~
+#              request: ~
+        calls:
+            - [ setRouter, [ @router ] ]
+
+    acme_demo_grid.product_grid.manager:
+        class: %acme_demo_grid.product_grid.manager.class%
+        tags:
+            - name: oro_grid.datagrid.manager
+              datagrid_name: product
+              entity_hint: products
+              route_name: acme_demo_gridbundle_product_list
+#              query_factory: ~
+#              datagrid_builder: ~
+#              list_builder: ~
+#              translator: ~
+#              validator: ~
+#              request: ~

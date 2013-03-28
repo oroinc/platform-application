@@ -25,10 +25,17 @@
             '@OroUIBundle/Resources/public/js/layout.js'
             '@AcmeDemoBundle/Resources/public/js/jquery-ui-1.10.0.min.js'
             '@AcmeDemoBundle/Resources/public/js/main.js'
-
+            '@OroUIBundle/Resources/public/lib/underscore.js'
+            '@OroUIBundle/Resources/public/lib/backbone.js'
+            '@OroUIBundle/Resources/public/js/backbone/app.js'
+            '@OroUIBundle/Resources/public/js/backbone/app/model.js'
+            '@OroUIBundle/Resources/public/js/backbone/app/view.js'
+            '@OroUIBundle/Resources/public/js/backbone/app/router.js'
+            '@OroUIBundle/Resources/public/js/backbone/app/collection.js'
+            '@OroUIBundle/Resources/public/js/backbone/setup.js'
             output='js/acme.all.js'
         %}
-        <script type="text/javascript" src="{{ asset_url }}"></script>
+            <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
 
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
