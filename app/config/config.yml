@@ -12,7 +12,7 @@ framework:
     form:            true
     csrf_protection: true
     validation:      { enable_annotations: true }
-    templating:      { engines: ['twig'] } #assets_version: SomeVersionScheme
+    templating:      { engines: ['twig', 'php'] } #assets_version: SomeVersionScheme
     default_locale:  "%locale%"
     trust_proxy_headers: false # Deprecated in 2.0; will be removed in 2.3 (used trusted_proxies instead)
     trusted_proxies: ~
@@ -32,7 +32,7 @@ twig:
 assetic:
     debug:                    "%kernel.debug%"
     use_controller:           false
-    bundles:                  ["AcmeDemoBundle", "OroUserBundle","AcmeDemoSegmentationTreeBundle", "OroSegmentationTreeBundle"]
+    bundles:                  ["AcmeDemoBundle", "OroUserBundle","AcmeDemoSegmentationTreeBundle", "OroSegmentationTreeBundle", "AcmeDemoGridBundle", "OroGridBundle"]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -120,3 +120,6 @@ services:
     cache:
         class: Doctrine\Common\Cache\PhpFileCache
         arguments: [%kernel.cache_dir%]
+
+escape_wsse_authentication:
+    authentication_provider_class: Oro\Bundle\UserBundle\Security\WsseUserProvider

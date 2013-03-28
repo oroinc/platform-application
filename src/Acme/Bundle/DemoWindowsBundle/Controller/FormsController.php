@@ -28,6 +28,7 @@ class FormsController extends Controller
         $request = $this->getRequest();
         $form = $this->createForm(new ContactType());
         if ($request->getMethod() == 'POST') {
+            $form->bind($request);
         }
 
         return array(
