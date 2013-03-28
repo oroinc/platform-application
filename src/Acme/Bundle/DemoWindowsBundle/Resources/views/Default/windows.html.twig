@@ -2,13 +2,18 @@
 {% block head %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('bundles/orowindows/css/jquery.dialog.extended.css') }}" media="all" />
-    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="{{ asset('bundles/orowindows/js/jquery.dialog.extended.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/orowindows/js/views/dialog.js') }}"></script>
+    {% javascripts
+        '@OroWindowsBundle/Resources/public/js/jquery.dialog.extended.js'
+        '@OroWindowsBundle/Resources/public/js/views/dialog.js'
 
-    <script type="text/javascript" src="{{ asset('bundles/orowindows/js/models/state.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/orowindows/js/collections/state.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/orowindows/js/views/dialog.js') }}"></script>
+        '@OroWindowsBundle/Resources/public/js/models/state.js'
+        '@OroWindowsBundle/Resources/public/js/collections/state.js'
+        '@OroWindowsBundle/Resources/public/js/views/dialog.js'
+
+        output='js/oroapp.all.js'
+    %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 
     <script type="text/javascript">
         Oro.widget.StateModel.prototype.urlRoot = {{ path('oro_api_get_windows')|json_encode|raw }};
@@ -29,22 +34,15 @@
                 </div>
             </div>
 
-            {{ oro_windows_render() }}
+            <div style="display: none" id="widget-states-container">
+                {{ oro_windows_render() }}
+            </div>
 
         </div>
     </div>
 
     <script>
         $(function(){
-            Oro.widget.States.fetch({
-                success: function(data) {
-                    data.each(function(windowState) {
-                        new Oro.widget.DialogView({
-                            model: windowState
-                        }).render();
-                    });
-                }
-            });
             var pos = 0;
             $("#opener1").click(function(){
                 new Oro.widget.DialogView({
@@ -56,7 +54,8 @@
                         maximizedHeightDecreaseBy: 'minimize-bar',
                         appendTo: '#main .row-fluid',
                         width : 400,
-                        height : 305
+                        height : 305,
+                        title: 'Form example'
                     }
                 }).render();
             });
@@ -67,7 +66,8 @@
                         allowMinimize: true,
                         dblclick: 'collapse',
                         width : 400,
-                        height : 300
+                        height : 300,
+                        title: 'Second example'
                     }
                 }).render();
             });
@@ -76,7 +76,8 @@
                     url: {{ path('acme_demowindows_forms_testget', {'id': 10})|json_encode|raw }},
                     dialogOptions: {
                         width : 400,
-                        height : 300
+                        height : 300,
+                        title: 'Default dialog'
                     }
                 }).render();
             });
