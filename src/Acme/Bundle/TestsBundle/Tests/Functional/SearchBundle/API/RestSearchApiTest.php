@@ -7,11 +7,10 @@ use Acme\Bundle\TestsBundle\Test\ToolsAPI;
 
 /**
  * outputBuffering enabled
- * runTestsInSeparateProcesses
  */
 class RestSearchApiTest extends WebTestCase
 {
-    protected $client = null;
+    public $client = null;
 
     public function setUp()
     {

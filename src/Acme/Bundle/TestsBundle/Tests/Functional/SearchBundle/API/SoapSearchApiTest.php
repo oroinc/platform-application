@@ -7,14 +7,13 @@ use Acme\Bundle\TestsBundle\Test\ToolsAPI;
 
 /**
  * @outputBuffering enabled
- * runTestsInSeparateProcesses
  */
 class SoapSearchApiTest extends WebTestCase
 {
     /** Default value for offset and max_records */
     const DEFAULT_VALUE = 0;
 
-    protected $clientSoap = null;
+    public $client = null;
 
     public function setUp()
     {

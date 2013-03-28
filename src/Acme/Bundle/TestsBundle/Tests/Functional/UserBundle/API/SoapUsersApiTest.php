@@ -7,7 +7,6 @@ use Acme\Bundle\TestsBundle\Test\ToolsAPI;
 
 /**
  * @outputBuffering enabled
- * runTestsInSeparateProcesses
  */
 class SoapUsersApiTest extends WebTestCase
 {
@@ -15,7 +14,7 @@ class SoapUsersApiTest extends WebTestCase
     const DEFAULT_VALUE = 'USER_LABEL';
 
     /** @var \SoapClient */
-    protected $clientSoap = null;
+    public $client = null;
 
     public function setUp()
     {

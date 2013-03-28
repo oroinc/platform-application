@@ -7,7 +7,6 @@ use Acme\Bundle\TestsBundle\Test\ToolsAPI;
 
 /**
  * @outputBuffering enabled
- * runTestsInSeparateProcesses
  */
 class SoapRolesApiTest extends WebTestCase
 {
@@ -15,7 +14,7 @@ class SoapRolesApiTest extends WebTestCase
     const DEFAULT_VALUE = 'ROLE_LABEL';
 
     /** @var \SoapClient */
-    protected $clientSoap = null;
+    public $client = null;
 
     public function setUp()
     {
@@ -30,8 +29,6 @@ class SoapRolesApiTest extends WebTestCase
     }
 
     /**
-     * runInSeparateProcess
-     *
      * @param string $request
      * @param array  $response
      *
@@ -51,8 +48,6 @@ class SoapRolesApiTest extends WebTestCase
     }
 
     /**
-     * runInSeparateProcess
-     *
      * @param string $request
      * @param array  $response
      *
@@ -80,8 +75,6 @@ class SoapRolesApiTest extends WebTestCase
     }
 
     /**
-     * runInSeparateProcess
-     *
      * @depends testUpdateRole
      * @return array
      */
@@ -103,8 +96,6 @@ class SoapRolesApiTest extends WebTestCase
     }
 
     /**
-     * runInSeparateProcess
-     *
      * @depends testGetRole
      * @param array $roles
      */

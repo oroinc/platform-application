@@ -7,7 +7,6 @@ use Acme\Bundle\TestsBundle\Test\ToolsAPI;
 
 /**
  * @outputBuffering enabled
- * runTestsInSeparateProcesses
  */
 class SoapGroupsApiTest extends WebTestCase
 {
@@ -15,7 +14,7 @@ class SoapGroupsApiTest extends WebTestCase
     const DEFAULT_VALUE = 'GROUP_LABEL';
 
     /** @var \SoapClient */
-    protected $clientSoap = null;
+    public $client = null;
 
     public function setUp()
     {
@@ -34,7 +33,6 @@ class SoapGroupsApiTest extends WebTestCase
      * @param array  $response
      *
      * @dataProvider requestsApi
-     * runInSeparateProcess
      */
     public function testCreateGroup($request, $response)
     {
