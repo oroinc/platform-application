@@ -39,15 +39,11 @@ class SoapClient extends BasicSoapClient
      */
     public function __doRequest($request, $location, $action, $version, $one_way = 0)
     {
-        //ob_start();
         //save directly in _SERVER array
         $_SERVER['HTTP_SOAPACTION'] = $action;
         $_SERVER['CONTENT_TYPE'] = 'application/soap+xml';
         //make POST request
-        $loc = $location;
-        $req = $request;
         $this->kernel->request('POST', (string)$location, array(), array(), array(), (string)$request);
-        //ob_end_clean();
         unset($_SERVER['HTTP_SOAPACTION']);
         unset($_SERVER['CONTENT_TYPE']);
         return $this->kernel->getResponse()->getContent();
