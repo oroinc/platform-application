@@ -28,6 +28,7 @@ class AppKernel extends Kernel
             new BeSimple\SoapBundle\BeSimpleSoapBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+            new Escape\WSSEAuthenticationBundle\EscapeWSSEAuthenticationBundle(),
 
             // BAP bundles
             new Oro\Bundle\FlexibleEntityBundle\OroFlexibleEntityBundle(),
@@ -40,6 +41,7 @@ class AppKernel extends Kernel
             new Oro\Bundle\SegmentationTreeBundle\OroSegmentationTreeBundle(),
             new Oro\Bundle\NavigationBundle\OroNavigationBundle(),
             new Oro\Bundle\ConfigBundle\OroConfigBundle(),
+            new Oro\Bundle\GridBundle\OroGridBundle(),
             new Oro\Bundle\WindowsBundle\OroWindowsBundle(),
 
             // BAP Demo bundles
@@ -50,6 +52,7 @@ class AppKernel extends Kernel
             new Acme\Bundle\DemoDataFlowBundle\AcmeDemoDataFlowBundle(),
             new Acme\Bundle\DemoSearchBundle\AcmeDemoSearchBundle(),
             new Acme\Bundle\DemoSegmentationTreeBundle\AcmeDemoSegmentationTreeBundle(),
+            new Acme\Bundle\DemoGridBundle\AcmeDemoGridBundle(),
             new Acme\Bundle\DemoWindowsBundle\AcmeDemoWindowsBundle(),
         );
 
@@ -57,6 +60,7 @@ class AppKernel extends Kernel
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
+            $bundles[] = new Acme\Bundle\TestsBundle\AcmeTestsBundle();
         }
 
         return $bundles;

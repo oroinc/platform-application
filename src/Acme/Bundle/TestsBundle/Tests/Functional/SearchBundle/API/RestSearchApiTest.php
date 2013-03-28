@@ -1,21 +1,24 @@
 <?php
 
-namespace Acme\Bundle\DemoSearchBundle\Tests\Functional\API;
+namespace Acme\Bundle\TestsBundle\Tests\Functional\API;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Symfony\Component\Yaml\Yaml;
-use Symfony\Component\Finder\Iterator;
+use Acme\Bundle\TestsBundle\Test\ToolsAPI;
 
-class RestApiTest extends WebTestCase
+/**
+ * @outputBuffering enabled
+ * @runTestsInSeparateProcesses
+ */
+class RestSearchApiTest extends WebTestCase
 {
 
-    protected $client;
+    protected $client = null;
 
     public function setUp()
     {
-        $this->client = static::createClient();
+        $this->client = static::createClient(array('debug' => false));
     }
-
+    
     /**
      * @param array $request
      * @param array $response
@@ -29,7 +32,7 @@ class RestApiTest extends WebTestCase
             $requestUrl .= (is_null($request[$key])) ? '' :
                 (($requestUrl!=='') ? '&':'') . "{$key}=" . $value;
         }
-        $this->client->request('GET', "api/rest/latest/search?search={$requestUrl}");
+        $this->client->request('GET', "http://localhost/api/rest/latest/search?search={$requestUrl}");
 
         $result = $this->client->getResponse();
 
@@ -46,19 +49,7 @@ class RestApiTest extends WebTestCase
      */
     public function requestsApi()
     {
-        $parameters = array();
-        $testFiles = new \RecursiveDirectoryIterator(
-            __DIR__ . DIRECTORY_SEPARATOR . 'requests',
-            \RecursiveDirectoryIterator::SKIP_DOTS
-        );
-        foreach ($testFiles as $fileName => $object) {
-            $parameters[$fileName] = Yaml::parse($fileName);
-            if (is_null($parameters[$fileName]['response']['rest']['data'])) {
-                unset($parameters[$fileName]['response']['rest']['data']);
-            }
-        }
-        return
-            $parameters;
+        return ToolsAPI::requestsApi(__DIR__ . DIRECTORY_SEPARATOR . 'requests');
     }
 
     /**

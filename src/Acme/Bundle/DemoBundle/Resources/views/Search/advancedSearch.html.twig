@@ -67,6 +67,16 @@
                         <p>=, !=, <, >, <=, >=, in, !in</p>
                         <h4>decimal fields:</h4>
                         <p>=, !=, <, >, <=, >=, in, !in</p>
+                        <h4>datetime fields:</h4>
+                        <p>=, !=, <, >, <=, >=, in, !in</p>
+                    </td>
+                    <td>
+                        <h3>Exaples:</h3>
+                        <p>from demo_product where name ~ samsung and double price > 100</p>
+                        <p>integer count != 10</p>
+                        <p>all_text !~ "test string"</p>
+                        <p>from (demo_products, demo_categories) where description ~ test order_by name offset 5 max_results 10</p>
+                        <p>integer count !in (1, 3, 5)</p>
                     </td>
                 </tr>
             </table>
