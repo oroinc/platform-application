@@ -7,7 +7,7 @@ use Acme\Bundle\TestsBundle\Test\ToolsAPI;
 
 /**
  * @outputBuffering enabled
- * runTestsInSeparateProcesses
+ * @runTestsInSeparateProcesses
  */
 class SoapRolesApiTest extends WebTestCase
 {
@@ -19,7 +19,7 @@ class SoapRolesApiTest extends WebTestCase
 
     public function setUp()
     {
-        $this->clientSoap = static::createClient(array('debug' => true));
+        $this->clientSoap = static::createClient(array('debug' => false), ToolsAPI::generateWsseHeader());
         $this->clientSoap->soap(
             "http://localhost/api/soap",
             array('location' => 'http://localhost/api/soap',

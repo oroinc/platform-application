@@ -36,10 +36,7 @@ class CustomerControllerTest extends KernelAwareControllerTest
         foreach (self::$locales as $locale) {
             $this->client->request(
                 'GET',
-                self::prepareUrl($locale, 'index'),
-                array(),
-                array(),
-                array('PHP_AUTH_USER' =>  self::AUTH_USER, 'PHP_AUTH_PW' => self::AUTH_PW)
+                self::prepareUrl($locale, 'index')
             );
             $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         }
@@ -62,10 +59,7 @@ class CustomerControllerTest extends KernelAwareControllerTest
         foreach (self::$locales as $locale) {
             $this->client->request(
                 'GET',
-                self::prepareUrl('en', 'show/'.$customer->getId()),
-                array(),
-                array(),
-                array('PHP_AUTH_USER' =>  self::AUTH_USER, 'PHP_AUTH_PW' => self::AUTH_PW)
+                self::prepareUrl('en', 'show/'.$customer->getId())
             );
             $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         }
@@ -80,10 +74,7 @@ class CustomerControllerTest extends KernelAwareControllerTest
         foreach (self::$locales as $locale) {
             $this->client->request(
                 'GET',
-                self::prepareUrl($locale, 'create'),
-                array(),
-                array(),
-                array('PHP_AUTH_USER' =>  self::AUTH_USER, 'PHP_AUTH_PW' => self::AUTH_PW)
+                self::prepareUrl($locale, 'create')
             );
             $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         }
@@ -104,10 +95,7 @@ class CustomerControllerTest extends KernelAwareControllerTest
         foreach (self::$locales as $locale) {
             $this->client->request(
                 'GET',
-                self::prepareUrl($locale, 'edit/'. $customer->getId()),
-                array(),
-                array(),
-                array('PHP_AUTH_USER' =>  self::AUTH_USER, 'PHP_AUTH_PW' => self::AUTH_PW)
+                self::prepareUrl($locale, 'edit/'. $customer->getId())
             );
             $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         }
@@ -133,10 +121,7 @@ class CustomerControllerTest extends KernelAwareControllerTest
         foreach (self::$locales as $locale) {
             $this->client->request(
                 'GET',
-                self::prepareUrl($locale, 'query-lazy-load'),
-                array(),
-                array(),
-                array('PHP_AUTH_USER' =>  self::AUTH_USER, 'PHP_AUTH_PW' => self::AUTH_PW)
+                self::prepareUrl($locale, 'query-lazy-load')
             );
             $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         }
@@ -222,10 +207,7 @@ class CustomerControllerTest extends KernelAwareControllerTest
         foreach (self::$locales as $locale) {
             $this->client->request(
                 'GET',
-                self::prepareUrl($locale, 'query/'. $urlSuffix),
-                array(),
-                array(),
-                array('PHP_AUTH_USER' =>  self::AUTH_USER, 'PHP_AUTH_PW' => self::AUTH_PW)
+                self::prepareUrl($locale, 'query/'. $urlSuffix)
             );
             $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         }

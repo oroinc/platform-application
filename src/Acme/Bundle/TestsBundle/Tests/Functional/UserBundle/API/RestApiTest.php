@@ -3,6 +3,7 @@
 namespace Acme\Bundle\TestsBundle\Tests\Functional\API;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Acme\Bundle\TestsBundle\Test\ToolsAPI;
 
 /**
  * @outputBuffering enabled
@@ -15,7 +16,7 @@ class RestUserApiTest extends WebTestCase
 
     public function setUp()
     {
-        $this->client = static::createClient(array('debug' => false));
+        $this->client = static::createClient(array('debug' => false), ToolsAPI::generateWsseHeader());
     }
 
     /**

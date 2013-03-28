@@ -11,12 +11,12 @@ use Acme\Bundle\TestsBundle\Test\ToolsAPI;
  */
 class RestSearchApiTest extends WebTestCase
 {
-
     protected $client = null;
 
     public function setUp()
     {
-        $this->client = static::createClient(array('debug' => false));
+        $this->client = static::createClient(array('debug' => false), ToolsAPI::generateWsseHeader());
+
     }
     
     /**
