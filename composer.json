@@ -38,7 +38,8 @@
         "escapestudios/wsse-authentication-bundle": "2.1.x-dev",
         "sonata-project/admin-bundle": "2.1.x-dev",
         "sonata-project/doctrine-orm-admin-bundle": "2.1.x-dev",
-        "zendframework/zend-stdlib": "2.1.1"
+        "zendframework/zend-stdlib": "2.1.1",
+        "liip/imagine-bundle": "dev-master"
     },
     "repositories": [
         {

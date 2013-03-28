@@ -58,7 +58,7 @@ class FlexibleProductDemoController extends Controller
                 $this->get('session')->getFlashBag()->add('success', 'Attribute successfully saved');
 
                 return $this->redirect(
-                    $this->generateUrl('acme_demo_search')
+                    $this->generateUrl('acme_demo_advanced_search')
                 );
             }
         }

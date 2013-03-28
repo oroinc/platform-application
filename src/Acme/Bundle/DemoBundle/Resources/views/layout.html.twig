@@ -57,6 +57,7 @@
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
     <script type="text/javascript" src="{{ asset('bundles/orouser/js/status.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/orosearch/js/searchBar.js') }}"></script>
 
     <script type="text/javascript">
         navigation.Item.prototype.urlRoot = {{ path('oro_api_get_navigationitems', {'type': ''})|json_encode|raw }};
