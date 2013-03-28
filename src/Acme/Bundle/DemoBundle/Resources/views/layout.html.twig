@@ -22,6 +22,11 @@
 
 {% block head_script %}
     {{ parent() }}
+    {% include 'OroNavigationBundle:Js:dot.menu.js.twig' %}
+    {% include 'OroNavigationBundle:Js:pinbar.js.twig' %}
+
+    <link href="http://code.jquery.com/ui/1.8.22/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="http://code.jquery.com/ui/1.8.22/jquery-ui.min.js"></script>
     {% javascripts
         '@OroUIBundle/Resources/public/lib/underscore.js'
         '@OroUIBundle/Resources/public/lib/backbone.js'
@@ -32,34 +37,30 @@
         '@OroUIBundle/Resources/public/js/backbone/app/router.js'
         '@OroUIBundle/Resources/public/js/backbone/app/collection.js'
         '@OroUIBundle/Resources/public/js/backbone/setup.js'
+
+        '@OroNavigationBundle/Resources/public/js/models/navigation.item.js'
+        '@OroNavigationBundle/Resources/public/js/collections/navigation.js'
+        '@OroNavigationBundle/Resources/public/js/views/navigation.abstract.js'
+        '@OroNavigationBundle/Resources/public/js/views/dot.menu.item.js'
+        '@OroNavigationBundle/Resources/public/js/views/dot.menu.js'
+
+        '@OroNavigationBundle/Resources/public/js/models/pinbar.item.js'
+        '@OroNavigationBundle/Resources/public/js/collections/pinbar.js'
+        '@OroNavigationBundle/Resources/public/js/views/pinbar.item.js'
+        '@OroNavigationBundle/Resources/public/js/views/pinbar.js'
+
+        '@OroNavigationBundle/Resources/public/js/views/favorites.js'
+        '@OroNavigationBundle/Resources/public/js/views/shortcuts.js'
+        
         output='js/oroapp.all.js'
     %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
-
-    {% include 'OroNavigationBundle:Js:dot.menu.js.twig' %}
-    <script type="text/javascript" src="{{ asset('bundles/oronavigation/js/models/navigation.item.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/oronavigation/js/collections/navigation.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/oronavigation/js/views/navigation.abstract.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/oronavigation/js/views/dot.menu.item.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/oronavigation/js/views/dot.menu.js') }}"></script>
-
-    {% include 'OroNavigationBundle:Js:pinbar.js.twig' %}
-    <script type="text/javascript" src="{{ asset('bundles/oronavigation/js/models/pinbar.item.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/oronavigation/js/collections/pinbar.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/oronavigation/js/views/pinbar.item.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/oronavigation/js/views/pinbar.js') }}"></script>
-
-    <script type="text/javascript" src="{{ asset('bundles/oronavigation/js/views/favorites.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/oronavigation/js/views/shortcuts.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/orouser/js/status.js') }}"></script>
 
     <script type="text/javascript">
         navigation.Item.prototype.urlRoot = {{ path('oro_api_get_navigationitems', {'type': ''})|json_encode|raw }};
     </script>
-    <link href="http://code.jquery.com/ui/1.8.22/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="http://code.jquery.com/ui/1.8.22/jquery-ui.min.js"></script>
-
-    <script type="text/javascript" src="{{ asset('bundles/orouser/js/status.js') }}"></script>
 {% endblock %}
 
 {% block pin_button %}
