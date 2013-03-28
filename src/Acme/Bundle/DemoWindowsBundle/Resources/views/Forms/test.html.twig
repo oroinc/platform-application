@@ -1,4 +1,5 @@
-{% block content %}
+{% extends 'OroWindowsBundle::blockLayout.html.twig' %}
+{% block block_content %}
     <form action="{{ path('acme_demowindows_forms_test') }}" class="form form-horizontal" method="post">
         <fieldset>
             <div class="scroll-holder">
