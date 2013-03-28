@@ -1,5 +1,5 @@
-{% block content %}
-            <div id="{{ containerId|default("") }}" style="{{ containerStyle|default("") }}" title="{{ containerTitle|default("Form") }}">
+{% extends 'OroWindowsBundle::blockLayout.html.twig' %}
+{% block block_content %}
                 <form action="#" class="form form-horizontal">
                     <fieldset>
                         <div class="scroll-holder">
@@ -13,5 +13,4 @@
                         </div>
                     </fieldset>
                 </form>
-            </div>
-{% endblock %}
+{% endblock block_content %}
