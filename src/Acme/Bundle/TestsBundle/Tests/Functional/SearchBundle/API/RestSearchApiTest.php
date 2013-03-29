@@ -14,7 +14,7 @@ class RestSearchApiTest extends WebTestCase
 
     public function setUp()
     {
-        $this->client = static::createClient(array('debug' => false), ToolsAPI::generateWsseHeader());
+        $this->client = static::createClient(array(), ToolsAPI::generateWsseHeader());
 
     }
     
