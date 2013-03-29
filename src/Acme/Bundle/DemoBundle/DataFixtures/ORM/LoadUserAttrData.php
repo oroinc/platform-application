@@ -9,9 +9,9 @@ use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
 use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\OptionSimpleSelectType;
-use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\DateType;
 use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\MoneyType;
 use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\TextType;
+use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\TextAreaType;
 
 class LoadUserAttrData extends AbstractFixture implements ContainerAwareInterface
 {
@@ -38,27 +38,32 @@ class LoadUserAttrData extends AbstractFixture implements ContainerAwareInterfac
         $fm = $this->container->get('oro_user.manager');
         $sm = $fm->getStorageManager();
 
-        $attr = $fm->createAttribute(new TextType())
-            ->setCode('firstname');
+        $attr = $fm
+            ->createAttribute(new TextType())
+            ->setCode('company');
 
         $sm->persist($attr);
 
-        $attr = $fm->createAttribute(new TextType())
-            ->setCode('lastname');
-
-        $sm->persist($attr);
-
-        $attr = $fm->createAttribute(new MoneyType())
+        $attr = $fm
+            ->createAttribute(new MoneyType())
             ->setCode('salary');
 
         $sm->persist($attr);
 
-        $attr = $fm->createAttribute(new DateType())
-            ->setCode('birthday');
+        $attr = $fm
+            ->createAttribute(new TextAreaType())
+            ->setCode('address');
 
         $sm->persist($attr);
 
-        $attr = $fm->createAttribute(new OptionSimpleSelectType())
+        $attr = $fm
+            ->createAttribute(new TextType())
+            ->setCode('middlename');
+
+        $sm->persist($attr);
+
+        $attr = $fm
+            ->createAttribute(new OptionSimpleSelectType())
             ->setCode('gender')
             ->addOption(
                 $fm->createAttributeOption()->addOptionValue(

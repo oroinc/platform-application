@@ -18,6 +18,12 @@ acme_demo_measure:
     type:     annotation
     prefix:   /
 
+acme_demo_grid:
+    resource: "@AcmeDemoGridBundle/Controller/"
+    type:     annotation
+    prefix:   /{_locale}/grid/
+    defaults: { _locale: %locale% }
+
 acme_default:
     pattern:  /{_locale}
     defaults:
@@ -59,3 +65,7 @@ oro_config:
 NelmioApiDocBundle:
     resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
     prefix:   /api/doc
+
+_imagine:
+    resource: .
+    type:     imagine

@@ -1,0 +1,9 @@
+{% extends 'AcmeDemoBundle:Default:index.html.twig' %}
+
+{% block head %}
+    {{ parent() }}
+    {% block stylesheets %}{% endblock %}
+    {% block javascripts %}{% endblock %}
+{% endblock %}
+
+{% block title %}Grid Bundle - {{ parent() }}{% endblock %}

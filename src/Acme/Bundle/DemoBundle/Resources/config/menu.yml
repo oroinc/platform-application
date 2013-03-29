@@ -25,14 +25,32 @@ oro_menu_config:
             label: 'Groups'
             route: 'oro_user_group_index'
         demo_search:
-            label: 'Search examples'
-            route: 'acme_demo_search'
+            label: 'Advaced search'
+            route: 'acme_demo_advanced_search'
         demo_ui:
             label: 'UI Components'
             route: 'oro_ui_index'
         demo_dashboard:
             label: 'Dashboard'
             route: 'acme_default'
+
+        shortcut_jobs:
+            label: Jobs List
+            route: acme_demo_job_index
+            extras:
+                description: Create new user instance
+        shortcut_new_user:
+            label: Create New User
+            route: oro_user_create
+            extras:
+                description: Create new user instance
+                isCustomAction: true
+        shortcut_list_users:
+            label: Users List
+            route: oro_user_index
+            extras:
+                description: List of users
+                isCustomAction: true
 
     tree:
         application_menu:
@@ -54,3 +72,9 @@ oro_menu_config:
                 demo_jobs_tab:
                     children:
                         demo_jobs: ~
+
+        shortcuts:
+            children:
+                shortcut_jobs: ~
+                shortcut_new_user: ~
+                shortcut_list_users: ~

@@ -12,7 +12,7 @@ framework:
     form:            true
     csrf_protection: true
     validation:      { enable_annotations: true }
-    templating:      { engines: ['twig'] } #assets_version: SomeVersionScheme
+    templating:      { engines: ['twig', 'php'] } #assets_version: SomeVersionScheme
     default_locale:  "%locale%"
     trust_proxy_headers: false # Deprecated in 2.0; will be removed in 2.3 (used trusted_proxies instead)
     trusted_proxies: ~
@@ -32,7 +32,7 @@ twig:
 assetic:
     debug:                    "%kernel.debug%"
     use_controller:           false
-    bundles:                  ["AcmeDemoBundle", "OroUserBundle","AcmeDemoSegmentationTreeBundle"]
+    bundles:                  ["OroUIBundle", "AcmeDemoBundle", "OroUserBundle","AcmeDemoSegmentationTreeBundle", "AcmeDemoGridBundle", "OroGridBundle"]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -106,17 +106,28 @@ be_simple_soap:
             resource:         "%kernel.root_dir%/../app/config/soap.yml"
             resource_type:    yml
         demo:
-            namespace:     http://symfony.loc/Api/1.0/
-            binding:       rpc-literal
-            resource:      "%kernel.root_dir%/../src/Acme/Bundle/DemoBundle/Resources/config/soap.yml"
-            resource_type: yml
+            namespace:        http://symfony.loc/Api/1.0/
+            binding:          rpc-literal
+            resource:         "%kernel.root_dir%/../src/Acme/Bundle/DemoBundle/Resources/config/soap.yml"
+            resource_type:    yml
 
 stof_doctrine_extensions:
     orm:
         default:
-            tree: true
+            tree:             true
 
 services:
     cache:
-        class: Doctrine\Common\Cache\PhpFileCache
-        arguments: [%kernel.cache_dir%]
+        class:                Doctrine\Common\Cache\PhpFileCache
+        arguments:            [%kernel.cache_dir%]
+
+escape_wsse_authentication:
+    authentication_provider_class: Oro\Bundle\UserBundle\Security\WsseUserProvider
+
+liip_imagine:
+    filter_sets:
+        avatar_med:
+            quality:          95
+            filters:
+                thumbnail:    { size: [58, 58], mode: outbound }
+                strip:        ~
