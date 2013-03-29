@@ -116,4 +116,9 @@ class Customer extends AbstractEntityFlexible
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return $this->lastname . " " . $this->firstname;
+    }
 }

@@ -110,7 +110,6 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
         for ($i = 0; $i < 50; ++$i) {
             $firstName = $this->generateFirstName();
             $lastName = $this->generateLastName();
-            $middleName = $this->generateMiddleName();
             $birthday = $this->generateBirthday();
             $salary = $this->generateSalary();
             $username = $this->generateUsername($firstName, $lastName);
@@ -125,7 +124,6 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
                 $email,
                 $firstName,
                 $lastName,
-                $middleName,
                 $birthday,
                 $salary,
                 $company,
@@ -149,7 +147,6 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
      * @param string $email
      * @param string $firstName
      * @param string $lastName
-     * @param string $middleName
      * @param \DateTime $birthday
      * @param int $salary
      * @param string $company
@@ -163,7 +160,6 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
         $email,
         $firstName,
         $lastName,
-        $middleName,
         $birthday,
         $salary,
         $company,
@@ -177,7 +173,6 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
         $user->setEmail($email);
         $user->setUsername($username);
         $user->setFirstname($firstName);
-        $user->setMiddlename($middleName);
         $user->setLastname($lastName);
         $user->setBirthday($birthday);
 
@@ -392,16 +387,6 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
         $randomIndex = rand(0, count($firstNamesDictionary) - 1);
 
         return trim($firstNamesDictionary[$randomIndex]);
-    }
-
-    /**
-     * Generate a middle name
-     *
-     * @return string
-     */
-    private function generateMiddleName()
-    {
-        return $this->generateFirstName();
     }
 
     /**
