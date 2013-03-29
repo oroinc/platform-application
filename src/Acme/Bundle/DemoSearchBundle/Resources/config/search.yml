@@ -2,7 +2,7 @@ Acme\Bundle\DemoSearchBundle\Entity\Item:
     label: Demo Search bundle item
     alias: demoSearchBundle:Item
     route:
-        name: acme_demo_advanced_search
+        name: oro_search_results
     fields:
         -
             name: stringValue
@@ -43,3 +43,26 @@ Acme\Bundle\DemoFlexibleEntityBundle\Entity\Product:
             name: sku
             target_type: text
             target_fields: [sku, all_data]
+
+Acme\Bundle\DemoFlexibleEntityBundle\Entity\Customer:
+     alias: demo_flexible_customer
+     label: Demo Customers
+     flexible_manager: customer_manager
+     route:
+         name: acme_demo_customers
+         parameters:
+             id: id
+     title_fields: [lastname,firstname]
+     fields:
+         -
+            name: email
+            target_type: text
+            target_fields: [email, all_data]
+         -
+            name: firstname
+            target_type: text
+            target_fields: [firstname, all_data]
+         -
+            name: lastname
+            target_type: text
+            target_fields: [lastname, all_data]

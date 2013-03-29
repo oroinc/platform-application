@@ -2,14 +2,11 @@
 namespace Acme\Bundle\DemoFlexibleEntityBundle\Tests\Functional\Controller;
 
 use Doctrine\ORM\EntityManager;
-
 use Symfony\Component\Console\Input\ArrayInput;
-
 use Symfony\Component\Console\Input\StringInput;
-
 use Symfony\Bundle\FrameworkBundle\Console\Application;
-
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Acme\Bundle\TestsBundle\Test\ToolsAPI;
 
 /**
  * Abstract controller web test case
@@ -22,12 +19,6 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  */
 abstract class KernelAwareControllerTest extends WebTestCase
 {
-    /**  Default user name */
-    const AUTH_USER = 'admin@example.com';
-
-    /**  Default user password */
-    const AUTH_PW = 'admin';
-
     /**
      * Tested url pattern
      * @staticvar string
@@ -83,7 +74,7 @@ abstract class KernelAwareControllerTest extends WebTestCase
         parent::setUp();
 
         // initialize kernel, container and client
-        $this->client = static::createClient();
+        $this->client = static::createClient(array(), ToolsAPI::generateBasicHeader());
 
         $this->initializeDatabase();
     }

@@ -27,10 +27,7 @@ class FlexibleControllerTest extends KernelAwareControllerTest
         foreach (self::$locales as $locale) {
             $this->client->request(
                 'GET',
-                self::prepareUrl($locale, 'index'),
-                array(),
-                array(),
-                array('PHP_AUTH_USER' =>  self::AUTH_USER, 'PHP_AUTH_PW' => self::AUTH_PW)
+                self::prepareUrl($locale, 'index')
             );
             $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         }
@@ -44,10 +41,7 @@ class FlexibleControllerTest extends KernelAwareControllerTest
         foreach (self::$locales as $locale) {
             $this->client->request(
                 'GET',
-                self::prepareUrl($locale, 'config'),
-                array(),
-                array(),
-                array('PHP_AUTH_USER' =>  self::AUTH_USER, 'PHP_AUTH_PW' => self::AUTH_PW)
+                self::prepareUrl($locale, 'config')
             );
             $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         }

@@ -9,6 +9,12 @@ framework:
         storage_id: session.storage.mock_file
     csrf_protection: false
 
+services:
+    twig.extension.debug:
+        class: Twig_Extensions_Extension_Debug
+        tags:
+            - { name: twig.extension }
+
 web_profiler:
     toolbar: false
     intercept_redirects: false

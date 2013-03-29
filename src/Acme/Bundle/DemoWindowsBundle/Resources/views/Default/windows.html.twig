@@ -1,5 +1,5 @@
 {% extends 'AcmeDemoWindowsBundle::layout.html.twig' %}
-{% block head %}
+{% block head_script %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('bundles/orowindows/css/jquery.dialog.extended.css') }}" media="all" />
     {% javascripts
@@ -18,12 +18,12 @@
     <script type="text/javascript">
         Oro.widget.StateModel.prototype.urlRoot = {{ path('oro_api_get_windows')|json_encode|raw }};
     </script>
-{% endblock head %}
-{% block header %}
-{% endblock %}
+{% endblock head_script %}
+
 {% block content %}
 
     <div class="row-fluid">
+        <h1>Dialog examples</h1>
 
         <div class="container-fluid" style="min-height: 900px; background-color:#d0def1;" id="window-container">
             <div class="btn-toolbar">
@@ -48,11 +48,11 @@
                 new Oro.widget.DialogView({
                     url: {{ path('acme_demowindows_forms_test')|json_encode|raw }},
                     dialogOptions: {
+                        appendTo: '#main .row-fluid',
                         allowMaximize: true,
                         allowMinimize: true,
                         dblclick: 'maximize',
                         maximizedHeightDecreaseBy: 'minimize-bar',
-                        appendTo: '#main .row-fluid',
                         width : 400,
                         height : 305,
                         title: 'Form example'
@@ -63,6 +63,7 @@
                 new Oro.widget.DialogView({
                     url: {{ path('acme_demowindows_forms_test2')|json_encode|raw }},
                     dialogOptions: {
+                        appendTo: '#main .row-fluid',
                         allowMinimize: true,
                         dblclick: 'collapse',
                         width : 400,
@@ -75,6 +76,7 @@
                 new Oro.widget.DialogView({
                     url: {{ path('acme_demowindows_forms_testget', {'id': 10})|json_encode|raw }},
                     dialogOptions: {
+                        appendTo: '#main .row-fluid',
                         width : 400,
                         height : 300,
                         title: 'Default dialog'

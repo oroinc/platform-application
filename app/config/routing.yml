@@ -1,6 +1,5 @@
 acme_demo_windows:
-    resource: "@AcmeDemoWindowsBundle/Controller/"
-    type:     annotation
+    resource: "@AcmeDemoWindowsBundle/Resources/config/routing.yml"
     prefix:   /
 
 acme_demo_segmentation_tree:

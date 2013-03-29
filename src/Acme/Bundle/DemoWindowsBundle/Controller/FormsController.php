@@ -55,7 +55,6 @@ class FormsController extends Controller
      */
     public function testGetAction($id)
     {
-        $request = $this->getRequest();
         return array("requestId" => $id);
     }
 }

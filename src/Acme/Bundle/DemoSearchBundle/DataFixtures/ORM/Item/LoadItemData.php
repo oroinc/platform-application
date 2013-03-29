@@ -79,7 +79,7 @@ class LoadSearchItemData extends AbstractFixture implements OrderedFixtureInterf
             //create item
             $customer = $this->getItemManager()->createFlexible();
             //string value
-            $customer->stringValue = 'email-' . $ind . '@mail.com';
+            $customer->stringValue = 'item-' . $ind . '@mail.com';
             $customer->integerValue = $ind*1000;
             //decimal
             $customer->decimalValue = $ind / 10.0 ;

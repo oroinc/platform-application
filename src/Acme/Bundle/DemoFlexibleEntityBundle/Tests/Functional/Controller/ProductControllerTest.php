@@ -37,10 +37,7 @@ class ProductControllerTest extends KernelAwareControllerTest
         foreach (self::$locales as $locale) {
             $this->client->request(
                 'GET',
-                self::prepareUrl($locale, 'index'),
-                array(),
-                array(),
-                array('PHP_AUTH_USER' =>  self::AUTH_USER, 'PHP_AUTH_PW' => self::AUTH_PW)
+                self::prepareUrl($locale, 'index')
             );
             $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         }
@@ -63,10 +60,7 @@ class ProductControllerTest extends KernelAwareControllerTest
         foreach (self::$locales as $locale) {
             $this->client->request(
                 'GET',
-                self::prepareUrl('en', 'show/'.$entity->getId()),
-                array(),
-                array(),
-                array('PHP_AUTH_USER' =>  self::AUTH_USER, 'PHP_AUTH_PW' => self::AUTH_PW)
+                self::prepareUrl('en', 'show/'.$entity->getId())
             );
             $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         }
@@ -81,10 +75,7 @@ class ProductControllerTest extends KernelAwareControllerTest
         foreach (self::$locales as $locale) {
             $this->client->request(
                 'GET',
-                self::prepareUrl($locale, 'create'),
-                array(),
-                array(),
-                array('PHP_AUTH_USER' =>  self::AUTH_USER, 'PHP_AUTH_PW' => self::AUTH_PW)
+                self::prepareUrl($locale, 'create')
             );
             $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         }
@@ -105,10 +96,7 @@ class ProductControllerTest extends KernelAwareControllerTest
         foreach (self::$locales as $locale) {
             $this->client->request(
                 'GET',
-                self::prepareUrl($locale, 'edit/'. $entity->getId()),
-                array(),
-                array(),
-                array('PHP_AUTH_USER' =>  self::AUTH_USER, 'PHP_AUTH_PW' => self::AUTH_PW)
+                self::prepareUrl($locale, 'edit/'. $entity->getId())
             );
             $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         }

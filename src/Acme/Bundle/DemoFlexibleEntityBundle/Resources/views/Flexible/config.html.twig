@@ -3,9 +3,9 @@
 {% block content %}
 
     <h2>Flexible manager registry</h2>
-    {{ dump(registry) }}
+    {% debug registry %}
 
     <h2>Entities config</h2>
-    {{ dump(config['entities_config']) }}
+    {% debug config['entities_config'] %}
 
 {% endblock %}

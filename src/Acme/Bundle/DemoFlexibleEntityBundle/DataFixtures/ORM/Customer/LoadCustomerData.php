@@ -26,6 +26,8 @@ use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\OptionSimpleRadioType;
 class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
 
+    const DEFAULT_COUNTER_VALUE = 25;
+
     /**
      * @var ContainerInterface
      */
@@ -38,11 +40,35 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
     protected $manager;
 
     /**
+     * Entities Counter
+     * @var integer
+     */
+    protected $counter;
+
+    /**
      * {@inheritDoc}
      */
     public function setContainer(ContainerInterface $container = null)
     {
         $this->container = $container;
+        $this->setCustomerManager();
+        //prepare entity counter
+        $this->counter = self::DEFAULT_COUNTER_VALUE;
+        if (isset($container->counter)) {
+            $this->counter = $container->counter;
+        } else {
+            if ($container->hasParameter('performance.customers')) {
+                $this->counter = $container->getParameter('performance.customers');
+            }
+        }
+    }
+
+    /**
+     * Set product manager
+     */
+    public function setCustomerManager()
+    {
+        $this->manager = $this->container->get('customer_manager');
     }
 
     /**
@@ -51,7 +77,7 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
      */
     protected function getCustomerManager()
     {
-        return $this->container->get('customer_manager');
+        return $this->manager;
     }
 
     /**
@@ -80,24 +106,28 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
         $attCode = 'company';
         $att = $this->getCustomerManager()->createAttribute(new TextType());
         $att->setCode($attCode);
+        $att->setSearchable(true);
         $this->getCustomerManager()->getStorageManager()->persist($att);
 
         // attribute date of birth (if not exists)
         $attCode = 'dob';
         $att = $this->getCustomerManager()->createAttribute(new DateType());
         $att->setCode($attCode);
+        $att->setSearchable(true);
         $this->getCustomerManager()->getStorageManager()->persist($att);
 
         // attribute date of birth (if not exists)
         $attCode = 'website';
         $att = $this->getCustomerManager()->createAttribute(new UrlType());
         $att->setCode($attCode);
+        $att->setSearchable(true);
         $this->getCustomerManager()->getStorageManager()->persist($att);
 
         // attribute gender (if not exists)
         $attCode = 'gender';
         $att = $this->getCustomerManager()->createAttribute(new OptionSimpleRadioType());
         $att->setCode($attCode);
+        $att->setSearchable(true);
         // add option and related value
         $opt = $this->getCustomerManager()->createAttributeOption();
         $optVal = $this->getCustomerManager()->createAttributeOptionValue();
@@ -116,6 +146,7 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
         $attCode = 'hobby';
         $att = $this->getCustomerManager()->createAttribute(new OptionMultiSelectType());
         $att->setCode($attCode);
+        $att->setSearchable(true);
         // add options and related values
         $hobbies = array('Sport', 'Cooking', 'Read', 'Coding!');
         foreach ($hobbies as $hobby) {
@@ -135,7 +166,7 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
      */
     public function loadCustomers()
     {
-        $nbCustomers = 50;
+        $nbCustomers = $this->counter;
 
         // get attributes
         $attCompany = $this->getCustomerManager()->getFlexibleRepository()->findAttributeByCode('company');
