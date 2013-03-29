@@ -5,7 +5,48 @@ use Symfony\Component\Yaml\Yaml;
 
 class ToolsAPI
 {
+    /** Default WSSE credentials */
+    const USER_NAME = 'admin';
+    const USER_PASSWORD = 'admin_api_key';
+    const NONCE = 'd36e316282959a9ed4c89851497a717f';
+
+    /**  Default user name and password */
+    const AUTH_USER = 'admin@example.com';
+    const AUTH_PW = 'admin';
+
+
     protected static $random = null;
+
+    /**
+     * Generate WSSE authorization header
+     */
+    public static function generateWsseHeader($userName = self::USER_NAME, $userPassword = self::USER_PASSWORD, $nonce = self::NONCE)
+    {
+        $created  = date('c');
+        $digest   = base64_encode(sha1(base64_decode($nonce) . $created . $userPassword, true));
+        $wsseHeader = array(
+            'CONTENT_TYPE' => 'application/json',
+            'HTTP_Authorization' => 'WSSE profile="UsernameToken"',
+            'HTTP_X-WSSE' => sprintf(
+                'UsernameToken Username="%s", PasswordDigest="%s", Nonce="%s", Created="%s"',
+                $userName,
+                $digest,
+                $nonce,
+                $created
+            )
+        );
+        return $wsseHeader;
+    }
+
+    /**
+     * Generate Basic  authorization header
+     */
+    public static function generateBasicHeader($userName = self::AUTH_USER, $userPassword = self::AUTH_PW)
+    {
+        $basicHeader = array('PHP_AUTH_USER' =>  $userName, 'PHP_AUTH_PW' => $userPassword);
+        return $basicHeader;
+    }
+
     /**
      * Data provider for REST/SOAP API tests
      *

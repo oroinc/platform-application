@@ -1,6 +1,6 @@
 # offset test case
 request:
-    search: \"email-1@mail.com\"
+    search: \"item-1@mail.com\"
     offset: 1
     max_results: 3
 response:

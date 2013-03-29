@@ -3,19 +3,19 @@
 namespace Oro\Bundle\UserBundle\Tests\Functional\API;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Acme\Bundle\TestsBundle\Test\ToolsAPI;
 
 /**
  * @outputBuffering enabled
- * @runTestsInSeparateProcesses
  */
 class RestUsersApiTest extends WebTestCase
 {
 
-    protected $client = null;
+    public $client = null;
 
     public function setUp()
     {
-        $this->client = static::createClient(array('debug' => false));
+        $this->client = static::createClient(array('debug' => false), ToolsAPI::generateWsseHeader());
     }
 
     /**
