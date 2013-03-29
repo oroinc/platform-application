@@ -1,33 +1,33 @@
 <?php
 namespace Acme\Bundle\DemoSegmentationTreeBundle\Entity;
 
-use Oro\Bundle\SegmentationTreeBundle\Model\AbstractSegment;
+use Oro\Bundle\SegmentationTreeBundle\Entity\AbstractSegment;
 
-use Acme\Bundle\DemoSegmentationTreeBundle\Entity\SimpleProduct;
+use Acme\Bundle\DemoSegmentationTreeBundle\Entity\Product;
 
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * Segment node entity class implementing tree associated with SimpleProduct
+ * Segment node entity class implementing tree associated with Product
  *
  * @author    Benoit Jacquemont <benoit@akeneo.com>
  * @copyright 2012 Akeneo SAS (http://www.akeneo.com)
  * @license   http://opensource.org/licenses/MIT MIT
  *
  * @ORM\Entity(repositoryClass="Oro\Bundle\SegmentationTreeBundle\Entity\Repository\SegmentRepository")
- * @ORM\Table(name="acmedemosegmentationtree_simpleproductsegment")
+ * @ORM\Table(name="acmedemosegmentationtree_productsegment")
  * @Gedmo\Tree(type="nested")
  */
-class SimpleProductSegment extends AbstractSegment
+class ProductSegment extends AbstractSegment
 {
 
     /**
-     * @var SimpleProductSegmento $parent
+     * @var ProductSegmento $parent
      *
      * @Gedmo\TreeParent
-     * @ORM\ManyToOne(targetEntity="SimpleProductSegment", inversedBy="children")
+     * @ORM\ManyToOne(targetEntity="ProductSegment", inversedBy="children")
      * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", onDelete="SET NULL")
      */
     protected $parent;
@@ -35,38 +35,38 @@ class SimpleProductSegment extends AbstractSegment
     /**
      * @var \Doctrine\Common\Collections\Collection 
      * 
-     * @ORM\OneToMany(targetEntity="SimpleProductSegment", mappedBy="parent", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="ProductSegment", mappedBy="parent", cascade={"persist"})
      * @ORM\OrderBy({"left" = "ASC"})
      */
     protected $children;
 
     /**
-     * @ORM\ManyToMany(targetEntity="SimpleProduct")
-     * @ORM\JoinTable(name="acmedemosegmentationtree_segments_simpleproducts",
+     * @ORM\ManyToMany(targetEntity="Product")
+     * @ORM\JoinTable(name="acmedemosegmentationtree_segments_products",
      *      joinColumns={@ORM\JoinColumn(name="segment_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="product_id", referencedColumnName="id")}
      *      )
      **/
-    protected $simpleProducts;
+    protected $Products;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->simpleProducts = new ArrayCollection();
+        $this->Products = new ArrayCollection();
     }
 
     /**
      * Add product to this segment node
      *
-     * @param SimpleProduct $product
+     * @param Product $product
      *
-     * @return SimpleProductSegment
+     * @return ProductSegment
      */
-    public function addProduct(SimpleProduct $product)
+    public function addProduct(Product $product)
     {
-        $this->simpleProducts[] = $product;
+        $this->Products[] = $product;
 
         return $this;
     }
@@ -74,24 +74,24 @@ class SimpleProductSegment extends AbstractSegment
     /**
      * Remove product from this segment node
      *
-     * @param SimpleProduct $product
+     * @param Product $product
      *
-     * @return SimpleProductSegment
+     * @return ProductSegment
      */
-    public function removeProduct(SimpleProduct $product)
+    public function removeProduct(Product $product)
     {
-        $this->simpleProducts->removeElement($product);
+        $this->Products->removeElement($product);
 
         return $this;
     }
 
     /**
-     * Get simple products from this segment node
+     * Get  products from this segment node
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getSimpleProducts()
+    public function getProducts()
     {
-        return $this->simpleProducts;
+        return $this->Products;
     }
 }

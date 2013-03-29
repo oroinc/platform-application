@@ -4,16 +4,16 @@ namespace Acme\Bundle\DemoSegmentationTreeBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Simple product entity class
+ *  product entity class
  *
  * @author    Benoit Jacquemont <benoit@akeneo.com>
  * @copyright 2012 Akeneo SAS (http://www.akeneo.com)
  * @license   http://opensource.org/licenses/MIT MIT
  *
  * @ORM\Entity
- * @ORM\Table(name="acmedemosegmentationtree_simpleproduct")
+ * @ORM\Table(name="acmedemosegmentationtree_product")
  */
-class SimpleProduct
+class Product
 {
     /**
      * @var integer $id
@@ -54,7 +54,7 @@ class SimpleProduct
      *
      * @param string $name
      *
-     * @return SimpleProduct
+     * @return Product
      */
     public function setName($name)
     {
@@ -78,7 +78,7 @@ class SimpleProduct
      *
      * @param string $description
      *
-     * @return SimpleProduct
+     * @return Product
      */
     public function setDescription($description)
     {

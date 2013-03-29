@@ -1,7 +1,6 @@
 acme_demo_segmentation_tree:
-    resource:     "@AcmeDemoSegmentationTreeBundle/Controller"
-    type:         annotation
-    prefix:       /segmentation-tree/
+    resource:     "@AcmeDemoSegmentationTreeBundle/Resources/config/routing.yml"
+    prefix:       /segmentation-tree
 
 acme_demo_flexible_entity:
     resource: "@AcmeDemoFlexibleEntityBundle/Controller/"
