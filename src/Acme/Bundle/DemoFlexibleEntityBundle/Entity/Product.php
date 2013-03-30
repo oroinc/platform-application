@@ -59,4 +59,3 @@ class Product extends AbstractEntityFlexible
         return $this->sku;
     }
 }
-

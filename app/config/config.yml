@@ -131,3 +131,8 @@ liip_imagine:
             filters:
                 thumbnail:    { size: [58, 58], mode: outbound }
                 strip:        ~
+
+oro_ui:
+    settings:
+        product_caption:
+          value: ORO

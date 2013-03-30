@@ -1,6 +1,6 @@
 # offset test case
 request:
-    search: email
+    search: item
     offset: 1
     max_results: -100
 response:
@@ -10,51 +10,51 @@ response:
         data:
             -
                 entity_name: Acme\Bundle\DemoSearchBundle\Entity\Item
-                record_string: email-2@mail.com
+                record_string: item-2@mail.com
             -
                 entity_name: Acme\Bundle\DemoSearchBundle\Entity\Item
-                record_string: email-3@mail.com
+                record_string: item-3@mail.com
             -
                 entity_name: Acme\Bundle\DemoSearchBundle\Entity\Item
-                record_string: email-4@mail.com
+                record_string: item-4@mail.com
             -
                 entity_name: Acme\Bundle\DemoSearchBundle\Entity\Item
-                record_string: email-5@mail.com
+                record_string: item-5@mail.com
             -
                 entity_name: Acme\Bundle\DemoSearchBundle\Entity\Item
-                record_string: email-6@mail.com
+                record_string: item-6@mail.com
             -
                 entity_name: Acme\Bundle\DemoSearchBundle\Entity\Item
-                record_string: email-7@mail.com
+                record_string: item-7@mail.com
             -
                 entity_name: Acme\Bundle\DemoSearchBundle\Entity\Item
-                record_string: email-8@mail.com
+                record_string: item-8@mail.com
             -
                 entity_name: Acme\Bundle\DemoSearchBundle\Entity\Item
-                record_string: email-9@mail.com
+                record_string: item-9@mail.com
     soap:
         item:
             -
                 entityName: Acme\Bundle\DemoSearchBundle\Entity\Item
-                recordTitle: email-2@mail.com
+                recordTitle: item-2@mail.com
             -
                 entityName: Acme\Bundle\DemoSearchBundle\Entity\Item
-                recordTitle: email-3@mail.com
+                recordTitle: item-3@mail.com
             -
                 entityName: Acme\Bundle\DemoSearchBundle\Entity\Item
-                recordTitle: email-4@mail.com
+                recordTitle: item-4@mail.com
             -
                 entityName: Acme\Bundle\DemoSearchBundle\Entity\Item
-                recordTitle: email-5@mail.com
+                recordTitle: item-5@mail.com
             -
                 entityName: Acme\Bundle\DemoSearchBundle\Entity\Item
-                recordTitle: email-6@mail.com
+                recordTitle: item-6@mail.com
             -
                 entityName: Acme\Bundle\DemoSearchBundle\Entity\Item
-                recordTitle: email-7@mail.com
+                recordTitle: item-7@mail.com
             -
                 entityName: Acme\Bundle\DemoSearchBundle\Entity\Item
-                recordTitle: email-8@mail.com
+                recordTitle: item-8@mail.com
             -
                 entityName: Acme\Bundle\DemoSearchBundle\Entity\Item
-                recordTitle: email-9@mail.com
+                recordTitle: item-9@mail.com

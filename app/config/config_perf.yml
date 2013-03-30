@@ -1,13 +1,6 @@
 imports:
-    - { resource: config_dev.yml }
-    - { resource: parameters_test.yml }
-    - { resource: security_test.yml }
+    - { resource: config_test.yml }
 
-framework:
-    test: ~
-
-web_profiler:
-    toolbar: false
-
-swiftmailer:
-    disable_delivery: true
+parameters:
+    performance.customers: 100
+    performance.products: 200
