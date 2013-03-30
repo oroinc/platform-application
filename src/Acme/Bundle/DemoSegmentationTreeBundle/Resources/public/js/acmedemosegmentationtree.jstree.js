@@ -62,7 +62,6 @@ $(function () {
             } else {
                 parentId = data.rslt.parent.attr("id").replace("node_","");
             }
-            alert(parentId);
             
             $.post(
                 "create-node",
@@ -146,7 +145,7 @@ $(function () {
             var segmentId = nodeId.replace('node_','');
             renderItemList(segmentId);
         });
-    }
+    };
 
     $.fn.removeTree = function(rootSegmentId) {
         $.ajax({
@@ -154,13 +153,13 @@ $(function () {
             type: 'POST',
             url: "remove-tree",
             data : {
-                "id" : rootSegmentId,
+                "id" : rootSegmentId
             },
             success: function(data) {
                 renderTreeList();
             }
-        })
-    }
+        });
+    };
 
     $.fn.createTree = function (title, treeListId, jsTreeId, selectedTreeId) {
         $.ajax({
@@ -168,13 +167,13 @@ $(function () {
             type: 'POST',
             url: "create-tree",
             data : {
-                "title" : title,
+                "title" : title
             },
             success: function(data) {
                 $.fn.renderTreeList( treeListId, jsTreeId, selectedTreeId);
             }
-        })
-    }
+        });
+    };
 
     $.fn.renderTreeList = function( treeListId, jsTreeId, selectedTreeId ) {
         $(treeListId).empty();
@@ -210,10 +209,10 @@ $(function () {
                     $(treeListId).append("&nbsp;");
                     $(treeListId).append(treeRemoveLink);
                     $(treeListId).append("<br>");
-                })
+                });
             }
-        })
-    }
+        });
+    };
     
 
 
@@ -264,7 +263,7 @@ $(function () {
                 renderItemList(segmentId);
             }
         });
-    }
+    };
 
     $.fn.removeItem = function(segmentId, itemId) {
         $.ajax({
@@ -279,6 +278,6 @@ $(function () {
                 renderItemList(segmentId);
             }
         });
-    }
+    };
 
 });
