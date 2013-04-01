@@ -35,7 +35,6 @@ class SoapSearchApiTest extends WebTestCase
      */
     public function testApi($request, $response)
     {
-        $this->markTestSkipped('Skipped due to BUG!!!');
         if (is_null($request['search'])) {
             $request['search'] ='';
         }
