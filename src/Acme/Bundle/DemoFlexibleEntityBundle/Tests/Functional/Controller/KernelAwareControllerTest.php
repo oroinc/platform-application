@@ -74,7 +74,7 @@ abstract class KernelAwareControllerTest extends WebTestCase
         parent::setUp();
 
         // initialize kernel, container and client
-        $this->client = static::createClient(array('debug' => false), ToolsAPI::generateBasicHeader());
+        $this->client = static::createClient(array(), ToolsAPI::generateBasicHeader());
 
         $this->initializeDatabase();
     }

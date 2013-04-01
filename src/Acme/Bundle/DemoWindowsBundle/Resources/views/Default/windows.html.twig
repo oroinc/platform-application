@@ -1,0 +1,88 @@
+{% extends 'AcmeDemoWindowsBundle::layout.html.twig' %}
+{% block head_script %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/orowindows/css/jquery.dialog.extended.css') }}" media="all" />
+    {% javascripts
+        '@OroWindowsBundle/Resources/public/js/jquery.dialog.extended.js'
+        '@OroWindowsBundle/Resources/public/js/views/dialog.js'
+
+        '@OroWindowsBundle/Resources/public/js/models/state.js'
+        '@OroWindowsBundle/Resources/public/js/collections/state.js'
+        '@OroWindowsBundle/Resources/public/js/views/dialog.js'
+
+        output='js/oroapp.all.js'
+    %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+    <script type="text/javascript">
+        Oro.widget.StateModel.prototype.urlRoot = {{ path('oro_api_get_windows')|json_encode|raw }};
+    </script>
+{% endblock head_script %}
+
+{% block content %}
+
+    <div class="row-fluid">
+        <h1>Dialog examples</h1>
+
+        <div class="container-fluid" style="min-height: 900px; background-color:#d0def1;" id="window-container">
+            <div class="btn-toolbar">
+                <div class="btn-group">
+                    <button id="opener1" class="btn">Open example 1</button>
+                    <button id="opener2" class="btn">Open example 2</button>
+                    <button id="opener3" class="btn">Open example 3</button>
+                </div>
+            </div>
+
+            <div style="display: none" id="widget-states-container">
+                {{ oro_windows_render() }}
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        $(function(){
+            var pos = 0;
+            $("#opener1").click(function(){
+                new Oro.widget.DialogView({
+                    url: {{ path('acme_demowindows_forms_test')|json_encode|raw }},
+                    dialogOptions: {
+                        appendTo: '#main .row-fluid',
+                        allowMaximize: true,
+                        allowMinimize: true,
+                        dblclick: 'maximize',
+                        maximizedHeightDecreaseBy: 'minimize-bar',
+                        width : 400,
+                        height : 305,
+                        title: 'Form example'
+                    }
+                }).render();
+            });
+            $("#opener2").click(function(){
+                new Oro.widget.DialogView({
+                    url: {{ path('acme_demowindows_forms_test2')|json_encode|raw }},
+                    dialogOptions: {
+                        appendTo: '#main .row-fluid',
+                        allowMinimize: true,
+                        dblclick: 'collapse',
+                        width : 400,
+                        height : 300,
+                        title: 'Second example'
+                    }
+                }).render();
+            });
+            $("#opener3").click(function(){
+                new Oro.widget.DialogView({
+                    url: {{ path('acme_demowindows_forms_testget', {'id': 10})|json_encode|raw }},
+                    dialogOptions: {
+                        appendTo: '#main .row-fluid',
+                        width : 400,
+                        height : 300,
+                        title: 'Default dialog'
+                    }
+                }).render();
+            });
+        });
+    </script>
+{% endblock content %}
