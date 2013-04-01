@@ -1,0 +1,12 @@
+<form action="{{ path('oro_menu_form') }}" method="post">
+    <fieldset>
+        <legend>Legend</legend>
+        <label>Label name</label>
+        <input type="text" name="name" value="{{ name }}" placeholder="Type something…"/>
+
+        <div class="form-actions widget-actions">
+            <button type="reset" class="btn">Cancel</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </fieldset>
+</form>
