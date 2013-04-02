@@ -5,7 +5,7 @@ use Oro\Bundle\FlexibleEntityBundle\Entity\Mapping\AbstractEntityFlexible;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Table(name="acmedemosearch_item")
+ * @ORM\Table(name="demo_search_item")
  * @ORM\Entity(repositoryClass="Oro\Bundle\FlexibleEntityBundle\Entity\Repository\FlexibleEntityRepository")
  *
  */
