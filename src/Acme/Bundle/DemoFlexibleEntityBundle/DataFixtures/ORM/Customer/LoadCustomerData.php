@@ -248,7 +248,7 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
      */
     protected function generateFirstname()
     {
-        $listFirstname = array('Nicolas', 'Romain', 'Benoit', 'Filips', 'Frederic');
+        $listFirstname = array('Nicolas', 'Romain', 'Benoit', 'Filips', 'Frederic', 'Gildas');
         $random = rand(0, count($listFirstname)-1);
 
         return $listFirstname[$random];
@@ -260,7 +260,7 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
      */
     protected function generateLastname()
     {
-        $listLastname = array('Dupont', 'Monceau', 'Jacquemont', 'Alpe', 'De Gombert');
+        $listLastname = array('Dupont', 'Monceau', 'Jacquemont', 'Alpe', 'De Gombert', 'Quemener');
         $random = rand(0, count($listLastname)-1);
 
         return $listLastname[$random];

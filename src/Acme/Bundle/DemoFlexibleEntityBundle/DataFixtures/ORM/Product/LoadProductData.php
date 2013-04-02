@@ -8,11 +8,14 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Oro\Bundle\FlexibleEntityBundle\Model\AbstractAttributeType;
 use Acme\Bundle\DemoFlexibleEntityBundle\Entity\ProductAttribute;
+use Oro\Bundle\FlexibleEntityBundle\Entity\Metric;
+use Oro\Bundle\FlexibleEntityBundle\Entity\Price;
 use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\TextType;
 use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\OptionMultiCheckboxType;
 use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\MetricType;
 use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\TextAreaType;
 use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\MoneyType;
+use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\PriceType;
 
 /**
  * Load products
@@ -109,7 +112,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
 
         // attribute price
         $attributeCode = 'price';
-        $productAttribute = $this->getProductManager()->createAttributeExtended(new MoneyType());
+        $productAttribute = $this->getProductManager()->createAttributeExtended(new PriceType());
         $productAttribute->setName('Price');
         $productAttribute->setCode($attributeCode);
         $productAttribute->setSearchable(true);
@@ -225,8 +228,10 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
             // size
             $value = $this->getProductManager()->createFlexibleValue();
             $value->setAttribute($attSize);
-            $value->setData(rand(5, 10));
-            $value->setUnit('mm');
+            $metric = new Metric();
+            $metric->setUnit('mm');
+            $metric->setData(rand(5, 10));
+            $value->setData($metric);
             $product->addValue($value);
 
             // color
@@ -243,8 +248,10 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
             // price
             $value = $this->getProductManager()->createFlexibleValue();
             $value->setAttribute($attPrice);
-            $value->setData(rand(5, 100));
-            $value->setCurrency('USD');
+            $price = new Price();
+            $price->setData(rand(5, 10));
+            $price->setCurrency('USD');
+            $value->setData($price);
             $product->addValue($value);
 
             $this->getProductManager()->getStorageManager()->persist($product);
