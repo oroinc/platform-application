@@ -1,8 +1,5 @@
 services:
-    acme_demo_segmentation_tree.simpleproduct_segment_manager:
+    acme_demo_segmentation_tree.product_segment_manager:
         class: %oro_segmentation_tree.segment_manager.class%
-        arguments: [@doctrine.orm.entity_manager, 'Acme\Bundle\DemoSegmentationTreeBundle\Entity\SimpleProductSegment']
-    acme_demo_segmentation_tree.simplecustomer_segment_manager:
-        class: %oro_segmentation_tree.segment_manager.class%
-        arguments: [@doctrine.orm.entity_manager, 'Acme\Bundle\DemoSegmentationTreeBundle\Entity\SimpleCustomerSegment']
+        arguments: [@doctrine.orm.entity_manager, 'Acme\Bundle\DemoSegmentationTreeBundle\Entity\ProductSegment']
 

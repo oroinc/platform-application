@@ -7,5 +7,6 @@ acme.demosegmentationtree.button.paste: Paste
 acme.demosegmentationtree.button.refresh: Refresh
 acme.demosegmentationtree.button.search: Search tree
 acme.demosegmentationtree.button.clear_search: Clear search
+acme.demosegmentationtree.button.create_tree: Create a new tree
 acme.demosegmentationtree.button.add_item_by_id: Add item by id
 acme.demosegmentationtree.button.remove_item_by_id: Remove item by id
