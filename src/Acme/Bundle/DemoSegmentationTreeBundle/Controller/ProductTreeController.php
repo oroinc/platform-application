@@ -41,10 +41,10 @@ class ProductTreeController extends Controller
     {
         return array();
     }
- 
+
     /**
      * Get the Segment manager associated with this controller
-     * 
+     *
      * @return SegmentManager
      */
     protected function getSegmentManager()
@@ -254,7 +254,7 @@ class ProductTreeController extends Controller
 
         return $this->prepareJsonResponse($data);
     }
-        
+
 
     /**
      * Return a response in json content type with well formated data

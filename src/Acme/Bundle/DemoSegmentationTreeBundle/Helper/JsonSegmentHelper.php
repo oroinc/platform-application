@@ -96,21 +96,21 @@ class JsonSegmentHelper
     }
 
     /**
-     * Format product list 
+     * Format product list
      * @param ArrayCollection $products
      *
      * @return array
      * @static
      */
-    public static function ProductsResponse($products)
+    public static function productsResponse($products)
     {
         $return = array();
 
         foreach ($products as $product) {
             $return[] = array(
-                    'id' => $product->getId(),
-                    'name' => $product->getName(),
-                    'description' => $product->getDescription()
+                'id' => $product->getId(),
+                'name' => $product->getName(),
+                'description' => $product->getDescription()
             );
         }
 

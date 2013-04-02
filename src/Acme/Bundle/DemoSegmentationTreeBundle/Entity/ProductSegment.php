@@ -17,7 +17,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @license   http://opensource.org/licenses/MIT MIT
  *
  * @ORM\Entity(repositoryClass="Oro\Bundle\SegmentationTreeBundle\Entity\Repository\SegmentRepository")
- * @ORM\Table(name="acmedemosegmentationtree_productsegment")
+ * @ORM\Table(name="acme_demosegmentationtree_productsegment")
  * @Gedmo\Tree(type="nested")
  */
 class ProductSegment extends AbstractSegment
@@ -33,8 +33,8 @@ class ProductSegment extends AbstractSegment
     protected $parent;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection 
-     * 
+     * @var \Doctrine\Common\Collections\Collection
+     *
      * @ORM\OneToMany(targetEntity="ProductSegment", mappedBy="parent", cascade={"persist"})
      * @ORM\OrderBy({"left" = "ASC"})
      */
@@ -42,12 +42,12 @@ class ProductSegment extends AbstractSegment
 
     /**
      * @ORM\ManyToMany(targetEntity="Product")
-     * @ORM\JoinTable(name="acmedemosegmentationtree_segments_products",
+     * @ORM\JoinTable(name="acme_demosegmentationtree_segments_products",
      *      joinColumns={@ORM\JoinColumn(name="segment_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="product_id", referencedColumnName="id")}
      *      )
      **/
-    protected $Products;
+    protected $products;
 
     /**
      * Constructor
@@ -66,7 +66,7 @@ class ProductSegment extends AbstractSegment
      */
     public function addProduct(Product $product)
     {
-        $this->Products[] = $product;
+        $this->products[] = $product;
 
         return $this;
     }
@@ -80,7 +80,7 @@ class ProductSegment extends AbstractSegment
      */
     public function removeProduct(Product $product)
     {
-        $this->Products->removeElement($product);
+        $this->products->removeElement($product);
 
         return $this;
     }
@@ -88,10 +88,10 @@ class ProductSegment extends AbstractSegment
     /**
      * Get  products from this segment node
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getProducts()
     {
-        return $this->Products;
+        return $this->products;
     }
 }

@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @license   http://opensource.org/licenses/MIT MIT
  *
  * @ORM\Entity
- * @ORM\Table(name="acmedemosegmentationtree_product")
+ * @ORM\Table(name="acme_demosegmentationtree_product")
  */
 class Product
 {
@@ -42,7 +42,7 @@ class Product
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -66,7 +66,7 @@ class Product
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -90,7 +90,7 @@ class Product
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
