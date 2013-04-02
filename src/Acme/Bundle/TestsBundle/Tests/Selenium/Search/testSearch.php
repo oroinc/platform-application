@@ -32,7 +32,7 @@ class TestSearchForm extends \PHPUnit_Extensions_Selenium2TestCase
         $this->byId('prependedInput2')->value(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_PASS);
         $this->clickOnElement('_submit');
 
-        $this->byId('search-bar-search')->value('zxcv-');
+        $this->byId('search-bar-search')->value('Product-');
         $this->timeouts()->implicitWait(10000);
 
         $this->assertTrue($this->isElementPresent("//*[@id='search-dropdown']/ul/li"), 'No search suggestions available');
