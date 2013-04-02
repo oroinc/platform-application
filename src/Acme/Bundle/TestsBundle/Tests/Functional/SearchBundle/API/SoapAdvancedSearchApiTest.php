@@ -1,15 +1,16 @@
 <?php
 
-namespace Acme\Bundle\TestsBundle\Tests\Functional\API;
+namespace Acme\Bundle\TestsBundle\Tests\Functional\SearchBundle\API;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Acme\Bundle\TestsBundle\Test\ToolsAPI;
 use Acme\Bundle\TestsBundle\Test\Client;
+use Acme\Bundle\TestsBundle\Test\ToolsAPI;
+use Acme\Bundle\TestsBundle\Tests\Functional\SearchBundle\API\DataFixtures;
 
 /**
  * @outputBuffering enabled
  */
-class SoapSearchApiTest extends WebTestCase
+class SoapAdvancedSearchApiTest extends WebTestCase
 {
     /** Default value for offset and max_records */
     const DEFAULT_VALUE = 0;
@@ -34,6 +35,7 @@ class SoapSearchApiTest extends WebTestCase
                 'soap_version' => SOAP_1_2
             )
         );
+
     }
 
     public static function tearDownAfterClass()
@@ -42,29 +44,14 @@ class SoapSearchApiTest extends WebTestCase
     }
 
     /**
-     * @param string $request
-     * @param array $response
-     *
-     * @dataProvider requestsApi
      */
-    public function testApi($request, $response)
+    public function testApi()
     {
-        if (is_null($request['search'])) {
-            $request['search'] ='';
-        }
-        if (is_null($request['offset'])) {
-            $request['offset'] = self::DEFAULT_VALUE;
-        }
-        if (is_null($request['max_results'])) {
-            $request['max_results'] = self::DEFAULT_VALUE;
-        }
-        $result = $this->client->soapClient->search(
-            $request['search'],
-            $request['offset'],
-            $request['max_results']
+        $result = $this->client->soapClient->advancedSearch(
+            "from demoSearchBundle:Item where stringValue ~ item5"
         );
         $result = ToolsAPI::classToArray($result);
-        $this->assertEqualsResponse($response, $result);
+        $this->assertEquals(1, $result['count']);
     }
 
     /**

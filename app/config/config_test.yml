@@ -23,4 +23,5 @@ swiftmailer:
     disable_delivery: true
 
 assetic:
-    use_controller: false
+    debug:                    false
+    use_controller:           false

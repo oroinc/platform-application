@@ -3,17 +3,13 @@ oro_menu_config:
         demo_segmentation_tree_tab:
             label: 'Segmentation Tree'
             uri: '#'
-        demo_segmentation_tree_customer:
-            label: 'Simple Customer Segment'
-            route: 'acme_demosegmentationtree_simplecustomersegment_index'
         demo_segmentation_tree_product:
-            label: 'Simple Product Segment'
-            route: 'acme_demosegmentationtree_simpleproductsegment_index'
+            label: 'Product Segment'
+            route: 'acme_demosegmentationtree_producttree_index'
 
     tree:
         application_menu:
             children:
                 demo_segmentation_tree_tab:
                     children:
-                        demo_segmentation_tree_customer:
                         demo_segmentation_tree_product:
