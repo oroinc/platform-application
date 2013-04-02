@@ -47,4 +47,17 @@ class TestSearchForm extends \PHPUnit_Extensions_Selenium2TestCase
             return false;
         }
     }
+    public function testSearchResult()
+    {
+        $this->byId('prependedInput')->value(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_LOGIN);
+        $this->byId('prependedInput2')->value(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_PASS);
+        $this->clickOnElement('_submit');
+
+        $this->byId('search-bar-search')->value('admin');
+        $this->byXPath("//*[@id='search-div']//div/button[contains(.,'Search')]")->click();
+
+        $searchResult = $this->byXPath("//*[@id='main']/div/h3/a[contains(.,'admin')]")->text();
+        $this->timeouts()->implicitWait(10000);
+        $this->assertEquals('admin', $searchResult);
+    }
 }
