@@ -1,8 +1,8 @@
 <?php
-namespace Acme\Bundle\DemoSegmentationTreeBundle\DataFixtures\ORM\SimpleProductSegment;
+namespace Acme\Bundle\DemoSegmentationTreeBundle\DataFixtures\ORM\ProductSegment;
 
-use Acme\Bundle\DemoSegmentationTreeBundle\Entity\SimpleProductSegment;
-use Acme\Bundle\DemoSegmentationTreeBundle\Entity\SimpleProduct;
+use Acme\Bundle\DemoSegmentationTreeBundle\Entity\ProductSegment;
+use Acme\Bundle\DemoSegmentationTreeBundle\Entity\Product;
 
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -12,7 +12,7 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
 /**
- * Load simple product segment fixtures
+ * Load  product segment fixtures
  *
  * Execute with "php app/console doctrine:fixtures:load"
  *
@@ -20,7 +20,7 @@ use Doctrine\Common\Persistence\ObjectManager;
  * @copyright 2012 Akeneo SAS (http://www.akeneo.com)
  * @license   http://opensource.org/licenses/MIT MIT
  */
-class LoadSimpleProductSegmentData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
+class LoadProductSegmentData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
     /**
      * @var ContainerInterface
@@ -88,14 +88,14 @@ class LoadSimpleProductSegmentData extends AbstractFixture implements OrderedFix
      * Create a Segment entity
      *
      * @param string               $title    Title of the segment
-     * @param SimpleProductSegment $parent   Parent segment
+     * @param ProductSegment $parent   Parent segment
      * @param array                $products Products that should be associated to this segment
      *
-     * @return SimpleProductSegment
+     * @return ProductSegment
      */
     protected function createSegment($title, $parent = null, $products = array())
     {
-        $segment = new SimpleProductSegment();
+        $segment = new ProductSegment();
         $segment->setTitle($title);
         $segment->setParent($parent);
 
@@ -109,15 +109,15 @@ class LoadSimpleProductSegmentData extends AbstractFixture implements OrderedFix
     }
 
     /**
-     * Create a SimpleProduct entity
+     * Create a Product entity
      * @param string $name        Name of the product
      * @param string $description Description of the product
      *
-     * @return SimpleProduct
+     * @return Product
      */
     protected function createProduct($name, $description)
     {
-        $product= new SimpleProduct();
+        $product= new Product();
         $product->setName($name);
         $product->setDescription($description);
 
