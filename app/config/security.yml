@@ -15,7 +15,7 @@ security:
 
     firewalls:
         navigationrest:
-            pattern:                        ^/api/rest/(latest|v1)/navigationitems
+            pattern:                        ^/api/rest/(latest|v1)/(navigationitems|windows|shortcuts)
             provider:                       chain_provider
             api:
                 parent_context:             main
@@ -34,7 +34,12 @@ security:
                 profile:                    "UsernameToken"
 
         login:
-            pattern:                        ^/user/login$
+            pattern:                        ^/user/(login|reset-request|send-email)$
+            provider:                       chain_provider
+            anonymous:                      true
+
+        reset_password:
+            pattern:                        ^/user/reset/*
             provider:                       chain_provider
             anonymous:                      true
 

@@ -53,4 +53,13 @@ class MenuController extends Controller
     {
         return array();
     }
+
+    /**
+     * @Route("/form", name="oro_menu_form")
+     * @Template
+     */
+    public function formAction()
+    {
+        return array('name' => $this->getRequest()->get('name'));
+    }
 }

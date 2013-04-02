@@ -1,0 +1,12 @@
+acme_demo_windows_demo:
+    pattern: /windows/demo
+    defaults: { _controller: FrameworkBundle:Template:template, template: "AcmeDemoWindowsBundle:Default:windows.html.twig" }
+
+acme_demo_windows_sandbox:
+    pattern: /windows/sandbox
+    defaults: { _controller: FrameworkBundle:Template:template, template: "AcmeDemoWindowsBundle:Default:sandbox.html.twig" }
+
+acme_demo_windows_forms_test:
+    resource: "@AcmeDemoWindowsBundle/Controller/FormsController.php"
+    type:     annotation
+    prefix:   /

@@ -1,0 +1,16 @@
+oro_menu_config:
+    items:
+        acme_windows_demo:
+            name: 'Windows demo'
+            route: 'acme_demo_windows_demo'
+        acme_windows_sandbox:
+            name: 'Windows sandbox'
+            route: 'acme_demo_windows_sandbox'
+
+    tree:
+        application_menu:
+            children:
+                demo_ui_tab:
+                    children:
+                        acme_windows_demo: ~
+                        acme_windows_sandbox: ~
