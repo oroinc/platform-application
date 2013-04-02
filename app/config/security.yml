@@ -34,7 +34,7 @@ security:
                 profile:                    "UsernameToken"
 
         login:
-            pattern:                        ^/user/(login|reset-request|send-email)$
+            pattern:                        ^/user/(login|reset-request|send-email|check-email)$
             provider:                       chain_provider
             anonymous:                      true
 
