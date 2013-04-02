@@ -28,14 +28,16 @@ class TestSearchForm extends \PHPUnit_Extensions_Selenium2TestCase
 
     public function testSearchSuggestions()
     {
+        //log-in
         $this->byId('prependedInput')->value(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_LOGIN);
         $this->byId('prependedInput2')->value(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_PASS);
         $this->clickOnElement('_submit');
-
+        //fill-in simple search field
         $this->byId('search-bar-search')->value('Product-');
         $this->timeouts()->implicitWait(10000);
-
-        $this->assertTrue($this->isElementPresent("//*[@id='search-dropdown']/ul/li"), 'No search suggestions available');
+        //checking that search suggestion drop-down available or not
+        $this->assertTrue($this->isElementPresent("//*[@id='search-dropdown']/ul/li"),
+            'No search suggestions available');
     }
 
     public function isElementPresent($locator)
@@ -46,5 +48,21 @@ class TestSearchForm extends \PHPUnit_Extensions_Selenium2TestCase
         } catch (\Exception $e) {
             return false;
         }
+    }
+
+    public function testSearchPagination()
+    {
+        //log-in
+        $this->byId('prependedInput')->value(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_LOGIN);
+        $this->byId('prependedInput2')->value(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_PASS);
+        $this->clickOnElement('_submit');
+        //search for entity
+        $this->byId('search-bar-search')->value('Product');
+        $this->byXPath("//*[@id='search-div']//div/button[contains(.,'Search')]")->click();
+        //using pagination
+        $this->byXPath("//*[@class='pagination']/ul/li/a[contains(.,'2')]")->click();
+        //need to check that opened url si for page 2
+        $this->assertContains('page=2', $this->url(), "Browser URL doesn't match the pagination page");
+
     }
 }
