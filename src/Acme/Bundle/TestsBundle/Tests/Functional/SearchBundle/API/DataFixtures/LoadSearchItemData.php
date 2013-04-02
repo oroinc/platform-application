@@ -1,5 +1,5 @@
 <?php
-namespace Acme\Bundle\DemoSearchBundle\DataFixtures\ORM\Item;
+namespace Acme\Bundle\TestsBundle\Tests\Functional\SearchBundle\API\DataFixtures;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
@@ -79,7 +79,7 @@ class LoadSearchItemData extends AbstractFixture implements OrderedFixtureInterf
             //create item
             $customer = $this->getItemManager()->createFlexible();
             //string value
-            $customer->stringValue = 'item-' . $ind . '@mail.com';
+            $customer->stringValue = 'item' . $ind . '@mail.com';
             $customer->integerValue = $ind*1000;
             //decimal
             $customer->decimalValue = $ind / 10.0 ;
