@@ -47,6 +47,16 @@
     <script type="text/javascript">
         navigation.Item.prototype.urlRoot = {{ path('oro_api_get_navigationitems', {'type': ''})|json_encode|raw }};
     </script>
+
+    {# TODO: remove after functionality realisation #}
+    <style type="text/css">
+        #history-tab,
+        #most-viewed-tab,
+        #history-content,
+        #most-viewed-content {
+            display: none;
+        }
+    </style>
 {% endblock %}
 
 {% block pin_button %}
