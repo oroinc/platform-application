@@ -5,7 +5,7 @@ request:
     enabled: true
     plainPassword: 123123q
     lastLogin: ~
-    rolesCollection: ~
+    rolesCollection: []
     groups: ~
     attributes: ~
 response:
