@@ -4,7 +4,7 @@ request:
     email: user_3_%str%@example.com
     enabled: true
     plainPassword: 123123q
-    rolesCollection: ~
+    rolesCollection: []
     groups: ~
     attributes: ~
 response:

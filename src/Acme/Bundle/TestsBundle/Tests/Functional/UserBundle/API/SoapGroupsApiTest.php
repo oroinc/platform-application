@@ -4,6 +4,7 @@ namespace Acme\Bundle\TestsBundle\Tests\Functional\API;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Acme\Bundle\TestsBundle\Test\ToolsAPI;
+use Acme\Bundle\TestsBundle\Test\Client;
 
 /**
  * @outputBuffering enabled
@@ -14,11 +15,12 @@ class SoapGroupsApiTest extends WebTestCase
     const DEFAULT_VALUE = 'GROUP_LABEL';
 
     /** @var \SoapClient */
-    public $client = null;
+    protected $clientSoap = null;
 
     public function setUp()
     {
         $this->clientSoap = static::createClient(array(), ToolsAPI::generateWsseHeader());
+        $this->clientSoap->startTransaction();
         $this->clientSoap->soap(
             "http://localhost/api/soap",
             array(
@@ -26,6 +28,11 @@ class SoapGroupsApiTest extends WebTestCase
                 'soap_version' => SOAP_1_2
             )
         );
+    }
+
+    public static function tearDownAfterClass()
+    {
+        Client::rollbackTransaction();
     }
 
     /**

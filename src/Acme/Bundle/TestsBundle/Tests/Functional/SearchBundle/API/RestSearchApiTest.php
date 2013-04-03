@@ -4,20 +4,31 @@ namespace Acme\Bundle\TestsBundle\Tests\Functional\API;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Acme\Bundle\TestsBundle\Test\ToolsAPI;
+use Acme\Bundle\TestsBundle\Test\Client;
 
 /**
  * outputBuffering enabled
  */
 class RestSearchApiTest extends WebTestCase
 {
-    public $client = null;
+    protected $client = null;
+    static protected $hasLoaded = false;
 
     public function setUp()
     {
         $this->client = static::createClient(array(), ToolsAPI::generateWsseHeader());
-
+        if (!self::$hasLoaded) {
+            $this->client->startTransaction();
+            $this->client->appendFixtures(__DIR__ . DIRECTORY_SEPARATOR . 'DataFixtures');
+        }
+        self::$hasLoaded = true;
     }
-    
+
+    public static function tearDownAfterClass()
+    {
+        Client::rollbackTransaction();
+    }
+
     /**
      * @param array $request
      * @param array $response

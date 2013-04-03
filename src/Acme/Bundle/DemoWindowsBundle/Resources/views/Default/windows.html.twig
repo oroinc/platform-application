@@ -22,10 +22,10 @@
 
 {% block content %}
 
-    <div class="row-fluid">
+    <div class="container-fluid">
         <h1>Dialog examples</h1>
 
-        <div class="container-fluid" style="min-height: 900px; background-color:#d0def1;" id="window-container">
+        <div style="min-height: 650px;border: 1px solid silver" id="window-container">
             <div class="btn-toolbar">
                 <div class="btn-group">
                     <button id="opener1" class="btn">Open example 1</button>
@@ -34,10 +34,7 @@
                 </div>
             </div>
 
-            <div style="display: none" id="widget-states-container">
-                {{ oro_windows_render() }}
-            </div>
-
+            {{ oro_windows_restore() }}
         </div>
     </div>
 
@@ -48,7 +45,7 @@
                 new Oro.widget.DialogView({
                     url: {{ path('acme_demowindows_forms_test')|json_encode|raw }},
                     dialogOptions: {
-                        appendTo: '#main .row-fluid',
+                        appendTo: '#window-container',
                         allowMaximize: true,
                         allowMinimize: true,
                         dblclick: 'maximize',
@@ -63,7 +60,7 @@
                 new Oro.widget.DialogView({
                     url: {{ path('acme_demowindows_forms_test2')|json_encode|raw }},
                     dialogOptions: {
-                        appendTo: '#main .row-fluid',
+                        appendTo: '#window-container',
                         allowMinimize: true,
                         dblclick: 'collapse',
                         width : 400,
@@ -76,7 +73,7 @@
                 new Oro.widget.DialogView({
                     url: {{ path('acme_demowindows_forms_testget', {'id': 10})|json_encode|raw }},
                     dialogOptions: {
-                        appendTo: '#main .row-fluid',
+                        appendTo: '#window-container',
                         width : 400,
                         height : 300,
                         title: 'Default dialog'
