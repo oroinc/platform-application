@@ -25,3 +25,8 @@ swiftmailer:
 assetic:
     debug:                    false
     use_controller:           false
+
+monolog:
+    handlers:
+        main:
+            level: error
