@@ -1,11 +1,11 @@
 # common test case
 request:
-    query: "from demoSearchBundle:Item where stringValue ~ item5"
+    query: "from demoSearchBundle:Item where integer integerValue <= 5000"
     offset: ~
     max_results: ~
 response:
-    records_count: 1
-    count: 1
+    records_count: 5
+    count: 5
     rest:
         data:
             -
