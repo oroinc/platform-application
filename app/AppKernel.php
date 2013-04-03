@@ -57,10 +57,13 @@ class AppKernel extends Kernel
             new Acme\Bundle\DemoWindowsBundle\AcmeDemoWindowsBundle(),
         );
 
-        if (in_array($this->getEnvironment(), array('dev', 'test', 'perf'))) {
+        if (in_array($this->getEnvironment(), array('dev', 'test'))) {
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
+        }
+
+        if (in_array($this->getEnvironment(), array('test'))) {
             $bundles[] = new Acme\Bundle\TestsBundle\AcmeTestsBundle();
         }
 

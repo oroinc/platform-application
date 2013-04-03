@@ -1,6 +1,6 @@
 # offset test case
 request:
-    search: \"item-1@mail.com\"
+    search: \"item1@mail.com\"
     offset: 0
     max_results: 1
 response:
@@ -10,9 +10,9 @@ response:
         data:
             -
                 entity_name: Acme\Bundle\DemoSearchBundle\Entity\Item
-                record_string: item-1@mail.com
+                record_string: item1@mail.com
     soap:
         item:
             -
                 entityName: Acme\Bundle\DemoSearchBundle\Entity\Item
-                recordTitle: item-1@mail.com
+                recordTitle: item1@mail.com

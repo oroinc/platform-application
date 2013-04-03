@@ -4,16 +4,16 @@ namespace Acme\Bundle\DemoSegmentationTreeBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Category entity class implementing tree
+ *  product entity class
  *
  * @author    Benoit Jacquemont <benoit@akeneo.com>
  * @copyright 2012 Akeneo SAS (http://www.akeneo.com)
  * @license   http://opensource.org/licenses/MIT MIT
  *
  * @ORM\Entity
- * @ORM\Table(name="acmedemosegmentationtree_simplecustomer")
+ * @ORM\Table(name="acme_demosegmentationtree_product")
  */
-class SimpleCustomer
+class Product
 {
     /**
      * @var integer $id
@@ -32,17 +32,17 @@ class SimpleCustomer
     protected $name;
 
     /**
-     * @var string $phone
+     * @var string $description
      *
-     * @ORM\Column(name="phone", type="string", length=255)
+     * @ORM\Column(name="description", type="string", length=255)
      */
-    protected $phone;
+    protected $description;
 
 
     /**
-     * Get id of the current customer
+     * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -54,7 +54,7 @@ class SimpleCustomer
      *
      * @param string $name
      *
-     * @return SimpleCustomer
+     * @return Product
      */
     public function setName($name)
     {
@@ -66,7 +66,7 @@ class SimpleCustomer
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -74,26 +74,26 @@ class SimpleCustomer
     }
 
     /**
-     * Set phone
+     * Set description
      *
-     * @param string $phone
+     * @param string $description
      *
-     * @return SimpleCustomer
+     * @return Product
      */
-    public function setPhone($phone)
+    public function setDescription($description)
     {
-        $this->phone = $phone;
+        $this->description = $description;
 
         return $this;
     }
 
     /**
-     * Get phone
+     * Get description
      *
-     * @return string 
+     * @return string
      */
-    public function getPhone()
+    public function getDescription()
     {
-        return $this->phone;
+        return $this->description;
     }
 }
