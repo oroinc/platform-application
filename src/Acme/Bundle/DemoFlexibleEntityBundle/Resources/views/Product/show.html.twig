@@ -48,8 +48,8 @@
         <li>Name :        {{product.name}}</li>
         <li>Description : {{product.description}}</li>
         <li>Color :       {{product.color}}</li>
-        <li>Size :        {{product.size}} {% if product.size is not null %} {{ product.getValue('size').getUnit() }} {% endif %}</li>
-        <li>Price :       {{product.price}} {% if product.price is not null %} {{ product.getValue('price').getCurrency() }} {% endif %}</li>
+        <li>Size :        {{product.size}}</li>
+        <li>Price :       {{product.price}}</li>
     </ul>
 
     <h3>All attributes values</h3>
@@ -73,7 +73,7 @@
                 <td>{{value.locale}}</td>
                 <td>{{value.attribute.scopable}}</td>
                 <td>{{value.scope}}</td>
-                <td>{{value.data}}</td>
+                <td>{{value}}</td>
             </tr>
             {% endfor %}
         </tbody>

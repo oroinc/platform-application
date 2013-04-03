@@ -37,12 +37,15 @@
     '@OroNavigationBundle/Resources/public/js/views/favorites.js'
     '@OroNavigationBundle/Resources/public/js/views/shortcuts.js'
 
-    output='js/oroapp.all.js'
+    '@OroUserBundle/Resources/public/js/status.js'
+
+    '@OroSearchBundle/Resources/public/js/searchBar.js'
+
+    filter='yui_js'
+    output='js/oroapp-demo.all.js'
     %}
     <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
-    <script type="text/javascript" src="{{ asset('bundles/orouser/js/status.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/orosearch/js/searchBar.js') }}"></script>
 
     <script type="text/javascript">
         navigation.Item.prototype.urlRoot = {{ path('oro_api_get_navigationitems', {'type': ''})|json_encode|raw }};
