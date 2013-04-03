@@ -95,7 +95,9 @@ class Client extends BaseClient
             self::$connection = $this->getContainer()->get('doctrine.dbal.default_connection');
         }
         $this->getContainer()->set('doctrine.dbal.default_connection', self::$connection);
-        self::$connection->beginTransaction();
+        if (self::$connection->getTransactionNestingLevel()<1) {
+            self::$connection->beginTransaction();
+        }
     }
 
     public static function rollbackTransaction()
