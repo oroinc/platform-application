@@ -4,6 +4,7 @@ namespace Acme\Bundle\TestsBundle\Tests\Functional\API;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Acme\Bundle\TestsBundle\Test\ToolsAPI;
+use Acme\Bundle\TestsBundle\Test\Client;
 
 /**
  * @outputBuffering enabled
@@ -13,18 +14,31 @@ class SoapSearchApiTest extends WebTestCase
     /** Default value for offset and max_records */
     const DEFAULT_VALUE = 0;
 
-    public $client = null;
+    protected $client = null;
+
+    static protected $hasLoaded = false;
 
     public function setUp()
     {
-        $this->clientSoap = static::createClient(array(), ToolsAPI::generateWsseHeader());
-        $this->clientSoap->soap(
+        $this->client = static::createClient(array(), ToolsAPI::generateWsseHeader());
+        if (!self::$hasLoaded) {
+            $this->client->startTransaction();
+            $this->client->appendFixtures(__DIR__ . DIRECTORY_SEPARATOR . 'DataFixtures');
+        }
+        self::$hasLoaded = true;
+
+        $this->client->soap(
             "http://localhost/api/soap",
             array(
                 'location' => 'http://localhost/api/soap',
                 'soap_version' => SOAP_1_2
             )
         );
+    }
+
+    public static function tearDownAfterClass()
+    {
+        Client::rollbackTransaction();
     }
 
     /**
@@ -44,7 +58,7 @@ class SoapSearchApiTest extends WebTestCase
         if (is_null($request['max_results'])) {
             $request['max_results'] = self::DEFAULT_VALUE;
         }
-        $result = $this->clientSoap->soapClient->search(
+        $result = $this->client->soapClient->search(
             $request['search'],
             $request['offset'],
             $request['max_results']

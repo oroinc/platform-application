@@ -10,9 +10,9 @@ response:
         data:
             -
                 entity_name: Acme\Bundle\DemoSearchBundle\Entity\Item
-                record_string: item-2@mail.com
+                record_string: item2@mail.com
     soap:
         item:
             -
                 entityName: Acme\Bundle\DemoSearchBundle\Entity\Item
-                recordTitle: item-2@mail.com
+                recordTitle: item2@mail.com

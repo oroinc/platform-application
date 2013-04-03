@@ -10,27 +10,27 @@ response:
         data:
             -
                 entity_name: Acme\Bundle\DemoSearchBundle\Entity\Item
-                record_string: item-6@mail.com
+                record_string: item6@mail.com
             -
                 entity_name: Acme\Bundle\DemoSearchBundle\Entity\Item
-                record_string: item-7@mail.com
+                record_string: item7@mail.com
             -
                 entity_name: Acme\Bundle\DemoSearchBundle\Entity\Item
-                record_string: item-8@mail.com
+                record_string: item8@mail.com
             -
                 entity_name: Acme\Bundle\DemoSearchBundle\Entity\Item
-                record_string: item-9@mail.com
+                record_string: item9@mail.com
     soap:
         item:
             -
                 entityName: Acme\Bundle\DemoSearchBundle\Entity\Item
-                recordTitle: item-6@mail.com
+                recordTitle: item6@mail.com
             -
                 entityName: Acme\Bundle\DemoSearchBundle\Entity\Item
-                recordTitle: item-7@mail.com
+                recordTitle: item7@mail.com
             -
                 entityName: Acme\Bundle\DemoSearchBundle\Entity\Item
-                recordTitle: item-8@mail.com
+                recordTitle: item8@mail.com
             -
                 entityName: Acme\Bundle\DemoSearchBundle\Entity\Item
-                recordTitle: item-9@mail.com
+                recordTitle: item9@mail.com

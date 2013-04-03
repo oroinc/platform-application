@@ -1,0 +1,19 @@
+# common test case
+request:
+    query: "from demoSearchBundle:Item where integer integerValue <= 5000"
+    offset: ~
+    max_results: ~
+response:
+    records_count: 5
+    count: 5
+    rest:
+        data:
+            -
+                entity_name: Acme\Bundle\DemoSearchBundle\Entity\Item
+                record_string: item1@mail.com
+    soap:
+        item:
+            -
+                entityName: Acme\Bundle\DemoSearchBundle\Entity\Item
+                recordTitle: item1@mail.com
+                recordUrl: http://localhost/search/

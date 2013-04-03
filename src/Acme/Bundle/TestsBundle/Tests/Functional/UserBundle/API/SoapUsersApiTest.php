@@ -4,6 +4,7 @@ namespace Acme\Bundle\TestsBundle\Tests\Functional\API;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Acme\Bundle\TestsBundle\Test\ToolsAPI;
+use Acme\Bundle\TestsBundle\Test\Client;
 
 /**
  * @outputBuffering enabled
@@ -14,11 +15,12 @@ class SoapUsersApiTest extends WebTestCase
     const DEFAULT_VALUE = 'USER_LABEL';
 
     /** @var \SoapClient */
-    public $client = null;
+    protected $clientSoap = null;
 
     public function setUp()
     {
         $this->clientSoap = static::createClient(array(), ToolsAPI::generateWsseHeader());
+        $this->clientSoap->startTransaction();
         $this->clientSoap->soap(
             "http://localhost/api/soap",
             array(
@@ -26,6 +28,11 @@ class SoapUsersApiTest extends WebTestCase
                 'soap_version' => SOAP_1_2
             )
         );
+    }
+
+    public static function tearDownAfterClass()
+    {
+        Client::rollbackTransaction();
     }
 
     /**
@@ -50,7 +57,6 @@ class SoapUsersApiTest extends WebTestCase
      */
     public function testUpdateUser($request, $response)
     {
-        $this->markTestSkipped('Skipped due to BUG!!!');
         //get user id
         $userId = $this->clientSoap->soapClient->getUserBy(array('item' => array('key' =>'username', 'value' =>$request['username'])));
         $userId = ToolsAPI::classToArray($userId);
@@ -94,12 +100,24 @@ class SoapUsersApiTest extends WebTestCase
     public function testDeleteUser($request)
     {
         //get user id
-        $userId = $this->clientSoap->soapClient->getUserBy(array('item' => array('key' =>'username', 'value' =>$request['username'] . '_Updated')));
+        $userId = $this->clientSoap->soapClient->getUserBy(
+            array(
+                'item' => array(
+                    'key' =>'username',
+                    'value' =>$request['username'] . '_Updated')
+            )
+        );
         $userId = ToolsAPI::classToArray($userId);
         $result = $this->clientSoap->soapClient->deleteUser($userId['id']);
         $this->assertTrue($result);
         try {
-            $this->clientSoap->soapClient->getUserBy(array('item' => array('key' =>'username', 'value' =>$request['username'] . '_Updated')));
+            $this->clientSoap->soapClient->getUserBy(
+                array(
+                    'item' => array(
+                        'key' =>'username',
+                        'value' =>$request['username'] . '_Updated')
+                )
+            );
         } catch (\SoapFault $e) {
             if ($e->faultcode != 'NOT_FOUND') {
                 throw $e;

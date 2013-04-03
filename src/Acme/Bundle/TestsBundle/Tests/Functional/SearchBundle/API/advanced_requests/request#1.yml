@@ -1,0 +1,19 @@
+# common test case
+request:
+    query: "from demoSearchBundle:Item where stringValue ~ item5"
+    offset: ~
+    max_results: ~
+response:
+    records_count: 1
+    count: 1
+    rest:
+        data:
+            -
+                entity_name: Acme\Bundle\DemoSearchBundle\Entity\Item
+                record_string: item1@mail.com
+    soap:
+        item:
+            -
+                entityName: Acme\Bundle\DemoSearchBundle\Entity\Item
+                recordTitle: item1@mail.com
+                recordUrl: http://localhost/search/

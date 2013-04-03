@@ -10,21 +10,21 @@ response:
         data:
             -
                 entity_name: Acme\Bundle\DemoSearchBundle\Entity\Item
-                record_string: item-1@mail.com
+                record_string: item1@mail.com
             -
                 entity_name: Acme\Bundle\DemoSearchBundle\Entity\Item
-                record_string: item-2@mail.com
+                record_string: item2@mail.com
             -
                 entity_name: Acme\Bundle\DemoSearchBundle\Entity\Item
-                record_string: item-3@mail.com
+                record_string: item3@mail.com
     soap:
         item:
             -
                 entityName: Acme\Bundle\DemoSearchBundle\Entity\Item
-                recordTitle: item-1@mail.com
+                recordTitle: item1@mail.com
             -
                 entityName: Acme\Bundle\DemoSearchBundle\Entity\Item
-                recordTitle: item-2@mail.com
+                recordTitle: item2@mail.com
             -
                 entityName: Acme\Bundle\DemoSearchBundle\Entity\Item
-                recordTitle: item-3@mail.com
+                recordTitle: item3@mail.com
