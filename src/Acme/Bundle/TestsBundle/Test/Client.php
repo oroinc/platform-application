@@ -7,13 +7,21 @@ use Acme\Bundle\TestsBundle\Test\SoapClient;
 
 class Client extends BaseClient
 {
-    /** @var shared doctine connection */
+
     public $soapClient;
 
-    static protected $connection;
+    /** @var shared doctrine connection */
+    static protected $connection = null;
 
     protected $hasPerformedRequest;
 
+    public function __construct($kernel, array $server = array(), $history = null, $cookieJar = null)
+    {
+        parent::__construct($kernel, $server, $history, $cookieJar);
+        if (is_null(self::$connection)) {
+            self::$connection = $this->getContainer()->get('doctrine.dbal.default_connection');
+        }
+    }
     /**
      * @param null $wsdl
      * @param array $options
@@ -51,7 +59,9 @@ class Client extends BaseClient
             $this->hasPerformedRequest = true;
         }
 
-        $this->getContainer()->set('doctrine.dbal.default_connection', self::$connection);
+        if (!is_null(self::$connection)) {
+            $this->getContainer()->set('doctrine.dbal.default_connection', self::$connection);
+        }
 
         $response = $this->kernel->handle($request);
 
@@ -81,7 +91,9 @@ class Client extends BaseClient
 
     public function startTransaction()
     {
-        self::$connection = $this->getContainer()->get('doctrine.dbal.default_connection');
+        if (is_null(self::$connection)) {
+            self::$connection = $this->getContainer()->get('doctrine.dbal.default_connection');
+        }
         $this->getContainer()->set('doctrine.dbal.default_connection', self::$connection);
         self::$connection->beginTransaction();
     }
