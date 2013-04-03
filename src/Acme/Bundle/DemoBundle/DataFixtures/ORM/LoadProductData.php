@@ -39,7 +39,22 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
                 $this->getReference('MANUFACTURER_ADIDAS'),
                 $this->getReference('MANUFACTURER_REEBOK'),
                 $this->getReference('MANUFACTURER_NIKE'),
-                $this->getReference('MANUFACTURER_PUMA')
+                $this->getReference('MANUFACTURER_PUMA'),
+                $this->getReference('MANUFACTURER_FILA'),
+                $this->getReference('MANUFACTURER_CONVERSE'),
+                $this->getReference('MANUFACTURER_NEW_BALANCE'),
+                $this->getReference('MANUFACTURER_KSWISS'),
+                $this->getReference('MANUFACTURER_ASICS'),
+                $this->getReference('MANUFACTURER_HITEC'),
+                $this->getReference('MANUFACTURER_NORTH_FACE'),
+                $this->getReference('MANUFACTURER_LLBEAN'),
+                $this->getReference('MANUFACTURER_UNDER_ARMOUR'),
+                $this->getReference('MANUFACTURER_QUICKSILVER'),
+                $this->getReference('MANUFACTURER_LACOSTE'),
+                $this->getReference('MANUFACTURER_UMBRO'),
+                $this->getReference('MANUFACTURER_MCKENZIE'),
+                $this->getReference('MANUFACTURER_BENCH'),
+                $this->getReference('MANUFACTURER_TIMBERLAND'),
             );
         }
 
@@ -54,7 +69,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-        for ($i = 1; $i <= 20; $i++) {
+        for ($i = 1; $i <= 50; $i++) {
             $createdDate = new \DateTime('now');
             $createdDate->sub(new \DateInterval('P' . $i . 'D'));
 
