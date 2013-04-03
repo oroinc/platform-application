@@ -52,7 +52,6 @@ class RestUsersApiTest extends WebTestCase
      */
     public function testApiUpdateUser($request)
     {
-        $this->markTestSkipped('Skipped due to BUG!!!');
         //get user id
         $this->client->request('GET', 'http://localhost/api/rest/latest/profiles?limit=100');
         $result = $this->client->getResponse();
