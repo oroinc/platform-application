@@ -1,10 +1,12 @@
 parameters:
-    customer_manager_class:     Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleManager
-    customer_entity_class:      Acme\Bundle\DemoFlexibleEntityBundle\Entity\Customer
-    manufacturer_manager_class: Oro\Bundle\FlexibleEntityBundle\Manager\SimpleManager
-    manufacturer_entity_class:  Acme\Bundle\DemoFlexibleEntityBundle\Entity\Manufacturer
-    product_manager_class:      Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleManager
-    product_entity_class:       Acme\Bundle\DemoFlexibleEntityBundle\Entity\Product
+    customer_manager_class:      Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleManager
+    customer_entity_class:       Acme\Bundle\DemoFlexibleEntityBundle\Entity\Customer
+    manufacturer_manager_class:  Oro\Bundle\FlexibleEntityBundle\Manager\SimpleManager
+    manufacturer_entity_class:   Acme\Bundle\DemoFlexibleEntityBundle\Entity\Manufacturer
+    product_manager_class:       Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleManager
+    product_entity_class:        Acme\Bundle\DemoFlexibleEntityBundle\Entity\Product
+    customer_grid_manager_class: Acme\Bundle\DemoFlexibleEntityBundle\Datagrid\CustomerDatagridManager
+    product_grid_manager_class:  Acme\Bundle\DemoFlexibleEntityBundle\Datagrid\ProductDatagridManager
 
 services:
     customer_manager:
@@ -20,3 +22,28 @@ services:
     manufacturer_manager:
         class:     "%manufacturer_manager_class%"
         arguments: [%manufacturer_entity_class%, "@doctrine.orm.entity_manager"]
+
+    customer_grid_manager:
+        class: "%customer_grid_manager_class%"
+        tags:
+            - name: oro_grid.datagrid.manager
+              datagrid_name: users
+              entity_name: Acme\Bundle\DemoFlexibleEntityBundle\Entity\Customer
+              entity_hint: customers
+              flexible: true
+              route_name: acme_demoflexibleentity_customer_list
+        calls:
+            - [ setRouter, [ @router ] ]
+
+    product_grid_manager:
+        class: "%product_grid_manager_class%"
+        tags:
+            - name: oro_grid.datagrid.manager
+              datagrid_name: users
+              entity_name: Acme\Bundle\DemoFlexibleEntityBundle\Entity\Product
+              entity_hint: products
+              flexible: true
+              route_name: acme_demoflexibleentity_product_list
+        calls:
+            - [ setRouter, [ @router ] ]
+

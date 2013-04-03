@@ -7,7 +7,7 @@
 {% block content %}
 <form action="{{ form.vars.value.id ? path('acme_demoflexibleentity_customer_edit', { id: form.vars.value.id }) : path('acme_demoflexibleentity_customer_create') }}" method="POST" class="form-register">
     <fieldset>
-        <legend>{{ title }} <a class="btn btn-primary pull-right" href="{{ path('acme_demoflexibleentity_customer_index') }}">{{ "Back to list" | trans }}</a></legend>
+        <legend>{{ title }} <a class="btn btn-primary pull-right" href="{{ path('acme_demoflexibleentity_customer_list') }}">{{ "Back to list" | trans }}</a></legend>
 
         {{ form_widget(form) }}
 
