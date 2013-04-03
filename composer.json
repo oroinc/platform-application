@@ -39,7 +39,8 @@
         "sonata-project/admin-bundle": "2.1.x-dev",
         "sonata-project/doctrine-orm-admin-bundle": "2.1.x-dev",
         "zendframework/zend-stdlib": "2.1.1",
-        "liip/imagine-bundle": "dev-master"
+        "liip/imagine-bundle": "dev-master",
+        "leafo/lessphp": "dev-master"
     },
     "repositories": [
         {
