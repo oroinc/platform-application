@@ -14,7 +14,7 @@ class SoapGroupsApiTest extends WebTestCase
     const DEFAULT_VALUE = 'GROUP_LABEL';
 
     /** @var \SoapClient */
-    public $client = null;
+    protected $clientSoap = null;
 
     public function setUp()
     {
