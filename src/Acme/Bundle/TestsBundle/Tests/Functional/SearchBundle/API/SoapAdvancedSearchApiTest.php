@@ -29,9 +29,9 @@ class SoapAdvancedSearchApiTest extends WebTestCase
         self::$hasLoaded = true;
 
         $this->client->soap(
-            "http://localhost/api/soap",
+            "http://localhost.com/api/soap",
             array(
-                'location' => 'http://localhost/api/soap',
+                'location' => 'http://localhost.com/api/soap',
                 'soap_version' => SOAP_1_2
             )
         );
@@ -52,6 +52,61 @@ class SoapAdvancedSearchApiTest extends WebTestCase
         );
         $result = ToolsAPI::classToArray($result);
         $this->assertEquals(1, $result['count']);
+    }
+
+    public function testPriceAbove100()
+    {
+        $result = $this->client->soapClient->advancedSearch(
+            "from demo_flexible_product where decimal price < 100"
+        );
+        $result = ToolsAPI::classToArray($result);
+        $this->assertEquals(25, $result['count']);
+    }
+
+    public function testPriceBelow100()
+    {
+        $result = $this->client->soapClient->advancedSearch(
+            "from demo_flexible_product where decimal price > 100"
+        );
+        $result = ToolsAPI::classToArray($result);
+        $this->assertEquals(0, $result['count']);
+    }
+
+    public function testSize()
+    {
+        $result = $this->client->soapClient->advancedSearch(
+            "from demo_flexible_product where decimal size < 10"
+        );
+        $result = ToolsAPI::classToArray($result);
+        $this->assertEquals(25, $result['count']);
+    }
+
+    public function testManufacturer()
+    {
+        $result = $this->client->soapClient->advancedSearch(
+            "from demo_product where manufacturer ~ Nike"
+        );
+        $result = ToolsAPI::classToArray($result);
+        $this->assertEquals(6, $result['count']);
+    }
+
+    public function testManufacturerAndPrice()
+    {
+        $result = $this->client->soapClient->advancedSearch(
+            "from demo_product where manufacturer ~ Adidas and decimal price < 10"
+        );
+        $result = ToolsAPI::classToArray($result);
+        $this->assertEquals(2, $result['count']);
+    }
+
+    public function testProductName()
+    {
+        $this->markTestIncomplete('This test has not been implemented yet.');
+        $result = $this->client->soapClient->advancedSearch(
+            "from demo_flexible_product where name ~ Product"
+        );
+        $result = ToolsAPI::classToArray($result);
+        $this->assertEquals(25, $result['count']);
     }
 
     /**
