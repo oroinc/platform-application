@@ -4,6 +4,7 @@ namespace Acme\Bundle\TestsBundle\Tests\Functional\API;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Acme\Bundle\TestsBundle\Test\ToolsAPI;
+use Acme\Bundle\TestsBundle\Test\Client;
 
 /**
  * @outputBuffering enabled
@@ -19,6 +20,7 @@ class SoapUsersApiTest extends WebTestCase
     public function setUp()
     {
         $this->clientSoap = static::createClient(array(), ToolsAPI::generateWsseHeader());
+        $this->clientSoap->startTransaction();
         $this->clientSoap->soap(
             "http://localhost/api/soap",
             array(
@@ -26,6 +28,11 @@ class SoapUsersApiTest extends WebTestCase
                 'soap_version' => SOAP_1_2
             )
         );
+    }
+
+    public static function tearDownAfterClass()
+    {
+        Client::rollbackTransaction();
     }
 
     /**
@@ -50,7 +57,6 @@ class SoapUsersApiTest extends WebTestCase
      */
     public function testUpdateUser($request, $response)
     {
-        $this->markTestSkipped('Skipped due to BUG!!!');
         //get user id
         $userId = $this->clientSoap->soapClient->getUserBy(array('item' => array('key' =>'username', 'value' =>$request['username'])));
         $userId = ToolsAPI::classToArray($userId);
