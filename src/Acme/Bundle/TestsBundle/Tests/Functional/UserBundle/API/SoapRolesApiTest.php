@@ -14,7 +14,7 @@ class SoapRolesApiTest extends WebTestCase
     const DEFAULT_VALUE = 'ROLE_LABEL';
 
     /** @var \SoapClient */
-    public $client = null;
+    protected $clientSoap = null;
 
     public function setUp()
     {
