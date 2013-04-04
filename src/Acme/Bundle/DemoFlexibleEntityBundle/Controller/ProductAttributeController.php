@@ -1,6 +1,7 @@
 <?php
 namespace Acme\Bundle\DemoFlexibleEntityBundle\Controller;
 
+use Symfony\Component\HttpFoundation\Request;
 use Oro\Bundle\FlexibleEntityBundle\Entity\Attribute;
 use Acme\Bundle\DemoFlexibleEntityBundle\Form\Type\ProductAttributeType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -39,18 +40,43 @@ class ProductAttributeController extends Controller
     }
 
     /**
-     * List product attributes
-     * @Route("/index")
-     * @Template()
-     *
-     * @return array
+     * @Route("/index.{_format}",
+     *      name="acme_demoflexibleentity_productattribute_index",
+     *      requirements={"_format"="html|json"},
+     *      defaults={"_format" = "html"}
+     * )
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
-        $attributes = $this->getProductManager()->getAttributeRepository()
-            ->findBy(array('entityType' => $this->getProductManager()->getFlexibleName()));
+        /** @var $em \Doctrine\ORM\EntityManager */
+        $em = $this->getDoctrine()->getManager();
+        $queryBuilder = $em->createQueryBuilder();
+        $queryBuilder
+            ->select('a.id', 'a.code', 'a.attributeType')
+            ->from('OroFlexibleEntityBundle:Attribute', 'a')
+            ->where("a.entityType = 'Acme\Bundle\DemoFlexibleEntityBundle\Entity\Product'");
 
-        return array('attributes' => $attributes);
+        /** @var $queryFactory QueryFactory */
+        $queryFactory = $this->get('productattribute_grid_manager.default_query_factory');
+        $queryFactory->setQueryBuilder($queryBuilder);
+
+        /** @var $gridManager AttributeDatagridManager */
+        $gridManager = $this->get('productattribute_grid_manager');
+        $datagrid = $gridManager->getDatagrid();
+
+        if ('json' == $request->getRequestFormat()) {
+            $view = 'OroGridBundle:Datagrid:list.json.php';
+        } else {
+            $view = 'AcmeDemoFlexibleEntityBundle:ProductAttribute:index.html.twig';
+        }
+
+        return $this->render(
+            $view,
+            array(
+                'datagrid' => $datagrid,
+                'form'     => $datagrid->getForm()->createView()
+            )
+        );
     }
 
     /**

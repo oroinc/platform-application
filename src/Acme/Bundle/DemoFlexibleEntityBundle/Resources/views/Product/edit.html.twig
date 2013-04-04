@@ -41,7 +41,7 @@
     
     <form action="{{ form.vars.value.id ? path('acme_demoflexibleentity_product_edit', { id: form.vars.value.id }) : path('acme_demoflexibleentity_product_create') }}" method="POST" class="form-register">
         <fieldset>
-            <legend>{{ title }} <a class="btn btn-primary pull-right" href="{{ path('acme_demoflexibleentity_product_index') }}">{{ "Back to list" | trans }}</a></legend>
+            <legend>{{ title }} <a class="btn btn-primary pull-right" href="{{ path('acme_demoflexibleentity_product_list') }}">{{ "Back to list" | trans }}</a></legend>
     
             {{ form_widget(form) }}
     

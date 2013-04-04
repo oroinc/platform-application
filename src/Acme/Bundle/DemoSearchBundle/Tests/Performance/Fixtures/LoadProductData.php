@@ -12,7 +12,9 @@ use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\TextType;
 use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\OptionMultiCheckboxType;
 use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\MetricType;
 use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\TextAreaType;
-use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\MoneyType;
+use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\PriceType;
+use Oro\Bundle\FlexibleEntityBundle\Entity\Price;
+use Oro\Bundle\FlexibleEntityBundle\Entity\Metric;
 
 /**
 * Load products
@@ -114,7 +116,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $attributeCode = 'price';
         $productAttribute = $this->getProductManager()->getFlexibleRepository()->findAttributeByCode($attributeCode);
         if (is_null($productAttribute)) {
-            $productAttribute = $this->getProductManager()->createAttributeExtended(new MoneyType());
+            $productAttribute = $this->getProductManager()->createAttributeExtended(new PriceType());
             $productAttribute->setSearchable(true);
             $productAttribute->setName('Price');
             $productAttribute->setCode($attributeCode);
@@ -289,15 +291,19 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
             if ($attSize) {
                 $value = $this->getProductManager()->createFlexibleValue();
                 $value->setAttribute($attSize);
-                $value->setData(175);
-                $value->setUnit('mm');
+                $metric = new Metric();
+                $metric->setUnit('mm');
+                $metric->setData(rand(5, 100));
+                $value->setData($metric);
                 $product->addValue($value);
             }
             if ($attPrice) {
                 $value = $this->getProductManager()->createFlexibleValue();
                 $value->setAttribute($attPrice);
-                $value->setData(rand(5, 100));
-                $value->setCurrency('USD');
+                $price = new Price();
+                $price->setData(rand(5, 100));
+                $price->setCurrency('USD');
+                $value->setData($price);
                 $product->addValue($value);
             }
             $this->getProductManager()->getStorageManager()->persist($product);

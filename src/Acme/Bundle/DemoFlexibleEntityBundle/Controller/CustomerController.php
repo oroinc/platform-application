@@ -1,6 +1,8 @@
 <?php
 namespace Acme\Bundle\DemoFlexibleEntityBundle\Controller;
 
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleManager;
 use Acme\Bundle\DemoFlexibleEntityBundle\Form\Type\CustomerType;
 use Acme\Bundle\DemoFlexibleEntityBundle\Entity\Customer;
@@ -36,6 +38,34 @@ class CustomerController extends Controller
     protected function getCustomerManager()
     {
         return $this->container->get('customer_manager');
+    }
+
+    /**
+     * @Route("/list.{_format}",
+     *      name="acme_demoflexibleentity_customer_list",
+     *      requirements={"_format"="html|json"},
+     *      defaults={"_format" = "html"}
+     * )
+     */
+    public function listAction(Request $request)
+    {
+        /** @var $gridManager CustomerDatagridManager */
+        $gridManager = $this->get('customer_grid_manager');
+        $datagrid = $gridManager->getDatagrid();
+
+        if ('json' == $request->getRequestFormat()) {
+            $view = 'OroGridBundle:Datagrid:list.json.php';
+        } else {
+            $view = 'AcmeDemoFlexibleEntityBundle:Customer:list.html.twig';
+        }
+
+        return $this->render(
+            $view,
+            array(
+                'datagrid' => $datagrid,
+                'form'     => $datagrid->getForm()->createView()
+            )
+        );
     }
 
     /**
@@ -174,7 +204,7 @@ class CustomerController extends Controller
 
                 $this->get('session')->getFlashBag()->add('success', 'Customer successfully saved');
 
-                return $this->redirect($this->generateUrl('acme_demoflexibleentity_customer_index'));
+                return $this->redirect($this->generateUrl('acme_demoflexibleentity_customer_list'));
             }
         }
 
@@ -199,6 +229,6 @@ class CustomerController extends Controller
 
         $this->get('session')->getFlashBag()->add('success', 'Customer successfully removed');
 
-        return $this->redirect($this->generateUrl('acme_demoflexibleentity_customer_index'));
+        return $this->redirect($this->generateUrl('acme_demoflexibleentity_customer_list'));
     }
 }
