@@ -3,6 +3,7 @@ namespace Acme\Bundle\TestsBundle\Tests\Selenium;
 
 class LoginFormTest extends \PHPUnit_Extensions_Selenium2TestCase
 {
+    const TIME_OUT  ='1000';
     protected function setUp()
     {
         $this->setHost(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_HOST);
@@ -16,10 +17,18 @@ class LoginFormTest extends \PHPUnit_Extensions_Selenium2TestCase
         $this->cookie()->clear();
     }
 
+    protected function waitPageToLoad()
+    {
+        $script = "return document['readyState']";
+
+        while ('complete'!= $this->execute(array('script' => $script, 'args' => array())));
+    }
+
     public function testHasLoginForm()
     {
-        $this->timeouts()->implicitWait(10000);
+        $this->timeouts()->implicitWait(self::TIME_OUT);
         $this->url('user/login');
+        $this->waitPageToLoad();
 
         $username = $this->byId('prependedInput');
         $password = $this->byId('prependedInput2');
@@ -31,8 +40,9 @@ class LoginFormTest extends \PHPUnit_Extensions_Selenium2TestCase
 
     public function testLoginFormSubmitsToAdmin()
     {
-        $this->timeouts()->implicitWait(10000);
+        $this->timeouts()->implicitWait(self::TIME_OUT);
         $this->url('user/login');
+        $this->waitPageToLoad();
         $this->byId('prependedInput')->clear();
         $this->byId('prependedInput')->value(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_LOGIN);
         $this->byId('prependedInput2')->clear();
@@ -53,8 +63,9 @@ class LoginFormTest extends \PHPUnit_Extensions_Selenium2TestCase
      */
     public function testLoginFormNotSubmitsToAdmin($login, $password)
     {
-        $this->timeouts()->implicitWait(10000);
+        $this->timeouts()->implicitWait(self::TIME_OUT);
         $this->url('user/login');
+        $this->waitPageToLoad();
         $this->byId('prependedInput')->clear();
         $this->byId('prependedInput')->value($login);
         $this->byId('prependedInput2')->clear();
@@ -80,8 +91,9 @@ class LoginFormTest extends \PHPUnit_Extensions_Selenium2TestCase
 
     public function testLoginRequiredFiled()
     {
-        $this->timeouts()->implicitWait(10000);
+        $this->timeouts()->implicitWait(self::TIME_OUT);
         $this->url('user/login');
+        $this->waitPageToLoad();
         $usernameAttribute = $this->byId('prependedInput')->attribute('required');
         $passwordAttribute = $this->byId('prependedInput2')->attribute('required');
 
@@ -92,10 +104,11 @@ class LoginFormTest extends \PHPUnit_Extensions_Selenium2TestCase
 
     public function testForgotPassword()
     {
-        $this->timeouts()->implicitWait(10000);
+        $this->timeouts()->implicitWait(self::TIME_OUT);
         $this->url('user/login');
+        $this->waitPageToLoad();
         $this->byXPath("//*[@id='top-page']//fieldset//a[contains(.,'Forgot your password?')]")->click();
-
+        $this->waitPageToLoad();
         $this->assertEquals('Password reset request - User management', $this->title());
 
         $this->byId('prependedInput')->value('123test123');
@@ -114,15 +127,16 @@ class LoginFormTest extends \PHPUnit_Extensions_Selenium2TestCase
 
     public function testRememberFunction()
     {
-        $this->timeouts()->implicitWait(10000);
+        $this->timeouts()->implicitWait(self::TIME_OUT);
         $this->url('user/login');
+        $this->waitPageToLoad();
         $this->byId('prependedInput')->clear();
         $this->byId('prependedInput')->value(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_LOGIN);
         $this->byId('prependedInput2')->clear();
         $this->byId('prependedInput2')->value(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_PASS);
         $this->byId('remember_me')->click();
-
         $this->clickOnElement('_submit');
+        $this->waitPageToLoad();
         $this->assertEquals('Dashboard', $this->title());
 
         $this->url(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_TESTS_URL);
