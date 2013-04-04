@@ -1,6 +1,16 @@
-{% extends status_code == 403 ? bap.layout : 'TwigBundle::layout.html.twig' %}
+{% extends status_code == 403 ? 'OroUIBundle:Default:index.html.twig' : 'TwigBundle::layout.html.twig' %}
 
 {% if status_code == 403 %}
+
+    {% block head_script %}
+    {% endblock %}
+
+    {% block header %}
+    {% endblock %}
+
+    {% block pin_bar %}
+    {% endblock %}
+
     {% block title %}
         {{ exception.message }} ({{ status_code }} {{ status_text }})
     {% endblock %}
