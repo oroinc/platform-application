@@ -19,6 +19,11 @@ class ScreenshotListener implements \PHPUnit_Framework_TestListener
         $this->storeAScreenshot($test);
     }
 
+    public function endTest(\PHPUnit_Framework_Test $test, $time)
+    {
+        $this->storeAScreenshot($test);
+    }
+
     private function storeAScreenshot(\PHPUnit_Framework_Test $test)
     {
         if ($test instanceof \PHPUnit_Extensions_Selenium2TestCase) {
@@ -41,7 +46,6 @@ class ScreenshotListener implements \PHPUnit_Framework_TestListener
     public function addIncompleteTest(\PHPUnit_Framework_Test $test, \Exception $e, $time) {}
     public function addSkippedTest(\PHPUnit_Framework_Test $test, \Exception $e, $time) {}
     public function startTest(\PHPUnit_Framework_Test $test) {}
-    public function endTest(\PHPUnit_Framework_Test $test, $time) {}
     public function startTestSuite(\PHPUnit_Framework_TestSuite $suite) {}
     public function endTestSuite(\PHPUnit_Framework_TestSuite $suite) {}
 }
