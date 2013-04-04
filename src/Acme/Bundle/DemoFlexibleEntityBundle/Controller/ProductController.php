@@ -1,10 +1,9 @@
 <?php
 namespace Acme\Bundle\DemoFlexibleEntityBundle\Controller;
 
-
-
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleManager;
-
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -48,6 +47,34 @@ class ProductController extends Controller
     protected function getAttributeCodesToDisplay()
     {
         return array('name', 'description', 'size', 'color', 'price');
+    }
+
+    /**
+     * @Route("/list.{_format}",
+     *      name="acme_demoflexibleentity_product_list",
+     *      requirements={"_format"="html|json"},
+     *      defaults={"_format" = "html"}
+     * )
+     */
+    public function listAction(Request $request)
+    {
+        /** @var $gridManager ProductDatagridManager */
+        $gridManager = $this->get('product_grid_manager');
+        $datagrid = $gridManager->getDatagrid();
+
+        if ('json' == $request->getRequestFormat()) {
+            $view = 'OroGridBundle:Datagrid:list.json.php';
+        } else {
+            $view = 'AcmeDemoFlexibleEntityBundle:Product:list.html.twig';
+        }
+
+        return $this->render(
+            $view,
+            array(
+                'datagrid' => $datagrid,
+                'form'     => $datagrid->getForm()->createView()
+            )
+        );
     }
 
     /**
@@ -215,7 +242,7 @@ class ProductController extends Controller
 
                 $this->get('session')->getFlashBag()->add('success', 'Product successfully saved');
 
-                return $this->redirect($this->generateUrl('acme_demoflexibleentity_product_index'));
+                return $this->redirect($this->generateUrl('acme_demoflexibleentity_product_list'));
             }
         }
 
@@ -241,6 +268,6 @@ class ProductController extends Controller
 
         $this->get('session')->getFlashBag()->add('success', 'Product successfully removed');
 
-        return $this->redirect($this->generateUrl('acme_demoflexibleentity_product_index'));
+        return $this->redirect($this->generateUrl('acme_demoflexibleentity_product_list'));
     }
 }
