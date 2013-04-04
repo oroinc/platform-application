@@ -1,10 +1,7 @@
 <?php
 namespace Acme\Bundle\DemoFlexibleEntityBundle\Form\Type;
 
-use Oro\Bundle\FlexibleEntityBundle\Form\Type\AttributeType;
-
-use Oro\Bundle\FlexibleEntityBundle\Model\AbstractAttributeType;
-
+use Oro\Bundle\FlexibleEntityBundle\Form\Type\AttributeType as FormAttributeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\AbstractType;
@@ -17,7 +14,7 @@ use Symfony\Component\Form\AbstractType;
  * @license   http://opensource.org/licenses/MIT MIT
  *
  */
-class CustomerAttributeType extends AttributeType
+class CustomerAttributeType extends FormAttributeType
 {
     /**
      * Add field scopable to form builder

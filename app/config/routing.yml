@@ -28,6 +28,15 @@ acme_demo_grid:
     prefix:   /{_locale}/grid/
     defaults: { _locale: %locale% }
 
+oro_default:
+    pattern:  /{_locale}
+    defaults:
+        template:    AcmeDemoBundle:Default:index.html.twig
+        _locale:     %locale%
+        _controller: FrameworkBundle:Template:template
+    requirements:
+        _locale:  en|fr|de
+
 acme_default:
     pattern:  /{_locale}
     defaults:
