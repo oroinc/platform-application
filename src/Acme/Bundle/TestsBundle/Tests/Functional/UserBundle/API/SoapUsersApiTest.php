@@ -100,12 +100,24 @@ class SoapUsersApiTest extends WebTestCase
     public function testDeleteUser($request)
     {
         //get user id
-        $userId = $this->clientSoap->soapClient->getUserBy(array('item' => array('key' =>'username', 'value' =>$request['username'] . '_Updated')));
+        $userId = $this->clientSoap->soapClient->getUserBy(
+            array(
+                'item' => array(
+                    'key' =>'username',
+                    'value' =>$request['username'] . '_Updated')
+            )
+        );
         $userId = ToolsAPI::classToArray($userId);
         $result = $this->clientSoap->soapClient->deleteUser($userId['id']);
         $this->assertTrue($result);
         try {
-            $this->clientSoap->soapClient->getUserBy(array('item' => array('key' =>'username', 'value' =>$request['username'] . '_Updated')));
+            $this->clientSoap->soapClient->getUserBy(
+                array(
+                    'item' => array(
+                        'key' =>'username',
+                        'value' =>$request['username'] . '_Updated')
+                )
+            );
         } catch (\SoapFault $e) {
             if ($e->faultcode != 'NOT_FOUND') {
                 throw $e;
