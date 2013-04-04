@@ -1,7 +1,7 @@
 <?php
 namespace Acme\Bundle\TestsBundle\Tests\Selenium;
 
-class TestLoginForm extends \PHPUnit_Extensions_Selenium2TestCase
+class LoginFormTest extends \PHPUnit_Extensions_Selenium2TestCase
 {
     protected function setUp()
     {
@@ -11,8 +11,16 @@ class TestLoginForm extends \PHPUnit_Extensions_Selenium2TestCase
         $this->setBrowserUrl(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_TESTS_URL);
     }
 
+    protected function tearDown()
+    {
+        $this->cookie()->clear();
+    }
+
     public function testHasLoginForm()
     {
+        $this->timeouts()->implicitWait(10000);
+        $this->url('user/login');
+
         $username = $this->byId('prependedInput');
         $password = $this->byId('prependedInput2');
 
@@ -23,16 +31,18 @@ class TestLoginForm extends \PHPUnit_Extensions_Selenium2TestCase
 
     public function testLoginFormSubmitsToAdmin()
     {
+        $this->timeouts()->implicitWait(10000);
+        $this->url('user/login');
+        $this->byId('prependedInput')->clear();
         $this->byId('prependedInput')->value(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_LOGIN);
+        $this->byId('prependedInput2')->clear();
         $this->byId('prependedInput2')->value(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_PASS);
         $this->clickOnElement('_submit');
 
-        $this->timeouts()->implicitWait(10000);
         $this->assertEquals('Dashboard', $this->title());
 
         $this->byXPath("//*[@id='top-page']//div/div/div/ul[2]/li[1]/a")->click();
         $this->byXPath("//*[@id='top-page']//div/ul//li/a[contains(.,'Logout')]")->click();
-        $this->timeouts()->implicitWait(50000);
         $this->assertEquals('Login - User management', $this->title());
     }
 
@@ -43,15 +53,18 @@ class TestLoginForm extends \PHPUnit_Extensions_Selenium2TestCase
      */
     public function testLoginFormNotSubmitsToAdmin($login, $password)
     {
+        $this->timeouts()->implicitWait(10000);
+        $this->url('user/login');
+        $this->byId('prependedInput')->clear();
         $this->byId('prependedInput')->value($login);
+        $this->byId('prependedInput2')->clear();
         $this->byId('prependedInput2')->value($password);
         $this->clickOnElement('_submit');
 
-        $this->timeouts()->implicitWait(10000);
-        $actualResult = $this->byXPath("//*[@id='top-page']/div/div/div[contains(.,'Bad credentials')]")->text();
+        $actualResult = $this->byXPath("//*[@id='top-page']/div/div/div/div[contains(.,'Bad credentials')]")->text();
 
         $this->assertContains('Login - User management', $this->title());
-        $this->assertEquals('Bad credentials', $actualResult);
+        $this->assertEquals("Bad credentials", $actualResult);
     }
 
     /**
@@ -67,6 +80,8 @@ class TestLoginForm extends \PHPUnit_Extensions_Selenium2TestCase
 
     public function testLoginRequiredFiled()
     {
+        $this->timeouts()->implicitWait(10000);
+        $this->url('user/login');
         $usernameAttribute = $this->byId('prependedInput')->attribute('required');
         $passwordAttribute = $this->byId('prependedInput2')->attribute('required');
 
@@ -75,41 +90,42 @@ class TestLoginForm extends \PHPUnit_Extensions_Selenium2TestCase
         $this->assertEquals('true', $passwordAttribute);
     }
 
-    public function testRememberFunction()
-    {
-        $this->byId('prependedInput')->value(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_LOGIN);
-        $this->byId('prependedInput2')->value(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_PASS);
-        $this->byId('remember_me')->click();
-
-        $this->clickOnElement('_submit');
-        $this->timeouts()->implicitWait(10000);
-        $this->assertEquals('Dashboard', $this->title());
-
-        $this->url(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_TESTS_URL);
-        $this->timeouts()->implicitWait(10000);
-        $this->assertEquals('Dashboard', $this->title());
-    }
-
     public function testForgotPassword()
     {
-        $this->byXPath("//*[@id='top-page']//fieldset//a[contains(.,'Forgot your password?')]")->click();
         $this->timeouts()->implicitWait(10000);
+        $this->url('user/login');
+        $this->byXPath("//*[@id='top-page']//fieldset//a[contains(.,'Forgot your password?')]")->click();
 
         $this->assertEquals('Password reset request - User management', $this->title());
 
         $this->byId('prependedInput')->value('123test123');
         $this->byXPath("//button[contains(.,'Request')]")->click();
 
-        $messageActual = $this->byXPath("/*[@id='top-page']//p[contains(.,'The username or email address')]")->text();
+        $messageActual = $this->byXPath("//*[@id='top-page']//div/div[contains(.,'The username or email address')]")->text();
         $messageExpect = "The username or email address \"123test123\" does not exist.";
         $this->assertEquals($messageExpect, $messageActual);
 
         $this->byId('prependedInput')->value('admin@example.com');
         $this->byXPath("//button[contains(.,'Request')]")->click();
-        $this->timeouts()->implicitWait(10000);
-        $this->assertEquals('Password reset - check Email - Dashboard', $this->title());
+        $messageActual = $this->byXPath("//*[@id='top-page']//h3[contains(.,'An email has been sent to')]")->text();
 
-        $messageSuccess = $this->byClassName("alert alert-success")->text();
-        $this-assertRegExp('/email has been sent to/i', $messageSuccess);
+        $this->assertEquals('An email has been sent to ...@example.com. It contains a link you must click to reset your password.', $messageActual);
+    }
+
+    public function testRememberFunction()
+    {
+        $this->timeouts()->implicitWait(10000);
+        $this->url('user/login');
+        $this->byId('prependedInput')->clear();
+        $this->byId('prependedInput')->value(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_LOGIN);
+        $this->byId('prependedInput2')->clear();
+        $this->byId('prependedInput2')->value(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_PASS);
+        $this->byId('remember_me')->click();
+
+        $this->clickOnElement('_submit');
+        $this->assertEquals('Dashboard', $this->title());
+
+        $this->url(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_TESTS_URL);
+        $this->assertEquals('Dashboard', $this->title());
     }
 }
