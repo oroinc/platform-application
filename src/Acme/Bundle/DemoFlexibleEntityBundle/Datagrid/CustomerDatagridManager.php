@@ -1,5 +1,4 @@
 <?php
-
 namespace Acme\Bundle\DemoFlexibleEntityBundle\Datagrid;
 
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
@@ -11,6 +10,14 @@ use Oro\Bundle\GridBundle\Filter\FilterInterface;
 use Oro\Bundle\GridBundle\Action\ActionInterface;
 use Oro\Bundle\GridBundle\Property\UrlProperty;
 
+/**
+ * Grid manager
+ *
+ * @author    Nicolas Dupont <nicolas@akeneo.com>
+ * @copyright 2013 Akeneo SAS (http://www.akeneo.com)
+ * @license   http://opensource.org/licenses/MIT MIT
+ *
+ */
 class CustomerDatagridManager extends FlexibleDatagridManager
 {
     /**

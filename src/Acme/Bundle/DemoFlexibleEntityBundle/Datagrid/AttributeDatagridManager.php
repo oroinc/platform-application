@@ -10,6 +10,14 @@ use Oro\Bundle\GridBundle\Filter\FilterInterface;
 use Oro\Bundle\GridBundle\Action\ActionInterface;
 use Oro\Bundle\GridBundle\Property\UrlProperty;
 
+/**
+ * Grid manager
+ *
+ * @author    Nicolas Dupont <nicolas@akeneo.com>
+ * @copyright 2013 Akeneo SAS (http://www.akeneo.com)
+ * @license   http://opensource.org/licenses/MIT MIT
+ *
+ */
 class AttributeDatagridManager extends DatagridManager
 {
     /**
@@ -27,16 +35,28 @@ class AttributeDatagridManager extends DatagridManager
      */
     protected $baseActionUrl;
 
+    /**
+     * set router
+     * @param Router $router
+     */
     public function setRouter(Router $router)
     {
         $this->router = $router;
     }
 
+    /**
+     * get base action url
+     * @return string
+     */
     public function setBaseActionUrl($url)
     {
         $this->baseActionUrl = $url;
     }
 
+    /**
+     * get properties
+     * @return array
+     */
     protected function getProperties()
     {
         return array(

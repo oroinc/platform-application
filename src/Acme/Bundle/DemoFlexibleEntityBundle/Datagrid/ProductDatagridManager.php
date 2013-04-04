@@ -1,5 +1,4 @@
 <?php
-
 namespace Acme\Bundle\DemoFlexibleEntityBundle\Datagrid;
 
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
@@ -12,6 +11,14 @@ use Oro\Bundle\GridBundle\Action\ActionInterface;
 use Oro\Bundle\GridBundle\Property\UrlProperty;
 use Oro\Bundle\FlexibleEntityBundle\Model\AbstractAttributeType;
 
+/**
+ * Grid manager
+ *
+ * @author    Nicolas Dupont <nicolas@akeneo.com>
+ * @copyright 2013 Akeneo SAS (http://www.akeneo.com)
+ * @license   http://opensource.org/licenses/MIT MIT
+ *
+ */
 class ProductDatagridManager extends FlexibleDatagridManager
 {
     /**
@@ -70,11 +77,20 @@ class ProductDatagridManager extends FlexibleDatagridManager
         ),
     );
 
+    /**
+     * set router
+     *
+     * @param Router $router 
+     */
     public function setRouter(Router $router)
     {
         $this->router = $router;
     }
 
+    /**
+     * get properties
+     * @return array
+     */
     protected function getProperties()
     {
         return array(
@@ -84,6 +100,7 @@ class ProductDatagridManager extends FlexibleDatagridManager
     }
 
     /**
+     * get field description
      * @return FieldDescriptionCollection
      */
     protected function getFieldDescriptionCollection()
@@ -233,6 +250,7 @@ class ProductDatagridManager extends FlexibleDatagridManager
 
     /**
      * Override to add support for price and metric
+     *
      * @param $flexibleFieldType
      * @return string
      * @throws \LogicException
@@ -248,6 +266,7 @@ class ProductDatagridManager extends FlexibleDatagridManager
 
     /**
      * Override to add support for price and metric
+     *
      * @param $flexibleFieldType
      * @return string
      * @throws \LogicException
