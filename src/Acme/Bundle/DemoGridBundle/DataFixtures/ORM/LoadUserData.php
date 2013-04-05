@@ -77,10 +77,10 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
             $this->persist($hobbyAttribute);
         }
 
-        if (!$this->findAttribute('last_visit')) {
-            $lastVisitAttribute = $this->createAttribute(new DateTimeType(), 'last_visit');
-            $this->persist($lastVisitAttribute);
-        }
+        // if (!$this->findAttribute('last_visit')) {
+        //     $lastVisitAttribute = $this->createAttribute(new DateTimeType(), 'last_visit');
+        //     $this->persist($lastVisitAttribute);
+        // }
 
         $this->flush();
     }
@@ -196,7 +196,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
         $this->setFlexibleAttributeValueOption($user, 'gender', $gender);
         $this->setFlexibleAttributeValue($user, 'website', $website);
         $this->addFlexibleAttributeValueOptions($user, 'hobby', $hobbies);
-        $this->setFlexibleAttributeValue($user, 'last_visit', $lastVisit);
+        // $this->setFlexibleAttributeValue($user, 'last_visit', $lastVisit);
 
         return $user;
     }
