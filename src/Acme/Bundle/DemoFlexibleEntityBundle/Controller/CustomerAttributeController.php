@@ -31,18 +31,43 @@ class CustomerAttributeController extends Controller
     }
 
     /**
-     * @Route("/index")
-     * @Template()
-     *
-     * @return array
+     * @Route("/index.{_format}",
+     *      name="acme_demoflexibleentity_customerattribute_index",
+     *      requirements={"_format"="html|json"},
+     *      defaults={"_format" = "html"}
+     * )
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
-        // TODO : should avoid to explicitely filter on entity type ?
-        $attributes = $this->getCustomerManager()->getAttributeRepository()
-            ->findBy(array('entityType' => $this->getCustomerManager()->getFlexibleName()));
+        /** @var $em \Doctrine\ORM\EntityManager */
+        $em = $this->getDoctrine()->getManager();
+        $queryBuilder = $em->createQueryBuilder();
+        $queryBuilder
+            ->select('a.id', 'a.code', 'a.attributeType')
+            ->from('OroFlexibleEntityBundle:Attribute', 'a')
+            ->where("a.entityType = 'Acme\Bundle\DemoFlexibleEntityBundle\Entity\Customer'");
 
-        return array('attributes' => $attributes);
+        /** @var $queryFactory QueryFactory */
+        $queryFactory = $this->get('customerattribute_grid_manager.default_query_factory');
+        $queryFactory->setQueryBuilder($queryBuilder);
+
+        /** @var $gridManager AttributeDatagridManager */
+        $gridManager = $this->get('customerattribute_grid_manager');
+        $datagrid = $gridManager->getDatagrid();
+
+        if ('json' == $request->getRequestFormat()) {
+            $view = 'OroGridBundle:Datagrid:list.json.php';
+        } else {
+            $view = 'AcmeDemoFlexibleEntityBundle:CustomerAttribute:index.html.twig';
+        }
+
+        return $this->render(
+            $view,
+            array(
+                'datagrid' => $datagrid,
+                'form'     => $datagrid->getForm()->createView()
+            )
+        );
     }
 
     /**
