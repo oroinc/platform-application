@@ -2,6 +2,8 @@
 request:
     username: User_2_%str%
     email: user_2_%str%@example.com
+    firstName: firstName
+    lastName: lastName
     enabled: true
     plainPassword: 123123q
     lastLogin: ~
