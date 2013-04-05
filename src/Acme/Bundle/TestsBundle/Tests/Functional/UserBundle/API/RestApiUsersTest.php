@@ -36,6 +36,8 @@ class RestUsersApiTest extends WebTestCase
                 "email" => 'test_'  . mt_rand() . '@test.com',
                 "enabled" => 'true',
                 "plainPassword" => '1231231q',
+                "firstName" => "firstName",
+                "lastName" => "lastName"
             )
         );
         $this->client->request('POST', 'http://localhost/api/rest/latest/profile', $request);
