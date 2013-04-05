@@ -20,7 +20,7 @@ class LoginFormTest extends \PHPUnit_Extensions_Selenium2TestCase
     protected function waitPageToLoad()
     {
         $script = "return document['readyState']";
-
+        sleep(1);
         while ('complete'!= $this->execute(array('script' => $script, 'args' => array())));
     }
 
@@ -53,7 +53,7 @@ class LoginFormTest extends \PHPUnit_Extensions_Selenium2TestCase
 
         $this->byXPath("//*[@id='top-page']//div/div/div/ul[2]/li[1]/a")->click();
         $this->byXPath("//*[@id='top-page']//div/ul//li/a[contains(.,'Logout')]")->click();
-        $this->assertEquals('Login - User management', $this->title());
+        $this->assertEquals('Login', $this->title());
     }
 
     /**
@@ -74,7 +74,7 @@ class LoginFormTest extends \PHPUnit_Extensions_Selenium2TestCase
 
         $actualResult = $this->byXPath("//*[@id='top-page']/div/div/div/div[contains(.,'Bad credentials')]")->text();
 
-        $this->assertContains('Login - User management', $this->title());
+        $this->assertContains('Login', $this->title());
         $this->assertEquals("Bad credentials", $actualResult);
     }
 
