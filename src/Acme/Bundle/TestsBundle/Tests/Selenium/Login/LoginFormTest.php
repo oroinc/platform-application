@@ -3,7 +3,7 @@ namespace Acme\Bundle\TestsBundle\Tests\Selenium;
 
 class LoginFormTest extends \PHPUnit_Extensions_Selenium2TestCase
 {
-    const TIME_OUT  ='1000';
+    const TIME_OUT  = 1000;
     protected function setUp()
     {
         $this->setHost(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_HOST);
@@ -20,13 +20,13 @@ class LoginFormTest extends \PHPUnit_Extensions_Selenium2TestCase
     protected function waitPageToLoad()
     {
         $script = "return document['readyState']";
-
+        sleep(1);
         while ('complete'!= $this->execute(array('script' => $script, 'args' => array())));
+        $this->timeouts()->implicitWait(self::TIME_OUT);
     }
 
     public function testHasLoginForm()
     {
-        $this->timeouts()->implicitWait(self::TIME_OUT);
         $this->url('user/login');
         $this->waitPageToLoad();
 
@@ -48,12 +48,12 @@ class LoginFormTest extends \PHPUnit_Extensions_Selenium2TestCase
         $this->byId('prependedInput2')->clear();
         $this->byId('prependedInput2')->value(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_PASS);
         $this->clickOnElement('_submit');
-
+        $this->waitPageToLoad();
         $this->assertEquals('Dashboard', $this->title());
 
         $this->byXPath("//*[@id='top-page']//div/div/div/ul[2]/li[1]/a")->click();
         $this->byXPath("//*[@id='top-page']//div/ul//li/a[contains(.,'Logout')]")->click();
-        $this->assertEquals('Login - User management', $this->title());
+        $this->assertEquals('Login', $this->title());
     }
 
     /**
@@ -63,7 +63,6 @@ class LoginFormTest extends \PHPUnit_Extensions_Selenium2TestCase
      */
     public function testLoginFormNotSubmitsToAdmin($login, $password)
     {
-        $this->timeouts()->implicitWait(self::TIME_OUT);
         $this->url('user/login');
         $this->waitPageToLoad();
         $this->byId('prependedInput')->clear();
@@ -71,10 +70,11 @@ class LoginFormTest extends \PHPUnit_Extensions_Selenium2TestCase
         $this->byId('prependedInput2')->clear();
         $this->byId('prependedInput2')->value($password);
         $this->clickOnElement('_submit');
+        $this->waitPageToLoad();
 
         $actualResult = $this->byXPath("//*[@id='top-page']/div/div/div/div[contains(.,'Bad credentials')]")->text();
 
-        $this->assertContains('Login - User management', $this->title());
+        $this->assertContains('Login', $this->title());
         $this->assertEquals("Bad credentials", $actualResult);
     }
 
@@ -91,7 +91,6 @@ class LoginFormTest extends \PHPUnit_Extensions_Selenium2TestCase
 
     public function testLoginRequiredFiled()
     {
-        $this->timeouts()->implicitWait(self::TIME_OUT);
         $this->url('user/login');
         $this->waitPageToLoad();
         $usernameAttribute = $this->byId('prependedInput')->attribute('required');
@@ -104,7 +103,6 @@ class LoginFormTest extends \PHPUnit_Extensions_Selenium2TestCase
 
     public function testForgotPassword()
     {
-        $this->timeouts()->implicitWait(self::TIME_OUT);
         $this->url('user/login');
         $this->waitPageToLoad();
         $this->byXPath("//*[@id='top-page']//fieldset//a[contains(.,'Forgot your password?')]")->click();
@@ -113,6 +111,7 @@ class LoginFormTest extends \PHPUnit_Extensions_Selenium2TestCase
 
         $this->byId('prependedInput')->value('123test123');
         $this->byXPath("//button[contains(.,'Request')]")->click();
+        $this->waitPageToLoad();
 
         $messageActual = $this->byXPath("//*[@id='top-page']//div/div[contains(.,'The username or email address')]")->text();
         $messageExpect = "The username or email address \"123test123\" does not exist.";
@@ -120,6 +119,7 @@ class LoginFormTest extends \PHPUnit_Extensions_Selenium2TestCase
 
         $this->byId('prependedInput')->value('admin@example.com');
         $this->byXPath("//button[contains(.,'Request')]")->click();
+        $this->waitPageToLoad();
         $messageActual = $this->byXPath("//*[@id='top-page']//h3[contains(.,'An email has been sent to')]")->text();
 
         $this->assertEquals('An email has been sent to ...@example.com. It contains a link you must click to reset your password.', $messageActual);
@@ -127,7 +127,6 @@ class LoginFormTest extends \PHPUnit_Extensions_Selenium2TestCase
 
     public function testRememberFunction()
     {
-        $this->timeouts()->implicitWait(self::TIME_OUT);
         $this->url('user/login');
         $this->waitPageToLoad();
         $this->byId('prependedInput')->clear();
@@ -135,6 +134,7 @@ class LoginFormTest extends \PHPUnit_Extensions_Selenium2TestCase
         $this->byId('prependedInput2')->clear();
         $this->byId('prependedInput2')->value(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_PASS);
         $this->byId('remember_me')->click();
+        $this->waitPageToLoad();
         $this->clickOnElement('_submit');
         $this->waitPageToLoad();
         $this->assertEquals('Dashboard', $this->title());
