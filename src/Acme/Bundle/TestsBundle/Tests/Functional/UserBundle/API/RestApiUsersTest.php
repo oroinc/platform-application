@@ -37,7 +37,8 @@ class RestUsersApiTest extends WebTestCase
                 "enabled" => 'true',
                 "plainPassword" => '1231231q',
                 "firstName" => "firstName",
-                "lastName" => "lastName"
+                "lastName" => "lastName",
+                "rolesCollection" => array("1")
             )
         );
         $this->client->request('POST', 'http://localhost/api/rest/latest/profile', $request);
