@@ -22,6 +22,14 @@ class SoapSearchApiTest extends WebTestCase
     {
         $this->client = static::createClient(array(), ToolsAPI::generateWsseHeader());
         if (!self::$hasLoaded) {
+            //rebuild indexes before tests
+            $kernel = $this->client->getKernel();
+            $application = new \Symfony\Bundle\FrameworkBundle\Console\Application($kernel);
+            $application->setAutoExit(false);
+            $options = array('command' => 'oro:search:reindex');
+            $options['--env'] = "test";
+            $application->run(new \Symfony\Component\Console\Input\ArrayInput($options));
+
             $this->client->startTransaction();
             $this->client->appendFixtures(__DIR__ . DIRECTORY_SEPARATOR . 'DataFixtures');
         }
