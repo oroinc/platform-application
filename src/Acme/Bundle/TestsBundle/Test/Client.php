@@ -91,9 +91,8 @@ class Client extends BaseClient
 
     public function startTransaction()
     {
-        if (is_null(self::$connection)) {
-            self::$connection = $this->getContainer()->get('doctrine.dbal.default_connection');
-        }
+        self::$connection = $this->getContainer()->get('doctrine.dbal.default_connection');
+
         $this->getContainer()->set('doctrine.dbal.default_connection', self::$connection);
         if (self::$connection->getTransactionNestingLevel()<1) {
             self::$connection->beginTransaction();
