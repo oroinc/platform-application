@@ -1,8 +1,6 @@
 {% extends 'OroUIBundle:Default:index.html.twig' %}
-
-{% block head_script %}
-{% endblock %}
-
+{% block title %}{{ status_code }} -{{ status_text }}{% endblock %}
+{% block bodyClass %}error-page{% endblock %}
 {% block header %}
 {% endblock %}
 
@@ -10,14 +8,16 @@
 {% endblock %}
 
 {% block content %}
-<div class="alert alert-block pagination-centered popup-box">
-        <h1>{{ status_code }} {{ status_text }}</h1>
-        {% if 404 == status_code %}
-        <p>The URL you requested was not found.</p>
-        <img src="{{ asset('bundles/oroui/img/no.png') }}" alt="Error page" />
-        {% else %}
-        <img src="{{ asset('bundles/oroui/img/503.png') }}" alt="Error page" />
-        {% endif %}
+<div class="pagination-centered popup-box-errors">
+        <h1><span>{{ status_code }}</span> {{ status_text }}</h1>
+        <div class="popup-content">
+            <p>Something went wrong. Place text here about how this may be resolved, or where you can find full error log. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+        </div>
     </div>
 {% endblock %}
 
+
+{% block head_script %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('bundles/oroui/js/errors.js') }}"></script>
+{% endblock %}
