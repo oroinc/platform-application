@@ -67,7 +67,7 @@ class SoapUsersApiTest extends WebTestCase
         $userId = $this->clientSoap->soapClient->getUserBy(array('item' => array('key' =>'username', 'value' =>$request['username'])));
         $userId = ToolsAPI::classToArray($userId);
 
-        $request['username'] .= '_Updated';
+        $request['username'] = 'Updated_' . $request['username'];
         $request['email'] = 'Updated_' . $request['email'];
         unset($request['plainPassword']);
         $result = $this->clientSoap->soapClient->updateUser($userId['id'], $request);
