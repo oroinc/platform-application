@@ -16,11 +16,17 @@ class SoapGroupsApiTest extends WebTestCase
 
     /** @var \SoapClient */
     protected $clientSoap = null;
+    static protected $hasLoaded = false;
 
     public function setUp()
     {
         $this->clientSoap = static::createClient(array(), ToolsAPI::generateWsseHeader());
-        $this->clientSoap->startTransaction();
+
+        if (!self::$hasLoaded) {
+            $this->clientSoap->startTransaction();
+        }
+        self::$hasLoaded = true;
+
         $this->clientSoap->soap(
             "http://localhost/api/soap",
             array(

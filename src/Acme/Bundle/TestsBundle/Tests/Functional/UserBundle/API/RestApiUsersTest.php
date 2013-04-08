@@ -12,12 +12,16 @@ use Acme\Bundle\TestsBundle\Test\Client;
 class RestUsersApiTest extends WebTestCase
 {
 
-    public $client = null;
+    protected $client = null;
+    static protected $hasLoaded = false;
 
     public function setUp()
     {
         $this->client = static::createClient(array(), ToolsAPI::generateWsseHeader());
-        $this->client->startTransaction();
+        if (!self::$hasLoaded) {
+            $this->client->startTransaction();
+        }
+        self::$hasLoaded = true;
     }
 
     public static function tearDownAfterClass()
