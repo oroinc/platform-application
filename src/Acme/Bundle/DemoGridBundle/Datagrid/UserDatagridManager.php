@@ -168,6 +168,38 @@ class UserDatagridManager extends FlexibleDatagridManager
 
                 $this->fieldsCollection->add($field);
             }
+
+            $fieldCreated = new FieldDescription();
+            $fieldCreated->setName('created');
+            $fieldCreated->setOptions(
+                array(
+                    'type'        => FieldDescriptionInterface::TYPE_DATETIME,
+                    'label'       => 'Created At',
+                    'field_name'  => 'created',
+                    'filter_type' => FilterInterface::TYPE_DATETIME,
+                    'required'    => false,
+                    'sortable'    => true,
+                    'filterable'  => true,
+                    'show_filter' => true,
+                )
+            );
+            $this->fieldsCollection->add($fieldCreated);
+
+            $fieldUpdated = new FieldDescription();
+            $fieldUpdated->setName('updated');
+            $fieldUpdated->setOptions(
+                array(
+                    'type'        => FieldDescriptionInterface::TYPE_DATETIME,
+                    'label'       => 'Updated At',
+                    'field_name'  => 'updated',
+                    'filter_type' => FilterInterface::TYPE_DATETIME,
+                    'required'    => false,
+                    'sortable'    => true,
+                    'filterable'  => true,
+                    'show_filter' => true,
+                )
+            );
+            $this->fieldsCollection->add($fieldUpdated);
         }
 
         return $this->fieldsCollection;

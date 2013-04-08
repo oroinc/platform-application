@@ -13,11 +13,15 @@ class RestUserApiTest extends WebTestCase
 {
 
     public $client = null;
+    static protected $hasLoaded = false;
 
     public function setUp()
     {
         $this->client = static::createClient(array(), ToolsAPI::generateWsseHeader());
-        $this->client->startTransaction();
+        if (!self::$hasLoaded) {
+            $this->client->startTransaction();
+        }
+        self::$hasLoaded = true;
     }
 
     public static function tearDownAfterClass()

@@ -11,6 +11,7 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\UrlType;
 use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\OptionMultiSelectType;
 use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\DateType;
+use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\DateTimeType;
 use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\TextType;
 
 use Oro\Bundle\FlexibleEntityBundle\Model\FlexibleValueInterface;
@@ -77,7 +78,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
         }
 
         // if (!$this->findAttribute('last_visit')) {
-        //     $lastVisitAttribute = $this->createAttribute(new DateType(), 'last_visit');
+        //     $lastVisitAttribute = $this->createAttribute(new DateTimeType(), 'last_visit');
         //     $this->persist($lastVisitAttribute);
         // }
 

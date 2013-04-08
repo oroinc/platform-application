@@ -47,6 +47,86 @@ class LoadManufacturesData extends AbstractFixture implements OrderedFixtureInte
         $manager->persist($manufacturer);
         $this->addReference('MANUFACTURER_PUMA', $manufacturer);
 
+        $manufacturer = new Manufacturer();
+        $manufacturer->setName('Fila');
+        $manager->persist($manufacturer);
+        $this->addReference('MANUFACTURER_FILA', $manufacturer);
+
+        $manufacturer = new Manufacturer();
+        $manufacturer->setName('Converse');
+        $manager->persist($manufacturer);
+        $this->addReference('MANUFACTURER_CONVERSE', $manufacturer);
+
+        $manufacturer = new Manufacturer();
+        $manufacturer->setName('New Balance');
+        $manager->persist($manufacturer);
+        $this->addReference('MANUFACTURER_NEW_BALANCE', $manufacturer);
+
+        $manufacturer = new Manufacturer();
+        $manufacturer->setName('K-Swiss');
+        $manager->persist($manufacturer);
+        $this->addReference('MANUFACTURER_KSWISS', $manufacturer);
+
+        $manufacturer = new Manufacturer();
+        $manufacturer->setName('Asics');
+        $manager->persist($manufacturer);
+        $this->addReference('MANUFACTURER_ASICS', $manufacturer);
+
+        $manufacturer = new Manufacturer();
+        $manufacturer->setName('Hi-Tec');
+        $manager->persist($manufacturer);
+        $this->addReference('MANUFACTURER_HITEC', $manufacturer);
+
+        $manufacturer = new Manufacturer();
+        $manufacturer->setName('The North Face');
+        $manager->persist($manufacturer);
+        $this->addReference('MANUFACTURER_NORTH_FACE', $manufacturer);
+
+        $manufacturer = new Manufacturer();
+        $manufacturer->setName('L.L. Bean');
+        $manager->persist($manufacturer);
+        $this->addReference('MANUFACTURER_LLBEAN', $manufacturer);
+
+        $manufacturer = new Manufacturer();
+        $manufacturer->setName('Under Armour');
+        $manager->persist($manufacturer);
+        $this->addReference('MANUFACTURER_UNDER_ARMOUR', $manufacturer);
+
+        $manufacturer = new Manufacturer();
+        $manufacturer->setName('Quicksilver');
+        $manager->persist($manufacturer);
+        $this->addReference('MANUFACTURER_QUICKSILVER', $manufacturer);
+
+        $manufacturer = new Manufacturer();
+        $manufacturer->setName('Lacoste');
+        $manager->persist($manufacturer);
+        $this->addReference('MANUFACTURER_LACOSTE', $manufacturer);
+
+        $manufacturer = new Manufacturer();
+        $manufacturer->setName('Ubmro');
+        $manager->persist($manufacturer);
+        $this->addReference('MANUFACTURER_UMBRO', $manufacturer);
+
+        $manufacturer = new Manufacturer();
+        $manufacturer->setName('Mckenzie');
+        $manager->persist($manufacturer);
+        $this->addReference('MANUFACTURER_MCKENZIE', $manufacturer);
+
+        $manufacturer = new Manufacturer();
+        $manufacturer->setName('Carbrini');
+        $manager->persist($manufacturer);
+        $this->addReference('MANUFACTURER_CARBRINI', $manufacturer);
+
+        $manufacturer = new Manufacturer();
+        $manufacturer->setName('Bench');
+        $manager->persist($manufacturer);
+        $this->addReference('MANUFACTURER_BENCH', $manufacturer);
+
+        $manufacturer = new Manufacturer();
+        $manufacturer->setName('Timberland');
+        $manager->persist($manufacturer);
+        $this->addReference('MANUFACTURER_TIMBERLAND', $manufacturer);
+
         $manager->flush();
     }
 
