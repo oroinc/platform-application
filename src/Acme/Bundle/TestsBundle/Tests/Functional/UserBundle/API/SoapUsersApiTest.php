@@ -16,11 +16,17 @@ class SoapUsersApiTest extends WebTestCase
 
     /** @var \SoapClient */
     protected $clientSoap = null;
+    static protected $hasLoaded = false;
 
     public function setUp()
     {
         $this->clientSoap = static::createClient(array(), ToolsAPI::generateWsseHeader());
-        $this->clientSoap->startTransaction();
+
+        if (!self::$hasLoaded) {
+            $this->clientSoap->startTransaction();
+        }
+        self::$hasLoaded = true;
+
         $this->clientSoap->soap(
             "http://localhost/api/soap",
             array(
@@ -61,8 +67,8 @@ class SoapUsersApiTest extends WebTestCase
         $userId = $this->clientSoap->soapClient->getUserBy(array('item' => array('key' =>'username', 'value' =>$request['username'])));
         $userId = ToolsAPI::classToArray($userId);
 
-        $request['username'] .= '_Updated';
-        $request['email'] .= '_Updated';
+        $request['username'] = 'Updated_' . $request['username'];
+        $request['email'] = 'Updated_' . $request['email'];
         unset($request['plainPassword']);
         $result = $this->clientSoap->soapClient->updateUser($userId['id'], $request);
         $result = ToolsAPI::classToArray($result);
@@ -84,7 +90,7 @@ class SoapUsersApiTest extends WebTestCase
         $result = false;
         foreach ($users as $user) {
             foreach ($user as $userDetails) {
-                $result = $userDetails['username'] == $request['username'] . '_Updated';
+                $result = $userDetails['username'] == 'Updated_' . $request['username'];
                 if ($result) {
                     break;
                 }
@@ -104,7 +110,7 @@ class SoapUsersApiTest extends WebTestCase
             array(
                 'item' => array(
                     'key' =>'username',
-                    'value' =>$request['username'] . '_Updated')
+                    'value' =>'Updated_' . $request['username'])
             )
         );
         $userId = ToolsAPI::classToArray($userId);
@@ -115,7 +121,7 @@ class SoapUsersApiTest extends WebTestCase
                 array(
                     'item' => array(
                         'key' =>'username',
-                        'value' =>$request['username'] . '_Updated')
+                        'value' =>'Updated_' . $request['username'])
                 )
             );
         } catch (\SoapFault $e) {
