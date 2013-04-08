@@ -44,7 +44,7 @@ class ProductDatagridManager extends DatagridManager
             $fieldManufacturerName->setName('m_name');
             $fieldManufacturerName->setOptions(
                 array(
-                    'type'        => FieldDescriptionInterface::TYPE_TEXT,
+                    'type'         => FieldDescriptionInterface::TYPE_TEXT,
                     'label'        => 'Manufacturer name',
                     'entity_alias' => 'm',
                     'field_name'   => 'name',
@@ -61,15 +61,15 @@ class ProductDatagridManager extends DatagridManager
             $fieldManufacturerId->setName('product_count');
             $fieldManufacturerId->setOptions(
                 array(
-                    'type'         => FieldDescriptionInterface::TYPE_INTEGER,
-                    'label'        => 'Number of products',
-                    'field_name'   => 'COUNT(p.id)',
-                    'filter_type'  => FilterInterface::TYPE_NUMBER,
-                    'required'     => false,
-                    'sortable'     => true,
-                    'filterable'   => true,
-                    'show_filter'  => true,
-                    'complex_data' => true
+                    'type'        => FieldDescriptionInterface::TYPE_INTEGER,
+                    'label'       => 'Number of products',
+                    'filter_type' => FilterInterface::TYPE_NUMBER,
+                    'field_name'  => 'product_count',
+                    'required'    => false,
+                    'expression'  => 'COUNT(p.id)',
+                    'sortable'    => true,
+                    'filterable'  => true,
+                    'show_filter' => true,
                 )
             );
             $this->fieldsCollection->add($fieldManufacturerId);
@@ -78,15 +78,15 @@ class ProductDatagridManager extends DatagridManager
             $fieldId->setName('id');
             $fieldId->setOptions(
                 array(
-                    'type'        => FieldDescriptionInterface::TYPE_INTEGER,
-                    'label'       => 'Product ID',
+                    'type'         => FieldDescriptionInterface::TYPE_INTEGER,
+                    'label'        => 'Product ID',
                     'entity_alias' => 'p',
-                    'field_name'  => 'id',
-                    'filter_type' => FilterInterface::TYPE_NUMBER,
-                    'required'    => false,
-                    'sortable'    => true,
-                    'filterable'  => true,
-                    'show_filter' => true,
+                    'field_name'   => 'id',
+                    'filter_type'  => FilterInterface::TYPE_NUMBER,
+                    'required'     => false,
+                    'sortable'     => true,
+                    'filterable'   => true,
+                    'show_filter'  => true,
                 )
             );
             $this->fieldsCollection->add($fieldId);
@@ -95,15 +95,15 @@ class ProductDatagridManager extends DatagridManager
             $fieldName->setName('name');
             $fieldName->setOptions(
                 array(
-                    'type'        => FieldDescriptionInterface::TYPE_TEXT,
-                    'label'       => 'Name',
+                    'type'         => FieldDescriptionInterface::TYPE_TEXT,
+                    'label'        => 'Name',
                     'entity_alias' => 'p',
-                    'field_name'  => 'name',
-                    'filter_type' => FilterInterface::TYPE_STRING,
-                    'required'    => false,
-                    'sortable'    => true,
-                    'filterable'  => true,
-                    'show_filter' => true,
+                    'field_name'   => 'name',
+                    'filter_type'  => FilterInterface::TYPE_STRING,
+                    'required'     => false,
+                    'sortable'     => true,
+                    'filterable'   => true,
+                    'show_filter'  => true,
                 )
             );
             $this->fieldsCollection->add($fieldName);
@@ -112,15 +112,15 @@ class ProductDatagridManager extends DatagridManager
             $fieldPrice->setName('price');
             $fieldPrice->setOptions(
                 array(
-                    'type'        => FieldDescriptionInterface::TYPE_DECIMAL,
-                    'label'       => 'Price',
+                    'type'         => FieldDescriptionInterface::TYPE_DECIMAL,
+                    'label'        => 'Price',
                     'entity_alias' => 'p',
-                    'field_name'  => 'price',
-                    'filter_type' => FilterInterface::TYPE_NUMBER,
-                    'required'    => false,
-                    'sortable'    => true,
-                    'filterable'  => true,
-                    'show_filter' => true,
+                    'field_name'   => 'price',
+                    'filter_type'  => FilterInterface::TYPE_NUMBER,
+                    'required'     => false,
+                    'sortable'     => true,
+                    'filterable'   => true,
+                    'show_filter'  => true,
                 )
             );
             $this->fieldsCollection->add($fieldPrice);
@@ -129,15 +129,15 @@ class ProductDatagridManager extends DatagridManager
             $fieldCount->setName('count');
             $fieldCount->setOptions(
                 array(
-                    'type'        => FieldDescriptionInterface::TYPE_INTEGER,
-                    'label'       => 'Count',
+                    'type'         => FieldDescriptionInterface::TYPE_INTEGER,
+                    'label'        => 'Count',
                     'entity_alias' => 'p',
-                    'field_name'  => 'count',
-                    'filter_type' => FilterInterface::TYPE_NUMBER,
-                    'required'    => false,
-                    'sortable'    => true,
-                    'filterable'  => true,
-                    'show_filter' => true,
+                    'field_name'   => 'count',
+                    'filter_type'  => FilterInterface::TYPE_NUMBER,
+                    'required'     => false,
+                    'sortable'     => true,
+                    'filterable'   => true,
+                    'show_filter'  => true,
                 )
             );
             $this->fieldsCollection->add($fieldCount);
@@ -146,15 +146,15 @@ class ProductDatagridManager extends DatagridManager
             $fieldDescription->setName('description');
             $fieldDescription->setOptions(
                 array(
-                    'type'        => FieldDescriptionInterface::TYPE_TEXT,
-                    'label'       => 'Description',
+                    'type'         => FieldDescriptionInterface::TYPE_TEXT,
+                    'label'        => 'Description',
                     'entity_alias' => 'p',
-                    'field_name'  => 'description',
-                    'filter_type' => FilterInterface::TYPE_STRING,
-                    'required'    => false,
-                    'sortable'    => true,
-                    'filterable'  => true,
-                    'show_filter' => true,
+                    'field_name'   => 'description',
+                    'filter_type'  => FilterInterface::TYPE_STRING,
+                    'required'     => false,
+                    'sortable'     => true,
+                    'filterable'   => true,
+                    'show_filter'  => true,
                 )
             );
             $this->fieldsCollection->add($fieldDescription);
@@ -163,15 +163,15 @@ class ProductDatagridManager extends DatagridManager
             $fieldCreateDate->setName('createDate');
             $fieldCreateDate->setOptions(
                 array(
-                    'type'        => FieldDescriptionInterface::TYPE_DATETIME,
-                    'label'       => 'Create Date',
+                    'type'         => FieldDescriptionInterface::TYPE_DATETIME,
+                    'label'        => 'Create Date',
                     'entity_alias' => 'p',
-                    'field_name'  => 'createDate',
-                    'filter_type' => FilterInterface::TYPE_DATETIME,
-                    'required'    => false,
-                    'sortable'    => true,
-                    'filterable'  => true,
-                    'show_filter' => true,
+                    'field_name'   => 'createDate',
+                    'filter_type'  => FilterInterface::TYPE_DATETIME,
+                    'required'     => false,
+                    'sortable'     => true,
+                    'filterable'   => true,
+                    'show_filter'  => true,
                 )
             );
             $this->fieldsCollection->add($fieldCreateDate);
