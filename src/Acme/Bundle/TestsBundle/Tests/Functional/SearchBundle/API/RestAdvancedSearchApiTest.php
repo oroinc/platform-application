@@ -46,10 +46,6 @@ class RestAdvancedSearchApiTest extends WebTestCase
     public function testApi($request, $response)
     {
         $requestUrl = $request['query'];
-//        foreach ($request as $key => $value) {
-//            $requestUrl .= (is_null($request[$key])) ? '' :
-//                (($requestUrl!=='') ? '&':'') . "{$key}=" . $value;
-//        }
         $this->client->request('GET', "http://localhost/api/rest/latest/search/advanced?query={$requestUrl}");
 
         $result = $this->client->getResponse();
@@ -99,12 +95,5 @@ class RestAdvancedSearchApiTest extends WebTestCase
     {
         $this->assertEquals($response['records_count'], $result['records_count']);
         $this->assertEquals($response['count'], $result['count']);
-//        if (isset($response['rest']['data']) && is_array($response['rest']['data'])) {
-//            foreach ($response['rest']['data'] as $key => $object) {
-//                foreach ($object as $property => $value) {
-//                    $this->assertEquals($value, $result['data'][$key][$property]);
-//                }
-//            }
-//        }
     }
 }
