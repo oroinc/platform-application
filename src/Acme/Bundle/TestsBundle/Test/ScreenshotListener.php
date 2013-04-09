@@ -28,12 +28,14 @@ class ScreenshotListener implements \PHPUnit_Framework_TestListener
     {
         if ($test instanceof \PHPUnit_Extensions_Selenium2TestCase) {
 
+            $className = explode('\\', get_class($test));
             try {
-                $file = getcwd()  . DIRECTORY_SEPARATOR . $this->directory . DIRECTORY_SEPARATOR . end(explode('\\', get_class($test)));
+                $file = getcwd() . DIRECTORY_SEPARATOR . $this->directory . DIRECTORY_SEPARATOR . end($className);
                 $file .= '__' . $test->getName() . '__ ' . date('Y-m-d\TH-i-s') . '.png';
                 file_put_contents($file, $test->currentScreenshot());
             } catch (\Exception $e) {
-                $file = getcwd()  . DIRECTORY_SEPARATOR . $this->directory . DIRECTORY_SEPARATOR . end(explode('\\', get_class($test)));
+
+                $file = getcwd() . DIRECTORY_SEPARATOR . $this->directory . DIRECTORY_SEPARATOR . end($className);
                 $file .= '__' . $test->getName() . '__ ' . date('Y-m-d\TH-i-s') . '.txt';
                 file_put_contents(
                     $file,
