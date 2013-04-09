@@ -1,5 +1,6 @@
 <?php
 
+// @codingStandardsIgnoreStart
 class ScreenshotListener implements \PHPUnit_Framework_TestListener
 {
     private $directory;
@@ -57,12 +58,12 @@ class ScreenshotListener implements \PHPUnit_Framework_TestListener
 
     public function startTest(\PHPUnit_Framework_Test $test)
     {
-
+        var_dump($test);
     }
 
     public function startTestSuite(\PHPUnit_Framework_TestSuite $suite)
     {
-
+        var_dump($suite);
     }
 
     public function endTestSuite(\PHPUnit_Framework_TestSuite $suite)

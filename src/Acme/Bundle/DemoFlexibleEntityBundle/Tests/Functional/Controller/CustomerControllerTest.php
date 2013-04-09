@@ -197,11 +197,27 @@ class CustomerControllerTest extends KernelAwareControllerTest
      */
     protected function callQueryActionUrl($params)
     {
-        $attributes = (isset($params['attributes'])) ? $params['attributes'] : 'null';
-        $criteria   = (isset($params['criteria'])) ? $params['criteria'] : 'null';
-        $orderBy    = (isset($params['orderBy'])) ? $params['orderBy'] : 'null';
-        $limit      = (isset($params['limit'])) ? $params['limit'] : 'null';
-        $offset     = (isset($params['offset'])) ? $params['offset'] : 'null';
+        $attributes = $orderBy = $criteria = $orderBy = $limit = $offset = 'null';
+
+        if (isset($params['attributes'])) {
+            $attributes = $params['attributes'];
+        };
+
+        if (isset($params['criteria'])) {
+            $criteria = $params['criteria'];
+        };
+
+        if (isset($params['orderBy'])) {
+            $orderBy = $params['orderBy'];
+        };
+
+        if (isset($params['limit'])) {
+            $limit = $params['limit'];
+        };
+
+        if (isset($params['offset'])) {
+            $offset = $params['offset'];
+        };
 
         $urlSuffix = $this->prepareUrlForQueryAction($attributes, $criteria, $orderBy, $limit, $offset);
         foreach (self::$locales as $locale) {
