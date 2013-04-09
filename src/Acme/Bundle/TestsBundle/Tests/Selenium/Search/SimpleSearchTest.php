@@ -50,6 +50,7 @@ class SimpleSearchTest extends \PHPUnit_Extensions_Selenium2TestCase
         //fill-in simple search field
         $this->byId('search-bar-search')->value('admin@example.com');
         //checking that search suggestion drop-down available or not
+        sleep(1);
         $this->assertTrue(
             $this->isElementPresent("//*[@id='search-dropdown']/ul/li/a[contains(., 'admin')]"),
             'No search suggestions available'
