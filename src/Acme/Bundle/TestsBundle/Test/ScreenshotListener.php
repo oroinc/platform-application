@@ -1,5 +1,7 @@
 <?php
 
+namespace Acme\Bundle\TestsBundle\Test;
+
 class ScreenshotListener implements \PHPUnit_Framework_TestListener
 {
     private $directory;
@@ -28,12 +30,14 @@ class ScreenshotListener implements \PHPUnit_Framework_TestListener
     {
         if ($test instanceof \PHPUnit_Extensions_Selenium2TestCase) {
 
+            $className = explode('\\', get_class($test));
             try {
-                $file = getcwd()  . DIRECTORY_SEPARATOR . $this->directory . DIRECTORY_SEPARATOR . end(explode('\\', get_class($test)));
+                $file = getcwd() . DIRECTORY_SEPARATOR . $this->directory . DIRECTORY_SEPARATOR . end($className);
                 $file .= '__' . $test->getName() . '__ ' . date('Y-m-d\TH-i-s') . '.png';
                 file_put_contents($file, $test->currentScreenshot());
             } catch (\Exception $e) {
-                $file = getcwd()  . DIRECTORY_SEPARATOR . $this->directory . DIRECTORY_SEPARATOR . end(explode('\\', get_class($test)));
+
+                $file = getcwd() . DIRECTORY_SEPARATOR . $this->directory . DIRECTORY_SEPARATOR . end($className);
                 $file .= '__' . $test->getName() . '__ ' . date('Y-m-d\TH-i-s') . '.txt';
                 file_put_contents(
                     $file,
@@ -43,9 +47,28 @@ class ScreenshotListener implements \PHPUnit_Framework_TestListener
         }
     }
 
-    public function addIncompleteTest(\PHPUnit_Framework_Test $test, \Exception $e, $time) {}
-    public function addSkippedTest(\PHPUnit_Framework_Test $test, \Exception $e, $time) {}
-    public function startTest(\PHPUnit_Framework_Test $test) {}
-    public function startTestSuite(\PHPUnit_Framework_TestSuite $suite) {}
-    public function endTestSuite(\PHPUnit_Framework_TestSuite $suite) {}
+    public function addIncompleteTest(\PHPUnit_Framework_Test $test, \Exception $e, $time)
+    {
+
+    }
+
+    public function addSkippedTest(\PHPUnit_Framework_Test $test, \Exception $e, $time)
+    {
+
+    }
+
+    public function startTest(\PHPUnit_Framework_Test $test)
+    {
+
+    }
+
+    public function startTestSuite(\PHPUnit_Framework_TestSuite $suite)
+    {
+
+    }
+
+    public function endTestSuite(\PHPUnit_Framework_TestSuite $suite)
+    {
+
+    }
 }

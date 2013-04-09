@@ -15,8 +15,10 @@
 
     <testsuites>
         <testsuite name="Project Test Suite">
-            <directory suffix="Test.php">../src/*/*Bundle/Tests</directory>
-            <directory suffix="Test.php">../src/*/Bundle/*Bundle/Tests</directory>
+            <directory suffix="Test.php">../src/*/*Bundle/Tests/Unit</directory>
+            <directory suffix="Test.php">../src/*/Bundle/*Bundle/Tests/Unit</directory>
+            <directory suffix="Test.php">../src/*/*Bundle/Tests/Functional</directory>
+            <directory suffix="Test.php">../src/*/Bundle/*Bundle/Tests/Functional</directory>
         </testsuite>
         <testsuite name="Project Unit Tests">
             <directory suffix="Test.php">../src/*/*Bundle/Tests/Unit</directory>
