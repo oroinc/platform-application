@@ -20,8 +20,10 @@ class LoginFormTest extends \PHPUnit_Extensions_Selenium2TestCase
     protected function waitPageToLoad()
     {
         $script = "return document['readyState']";
-        sleep(1);
-        while ('complete'!= $this->execute(array('script' => $script, 'args' => array())));
+        while ('complete'!= $this->execute(array('script' => $script, 'args' => array()))) {
+            //empty loop
+            sleep(1);
+        };
         $this->timeouts()->implicitWait(self::TIME_OUT);
     }
 

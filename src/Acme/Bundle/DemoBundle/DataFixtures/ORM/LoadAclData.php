@@ -23,8 +23,7 @@ class LoadAclData extends AbstractFixture implements OrderedFixtureInterface
             ->setName('Template controller')
             ->setParent($this->getReference('acl_root'))
             ->addAccessRole($this->getReference('user_role'))
-            ->addAccessRole($this->getReference('admin_role'))
-        ;
+            ->addAccessRole($this->getReference('admin_role'));
         $manager->persist($rootAcl);
         $this->setReference('acl_template_controller', $rootAcl);
         $manager->flush();
