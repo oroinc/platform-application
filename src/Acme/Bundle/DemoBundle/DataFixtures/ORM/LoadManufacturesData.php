@@ -27,107 +27,42 @@ class LoadManufacturesData extends AbstractFixture implements OrderedFixtureInte
      */
     public function load(ObjectManager $manager)
     {
-        $manufacturer = new Manufacturer();
-        $manufacturer->setName('Adidas');
-        $manager->persist($manufacturer);
-        $this->addReference('MANUFACTURER_ADIDAS', $manufacturer);
+        $manufactures = array(
+            'Adidas'         => 'MANUFACTURER_ADIDAS',
+            'Reebok'         => 'MANUFACTURER_REEBOK',
+            'Nike'           => 'MANUFACTURER_NIKE',
+            'Puma'           => 'MANUFACTURER_PUMA',
+            'Fila'           => 'MANUFACTURER_FILA',
+            'Converse'       => 'MANUFACTURER_CONVERSE',
+            'New Balance'    => 'MANUFACTURER_NEW_BALANCE',
+            'K-Swiss'        => 'MANUFACTURER_KSWISS',
+            'Asics'          => 'MANUFACTURER_ASICS',
+            'Hi-Tec'         => 'MANUFACTURER_HITEC',
+            'The North Face' => 'MANUFACTURER_NORTH_FACE',
+            'L.L. Bean'      => 'MANUFACTURER_LLBEAN',
+            'Under Armour'   => 'MANUFACTURER_UNDER_ARMOUR',
+            'Quicksilver'    => 'MANUFACTURER_QUICKSILVER',
+            'Lacoste'        => 'MANUFACTURER_LACOSTE',
+            'Ubmro'          => 'MANUFACTURER_UMBRO',
+            'Mckenzie'       => 'MANUFACTURER_MCKENZIE',
+            'Carbrini'       => 'MANUFACTURER_CARBRINI',
+            'Bench'          => 'MANUFACTURER_BENCH',
+            'Timberland'     => 'MANUFACTURER_TIMBERLAND'
+        );
 
-        $manufacturer = new Manufacturer();
-        $manufacturer->setName('Reebok');
-        $manager->persist($manufacturer);
-        $this->addReference('MANUFACTURER_REEBOK', $manufacturer);
-
-        $manufacturer = new Manufacturer();
-        $manufacturer->setName('Nike');
-        $manager->persist($manufacturer);
-        $this->addReference('MANUFACTURER_NIKE', $manufacturer);
-
-        $manufacturer = new Manufacturer();
-        $manufacturer->setName('Puma');
-        $manager->persist($manufacturer);
-        $this->addReference('MANUFACTURER_PUMA', $manufacturer);
-
-        $manufacturer = new Manufacturer();
-        $manufacturer->setName('Fila');
-        $manager->persist($manufacturer);
-        $this->addReference('MANUFACTURER_FILA', $manufacturer);
-
-        $manufacturer = new Manufacturer();
-        $manufacturer->setName('Converse');
-        $manager->persist($manufacturer);
-        $this->addReference('MANUFACTURER_CONVERSE', $manufacturer);
-
-        $manufacturer = new Manufacturer();
-        $manufacturer->setName('New Balance');
-        $manager->persist($manufacturer);
-        $this->addReference('MANUFACTURER_NEW_BALANCE', $manufacturer);
-
-        $manufacturer = new Manufacturer();
-        $manufacturer->setName('K-Swiss');
-        $manager->persist($manufacturer);
-        $this->addReference('MANUFACTURER_KSWISS', $manufacturer);
-
-        $manufacturer = new Manufacturer();
-        $manufacturer->setName('Asics');
-        $manager->persist($manufacturer);
-        $this->addReference('MANUFACTURER_ASICS', $manufacturer);
-
-        $manufacturer = new Manufacturer();
-        $manufacturer->setName('Hi-Tec');
-        $manager->persist($manufacturer);
-        $this->addReference('MANUFACTURER_HITEC', $manufacturer);
-
-        $manufacturer = new Manufacturer();
-        $manufacturer->setName('The North Face');
-        $manager->persist($manufacturer);
-        $this->addReference('MANUFACTURER_NORTH_FACE', $manufacturer);
-
-        $manufacturer = new Manufacturer();
-        $manufacturer->setName('L.L. Bean');
-        $manager->persist($manufacturer);
-        $this->addReference('MANUFACTURER_LLBEAN', $manufacturer);
-
-        $manufacturer = new Manufacturer();
-        $manufacturer->setName('Under Armour');
-        $manager->persist($manufacturer);
-        $this->addReference('MANUFACTURER_UNDER_ARMOUR', $manufacturer);
-
-        $manufacturer = new Manufacturer();
-        $manufacturer->setName('Quicksilver');
-        $manager->persist($manufacturer);
-        $this->addReference('MANUFACTURER_QUICKSILVER', $manufacturer);
-
-        $manufacturer = new Manufacturer();
-        $manufacturer->setName('Lacoste');
-        $manager->persist($manufacturer);
-        $this->addReference('MANUFACTURER_LACOSTE', $manufacturer);
-
-        $manufacturer = new Manufacturer();
-        $manufacturer->setName('Ubmro');
-        $manager->persist($manufacturer);
-        $this->addReference('MANUFACTURER_UMBRO', $manufacturer);
-
-        $manufacturer = new Manufacturer();
-        $manufacturer->setName('Mckenzie');
-        $manager->persist($manufacturer);
-        $this->addReference('MANUFACTURER_MCKENZIE', $manufacturer);
-
-        $manufacturer = new Manufacturer();
-        $manufacturer->setName('Carbrini');
-        $manager->persist($manufacturer);
-        $this->addReference('MANUFACTURER_CARBRINI', $manufacturer);
-
-        $manufacturer = new Manufacturer();
-        $manufacturer->setName('Bench');
-        $manager->persist($manufacturer);
-        $this->addReference('MANUFACTURER_BENCH', $manufacturer);
-
-        $manufacturer = new Manufacturer();
-        $manufacturer->setName('Timberland');
-        $manager->persist($manufacturer);
-        $this->addReference('MANUFACTURER_TIMBERLAND', $manufacturer);
+        foreach ($manufactures as $manufacturer => $reference) {
+            $this->loadManufacturer($manufacturer, $reference, $manager);
+        }
 
         $manager->flush();
+    }
+
+    private function loadManufacturer($name, $reference, ObjectManager $manager)
+    {
+        $manufacturer = new Manufacturer();
+        $manufacturer->setName($name);
+        $manager->persist($manufacturer);
+        $this->addReference($reference, $manufacturer);
     }
 
     public function getOrder()
