@@ -1,4 +1,5 @@
 <?php
+
 namespace Acme\Bundle\TestsBundle\Tests\Selenium;
 
 use Acme\Bundle\TestsBundle\Test\ToolsAPI;
@@ -6,6 +7,7 @@ use Acme\Bundle\TestsBundle\Test\ToolsAPI;
 class RolesTest extends \PHPUnit_Extensions_Selenium2TestCase
 {
     protected $newRole = array('LABEL' => 'NEW_LABEL_', 'ROLE_NAME' => 'NEW_ROLE_');
+
     protected $defaultRoles = array(
         'header' => array('ID' => 'ID', 'ROLE' => 'ROLE', 'LABEL' => 'LABEL', '' => 'ACTION'),
         '1' => array('1' => '1', 'ROLE_MANAGER' => 'ROLE_MANAGER', 'Manager' => 'Manager', '...' => 'ACTION'),
@@ -14,7 +16,9 @@ class RolesTest extends \PHPUnit_Extensions_Selenium2TestCase
         '4' => array('4' => '4', 'ROLE_USER' => 'ROLE_USER', 'User' => 'User', '...' => 'ACTION'),
         '5' => array('5' => '5', 'ROLE_SUPER_ADMIN' => 'ROLE_SUPER_ADMIN', 'Super admin' => 'Super admin', '...' => 'ACTION')
     );
+
     const TIME_OUT  = 1000;
+
     protected function setUp()
     {
         $this->setHost(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_HOST);
@@ -108,7 +112,10 @@ class RolesTest extends \PHPUnit_Extensions_Selenium2TestCase
         //verify new ROLE
         $this->assertInstanceOf(
             'PHPUnit_Extensions_Selenium2TestCase_Element',
-            $this->byXPath("//table[contains(@class, 'grid')]//tr/td[text() = " . 'ROLE_' . $this->newRole['ROLE_NAME'] . $randomPrefix . ']')
+            $this->byXPath(
+                "//table[contains(@class, 'grid')]//tr/td[text() = '" .
+                'ROLE_' . $this->newRole['ROLE_NAME'] . strtoupper($randomPrefix) . "']"
+            )
         );
 
         return $randomPrefix;
@@ -123,7 +130,12 @@ class RolesTest extends \PHPUnit_Extensions_Selenium2TestCase
         $this->url('user/role');
         $this->waitPageToLoad();
         $this->login(&$this);
-        $row = $this->byXPath("//table[contains(@class, 'grid')]//tr[td[text() = " . 'ROLE_' . $this->newRole['ROLE_NAME'] . $role . '"]]');
-        $row->byXPath("td[@class = 'action-cell']//a[contains(., '...')]")->click();
+        $row = $this->byXPath(
+            "//table[contains(@class, 'grid')]//tr[td[text() = '" .
+            'ROLE_' . $this->newRole['ROLE_NAME'] . strtoupper($role) . "']]"
+        );
+        $row->element($this->using('xpath')->value("td[@class = 'action-cell']//a[contains(., '...')]"))->click();
+        $row->element($this->using('xpath')->value("td[@class = 'action-cell']//a[contains(., 'Delete')]"))->click();
+        $this->byXPath("//div[div[contains(., 'Delete Confirmation')]]//a[text()='OK']")->click();
     }
 }
