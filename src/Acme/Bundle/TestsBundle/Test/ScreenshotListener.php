@@ -1,5 +1,6 @@
 <?php
 
+// @codingStandardsIgnoreStart
 class ScreenshotListener implements \PHPUnit_Framework_TestListener
 {
     private $directory;

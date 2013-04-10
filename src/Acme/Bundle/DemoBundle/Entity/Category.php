@@ -22,6 +22,11 @@ class Category
     private $id;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Product", mappedBy="categories")
+     */
+    private $products;
+
+    /**
      * @var string $name
      *
      * @ORM\Column(name="name", type="string", length=255)
@@ -29,9 +34,12 @@ class Category
     private $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Product", mappedBy="categories")
+     * Constructor
      */
-    private $products;
+    public function __construct()
+    {
+        $this->products = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -41,6 +49,28 @@ class Category
     public function getId()
     {
         return $this->id;
+    }
+    /**
+     * Add products
+     *
+     * @param  Acme\Bundle\DemoBundle\Entity\Product $products
+     * @return Category
+     */
+    public function addProduct(\Acme\Bundle\DemoBundle\Entity\Product $products)
+    {
+        $this->products[] = $products;
+
+        return $this;
+    }
+
+    /**
+     * Remove products
+     *
+     * @param Acme\Bundle\DemoBundle\Entity\Product $products
+     */
+    public function removeProduct(\Acme\Bundle\DemoBundle\Entity\Product $products)
+    {
+        $this->products->removeElement($products);
     }
 
     /**
@@ -64,36 +94,6 @@ class Category
     public function getName()
     {
         return $this->name;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->products = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add products
-     *
-     * @param  Acme\Bundle\DemoBundle\Entity\Product $products
-     * @return Category
-     */
-    public function addProduct(\Acme\Bundle\DemoBundle\Entity\Product $products)
-    {
-        $this->products[] = $products;
-
-        return $this;
-    }
-
-    /**
-     * Remove products
-     *
-     * @param Acme\Bundle\DemoBundle\Entity\Product $products
-     */
-    public function removeProduct(\Acme\Bundle\DemoBundle\Entity\Product $products)
-    {
-        $this->products->removeElement($products);
     }
 
     /**
