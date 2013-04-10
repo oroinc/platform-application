@@ -3,6 +3,7 @@ namespace Acme\Bundle\TestsBundle\Tests\Selenium\Search;
 
 class SimpleSearchTest extends \PHPUnit_Extensions_Selenium2TestCase
 {
+    const TIME_OUT  = 1000;
     protected function setUp()
     {
         $this->setHost(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_HOST);
@@ -49,8 +50,9 @@ class SimpleSearchTest extends \PHPUnit_Extensions_Selenium2TestCase
         //fill-in simple search field
         $this->byId('search-bar-search')->value('admin@example.com');
         //checking that search suggestion drop-down available or not
+        sleep(1);
         $this->assertTrue(
-            $this->isElementPresent("//*[@id='search-dropdown']/ul/li"),
+            $this->isElementPresent("//*[@id='search-dropdown']/ul/li/a[contains(., 'admin')]"),
             'No search suggestions available'
         );
     }
@@ -71,21 +73,4 @@ class SimpleSearchTest extends \PHPUnit_Extensions_Selenium2TestCase
         $searchResult = $this->byXPath("//div[@class='container-fluid']/div/h3/a[contains(., 'admin')]")->text();
         $this->assertEquals('admin', $searchResult);
     }
-
-//    public function testSearchPagination()
-//    {
-//        $this->timeouts()->implicitWait(10000);
-//        $this->url('user/login');
-//        //log-in
-//        $this->byId('prependedInput')->value(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_LOGIN);
-//        $this->byId('prependedInput2')->value(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_PASS);
-//        $this->clickOnElement('_submit');
-//        //search for entity
-//        $this->byId('search-bar-search')->value('Product');
-//        $this->byXPath("//*[@id='search-div']//div/button[contains(.,'Search')]")->click();
-//        //using pagination
-//        $this->byXPath("//*[@class='pagination']/ul/li/a[contains(.,'2')]")->click();
-//        //need to check that opened url si for page 2
-//        $this->assertContains('page=2', $this->url(), "Browser URL doesn't match the pagination page");
-//    }
 }
