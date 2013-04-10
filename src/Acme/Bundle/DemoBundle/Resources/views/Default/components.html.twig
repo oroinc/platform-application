@@ -56,11 +56,6 @@
 
     {# TODO: remove after functionality realisation #}
     <style type="text/css">
-        #most-viewed-tab,
-        #most-viewed-content {
-            display: none;
-        }
-
         #main {
             min-height: 800px;
         }
@@ -74,10 +69,10 @@
             <div class="container-fluid">
                 <div class="top-action-box">
                     <div class="btn-group icons-holder icons-small">
-                        <button class="btn minimize-button" data-title="{{ block('title') }}"><i class="icon-minimize hide-text">minimaze tab</i></button>
+                        <button class="btn minimize-button" data-title="{{ block('title') }}" title="{{ 'Minimize the window to the pinbar'|trans }}"><i class="icon-minimize hide-text">minimaze tab</i></button>
                         {# <button class="btn maximize-button"><i class="icon-fullscreen hide-text">full screen</i></button> #}
-                        <button class="btn favorite-button" data-title="{{ block('title') }}"><i class="icon-star icon-white hide-text">favorites</i></button>
-                        <button class="btn close-button"><i class="icon-remove hide-text">Close</i></button>
+                        <button class="btn favorite-button" data-title="{{ block('title') }}" title="{{ 'Add this page to favorites'|trans }}"><i class="icon-star icon-white hide-text">favorites</i></button>
+                        <button class="btn close-button" title="{{ 'Close page'|trans }}"><i class="icon-remove hide-text">Close</i></button>
                     </div>
                 </div>
             </div>
