@@ -21,7 +21,10 @@ class LoginFormTest extends \PHPUnit_Extensions_Selenium2TestCase
     {
         $script = "return document['readyState']";
         sleep(1);
-        while ('complete'!= $this->execute(array('script' => $script, 'args' => array())));
+        while ('complete'!= $this->execute(array('script' => $script, 'args' => array()))) {
+            //empty loop
+            sleep(1);
+        };
         $this->timeouts()->implicitWait(self::TIME_OUT);
     }
 
@@ -40,7 +43,6 @@ class LoginFormTest extends \PHPUnit_Extensions_Selenium2TestCase
 
     public function testLoginFormSubmitsToAdmin()
     {
-        $this->timeouts()->implicitWait(self::TIME_OUT);
         $this->url('user/login');
         $this->waitPageToLoad();
         $this->byId('prependedInput')->clear();
