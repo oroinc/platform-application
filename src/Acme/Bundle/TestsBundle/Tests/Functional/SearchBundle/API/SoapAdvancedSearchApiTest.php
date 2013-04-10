@@ -29,6 +29,7 @@ class SoapAdvancedSearchApiTest extends WebTestCase
             $application->setAutoExit(false);
             $options = array('command' => 'oro:search:reindex');
             $options['--env'] = "test";
+            $options['--quiet'] = null;
             $application->run(new \Symfony\Component\Console\Input\ArrayInput($options));
 
             $this->client->startTransaction();
