@@ -28,7 +28,8 @@ class UserCrudTest extends \PHPUnit_Extensions_Selenium2TestCase
         $this->timeouts()->implicitWait(self::TIME_OUT);
     }
 
-    protected function waitForAjax($iSec = 1) {
+    protected function waitForAjax($iSec = 1)
+    {
         $i = 0;
         do {
             $bRunning = $this->execute(array('script' => 'return jQuery.active != 0', 'args' => array()));
@@ -39,7 +40,7 @@ class UserCrudTest extends \PHPUnit_Extensions_Selenium2TestCase
                 $i++;
                 sleep($iSec);
             }
-        } while($bRunning);
+        } while ($bRunning);
     }
 
     protected function login($form)
@@ -93,8 +94,10 @@ class UserCrudTest extends \PHPUnit_Extensions_Selenium2TestCase
         $this->waitPageToLoad();
         //check that succesful message displayed
         $this->assertEquals('Users overview - Dashboard', $this->title());
-        $this->assertTrue($this->isElementPresent("//div[contains(@class,'alert') and contains(., 'User successfully saved')]"),
-            'Message that user is created not found');
+        $this->assertTrue(
+            $this->isElementPresent("//div[contains(@class,'alert') and contains(., 'User successfully saved')]"),
+            'Message that user is created not found'
+        );
         return $username;
     }
 
@@ -132,10 +135,12 @@ class UserCrudTest extends \PHPUnit_Extensions_Selenium2TestCase
         $this->waitPageToLoad();
         //check that success message displayed
         $this->assertEquals($username.' - profile - Dashboard', $this->title());
-        $this->assertTrue($this->isElementPresent("//div[contains(@class,'alert') and contains(., 'User successfully saved')]"),
-            'Message that user is created not found');
+        $this->assertTrue(
+            $this->isElementPresent("//div[contains(@class,'alert') and contains(., 'User successfully saved')]"),
+            'Message that user is created not found'
+        );
 
-       return $username;
+        return $username;
     }
 
     /**
@@ -154,14 +159,20 @@ class UserCrudTest extends \PHPUnit_Extensions_Selenium2TestCase
         $this->waitPageToLoad();
         $this->assertEquals('Users overview - Dashboard', $this->title());
         //check that success remove message displayed
-        $this->assertTrue($this->isElementPresent("//div[contains(@class,'alert') and contains(., 'User successfully removed')]"),
-             'Message that user is removed not found');
+        $this->assertTrue(
+            $this->isElementPresent("//div[contains(@class,'alert') and contains(., 'User successfully removed')]"),
+            'Message that user is removed not found'
+        );
         //check that this user can't be found by filter search
         $this->byXPath("//*[@id='usersDatagridFilters']/div/div/button[contains(., 'Username')]")->click();
         $this->isElementPresent("//*[@class='btn-group filter-item oro-drop open-filter']/div/div/");
         $this->byXPath("//*[@class='btn-group filter-item oro-drop open-filter']/div/div/div/input")->value($username);
         $this->byXPath("//div[@class='btn-group filter-item oro-drop open-filter']//button[contains(., 'Update')]")->click();
-        $this->assertTrue($this->isElementPresent("//*[@class='no-data']/span[contains(., 'No users were found to match your search.')]",
-            'Message that no users found not displayed'));
+        $this->assertTrue(
+            $this->isElementPresent(
+                "//*[@class='no-data']/span[contains(., 'No users were found to match your search.')]",
+                'Message that no users found not displayed'
+            )
+        );
     }
 }
