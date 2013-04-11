@@ -61,13 +61,7 @@ class CustomerAttributeController extends Controller
             $view = 'AcmeDemoFlexibleEntityBundle:CustomerAttribute:index.html.twig';
         }
 
-        return $this->render(
-            $view,
-            array(
-                'datagrid' => $datagrid,
-                'form'     => $datagrid->getForm()->createView()
-            )
-        );
+        return $this->render($view, array('datagrid' => $datagrid));
     }
 
     /**

@@ -70,13 +70,7 @@ class ProductAttributeController extends Controller
             $view = 'AcmeDemoFlexibleEntityBundle:ProductAttribute:index.html.twig';
         }
 
-        return $this->render(
-            $view,
-            array(
-                'datagrid' => $datagrid,
-                'form'     => $datagrid->getForm()->createView()
-            )
-        );
+        return $this->render($view, array('datagrid' => $datagrid));
     }
 
     /**
