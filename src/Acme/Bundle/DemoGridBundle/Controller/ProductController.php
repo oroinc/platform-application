@@ -55,12 +55,6 @@ class ProductController extends Controller
         } else {
             $view = 'AcmeDemoGridBundle:Product:list.html.twig';
         }
-        return $this->render(
-            $view,
-            array(
-                'datagrid' => $datagrid,
-                'form'     => $datagrid->getForm()->createView()
-            )
-        );
+        return $this->render($view, array('datagrid' => $datagrid));
     }
 }

@@ -32,12 +32,6 @@ class UserController extends Controller
             $view = 'AcmeDemoGridBundle:User:list.html.twig';
         }
 
-        return $this->render(
-            $view,
-            array(
-                'datagrid' => $datagrid,
-                'form'     => $datagrid->getForm()->createView()
-            )
-        );
+        return $this->render($view, array('datagrid' => $datagrid));
     }
 }
