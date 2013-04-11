@@ -29,13 +29,35 @@ class SimpleSearchTest extends \PHPUnit_Extensions_Selenium2TestCase
 
     protected function waitPageToLoad()
     {
-        $script = "return document['readyState']";
-        sleep(1);
-        while ('complete'!= $this->execute(array('script' => $script, 'args' => array()))) {
-            //empty loop
+        $script = "return 'complete' != document['readyState']";
+        do {
             sleep(1);
-        };
+        } while ($this->execute(array('script' => $script, 'args' => array())));
+
         $this->timeouts()->implicitWait(self::TIME_OUT);
+    }
+
+    protected function waitForAjax()
+    {
+        $script = "return jQuery.active";
+        do {
+            sleep(1);
+        } while ($this->execute(array('script' => $script, 'args' => array())));
+    }
+
+    /**
+     * @param $form
+     */
+    protected function login($form)
+    {
+        $name = $form->byId('prependedInput');
+        $password = $form->byId('prependedInput2');
+        $name->clear();
+        $name->value(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_LOGIN);
+        $password->clear();
+        $password->value(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_PASS);
+        $form->clickOnElement('_submit');
+        $form->waitPageToLoad();
     }
 
     public function testSearchSuggestions()
@@ -43,14 +65,11 @@ class SimpleSearchTest extends \PHPUnit_Extensions_Selenium2TestCase
         $this->url('user/login');
         $this->waitPageToLoad();
         //log-in
-        $this->byId('prependedInput')->value(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_LOGIN);
-        $this->byId('prependedInput2')->value(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_PASS);
-        $this->clickOnElement('_submit');
-        $this->waitPageToLoad();
+        $this->login($this);
         //fill-in simple search field
         $this->byId('search-bar-search')->value('admin@example.com');
         //checking that search suggestion drop-down available or not
-        sleep(1);
+        $this->waitForAjax();
         $this->assertTrue(
             $this->isElementPresent("//*[@id='search-dropdown']/ul/li/a[contains(., 'admin')]"),
             'No search suggestions available'
@@ -61,11 +80,7 @@ class SimpleSearchTest extends \PHPUnit_Extensions_Selenium2TestCase
     {
         $this->url('user/login');
         $this->waitPageToLoad();
-        $this->byId('prependedInput')->value(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_LOGIN);
-        $this->byId('prependedInput2')->value(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_PASS);
-        $this->clickOnElement('_submit');
-        $this->waitPageToLoad();
-
+        $this->login($this);
         $this->byId('search-bar-search')->value('admin');
         $this->byXPath("//*[@id='search-div']//div/button[contains(.,'Search')]")->click();
         $this->waitPageToLoad();
