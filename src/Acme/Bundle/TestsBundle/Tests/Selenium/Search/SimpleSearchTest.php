@@ -1,9 +1,11 @@
 <?php
-namespace Acme\Bundle\TestsBundle\Tests\Selenium\Search;
+
+namespace Acme\Bundle\TestsBundle\Tests\Selenium;
 
 class SimpleSearchTest extends \PHPUnit_Extensions_Selenium2TestCase
 {
     const TIME_OUT  = 1000;
+
     protected function setUp()
     {
         $this->setHost(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_HOST);
