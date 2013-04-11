@@ -12,21 +12,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 class ProductValue extends AbstractEntityFlexibleValue
 {
     /**
-     * @var \Oro\Bundle\FlexibleEntityBundle\Entity\Attribute $attribute
-     *
-     * @ORM\ManyToOne(targetEntity="Oro\Bundle\FlexibleEntityBundle\Entity\Attribute")
-     * @ORM\JoinColumn(name="attribute_id", referencedColumnName="id", onDelete="CASCADE")
-     */
-    protected $attribute;
-
-    /**
-     * @var Product $entity
-     *
-     * @ORM\ManyToOne(targetEntity="Product", inversedBy="values")
-     */
-    protected $entity;
-
-    /**
      * Store options values
      *
      * @var options ArrayCollection
@@ -38,4 +23,19 @@ class ProductValue extends AbstractEntityFlexibleValue
      * )
      */
     protected $options;
+
+    /**
+     * @var Product $entity
+     *
+     * @ORM\ManyToOne(targetEntity="Product", inversedBy="values")
+     */
+    protected $entity;
+
+    /**
+     * @var \Oro\Bundle\FlexibleEntityBundle\Entity\Attribute $attribute
+     *
+     * @ORM\ManyToOne(targetEntity="Oro\Bundle\FlexibleEntityBundle\Entity\Attribute")
+     * @ORM\JoinColumn(name="attribute_id", referencedColumnName="id", onDelete="CASCADE")
+     */
+    protected $attribute;
 }
