@@ -122,7 +122,7 @@ class ToolsAPI
         srand((double) microtime()*1000000);
         $char_list = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         $char_list .= "abcdefghijklmnopqrstuvwxyz";
-        $char_list .= "1234567890-_";
+        $char_list .= "1234567890_";
         // Add the special characters to $char_list if needed
 
         for ($i = 0; $i < $length; $i++) {
