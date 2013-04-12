@@ -1,6 +1,6 @@
 <?php
 
-namespace Acme\Bundle\DemoSearchBundle\Tests\Performance;
+namespace Acme\Bundle\TestsBundle\Tests\Performance;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Doctrine\ORM\Tools\SchemaTool;

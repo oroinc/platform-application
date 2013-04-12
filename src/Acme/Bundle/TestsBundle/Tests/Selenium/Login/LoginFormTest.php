@@ -109,7 +109,7 @@ class LoginFormTest extends \PHPUnit_Extensions_Selenium2TestCase
         $this->waitPageToLoad();
         $this->byXPath("//*[@id='top-page']//fieldset//a[contains(.,'Forgot your password?')]")->click();
         $this->waitPageToLoad();
-        $this->assertEquals('Password reset request - User management', $this->title());
+        $this->assertEquals('Forgot password', $this->title());
 
         $this->byId('prependedInput')->value('123test123');
         $this->byXPath("//button[contains(.,'Request')]")->click();
