@@ -35,15 +35,16 @@ assetic:
     use_controller:           false
     bundles:
         - OroUIBundle
-        - AcmeDemoBundle
         - OroUserBundle
-        - AcmeDemoSegmentationTreeBundle
-        - AcmeDemoGridBundle
         - OroGridBundle
         - OroFilterBundle
         - OroNavigationBundle
         - OroWindowsBundle
+        - AcmeDemoBundle
+        - AcmeDemoSegmentationTreeBundle
         - AcmeDemoWindowsBundle
+        - AcmeDemoGridBundle
+        - AcmeDemoFilterBundle
     #java: /usr/bin/java
     filters:
         cssrewrite: ~

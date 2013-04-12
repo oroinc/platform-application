@@ -2,6 +2,231 @@
 
 {% block title %}Filter Demo - Frontend{% endblock %}
 
+{% block head_style %}
+    {{ parent() }}
+    {% stylesheets
+        'bundles/orofilter/lib/multiselect/jquery.multiselect.css'
+        'bundles/orofilter/lib/multiselect/jquery.multiselect.filter.css'
+        'bundles/orofilter/css/oro.filter.css'
+
+        output='css/acme.demo_filter.css'
+        filter='cssrewrite'
+    %}
+        <link rel="stylesheet" type="text/css" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+
+{% block head_script %}
+    {{ parent() }}
+    {% javascripts
+        '@OroFilterBundle/Resources/public/lib/multiselect/jquery.multiselect.js'
+        '@OroFilterBundle/Resources/public/lib/multiselect/jquery.multiselect.filter.js'
+
+        '@OroFilterBundle/Resources/public/lib/jquery-ui-timepicker-addon.js'
+
+        '@OroFilterBundle/Resources/public/js/app/filter/formatter.js'
+        '@OroFilterBundle/Resources/public/js/app/filter/multiselectdecorator.js'
+
+        '@OroFilterBundle/Resources/public/js/app/filter/abstractfilter.js'
+        '@OroFilterBundle/Resources/public/js/app/filter/textfilter.js'
+        '@OroFilterBundle/Resources/public/js/app/filter/choicefilter.js'
+        '@OroFilterBundle/Resources/public/js/app/filter/numberfilter.js'
+        '@OroFilterBundle/Resources/public/js/app/filter/datefilter.js'
+        '@OroFilterBundle/Resources/public/js/app/filter/datetimefilter.js'
+        '@OroFilterBundle/Resources/public/js/app/filter/selectfilter.js'
+        '@OroFilterBundle/Resources/public/js/app/filter/multiselectfilter.js'
+
+        '@OroFilterBundle/Resources/public/js/app/filter/list.js'
+
+        output='js/acme.demo_filter.js'
+    %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+    <script type="text/javascript">
+        $(function() {
+            var demoFilters = {
+                'text_filter': OroApp.createInstanceFromConstructor(OroApp.Filter.ChoiceFilter.extend({
+                    name: 'text_filter',
+                    label: 'Text Filter',
+                    enabled: true,
+                    choices: {
+                        'string_type_1' : 'hint for string type 1',
+                        'string_type_2' : 'hint for string type 2',
+                        'string_type_3' : 'hint for string type 3'
+                    }
+                })),
+                'number_filter': OroApp.createInstanceFromConstructor(OroApp.Filter.NumberFilter.extend({
+                    name: 'number_filter',
+                    label: 'Number Filter',
+                    enabled: true,
+                    choices: {
+                        'number_type_1' : 'hint for number type 1',
+                        'number_type_2' : 'hint for number type 2',
+                        'number_type_3' : 'hint for number type 3'
+                    },
+                    formatter: 'decimal'
+                })),
+                'date_filter': OroApp.createInstanceFromConstructor(OroApp.Filter.DateFilter.extend({
+                    name: 'date_filter',
+                    label: 'Date Filter',
+                    enabled: true,
+                    choices: {
+                        'type_date_between'     : 'hint for date type between',
+                        'type_date_not_between' : 'hint for date type not between'
+                    },
+                    typeValues: {
+                        between:    'type_date_between',
+                        notBetween: 'type_date_not_between'
+                    },
+                    externalWidgetOptions: {
+                        dateFormat: 'mm/dd/yy',
+                        firstDay: 0
+                    }
+                })),
+                'datetime_filter': OroApp.createInstanceFromConstructor(OroApp.Filter.DateTimeFilter.extend({
+                    name: 'datetime_filter',
+                    label: 'DateTime Filter',
+                    enabled: true,
+                    choices: {
+                        'type_datetime_between'     : 'hint for datetime type between',
+                        'type_datetime_not_between' : 'hint for datetime type not between'
+                    },
+                    typeValues: {
+                        between:    'type_datetime_between',
+                        notBetween: 'type_datetime_not_between'
+                    },
+                    externalWidgetOptions: {
+                        dateFormat: 'mm/dd/yy',
+                        timeFormat: 'hh:mm tt',
+                        firstDay: 0
+                    }
+                })),
+                'select_filter': OroApp.createInstanceFromConstructor(OroApp.Filter.SelectFilter.extend({
+                    name: 'select_filter',
+                    label: 'Select Filter',
+                    enabled: false,
+                    options: {
+                        'option_1' : 'hint for select option 1',
+                        'option_2' : 'hint for select option 2',
+                        'option_3' : 'hint for select option 3'
+                    }
+                })),
+                'multiselect_filter': OroApp.createInstanceFromConstructor(OroApp.Filter.MultiSelectFilter.extend({
+                    name: 'multiselect_filter',
+                    label: 'MultiSelect Filter',
+                    enabled: false,
+                    options: {
+                        'multiselect_1' : 'hint for multiselect option 1',
+                        'multiselect_2' : 'hint for multiselect option 2',
+                        'multiselect_3' : 'hint for multiselect option 3'
+                    }
+                }))
+            };
+
+            var filtersList = new OroApp.Filter.List({ filters: demoFilters });
+            $('#demoFilterList').html(filtersList.render().$el);
+
+            // demo service functions
+            $('#showSelectFilterButton').on('click', function() {
+                filtersList.enableFilter(filtersList.filters['select_filter']);
+            });
+            $('#hideSelectFilterButton').on('click', function() {
+                filtersList.disableFilter(filtersList.filters['select_filter']);
+            });
+
+            $('#showAllFiltersButton').on('click', function() {
+                _.each(filtersList.filters, function(filter) {
+                    filtersList.enableFilter(filter);
+                });
+            });
+            $('#hideAllFiltersButton').on('click', function() {
+                _.each(filtersList.filters, function(filter) {
+                    filtersList.disableFilter(filter);
+                });
+            });
+
+            $('#getValuesButton').on('click', function() {
+                var values = filtersList.getValues();
+                $('#filterValue').html(JSON.stringify(values));
+            });
+            $('#setValuesButton').on('click', function() {
+                var values = {
+                    'text_filter': {
+                        value: $('#filterForm input[name="text_value"]').val(),
+                        type: $('#filterForm input[name="text_type"]').val()
+                    },
+                    'number_filter': {
+                        value: $('#filterForm input[name="number_value"]').val(),
+                        type: $('#filterForm input[name="number_type"]').val()
+                    },
+                    'date_filter': {
+                        value: {
+                            start: $('#filterForm input[name="date_value_from"]').val(),
+                            end: $('#filterForm input[name="date_value_to"]').val()
+                        },
+                        type: $('#filterForm input[name="date_type"]').val()
+                    },
+                    'datetime_filter': {
+                        value: {
+                            start: $('#filterForm input[name="datetime_value_from"]').val(),
+                            end: $('#filterForm input[name="datetime_value_to"]').val()
+                        },
+                        type: $('#filterForm input[name="datetime_type"]').val()
+                    },
+                    'select_filter': {
+                        value: $('#filterForm input[name="select_value"]').val()
+                    },
+                    'multiselect_filter': {
+                        value: [
+                            $('#filterForm input[name="multiselect_value_1"]').val(),
+                            $('#filterForm input[name="multiselect_value_2"]').val()
+                        ]
+                    }
+                };
+                filtersList.setValues(values);
+            });
+        });
+    </script>
+{% endblock %}
+
 {% block content %}
-    frontend
+    <div style="padding:20px;">
+        <h2>Filter Demo</h2>
+        <div id="demoFilterList"></div>
+
+        <h4>Show/Hide filters</h4>
+        <input type="button" value="Show select filter" id="showSelectFilterButton" />
+        <input type="button" value="Hide select filters" id="hideSelectFilterButton" />
+        <input type="button" value="Show all filters" id="showAllFiltersButton" />
+        <input type="button" value="Hide all filters" id="hideAllFiltersButton" />
+
+        <h4>Get Filter Values</h4>
+        <div id="filterValue"></div>
+        <input type="button" value="Get Values" id="getValuesButton" />
+
+        <h4>Set Filter Values</h4>
+        <div id="filterForm">
+            Text value: <input type="text" name="text_value" value="text value" />
+            Text type: <input type="text" name="text_type" value="string_type_2" />
+            <br>
+            Number value: <input type="text" name="number_value" value="42" />
+            Number type: <input type="text" name="number_type" value="number_type_3" />
+            <br>
+            Date value from: <input type="text" name="date_value_from" value="2001-01-01" />
+            Date value to: <input type="text" name="date_value_to" value="2012-12-31" />
+            Date type: <input type="text" name="date_type" value="type_date_not_between" />
+            <br>
+            Datetime value from: <input type="text" name="datetime_value_from" value="2001-01-01 01:12:00" />
+            Datetime value to: <input type="text" name="datetime_value_to" value="2012-12-31 23:59:00" />
+            Datetime type: <input type="text" name="datetime_type" value="type_datetime_not_between" />
+            <br>
+            Select value: <input type="text" name="select_value" value="option_3" />
+            <br>
+            Multiselect value:
+            <input type="text" name="multiselect_value_1" value="multiselect_1" />
+            <input type="text" name="multiselect_value_2" value="multiselect_3" />
+        </div>
+        <input type="button" value="Set values" id="setValuesButton" />
+    </div>
 {% endblock %}
