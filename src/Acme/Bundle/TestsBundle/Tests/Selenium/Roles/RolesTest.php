@@ -71,7 +71,7 @@ class RolesTest extends \PHPUnit_Extensions_Selenium2TestCase
     {
         $this->url('user/role');
         $this->waitPageToLoad();
-        $this->login(&$this);
+        $this->login($this);
 
         //get grid content
         $records = $this->elements($this->using('xpath')->value("//table[contains(@class, 'grid')]//tr"));
@@ -97,7 +97,7 @@ class RolesTest extends \PHPUnit_Extensions_Selenium2TestCase
     {
         $this->url('user/role');
         $this->waitPageToLoad();
-        $this->login(&$this);
+        $this->login($this);
         $this->byXPath("//a[contains(., 'Add new')]")->click();
         $this->waitPageToLoad();
         $randomPrefix = ToolsAPI::randomGen(5);
@@ -129,7 +129,7 @@ class RolesTest extends \PHPUnit_Extensions_Selenium2TestCase
     {
         $this->url('user/role');
         $this->waitPageToLoad();
-        $this->login(&$this);
+        $this->login($this);
         $row = $this->byXPath(
             "//table[contains(@class, 'grid')]//tr[td[text() = '" .
             'ROLE_' . $this->newRole['ROLE_NAME'] . strtoupper($role) . "']]"
