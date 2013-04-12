@@ -86,8 +86,13 @@ class TestListener implements \PHPUnit_Framework_TestListener
         );
 
         if (strtolower(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM2_BROWSER) == 'phantomjs') {
+            if (PHP_OS == 'WINNT') {
+                $path = PHPUNIT_TESTSUITE_BROWSER_PATH_WINNT;
+            } else {
+                $path = PHPUNIT_TESTSUITE_BROWSER_PATH_LINUX;
+            }
             $this->pid  = proc_open(
-                PHPUNIT_TESTSUITE_BROWSER_PATH_WINNT . " --webdriver=" . PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_PORT,
+                "{$path} --webdriver=" . PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_PORT,
                 $descriptorspec,
                 $this->pipes);
         }
