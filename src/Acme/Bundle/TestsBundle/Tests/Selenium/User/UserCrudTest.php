@@ -58,7 +58,7 @@ class UserCrudTest extends \PHPUnit_Extensions_Selenium2TestCase
     protected function openUserInfoPage($username)
     {
         $this->byXPath("//*[@class='grid table-hover table table-bordered table-condensed']/tbody/tr/td[text() = \"$username\"]")->click();
-        $this->assertEquals($username.' - profile - Dashboard', $this->title());
+        $this->assertEquals('Last_'.$username.', First_'.$username.' - Profile - User Management', $this->title());
     }
 
     protected function searchFilterByUsername($username)
@@ -80,7 +80,7 @@ class UserCrudTest extends \PHPUnit_Extensions_Selenium2TestCase
         //open add new usr page
         $this->byXPath("//*[@id='main']/div/h1/a[contains(., 'Add new')]")->click();
         $this->waitPageToLoad();
-        $this->assertEquals('Add profile - Dashboard', $this->title());
+        $this->assertEquals('New User - User Management', $this->title());
         //fill form
         $username = 'User_'.mt_rand();
         $this->byId('oro_user_profile_form_username')->value($username);
@@ -93,7 +93,7 @@ class UserCrudTest extends \PHPUnit_Extensions_Selenium2TestCase
         $this->byXPath("//*[@class='pull-right']/button[contains(., 'Save')]")->click();
         $this->waitPageToLoad();
         //check that succesful message displayed
-        $this->assertEquals('Users overview - Dashboard', $this->title());
+        $this->assertEquals('Users overview - User Management', $this->title());
         $this->assertTrue(
             $this->isElementPresent("//div[contains(@class,'alert') and contains(., 'User successfully saved')]"),
             'Message that user is created not found'
@@ -126,15 +126,19 @@ class UserCrudTest extends \PHPUnit_Extensions_Selenium2TestCase
         //open edit user page
         $this->byXPath("//*[@class='btn-group icons-holder']/a[contains(., 'Edit')]")->click();
         $this->waitPageToLoad();
-        $this->assertEquals('Edit profile - Dashboard', $this->title());
+        $this->assertEquals('Edit profile - User Management', $this->title());
         //editing user info
         $username = 'Update_'.$username;
         $this->byId('oro_user_profile_form_username')->clear();
         $this->byId('oro_user_profile_form_username')->value($username);
+        $this->byId('oro_user_profile_form_firstName')->clear();
+        $this->byId('oro_user_profile_form_firstName')->value('First_'.$username);
+        $this->byId('oro_user_profile_form_lastName')->clear();
+        $this->byId('oro_user_profile_form_lastName')->value('Last_'.$username);
         $this->byXPath("//*[@class='pull-right']/button[contains(., 'Save')]")->click();
         $this->waitPageToLoad();
         //check that success message displayed
-        $this->assertEquals($username.' - profile - Dashboard', $this->title());
+        $this->assertEquals('Last_'.$username.', First_'.$username.' - Profile - User Management', $this->title());
         $this->assertTrue(
             $this->isElementPresent("//div[contains(@class,'alert') and contains(., 'User successfully saved')]"),
             'Message that user is created not found'
@@ -157,7 +161,7 @@ class UserCrudTest extends \PHPUnit_Extensions_Selenium2TestCase
         //delete user
         $this->byXPath("//*[@class='btn-group icons-holder']/a[contains(., 'Remove')]")->click();
         $this->waitPageToLoad();
-        $this->assertEquals('Users overview - Dashboard', $this->title());
+        $this->assertEquals('Users overview - User Management', $this->title());
         //check that success remove message displayed
         $this->assertTrue(
             $this->isElementPresent("//div[contains(@class,'alert') and contains(., 'User successfully removed')]"),
