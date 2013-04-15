@@ -7,6 +7,7 @@ class TestListener implements \PHPUnit_Framework_TestListener
     private $pipes;
     private $directory;
 
+
     public function __construct($directory)
     {
         $this->directory = $directory;
@@ -95,6 +96,7 @@ class TestListener implements \PHPUnit_Framework_TestListener
                 "{$path} --webdriver=" . PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_PORT,
                 $descriptorspec,
                 $this->pipes);
+            $this->waitServerRun(5, PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_HOST, PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_PORT);
         }
     }
 
@@ -127,5 +129,24 @@ class TestListener implements \PHPUnit_Framework_TestListener
                 $this->pid = null;
             }
         }
+    }
+
+    private function waitServerRun($timeOut = 5, $url = 'localhost', $port  = '4444')
+    {
+        $running = false;
+        $i = 0;
+        do {
+            $fp = @fsockopen($url, intval($port));
+            $i++;
+            if ($i >= $timeOut) {
+                break;
+            }
+            sleep(1);
+        } while (!$fp);
+        if ($fp !== false) {
+            fclose($fp);
+            $running = true;
+        }
+        return $running;
     }
 }
