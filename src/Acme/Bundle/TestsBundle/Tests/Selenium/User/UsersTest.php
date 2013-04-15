@@ -59,7 +59,7 @@ class UsersTest extends \PHPUnit_Extensions_Selenium2TestCase
     protected function openUserInfoPage($username)
     {
         $this->byXPath("//*[@class='grid table-hover table table-bordered table-condensed']/tbody/tr/td[text() = \"$username\"]")->click();
-        $this->assertEquals('Last_'.$username.', First_'.$username.' - Profile - User Management', $this->title());
+        $this->assertEquals('Last_'.$username.', First_'.$username.' - View profile - User Management', $this->title());
     }
 
     protected function searchFilterByUsername($username)
@@ -81,7 +81,7 @@ class UsersTest extends \PHPUnit_Extensions_Selenium2TestCase
         //open add new usr page
         $this->byXPath("//*[@id='main']/div/h1/a[contains(., 'Add new')]")->click();
         $this->waitPageToLoad();
-        $this->assertEquals('New User - User Management', $this->title());
+        $this->assertEquals('New profile - User Management', $this->title());
         //fill form
         $username = 'User_'.mt_rand();
         $this->byId('oro_user_profile_form_username')->value($username);
@@ -127,7 +127,7 @@ class UsersTest extends \PHPUnit_Extensions_Selenium2TestCase
         //open edit user page
         $this->byXPath("//*[@class='btn-group icons-holder']/a[contains(., 'Edit')]")->click();
         $this->waitPageToLoad();
-        $this->assertEquals('Edit profile - User Management', $this->title());
+        $this->assertEquals('Last_' . $username . ', First_' . $username . ' - Edit profile - User Management', $this->title());
         //editing user info
         $username = 'Update_'.$username;
         $this->byId('oro_user_profile_form_username')->clear();
@@ -139,7 +139,7 @@ class UsersTest extends \PHPUnit_Extensions_Selenium2TestCase
         $this->byXPath("//*[@class='pull-right']/button[contains(., 'Save')]")->click();
         $this->waitPageToLoad();
         //check that success message displayed
-        $this->assertEquals('Last_'.$username.', First_'.$username.' - Profile - User Management', $this->title());
+        $this->assertEquals('Last_' . $username . ', First_' . $username. ' - View profile - User Management', $this->title());
         $this->assertTrue(
             $this->isElementPresent("//div[contains(@class,'alert') and contains(., 'User successfully saved')]"),
             'Message that user is created not found'
