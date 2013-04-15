@@ -148,7 +148,10 @@
 
             $('#getValuesButton').on('click', function() {
                 var values = filtersList.getValues();
-                $('#filterValue').html(JSON.stringify(values));
+                $('#filterValue').html(JSON.stringify(values, null, 4));
+            });
+            $('#clearValuesButton').on('click', function() {
+                $('#filterValue').html('');
             });
             $('#setValuesButton').on('click', function() {
                 var values = {
@@ -191,42 +194,84 @@
 {% endblock %}
 
 {% block content %}
-    <div style="padding:20px;">
+    <div style="padding:0 20px;">
         <h2>Filter Demo</h2>
         <div id="demoFilterList"></div>
 
-        <h4>Show/Hide filters</h4>
-        <input type="button" value="Show select filter" id="showSelectFilterButton" />
-        <input type="button" value="Hide select filters" id="hideSelectFilterButton" />
-        <input type="button" value="Show all filters" id="showAllFiltersButton" />
-        <input type="button" value="Hide all filters" id="hideAllFiltersButton" />
+        <h3>Show/Hide filters</h3>
+        <input type="button" class="btn" value="Show all filters" id="showAllFiltersButton" />
+        <input type="button" class="btn" value="Hide all filters" id="hideAllFiltersButton" />
+        <input type="button" class="btn" value="Show select filter" id="showSelectFilterButton" />
+        <input type="button" class="btn" value="Hide select filter" id="hideSelectFilterButton" />
 
-        <h4>Get Filter Values</h4>
-        <div id="filterValue"></div>
-        <input type="button" value="Get Values" id="getValuesButton" />
-
-        <h4>Set Filter Values</h4>
-        <div id="filterForm">
-            Text value: <input type="text" name="text_value" value="text value" />
-            Text type: <input type="text" name="text_type" value="string_type_2" />
-            <br>
-            Number value: <input type="text" name="number_value" value="42" />
-            Number type: <input type="text" name="number_type" value="number_type_3" />
-            <br>
-            Date value from: <input type="text" name="date_value_from" value="2001-01-01" />
-            Date value to: <input type="text" name="date_value_to" value="2012-12-31" />
-            Date type: <input type="text" name="date_type" value="type_date_not_between" />
-            <br>
-            Datetime value from: <input type="text" name="datetime_value_from" value="2001-01-01 01:12:00" />
-            Datetime value to: <input type="text" name="datetime_value_to" value="2012-12-31 23:59:00" />
-            Datetime type: <input type="text" name="datetime_type" value="type_datetime_not_between" />
-            <br>
-            Select value: <input type="text" name="select_value" value="option_3" />
-            <br>
-            Multiselect value:
-            <input type="text" name="multiselect_value_1" value="multiselect_1" />
-            <input type="text" name="multiselect_value_2" value="multiselect_3" />
+        <h3>Get Filter Values</h3>
+        <div>
+            <pre style="font-size: 14px;" id="filterValue"></pre>
         </div>
-        <input type="button" value="Set values" id="setValuesButton" />
+        <input type="button" class="btn" value="Get Values" id="getValuesButton" />
+        <input type="button" class="btn" value="Clear" id="clearValuesButton" />
+
+        <h3>Set Filter Values</h3>
+        <div id="filterForm">
+            <table class="table table-condensed">
+                <tr>
+                    <td>Text value:</td>
+                    <td><input type="text" name="text_value" value="text value" /></td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>Text type:</td>
+                    <td><input type="text" name="text_type" value="string_type_2" /></td>
+                </tr>
+                <tr>
+                    <td>Number value:</td>
+                    <td><input type="text" name="number_value" value="42" /></td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>Number type:</td>
+                    <td><input type="text" name="number_type" value="number_type_3" /></td>
+                </tr>
+                <tr>
+                    <td>Date value from:</td>
+                    <td><input type="text" name="date_value_from" value="2001-01-01" /></td>
+                    <td>Date value to:</td>
+                    <td><input type="text" name="date_value_to" value="2012-12-31" /></td>
+                    <td>Date type:</td>
+                    <td><input type="text" name="date_type" value="type_date_not_between" /></td>
+                </tr>
+                <tr>
+                    <td>Datetime value from:</td>
+                    <td><input type="text" name="datetime_value_from" value="2001-01-01 01:12:00" /></td>
+                    <td>Datetime value to:</td>
+                    <td><input type="text" name="datetime_value_to" value="2012-12-31 23:59:00" /></td>
+                    <td>Datetime type:</td>
+                    <td><input type="text" name="datetime_type" value="type_datetime_not_between" /></td>
+                </tr>
+                <tr>
+                    <td>Datetime value from:</td>
+                    <td><input type="text" name="datetime_value_from" value="2001-01-01 01:12:00" /></td>
+                    <td>Datetime value to:</td>
+                    <td><input type="text" name="datetime_value_to" value="2012-12-31 23:59:00" /></td>
+                    <td>Datetime type:</td>
+                    <td><input type="text" name="datetime_type" value="type_datetime_not_between" /></td>
+                </tr>
+                <tr>
+                    <td>Select value:</td>
+                    <td><input type="text" name="select_value" value="option_3" /></td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>Multiselect value:</td>
+                    <td><input type="text" name="multiselect_value_1" value="multiselect_1" /></td>
+                    <td><input type="text" name="multiselect_value_2" value="multiselect_3" /></td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+            </table>
+        </div>
+        <input type="button" class="btn" value="Set values" id="setValuesButton" />
     </div>
 {% endblock %}
