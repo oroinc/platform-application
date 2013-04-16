@@ -46,27 +46,8 @@
     <script type="text/javascript">
         $(function() {
             var demoFilters = {
-                'text_filter': OroApp.createInstanceFromConstructor(OroApp.Filter.ChoiceFilter.extend({
-                    name: 'text_filter',
-                    label: 'Text Filter',
-                    enabled: true,
-                    choices: {
-                        'string_type_1' : 'hint for string type 1',
-                        'string_type_2' : 'hint for string type 2',
-                        'string_type_3' : 'hint for string type 3'
-                    }
-                })),
-                'number_filter': OroApp.createInstanceFromConstructor(OroApp.Filter.NumberFilter.extend({
-                    name: 'number_filter',
-                    label: 'Number Filter',
-                    enabled: true,
-                    choices: {
-                        'number_type_1' : 'hint for number type 1',
-                        'number_type_2' : 'hint for number type 2',
-                        'number_type_3' : 'hint for number type 3'
-                    },
-                    formatter: 'decimal'
-                })),
+                'text_filter':   {{ oro_filter_render_js(formView.getChild('text_filter')) }},
+                'number_filter': {{ oro_filter_render_js(formView.getChild('number_filter')) }},
                 'date_filter': OroApp.createInstanceFromConstructor(OroApp.Filter.DateFilter.extend({
                     name: 'date_filter',
                     label: 'Date Filter',
@@ -274,4 +255,5 @@
         </div>
         <input type="button" class="btn" value="Set values" id="setValuesButton" />
     </div>
+
 {% endblock %}
