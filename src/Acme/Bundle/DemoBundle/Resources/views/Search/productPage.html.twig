@@ -1,6 +1,6 @@
 {% extends bap.layout is defined ? bap.layout : 'OroUIBundle:Default:index.html.twig' %}
 
-{% block title %}{{ product.name }}{% endblock %}
+{% oro_title_set({params:{"%product.name%": product.name }}) %}
 
 {% block content %}
     <h1>Page for demo product: {{ product.name }}</h1>

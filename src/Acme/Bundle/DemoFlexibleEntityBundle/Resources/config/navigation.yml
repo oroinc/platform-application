@@ -22,3 +22,21 @@ oro_menu_config:
                         demo_flexible_customer: ~
                         demo_flexible_product: ~
                         demo_flexible_manufacturer: ~
+oro_titles:
+    acme_demoflexibleentity_customerattribute_index: Customer attributes overview
+    acme_demoflexibleentity_customerattribute_create: Add attribute
+    acme_demoflexibleentity_customerattribute_edit: Edit attribute
+    acme_demoflexibleentity_customer_list: Customers overview
+    acme_demoflexibleentity_customer_index: Customers overview
+    acme_demoflexibleentity_customer_edit: Edit customer
+    acme_demoflexibleentity_customer_create: Add customer
+    acme_demoflexibleentity_customer_show: Show customer - %%customer.name%%
+    acme_demoflexibleentity_manufacturer_index: Manufacturers overview
+    acme_demoflexibleentity_productattribute_index: Product attributes overview
+    acme_demoflexibleentity_productattribute_edit: Edit attribute
+    acme_demoflexibleentity_productattribute_create: Add attribute
+    acme_demoflexibleentity_product_list: Products overview
+    acme_demoflexibleentity_product_show: Show product
+    acme_demoflexibleentity_product_edit: Edit product
+    acme_demoflexibleentity_product_create: Add product
+
