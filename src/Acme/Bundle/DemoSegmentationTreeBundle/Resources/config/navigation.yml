@@ -13,3 +13,6 @@ oro_menu_config:
                 demo_segmentation_tree_tab:
                     children:
                         demo_segmentation_tree_product:
+oro_titles:
+    acme_demosegmentationtree_producttree_index: Display index screen
+

@@ -2,8 +2,6 @@
 
 {% set title = form.vars.value.id ? 'Edit product' : 'Add product' %}
 
-{% block title %}{{ parent() }} - {{ title }}{% endblock %}
-
 {% block content %}
 
     {% set route_params = app.request.attributes.get('_route_params') %}

@@ -6,4 +6,4 @@
     {% block javascripts %}{% endblock %}
 {% endblock %}
 
-{% block title %}Grid Bundle - {{ parent() }}{% endblock %}
+{% oro_title_set({suffix: " - " ~ "Grid Bundle"|trans}) %}
