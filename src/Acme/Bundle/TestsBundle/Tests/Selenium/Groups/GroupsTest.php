@@ -4,17 +4,14 @@ namespace Acme\Bundle\TestsBundle\Tests\Selenium;
 
 use Acme\Bundle\TestsBundle\Test\ToolsAPI;
 
-class RolesTest extends \PHPUnit_Extensions_Selenium2TestCase
+class GroupsTest extends \PHPUnit_Extensions_Selenium2TestCase
 {
-    protected $newRole = array('LABEL' => 'NEW_LABEL_', 'ROLE_NAME' => 'NEW_ROLE_');
+    protected $newGroup = array('NAME' => 'NEW_GROUP_', 'ROLE' => 'Administrator');
 
     protected $defaultRoles = array(
-        'header' => array('ID' => 'ID', 'ROLE' => 'ROLE', 'LABEL' => 'LABEL', '' => 'ACTION'),
-        '1' => array('1' => '1', 'ROLE_MANAGER' => 'ROLE_MANAGER', 'Manager' => 'Manager', '...' => 'ACTION'),
-        '2' => array('2' => '2', 'ROLE_ADMIN' => 'ROLE_ADMIN', 'Administrator' => 'Administrator', '...' => 'ACTION'),
-        '3' => array('3' => '3', 'IS_AUTHENTICATED_ANONYMOUSLY' => 'IS_AUTHENTICATED_ANONYMOUSLY', 'Anonymous' => 'Anonymous', '...' => 'ACTION'),
-        '4' => array('4' => '4', 'ROLE_USER' => 'ROLE_USER', 'User' => 'User', '...' => 'ACTION'),
-        '5' => array('5' => '5', 'ROLE_SUPER_ADMIN' => 'ROLE_SUPER_ADMIN', 'Super admin' => 'Super admin', '...' => 'ACTION')
+        'header' => array('ID' => 'ID', 'NAME' => 'NAME', 'ROLES' => 'ROLES', '' => 'ACTION'),
+        '2' => array('2' => '2', 'Administrators' => 'Administrators', '' => 'ROLES', '...' => 'ACTION'),
+        '1' => array('1' => '1', 'Managers' => 'Managers', '' => 'ROLES', '...' => 'ACTION')
     );
 
     const TIME_OUT  = 1000;
@@ -65,18 +62,18 @@ class RolesTest extends \PHPUnit_Extensions_Selenium2TestCase
         $form->waitPageToLoad();
     }
 
-    public function testRolesGrid()
+    public function testGroupsGrid()
     {
-        $this->url('user/role');
+        $this->url('user/group');
         $this->waitPageToLoad();
         $this->login(&$this);
 
-        $this->assertContains('Roles overview - Dashboard', $this->title());
+        $this->assertContains('Groups overview - Dashboard', $this->title());
     }
 
     public function testRolesGridDefaultContent()
     {
-        $this->url('user/role');
+        $this->url('user/group');
         $this->waitPageToLoad();
         $this->login($this);
 
@@ -100,28 +97,37 @@ class RolesTest extends \PHPUnit_Extensions_Selenium2TestCase
         }
     }
 
-    public function testRolesAdd()
+    public function testGroupAdd()
     {
-        $this->url('user/role');
+        $this->url('user/group');
         $this->waitPageToLoad();
         $this->login($this);
         $this->byXPath("//a[contains(., 'Add new')]")->click();
         $this->waitPageToLoad();
+        $this->waitForAjax();
         $randomPrefix = ToolsAPI::randomGen(5);
-        $this->byId('oro_user_role_form_role')->value($this->newRole['ROLE_NAME'] . $randomPrefix);
-        $this->byId('oro_user_role_form_label')->value($this->newRole['LABEL'] . $randomPrefix);
+        $this->byId('oro_user_group_form_name')->value($this->newGroup['NAME'] . $randomPrefix);
+        $this->select($this->byId('oro_user_group_form_roles'))->selectOptionByLabel($this->newGroup['ROLE']);
         $this->byXPath("//button[contains(., 'Save')]")->click();
+        $this->waitForAjax();
         //verify message
         $this->assertInstanceOf(
             'PHPUnit_Extensions_Selenium2TestCase_Element',
-            $this->byXPath("//div[contains(@class,'alert') and contains(.,  'Role successfully saved')]")
+            $this->byXPath("//div[contains(@class,'alert') and contains(.,  'Group successfully saved')]")
         );
-        //verify new ROLE
+        //close dialog
+        $this->byXPath("//button[@class ='ui-dialog-titlebar-close']")->click();
+        $this->waitForAjax();
+
+        //verify new GROUP
+        $this->url('user/group');
+        $this->waitPageToLoad();
+
         $this->assertInstanceOf(
             'PHPUnit_Extensions_Selenium2TestCase_Element',
             $this->byXPath(
                 "//table[contains(@class, 'grid')]//tr/td[text() = '" .
-                'ROLE_' . $this->newRole['ROLE_NAME'] . strtoupper($randomPrefix) . "']"
+                $this->newGroup['NAME'] . $randomPrefix . "']"
             )
         );
 
@@ -129,17 +135,17 @@ class RolesTest extends \PHPUnit_Extensions_Selenium2TestCase
     }
 
     /**
-     * @depends testRolesAdd
-     * @param $role
+     * @depends testGroupAdd
+     * @param $group
      */
-    public function testRoleDelete($role)
+    public function testGroupDelete($group)
     {
-        $this->url('user/role');
+        $this->url('user/group');
         $this->waitPageToLoad();
         $this->login($this);
         $row = $this->byXPath(
             "//table[contains(@class, 'grid')]//tr[td[text() = '" .
-            'ROLE_' . $this->newRole['ROLE_NAME'] . strtoupper($role) . "']]"
+            $this->newGroup['NAME'] . $group . "']]"
         );
         $row->element($this->using('xpath')->value("td[@class = 'action-cell']//a[contains(., '...')]"))->click();
         $row->element($this->using('xpath')->value("td[@class = 'action-cell']//a[contains(., 'Delete')]"))->click();
