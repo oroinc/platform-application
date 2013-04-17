@@ -2,8 +2,6 @@
 
 {% set title = form.vars.value.id ? 'Edit customer' : 'Add customer' %}
 
-{% block title %}{{ parent() }} - {{ title }}{% endblock %}
-
 {% block content %}
 <form action="{{ form.vars.value.id ? path('acme_demoflexibleentity_customer_edit', { id: form.vars.value.id }) : path('acme_demoflexibleentity_customer_create') }}" method="POST" class="form-register">
     <fieldset>
