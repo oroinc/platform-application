@@ -6,7 +6,7 @@ use PHPUnit_Extensions_Selenium2TestCase_Keys as Keys;
 class GridTest extends \PHPUnit_Extensions_Selenium2TestCase
 {
     const TIME_OUT  = 1000;
-    const MAX_AJAX_EXECUTION_TIME = 5000;
+    const MAX_AJAX_EXECUTION_TIME = 15000;
 
     protected function setUp()
     {
@@ -129,6 +129,21 @@ class GridTest extends \PHPUnit_Extensions_Selenium2TestCase
         $this->assertTrue($this->userExists($userData));
     }
 
+    public function testFilter()
+    {
+        $this->url('user');
+        $this->waitPageToLoad();
+        $this->login($this);
+        $this->waitForAjax();
+        //open add new usr page
+        $userData = $this->getRandomUser();
+        $this->assertTrue($this->userExists($userData));
+        $this->selectFilter('ID', $userData['ID'], '=');
+        $this->assertTrue($this->userExists($userData));
+        $this->assertCount(1, $this->getRecordsOnPage());
+        $this->clearFilter('ID');
+    }
+
     protected function getRandomUser($pageSize = 25)
     {
         $userId = rand(0, $pageSize-1);
@@ -213,4 +228,53 @@ class GridTest extends \PHPUnit_Extensions_Selenium2TestCase
             return false;
         }
     }
+
+    protected function removeFilter($filterName)
+    {
+        $this->byXPath(
+            "//div[contains(@class, 'filter-box')]/div[contains(@class, 'filter-item')]"
+            . "[button[contains(.,'{$filterName}')]]/a[contains(., 'Close')]"
+        )->click();
+        $this->waitForAjax();
+    }
+
+    protected function addFilter($filterName)
+    {
+        $addFilter = $this->byXPath("//div[contains(@class, 'filter-box')]/button[contains(.,'Add filter')]");
+        //expand filter list
+        $addFilter->click();
+        $filter = $this->byXPath("//input[@title='{$filterName}'][@name='multiselect_add-filter-select']");
+        if (!$filter->selected()) {
+            $filter->click();
+        }
+        $this->waitForAjax();
+        //hide filter list
+        $addFilter->click();
+    }
+
+    protected function selectFilter($filterName, $value = '', $condition = '')
+    {
+        $this->byXPath(
+            "//div[contains(@class, 'filter-box')]/div[contains(@class, 'filter-item')]"
+            . "/button[contains(.,'{$filterName}')]"
+        )->click();
+        $criteria = $this->byXPath(
+            "//div[contains(@class, 'filter-box')]/div[contains(@class, 'filter-item')]"
+            . "[button[contains(.,'{$filterName}')]]//div[contains(@class, 'filter-criteria')]"
+        );
+        $criteria->element($this->using('xpath')->value("//input[@name='value']"))->clear();
+        $criteria->element($this->using('xpath')->value("//input[@name='value']"))->value($value);
+        //select criteria
+        if ($condition != '') {
+            $criteria->element($this->using('xpath')->value("//div[label[text()='{$condition}']]/input"))->click();
+        }
+        $criteria->element($this->using('xpath')->value("//button[contains(@class, 'filter-update')]"))->click();
+        $this->waitForAjax();
+    }
+
+    protected function clearFilter($filterName)
+    {
+        $this->selectFilter($filterName);
+    }
+
 }
