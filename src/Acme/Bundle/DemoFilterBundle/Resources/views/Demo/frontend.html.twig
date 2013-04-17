@@ -18,97 +18,23 @@
 
 {% block head_script %}
     {{ parent() }}
-    {% javascripts
-        '@OroFilterBundle/Resources/public/lib/multiselect/jquery.multiselect.js'
-        '@OroFilterBundle/Resources/public/lib/multiselect/jquery.multiselect.filter.js'
-
-        '@OroFilterBundle/Resources/public/lib/jquery-ui-timepicker-addon.js'
-
-        '@OroFilterBundle/Resources/public/js/app/filter/formatter.js'
-        '@OroFilterBundle/Resources/public/js/app/filter/multiselectdecorator.js'
-
-        '@OroFilterBundle/Resources/public/js/app/filter/abstractfilter.js'
-        '@OroFilterBundle/Resources/public/js/app/filter/textfilter.js'
-        '@OroFilterBundle/Resources/public/js/app/filter/choicefilter.js'
-        '@OroFilterBundle/Resources/public/js/app/filter/numberfilter.js'
-        '@OroFilterBundle/Resources/public/js/app/filter/datefilter.js'
-        '@OroFilterBundle/Resources/public/js/app/filter/datetimefilter.js'
-        '@OroFilterBundle/Resources/public/js/app/filter/selectfilter.js'
-        '@OroFilterBundle/Resources/public/js/app/filter/multiselectfilter.js'
-
-        '@OroFilterBundle/Resources/public/js/app/filter/list.js'
-
-        output='js/acme.demo_filter.js'
-    %}
-        <script type="text/javascript" src="{{ asset_url }}"></script>
-    {% endjavascripts %}
+    {{ oro_filter_render_header_js() }}
 
     <script type="text/javascript">
         $(function() {
             var demoFilters = {
-                'text_filter':   {{ oro_filter_render_js(formView.getChild('text_filter')) }},
-                'number_filter': {{ oro_filter_render_js(formView.getChild('number_filter')) }},
-                'date_filter': OroApp.createInstanceFromConstructor(OroApp.Filter.DateFilter.extend({
-                    name: 'date_filter',
-                    label: 'Date Filter',
-                    enabled: true,
-                    choices: {
-                        'type_date_between'     : 'hint for date type between',
-                        'type_date_not_between' : 'hint for date type not between'
-                    },
-                    typeValues: {
-                        between:    'type_date_between',
-                        notBetween: 'type_date_not_between'
-                    },
-                    externalWidgetOptions: {
-                        dateFormat: 'mm/dd/yy',
-                        firstDay: 0
-                    }
-                })),
-                'datetime_filter': OroApp.createInstanceFromConstructor(OroApp.Filter.DateTimeFilter.extend({
-                    name: 'datetime_filter',
-                    label: 'DateTime Filter',
-                    enabled: true,
-                    choices: {
-                        'type_datetime_between'     : 'hint for datetime type between',
-                        'type_datetime_not_between' : 'hint for datetime type not between'
-                    },
-                    typeValues: {
-                        between:    'type_datetime_between',
-                        notBetween: 'type_datetime_not_between'
-                    },
-                    externalWidgetOptions: {
-                        dateFormat: 'mm/dd/yy',
-                        timeFormat: 'hh:mm tt',
-                        firstDay: 0
-                    }
-                })),
-                'select_filter': OroApp.createInstanceFromConstructor(OroApp.Filter.SelectFilter.extend({
-                    name: 'select_filter',
-                    label: 'Select Filter',
-                    enabled: false,
-                    options: {
-                        'option_1' : 'hint for select option 1',
-                        'option_2' : 'hint for select option 2',
-                        'option_3' : 'hint for select option 3'
-                    }
-                })),
-                'multiselect_filter': OroApp.createInstanceFromConstructor(OroApp.Filter.MultiSelectFilter.extend({
-                    name: 'multiselect_filter',
-                    label: 'MultiSelect Filter',
-                    enabled: false,
-                    options: {
-                        'multiselect_1' : 'hint for multiselect option 1',
-                        'multiselect_2' : 'hint for multiselect option 2',
-                        'multiselect_3' : 'hint for multiselect option 3'
-                    }
-                }))
+                'text_filter':        {{ oro_filter_render_filter_js(formView.getChild('text_filter')) }},
+                'number_filter':      {{ oro_filter_render_filter_js(formView.getChild('number_filter')) }},
+                'date_filter':        {{ oro_filter_render_filter_js(formView.getChild('date_filter')) }},
+                'datetime_filter':    {{ oro_filter_render_filter_js(formView.getChild('datetime_filter')) }},
+                'select_filter':      {{ oro_filter_render_filter_js(formView.getChild('select_filter')) }},
+                'multiselect_filter': {{ oro_filter_render_filter_js(formView.getChild('multiselect_filter')) }}
             };
 
             var filtersList = new OroApp.Filter.List({ filters: demoFilters });
             $('#demoFilterList').html(filtersList.render().$el);
 
-            // demo service functions
+            // service functions for demo
             $('#showSelectFilterButton').on('click', function() {
                 filtersList.enableFilter(filtersList.filters['select_filter']);
             });
@@ -201,7 +127,7 @@
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                     <td>Text type:</td>
-                    <td><input type="text" name="text_type" value="string_type_2" /></td>
+                    <td><input type="text" name="text_type" value="2" /></td>
                 </tr>
                 <tr>
                     <td>Number value:</td>
@@ -209,7 +135,7 @@
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                     <td>Number type:</td>
-                    <td><input type="text" name="number_type" value="number_type_3" /></td>
+                    <td><input type="text" name="number_type" value="4" /></td>
                 </tr>
                 <tr>
                     <td>Date value from:</td>
@@ -217,7 +143,7 @@
                     <td>Date value to:</td>
                     <td><input type="text" name="date_value_to" value="2012-12-31" /></td>
                     <td>Date type:</td>
-                    <td><input type="text" name="date_type" value="type_date_not_between" /></td>
+                    <td><input type="text" name="date_type" value="2" /></td>
                 </tr>
                 <tr>
                     <td>Datetime value from:</td>
@@ -225,19 +151,11 @@
                     <td>Datetime value to:</td>
                     <td><input type="text" name="datetime_value_to" value="2012-12-31 23:59:00" /></td>
                     <td>Datetime type:</td>
-                    <td><input type="text" name="datetime_type" value="type_datetime_not_between" /></td>
-                </tr>
-                <tr>
-                    <td>Datetime value from:</td>
-                    <td><input type="text" name="datetime_value_from" value="2001-01-01 01:12:00" /></td>
-                    <td>Datetime value to:</td>
-                    <td><input type="text" name="datetime_value_to" value="2012-12-31 23:59:00" /></td>
-                    <td>Datetime type:</td>
-                    <td><input type="text" name="datetime_type" value="type_datetime_not_between" /></td>
+                    <td><input type="text" name="datetime_type" value="1" /></td>
                 </tr>
                 <tr>
                     <td>Select value:</td>
-                    <td><input type="text" name="select_value" value="option_3" /></td>
+                    <td><input type="text" name="select_value" value="2" /></td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
@@ -245,8 +163,8 @@
                 </tr>
                 <tr>
                     <td>Multiselect value:</td>
-                    <td><input type="text" name="multiselect_value_1" value="multiselect_1" /></td>
-                    <td><input type="text" name="multiselect_value_2" value="multiselect_3" /></td>
+                    <td><input type="text" name="multiselect_value_1" value="1" /></td>
+                    <td><input type="text" name="multiselect_value_2" value="3" /></td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
