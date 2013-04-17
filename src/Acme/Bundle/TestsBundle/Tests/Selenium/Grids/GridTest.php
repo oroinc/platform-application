@@ -179,8 +179,7 @@ class GridTest extends \PHPUnit_Extensions_Selenium2TestCase
         $paginator = $this->byXPath("//div[contains(@class,'pagination')]/ul//input");
         //set focus
         $paginator->click();
-        //todo: it is a workaround for clear method
-        $this->keysSpecial('backspace,backspace,backspace');
+        $this->clearInput($paginator);
         $paginator->value($page);
         $this->keysSpecial('enter');
         $this->waitForAjax();
@@ -278,7 +277,7 @@ class GridTest extends \PHPUnit_Extensions_Selenium2TestCase
 
         $criteria = $this->byXPath(
             "//div[contains(@class, 'filter-box')]/div[contains(@class, 'filter-item')]"
-            . "[button[contains(.,'{$filterName}')]]//div[contains(@class, 'filter-criteria')]"
+            . "[button[contains(.,'{$filterName}')]]/div[contains(@class, 'filter-criteria')]"
         );
         $input = $criteria->element($this->using('xpath')->value("div/div/input[@name='value']"));
 
@@ -287,9 +286,9 @@ class GridTest extends \PHPUnit_Extensions_Selenium2TestCase
 
         //select criteria
         if ($condition != '') {
-            $criteria->element($this->using('xpath')->value("//div[label[text()='{$condition}']]/input"))->click();
+            $criteria->element($this->using('xpath')->value("div/div/div[label[text()='{$condition}']]/input"))->click();
         }
-        $criteria->element($this->using('xpath')->value("//button[contains(@class, 'filter-update')]"))->click();
+        $criteria->element($this->using('xpath')->value("div/div/div/button[contains(@class, 'filter-update')]"))->click();
         $this->waitForAjax();
     }
 
