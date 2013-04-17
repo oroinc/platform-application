@@ -129,7 +129,10 @@ class GridTest extends \PHPUnit_Extensions_Selenium2TestCase
         $this->assertTrue($this->userExists($userData));
     }
 
-    public function testFilter()
+    /**
+     * @dataProvider filterData
+     */
+    public function testFilterBy($filterName, $condition)
     {
         $this->url('user');
         $this->waitPageToLoad();
@@ -138,10 +141,24 @@ class GridTest extends \PHPUnit_Extensions_Selenium2TestCase
         //open add new usr page
         $userData = $this->getRandomUser();
         $this->assertTrue($this->userExists($userData));
-        $this->selectFilter('ID', $userData['ID'], '=');
+        $this->selectFilter($filterName, $userData[strtoupper($filterName)], $condition);
         $this->assertTrue($this->userExists($userData));
         $this->assertCount(1, $this->getRecordsOnPage());
-        $this->clearFilter('ID');
+        $this->clearFilter($filterName);
+    }
+
+    /**
+     * @return array
+     */
+    public function filterData()
+    {
+        return array(
+            'ID' => array('ID', '='),
+            'Username' => array('Username', 'is equal to'),
+            'Email' => array('Email', 'contains'),
+            'First name' => array('First name', 'is equal to'),
+            //'Birthday' => array('Birthday', '')
+        );
     }
 
     protected function getRandomUser($pageSize = 25)
@@ -258,12 +275,16 @@ class GridTest extends \PHPUnit_Extensions_Selenium2TestCase
             "//div[contains(@class, 'filter-box')]/div[contains(@class, 'filter-item')]"
             . "/button[contains(.,'{$filterName}')]"
         )->click();
+
         $criteria = $this->byXPath(
             "//div[contains(@class, 'filter-box')]/div[contains(@class, 'filter-item')]"
             . "[button[contains(.,'{$filterName}')]]//div[contains(@class, 'filter-criteria')]"
         );
-        $criteria->element($this->using('xpath')->value("//input[@name='value']"))->clear();
-        $criteria->element($this->using('xpath')->value("//input[@name='value']"))->value($value);
+        $input = $criteria->element($this->using('xpath')->value("div/div/input[@name='value']"));
+
+        $input->clear();
+        $input->value($value);
+
         //select criteria
         if ($condition != '') {
             $criteria->element($this->using('xpath')->value("//div[label[text()='{$condition}']]/input"))->click();
@@ -272,9 +293,18 @@ class GridTest extends \PHPUnit_Extensions_Selenium2TestCase
         $this->waitForAjax();
     }
 
+    protected function clearInput($element)
+    {
+        $element->value('');
+        $tx = $element->value();
+        while ($tx!="") {
+            $this->keysSpecial('backspace');
+            $tx = $element->value();
+        }
+    }
+
     protected function clearFilter($filterName)
     {
         $this->selectFilter($filterName);
     }
-
 }
