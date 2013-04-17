@@ -27,16 +27,44 @@ class DemoController extends Controller
             array(),
             array('csrf_protection' => false)
         );
-        $formBuilder->add(
-            'text_filter',
-            'oro_type_text_filter',
-            array('label' => 'Text Filter')
-        );
-        $formBuilder->add(
-            'number_filter',
-            'oro_type_number_filter',
-            array('label' => 'Number Filter')
-        );
+        $formBuilder
+            ->add('text_filter', 'oro_type_text_filter', array('label' => 'Text Filter'))
+            ->add('number_filter', 'oro_type_number_filter', array('label' => 'Number Filter'))
+            ->add('date_filter', 'oro_type_date_range_filter', array('label' => 'Date Filter'))
+            ->add('datetime_filter', 'oro_type_datetime_range_filter', array('label' => 'DateTime Filter'))
+            ->add(
+                'select_filter',
+                'oro_type_choice_filter',
+                array(
+                    'label' => 'Select Filter',
+                    'disabled' => true,
+                    'field_options' => array(
+                        'multiple' => false,
+                        'choices'  => array(
+                            1 => 'first select choice',
+                            2 => 'second select choice',
+                            3 => 'third select choice',
+                        )
+                    )
+                )
+            )
+            ->add(
+                'multiselect_filter',
+                'oro_type_choice_filter',
+                array(
+                    'label' => 'Multiselect Filter',
+                    'disabled' => true,
+                    'field_options' => array(
+                        'multiple' => true,
+                        'choices'  => array(
+                            1 => 'first multiselect choice',
+                            2 => 'second multiselect choice',
+                            3 => 'third multiselect choice',
+                        )
+                    )
+                )
+            );
+
 
         return array(
             'formView' => $formBuilder->getForm()->createView()
