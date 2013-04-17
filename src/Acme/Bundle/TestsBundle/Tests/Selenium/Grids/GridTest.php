@@ -57,6 +57,7 @@ class GridTest extends \PHPUnit_Extensions_Selenium2TestCase
 
     protected function login($form)
     {
+        $this->currentWindow()->maximize();
         $name = $form->byId('prependedInput');
         $password = $form->byId('prependedInput2');
         $name->clear();
@@ -65,21 +66,6 @@ class GridTest extends \PHPUnit_Extensions_Selenium2TestCase
         $password->value(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_PASS);
         $form->clickOnElement('_submit');
         $form->waitPageToLoad();
-    }
-
-    protected function openUserInfoPage($username)
-    {
-        $this->byXPath("//*[@class='grid table-hover table table-bordered table-condensed']/tbody/tr/td[text() = \"$username\"]")->click();
-        $this->assertEquals('Last_'.$username.', First_'.$username.' - Profile - User Management', $this->title());
-    }
-
-    protected function searchFilterByUsername($username)
-    {
-        $this->byXPath("//*[@id='usersDatagridFilters']/div/div/button[contains(., 'Username')]")->click();
-        $this->isElementPresent("//*[@class='btn-group filter-item oro-drop open-filter']/div/div/");
-        $this->byXPath("//*[@class='btn-group filter-item oro-drop open-filter']/div/div/div/input")->value($username);
-        $this->byXPath("//div[@class='btn-group filter-item oro-drop open-filter']//button[contains(., 'Update')]")->click();
-        $this->waitForAjax();
     }
 
     public function testSelectPage()
@@ -161,6 +147,12 @@ class GridTest extends \PHPUnit_Extensions_Selenium2TestCase
         );
     }
 
+    /**
+     * Select random user from current page
+     *
+     * @param int $pageSize
+     * @return array
+     */
     protected function getRandomUser($pageSize = 25)
     {
         $userId = rand(0, $pageSize-1);
@@ -174,6 +166,11 @@ class GridTest extends \PHPUnit_Extensions_Selenium2TestCase
         return $userData;
     }
 
+    /**
+     * Change current page to specific
+     *
+     * @param int $page
+     */
     protected function selectPage($page = 1)
     {
         $paginator = $this->byXPath("//div[contains(@class,'pagination')]/ul//input");
@@ -185,23 +182,39 @@ class GridTest extends \PHPUnit_Extensions_Selenium2TestCase
         $this->waitForAjax();
     }
 
+    /**
+     * Navigate to next page
+     */
     protected function nextPage()
     {
         $this->byXPath("//div[contains(@class,'pagination')]//a[contains(.,'Next')]")->click();
         $this->waitForAjax();
     }
 
+    /**
+     * Navigate to previous page
+     */
     protected function previousPage()
     {
         $this->byXPath("//div[contains(@class,'pagination')]//a[contains(.,'Prev')]")->click();
         $this->waitForAjax();
     }
 
+    /**
+     * Get current page number
+     *
+     * @return string
+     */
     protected function getCurrentPage()
     {
         return $this->byXPath("//div[contains(@class,'pagination')]/ul//input")->value();
     }
 
+    /**
+     * Get records count in grid by parsing text label
+     *
+     * @return string
+     */
     protected function getRecordsCount()
     {
         $pager = $this->byXPath("//div[contains(@class,'pagination')]//label[@class='dib'][2]")->text();
@@ -209,12 +222,11 @@ class GridTest extends \PHPUnit_Extensions_Selenium2TestCase
         return $result[2];
     }
 
-    protected function getRecordsOnPage()
-    {
-        $records = $this->elements($this->using('xpath')->value("//table/tbody/tr"));
-        return $records;
-    }
-
+    /**
+     * Get pages count by parsing text label
+     *
+     * @return string
+     */
     protected function getPagesCount()
     {
         $pager = $this->byXPath("//div[contains(@class,'pagination')]//label[@class='dib'][2]")->text();
@@ -222,6 +234,23 @@ class GridTest extends \PHPUnit_Extensions_Selenium2TestCase
         return $result[1];
     }
 
+    /**
+     * Get all element from current page
+     *
+     * @return array PHPUnit_Extensions_Selenium2TestCase_Element
+     */
+    protected function getRecordsOnPage()
+    {
+        $records = $this->elements($this->using('xpath')->value("//table/tbody/tr"));
+        return $records;
+    }
+
+    /**
+     * Verify user exist on the current page
+     *
+     * @param array $userData
+     * @return bool
+     */
     protected function userExists($userData)
     {
         $xpath = '';
@@ -235,16 +264,11 @@ class GridTest extends \PHPUnit_Extensions_Selenium2TestCase
         return $this->isElementPresent($xpath);
     }
 
-    public function isElementPresent($locator)
-    {
-        try {
-            $this->byXPath($locator);
-            return true;
-        } catch (\PHPUnit_Extensions_Selenium2TestCase_WebDriverException $e) {
-            return false;
-        }
-    }
-
+    /**
+     * Remove filter
+     *
+     * @param string $filterName
+     */
     protected function removeFilter($filterName)
     {
         $this->byXPath(
@@ -254,6 +278,11 @@ class GridTest extends \PHPUnit_Extensions_Selenium2TestCase
         $this->waitForAjax();
     }
 
+    /**
+     * Add filter
+     *
+     * @param string $filterName
+     */
     protected function addFilter($filterName)
     {
         $addFilter = $this->byXPath("//div[contains(@class, 'filter-box')]/button[contains(.,'Add filter')]");
@@ -268,6 +297,13 @@ class GridTest extends \PHPUnit_Extensions_Selenium2TestCase
         $addFilter->click();
     }
 
+    /**
+     * Apply specific filter for current grid
+     *
+     * @param string $filterName
+     * @param string $value
+     * @param string $condition
+     */
     protected function selectFilter($filterName, $value = '', $condition = '')
     {
         $this->byXPath(
@@ -292,6 +328,21 @@ class GridTest extends \PHPUnit_Extensions_Selenium2TestCase
         $this->waitForAjax();
     }
 
+    /**
+     * Clear filter value and apply
+     *
+     * @param string $filterName
+     */
+    protected function clearFilter($filterName)
+    {
+        $this->selectFilter($filterName);
+    }
+
+    /**
+     * Clear input element when standard clear() does not help
+     *
+     * @param $element \PHPUnit_Extensions_Selenium2TestCase_Element
+     */
     protected function clearInput($element)
     {
         $element->value('');
@@ -302,8 +353,19 @@ class GridTest extends \PHPUnit_Extensions_Selenium2TestCase
         }
     }
 
-    protected function clearFilter($filterName)
+    /**
+     * Verify element present
+     *
+     * @param string $locator
+     * @return bool
+     */
+    public function isElementPresent($locator)
     {
-        $this->selectFilter($filterName);
+        try {
+            $this->byXPath($locator);
+            return true;
+        } catch (\PHPUnit_Extensions_Selenium2TestCase_WebDriverException $e) {
+            return false;
+        }
     }
 }
