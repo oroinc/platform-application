@@ -1,5 +1,7 @@
 {% extends bap.layout is defined ? bap.layout : 'OroUIBundle:Default:index.html.twig' %}
 
+{% oro_title_set({titleTemplate: 'Dashboard'}) %}
+
 {% block content %}
     <div class="span2">
         <h2>UI</h2>

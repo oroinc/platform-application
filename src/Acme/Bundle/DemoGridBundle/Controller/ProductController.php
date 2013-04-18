@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Oro\Bundle\GridBundle\Datagrid\ORM\QueryFactory\QueryFactory;
+use Oro\Bundle\NavigationBundle\Annotation\TitleTemplate;
 
 use Acme\Bundle\DemoGridBundle\Datagrid\UserDatagridManager;
 
@@ -20,6 +21,7 @@ class ProductController extends Controller
      *      requirements={"_format"="html|json"},
      *      defaults={"_format" = "html"}
      * )
+     * @TitleTemplate("Products grid")
      */
     public function listAction(Request $request)
     {

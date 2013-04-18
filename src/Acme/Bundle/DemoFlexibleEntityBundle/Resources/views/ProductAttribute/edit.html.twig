@@ -1,13 +1,11 @@
 {% extends bap.layout is defined ? bap.layout : 'AcmeDemoFlexibleEntityBundle::layout.html.twig' %}
 
-{% set title = form.vars.value.id ? 'Edit attribute' : 'Add attribute' %}
-
-{% block title %}{{ parent() }} - {{ title }}{% endblock %}
+{% set action = form.vars.value.id ? 'Edit' : 'Add' %}
 
 {% block content %}
 <form action="{{ form.vars.value.id ? path('acme_demoflexibleentity_productattribute_edit', { id: form.vars.value.id }) : path('acme_demoflexibleentity_productattribute_create') }}" method="POST" class="form-register">
     <fieldset>
-        <legend>{{ title }} <a class="btn btn-primary pull-right" href="{{ path('acme_demoflexibleentity_productattribute_index') }}">{{ "Back to list" | trans }}</a></legend>
+        <legend>{{ action ~ ' ' ~ 'attribute'|trans }} <a class="btn btn-primary pull-right" href="{{ path('acme_demoflexibleentity_productattribute_index') }}">{{ "Back to list" | trans }}</a></legend>
 
         {{ form_widget(form) }}
 
