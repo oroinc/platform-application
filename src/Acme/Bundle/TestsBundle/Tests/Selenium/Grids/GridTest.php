@@ -1,7 +1,6 @@
 <?php
-namespace Acme\Bundle\TestsBundle\Tests\Selenium;
 
-use PHPUnit_Extensions_Selenium2TestCase_Keys as Keys;
+namespace Acme\Bundle\TestsBundle\Tests\Selenium;
 
 class GridTest extends \PHPUnit_Extensions_Selenium2TestCase
 {
@@ -134,6 +133,8 @@ class GridTest extends \PHPUnit_Extensions_Selenium2TestCase
     }
 
     /**
+     * Data provider for filter tests
+     *
      * @return array
      */
     public function filterData()
@@ -162,6 +163,75 @@ class GridTest extends \PHPUnit_Extensions_Selenium2TestCase
         $this->assertLessThan($countOfRecords, $this->getRecordsCount());
         $this->removeFilter('Company');
         $this->assertEquals($countOfRecords, $this->getRecordsCount());
+    }
+
+    /**
+     * Tests that order in columns works correct
+     *
+     * @param string $columnName
+     * @dataProvider columnTitle
+     */
+    public function testSorting($columnName)
+    {
+        $this->url('user');
+        $this->waitPageToLoad();
+        $this->login($this);
+        $this->waitForAjax();
+        $this->openMaxGridSize();
+        $columns = $this->getHeadersOnPage();
+        $columnId = $this->getHeaderId($columns, $columnName);
+        //test ascending order
+        $this->changeColumnSorting($columnName);
+        $columnOrder = $this->getColumnData($columnId);
+        if ($columnName == 'Birthday') {
+            $dateArray = array();
+            foreach ($columnOrder as $value) {
+                $date = strtotime($value);
+                $dateArray[] = $date;
+            }
+            $columnOrder = $dateArray;
+            $sortedColumnOrder = $columnOrder;
+            sort($sortedColumnOrder);
+        } else {
+            $sortedColumnOrder = $columnOrder;
+            natcasesort($sortedColumnOrder);
+        }
+        $this->assertEquals($columnOrder, $sortedColumnOrder, "Arrays doesn't match");
+        //test descending order
+        $this->changeColumnSorting($columnName);
+        $columnOrder = $this->getColumnData($columnId);
+        if ($columnName == 'Birthday') {
+            $dateArray = array();
+            foreach ($columnOrder as $value) {
+                $date = strtotime($value);
+                $dateArray[] = $date;
+            }
+            $columnOrder = $dateArray;
+            $sortedColumnOrder = $columnOrder;
+            sort($sortedColumnOrder);
+        } else {
+            $sortedColumnOrder = $columnOrder;
+            natcasesort($sortedColumnOrder);
+        }
+        $sortedColumnOrder = array_reverse($sortedColumnOrder);
+        $this->assertEquals($columnOrder, $sortedColumnOrder, "Arrays doesn't match");
+    }
+
+    /**
+     * Data provider for test sorting
+     *
+     * @return array
+     */
+    public function columnTitle()
+    {
+        return array(
+            'ID' => array('ID'),
+            'Username' => array('Username'),
+            'Email' => array('Email'),
+            'Birthday' => array('Birthday'),
+            'Company' => array('Company'),
+            'Salary' => array('Salary'),
+        );
     }
 
     /**
@@ -389,7 +459,7 @@ class GridTest extends \PHPUnit_Extensions_Selenium2TestCase
     /**
      * Get grid headers
      *
-     * @return array
+     * @return array PHPUnit_Extensions_Selenium2TestCase_Element
      */
     protected function getHeadersOnPage()
     {
@@ -406,10 +476,11 @@ class GridTest extends \PHPUnit_Extensions_Selenium2TestCase
      */
     protected function getHeaderId($records, $headerName)
     {
-        $i = 1;
+        $i = 0;
         foreach ($records as $column) {
             $name = $column->text();
-            if (mb_strtoupper($headerName) == $name) {
+            if (strtoupper($headerName) == $name) {
+                $i++;
                 break;
             } else {
                 $i++;
@@ -426,11 +497,10 @@ class GridTest extends \PHPUnit_Extensions_Selenium2TestCase
      */
     protected function getColumnData($columnId)
     {
-        $columnData = $this->elements($this->using('xpath')->value("//table/tbody/tr/td[$columnId]"));
+        $columnData = $this->elements($this->using('xpath')->value("//table/tbody/tr/td[{$columnId}]"));
         $rowData = array();
         foreach ($columnData as $value) {
-            $fieldValue = $value->text();
-            $rowData[] = $fieldValue;
+            $rowData[] = $value->text();
         }
         return $rowData;
     }
@@ -441,83 +511,17 @@ class GridTest extends \PHPUnit_Extensions_Selenium2TestCase
      */
     protected function changeColumnSorting($columnName)
     {
-        $this->byXPath("//table/thead/tr/th/a[contains(., \"$columnName\")]")->click();
+        $this->byXPath("//table/thead/tr/th/a[contains(., '{$columnName}')]")->click();
         $this->waitForAjax();
     }
 
     /**
-     * Set grid size to 100
+     * Set grid size to MAX
      */
     protected function openMaxGridSize()
     {
-        $this->byXPath("//*[@class='page-size pull-right form-horizontal']//button")->click();
-        $this->byXPath("//*[@class='page-size pull-right form-horizontal']//a[contains(., '100')]")->click();
+        $this->byXPath("//div[@class='page-size pull-right form-horizontal']//button")->click();
+        $this->byXPath("//div[@class='page-size pull-right form-horizontal']//ul[contains(@class,'dropdown-menu')]/li[last()]/a")->click();
         $this->waitForAjax();
-    }
-
-    /**
-     * Tests that order in columns works correct
-     *
-     * @param string $columnName
-     * @dataProvider columnTitle
-     */
-    public function testSorting($columnName)
-    {
-        $this->url('user');
-        $this->waitPageToLoad();
-        $this->login($this);
-        $this->openMaxGridSize();
-        $columns = $this->getHeadersOnPage();
-        $columnId = $this->getHeaderId($columns, $columnName);
-        //test ascending order
-        $this->changeColumnSorting($columnName);
-        $columnOrder = $this->getColumnData($columnId);
-        if ($columnName == 'Birthday') {
-            $dateArray = array();
-            foreach ($columnOrder as $value) {
-                $date = strtotime($value);
-                $dateArray[] = $date;
-            }
-            $columnOrder = $dateArray;
-            $sortedColumnOrder = $columnOrder;
-            sort($sortedColumnOrder);
-        } else {
-            $sortedColumnOrder = $columnOrder;
-            natcasesort($sortedColumnOrder);
-        }
-        $this->assertEquals($columnOrder, $sortedColumnOrder, "Arrays doesn't match");
-        //test descending order
-        $this->changeColumnSorting($columnName);
-        $columnOrder = $this->getColumnData($columnId);
-        if ($columnName == 'Birthday') {
-            $dateArray = array();
-            foreach ($columnOrder as $value) {
-                $date = strtotime($value);
-                $dateArray[] = $date;
-            }
-            $columnOrder = $dateArray;
-            $sortedColumnOrder = $columnOrder;
-            sort($sortedColumnOrder);
-        } else {
-            $sortedColumnOrder = $columnOrder;
-            natcasesort($sortedColumnOrder);
-        }
-        $sortedColumnOrder = array_reverse($sortedColumnOrder);
-        $this->assertEquals($columnOrder, $sortedColumnOrder, "Arrays doesn't match");
-    }
-
-    /**
-     * @return array
-     */
-    public function columnTitle()
-    {
-        return array(
-            'ID' => array('ID'),
-            'Username' => array('Username'),
-            'Email' => array('Email'),
-            'Birthday' => array('Birthday'),
-            'Company' => array('Company'),
-            'Salary' => array('Salary'),
-        );
     }
 }
