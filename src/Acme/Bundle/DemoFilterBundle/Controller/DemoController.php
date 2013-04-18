@@ -28,19 +28,46 @@ class DemoController extends Controller
             array('csrf_protection' => false)
         );
         $formBuilder
-            ->add('text_filter', 'oro_type_text_filter', array('label' => 'Text Filter'))
-            ->add('number_filter', 'oro_type_number_filter', array('label' => 'Number Filter'))
-            ->add('date_filter', 'oro_type_date_range_filter', array('label' => 'Date Filter'))
-            ->add('datetime_filter', 'oro_type_datetime_range_filter', array('label' => 'DateTime Filter'))
+            ->add(
+                'text_filter',
+                'oro_type_text_filter',
+                array(
+                    'label'       => 'Text Filter',
+                    'show_filter' => true
+                )
+            )
+            ->add(
+                'number_filter',
+                'oro_type_number_filter',
+                array(
+                    'label'       => 'Number Filter',
+                    'show_filter' => true
+                )
+            )
+            ->add(
+                'date_filter',
+                'oro_type_date_range_filter',
+                array(
+                    'label'       => 'Date Filter',
+                    'show_filter' => true
+                )
+            )
+            ->add(
+                'datetime_filter',
+                'oro_type_datetime_range_filter',
+                array(
+                    'label'       => 'DateTime Filter',
+                    'show_filter' => true
+                )
+            )
             ->add(
                 'select_filter',
                 'oro_type_choice_filter',
                 array(
                     'label' => 'Select Filter',
-                    'disabled' => true,
                     'field_options' => array(
-                        'multiple' => false,
-                        'choices'  => array(
+                        'multiple'  => false,
+                        'choices'   => array(
                             1 => 'first select choice',
                             2 => 'second select choice',
                             3 => 'third select choice',
@@ -53,10 +80,9 @@ class DemoController extends Controller
                 'oro_type_choice_filter',
                 array(
                     'label' => 'Multiselect Filter',
-                    'disabled' => true,
                     'field_options' => array(
-                        'multiple' => true,
-                        'choices'  => array(
+                        'multiple'  => true,
+                        'choices'   => array(
                             1 => 'first multiselect choice',
                             2 => 'second multiselect choice',
                             3 => 'third multiselect choice',
@@ -65,9 +91,8 @@ class DemoController extends Controller
                 )
             );
 
-
         return array(
-            'formView' => $formBuilder->getForm()->createView()
+            'form' => $formBuilder->getForm()->createView()
         );
     }
 }

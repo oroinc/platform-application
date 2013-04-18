@@ -23,12 +23,12 @@
     <script type="text/javascript">
         $(function() {
             var demoFilters = {
-                'text_filter':        {{ oro_filter_render_filter_js(formView.getChild('text_filter')) }},
-                'number_filter':      {{ oro_filter_render_filter_js(formView.getChild('number_filter')) }},
-                'date_filter':        {{ oro_filter_render_filter_js(formView.getChild('date_filter')) }},
-                'datetime_filter':    {{ oro_filter_render_filter_js(formView.getChild('datetime_filter')) }},
-                'select_filter':      {{ oro_filter_render_filter_js(formView.getChild('select_filter')) }},
-                'multiselect_filter': {{ oro_filter_render_filter_js(formView.getChild('multiselect_filter')) }}
+                'text_filter':        {{ oro_filter_render_filter_js(form.children.text_filter) }},
+                'number_filter':      {{ oro_filter_render_filter_js(form.children.number_filter) }},
+                'date_filter':        {{ oro_filter_render_filter_js(form.children.date_filter) }},
+                'datetime_filter':    {{ oro_filter_render_filter_js(form.children.datetime_filter) }},
+                'select_filter':      {{ oro_filter_render_filter_js(form.children.select_filter) }},
+                'multiselect_filter': {{ oro_filter_render_filter_js(form.children.multiselect_filter) }}
             };
 
             var filtersList = new OroApp.Filter.List({ filters: demoFilters });
