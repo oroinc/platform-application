@@ -147,6 +147,23 @@ class GridTest extends \PHPUnit_Extensions_Selenium2TestCase
         );
     }
 
+    public function testAddFilter()
+    {
+        $this->url('user');
+        $this->waitPageToLoad();
+        $this->login($this);
+        $this->waitForAjax();
+        //open add new usr page
+        $userData = $this->getRandomUser();
+        $this->assertTrue($this->userExists($userData));
+        $countOfRecords = $this->getRecordsCount();
+        $this->addFilter('Company');
+        $this->selectFilter('Company', $userData[strtoupper('Company')], 'is equal to');
+        $this->assertLessThan($countOfRecords, $this->getRecordsCount());
+        $this->removeFilter('Company');
+        $this->assertEquals($countOfRecords, $this->getRecordsCount());
+    }
+
     /**
      * Select random user from current page
      *
@@ -219,7 +236,7 @@ class GridTest extends \PHPUnit_Extensions_Selenium2TestCase
     {
         $pager = $this->byXPath("//div[contains(@class,'pagination')]//label[@class='dib'][2]")->text();
         preg_match('/of\s+(\d+)\s+\|\s+(\d+)\s+records/i', $pager, $result);
-        return $result[2];
+        return intval($result[2]);
     }
 
     /**
@@ -231,7 +248,7 @@ class GridTest extends \PHPUnit_Extensions_Selenium2TestCase
     {
         $pager = $this->byXPath("//div[contains(@class,'pagination')]//label[@class='dib'][2]")->text();
         preg_match('/of\s+(\d+)\s+\|\s+(\d+)\s+records/i', $pager, $result);
-        return $result[1];
+        return intval($result[1]);
     }
 
     /**
