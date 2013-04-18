@@ -1,6 +1,7 @@
 <?php
 namespace Acme\Bundle\DemoFlexibleEntityBundle\Controller;
 
+use Oro\Bundle\AddressBundle\Form\Type\AddressType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleManager;
@@ -224,5 +225,27 @@ class CustomerController extends Controller
         $this->get('session')->getFlashBag()->add('success', 'Customer successfully removed');
 
         return $this->redirect($this->generateUrl('acme_demoflexibleentity_customer_list'));
+    }
+
+    /**
+     * @Route("/create_address")
+     * @Template
+     */
+    public function createAddressAction()
+    {
+        /** @var  $addressManager \Oro\Bundle\AddressBundle\Entity\Manager\AddressManager */
+        $addressManager = $this->get('oro_address.address.manager');
+
+        $entity = $addressManager->createAddress();
+        $entity->setMark('Test address');
+
+        // create form
+        $entClassName = $addressManager->getFlexibleName();
+        $valueClassName = $addressManager->getFlexibleValueName();
+        $form = $this->createForm(new AddressType($entClassName, $valueClassName), $entity);
+
+        return array(
+            'form' => $form->createView(),
+        );
     }
 }

@@ -1,0 +1,35 @@
+{% extends bap.layout is defined ? bap.layout : 'AcmeDemoFlexibleEntityBundle::layout.html.twig' %}
+
+{% set title = form.vars.value.id ? 'Edit address' : 'Add address' %}
+
+{% block content %}
+    <form action="{{ form.vars.value.id ? path('acme_demoflexibleentity_customer_edit', { id: form.vars.value.id }) : path('acme_demoflexibleentity_customer_create') }}" method="POST" class="form-register">
+        <fieldset>
+            <legend>{{ title }} <a class="btn btn-primary pull-right" href="{{ path('acme_demoflexibleentity_customer_list') }}">{{ "Back to list" | trans }}</a></legend>
+
+            {{ form_widget(form) }}
+
+            <br />
+            <legend>Additional information</legend>
+
+            <div class="form-horizontal">
+                <div class="control-group">
+                    <label class="control-label">Created at</label>
+                    <div class="controls">
+                        <span class="label">{{ form.vars.value.created ? form.vars.value.created|date('Y-m-d h:i:s') : 'N/A' }}</span>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">Updated at</label>
+                    <div class="controls">
+                        <span class="label">{{ form.vars.value.updated ? form.vars.value.updated|date('Y-m-d h:i:s') : 'N/A' }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <button class="btn btn-large btn-primary" type="submit">Save</button>
+            </div>
+        </fieldset>
+    </form>
+{% endblock %}
