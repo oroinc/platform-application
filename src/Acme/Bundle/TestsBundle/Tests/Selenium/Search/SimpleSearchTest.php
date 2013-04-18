@@ -5,7 +5,7 @@ namespace Acme\Bundle\TestsBundle\Tests\Selenium;
 class SimpleSearchTest extends \PHPUnit_Extensions_Selenium2TestCase
 {
     const TIME_OUT  = 1000;
-    const MAX_AJAX_EXECUTION_TIME = 3000;
+    const MAX_AJAX_EXECUTION_TIME = 5000;
 
     protected function setUp()
     {
