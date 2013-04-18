@@ -68,7 +68,7 @@ class GroupsTest extends \PHPUnit_Extensions_Selenium2TestCase
         $this->waitPageToLoad();
         $this->login(&$this);
 
-        $this->assertContains('Groups overview - Dashboard', $this->title());
+        $this->assertContains('Groups overview - User management', $this->title());
     }
 
     public function testRolesGridDefaultContent()

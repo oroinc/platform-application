@@ -71,7 +71,7 @@ class RolesTest extends \PHPUnit_Extensions_Selenium2TestCase
         $this->waitPageToLoad();
         $this->login(&$this);
 
-        $this->assertContains('Roles overview - Dashboard', $this->title());
+        $this->assertContains('Roles overview - User management', $this->title());
     }
 
     public function testRolesGridDefaultContent()
