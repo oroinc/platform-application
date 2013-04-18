@@ -385,4 +385,139 @@ class GridTest extends \PHPUnit_Extensions_Selenium2TestCase
             return false;
         }
     }
+
+    /**
+     * Get grid headers
+     *
+     * @return array
+     */
+    protected function getHeadersOnPage()
+    {
+        $records = $this->elements($this->using('xpath')->value("//table/thead/tr/th"));
+        return $records;
+    }
+
+    /**
+     * Get header Id
+     *
+     * @param array $records
+     * @param string $headerName
+     * @return int
+     */
+    protected function getHeaderId($records, $headerName)
+    {
+        $i = 1;
+        foreach ($records as $column) {
+            $name = $column->text();
+            if (mb_strtoupper($headerName) == $name) {
+                break;
+            } else {
+                $i++;
+            }
+        }
+        return $i;
+    }
+
+    /**
+     * Get grid column data
+     *
+     * @param int $columnId
+     * @return array
+     */
+    protected function getColumnData($columnId)
+    {
+        $columnData = $this->elements($this->using('xpath')->value("//table/tbody/tr/td[$columnId]"));
+        $rowData = array();
+        foreach ($columnData as $value) {
+            $fieldValue = $value->text();
+            $rowData[] = $fieldValue;
+        }
+        return $rowData;
+    }
+    /**
+     * Change grid column order
+     *
+     * @param string @columnName
+     */
+    protected function changeColumnSorting($columnName)
+    {
+        $this->byXPath("//table/thead/tr/th/a[contains(., \"$columnName\")]")->click();
+        $this->waitForAjax();
+    }
+
+    /**
+     * Set grid size to 100
+     */
+    protected function openMaxGridSize()
+    {
+        $this->byXPath("//*[@class='page-size pull-right form-horizontal']//button")->click();
+        $this->byXPath("//*[@class='page-size pull-right form-horizontal']//a[contains(., '100')]")->click();
+        $this->waitForAjax();
+    }
+
+    /**
+     * Tests that order in columns works correct
+     *
+     * @param string $columnName
+     * @dataProvider columnTitle
+     */
+    public function testSorting($columnName)
+    {
+        $this->url('user');
+        $this->waitPageToLoad();
+        $this->login($this);
+        $this->openMaxGridSize();
+        $columns = $this->getHeadersOnPage();
+        $columnId = $this->getHeaderId($columns, $columnName);
+        //test ascending order
+        $this->changeColumnSorting($columnName);
+        $columnOrder = $this->getColumnData($columnId);
+        if ($columnName == 'Birthday') {
+            $dateArray = array();
+            foreach ($columnOrder as $value) {
+                $date = strtotime($value);
+                $dateArray[] = $date;
+            }
+            $columnOrder = $dateArray;
+            $sortedColumnOrder = $columnOrder;
+            sort($sortedColumnOrder);
+        } else {
+            $sortedColumnOrder = $columnOrder;
+            natcasesort($sortedColumnOrder);
+        }
+        $this->assertEquals($columnOrder, $sortedColumnOrder, "Arrays doesn't match");
+        //test descending order
+        $this->changeColumnSorting($columnName);
+        $columnOrder = $this->getColumnData($columnId);
+        if ($columnName == 'Birthday') {
+            $dateArray = array();
+            foreach ($columnOrder as $value) {
+                $date = strtotime($value);
+                $dateArray[] = $date;
+            }
+            $columnOrder = $dateArray;
+            $sortedColumnOrder = $columnOrder;
+            sort($sortedColumnOrder);
+        } else {
+            $sortedColumnOrder = $columnOrder;
+            natcasesort($sortedColumnOrder);
+        }
+        $sortedColumnOrder = array_reverse($sortedColumnOrder);
+        $this->assertEquals($columnOrder, $sortedColumnOrder, "Arrays doesn't match");
+    }
+
+    /**
+     * @return array
+     */
+    public function columnTitle()
+    {
+        return array(
+            'ID' => array('ID'),
+            'Username' => array('Username'),
+            'Email' => array('Email'),
+            'Birthday' => array('Birthday'),
+            'Company' => array('Company'),
+            'Salary' => array('Salary'),
+        );
+    }
 }
