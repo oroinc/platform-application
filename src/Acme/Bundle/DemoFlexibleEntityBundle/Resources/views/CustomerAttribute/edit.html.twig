@@ -2,8 +2,6 @@
 
 {% set title = form.vars.value.id ? 'Edit attribute' : 'Add attribute' %}
 
-{% block title %}{{ parent() }} - {{ title }}{% endblock %}
-
 {% block content %}
 <form action="{{ form.vars.value.id ? path('acme_demoflexibleentity_customerattribute_edit', { id: form.vars.value.id }) : path('acme_demoflexibleentity_customerattribute_create') }}" method="POST" class="form-register">
     <fieldset>
