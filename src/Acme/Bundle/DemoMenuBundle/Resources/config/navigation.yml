@@ -52,3 +52,8 @@ oro_menu_config:
                 demo_ui_tab:
                     children:
                         menu_demo: ~
+
+oro_titles:
+    oro_menu_index: Demo custom menu
+    oro_menu_test: Demo custom test menu
+    oro_menu_submenu: Demo custom sub menu
