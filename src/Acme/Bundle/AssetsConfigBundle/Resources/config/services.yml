@@ -1,0 +1,8 @@
+parameters:
+    oro_assets.twig_extension.class: Acme\Bundle\AssetsConfigBundle\Twig\AcmeAssetsConfigExtension
+services:
+    oro_assets.twig.search_extension:
+        class:        %oro_assets.twig_extension.class%
+        arguments:    [@assetic.asset_factory, %oro_assets.assets_config%, @templating.name_parser, %assetic.bundles%]
+        tags:
+            - { name: twig.extension }
