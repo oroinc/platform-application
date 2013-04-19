@@ -68,7 +68,10 @@ class ProductController extends Controller
             $view = 'AcmeDemoFlexibleEntityBundle:Product:list.html.twig';
         }
 
-        return $this->render($view, array('datagrid' => $datagrid));
+        return $this->render(
+            $view,
+            array('datagrid' => $datagrid->createView())
+        );
     }
 
     /**

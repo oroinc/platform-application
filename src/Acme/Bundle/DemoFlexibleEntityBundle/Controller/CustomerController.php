@@ -59,7 +59,10 @@ class CustomerController extends Controller
             $view = 'AcmeDemoFlexibleEntityBundle:Customer:list.html.twig';
         }
 
-        return $this->render($view, array('datagrid' => $datagrid));
+        return $this->render(
+            $view,
+            array('datagrid' => $datagrid->createView())
+        );
     }
 
     /**
