@@ -4,31 +4,22 @@
 
 {% block head_style %}
     {{ parent() }}
-    {% stylesheets
-        'bundles/orofilter/lib/multiselect/jquery.multiselect.css'
-        'bundles/orofilter/lib/multiselect/jquery.multiselect.filter.css'
-        'bundles/orofilter/css/oro.filter.css'
-
-        output='css/acme.demo_filter.css'
-        filter='cssrewrite'
-    %}
-        <link rel="stylesheet" type="text/css" href="{{ asset_url }}" />
-    {% endstylesheets %}
+    {{ oro_filter_render_header_stylesheet() }}
 {% endblock %}
 
 {% block head_script %}
     {{ parent() }}
-    {{ oro_filter_render_header_js() }}
+    {{ oro_filter_render_header_javascript() }}
 
     <script type="text/javascript">
         $(function() {
             var demoFilters = {
-                'text_filter':        {{ oro_filter_render_filter_js(form.children.text_filter) }},
-                'number_filter':      {{ oro_filter_render_filter_js(form.children.number_filter) }},
-                'date_filter':        {{ oro_filter_render_filter_js(form.children.date_filter) }},
-                'datetime_filter':    {{ oro_filter_render_filter_js(form.children.datetime_filter) }},
-                'select_filter':      {{ oro_filter_render_filter_js(form.children.select_filter) }},
-                'multiselect_filter': {{ oro_filter_render_filter_js(form.children.multiselect_filter) }}
+                'text_filter':        {{ oro_filter_render_filter_javascript(form.children.text_filter) }},
+                'number_filter':      {{ oro_filter_render_filter_javascript(form.children.number_filter) }},
+                'date_filter':        {{ oro_filter_render_filter_javascript(form.children.date_filter) }},
+                'datetime_filter':    {{ oro_filter_render_filter_javascript(form.children.datetime_filter) }},
+                'select_filter':      {{ oro_filter_render_filter_javascript(form.children.select_filter) }},
+                'multiselect_filter': {{ oro_filter_render_filter_javascript(form.children.multiselect_filter) }}
             };
 
             var filtersList = new OroApp.Filter.List({ filters: demoFilters });
