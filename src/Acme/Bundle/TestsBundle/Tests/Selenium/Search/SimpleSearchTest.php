@@ -88,11 +88,9 @@ class SimpleSearchTest extends \PHPUnit_Extensions_Selenium2TestCase
         //fill-in simple search field
         $this->byId('search-bar-search')->value('admin@example.com');
         //checking that search suggestion drop-down available or not
-        $this->waitForAjax();
-        $this->assertTrue(
-            $this->isElementPresent("//*[@id='search-dropdown']/ul/li/a[contains(., 'admin')]"),
-            'No search suggestions available'
-        );
+        //$this->waitForAjax();
+        $result = $this->elements($this->using("xpath")->value("//div[@id='search-dropdown']/ul/li/a[contains(., 'admin')]"));
+        $this->assertNotEmpty($result, 'No search suggestions available');
     }
 
     public function testSearchResult()
