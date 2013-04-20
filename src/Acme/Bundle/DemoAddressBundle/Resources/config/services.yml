@@ -1,7 +1,22 @@
 parameters:
-#    acme_demo_address.example.class: Acme\Bundle\DemoAddressBundle\Example
+    oro_address.address.service.entity.class: Acme\Bundle\DemoAddressBundle\Entity\SeparateAddress
 
 services:
-#    acme_demo_address.example:
-#        class: %acme_demo_address.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    oro_address.address.service.manager.flexible:
+        class: %oro_address.address.manager.flexible.class%
+        arguments:
+            - %oro_address.address.service.entity.class%
+            - %oro_flexibleentity.flexible_config%
+            - @doctrine.orm.entity_manager
+            - @event_dispatcher
+        tags:
+            - { name: oro_flexibleentity_manager, entity: %oro_address.address.service.entity.class%}
+
+    oro_address.address.service.manager:
+        class: %oro_address.address.manager.class%
+        arguments:
+            - %oro_address.address.service.entity.class%
+            - @doctrine.orm.entity_manager
+            - @oro_address.address.service.manager.flexible
+        tags:
+            - { name: oro_address.storage, alias: service}
