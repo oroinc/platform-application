@@ -57,6 +57,7 @@ class AppKernel extends Kernel
             new Acme\Bundle\DemoSegmentationTreeBundle\AcmeDemoSegmentationTreeBundle(),
             new Acme\Bundle\DemoGridBundle\AcmeDemoGridBundle(),
             new Acme\Bundle\DemoWindowsBundle\AcmeDemoWindowsBundle(),
+            new Acme\Bundle\DemoAddressBundle\AcmeDemoAddressBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -6,7 +6,7 @@
 
 {% block content %}
     <div class="container-fluid">
-        <form action="{{ form.vars.value.id ? path('oro_address_edit', { id: form.vars.value.id, back: app.request.get('back') }) : path('oro_address_create', { back: app.request.get('back') }) }}" {{ form_enctype(form) }} method="post">
+        <form action="{{ form.vars.value.id ? path('acme_demo_address_edit', { id: form.vars.value.id, back: app.request.get('back') }) : path('acme_demo_address_create', { back: app.request.get('back') }) }}" {{ form_enctype(form) }} method="post">
             <div class="navigation clearfix navbar-extra navbar-extra-right">
                 <div class="row">
                     <div class="pull-left">
