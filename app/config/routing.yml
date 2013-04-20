@@ -90,3 +90,7 @@ NelmioApiDocBundle:
 _imagine:
     resource: .
     type:     imagine
+
+oro_address:
+    resource: "@OroAddressBundle/Resources/config/routing.yml"
+    prefix:   /
