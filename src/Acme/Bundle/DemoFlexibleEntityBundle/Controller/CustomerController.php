@@ -1,7 +1,7 @@
 <?php
 namespace Acme\Bundle\DemoFlexibleEntityBundle\Controller;
 
-use Oro\Bundle\AddressBundle\Form\Type\AddressType;
+use Oro\Bundle\AddressBundle\Entity\Address;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleManager;
@@ -10,6 +10,8 @@ use Acme\Bundle\DemoFlexibleEntityBundle\Entity\Customer;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use YsTools\BackUrlBundle\Annotation\BackUrl;
+use Symfony\Component\HttpFoundation\Session\Flash\FlashBag;
 
 /**
  * Customer entity controller
@@ -234,24 +236,69 @@ class CustomerController extends Controller
     }
 
     /**
-     * @Route("/create_address")
+     * Create address form
+     *
      * @Template
+     * @Route("/create_address", name="oro_address_create")
      */
     public function createAddressAction()
     {
         /** @var  $addressManager \Oro\Bundle\AddressBundle\Entity\Manager\AddressManager */
         $addressManager = $this->get('oro_address.address.manager');
 
-        $entity = $addressManager->createAddress();
-        $entity->setMark('Test address');
+        $account = $addressManager->createFlexible();
 
-        // create form
-        $entClassName = $addressManager->getFlexibleName();
-        $valueClassName = $addressManager->getFlexibleValueName();
-        $form = $this->createForm(new AddressType($entClassName, $valueClassName), $entity);
+        return $this->editAddressAction($account);
+    }
+
+    /**
+     * Edit address form
+     *
+     * @Route("/edit_address/{id}", name="oro_address_edit", requirements={"id"="\d+"}, defaults={"id"=0})
+     * @Template("AcmeDemoFlexibleEntityBundle:Customer:createAddress.html.twig")
+     * @BackUrl("back")
+     */
+    public function editAddressAction(Address $entity)
+    {
+        if ($this->get('oro_address.form.handler.address')->process($entity)) {
+            $backUrl = $this->getRedirectUrl($this->generateUrl('oro_address_edit', array('id' => $entity->getId())));
+
+            $this->getFlashBag()->add('success', 'Address successfully saved');
+            return $this->redirect($backUrl);
+        }
 
         return array(
-            'form' => $form->createView(),
+            'form' => $this->get('oro_address.form.address')->createView(),
         );
+    }
+
+    /**
+     * Get redirect URLs
+     *
+     * @param  string $default
+     * @return string
+     */
+    protected function getRedirectUrl($default)
+    {
+        $flashBag = $this->getFlashBag();
+        if ($this->getRequest()->query->has('back')) {
+            $backUrl = $this->getRequest()->get('back');
+            $flashBag->set('backUrl', $backUrl);
+        } elseif ($flashBag->has('backUrl')) {
+            $backUrl = $flashBag->get('backUrl');
+            $backUrl = reset($backUrl);
+        } else {
+            $backUrl = null;
+        }
+
+        return $backUrl ? $backUrl : $default;
+    }
+
+    /**
+     * @return FlashBag
+     */
+    protected function getFlashBag()
+    {
+        return $this->get('session')->getFlashBag();
     }
 }
