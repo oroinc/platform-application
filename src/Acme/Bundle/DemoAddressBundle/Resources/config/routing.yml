@@ -1,0 +1,9 @@
+acme_demo_address_create:
+    pattern:  /create
+    defaults: { _controller: AcmeDemoAddressBundle:Default:create }
+
+acme_demo_address_edit:
+    pattern:  /edit/{id}
+    defaults: { _controller: AcmeDemoAddressBundle:Default:edit, id: 0 }
+    requirements:
+        id: \d+

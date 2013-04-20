@@ -1,3 +1,7 @@
+acme_demo_address:
+    resource: "@AcmeDemoAddressBundle/Resources/config/routing.yml"
+    prefix:   /address
+
 acme_demo_windows:
     resource: "@AcmeDemoWindowsBundle/Resources/config/routing.yml"
     prefix:   /
