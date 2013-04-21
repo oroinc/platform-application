@@ -19,14 +19,20 @@ class AsseticTokenParser extends \Twig_TokenParser
      */
     private $factory;
 
+    private $tag;
+
+    private $output;
+
     /**
      * @param array        $assets
      * @param AssetFactory $factory
      */
-    public function __construct(array $assets, AssetFactory $factory)
+    public function __construct(array $assets, AssetFactory $factory, $tag, $output)
     {
         $this->assets = $assets;
         $this->factory = $factory;
+        $this->tag = $tag;
+        $this->output = $output;
     }
 
     /**
@@ -34,11 +40,11 @@ class AsseticTokenParser extends \Twig_TokenParser
      */
     public function parse(\Twig_Token $token)
     {
-        $inputs = $this->assets['js'];
+        $inputs = $this->assets;
 
         $filters = array();
         $attributes = array(
-            'output'   => 'js/*.js',
+            'output'   => $this->output,
             'var_name' => 'asset_url',
             'vars'     => array(),
         );
@@ -89,7 +95,7 @@ class AsseticTokenParser extends \Twig_TokenParser
      */
     public function getTag()
     {
-        return 'oro_js';
+        return $this->tag;
     }
 
     /**
@@ -101,7 +107,7 @@ class AsseticTokenParser extends \Twig_TokenParser
      */
     public function testEndTag(\Twig_Token $token)
     {
-        return $token->test(array('endoro_js'));
+        return $token->test(array('end' . $this->tag));
     }
 
     /**
