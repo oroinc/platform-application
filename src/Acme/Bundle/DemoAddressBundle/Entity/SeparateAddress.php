@@ -11,6 +11,16 @@ use Oro\Bundle\AddressBundle\Entity\AddressBase;
  * @ORM\Table("oro_service_address")
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Entity(repositoryClass="Oro\Bundle\AddressBundle\Entity\Repository\AddressRepository")
+ * @ORM\AttributeOverrides({
+ *     @ORM\AttributeOverride(name="postal_code",
+ *          column=@ORM\Column(
+ *              name     = "postal_code",
+ *              type     = "string",
+ *              length   = 20,
+ *              nullable = true
+ *          )
+ *      )
+ * })
  */
 class SeparateAddress extends AddressBase
 {
@@ -21,6 +31,7 @@ class SeparateAddress extends AddressBase
      */
     protected $values;
 
+    /******************************************************* ADDING ADDITIONAL FIELDS *************************************************************/
     /**
      * @var string
      * @ORM\Column(name="working_hours", type="string", length=255, nullable=true)
@@ -49,4 +60,5 @@ class SeparateAddress extends AddressBase
 
         return $this;
     }
+    /************************************************* END OF ADDING ADDITIONAL FIELDS *************************************************************/
 }

@@ -3,6 +3,7 @@
 namespace Acme\Bundle\DemoAddressBundle\Entity\Value;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 use Oro\Bundle\FlexibleEntityBundle\Entity\Attribute;
 use Oro\Bundle\FlexibleEntityBundle\Entity\Mapping\AbstractEntityFlexibleValue;

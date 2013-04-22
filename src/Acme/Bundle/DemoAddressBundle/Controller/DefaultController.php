@@ -3,12 +3,11 @@
 namespace Acme\Bundle\DemoAddressBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
-use YsTools\BackUrlBundle\Annotation\BackUrl;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBag;
+use YsTools\BackUrlBundle\Annotation\BackUrl;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
-use Oro\Bundle\AddressBundle\Entity\Address;
+use Acme\Bundle\DemoAddressBundle\Entity\SeparateAddress;
 
 class DefaultController extends Controller
 {
@@ -20,7 +19,7 @@ class DefaultController extends Controller
     public function createAction()
     {
         /** @var  $addressManager \Oro\Bundle\AddressBundle\Entity\Manager\AddressManager */
-        $addressManager = $this->get('oro_address.address.provider')->getStorage();
+        $addressManager = $this->get('oro_address.address.provider')->getStorage('service');
 
         $address = $addressManager->createFlexible();
 
@@ -33,7 +32,7 @@ class DefaultController extends Controller
      * @Template()
      * @BackUrl("back")
      */
-    public function editAction(Address $entity)
+    public function editAction(SeparateAddress $entity)
     {
         if ($this->get('oro_address.form.handler.address')->process($entity)) {
             $backUrl = $this->getRedirectUrl($this->generateUrl('acme_demo_address_edit', array('id' => $entity->getId())));
