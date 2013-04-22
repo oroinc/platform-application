@@ -7,19 +7,19 @@ use Symfony\Component\HttpFoundation\Session\Flash\FlashBag;
 use YsTools\BackUrlBundle\Annotation\BackUrl;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
-use Oro\Bundle\AddressBundle\Entity\Address;
+use Acme\Bundle\DemoAddressBundle\Entity\SeparateAddress;
 
-class DefaultController extends Controller
+class SeparateController extends Controller
 {
 
     /**
      * Create address form
-     * @Template("AcmeDemoAddressBundle:Default:edit.html.twig")
+     * @Template("AcmeDemoAddressBundle:Separate:edit.html.twig")
      */
     public function createAction()
     {
         /** @var  $addressManager \Oro\Bundle\AddressBundle\Entity\Manager\AddressManager */
-        $addressManager = $this->get('oro_address.address.provider')->getStorage();
+        $addressManager = $this->get('oro_address.address.provider')->getStorage('service');
 
         $address = $addressManager->createFlexible();
 
@@ -32,17 +32,17 @@ class DefaultController extends Controller
      * @Template()
      * @BackUrl("back")
      */
-    public function editAction(Address $entity)
+    public function editAction(SeparateAddress $entity)
     {
-        if ($this->get('oro_address.form.handler.address')->process($entity)) {
-            $backUrl = $this->getRedirectUrl($this->generateUrl('acme_demo_address_edit', array('id' => $entity->getId())));
+        if ($this->get('oro_address.form.handler.address.service')->process($entity)) {
+            $backUrl = $this->getRedirectUrl($this->generateUrl('acme_demo_service_address_edit', array('id' => $entity->getId())));
 
             $this->getFlashBag()->add('success', 'Address successfully saved');
             return $this->redirect($backUrl);
         }
 
         return array(
-            'form' => $this->get('oro_address.form.address')->createView(),
+            'form' => $this->get('oro_address.service.form.address')->createView(),
         );
     }
 
