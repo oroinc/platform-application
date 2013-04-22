@@ -78,7 +78,7 @@ knp_paginator:
         sort_direction_name:  direction # sort direction query parameter name
         distinct:             false     # ensure distinct results, useful when ORM queries are using GROUP BY statements
     template:
-        pagination:           AcmeDemoBundle::pager.bootstrap.html.twig
+        pagination:           OroUIBundle::pager.html.twig
 
 fos_rest:
     view:

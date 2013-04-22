@@ -4,7 +4,7 @@ namespace Acme\Bundle\TestsBundle\Tests\Selenium;
 class UsersTest extends \PHPUnit_Extensions_Selenium2TestCase
 {
     const TIME_OUT  = 1000;
-    const MAX_AJAX_EXECUTION_TIME = 3000;
+    const MAX_AJAX_EXECUTION_TIME = 5000;
 
     protected function setUp()
     {
@@ -21,27 +21,36 @@ class UsersTest extends \PHPUnit_Extensions_Selenium2TestCase
 
     protected function waitPageToLoad()
     {
-        $script = "return 'complete' != document['readyState']";
-        do {
-            sleep(1);
-        } while ($this->execute(array('script' => $script, 'args' => array())));
+        $this->waitUntil(
+            function ($testCase) {
+                $status = $testCase->execute(array('script' => "return 'complete' == document['readyState']", 'args' => array()));
+                if ($status) {
+                    return true;
+                } else {
+                    return null;
+                }
+            },
+            self::MAX_AJAX_EXECUTION_TIME
+        );
 
         $this->timeouts()->implicitWait(self::TIME_OUT);
     }
 
-    protected function waitForAjax($iSec = 1)
+    protected function waitForAjax()
     {
-        $i = 0;
-        do {
-            $bRunning = $this->execute(array('script' => 'return jQuery.active != 0', 'args' => array()));
-            if ($bRunning) {
-                if ($i > self::MAX_AJAX_EXECUTION_TIME) {
-                    break;
+        $this->waitUntil(
+            function ($testCase) {
+                $status = $testCase->execute(array('script' => 'return jQuery.active == 0', 'args' => array()));
+                if ($status) {
+                    return true;
+                } else {
+                    return null;
                 }
-                $i++;
-                sleep($iSec);
-            }
-        } while ($bRunning);
+            },
+            self::MAX_AJAX_EXECUTION_TIME
+        );
+
+        $this->timeouts()->implicitWait(self::TIME_OUT);
     }
 
     protected function login($form)
