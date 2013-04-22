@@ -1,5 +1,6 @@
 parameters:
     oro_address.address.service.entity.class: Acme\Bundle\DemoAddressBundle\Entity\SeparateAddress
+    oro_address.address.service.entity.value.class: Acme\Bundle\DemoAddressBundle\Entity\Value\AddressValue
 
 services:
     oro_address.address.service.manager.flexible:
