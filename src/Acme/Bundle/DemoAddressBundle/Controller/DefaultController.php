@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use YsTools\BackUrlBundle\Annotation\BackUrl;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBag;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 use Oro\Bundle\AddressBundle\Entity\Address;
 
@@ -33,6 +34,7 @@ class DefaultController extends Controller
      *
      * @Template()
      * @BackUrl("back")
+     * @ParamConverter("entity", class="AcmeDemoAddressBundle:SeparateAddress")
      */
     public function editAction(SeparateAddress $entity)
     {
