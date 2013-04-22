@@ -10,6 +10,8 @@ use Oro\Bundle\AddressBundle\Entity\Address;
  *
  * @ORM\Table("oro_service_address")
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks()
+ * @ORM\Entity(repositoryClass="Oro\Bundle\AddressBundle\Entity\Repository\AddressRepository")
  */
 class SeparateAddress extends Address
 {
