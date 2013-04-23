@@ -7,6 +7,8 @@ use Acme\Bundle\TestsBundle\Pages\BAP\Search;
 
 class SimpleSearchTest extends \PHPUnit_Extensions_Selenium2TestCase
 {
+    protected $coverageScriptUrl = PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_TESTS_URL_COVERAGE;
+
     protected function setUp()
     {
         $this->setHost(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_HOST);
