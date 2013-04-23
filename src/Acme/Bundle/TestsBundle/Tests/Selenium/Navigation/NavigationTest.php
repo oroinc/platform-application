@@ -63,30 +63,21 @@ class NavigationTest extends \PHPUnit_Extensions_Selenium2TestCase
         $login = new Login($this);
         $login->setUsername(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_LOGIN)
             ->setPassword(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_PASS)
-            ->submit();
-        //Click User tab link
-        $this->byXPath("//ul[@class='nav nav-tabs']//a[contains(., 'Users')]")->click();
-        //Open Users tab
-        $this->byXPath("//div[@id='user_tab']//a[contains(., 'Users')]")->click();
-        $this->waitForAjax();
-        $this->assertTrue(
-            $this->isElementPresent("//table[@class='grid table-hover table table-bordered table-condensed']/tbody"),
-            'Not Users grid available'
-        );
-        //Open Roles tab
-        $this->byXPath("//div[@id='user_tab']//a[contains(., 'Roles')]")->click();
-        $this->waitForAjax();
-        $this->assertTrue(
-            $this->isElementPresent("//table[@class='grid table-hover table table-bordered table-condensed']/tbody"),
-            'No Roles tab grid available'
-        );
-        //Open Groups tab
-        $this->byXPath("//div[@id='user_tab']//a[contains(., 'Groups')]")->click();
-        $this->waitForAjax();
-        $this->assertTrue(
-            $this->isElementPresent("//table[@class='grid table-hover table table-bordered table-condensed']/tbody"),
-            'No Groups tab grid available'
-        );
+            ->submit()
+            ->openNavigation()
+            ->tab('Users')
+            ->menu('Users')
+            ->assertElementPresent("//table[@class='grid table-hover table table-bordered table-condensed']/tbody");
+
+        $login->openNavigation()
+            ->tab('Users')
+            ->menu('Roles')
+            ->assertElementPresent("//table[@class='grid table-hover table table-bordered table-condensed']/tbody");
+
+        $login->openNavigation()
+            ->tab('Users')
+            ->menu('Groups')
+            ->assertElementPresent("//table[@class='grid table-hover table table-bordered table-condensed']/tbody");
     }
 
     /**
