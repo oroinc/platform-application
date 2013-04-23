@@ -5,7 +5,7 @@ namespace Acme\Bundle\TestsBundle\Tests\Selenium;
 use Acme\Bundle\TestsBundle\Test\ToolsAPI;
 use Acme\Bundle\TestsBundle\Pages\BAP\Login;
 
-class PageGroupsTest extends \PHPUnit_Extensions_Selenium2TestCase
+class GroupsTest extends \PHPUnit_Extensions_Selenium2TestCase
 {
     protected $newGroup = array('NAME' => 'NEW_GROUP_', 'ROLE' => 'Administrator');
 
