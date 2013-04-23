@@ -33,7 +33,18 @@ twig:
 assetic:
     debug:                    "%kernel.debug%"
     use_controller:           false
-    bundles:                  ["OroUIBundle", "AcmeDemoBundle", "OroUserBundle","AcmeDemoSegmentationTreeBundle", "AcmeDemoGridBundle", "OroGridBundle", "OroNavigationBundle", "OroWindowsBundle", "AcmeDemoWindowsBundle"]
+    bundles:
+        - OroUIBundle
+        - OroUserBundle
+        - OroGridBundle
+        - OroFilterBundle
+        - OroNavigationBundle
+        - OroWindowsBundle
+        - AcmeDemoBundle
+        - AcmeDemoSegmentationTreeBundle
+        - AcmeDemoWindowsBundle
+        - AcmeDemoGridBundle
+        - AcmeDemoFilterBundle
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -95,6 +106,9 @@ fos_rest:
             xml: fos_rest.decoder.xml
     routing_loader:
         default_format: json
+
+fos_js_routing:
+    routes_to_expose:         [oro_api_*]
 
 be_simple_soap:
     cache:
