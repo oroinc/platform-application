@@ -5,7 +5,7 @@ namespace Acme\Bundle\TestsBundle\Tests\Selenium;
 use Acme\Bundle\TestsBundle\Test\ToolsAPI;
 use Acme\Bundle\TestsBundle\Pages\BAP\Login;
 
-class PageRolesTest extends \PHPUnit_Extensions_Selenium2TestCase
+class RolesTest extends \PHPUnit_Extensions_Selenium2TestCase
 {
     protected $newRole = array('LABEL' => 'NEW_LABEL_', 'ROLE_NAME' => 'NEW_ROLE_');
 

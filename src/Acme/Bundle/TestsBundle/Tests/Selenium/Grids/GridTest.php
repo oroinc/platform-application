@@ -5,7 +5,7 @@ namespace Acme\Bundle\TestsBundle\Tests\Selenium;
 use Acme\Bundle\TestsBundle\Pages\BAP\Login;
 use Acme\Bundle\TestsBundle\Pages\BAP\Users;
 
-class PageGridTest extends \PHPUnit_Extensions_Selenium2TestCase
+class GridTest extends \PHPUnit_Extensions_Selenium2TestCase
 {
     protected function setUp()
     {

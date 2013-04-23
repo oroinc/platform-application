@@ -4,7 +4,7 @@ namespace Acme\Bundle\TestsBundle\Tests\Selenium;
 
 use Acme\Bundle\TestsBundle\Pages\BAP\Login;
 
-class PageUsersTest extends \PHPUnit_Extensions_Selenium2TestCase
+class UsersTest extends \PHPUnit_Extensions_Selenium2TestCase
 {
     protected function setUp()
     {
@@ -19,21 +19,7 @@ class PageUsersTest extends \PHPUnit_Extensions_Selenium2TestCase
         $this->cookie()->clear();
     }
 
-    protected function openUserInfoPage($username)
-    {
-        $this->byXPath("//*[@class='grid table-hover table table-bordered table-condensed']/tbody/tr/td[text() = \"$username\"]")->click();
-        $this->assertEquals('Last_'.$username.', First_'.$username.' - View profile - User Management', $this->title());
-    }
-
-    protected function searchFilterByUsername($username)
-    {
-        $this->byXPath("//*[@id='usersDatagridFilters']/div/div/button[contains(., 'Username')]")->click();
-        $this->isElementPresent("//*[@class='btn-group filter-item oro-drop open-filter']/div/div/");
-        $this->byXPath("//*[@class='btn-group filter-item oro-drop open-filter']/div/div/div/input")->value($username);
-        $this->byXPath("//div[@class='btn-group filter-item oro-drop open-filter']//button[contains(., 'Update')]")->click();
-        $this->waitForAjax();
-    }
-    /**
+     /**
      * @return string
      */
     public function testCreateUser()
