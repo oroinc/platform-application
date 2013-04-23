@@ -28,6 +28,11 @@ acme_demo_grid:
     prefix:   /{_locale}/grid/
     defaults: { _locale: %locale% }
 
+acme_demo_filter:
+    resource: "@AcmeDemoFilterBundle/Controller/"
+    type:     annotation
+    prefix:   /filter/
+
 oro_default:
     pattern:  /{_locale}
     defaults:
