@@ -119,18 +119,43 @@ class Page
 
     /**
      * @param $title
+     * @param string $message
      * @return $this
      */
-    public function assertTitle($title)
+    public function assertTitle($title, $message = '')
     {
-        PHPUnit_Framework_Assert::assertEquals($title, $this->test->title());
+        PHPUnit_Framework_Assert::assertEquals(
+            $title,
+            $this->test->title(),
+            $message
+        );
         return $this;
     }
 
-    public function assertMessage($message)
+    /**
+     * @param $messageText
+     * @param string $message
+     * @return $this
+     */
+    public function assertMessage($messageText, $message = '')
     {
-        PHPUnit_Framework_Assert::assertTrue($this->isElementPresent("//div[contains(@class,'alert') and contains(., '{$message}')]"));
+        PHPUnit_Framework_Assert::assertTrue(
+            $this->isElementPresent("//div[contains(@class,'alert') and contains(., '{$messageText}')]"),
+            $message
+        );
         return $this;
+    }
+
+    /**
+     * @param $xpath
+     * @param string $message
+     */
+    public function assertElementPresent($xpath, $message = '')
+    {
+        PHPUnit_Framework_Assert::assertTrue(
+            $this->isElementPresent($xpath),
+            $message
+        );
     }
 
     /**
