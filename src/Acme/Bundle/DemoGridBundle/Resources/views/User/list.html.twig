@@ -5,11 +5,6 @@
     {% include 'OroGridBundle:Include:javascript.html.twig' with {'datagrid': datagrid, 'selector': '#backgrid'} %}
 {% endblock %}
 
-{% block stylesheets %}
-    {{ parent() }}
-    {% include 'OroGridBundle:Include:stylesheet.html.twig' %}
-{% endblock %}
-
 {% block content %}
     <h2>Users</h2>
     <div id="backgrid"></div>
