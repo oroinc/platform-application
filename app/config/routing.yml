@@ -28,6 +28,11 @@ acme_demo_grid:
     prefix:   /{_locale}/grid/
     defaults: { _locale: %locale% }
 
+acme_demo_filter:
+    resource: "@AcmeDemoFilterBundle/Controller/"
+    type:     annotation
+    prefix:   /filter/
+
 oro_default:
     pattern:  /{_locale}
     defaults:
@@ -79,9 +84,12 @@ oro_dataflow:
 oro_config:
     resource: "@OroConfigBundle/Resources/config/routing.yml"
 
-NelmioApiDocBundle:
+nelmio_api_doc:
     resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
     prefix:   /api/doc
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
 
 _imagine:
     resource: .

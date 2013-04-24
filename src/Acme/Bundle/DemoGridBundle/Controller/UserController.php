@@ -5,6 +5,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Oro\Bundle\NavigationBundle\Annotation\TitleTemplate;
 
 use Acme\Bundle\DemoGridBundle\Datagrid\UserDatagridManager;
 
@@ -19,6 +20,7 @@ class UserController extends Controller
      *      requirements={"_format"="html|json"},
      *      defaults={"_format" = "html"}
      * )
+     * @TitleTemplate("Users grid")
      */
     public function listAction(Request $request)
     {
@@ -34,10 +36,7 @@ class UserController extends Controller
 
         return $this->render(
             $view,
-            array(
-                'datagrid' => $datagrid,
-                'form'     => $datagrid->getForm()->createView()
-            )
+            array('datagrid' => $datagrid->createView())
         );
     }
 }
