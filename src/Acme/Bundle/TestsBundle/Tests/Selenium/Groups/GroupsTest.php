@@ -7,6 +7,8 @@ use Acme\Bundle\TestsBundle\Pages\BAP\Login;
 
 class GroupsTest extends \PHPUnit_Extensions_Selenium2TestCase
 {
+    protected $coverageScriptUrl = PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_TESTS_URL_COVERAGE;
+    
     protected $newGroup = array('NAME' => 'NEW_GROUP_', 'ROLE' => 'Administrator');
 
     protected $defaultGroups = array(

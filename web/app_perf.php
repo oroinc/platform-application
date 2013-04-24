@@ -18,7 +18,7 @@ if (isset($_SERVER['HTTP_CLIENT_IP'])
 
 $loader = require_once __DIR__.'/../app/bootstrap.php.cache';
 require_once __DIR__.'/../app/AppKernel.php';
-$GLOBALS['PHPUNIT_COVERAGE_DATA_DIRECTORY'] = 'C:\Dev\bap\bap-dev\app\logs';
+$GLOBALS['PHPUNIT_COVERAGE_DATA_DIRECTORY'] = realpath(__DIR__ . '/../app/logs');
 $kernel = new AppKernel('perf', true);
 $kernel->loadClassCache();
 $request = Request::createFromGlobals();

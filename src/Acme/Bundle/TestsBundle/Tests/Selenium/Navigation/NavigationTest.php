@@ -6,6 +6,8 @@ use Acme\Bundle\TestsBundle\Pages\BAP\Login;
 
 class NavigationTest extends \PHPUnit_Extensions_Selenium2TestCase
 {
+    protected $coverageScriptUrl = PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_TESTS_URL_COVERAGE;
+
     const TIME_OUT  = 1000;
     const MAX_AJAX_EXECUTION_TIME = 5000;
 

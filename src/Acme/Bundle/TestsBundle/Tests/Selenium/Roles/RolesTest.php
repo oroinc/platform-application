@@ -7,6 +7,8 @@ use Acme\Bundle\TestsBundle\Pages\BAP\Login;
 
 class RolesTest extends \PHPUnit_Extensions_Selenium2TestCase
 {
+    protected $coverageScriptUrl = PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_TESTS_URL_COVERAGE;
+
     protected $newRole = array('LABEL' => 'NEW_LABEL_', 'ROLE_NAME' => 'NEW_ROLE_');
 
     protected $defaultRoles = array(
