@@ -1,5 +1,5 @@
 imports:
-    - { resource: config_test.yml }
+    - { resource: config.yml }
 
 parameters:
     performance.customers: 100
