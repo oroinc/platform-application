@@ -50,14 +50,14 @@ require_once 'PHP/CodeCoverage/Autoload.php';
 // in prepend.php, you need to configure the same directory here.
 //$GLOBALS['PHPUNIT_COVERAGE_DATA_DIRECTORY'] = getcwd();
 if (!isset($GLOBALS['PHPUNIT_COVERAGE_DATA_DIRECTORY'])) {
-    $GLOBALS['PHPUNIT_COVERAGE_DATA_DIRECTORY'] = getcwd();
+    $GLOBALS['PHPUNIT_COVERAGE_DATA_DIRECTORY'] = realpath(getcwd() . '/../app/logs');
 }
 
 if (isset($_GET['PHPUNIT_SELENIUM_TEST_ID'])) {
     $facade = new File_Iterator_Facade;
     $files  = $facade->getFilesAsArray(
-      $GLOBALS['PHPUNIT_COVERAGE_DATA_DIRECTORY'],
-      str_replace('\\','_', $_GET['PHPUNIT_SELENIUM_TEST_ID'])
+        $GLOBALS['PHPUNIT_COVERAGE_DATA_DIRECTORY'],
+        str_replace('\\', '_', $_GET['PHPUNIT_SELENIUM_TEST_ID'])
     );
 
     $coverage = array();
