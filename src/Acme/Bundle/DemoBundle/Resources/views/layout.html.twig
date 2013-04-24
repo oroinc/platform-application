@@ -1,4 +1,4 @@
-{% extends app.request.isXmlHttpRequest ? "OroUIBundle:Default:ajax.html.twig" : "OroUIBundle:Default:index.html.twig" %}
+{% extends app.request.headers.get('x-oro-hash-navigation') ? "OroUIBundle:Default:ajax.html.twig" : "OroUIBundle:Default:index.html.twig" %}
 {% use 'AcmeDemoBundle:Default:components.html.twig' %}
 
 {% block head_script %}
