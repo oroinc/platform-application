@@ -12,7 +12,7 @@ use Oro\Bundle\AddressBundle\Entity\AddressBase;
  * @ORM\HasLifecycleCallbacks()
  * @ORM\Entity(repositoryClass="Oro\Bundle\AddressBundle\Entity\Repository\AddressRepository")
  * @ORM\AttributeOverrides({
- *     @ORM\AttributeOverride(name="postal_code",
+ *     @ORM\AttributeOverride(name="postalCode",
  *          column=@ORM\Column(
  *              name     = "postal_code",
  *              type     = "string",
