@@ -130,6 +130,7 @@ be_simple_soap:
 stof_doctrine_extensions:
     orm:
         default:
+            translatable:     true
             tree:             true
 
 services:
