@@ -49,7 +49,9 @@ require_once 'PHP/CodeCoverage/Autoload.php';
 // It defaults to getcwd(). If you have configured a different directory
 // in prepend.php, you need to configure the same directory here.
 //$GLOBALS['PHPUNIT_COVERAGE_DATA_DIRECTORY'] = getcwd();
-$GLOBALS['PHPUNIT_COVERAGE_DATA_DIRECTORY'] = 'C:\Dev\bap\bap-dev\app\logs';
+if (!isset($GLOBALS['PHPUNIT_COVERAGE_DATA_DIRECTORY'])) {
+    $GLOBALS['PHPUNIT_COVERAGE_DATA_DIRECTORY'] = getcwd();
+}
 
 if (isset($_GET['PHPUNIT_SELENIUM_TEST_ID'])) {
     $facade = new File_Iterator_Facade;
