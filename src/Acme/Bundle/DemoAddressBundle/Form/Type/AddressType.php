@@ -30,7 +30,7 @@ class AddressType extends AddressTypeBase
             ->add('street2', 'text', $notRequired)
             ->add('city', 'text', $required)
             ->add('state', 'text', $required)
-            ->add('postal_code', 'text', $notRequired)
+            ->add('postalCode', 'text', $notRequired)
             ->add('country', 'text', $required)
             ->add('mark', 'text', $notRequired)
             ->add('working_hours', 'text', $notRequired);

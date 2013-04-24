@@ -16,7 +16,7 @@ Acme\Bundle\DemoAddressBundle\Entity\SeparateAddress:
             - Length:
                   min: 2
                   max: 255
-        postal_code:
+        postalCode:
             - Length:
                   max: 20
         country:
