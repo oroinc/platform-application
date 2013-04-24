@@ -17,7 +17,7 @@ class PageGrid extends Page
      * @param int $pageSize
      * @return array
      */
-    public function getRandomEntity($pageSize = 25)
+    public function getRandomEntity($pageSize = 10)
     {
         $entityId = rand(1, $pageSize);
 
