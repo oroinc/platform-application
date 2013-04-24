@@ -24,6 +24,7 @@ class AppKernel extends Kernel
             new JMS\SerializerBundle\JMSSerializerBundle($this),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new FOS\RestBundle\FOSRestBundle(),
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
             new BeSimple\SoapBundle\BeSimpleSoapBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
@@ -43,6 +44,7 @@ class AppKernel extends Kernel
             new Oro\Bundle\SegmentationTreeBundle\OroSegmentationTreeBundle(),
             new Oro\Bundle\NavigationBundle\OroNavigationBundle(),
             new Oro\Bundle\ConfigBundle\OroConfigBundle(),
+            new Oro\Bundle\FilterBundle\OroFilterBundle(),
             new Oro\Bundle\GridBundle\OroGridBundle(),
             new Oro\Bundle\WindowsBundle\OroWindowsBundle(),
 
@@ -56,6 +58,7 @@ class AppKernel extends Kernel
             new Acme\Bundle\DemoSegmentationTreeBundle\AcmeDemoSegmentationTreeBundle(),
             new Acme\Bundle\DemoGridBundle\AcmeDemoGridBundle(),
             new Acme\Bundle\DemoWindowsBundle\AcmeDemoWindowsBundle(),
+            new Acme\Bundle\DemoFilterBundle\AcmeDemoFilterBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

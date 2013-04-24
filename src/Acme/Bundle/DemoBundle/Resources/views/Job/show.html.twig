@@ -2,7 +2,7 @@
 {% import 'JMSJobQueueBundle:Job:macros.html.twig' as macros %}
 {% use 'AcmeDemoBundle:Job:sidebar.html.twig' %}
 
-{% block title %}Job "{{ job.command }}" (ID: {{ job.id }})" - {{ parent() }}{% endblock %}
+{% oro_title_set({params:{'%command%': job.command, '%id%': job.id}}) %}
 
 {% block content %}
 <ul class="breadcrumb">

@@ -1,5 +1,5 @@
 {% extends 'AcmeDemoFlexibleEntityBundle::layout.html.twig' %}
-
+{% oro_title_set({params:{"%customer.name%": customer.firstname ~ ' ' ~ customer.lastname }}) %}
 {% block content %}
 
     <h3>Get fields values</h3>

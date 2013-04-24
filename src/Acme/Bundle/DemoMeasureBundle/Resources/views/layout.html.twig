@@ -1,6 +1,6 @@
 {% extends bap.layout is defined ? bap.layout : "OroUIBundle:Default:index.html.twig" %}
 
-{% block title %}Measure - {{ parent() }}{% endblock %}
+{% oro_title_set({suffix: " - " ~ "Measure"|trans}) %}
 
 {% block content %}
 
