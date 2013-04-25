@@ -8,7 +8,7 @@ class Page
 {
     /** Default timeouts */
     const TIME_OUT  = 1000;
-    const MAX_EXECUTION_TIME = 15000;
+    const MAX_EXECUTION_TIME = 60000;
 
     protected $redirectUrl = null;
 
