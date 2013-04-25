@@ -106,12 +106,8 @@ class Page
      */
     public function isElementPresent($locator, $strategy = 'xpath')
     {
-        try {
-            $this->element($this->using($strategy)->value($locator));
-            return true;
-        } catch (\PHPUnit_Extensions_Selenium2TestCase_WebDriverException $e) {
-            return false;
-        }
+        $result = $this->elements($this->using($strategy)->value($locator));
+        return !empty($result);
     }
 
     /**
@@ -150,6 +146,18 @@ class Page
     public function assertElementPresent($xpath, $message = '')
     {
         PHPUnit_Framework_Assert::assertTrue(
+            $this->isElementPresent($xpath),
+            $message
+        );
+    }
+
+    /**
+     * @param $xpath
+     * @param string $message
+     */
+    public function assertElementNotPresent($xpath, $message = '')
+    {
+        PHPUnit_Framework_Assert::assertFalse(
             $this->isElementPresent($xpath),
             $message
         );
