@@ -224,15 +224,33 @@ class PageGrid extends Page
     }
 
     /**
-     * Change grid column order
-     *
      * @param $columnName
+     * @param string $order DESC or ASC
      * @return $this
      */
-    public function sortBy($columnName)
+    public function sortBy($columnName, $order = '')
     {
-        $this->byXPath("{$this->gridPath}//table/thead/tr/th/a[contains(., '{$columnName}')]")->click();
-        $this->waitForAjax();
+        //get current state descending or ascending
+        switch (strtolower($order)) {
+            case 'desc':
+                $orderFull = 'descending';
+                break;
+            case 'asc':
+                $orderFull = 'ascending';
+                break;
+            default:
+                $orderFull = $order;
+        }
+
+        //get current sort order status
+        $current = $this->byXPath("{$this->gridPath}//table/thead/tr/th[a[contains(., '{$columnName}')]]")->attribute('class');
+        if ($current != $orderFull || $order == '') {
+            $this->byXPath("{$this->gridPath}//table/thead/tr/th/a[contains(., '{$columnName}')]")->click();
+            $this->waitForAjax();
+            if ($order != '') {
+                return $this->sortBy($columnName, $order);
+            }
+        }
         return $this;
     }
 

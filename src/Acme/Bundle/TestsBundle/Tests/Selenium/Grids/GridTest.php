@@ -141,24 +141,9 @@ class GridTest extends \PHPUnit_Extensions_Selenium2TestCase
         $users = new Users($this);
         $users->changePageSize('last');
         $columnId = $users->getColumnNumber($columnName);
-        //test ascending order
-        $columnOrder = $users->sortBy($columnName)->getColumn($columnId);
-        if ($columnName == 'Birthday') {
-            $dateArray = array();
-            foreach ($columnOrder as $value) {
-                $date = strtotime($value);
-                $dateArray[] = $date;
-            }
-            $columnOrder = $dateArray;
-            $sortedColumnOrder = $columnOrder;
-            sort($sortedColumnOrder);
-        } else {
-            $sortedColumnOrder = $columnOrder;
-            natcasesort($sortedColumnOrder);
-        }
-        $this->assertEquals($columnOrder, $sortedColumnOrder, "Arrays doesn't match");
+
         //test descending order
-        $columnOrder = $users->sortBy($columnName)->getColumn($columnId);
+        $columnOrder = $users->sortBy($columnName, 'desc')->getColumn($columnId);
         if ($columnName == 'Birthday') {
             $dateArray = array();
             foreach ($columnOrder as $value) {
@@ -172,8 +157,27 @@ class GridTest extends \PHPUnit_Extensions_Selenium2TestCase
             $sortedColumnOrder = $columnOrder;
             natcasesort($sortedColumnOrder);
         }
+
         $sortedColumnOrder = array_reverse($sortedColumnOrder);
-        $this->assertEquals($columnOrder, $sortedColumnOrder, "Arrays doesn't match");
+        $this->assertTrue($columnOrder === $sortedColumnOrder, "Arrays doesn't match");
+
+        //test ascending order
+        $columnOrder = $users->sortBy($columnName, 'asc')->getColumn($columnId);
+        if ($columnName == 'Birthday') {
+            $dateArray = array();
+            foreach ($columnOrder as $value) {
+                $date = strtotime($value);
+                $dateArray[] = $date;
+            }
+            $columnOrder = $dateArray;
+            $sortedColumnOrder = $columnOrder;
+            sort($sortedColumnOrder);
+        } else {
+            $sortedColumnOrder = $columnOrder;
+            natcasesort($sortedColumnOrder);
+        }
+
+        $this->assertTrue($columnOrder == $sortedColumnOrder, "Arrays doesn't match");
     }
 
     /**
