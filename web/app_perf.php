@@ -16,10 +16,12 @@ if (isset($_SERVER['HTTP_CLIENT_IP'])
     exit('You are not allowed to access this file. Check '.basename(__FILE__).' for more information.');
 }
 
+$PHPUNIT_COVERAGE_DATA_DIRECTORY = realpath(__DIR__ . '/../app/logs');
+
 $loader = require_once __DIR__.'/../app/bootstrap.php.cache';
 require_once __DIR__.'/../app/AppKernel.php';
-$GLOBALS['PHPUNIT_COVERAGE_DATA_DIRECTORY'] = realpath(__DIR__ . '/../app/logs');
-$kernel = new AppKernel('perf', true);
+
+$kernel = new AppKernel('perf', false);
 $kernel->loadClassCache();
 $request = Request::createFromGlobals();
 $response = $kernel->handle($request);
