@@ -49,17 +49,17 @@ require_once 'PHP/CodeCoverage/Autoload.php';
 // It defaults to getcwd(). If you have configured a different directory
 // in prepend.php, you need to configure the same directory here.
 //$GLOBALS['PHPUNIT_COVERAGE_DATA_DIRECTORY'] = getcwd();
-if (!isset($GLOBALS['PHPUNIT_COVERAGE_DATA_DIRECTORY'])) {
-    $GLOBALS['PHPUNIT_COVERAGE_DATA_DIRECTORY'] = realpath(getcwd() . '/../app/logs');
-}
+//if (!isset($GLOBALS['PHPUNIT_COVERAGE_DATA_DIRECTORY'])) {
+$GLOBALS['PHPUNIT_COVERAGE_DATA_DIRECTORY'] = realpath($_SERVER['DOCUMENT_ROOT'] . '/../app/logs');
+//}
 
 if (isset($_GET['PHPUNIT_SELENIUM_TEST_ID'])) {
     $facade = new File_Iterator_Facade;
     $files  = $facade->getFilesAsArray(
         $GLOBALS['PHPUNIT_COVERAGE_DATA_DIRECTORY'],
-        str_replace('\\', '_', $_GET['PHPUNIT_SELENIUM_TEST_ID'])
+        '_coverage'
     );
-
+    file_put_contents('C:\Dev\bap\bap-dev\app\logs\test.txt', $GLOBALS['PHPUNIT_COVERAGE_DATA_DIRECTORY']);
     $coverage = array();
 
     foreach ($files as $file) {
