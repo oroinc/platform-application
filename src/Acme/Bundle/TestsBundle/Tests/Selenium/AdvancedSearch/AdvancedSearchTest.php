@@ -7,9 +7,6 @@ use Acme\Bundle\TestsBundle\Pages\BAP\Users;
 
 class AdvancedSearchTest extends \PHPUnit_Extensions_Selenium2TestCase
 {
-    const TIME_OUT  = 1000;
-    const MAX_AJAX_EXECUTION_TIME = 5000;
-
     protected function setUp()
     {
         $this->setHost(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_HOST);
@@ -34,10 +31,10 @@ class AdvancedSearchTest extends \PHPUnit_Extensions_Selenium2TestCase
                     return null;
                 }
             },
-            self::MAX_AJAX_EXECUTION_TIME
+            intval('MAX_AJAX_EXECUTION_TIME')
         );
 
-        $this->timeouts()->implicitWait(self::TIME_OUT);
+        $this->timeouts()->implicitWait(intval('TIME_OUT'));
     }
 
     /**
@@ -79,7 +76,7 @@ class AdvancedSearchTest extends \PHPUnit_Extensions_Selenium2TestCase
         $this->byId('query')->value($query . $userData{$userField});
         $this->byId('sendButton')->click();
         $this->waitForAjax();
-        //Chect that result is not null
+        //Check that result is not null
         $this->assertFalse(
             $this->isElementPresent(
                 "//div[@class='container-fluid']//div[@class='search_stats alert alert-info']/h2[contains(., '$query . $userData{$userField}')]"
@@ -97,7 +94,6 @@ class AdvancedSearchTest extends \PHPUnit_Extensions_Selenium2TestCase
     {
         return array(
             'firstName' => array('where firstName ~ ','FIRST NAME'),
-//            'salary' => array('where salary = ', 'SALARY'),
         );
     }
 }
