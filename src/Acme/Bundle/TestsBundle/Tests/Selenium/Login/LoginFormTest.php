@@ -4,7 +4,7 @@ namespace Acme\Bundle\TestsBundle\Tests\Selenium;
 
 class LoginFormTest extends \PHPUnit_Extensions_Selenium2TestCase
 {
-    const TIME_OUT  = 1000;
+    protected $coverageScriptUrl = PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_TESTS_URL_COVERAGE;
 
     protected function setUp()
     {
@@ -21,13 +21,36 @@ class LoginFormTest extends \PHPUnit_Extensions_Selenium2TestCase
 
     protected function waitPageToLoad()
     {
-        $script = "return document['readyState']";
-        sleep(1);
-        while ('complete'!= $this->execute(array('script' => $script, 'args' => array()))) {
-            //empty loop
-            sleep(1);
-        };
-        $this->timeouts()->implicitWait(self::TIME_OUT);
+        $this->waitUntil(
+            function ($testCase) {
+                $status = $testCase->execute(array('script' => "return 'complete' == document['readyState']", 'args' => array()));
+                if ($status) {
+                    return true;
+                } else {
+                    return null;
+                }
+            },
+            intval(MAX_EXECUTION_TIME)
+        );
+
+        $this->timeouts()->implicitWait(intval(TIME_OUT));
+    }
+
+    protected function waitForAjax()
+    {
+        $this->waitUntil(
+            function ($testCase) {
+                $status = $testCase->execute(array('script' => 'return jQuery.active == 0', 'args' => array()));
+                if ($status) {
+                    return true;
+                } else {
+                    return null;
+                }
+            },
+            intval(MAX_EXECUTION_TIME)
+        );
+
+        $this->timeouts()->implicitWait(intval(TIME_OUT));
     }
 
     public function testHasLoginForm()
