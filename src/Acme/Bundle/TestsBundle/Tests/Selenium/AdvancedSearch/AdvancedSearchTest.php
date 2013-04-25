@@ -20,39 +20,6 @@ class AdvancedSearchTest extends \PHPUnit_Extensions_Selenium2TestCase
         $this->cookie()->clear();
     }
 
-    protected function waitForAjax()
-    {
-        $this->waitUntil(
-            function ($testCase) {
-                $status = $testCase->execute(array('script' => 'return jQuery.active == 0', 'args' => array()));
-                if ($status) {
-                    return true;
-                } else {
-                    return null;
-                }
-            },
-            intval('MAX_AJAX_EXECUTION_TIME')
-        );
-
-        $this->timeouts()->implicitWait(intval('TIME_OUT'));
-    }
-
-    /**
-     * Verify element present
-     *
-     * @param string $locator
-     * @return bool
-     */
-    public function isElementPresent($locator)
-    {
-        try {
-            $this->byXPath($locator);
-            return true;
-        } catch (\PHPUnit_Extensions_Selenium2TestCase_WebDriverException $e) {
-            return false;
-        }
-    }
-
     /**
      * Tests that checks advanced search
      *
@@ -67,20 +34,17 @@ class AdvancedSearchTest extends \PHPUnit_Extensions_Selenium2TestCase
             ->openUsers();
         $users = new Users($this);
         $userData = $users->getRandomEntity();
-        //Open advanced search page
-        $this->byXPath("//ul[@class='nav nav-tabs']//a[contains(., 'Search')]")->click();
-        $this->waitForAjax();
-        $this->byXPath("//*[@id='demo_search_tab']//a[contains(., 'Advanced search')]")->click();
-        $this->waitForAjax();
+        $login->openNavigation()
+            ->tab('Search')
+            ->menu('Advanced search');
         //Fill advanced search input field
-        $this->byId('query')->value($query . $userData{$userField});
-        $this->byId('sendButton')->click();
-        $this->waitForAjax();
+        $login->byId('query')->value($query . $userData[$userField]);
+        $login->byId('sendButton')->click();
+        $login->waitForAjax();
         //Check that result is not null
-        $this->assertFalse(
-            $this->isElementPresent(
-                "//div[@class='container-fluid']//div[@class='search_stats alert alert-info']/h2[contains(., '$query . $userData{$userField}')]"
-            ),
+        $result = strtolower($userData[$userField]);
+        $login->assertElementPresent(
+            "//div[@class='container-fluid']//div[@class='search_stats alert alert-info']//h3[contains(., '{$result}')]",
             'Search results does not found'
         );
     }

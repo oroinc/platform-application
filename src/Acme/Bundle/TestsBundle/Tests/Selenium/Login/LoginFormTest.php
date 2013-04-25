@@ -6,9 +6,6 @@ class LoginFormTest extends \PHPUnit_Extensions_Selenium2TestCase
 {
     protected $coverageScriptUrl = PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_TESTS_URL_COVERAGE;
 
-    const TIME_OUT  = 1000;
-    const MAX_AJAX_EXECUTION_TIME = 5000;
-
     protected function setUp()
     {
         $this->setHost(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_HOST);
@@ -33,10 +30,10 @@ class LoginFormTest extends \PHPUnit_Extensions_Selenium2TestCase
                     return null;
                 }
             },
-            intval('MAX_AJAX_EXECUTION_TIME')
+            intval(MAX_EXECUTION_TIME)
         );
 
-        $this->timeouts()->implicitWait(intval('TIME_OUT'));
+        $this->timeouts()->implicitWait(intval(TIME_OUT));
     }
 
     protected function waitForAjax()
@@ -50,10 +47,10 @@ class LoginFormTest extends \PHPUnit_Extensions_Selenium2TestCase
                     return null;
                 }
             },
-            intval('MAX_AJAX_EXECUTION_TIME')
+            intval(MAX_EXECUTION_TIME)
         );
 
-        $this->timeouts()->implicitWait(intval('TIME_OUT'));
+        $this->timeouts()->implicitWait(intval(TIME_OUT));
     }
 
     public function testHasLoginForm()
