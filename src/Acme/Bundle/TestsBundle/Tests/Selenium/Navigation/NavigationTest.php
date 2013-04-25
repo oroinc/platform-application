@@ -35,10 +35,10 @@ class NavigationTest extends \PHPUnit_Extensions_Selenium2TestCase
                     return null;
                 }
             },
-            self::MAX_AJAX_EXECUTION_TIME
+            intval('MAX_AJAX_EXECUTION_TIME')
         );
 
-        $this->timeouts()->implicitWait(self::TIME_OUT);
+        $this->timeouts()->implicitWait(intval('TIME_OUT'));
     }
 
     /**

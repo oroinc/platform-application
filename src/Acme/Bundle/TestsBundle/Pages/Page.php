@@ -6,10 +6,6 @@ use PHPUnit_Framework_Assert;
 
 class Page
 {
-    /** Default timeouts */
-    const TIME_OUT  = 1000;
-    const MAX_EXECUTION_TIME = 60000;
-
     protected $redirectUrl = null;
 
     /** @var \PHPUnit_Extensions_Selenium2TestCase */
@@ -22,6 +18,7 @@ class Page
     public function __construct($testCase, $redirect = true)
     {
         $this->test = $testCase;
+
         if (!is_null($this->redirectUrl) && $redirect) {
             $this->test->url($this->redirectUrl);
             $this->waitPageToLoad();
@@ -63,10 +60,10 @@ class Page
                     return null;
                 }
             },
-            self::MAX_EXECUTION_TIME
+            intval(MAX_EXECUTION_TIME)
         );
 
-        $this->timeouts()->implicitWait(self::TIME_OUT);
+        $this->timeouts()->implicitWait(intval(TIME_OUT));
     }
 
     /**
@@ -83,10 +80,10 @@ class Page
                     return null;
                 }
             },
-            self::MAX_EXECUTION_TIME
+            intval(MAX_EXECUTION_TIME)
         );
 
-        $this->timeouts()->implicitWait(self::TIME_OUT);
+        $this->timeouts()->implicitWait(intval(TIME_OUT));
     }
 
     public function refresh()
