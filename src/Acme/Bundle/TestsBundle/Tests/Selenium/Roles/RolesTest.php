@@ -3,9 +3,12 @@
 namespace Acme\Bundle\TestsBundle\Tests\Selenium;
 
 use Acme\Bundle\TestsBundle\Test\ToolsAPI;
+use Acme\Bundle\TestsBundle\Pages\BAP\Login;
 
 class RolesTest extends \PHPUnit_Extensions_Selenium2TestCase
 {
+    protected $coverageScriptUrl = PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_TESTS_URL_COVERAGE;
+
     protected $newRole = array('LABEL' => 'NEW_LABEL_', 'ROLE_NAME' => 'NEW_ROLE_');
 
     protected $defaultRoles = array(
@@ -16,8 +19,6 @@ class RolesTest extends \PHPUnit_Extensions_Selenium2TestCase
         '4' => array('4' => '4', 'ROLE_USER' => 'ROLE_USER', 'User' => 'User', '...' => 'ACTION'),
         '5' => array('5' => '5', 'ROLE_SUPER_ADMIN' => 'ROLE_SUPER_ADMIN', 'Super admin' => 'Super admin', '...' => 'ACTION')
     );
-
-    const TIME_OUT  = 1000;
 
     protected function setUp()
     {
@@ -32,62 +33,33 @@ class RolesTest extends \PHPUnit_Extensions_Selenium2TestCase
         $this->cookie()->clear();
     }
 
-    protected function waitPageToLoad()
-    {
-        $script = "return 'complete' != document['readyState']";
-        do {
-            sleep(1);
-        } while ($this->execute(array('script' => $script, 'args' => array())));
-
-        $this->timeouts()->implicitWait(self::TIME_OUT);
-    }
-
-    protected function waitForAjax()
-    {
-        $script = "return jQuery.active";
-        do {
-            sleep(1);
-        } while ($this->execute(array('script' => $script, 'args' => array())));
-    }
-
-    /**
-     * @param $form
-     */
-    protected function login($form)
-    {
-        $name = $form->byId('prependedInput');
-        $password = $form->byId('prependedInput2');
-        $name->clear();
-        $name->value(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_LOGIN);
-        $password->clear();
-        $password->value(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_PASS);
-        $form->clickOnElement('_submit');
-        $form->waitPageToLoad();
-    }
-
     public function testRolesGrid()
     {
-        $this->url('user/role');
-        $this->waitPageToLoad();
-        $this->login(&$this);
-
-        $this->assertContains('Roles overview - Dashboard', $this->title());
+        $login = new Login($this);
+        $login->setUsername(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_LOGIN)
+            ->setPassword(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_PASS)
+            ->submit()
+            ->openRoles()
+            ->assertTitle('Roles overview - User management');
     }
 
     public function testRolesGridDefaultContent()
     {
-        $this->url('user/role');
-        $this->waitPageToLoad();
-        $this->login($this);
-
+        $login = new Login($this);
+        $groups = $login->setUsername(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_LOGIN)
+            ->setPassword(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_PASS)
+            ->submit()
+            ->openRoles();
         //get grid content
-        $records = $this->elements($this->using('xpath')->value("//table[contains(@class, 'grid')]//tr"));
+        $records = $groups->getRows();
+        $headers = $groups->getHeaders();
+
+        foreach ($headers as $header) {
+            $content = $header->text();
+            $this->assertArrayHasKey($content, $this->defaultRoles['header']);
+        }
+
         foreach ($records as $row) {
-            $headers = $row->elements($this->using('xpath')->value("th"));
-            foreach ($headers as $header) {
-                $content = $header->text();
-                $this->assertArrayHasKey($content, $this->defaultRoles['header']);
-            }
             $columns = $row->elements($this->using('xpath')->value("td"));
             $id = null;
             foreach ($columns as $column) {
@@ -98,52 +70,46 @@ class RolesTest extends \PHPUnit_Extensions_Selenium2TestCase
                 $this->assertArrayHasKey($content, $this->defaultRoles[$id]);
             }
         }
+
     }
 
     public function testRolesAdd()
     {
-        $this->url('user/role');
-        $this->waitPageToLoad();
-        $this->login($this);
-        $this->byXPath("//a[contains(., 'Add new')]")->click();
-        $this->waitPageToLoad();
+
         $randomPrefix = ToolsAPI::randomGen(5);
-        $this->byId('oro_user_role_form_role')->value($this->newRole['ROLE_NAME'] . $randomPrefix);
-        $this->byId('oro_user_role_form_label')->value($this->newRole['LABEL'] . $randomPrefix);
-        $this->byXPath("//button[contains(., 'Save')]")->click();
-        //verify message
-        $this->assertInstanceOf(
-            'PHPUnit_Extensions_Selenium2TestCase_Element',
-            $this->byXPath("//div[contains(@class,'alert') and contains(.,  'Role successfully saved')]")
-        );
-        //verify new ROLE
-        $this->assertInstanceOf(
-            'PHPUnit_Extensions_Selenium2TestCase_Element',
-            $this->byXPath(
-                "//table[contains(@class, 'grid')]//tr/td[text() = '" .
-                'ROLE_' . $this->newRole['ROLE_NAME'] . strtoupper($randomPrefix) . "']"
-            )
-        );
+
+        $login = new Login($this);
+        $roles = $login->setUsername(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_LOGIN)
+            ->setPassword(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_PASS)
+            ->submit()
+            ->openRoles()
+            ->add()
+            ->setName($this->newRole['ROLE_NAME'] . $randomPrefix)
+            ->setLabel($this->newRole['LABEL'])
+            ->save()
+            ->assertMessage('Role successfully saved')
+            ->close();
+
+        //verify new GROUP
+        $roles->refresh();
+
+        $this->assertTrue($roles->entityExists(array('name' => 'ROLE_' . $this->newRole['ROLE_NAME'] . strtoupper($randomPrefix))));
 
         return $randomPrefix;
     }
 
     /**
      * @depends testRolesAdd
-     * @param $role
+     * @param $randomPrefix
      */
-    public function testRoleDelete($role)
+    public function testRoleDelete($randomPrefix)
     {
-        $this->url('user/role');
-        $this->waitPageToLoad();
-        $this->login($this);
-        $row = $this->byXPath(
-            "//table[contains(@class, 'grid')]//tr[td[text() = '" .
-            'ROLE_' . $this->newRole['ROLE_NAME'] . strtoupper($role) . "']]"
-        );
-        $row->element($this->using('xpath')->value("td[@class = 'action-cell']//a[contains(., '...')]"))->click();
-        $row->element($this->using('xpath')->value("td[@class = 'action-cell']//a[contains(., 'Delete')]"))->click();
-        $this->byXPath("//div[div[contains(., 'Delete Confirmation')]]//a[text()='OK']")->click();
-        $this->waitForAjax();
+        $login = new Login($this);
+        $roles = $login->setUsername(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_LOGIN)
+            ->setPassword(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_PASS)
+            ->submit()
+            ->openRoles();
+        $roles->deleteEntity(array('name' => 'ROLE_' . $this->newRole['ROLE_NAME'] . strtoupper($randomPrefix)));
+        $this->assertFalse($roles->entityExists(array('name' => 'ROLE_' . $this->newRole['ROLE_NAME'] . strtoupper($randomPrefix))));
     }
 }
