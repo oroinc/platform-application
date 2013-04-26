@@ -41,7 +41,8 @@
         "sonata-project/doctrine-orm-admin-bundle": "2.1.x-dev",
         "liip/imagine-bundle": "dev-master",
         "leafo/lessphp": "dev-master",
-        "ys-tools/back-url-bundle": "dev-master"
+        "ys-tools/back-url-bundle": "dev-master",
+        "symfony/intl": "2.1.*@dev"
     },
     "repositories": [
         {
