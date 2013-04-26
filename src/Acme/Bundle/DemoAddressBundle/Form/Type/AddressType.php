@@ -14,9 +14,16 @@ class AddressType extends AddressTypeBase
     {
         parent::addEntityFields($builder);
 
-        $builder->get('postalCode')->setRequired(false);
-        $builder->get('mark')->setRequired(false);
-        $builder->add('working_hours', 'text', array('required' => false));
+        // address fields
+        $builder
+            ->add('street', 'text', $required)
+            ->add('street2', 'text', $notRequired)
+            ->add('city', 'text', $required)
+            ->add('state', 'oro_region', $required)
+            ->add('postalCode', 'text', $notRequired)
+            ->add('country', 'oro_country', $required)
+            ->add('mark', 'text', $notRequired)
+            ->add('working_hours', 'text', $notRequired);
     }
 
     /**

@@ -35,6 +35,7 @@ services:
     oro_address.form.service.type.address:
         class: %oro_address.type.address.service.class%
         arguments:
+            - @oro_address.form.listener.address
             - %oro_address.address.base.class%
             - Oro\Bundle\FlexibleEntityBundle\Entity\Mapping\AbstractEntityFlexibleValue
         tags:

@@ -13,14 +13,8 @@ Acme\Bundle\DemoAddressBundle\Entity\SeparateAddress:
                   max: 255
         state:
             - NotBlank: ~
-            - Length:
-                  min: 2
-                  max: 255
         postalCode:
             - Length:
                   max: 20
         country:
             - NotBlank: ~
-            - Length:
-                  min: 2
-                  max: 70

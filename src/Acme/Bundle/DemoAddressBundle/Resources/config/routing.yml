@@ -17,3 +17,11 @@ acme_demo_service_address_edit:
     defaults: { _controller: AcmeDemoAddressBundle:Separate:edit, id: 0 }
     requirements:
         id: \d+
+
+acme_demo_address_create_country:
+    pattern:  /country/create
+    defaults: { _controller: AcmeDemoAddressBundle:Default:createCountry }
+
+acme_demo_address_remove_country:
+    pattern:  /country/remove
+    defaults: { _controller: AcmeDemoAddressBundle:Default:removeCountry }
