@@ -46,11 +46,8 @@ class AppKernel extends Kernel
             new Oro\Bundle\ConfigBundle\OroConfigBundle(),
             new Oro\Bundle\GridBundle\OroGridBundle(),
             new Oro\Bundle\WindowsBundle\OroWindowsBundle(),
-<<<<<<< HEAD
             new Oro\Bundle\FilterBundle\OroFilterBundle(),
-=======
             new Oro\Bundle\AddressBundle\OroAddressBundle(),
->>>>>>> CRM-9
 
             // BAP Demo bundles
             new Acme\Bundle\DemoBundle\AcmeDemoBundle(),
@@ -62,11 +59,8 @@ class AppKernel extends Kernel
             new Acme\Bundle\DemoSegmentationTreeBundle\AcmeDemoSegmentationTreeBundle(),
             new Acme\Bundle\DemoGridBundle\AcmeDemoGridBundle(),
             new Acme\Bundle\DemoWindowsBundle\AcmeDemoWindowsBundle(),
-<<<<<<< HEAD
             new Acme\Bundle\DemoFilterBundle\AcmeDemoFilterBundle(),
-=======
             new Acme\Bundle\DemoAddressBundle\AcmeDemoAddressBundle(),
->>>>>>> BAP-542
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

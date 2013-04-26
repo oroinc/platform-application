@@ -3,8 +3,6 @@
 namespace Acme\Bundle\DemoAddressBundle\Form\Type;
 
 use Symfony\Component\Form\FormBuilderInterface;
-
-use Oro\Bundle\FlexibleEntityBundle\Form\Type\FlexibleType;
 use Oro\Bundle\AddressBundle\Form\Type\AddressType as AddressTypeBase;
 
 class AddressType extends AddressTypeBase
@@ -14,26 +12,11 @@ class AddressType extends AddressTypeBase
      */
     public function addEntityFields(FormBuilderInterface $builder)
     {
-        // add default flexible fields
-        FlexibleType::addEntityFields($builder);
+        parent::addEntityFields($builder);
 
-        $required =  array(
-            'required' => true,
-        );
-        $notRequired =  array(
-            'required' => false,
-        );
-
-        // address fields
-        $builder
-            ->add('street', 'text', $required)
-            ->add('street2', 'text', $notRequired)
-            ->add('city', 'text', $required)
-            ->add('state', 'text', $required)
-            ->add('postalCode', 'text', $notRequired)
-            ->add('country', 'text', $required)
-            ->add('mark', 'text', $notRequired)
-            ->add('working_hours', 'text', $notRequired);
+        $builder->get('postalCode')->setRequired(false);
+        $builder->get('mark')->setRequired(false);
+        $builder->add('working_hours', 'text', array('required' => false));
     }
 
     /**

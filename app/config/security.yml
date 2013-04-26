@@ -14,8 +14,6 @@ security:
         Symfony\Component\Security\Core\User\User: plaintext
 
     firewalls:
-<<<<<<< HEAD
-=======
         navigationrest:
             pattern:                        ^/api/rest/(latest|v1)/(navigationitems|windows|shortcuts)
             provider:                       chain_provider
@@ -30,7 +28,6 @@ security:
                 parent_context:             main
             anonymous:                      false
 
->>>>>>> BAP-575 rest api security
         dev:
             pattern:                        ^/(_(profiler|wdt)|css|images|js)/
             security:                       false

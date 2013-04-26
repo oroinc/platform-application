@@ -40,4 +40,3 @@
 [submodule "src/Oro/Bundle/AddressBundle"]
 	path = src/Oro/Bundle/AddressBundle
 	url = git@github.com:laboro/AddressBundle.git
-
