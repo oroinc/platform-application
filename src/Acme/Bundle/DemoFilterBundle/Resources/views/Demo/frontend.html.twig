@@ -18,6 +18,7 @@
                 'number_filter':      {{ oro_filter_render_filter_javascript(form.children.number_filter) }},
                 'date_filter':        {{ oro_filter_render_filter_javascript(form.children.date_filter) }},
                 'datetime_filter':    {{ oro_filter_render_filter_javascript(form.children.datetime_filter) }},
+                'boolean_filter':     {{ oro_filter_render_filter_javascript(form.children.boolean_filter) }},
                 'select_filter':      {{ oro_filter_render_filter_javascript(form.children.select_filter) }},
                 'multiselect_filter': {{ oro_filter_render_filter_javascript(form.children.multiselect_filter) }}
             };
@@ -74,6 +75,9 @@
                             end: $('#filterForm input[name="datetime_value_to"]').val()
                         },
                         type: $('#filterForm input[name="datetime_type"]').val()
+                    },
+                    'boolean_filter': {
+                        value: $('#filterForm input[name="boolean_value"]').val()
                     },
                     'select_filter': {
                         value: $('#filterForm input[name="select_value"]').val()
@@ -143,6 +147,14 @@
                     <td><input type="text" name="datetime_value_to" value="2012-12-31 23:59:00" /></td>
                     <td>Datetime type:</td>
                     <td><input type="text" name="datetime_type" value="1" /></td>
+                </tr>
+                <tr>
+                    <td>Boolean value:</td>
+                    <td><input type="text" name="boolean_value" value="1" /></td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>Select value:</td>
