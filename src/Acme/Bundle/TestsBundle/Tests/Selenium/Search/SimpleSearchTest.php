@@ -2,10 +2,12 @@
 
 namespace Acme\Bundle\TestsBundle\Tests\Selenium;
 
+use Acme\Bundle\TestsBundle\Pages\BAP\Login;
+use Acme\Bundle\TestsBundle\Pages\BAP\Search;
+
 class SimpleSearchTest extends \PHPUnit_Extensions_Selenium2TestCase
 {
-    const TIME_OUT  = 1000;
-    const MAX_AJAX_EXECUTION_TIME = 5000;
+    protected $coverageScriptUrl = PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_TESTS_URL_COVERAGE;
 
     protected function setUp()
     {
@@ -20,89 +22,29 @@ class SimpleSearchTest extends \PHPUnit_Extensions_Selenium2TestCase
         $this->cookie()->clear();
     }
 
-    public function isElementPresent($locator)
-    {
-        try {
-            $this->byXPath($locator);
-            return true;
-        } catch (\PHPUnit_Extensions_Selenium2TestCase_WebDriverException $e) {
-            return false;
-        }
-    }
-
-    protected function waitPageToLoad()
-    {
-        $this->waitUntil(
-            function ($testCase) {
-                $status = $testCase->execute(array('script' => "return 'complete' == document['readyState']", 'args' => array()));
-                if ($status) {
-                    return true;
-                } else {
-                    return null;
-                }
-            },
-            self::MAX_AJAX_EXECUTION_TIME
-        );
-
-        $this->timeouts()->implicitWait(self::TIME_OUT);
-    }
-
-    protected function waitForAjax()
-    {
-        $this->waitUntil(
-            function ($testCase) {
-                $status = $testCase->execute(array('script' => 'return jQuery.active == 0', 'args' => array()));
-                if ($status) {
-                    return true;
-                } else {
-                    return null;
-                }
-            },
-            self::MAX_AJAX_EXECUTION_TIME
-        );
-
-        $this->timeouts()->implicitWait(self::TIME_OUT);
-    }
-
-    /**
-     * @param $form
-     */
-    protected function login($form)
-    {
-        $name = $form->byId('prependedInput');
-        $password = $form->byId('prependedInput2');
-        $name->clear();
-        $name->value(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_LOGIN);
-        $password->clear();
-        $password->value(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_PASS);
-        $form->clickOnElement('_submit');
-        $form->waitPageToLoad();
-    }
-
     public function testSearchSuggestions()
     {
-        $this->url('user/login');
-        $this->waitPageToLoad();
-        //log-in
-        $this->login($this);
+        $login = new Login($this);
+        $login->setUsername(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_LOGIN)
+            ->setPassword(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_PASS)
+            ->submit();
+        $search = new Search($this);
         //fill-in simple search field
-        $this->byId('search-bar-search')->value('admin@example.com');
-        //checking that search suggestion drop-down available or not
-        //$this->waitForAjax();
-        $result = $this->elements($this->using("xpath")->value("//div[@id='search-dropdown']/ul/li/a[contains(., 'admin')]"));
+        $result = $search->search('admin@example.com')
+            ->suggestions('admin');
         $this->assertNotEmpty($result, 'No search suggestions available');
     }
 
     public function testSearchResult()
     {
-        $this->url('user/login');
-        $this->waitPageToLoad();
-        $this->login($this);
-        $this->byId('search-bar-search')->value('admin');
-        $this->byXPath("//*[@id='search-div']//div/button[contains(.,'Search')]")->click();
-        $this->waitPageToLoad();
-
-        $searchResult = $this->byXPath("//div[@class='container-fluid']/div/h3/a[contains(., 'admin')]")->text();
-        $this->assertEquals('admin', $searchResult);
+        $login = new Login($this);
+        $login->setUsername(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_LOGIN)
+            ->setPassword(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_PASS)
+            ->submit();
+        $search = new Search($this);
+        $result = $search->search('admin')
+            ->submit()
+            ->result('admin');
+        $this->assertNotEmpty($result);
     }
 }
