@@ -46,12 +46,15 @@ class DefaultController extends Controller
         /** @var  $addressManager \Oro\Bundle\AddressBundle\Entity\Manager\AddressManager */
         $addressManager = $this->get('oro_address.address.provider')->getStorage();
 
-        $country = $addressManager->getStorageManager()->getRepository(get_class(new Country()))->find('I2');
+        $country = $addressManager->getStorageManager()->getRepository(get_class(new Country()))->find('US');
+        if ($country) {
+            $addressManager->getStorageManager()->remove($country);
+            $addressManager->getStorageManager()->flush();
 
-        $addressManager->getStorageManager()->remove($country);
-        $addressManager->getStorageManager()->flush();
+            return new Response('Done');
+        }
 
-        return new Response('Done');
+        return new Response('Country not found');
     }
 
     /**
