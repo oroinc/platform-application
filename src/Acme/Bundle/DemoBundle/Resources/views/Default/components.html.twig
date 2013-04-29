@@ -56,13 +56,6 @@
         navigation.Item.prototype.urlRoot = {{ path('oro_api_get_navigationitems', {'type': ''})|json_encode|raw }};
     </script>
 
-    <script type="text/javascript">
-        $(function() {
-            Oro.pagestate = new Oro.PageState.View({ model: new Oro.PageState.Model });
-        })
-    </script>
-
-
     {# TODO: remove after functionality realisation #}
     <style type="text/css">
         #main {
