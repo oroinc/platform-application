@@ -22,7 +22,7 @@ oro_menu_config:
             label: 'Groups'
             route: 'oro_user_group_index'
         demo_search:
-            label: 'Advaced search'
+            label: 'Advanced search'
             route: 'acme_demo_advanced_search'
         demo_ui:
             label: 'UI Components'

@@ -37,6 +37,7 @@
         '@OroNavigationBundle/Resources/public/js/collections/pinbar.js'
         '@OroNavigationBundle/Resources/public/js/views/pinbar.item.js'
         '@OroNavigationBundle/Resources/public/js/views/pinbar.js'
+        '@OroNavigationBundle/Resources/public/js/views/pagestate.js'
 
         '@OroNavigationBundle/Resources/public/js/views/favorites.js'
         '@OroNavigationBundle/Resources/public/js/views/shortcuts.js'
@@ -54,6 +55,13 @@
     <script type="text/javascript">
         navigation.Item.prototype.urlRoot = {{ path('oro_api_get_navigationitems', {'type': ''})|json_encode|raw }};
     </script>
+
+    <script type="text/javascript">
+        $(function() {
+            Oro.pagestate = new Oro.PageState.View({ model: new Oro.PageState.Model });
+        })
+    </script>
+
 
     {# TODO: remove after functionality realisation #}
     <style type="text/css">
