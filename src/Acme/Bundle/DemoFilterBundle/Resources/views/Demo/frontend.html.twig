@@ -23,7 +23,7 @@
                 'multiselect_filter': {{ oro_filter_render_filter_javascript(form.children.multiselect_filter) }}
             };
 
-            var filtersList = new OroApp.Filter.List({ filters: demoFilters });
+            var filtersList = new Oro.Filter.List({ filters: demoFilters });
             $('#demoFilterList').html(filtersList.render().$el);
 
             // service functions for demo
