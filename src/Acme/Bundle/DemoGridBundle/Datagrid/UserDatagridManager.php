@@ -140,6 +140,30 @@ class UserDatagridManager extends FlexibleDatagridManager
             );
             $this->fieldsCollection->add($fieldBirthday);
 
+            $fieldLastName = new FieldDescription();
+            $fieldLastName->setName('enabled');
+            $fieldLastName->setOptions(
+                array(
+                    'type'        => FieldDescriptionInterface::TYPE_BOOLEAN,
+                    'label'       => 'Enabled',
+                    'field_name'  => 'enabled',
+                    'filter_type' => FilterInterface::TYPE_BOOLEAN,
+                    'required'    => false,
+                    'sortable'    => true,
+                    'filterable'  => true,
+                    'show_filter' => true,
+                    /*
+                    'field_options' => array(
+                        'choices' => array(
+                            \Oro\Bundle\FilterBundle\Form\Type\Filter\BooleanFilterType::TYPE_YES => 'true',
+                            \Oro\Bundle\FilterBundle\Form\Type\Filter\BooleanFilterType::TYPE_NO  => 'false',
+                        )
+                    )
+                    */
+                )
+            );
+            $this->fieldsCollection->add($fieldLastName);
+
             foreach ($this->getFlexibleAttributes() as $attribute) {
                 $backendType   = $attribute->getBackendType();
                 $attributeType = $this->convertFlexibleTypeToFieldType($backendType);
