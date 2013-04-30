@@ -131,6 +131,7 @@ stof_doctrine_extensions:
     orm:
         default:
             tree:             true
+            loggable:         true
 
 services:
     cache:

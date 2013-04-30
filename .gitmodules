@@ -37,6 +37,6 @@
 [submodule "src/Oro/Bundle/FilterBundle"]
 	path = src/Oro/Bundle/FilterBundle
 	url = git@github.com:laboro/FilterBundle.git
-[submodule "src/Oro/Bundle/LogBundle"]
-	path = src/Oro/Bundle/LogBundle
-	url = git@github.com:laboro/LogBundle.git
+[submodule "src/Oro/Bundle/DataAuditBundle"]
+	path = src/Oro/Bundle/DataAuditBundle
+	url = git@github.com:laboro/DataAuditBundle.git
