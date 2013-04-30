@@ -2,13 +2,6 @@
 
 {% oro_title_set({suffix: " - " ~ "Segmentation Tree"|trans}) %}
 
-{% block head_script %}
-    {{ parent() }}
-    <script type="text/javascript" src="{{ asset('bundles/acmedemosegmentationtree/js/jquery.cookie.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/acmedemosegmentationtree/js/jquery.hotkeys.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/acmedemosegmentationtree/js/jquery.jstree.js') }}"></script>
-{% endblock %}
-
 {% block content %}
 
 <div id="description">

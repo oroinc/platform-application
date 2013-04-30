@@ -1,0 +1,4 @@
+js:
+  - '@AcmeDemoSegmentationTreeBundle/Resources/public/js/jquery.cookie.js'
+  - '@AcmeDemoSegmentationTreeBundle/Resources/public/js/jquery.hotkeys.js'
+  - '@AcmeDemoSegmentationTreeBundle/Resources/public/js/jquery.jstree.js'
