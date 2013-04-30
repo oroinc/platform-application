@@ -24,8 +24,6 @@ services:
         tags:
             - { name: oro_address.storage, alias: service}
 
-
-
     oro_address.service.form.address:
         class: Symfony\Component\Form\Form
         factory_method: createNamed

@@ -1,12 +1,6 @@
 {% extends bap.layout is defined ? bap.layout : 'AcmeDemoFlexibleEntityBundle::layout.html.twig' %}
 {% import 'OroUserBundle::macros.html.twig' as macros %}
-{% form_theme form with 'OroUIBundle:Form:fields.html.twig' %}
-
-{% block head_script %}
-    {{ parent() }}
-
-    {% include 'OroAddressBundle:Include:javascript.html.twig' %}
-{% endblock %}
+{% form_theme form with 'OroAddressBundle:Include:fields.html.twig' %}
 
 {% set title = form.vars.value.id ? 'Edit address' : 'Add address' %}
 
@@ -57,14 +51,7 @@
                         <h4 id="scroll-main" class="scrollspy-title">{{ 'Overview'|trans }}</h4>
                         <div class="row-fluid">
                             <fieldset class="form-horizontal span6">
-                                {{ form_row(form.street) }}
-                                {{ form_row(form.street2) }}
-                                {{ form_row(form.country, {'attr': {'class': 'country-select', 'data-url': url('oro_api_country_get_regions', {id: 'country_id'})}}) }}
-                                {% include 'OroAddressBundle:Region:_element.html.twig' with ({form: form.state}) %}
-                                {{ form_row(form.city) }}
-                                {{ form_row(form.postalCode) }}
-                                {{ form_row(form.mark) }}
-                                {{ form_row(form.working_hours) }}
+                                {{ form_widget(form) }}
                             </fieldset>
                         </div>
 

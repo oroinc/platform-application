@@ -16,6 +16,12 @@ class AddressType extends AddressTypeBase
 
         $builder->get('postalCode')->setRequired(false);
         $builder->get('mark')->setRequired(false);
+
+        $builder->add(
+            'state',
+            'oro_region',
+            array('country_field' => '#oro_address_service_form_country', 'required' => true)
+        );
         $builder->add('working_hours', 'text', array('required' => false));
     }
 
