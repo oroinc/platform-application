@@ -47,6 +47,7 @@ class AppKernel extends Kernel
             new Oro\Bundle\GridBundle\OroGridBundle(),
             new Oro\Bundle\WindowsBundle\OroWindowsBundle(),
             new Oro\Bundle\FilterBundle\OroFilterBundle(),
+            new Oro\Bundle\AddressBundle\OroAddressBundle(),
 
             // BAP Demo bundles
             new Acme\Bundle\DemoBundle\AcmeDemoBundle(),
@@ -59,6 +60,7 @@ class AppKernel extends Kernel
             new Acme\Bundle\DemoGridBundle\AcmeDemoGridBundle(),
             new Acme\Bundle\DemoWindowsBundle\AcmeDemoWindowsBundle(),
             new Acme\Bundle\DemoFilterBundle\AcmeDemoFilterBundle(),
+            new Acme\Bundle\DemoAddressBundle\AcmeDemoAddressBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
