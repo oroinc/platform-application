@@ -84,7 +84,7 @@ oro_dataflow:
 oro_config:
     resource: "@OroConfigBundle/Resources/config/routing.yml"
 
-oro_data_audit:
+oro_dataaudit:
     resource: "@OroDataAuditBundle/Resources/config/routing.yml"
 
 nelmio_api_doc:
