@@ -34,6 +34,7 @@ assetic:
     debug:                    "%kernel.debug%"
     use_controller:           false
     bundles:
+        - OroAddressBundle
         - OroUIBundle
         - OroUserBundle
         - OroGridBundle
@@ -130,6 +131,7 @@ be_simple_soap:
 stof_doctrine_extensions:
     orm:
         default:
+            translatable:     true
             tree:             true
 
 services:
