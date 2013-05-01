@@ -7,4 +7,3 @@ entities_config:
         flexible_manager:         product_manager
         flexible_class:           Acme\Bundle\DemoFlexibleEntityBundle\Entity\Product
         flexible_value_class:     Acme\Bundle\DemoFlexibleEntityBundle\Entity\ProductValue
-        attribute_extended_class: Acme\Bundle\DemoFlexibleEntityBundle\Entity\ProductAttribute

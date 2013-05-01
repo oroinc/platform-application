@@ -186,10 +186,7 @@ class CustomerController extends Controller
     {
         $request = $this->getRequest();
 
-        // create form
-        $entClassName = $this->getCustomerManager()->getFlexibleName();
-        $valueClassName = $this->getCustomerManager()->getFlexibleValueName();
-        $form = $this->createForm(new CustomerType($entClassName, $valueClassName), $entity);
+        $form = $this->createForm('acme_customer', $entity);
 
         if ($request->getMethod() == 'POST') {
             $form->bind($request);
@@ -205,9 +202,7 @@ class CustomerController extends Controller
             }
         }
 
-        return array(
-            'form' => $form->createView(),
-        );
+        return array('form' => $form->createView(),);
     }
 
     /**
