@@ -18,8 +18,6 @@ services:
 #              translator: ~
 #              validator: ~
 #              request: ~
-        calls:
-            - [ setRouter, [ @router ] ]
 
     acme_demo_grid.product_grid.manager:
         class: %acme_demo_grid.product_grid.manager.class%

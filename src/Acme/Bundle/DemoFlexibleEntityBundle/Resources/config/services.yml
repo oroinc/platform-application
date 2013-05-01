@@ -34,8 +34,6 @@ services:
               entity_hint: customers
               flexible: true
               route_name: acme_demoflexibleentity_customer_list
-        calls:
-            - [ setRouter, [ @router ] ]
 
     product_grid_manager:
         class: "%product_grid_manager_class%"
@@ -46,8 +44,6 @@ services:
               entity_hint: products
               flexible: true
               route_name: acme_demoflexibleentity_product_list
-        calls:
-            - [ setRouter, [ @router ] ]
 
     customerattribute_grid_manager:
         class: "%customerattribute_grid_manager_class%"
@@ -57,7 +53,6 @@ services:
               entity_hint: attributes
               route_name: acme_demoflexibleentity_customerattribute_index
         calls:
-            - [ setRouter, [ @router ] ]
             - [ setBaseActionUrl, ["acme_demoflexibleentity_customerattribute"] ]
 
     productattribute_grid_manager:
@@ -68,7 +63,6 @@ services:
               entity_hint: attributes
               route_name: acme_demoflexibleentity_productattribute_index
         calls:
-            - [ setRouter, [ @router ] ]
             - [ setBaseActionUrl, ["acme_demoflexibleentity_productattribute"] ]
 
 
