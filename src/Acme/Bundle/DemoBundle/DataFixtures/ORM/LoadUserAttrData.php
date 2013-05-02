@@ -8,11 +8,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
-use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\OptionSimpleSelectType;
-use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\MoneyType;
-use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\TextType;
-use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\TextAreaType;
-
 class LoadUserAttrData extends AbstractFixture implements ContainerAwareInterface
 {
     /**
@@ -39,31 +34,31 @@ class LoadUserAttrData extends AbstractFixture implements ContainerAwareInterfac
         $sm = $fm->getStorageManager();
 
         $attr = $fm
-            ->createAttribute(new TextType())
+            ->createAttribute('oro_flexibleentity_text')
             ->setCode('company');
 
         $sm->persist($attr);
 
         $attr = $fm
-            ->createAttribute(new MoneyType())
+            ->createAttribute('oro_flexibleentity_money')
             ->setCode('salary');
 
         $sm->persist($attr);
 
         $attr = $fm
-            ->createAttribute(new TextAreaType())
+            ->createAttribute('oro_flexibleentity_textarea')
             ->setCode('address');
 
         $sm->persist($attr);
 
         $attr = $fm
-            ->createAttribute(new TextType())
+            ->createAttribute('oro_flexibleentity_text')
             ->setCode('middlename');
 
         $sm->persist($attr);
 
         $attr = $fm
-            ->createAttribute(new OptionSimpleSelectType())
+            ->createAttribute('oro_flexibleentity_simpleselect')
             ->setCode('gender')
             ->addOption(
                 $fm->createAttributeOption()->addOptionValue(

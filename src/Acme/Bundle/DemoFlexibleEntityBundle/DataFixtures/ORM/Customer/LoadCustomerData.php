@@ -7,11 +7,6 @@ use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Oro\Bundle\FlexibleEntityBundle\Model\AbstractAttributeType;
-use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\DateType;
-use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\TextType;
-use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\UrlType;
-use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\OptionMultiSelectType;
-use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\OptionSimpleRadioType;
 
 /**
 * Load customers
@@ -102,39 +97,33 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
      */
     public function loadAttributes()
     {
-        // attribute company (if not exists)
         $attCode = 'company';
-        $att = $this->getCustomerManager()->createAttribute(new TextType());
+        $att = $this->getCustomerManager()->createAttribute('oro_flexibleentity_text');
         $att->setCode($attCode);
         $att->setSearchable(true);
         $this->getCustomerManager()->getStorageManager()->persist($att);
 
-        // attribute date of birth (if not exists)
         $attCode = 'dob';
-        $att = $this->getCustomerManager()->createAttribute(new DateType());
+        $att = $this->getCustomerManager()->createAttribute('oro_flexibleentity_date');
         $att->setCode($attCode);
         $att->setSearchable(true);
         $this->getCustomerManager()->getStorageManager()->persist($att);
 
-        // attribute date of birth (if not exists)
         $attCode = 'website';
-        $att = $this->getCustomerManager()->createAttribute(new UrlType());
+        $att = $this->getCustomerManager()->createAttribute('oro_flexibleentity_url');
         $att->setCode($attCode);
         $att->setSearchable(true);
         $this->getCustomerManager()->getStorageManager()->persist($att);
 
-        // attribute gender (if not exists)
         $attCode = 'gender';
-        $att = $this->getCustomerManager()->createAttribute(new OptionSimpleRadioType());
+        $att = $this->getCustomerManager()->createAttribute('oro_flexibleentity_simpleselect');
         $att->setCode($attCode);
         $att->setSearchable(true);
-        // add option and related value
         $opt = $this->getCustomerManager()->createAttributeOption();
         $optVal = $this->getCustomerManager()->createAttributeOptionValue();
         $optVal->setValue('Mr');
         $opt->addOptionValue($optVal);
         $att->addOption($opt);
-        // add another option
         $opt = $this->getCustomerManager()->createAttributeOption();
         $optVal = $this->getCustomerManager()->createAttributeOptionValue();
         $optVal->setValue('Mrs');
@@ -142,12 +131,10 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
         $att->addOption($opt);
         $this->getCustomerManager()->getStorageManager()->persist($att);
 
-        // attribute hobby (if not exists)
         $attCode = 'hobby';
-        $att = $this->getCustomerManager()->createAttribute(new OptionMultiSelectType());
+        $att = $this->getCustomerManager()->createAttribute('oro_flexibleentity_multiselect');
         $att->setCode($attCode);
         $att->setSearchable(true);
-        // add options and related values
         $hobbies = array('Sport', 'Cooking', 'Read', 'Coding!');
         foreach ($hobbies as $hobby) {
             $opt = $this->getCustomerManager()->createAttributeOption();
