@@ -42,7 +42,7 @@
         "liip/imagine-bundle": "dev-master",
         "leafo/lessphp": "dev-master",
         "ys-tools/back-url-bundle": "dev-master",
-        "symfony/icu": "1.2.*@dev",
+        "symfony/icu": "1.1.0",
         "symfony/intl": "2.3.*@dev"
     },
     "repositories": [
