@@ -44,7 +44,7 @@ class CustomerAttributeController extends Controller
         $queryBuilder = $em->createQueryBuilder();
         $queryBuilder
             ->select('a')
-            ->from('PimProductBundle:ProductAttribute', 'a')
+            ->from('OroFlexibleEntityBundle:Attribute', 'a')
             ->where("a.entityType = 'Acme\Bundle\DemoFlexibleEntityBundle\Entity\Customer'");
 
         /** @var $queryFactory QueryFactory */
