@@ -5,10 +5,6 @@ parameters:
     manufacturer_entity_class:            Acme\Bundle\DemoFlexibleEntityBundle\Entity\Manufacturer
     product_manager_class:                Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleManager
     product_entity_class:                 Acme\Bundle\DemoFlexibleEntityBundle\Entity\Product
-    customer_grid_manager_class:          Acme\Bundle\DemoFlexibleEntityBundle\Datagrid\CustomerDatagridManager
-    product_grid_manager_class:           Acme\Bundle\DemoFlexibleEntityBundle\Datagrid\ProductDatagridManager
-    customerattribute_grid_manager_class: Acme\Bundle\DemoFlexibleEntityBundle\Datagrid\AttributeDatagridManager
-    productattribute_grid_manager_class:  Acme\Bundle\DemoFlexibleEntityBundle\Datagrid\AttributeDatagridManager
 
 services:
     customer_manager:
@@ -76,45 +72,5 @@ services:
         arguments: [@customer_manager]
         tags:
             - { name: form.type, alias: acme_customer_value }
-
-    customer_grid_manager:
-        class: "%customer_grid_manager_class%"
-        tags:
-            - name: oro_grid.datagrid.manager
-              datagrid_name: users
-              entity_name: Acme\Bundle\DemoFlexibleEntityBundle\Entity\Customer
-              entity_hint: customers
-              flexible: true
-              route_name: acme_demoflexibleentity_customer_list
-
-    product_grid_manager:
-        class: "%product_grid_manager_class%"
-        tags:
-            - name: oro_grid.datagrid.manager
-              datagrid_name: users
-              entity_name: Acme\Bundle\DemoFlexibleEntityBundle\Entity\Product
-              entity_hint: products
-              flexible: true
-              route_name: acme_demoflexibleentity_product_list
-
-    customerattribute_grid_manager:
-        class: "%customerattribute_grid_manager_class%"
-        tags:
-            - name: oro_grid.datagrid.manager
-              datagrid_name: attributes
-              entity_hint: attributes
-              route_name: acme_demoflexibleentity_customerattribute_index
-        calls:
-            - [ setBaseActionUrl, ["acme_demoflexibleentity_customerattribute"] ]
-
-    productattribute_grid_manager:
-        class: "%productattribute_grid_manager_class%"
-        tags:
-            - name: oro_grid.datagrid.manager
-              datagrid_name: attributes
-              entity_hint: attributes
-              route_name: acme_demoflexibleentity_productattribute_index
-        calls:
-            - [ setBaseActionUrl, ["acme_demoflexibleentity_productattribute"] ]
 
 
