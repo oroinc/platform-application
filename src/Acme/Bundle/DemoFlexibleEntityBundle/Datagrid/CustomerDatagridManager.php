@@ -21,20 +21,8 @@ use Oro\Bundle\GridBundle\Property\UrlProperty;
 class CustomerDatagridManager extends FlexibleDatagridManager
 {
     /**
-     * @var FieldDescriptionCollection
+     * {@inheritDoc}
      */
-    protected $fieldsCollection;
-
-    /**
-     * @var Router
-     */
-    protected $router;
-
-    public function setRouter(Router $router)
-    {
-        $this->router = $router;
-    }
-
     protected function getProperties()
     {
         return array(
@@ -44,150 +32,79 @@ class CustomerDatagridManager extends FlexibleDatagridManager
     }
 
     /**
-     * @return FieldDescriptionCollection
+     * {@inheritDoc}
      */
-    protected function getFieldDescriptionCollection()
+    protected function configureFields(FieldDescriptionCollection $fieldsCollection)
     {
-        if (!$this->fieldsCollection) {
-            $this->fieldsCollection = new FieldDescriptionCollection();
+        $fieldId = new FieldDescription();
+        $fieldId->setName('id');
+        $fieldId->setOptions(
+            array(
+                'type'        => FieldDescriptionInterface::TYPE_INTEGER,
+                'label'       => 'ID',
+                'field_name'  => 'id',
+                'filter_type' => FilterInterface::TYPE_NUMBER,
+                'required'    => false,
+                'sortable'    => true,
+                'filterable'  => true,
+                'show_filter' => true,
+            )
+        );
+        $fieldsCollection->add($fieldId);
 
-            $fieldId = new FieldDescription();
-            $fieldId->setName('id');
-            $fieldId->setOptions(
-                array(
-                    'type'        => FieldDescriptionInterface::TYPE_INTEGER,
-                    'label'       => 'ID',
-                    'field_name'  => 'id',
-                    'filter_type' => FilterInterface::TYPE_NUMBER,
-                    'required'    => false,
-                    'sortable'    => true,
-                    'filterable'  => true,
-                    'show_filter' => true,
-                )
-            );
-            $this->fieldsCollection->add($fieldId);
+        $fieldEmail = new FieldDescription();
+        $fieldEmail->setName('email');
+        $fieldEmail->setOptions(
+            array(
+                'type'        => FieldDescriptionInterface::TYPE_TEXT,
+                'label'       => 'Email',
+                'field_name'  => 'email',
+                'filter_type' => FilterInterface::TYPE_STRING,
+                'required'    => false,
+                'sortable'    => true,
+                'filterable'  => true,
+                'show_filter' => true,
+            )
+        );
+        $fieldsCollection->add($fieldEmail);
 
-            $fieldEmail = new FieldDescription();
-            $fieldEmail->setName('email');
-            $fieldEmail->setOptions(
-                array(
-                    'type'        => FieldDescriptionInterface::TYPE_TEXT,
-                    'label'       => 'Email',
-                    'field_name'  => 'email',
-                    'filter_type' => FilterInterface::TYPE_STRING,
-                    'required'    => false,
-                    'sortable'    => true,
-                    'filterable'  => true,
-                    'show_filter' => true,
-                )
-            );
-            $this->fieldsCollection->add($fieldEmail);
+        $fieldFirstName = new FieldDescription();
+        $fieldFirstName->setName('firstname');
+        $fieldFirstName->setOptions(
+            array(
+                'type'        => FieldDescriptionInterface::TYPE_TEXT,
+                'label'       => 'First name',
+                'field_name'  => 'firstname',
+                'filter_type' => FilterInterface::TYPE_STRING,
+                'required'    => false,
+                'sortable'    => true,
+                'filterable'  => true,
+                'show_filter' => true,
+            )
+        );
+        $fieldsCollection->add($fieldFirstName);
 
-            $fieldFirstName = new FieldDescription();
-            $fieldFirstName->setName('firstname');
-            $fieldFirstName->setOptions(
-                array(
-                    'type'        => FieldDescriptionInterface::TYPE_TEXT,
-                    'label'       => 'First name',
-                    'field_name'  => 'firstname',
-                    'filter_type' => FilterInterface::TYPE_STRING,
-                    'required'    => false,
-                    'sortable'    => true,
-                    'filterable'  => true,
-                    'show_filter' => true,
-                )
-            );
-            $this->fieldsCollection->add($fieldFirstName);
+        $fieldLastName = new FieldDescription();
+        $fieldLastName->setName('lastname');
+        $fieldLastName->setOptions(
+            array(
+                'type'        => FieldDescriptionInterface::TYPE_TEXT,
+                'label'       => 'Last name',
+                'field_name'  => 'lastname',
+                'filter_type' => FilterInterface::TYPE_STRING,
+                'required'    => false,
+                'sortable'    => true,
+                'filterable'  => true,
+                'show_filter' => true,
+            )
+        );
+        $fieldsCollection->add($fieldLastName);
 
-            $fieldLastName = new FieldDescription();
-            $fieldLastName->setName('lastname');
-            $fieldLastName->setOptions(
-                array(
-                    'type'        => FieldDescriptionInterface::TYPE_TEXT,
-                    'label'       => 'Last name',
-                    'field_name'  => 'lastname',
-                    'filter_type' => FilterInterface::TYPE_STRING,
-                    'required'    => false,
-                    'sortable'    => true,
-                    'filterable'  => true,
-                    'show_filter' => true,
-                )
-            );
-            $this->fieldsCollection->add($fieldLastName);
-
-            foreach ($this->getFlexibleAttributes() as $attribute) {
-                $backendType   = $attribute->getBackendType();
-                $attributeType = $this->convertFlexibleTypeToFieldType($backendType);
-                $filterType    = $this->convertFlexibleTypeToFilterType($backendType);
-
-                $field = new FieldDescription();
-                $field->setName($attribute->getCode());
-                $field->setOptions(
-                    array(
-                        'type'          => $attributeType,
-                        'label'         => $attribute->getCode(),
-                        'field_name'    => $attribute->getCode(),
-                        'filter_type'   => $filterType,
-                        'required'      => false,
-                        'sortable'      => true,
-                        'filterable'    => true,
-                        'flexible_name' => $this->flexibleManager->getFlexibleName()
-                    )
-                );
-
-                if ($attributeType == FieldDescriptionInterface::TYPE_OPTIONS) {
-                    $field->setOption('multiple', true);
-                }
-
-                $this->fieldsCollection->add($field);
-            }
-        }
-
-        return $this->fieldsCollection;
+        $this->configureFlexibleFields($fieldsCollection);
     }
 
     /**
-     * {@inheritdoc}
-     */
-    protected function getListFields()
-    {
-        return $this->getFieldDescriptionCollection()->getElements();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function getSorters()
-    {
-        $fields = array();
-        /** @var $fieldDescription FieldDescription */
-        foreach ($this->getFieldDescriptionCollection() as $fieldDescription) {
-            if ($fieldDescription->isSortable()) {
-                $fields[] = $fieldDescription;
-            }
-        }
-
-        return $fields;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function getFilters()
-    {
-        $fields = array();
-        /** @var $fieldDescription FieldDescription */
-        foreach ($this->getFieldDescriptionCollection() as $fieldDescription) {
-            if ($fieldDescription->isFilterable()) {
-                $fields[] = $fieldDescription;
-            }
-        }
-
-        return $fields;
-    }
-
-    /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected function getRowActions()
     {

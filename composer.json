@@ -21,13 +21,14 @@
         "jms/di-extra-bundle": "1.3.*@dev",
         "jms/job-queue-bundle": "dev-master",
         "jms/aop-bundle": "dev-master",
+        "jms/serializer": "0.12.*@dev",
+        "jms/serializer-bundle": "0.12.*@dev",
         "kriswallsmith/assetic": "1.1.*@dev",
         "knplabs/knp-menu": "dev-master",
         "knplabs/knp-menu-bundle": "dev-master",
         "knplabs/knp-paginator-bundle": "dev-master",
         "friendsofsymfony/rest-bundle": "0.11.*",
-        "jms/serializer": "0.12.*@dev",
-        "jms/serializer-bundle": "0.12.*@dev",
+        "friendsofsymfony/jsrouting-bundle": "1.1.*@dev",
         "nelmio/api-doc-bundle": "dev-master",
         "ass/xmlsecurity": "dev-master",
         "besimple/soap-common": "dev-master",
@@ -38,10 +39,11 @@
         "escapestudios/wsse-authentication-bundle": "2.1.x-dev",
         "sonata-project/admin-bundle": "2.1.x-dev",
         "sonata-project/doctrine-orm-admin-bundle": "2.1.x-dev",
-        "zendframework/zend-stdlib": "2.1.1",
         "liip/imagine-bundle": "dev-master",
         "leafo/lessphp": "dev-master",
-        "ys-tools/back-url-bundle": "dev-master"
+        "ys-tools/back-url-bundle": "dev-master",
+        "symfony/icu": "1.2.*@dev",
+        "symfony/intl": "2.3.*@dev"
     },
     "repositories": [
         {
@@ -54,13 +56,15 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+            "php app/console fos:js-routing:dump --target=web/js/routes.js"
         ],
         "post-update-cmd": [
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+            "php app/console fos:js-routing:dump --target=web/js/routes.js"
         ]
     },
     "extra": {

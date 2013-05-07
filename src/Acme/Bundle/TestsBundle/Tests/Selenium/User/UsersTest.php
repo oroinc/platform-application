@@ -1,10 +1,12 @@
 <?php
+
 namespace Acme\Bundle\TestsBundle\Tests\Selenium;
+
+use Acme\Bundle\TestsBundle\Pages\BAP\Login;
 
 class UsersTest extends \PHPUnit_Extensions_Selenium2TestCase
 {
-    const TIME_OUT  = 1000;
-    const MAX_AJAX_EXECUTION_TIME = 5000;
+    protected $coverageScriptUrl = PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_TESTS_URL_COVERAGE;
 
     protected function setUp()
     {
@@ -19,106 +21,33 @@ class UsersTest extends \PHPUnit_Extensions_Selenium2TestCase
         $this->cookie()->clear();
     }
 
-    protected function waitPageToLoad()
-    {
-        $this->waitUntil(
-            function ($testCase) {
-                $status = $testCase->execute(array('script' => "return 'complete' == document['readyState']", 'args' => array()));
-                if ($status) {
-                    return true;
-                } else {
-                    return null;
-                }
-            },
-            self::MAX_AJAX_EXECUTION_TIME
-        );
-
-        $this->timeouts()->implicitWait(self::TIME_OUT);
-    }
-
-    protected function waitForAjax()
-    {
-        $this->waitUntil(
-            function ($testCase) {
-                $status = $testCase->execute(array('script' => 'return jQuery.active == 0', 'args' => array()));
-                if ($status) {
-                    return true;
-                } else {
-                    return null;
-                }
-            },
-            self::MAX_AJAX_EXECUTION_TIME
-        );
-
-        $this->timeouts()->implicitWait(self::TIME_OUT);
-    }
-
-    protected function login($form)
-    {
-        $name = $form->byId('prependedInput');
-        $password = $form->byId('prependedInput2');
-        $name->clear();
-        $name->value(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_LOGIN);
-        $password->clear();
-        $password->value(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_PASS);
-        $form->clickOnElement('_submit');
-        $form->waitPageToLoad();
-    }
-
-    protected function openUserInfoPage($username)
-    {
-        $this->byXPath("//*[@class='grid table-hover table table-bordered table-condensed']/tbody/tr/td[text() = \"$username\"]")->click();
-        $this->assertEquals('Last_'.$username.', First_'.$username.' - View profile - User Management', $this->title());
-    }
-
-    protected function searchFilterByUsername($username)
-    {
-        $this->byXPath("//*[@id='usersDatagridFilters']/div/div/button[contains(., 'Username')]")->click();
-        $this->isElementPresent("//*[@class='btn-group filter-item oro-drop open-filter']/div/div/");
-        $this->byXPath("//*[@class='btn-group filter-item oro-drop open-filter']/div/div/div/input")->value($username);
-        $this->byXPath("//div[@class='btn-group filter-item oro-drop open-filter']//button[contains(., 'Update')]")->click();
-        $this->waitForAjax();
-    }
-    /**
+     /**
      * @return string
      */
     public function testCreateUser()
     {
-        $this->url('user');
-        $this->waitPageToLoad();
-        $this->login($this);
-        //open add new usr page
-        $this->byXPath("//*[@id='main']/div/h1/a[contains(., 'Add new')]")->click();
-        $this->waitPageToLoad();
-        $this->assertEquals('New profile - User Management', $this->title());
-        //fill form
         $username = 'User_'.mt_rand();
-        $this->byId('oro_user_profile_form_username')->value($username);
-        $this->byId('oro_user_profile_form_plainPassword_first')->value('123123q');
-        $this->byId('oro_user_profile_form_plainPassword_second')->value('123123q');
-        $this->byId('oro_user_profile_form_firstName')->value('First_'.$username);
-        $this->byId('oro_user_profile_form_lastName')->value('Last_'.$username);
-        $this->byId('oro_user_profile_form_email')->value($username.'@mail.com');
-        $this->byId('oro_user_profile_form_rolesCollection_0')->click();
-        $this->byXPath("//*[@class='pull-right']/button[contains(., 'Save')]")->click();
-        $this->waitPageToLoad();
-        //check that succesful message displayed
-        $this->assertEquals('Users overview - User Management', $this->title());
-        $this->assertTrue(
-            $this->isElementPresent("//div[contains(@class,'alert') and contains(., 'User successfully saved')]"),
-            'Message that user is created not found'
-        );
-        return $username;
-    }
 
-    public function isElementPresent($locator)
-    {
-        try {
-            $this->byXPath($locator);
-            return true;
-        } catch (\PHPUnit_Extensions_Selenium2TestCase_WebDriverException $e) {
-            return false;
-        }
+        $login = new Login($this);
+        $login->setUsername(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_LOGIN)
+            ->setPassword(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_PASS)
+            ->submit()
+            ->openUsers()
+            ->add()
+            ->assertTitle('New profile - User Management')
+            ->setUsername($username)
+            ->setFirstpassword('123123q')
+            ->setSecondpassword('123123q')
+            ->setFirstname('First_'.$username)
+            ->setLastname('Last_'.$username)
+            ->setEmail($username.'@mail.com')
+            ->setRoles(array('Manager'))
+            ->save()
+            ->assertMessage('User successfully saved')
+            ->close()
+            ->assertTitle('Users overview - User Management');
+
+        return $username;
     }
 
     /**
@@ -128,33 +57,26 @@ class UsersTest extends \PHPUnit_Extensions_Selenium2TestCase
      */
     public function testUpdateUser($username)
     {
-        $this->url('user');
-        $this->waitPageToLoad();
-        $this->login($this);
-        $this->searchFilterByUsername($username);
-        $this->openUserInfoPage($username);
-        //open edit user page
-        $this->byXPath("//*[@class='btn-group icons-holder']/a[contains(., 'Edit')]")->click();
-        $this->waitPageToLoad();
-        $this->assertEquals('Last_' . $username . ', First_' . $username . ' - Edit profile - User Management', $this->title());
-        //editing user info
-        $username = 'Update_'.$username;
-        $this->byId('oro_user_profile_form_username')->clear();
-        $this->byId('oro_user_profile_form_username')->value($username);
-        $this->byId('oro_user_profile_form_firstName')->clear();
-        $this->byId('oro_user_profile_form_firstName')->value('First_'.$username);
-        $this->byId('oro_user_profile_form_lastName')->clear();
-        $this->byId('oro_user_profile_form_lastName')->value('Last_'.$username);
-        $this->byXPath("//*[@class='pull-right']/button[contains(., 'Save')]")->click();
-        $this->waitPageToLoad();
-        //check that success message displayed
-        $this->assertEquals('Last_' . $username . ', First_' . $username. ' - View profile - User Management', $this->title());
-        $this->assertTrue(
-            $this->isElementPresent("//div[contains(@class,'alert') and contains(., 'User successfully saved')]"),
-            'Message that user is created not found'
-        );
+        $newUsername = 'Update_' . $username;
 
-        return $username;
+        $login = new Login($this);
+        $login->setUsername(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_LOGIN)
+            ->setPassword(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_PASS)
+            ->submit()
+            ->openUsers()
+            ->filterBy('Username', $username)
+            ->open(array($username))
+            ->edit()
+            ->assertTitle('Last_' . $username . ', First_' . $username . ' - Edit profile - User Management')
+            ->setUsername($newUsername)
+            ->setFirstname('First_' . $newUsername)
+            ->setLastname('Last_' . $newUsername)
+            ->save()
+            ->assertTitle('Last_' . $newUsername . ', First_' . $newUsername. ' - View profile - User Management')
+            ->assertMessage('User successfully saved')
+            ->close();
+
+        return $newUsername;
     }
 
     /**
@@ -163,30 +85,17 @@ class UsersTest extends \PHPUnit_Extensions_Selenium2TestCase
      */
     public function testDeleteUser($username)
     {
-        $this->url('user');
-        $this->waitPageToLoad();
-        $this->login($this);
-        $this->searchFilterByUsername($username);
-        $this->openUserInfoPage($username);
-        //delete user
-        $this->byXPath("//*[@class='btn-group icons-holder']/a[contains(., 'Remove')]")->click();
-        $this->waitPageToLoad();
-        $this->assertEquals('Users overview - User Management', $this->title());
-        //check that success remove message displayed
-        $this->assertTrue(
-            $this->isElementPresent("//div[contains(@class,'alert') and contains(., 'User successfully removed')]"),
-            'Message that user is removed not found'
-        );
-        //check that this user can't be found by filter search
-        $this->byXPath("//*[@id='usersDatagridFilters']/div/div/button[contains(., 'Username')]")->click();
-        $this->isElementPresent("//*[@class='btn-group filter-item oro-drop open-filter']/div/div/");
-        $this->byXPath("//*[@class='btn-group filter-item oro-drop open-filter']/div/div/div/input")->value($username);
-        $this->byXPath("//div[@class='btn-group filter-item oro-drop open-filter']//button[contains(., 'Update')]")->click();
-        $this->assertTrue(
-            $this->isElementPresent(
-                "//*[@class='no-data']/span[contains(., 'No users were found to match your search.')]",
-                'Message that no users found not displayed'
-            )
-        );
+        $login = new Login($this);
+        $login->setUsername(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_LOGIN)
+            ->setPassword(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_PASS)
+            ->submit()
+            ->openUsers()
+            ->filterBy('Username', $username)
+            ->open(array($username))
+            ->delete()
+            ->assertTitle('Users overview - User Management')
+            ->assertMessage('User successfully removed');
+
+        $login->openUsers()->filterBy('Username', $username)->assertNoDataMessage('No users were found to match your search');
     }
 }

@@ -9,7 +9,7 @@ parameters:
 services:
     search_item_manager:
         class:     "%search_item_manager_class%"
-        arguments: [%search_item_entity_class%, %oro_flexibleentity.flexible_config%, "@doctrine.orm.entity_manager", "@event_dispatcher"]
+        arguments: [%search_item_entity_class%, %oro_flexibleentity.flexible_config%, "@doctrine.orm.entity_manager", "@event_dispatcher", "@oro_flexibleentity.attributetype.factory"]
  #   manufacturer_manager:
  #       class:     "%manufacturer_manager_class%"
  #       arguments: [%manufacturer_entity_class%, "@doctrine.orm.entity_manager"]

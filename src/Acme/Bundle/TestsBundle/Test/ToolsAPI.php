@@ -102,6 +102,21 @@ class ToolsAPI
     }
 
     /**
+     * Test API response status
+     *
+     * @param string $response
+     * @param int    $statusCode
+     */
+    public static function assertJsonResponse($response, $statusCode = 201)
+    {
+        \PHPUnit_Framework_TestCase::assertEquals(
+            $statusCode,
+            $response->getStatusCode(),
+            $response->getContent()
+        );
+    }
+
+    /**
      * Convert stdClass to array
      *
      * @param $class

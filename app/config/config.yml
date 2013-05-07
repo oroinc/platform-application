@@ -33,7 +33,19 @@ twig:
 assetic:
     debug:                    "%kernel.debug%"
     use_controller:           false
-    bundles:                  ["OroUIBundle", "AcmeDemoBundle", "OroUserBundle","AcmeDemoSegmentationTreeBundle", "AcmeDemoGridBundle", "OroGridBundle", "OroNavigationBundle", "OroWindowsBundle", "AcmeDemoWindowsBundle"]
+    bundles:
+        - OroAddressBundle
+        - OroUIBundle
+        - OroUserBundle
+        - OroGridBundle
+        - OroFilterBundle
+        - OroNavigationBundle
+        - OroWindowsBundle
+        - AcmeDemoBundle
+        - AcmeDemoSegmentationTreeBundle
+        - AcmeDemoWindowsBundle
+        - AcmeDemoGridBundle
+        - AcmeDemoFilterBundle
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -78,23 +90,26 @@ knp_paginator:
         sort_direction_name:  direction # sort direction query parameter name
         distinct:             false     # ensure distinct results, useful when ORM queries are using GROUP BY statements
     template:
-        pagination:           AcmeDemoBundle::pager.bootstrap.html.twig
+        pagination:           OroUIBundle::pager.html.twig
 
 fos_rest:
     view:
-        failed_validation: HTTP_BAD_REQUEST
-        default_engine: php
+        failed_validation:    HTTP_BAD_REQUEST
+        default_engine:       php
         formats:
-            json: true
-            xml: true
+            json:             true
+            xml:              true
     format_listener:
-        prefer_extension: true
+        prefer_extension:     true
     body_listener:
         decoders:
-            json: fos_rest.decoder.json
-            xml: fos_rest.decoder.xml
+            json:             fos_rest.decoder.json
+            xml:              fos_rest.decoder.xml
     routing_loader:
-        default_format: json
+        default_format:       json
+
+fos_js_routing:
+    routes_to_expose:         [oro_*]
 
 be_simple_soap:
     cache:
@@ -116,6 +131,7 @@ be_simple_soap:
 stof_doctrine_extensions:
     orm:
         default:
+            translatable:     true
             tree:             true
 
 services:
@@ -129,6 +145,7 @@ services:
 
 escape_wsse_authentication:
     authentication_provider_class: Oro\Bundle\UserBundle\Security\WsseUserProvider
+    authentication_listener_class: Oro\Bundle\UserBundle\Security\WsseAuthListener
 
 liip_imagine:
     filter_sets:

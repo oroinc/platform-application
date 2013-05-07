@@ -70,10 +70,7 @@ class ProductController extends Controller
 
         return $this->render(
             $view,
-            array(
-                'datagrid' => $datagrid,
-                'form'     => $datagrid->getForm()->createView()
-            )
+            array('datagrid' => $datagrid->createView())
         );
     }
 
@@ -227,10 +224,7 @@ class ProductController extends Controller
     {
         $request = $this->getRequest();
 
-        // create form
-        $entClassName = $this->getProductManager()->getFlexibleName();
-        $valueClassName = $this->getProductManager()->getFlexibleValueName();
-        $form = $this->createForm(new ProductType($entClassName, $valueClassName), $entity);
+        $form = $this->createForm('acme_product', $entity);
 
         if ($request->getMethod() == 'POST') {
             $form->bind($request);
@@ -246,9 +240,7 @@ class ProductController extends Controller
             }
         }
 
-        return array(
-                'form' => $form->createView(),
-        );
+        return array('form' => $form->createView(),);
     }
 
     /**
