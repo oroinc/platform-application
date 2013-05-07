@@ -43,8 +43,8 @@ class CustomerAttributeController extends Controller
         $em = $this->getDoctrine()->getManager();
         $queryBuilder = $em->createQueryBuilder();
         $queryBuilder
-            ->select('a.id', 'a.code', 'a.attributeType')
-            ->from('OroFlexibleEntityBundle:Attribute', 'a')
+            ->select('a')
+            ->from('PimProductBundle:ProductAttribute', 'a')
             ->where("a.entityType = 'Acme\Bundle\DemoFlexibleEntityBundle\Entity\Customer'");
 
         /** @var $queryFactory QueryFactory */
@@ -77,7 +77,7 @@ class CustomerAttributeController extends Controller
      */
     public function createAction()
     {
-        $attribute = $this->getCustomerManager()->createAttribute();
+        $attribute = $this->getCustomerManager()->createAttribute('oro_flexibleentity_text');
 
         return $this->editAction($attribute);
     }

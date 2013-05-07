@@ -89,7 +89,7 @@ class AttributeDatagridManager extends DatagridManager
             array(
                 'type'        => FieldDescriptionInterface::TYPE_TEXT,
                 'label'       => 'Type',
-                'field_name'  => 'type',
+                'field_name'  => 'attributeType',
                 'filter_type' => FilterInterface::TYPE_STRING,
                 'required'    => false,
                 'sortable'    => true,
