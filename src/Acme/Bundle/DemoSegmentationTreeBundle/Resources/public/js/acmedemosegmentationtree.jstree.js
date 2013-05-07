@@ -1,283 +1,317 @@
-//FIXME: create a JQuery plugin to avoid cluttering the $.fn namespace
-
-$(function () {
-    
-    $.fn.createJsTree = function(jsTreeId, selectedTreeId) {
-        $(jsTreeId).jstree({
-            // List of active plugins
-            "plugins" : [
-                "themes","json_data","ui","crrm","cookies","dnd","search","types","hotkeys","contextmenu"
-            ],
-            "themes" : {
-                "dots" : true,
-                "icons" : true,
-                "themes" : "bap",
-                "url" : assetsPath + "/css/style.css"
-            },
-            "json_data" : {
-                "ajax" : {
-                    "url" : "children",
-                    "data" : function (n) {
-                        // the result is fed to the AJAX request `data` option
-                        return {
-                            "id" : n.attr ? n.attr("id").replace("node_","") : $(selectedTreeId).attr('title')
-                        };
-                    }
+$('#tree').jstree({
+    "core" : {
+        "animation" : 200
+    },
+    "plugins" : [
+        "tree_selector", "themes","json_data","ui","crrm","cookies","dnd","search","types","hotkeys"
+    ],
+    "tree_selector" : {
+        "ajax" : {
+            "url" : "trees"
+        },
+    //                "data" :'[{"id":"node_1","title":"Titre 1"},{"id":"node_2","title":"Titre 2"}]',
+        "auto_open_root" : true
+    },
+    "themes" : {
+        "dots" : true,
+        "icons" : true,
+        "themes" : "bap",
+        "url" : assetsPath + "/css/style.css"
+    },
+    "json_data" : {
+        "data" : [
+            {
+                "data": "Loading root...",
+                "state": "closed",
+                "attr" : { "id" : "node_1"}
+            }
+        ],
+        "ajax" : {
+            "url" : "children",
+            "data" : function (node) {
+                // the result is fed to the AJAX request `data` option
+                return {
+                    "id" : node.attr("id").replace('node_','')
+                };
+            }
+        }
+    },
+    "search" : {
+        "ajax" : {
+            "url" : "search",
+            "data" : function (str) {
+                return {
+                    "tree_root_id": $.jstree._focused().get_tree_id(),
+                    "search_str" : str
+                };
+            }
+        }
+    },
+    "types" : {
+        "max_depth" : -2,
+        "max_children" : -2,
+        "valid_children" : [ "folder" ],
+        "types" : {
+            "default" : {
+                "valid_children" : "folder",
+                "icon" : {
+                    "image" : assetsPath + "images/folder.png"
                 }
             },
-            "search" : {
-                "ajax" : {
-                    "url" : "search",
-                    "data" : function (str) {
-                        return {
-                            "tree_root_id": $(selectedTreeId).attr('title'), "search_str" : str
-                        };
-                    }
-                }
-            },
-            "types" : {
-                "max_depth" : -2,
-                "max_children" : -2,
-                "valid_children" : [ "folder" ],
-                "types" : {
-                    "default" : {
-                        "valid_children" : "folder",
-                        "icon" : {
-                            "image" : assetsPath + "images/folder.png"
-                        }
-                    },
-                    "folder" : {
-                        "icon" : {
-                            "image" : assetsPath + "images/folder.png"
-                        }
-                    }
+            "folder" : {
+                "icon" : {
+                    "image" : assetsPath + "images/folder.png"
                 }
             }
-        })
-        .bind("create.jstree", function (e, data) {
-            var parentId = null;
+        }
+    }
+})
+    .bind('trees_loaded.jstree', function(e, tree_select_id) {
+        $('#'+tree_select_id).uniform();
+    })
+    .bind("create.jstree", function (e, data) {
+        var this_jstree = $.jstree._focused();
+        var parentId = null;
 
-            if (data.rslt.parent == -1) {
-                parentId = $(selectedTreeId).attr('title');
-            } else {
-                parentId = data.rslt.parent.attr("id").replace("node_","");
+        if (data.rslt.parent == -1) {
+            parentId = this_jstree.get_tree_id();
+        } else {
+            parentId = data.rslt.parent.attr("id");
+        }
+
+        $.post(
+            "create-node",
+            {
+                "id" : parentId,
+                "position" : data.rslt.position,
+                "title" : data.rslt.name,
+                "type" : data.rslt.obj.attr("rel")
+            },
+            function (r) {
+                if(r.status) {
+                    $(data.rslt.obj).attr("id", r.id);
+                }
+                else {
+                    this_jstree.rollback(data.rlbk);
+                }
             }
-            
-            $.post(
-                "create-node",
-                {
-                    "id" : parentId,
-                    "position" : data.rslt.position,
-                    "title" : data.rslt.name,
-                    "type" : data.rslt.obj.attr("rel")
+        );
+    })
+    .bind("remove.jstree", function (e, data) {
+        data.rslt.obj.each(function () {
+            $.ajax({
+                async : false,
+                type: 'POST',
+                url: "remove-node",
+                data : {
+                    "id" : this.id.replace('node_','')
                 },
-                function (r) {
-                    if(r.status) {
-                        $(data.rslt.obj).attr("id", "node_" + r.id);
+                success : function (r) {
+                    if(!r.status) {
+                        data.inst.refresh();
+                    }
+                }
+            });
+        });
+    })
+    .bind("rename.jstree", function (e, data) {
+        $.post(
+            "rename-node",
+            {
+                "id" : data.rslt.obj.attr("id").replace('node_',''),
+                "title" : data.rslt.new_name
+            },
+            function (r) {
+                if(!r.status) {
+                    this_jstree.rollback(data.rlbk);
+                }
+            }
+        );
+    })
+    .bind("move_node.jstree", function (e, data) {
+        var this_jstree = $.jstree._focused();
+        data.rslt.o.each(function (i) {
+
+            $.ajax({
+                async : false,
+                type: 'POST',
+                url: "move-node",
+                data : {
+                    "id" : $(this).attr("id").replace('node_',''),
+                    "parent" : data.rslt.cr === -1 ? 1 : data.rslt.np.attr("id").replace('node_',''),
+                    "prev_sibling" : this_jstree._get_prev(this, true) ? this_jstree._get_prev(this, true).attr('id').replace('node_','') : null,
+                    "position" : data.rslt.cp + i,
+                    "title" : data.rslt.name,
+                    "copy" : data.rslt.cy ? 1 : 0
+                },
+                success : function (r) {
+                    if(!r.status) {
+                        this_jstree.rollback(data.rlbk);
                     }
                     else {
-                        $.jstree.rollback(data.rlbk);
+                        $(data.rslt.oc).attr("id", r.id);
+                        if(data.rslt.cy && $(data.rslt.oc).children("UL").length) {
+                            data.inst.refresh(data.inst._get_parent(data.rslt.oc));
+                        }
                     }
                 }
-            );
-        })
-        .bind("remove.jstree", function (e, data) {
-            data.rslt.obj.each(function () {
-                $.ajax({
-                    async : false,
-                    type: 'POST',
-                    url: "remove-node",
-                    data : {
-                        "id" : this.id.replace("node_","")
-                    },
-                    success : function (r) {
-                        if(!r.status) {
-                            data.inst.refresh();
-                        }
-                    }
-                });
             });
-        })
-        .bind("rename.jstree", function (e, data) {
-            $.post(
-                "rename-node",
-                {
-                    "id" : data.rslt.obj.attr("id").replace("node_",""),
-                    "title" : data.rslt.new_name
-                },
-                function (r) {
-                    if(!r.status) {
-                        $.jstree.rollback(data.rlbk);
-                    }
+        });
+    })
+    .bind("select_node.jstree", function (e, data) {
+        var this_jstree = $.jstree._focused();
+
+        var a = this_jstree.get_selected();
+        var nodeId = a.attr('id').replace('node_','');
+        $.fn.renderItemList(nodeId);
+    });
+
+$.fn.removeTree = function(tree_id) {
+    var this_jstree = $.jstree._focused();
+
+    $.ajax({
+        async : false,
+        type: 'POST',
+        url: "remove-tree",
+        data : {
+            "id" : tree_id
+        },
+        success: function(data) {
+            this_jstree.refresh_trees();
+        }
+    });
+};
+
+$.fn.createTree = function (title) {
+    var this_jstree = $.jstree._focused();
+
+    $.ajax({
+        async : false,
+        type: 'POST',
+        url: "create-tree",
+        data : {
+            "title" : title
+        },
+        success: function(data) {
+            this_jstree.refresh_trees();
+        }
+    });
+};
+
+$.fn.renderItemList = function renderItemList(segmentId) {
+    $.ajax({
+        async : false,
+        type: "GET",
+        url: "list-items",
+        data : {
+            "segment_id" : segmentId
+        },
+        success: function(data) {
+            var table = $('#product_grid');
+            table.empty();
+
+            if (data.length > 0) {
+                var headers_line = $('<tr>');
+
+                for (var attribute in data[0]) {
+                    var header = $('<th>', {
+                        text : attribute
+                    });
+                    headers_line.append(header);
                 }
-            );
-        })
-        .bind("move_node.jstree", function (e, data) {
-            data.rslt.o.each(function (i) {
-                $.ajax({
-                    async : false,
-                    type: 'POST',
-                    url: "move-node",
-                    data : {
-                        "id" : $(this).attr("id").replace("node_",""),
-                        "ref" : data.rslt.cr === -1 ? 1 : data.rslt.np.attr("id").replace("node_",""),
-                        "position" : data.rslt.cp + i,
-                        "title" : data.rslt.name,
-                        "copy" : data.rslt.cy ? 1 : 0
-                    },
-                    success : function (r) {
-                        if(!r.status) {
-                            $.jstree.rollback(data.rlbk);
-                        }
-                        else {
-                            $(data.rslt.oc).attr("id", "node_" + r.id);
-                            if(data.rslt.cy && $(data.rslt.oc).children("UL").length) {
-                                data.inst.refresh(data.inst._get_parent(data.rslt.oc));
-                            }
-                        }
-                    }
-                });
-            });
-        })
-        .bind("select_node.jstree", function (e, data) {
-            var a = $.jstree._focused().get_selected();
-            var nodeId = a.attr('id');
-            var segmentId = nodeId.replace('node_','');
-            renderItemList(segmentId);
-        });
-    };
 
-    $.fn.removeTree = function(rootSegmentId) {
-        $.ajax({
-            async : false,
-            type: 'POST',
-            url: "remove-tree",
-            data : {
-                "id" : rootSegmentId
-            },
-            success: function(data) {
-                renderTreeList();
-            }
-        });
-    };
+                table.append(headers_line);
 
-    $.fn.createTree = function (title, treeListId, jsTreeId, selectedTreeId) {
-        $.ajax({
-            async : false,
-            type: 'POST',
-            url: "create-tree",
-            data : {
-                "title" : title
-            },
-            success: function(data) {
-                $.fn.renderTreeList( treeListId, jsTreeId, selectedTreeId);
-            }
-        });
-    };
-
-    $.fn.renderTreeList = function( treeListId, jsTreeId, selectedTreeId ) {
-        $(treeListId).empty();
-        $.ajax({
-            async : false,
-            type: "GET",
-            url: "trees",
-            success: function(data) {
                 $.each(data, function(i,item) {
-                    var treeLink = $('<button>', {  
-                        id: 'tree_'+item.id,  
-                        class: 'btn btn-small btn-primary',
-                        href: '',  
-                        text: item.title
-                    });
-                    treeLink.bind('click', function () {
-                        $(selectedTreeId).attr('title', item.id);
-                        
-                        $(jsTreeId).jstree('refresh');
-                    });
-                    var treeRemoveLink = $('<button>', {  
-                        id: 'tree_remove_'.itemId,  
-                        class: 'btn btn-small',
-                        href: '',  
-                        text: '[remove]'
-                    });
-                    treeRemoveLink.bind('click', function () {
-                        if (confirm("Are you sure you want to delete the tree '" + item.title + "'")) {
-                            removeTree(item.id);
-                        }
-                    });
-                    $(treeListId).append(treeLink);
-                    $(treeListId).append("&nbsp;");
-                    $(treeListId).append(treeRemoveLink);
-                    $(treeListId).append("<br>");
+                    var data_line = $('<tr>');
+
+                    for (var attribute in item) {
+                        var field = $('<td>', {
+                            text : item[attribute]
+                        });
+                        data_line.append(field);
+                    }
+                    table.append(data_line);
                 });
             }
-        });
-    };
-    
+        }
+    });
+};
 
+$.fn.addItem = function(segmentId, itemId) {
+    $.ajax({
+        async : false,
+        type: 'POST',
+        url: "add-item",
+        data : {
+            "segment_id" : segmentId,
+            "item_id" : itemId
+        },
+        success : function (r) {
+            renderItemList(segmentId);
+        }
+    });
+};
 
-    function renderItemList(segmentId) {
-        $.ajax({
-            async : false,
-            type: "GET",
-            url: "list-items",
-            data : {
-                "segment_id" : segmentId
-            },
-            success: function(data) {
-                var html_table = ['<table border="1">'];
+$.fn.removeItem = function(segmentId, itemId) {
+    $.ajax({
+        async : false,
+        type: 'POST',
+        url: "remove-item",
+        data : {
+            "segment_id" : segmentId,
+            "item_id" : itemId
+        },
+        success : function (r) {
+            renderItemList(segmentId);
+        }
+    });
+};
 
-                if (data.length > 0) {
-                    html_table.push('<tr>');
-                    for (var attribute in data[0]) {
-                        html_table.push('<th>');
-                        html_table.push(attribute);
-                        html_table.push('</th>');
-                    }
-                    html_table.push('</tr>');
-                    $.each(data, function(i,item) {
-                        html_table.push('<tr>');
-                        for (var attribute in item) {
-                            html_table.push('<td>' + item[attribute] + '</td>');
-                        }
-                        html_table.push('</tr>');
-                    });
-                }
-                html_table.push("</table>");
-                var s = html_table.join('');
-                $('#list').html(s);
-            }
-        });
-    }
+$(function () {
+    $("#tree_menu button").click(function () {
+        var tree_id = "#tree";
+        switch(this.id) {
+            case "refresh":
+                $(tree_id).jstree('refresh',-1);
+                break;
+            case "add":
+                $(tree_id).jstree("create", null, "last", { "attr" : { "rel" : this.id.toString().replace("add_", "") } });
+                break;
+            case "search":
+                $(tree_id).jstree("search", $("#search_text").val());
+                break;
+            case "clear_search":
+                $(tree_id).jstree("clear_search");
+                break;
+            case "rename":
+                $(tree_id).jstree("rename");
+                break;
+            case "remove":
+                $(tree_id).jstree("remove");
+                break;
+            case "add_segment":
+                $(tree_id).jstree("create");
+                break;
+            case "create_tree":
+                $.fn.createTree($("#create_tree_title").val(), '#trees','#tree','#selectedTreeId');
+                break;
+            case "add_item":
+                node = $.jstree._focused().get_selected();
+                nodeId = node.attr('id');
+                segmentId = nodeId.replace('node_','');
+                itemId = $("#add_item_id").val();
 
-    $.fn.addItem = function(segmentId, itemId) {
-        $.ajax({
-            async : false,
-            type: 'POST',
-            url: "add-item",
-            data : {
-                "segment_id" : segmentId,
-                "item_id" : itemId
-            },
-            success : function (r) {
-                renderItemList(segmentId);
-            }
-        });
-    };
+                $.fn.addItem(segmentId, itemId);
+                break;
+            case "remove_item":
+                node = $.jstree._focused().get_selected();
+                nodeId = node.attr('id');
+                segmentId = nodeId.replace('node_','');
+                itemId = $("#remove_item_id").val();
 
-    $.fn.removeItem = function(segmentId, itemId) {
-        $.ajax({
-            async : false,
-            type: 'POST',
-            url: "remove-item",
-            data : {
-                "segment_id" : segmentId,
-                "item_id" : itemId
-            },
-            success : function (r) {
-                renderItemList(segmentId);
-            }
-        });
-    };
-
+                $.fn.removeItem(segmentId, itemId);
+                break;
+        }
+   });
 });
