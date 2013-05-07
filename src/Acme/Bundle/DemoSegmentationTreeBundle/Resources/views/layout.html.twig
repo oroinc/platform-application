@@ -1,113 +1,55 @@
-{% extends bap.layout is defined ? bap.layout : 'OroUIBundle:Default:index.html.twig' %}
+{% extends 'OroUIBundle:Default:twoColumnLeft.html.twig' %}
 
-{% oro_title_set({suffix: " - " ~ "Segmentation Tree"|trans}) %}
+{% oro_title_set({suffix: " - " ~ "Segmentation tree"|trans}) %}
 
 {% block head_script %}
     {{ parent() }}
-    <script type="text/javascript" src="{{ asset('bundles/acmedemosegmentationtree/js/jquery.cookie.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/acmedemosegmentationtree/js/jquery.hotkeys.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/acmedemosegmentationtree/js/jquery.jstree.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/oroui/lib/jstree/jquery.cookie.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/oroui/lib/jstree/jquery.hotkeys.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/oroui/lib/jstree/jquery.jstree.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/oroui/lib/jstree/jquery.jstree.tree_selector.js') }}"></script>
+{% endblock %}
+
+{% block page_container %}
+    <div id="tree_menu" style="overflow:auto;">
+        <button id="refresh" class="btn btn-small">{{ "acme.demosegmentationtree.button.refresh_tree" | trans }}</button>
+        <button id="add_segment" class="btn btn-small">{{ "acme.demosegmentationtree.button.add_segment" | trans }}</button>
+        <button id="rename" class="btn btn-small">{{ "acme.demosegmentationtree.button.rename_segment" | trans }}</button>
+        <button id="remove" class="btn btn-small">{{ "acme.demosegmentationtree.button.remove_segment" | trans }}</button>
+        <input id="search_text" class="input-small" placeholder="Search..." type="text" value="" />
+        <button id="search" class="btn btn-small">{{ "acme.demosegmentationtree.button.search_segment" | trans }}</button>
+        <button id="clear_search" class="btn btn-small">{{ "acme.demosegmentationtree.button.clear_search" | trans }}</button>
+        <div>
+            <input id="create_tree_title" class="input-small" placeholder="Tree title" type="text" value="" />
+            <button id="create_tree" class="btn btn-small">{{ "acme.demosegmentationtree.button.create_tree" | trans }}</button>
+        </div>
+        <div>
+            <input id="add_item_id" class="input-small" placeholder="Item id to add" type="text" value="" />
+            <button id="add_item" class="btn btn-small">{{ "acme.demosegmentationtree.button.add_item_by_id" | trans }}</button>
+        </div>
+        <div>
+            <input id="remove_item_id" class="input-small" placeholder="Item id to remove" type="text" value="" />
+            <button id="remove_item" class="btn btn-small">{{ "acme.demosegmentationtree.button.remove_item_by_id" | trans }}</button>
+        </div>
+    </div>
+    {{ parent()}}
+{% endblock %}
+
+{% block sidebar %}
+    <div id="tree">
+    </div>
+
+    <!-- JavaScript for the tree -->
+    <script type="text/javascript">
+        var assetsPath = "{{ asset('bundles/acmedemosegmentationtree/') }}";
+    </script>
+    <script type="text/javascript" src="{{ asset('bundles/acmedemosegmentationtree/js/acmedemosegmentationtree.jstree.js') }}"></script>
 {% endblock %}
 
 {% block content %}
-
-<div id="description">
-<div id="tree_menu" style="overflow:auto;">
-    <button id="refresh" class="btn btn-small">{{ "acme.demosegmentationtree.button.refresh" | trans }}</button>
-    <button id="add_segment" class="btn btn-small">{{ "acme.demosegmentationtree.button.add_segment" | trans }}</button>
-    <button id="rename" class="btn btn-small">{{ "acme.demosegmentationtree.button.rename" | trans }}</button>
-    <button id="remove" class="btn btn-small">{{ "acme.demosegmentationtree.button.remove" | trans }}</button>
-    <button id="cut" class="btn btn-small">{{ "acme.demosegmentationtree.button.cut" | trans }}</button>
-<!--
-    <button id="copy" class="btn btn-small">{{ "acme.demosegmentationtree.button.copy" | trans }}</button>
--->
-    <button id="paste" class="btn btn-small">{{ "acme.demosegmentationtree.button.paste" | trans }}</button>
-    <input id="search_text" class="input-small" placeholder="Search..." type="text" value="" />
-    <button id="search" class="btn btn-small">{{ "acme.demosegmentationtree.button.search" | trans }}</button>
-    <button id="clear_search" class="btn btn-small">{{ "acme.demosegmentationtree.button.clear_search" | trans }}</button>
-    <div>
-        <input id="create_tree_title" class="input-small" placeholder="Tree title" type="text" value="" />
-        <button id="create_tree" class="btn btn-small">{{ "acme.demosegmentationtree.button.create_tree" | trans }}</button>
+    <div id="list">
+        <table id="product_grid" border="1">
+        </table>
     </div>
-    <div>
-        <input id="add_item_id" class="input-small" placeholder="Item id to add" type="text" value="" />
-        <button id="add_item" class="btn btn-small">{{ "acme.demosegmentationtree.button.add_item_by_id" | trans }}</button>
-    </div>
-    <div>
-        <input id="remove_item_id" class="input-small" placeholder="Item id to remove" type="text" value="" />
-        <button id="remove_item" class="btn btn-small">{{ "acme.demosegmentationtree.button.remove_item_by_id" | trans }}</button>
-    </div>
-</div>
-<div id="trees">
-</div>
 
-<div class="wrap">
-    <div id="tree" class="tree"></div>
-    <div id="list" class="list"></div>
-    <div id="selectedTreeId" title=""></div>
-</div>
-
-<!-- JavaScript for the tree -->
-<script>
-    var assetsPath = "{{ asset('bundles/acmedemosegmentationtree/') }}";
-</script>
-<script type="text/javascript" src="{{ asset('bundles/acmedemosegmentationtree/js/acmedemosegmentationtree.jstree.js') }}"></script>
-
-<script type="text/javascript">
-$(function () {
-        
-    // Code for the menu buttons
-    $.fn.assignMenuButtons = function(jsTreeId) {
-        $("#tree_menu button").click(function () {
-            switch(this.id) {
-                case "refresh":
-                    $(jsTreeId).jstree('refresh',-1);
-                    break;
-                case "add":
-                    $(jsTreeId).jstree("create", null, "last", { "attr" : { "rel" : this.id.toString().replace("add_", "") } });
-                    break;
-                case "search":
-                    $(jsTreeId).jstree("search", $("#search_text").val());
-                    break;
-                case "rename":
-                    $(jsTreeId).jstree("rename");
-                    break;
-                case "add_segment":
-                    $(jsTreeId).jstree("create");
-                    break;
-                case "create_tree":
-                    $.fn.createTree($("#create_tree_title").val(), '#trees','#tree','#selectedTreeId');
-                    break;
-                case "add_item":
-                    node = $.jstree._focused().get_selected();
-                    nodeId = node.attr('id');
-                    segmentId = nodeId.replace('node_','');
-                    itemId = $("#add_item_id").val();
-
-                    $.fn.addItem(segmentId, itemId);
-                    break;
-                case "remove_item":
-                    node = $.jstree._focused().get_selected();
-                    nodeId = node.attr('id');
-                    segmentId = nodeId.replace('node_','');
-                    itemId = $("#remove_item_id").val();
-
-                    $.fn.removeItem(segmentId, itemId);
-                    break;
-                default:
-                    $(jsTreeId).jstree(this.id);
-                    break;
-            }
-        });
-    }
-});
-
-$(function () {
-    $.fn.createJsTree('#tree','#selectedTreeId');
-    $.fn.assignMenuButtons('#tree');
-    $.fn.renderTreeList('#trees','#tree','#selectedTreeId');
-});
-
-
-</script>
 {% endblock %}
