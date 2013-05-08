@@ -319,6 +319,8 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
     {
         $result = $this->userManager->createAttribute($attributeType);
         $result->setCode($attributeCode);
+        $result->setLabel($attributeCode);
+
         return $result;
     }
 

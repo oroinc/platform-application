@@ -100,24 +100,28 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
         $attCode = 'company';
         $att = $this->getCustomerManager()->createAttribute('oro_flexibleentity_text');
         $att->setCode($attCode);
+        $att->setLabel($attCode);
         $att->setSearchable(true);
         $this->getCustomerManager()->getStorageManager()->persist($att);
 
         $attCode = 'dob';
         $att = $this->getCustomerManager()->createAttribute('oro_flexibleentity_date');
         $att->setCode($attCode);
+        $att->setLabel('Date of birth');
         $att->setSearchable(true);
         $this->getCustomerManager()->getStorageManager()->persist($att);
 
         $attCode = 'website';
         $att = $this->getCustomerManager()->createAttribute('oro_flexibleentity_url');
         $att->setCode($attCode);
+        $att->setLabel($attCode);
         $att->setSearchable(true);
         $this->getCustomerManager()->getStorageManager()->persist($att);
 
         $attCode = 'gender';
         $att = $this->getCustomerManager()->createAttribute('oro_flexibleentity_simpleselect');
         $att->setCode($attCode);
+        $att->setLabel($attCode);
         $att->setSearchable(true);
         $opt = $this->getCustomerManager()->createAttributeOption();
         $optVal = $this->getCustomerManager()->createAttributeOptionValue();
@@ -134,6 +138,7 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
         $attCode = 'hobby';
         $att = $this->getCustomerManager()->createAttribute('oro_flexibleentity_multiselect');
         $att->setCode($attCode);
+        $att->setLabel($attCode);
         $att->setSearchable(true);
         $hobbies = array('Sport', 'Cooking', 'Read', 'Coding!');
         foreach ($hobbies as $hobby) {
