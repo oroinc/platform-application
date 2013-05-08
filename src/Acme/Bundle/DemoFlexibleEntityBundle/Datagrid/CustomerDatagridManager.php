@@ -108,6 +108,18 @@ class CustomerDatagridManager extends FlexibleDatagridManager
      */
     protected function getRowActions()
     {
+        $clickAction = array(
+            'name'         => 'rowClick',
+            'type'         => ActionInterface::TYPE_REDIRECT,
+            'acl_resource' => 'root',
+            'options'      => array(
+                'label'         => 'Edit',
+                'link'          => 'edit_link',
+                'runOnRowClick' => true,
+                'backUrl' => true,
+            )
+        );
+
         $editAction = array(
             'name'         => 'edit',
             'type'         => ActionInterface::TYPE_REDIRECT,
@@ -131,6 +143,6 @@ class CustomerDatagridManager extends FlexibleDatagridManager
             )
         );
 
-        return array($editAction, $deleteAction);
+        return array($editAction, $deleteAction, $clickAction);
     }
 }

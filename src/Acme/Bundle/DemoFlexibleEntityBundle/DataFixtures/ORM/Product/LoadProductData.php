@@ -104,7 +104,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $attributeCode = 'name';
         $productAttribute = $this->getProductManager()->createAttribute('oro_flexibleentity_text');
         $productAttribute->setCode($attributeCode);
-        $productAttribute->setLabel($attributeCode);
+        $productAttribute->setLabel('Name');
         $productAttribute->setTranslatable(true);
         $productAttribute->setSearchable(true);
         $this->getProductManager()->getStorageManager()->persist($productAttribute);
@@ -113,7 +113,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $attributeCode = 'price';
         $productAttribute = $this->getProductManager()->createAttribute('oro_flexibleentity_price');
         $productAttribute->setCode($attributeCode);
-        $productAttribute->setLabel($attributeCode);
+        $productAttribute->setLabel('Price');
         $productAttribute->setSearchable(true);
         $this->getProductManager()->getStorageManager()->persist($productAttribute);
 
@@ -121,7 +121,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $attributeCode = 'description';
         $productAttribute = $this->getProductManager()->createAttribute('oro_flexibleentity_textarea');
         $productAttribute->setCode($attributeCode);
-        $productAttribute->setLabel($attributeCode);
+        $productAttribute->setLabel('Short description');
         $productAttribute->setTranslatable(true);
         $productAttribute->setScopable(true);
         $productAttribute->setSearchable(true);
@@ -131,7 +131,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $attributeCode= 'size';
         $productAttribute = $this->getProductManager()->createAttribute('oro_flexibleentity_metric');
         $productAttribute->setCode($attributeCode);
-        $productAttribute->setLabel($attributeCode);
+        $productAttribute->setLabel('Size');
         $productAttribute->setSearchable(true);
         $this->getProductManager()->getStorageManager()->persist($productAttribute);
 
@@ -139,7 +139,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $attributeCode= 'color';
         $productAttribute = $this->getProductManager()->createAttribute('oro_flexibleentity_multiselect');
         $productAttribute->setCode($attributeCode);
-        $productAttribute->setLabel($attributeCode);
+        $productAttribute->setLabel('Color');
         $productAttribute->setSearchable(true);
         $productAttribute->setTranslatable(false); // only one value but option can be translated in option values
         $colors = array(
