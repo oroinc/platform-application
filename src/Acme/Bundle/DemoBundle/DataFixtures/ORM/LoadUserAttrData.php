@@ -57,7 +57,7 @@ class LoadUserAttrData extends AbstractFixture implements ContainerAwareInterfac
         $attr = $fm
             ->createAttribute('oro_flexibleentity_text')
             ->setCode('middlename')
-            ->setLabel('Middlename');
+            ->setLabel('Middle name');
 
         $sm->persist($attr);
 
