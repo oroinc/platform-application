@@ -5,6 +5,7 @@ namespace Acme\Bundle\TestsBundle\Test;
 use Symfony\Bundle\FrameworkBundle\Client as BaseClient;
 use Acme\Bundle\TestsBundle\Test\SoapClient;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\TerminableInterface;
 
 class Client extends BaseClient
 {
