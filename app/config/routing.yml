@@ -1,3 +1,7 @@
+acme_demo_address:
+    resource: "@AcmeDemoAddressBundle/Resources/config/routing.yml"
+    prefix:   /address
+
 acme_demo_windows:
     resource: "@AcmeDemoWindowsBundle/Resources/config/routing.yml"
     prefix:   /
@@ -97,3 +101,7 @@ fos_js_routing:
 _imagine:
     resource: .
     type:     imagine
+
+oro_address:
+    resource: "@OroAddressBundle/Resources/config/routing.yml"
+    prefix:   /

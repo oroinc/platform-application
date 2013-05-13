@@ -8,7 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Oro\Bundle\GridBundle\Datagrid\ORM\QueryFactory\QueryFactory;
 use Oro\Bundle\NavigationBundle\Annotation\TitleTemplate;
 
-use Acme\Bundle\DemoGridBundle\Datagrid\UserDatagridManager;
+use Acme\Bundle\DemoGridBundle\Datagrid\ProductDatagridManager;
 
 /**
  * @Route("/product")
@@ -25,31 +25,9 @@ class ProductController extends Controller
      */
     public function listAction(Request $request)
     {
-        /** @var $em \Doctrine\ORM\EntityManager */
-        $em = $this->getDoctrine()->getManager();
-        $queryBuilder = $em->createQueryBuilder();
-        $queryBuilder
-            ->select(
-                'm.id AS m_id',
-                'm.name AS m_name',
-                'p.id',
-                'p.name',
-                'p.count',
-                'p.price',
-                'p.description',
-                'p.createDate',
-                'COUNT(p.id) AS product_count'
-            )
-            ->from('AcmeDemoBundle:Manufacturer', 'm')
-            ->leftJoin('m.products', 'p')
-            ->groupBy('m.id');
-
-        /** @var $queryFactory QueryFactory */
-        $queryFactory = $this->get('acme_demo_grid.product_grid.manager.default_query_factory');
-        $queryFactory->setQueryBuilder($queryBuilder);
-
-        /** @var $productGridManager UserDatagridManager */
+        /** @var $productGridManager ProductDatagridManager */
         $productGridManager = $this->get('acme_demo_grid.product_grid.manager');
+        $productGridManager->setEntityManager($this->getDoctrine()->getManager());
         $datagrid = $productGridManager->getDatagrid();
 
         if ('json' == $request->getRequestFormat()) {

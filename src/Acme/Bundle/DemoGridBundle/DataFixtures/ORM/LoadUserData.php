@@ -8,12 +8,6 @@ use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 
-use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\UrlType;
-use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\OptionMultiSelectType;
-use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\DateType;
-use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\DateTimeType;
-use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\TextType;
-
 use Oro\Bundle\FlexibleEntityBundle\Model\FlexibleValueInterface;
 use Oro\Bundle\FlexibleEntityBundle\Model\AbstractFlexible;
 use Oro\Bundle\FlexibleEntityBundle\Model\AbstractAttributeOption;
@@ -64,13 +58,13 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
         $this->assertHasRequiredAttributes(array('company', 'salary','gender'));
 
         if (!$this->findAttribute('website')) {
-            $websiteAttribute = $this->createAttribute(new UrlType(), 'website');
+            $websiteAttribute = $this->createAttribute('oro_flexibleentity_url', 'website');
             $this->persist($websiteAttribute);
         }
 
         if (!$this->findAttribute('hobby')) {
             $hobbyAttribute = $this->createAttributeWithOptions(
-                new OptionMultiSelectType(),
+                'oro_flexibleentity_multiselect',
                 'hobby',
                 self::getHobbies()
             );
@@ -317,27 +311,29 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
     /**
      * Create an attribute
      *
-     * @param AbstractAttributeType $attributeType
+     * @param string $attributeType
      * @param string $attributeCode
      * @return AbstractAttribute
      */
-    private function createAttribute(AbstractAttributeType $attributeType, $attributeCode)
+    private function createAttribute($attributeType, $attributeCode)
     {
         $result = $this->userManager->createAttribute($attributeType);
         $result->setCode($attributeCode);
+        $result->setLabel($attributeCode);
+
         return $result;
     }
 
     /**
      * Create an attribute with options
      *
-     * @param AbstractAttributeType $attributeType
+     * @param string $attributeType
      * @param string $attributeCode
      * @param array $optionValues
      * @return AbstractAttribute
      */
     private function createAttributeWithOptions(
-        AbstractAttributeType $attributeType,
+        $attributeType,
         $attributeCode,
         array $optionValues
     ) {
