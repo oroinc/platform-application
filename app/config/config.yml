@@ -161,8 +161,10 @@ oro_search:
 
 oro_ui:
     settings:
-        product_caption:
-          value:              ORO
+        application_name:
+            value: "ORO"
+        application_title:
+            value: "ORO"
 
 oro_user:
     settings:
