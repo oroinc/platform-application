@@ -24,7 +24,16 @@ class ProductType extends FlexibleType
     {
         // add default flexible fields
         parent::addEntityFields($builder);
-        // customer fields
+
+        // add custom fields
         $builder->add('sku', 'text', array('required' => true, 'read_only' => $builder->getData()->getId()));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getName()
+    {
+        return 'acme_product';
     }
 }

@@ -8,11 +8,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
-use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\OptionSimpleSelectType;
-use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\MoneyType;
-use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\TextType;
-use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\TextAreaType;
-
 class LoadUserAttrData extends AbstractFixture implements ContainerAwareInterface
 {
     /**
@@ -39,32 +34,37 @@ class LoadUserAttrData extends AbstractFixture implements ContainerAwareInterfac
         $sm = $fm->getStorageManager();
 
         $attr = $fm
-            ->createAttribute(new TextType())
-            ->setCode('company');
+            ->createAttribute('oro_flexibleentity_text')
+            ->setCode('company')
+            ->setLabel('Company');
 
         $sm->persist($attr);
 
         $attr = $fm
-            ->createAttribute(new MoneyType())
-            ->setCode('salary');
+            ->createAttribute('oro_flexibleentity_money')
+            ->setCode('salary')
+            ->setLabel('Salary');
 
         $sm->persist($attr);
 
         $attr = $fm
-            ->createAttribute(new TextAreaType())
-            ->setCode('address');
+            ->createAttribute('oro_flexibleentity_textarea')
+            ->setCode('address')
+            ->setLabel('Address');
 
         $sm->persist($attr);
 
         $attr = $fm
-            ->createAttribute(new TextType())
-            ->setCode('middlename');
+            ->createAttribute('oro_flexibleentity_text')
+            ->setCode('middlename')
+            ->setLabel('Middle name');
 
         $sm->persist($attr);
 
         $attr = $fm
-            ->createAttribute(new OptionSimpleSelectType())
+            ->createAttribute('oro_flexibleentity_simpleselect')
             ->setCode('gender')
+            ->setLabel('Gender')
             ->addOption(
                 $fm->createAttributeOption()->addOptionValue(
                     $fm->createAttributeOptionValue()->setValue('Male')

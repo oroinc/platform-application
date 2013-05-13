@@ -1,35 +1,110 @@
 {% extends bap.layout is defined ? bap.layout : 'AcmeDemoFlexibleEntityBundle::layout.html.twig' %}
-
+{% import 'OroUserBundle::macros.html.twig' as macros %}
+{% set format = get_user_value('oro_user.name_format') %}
+{% form_theme form with 'OroUIBundle:Form:fields.html.twig' %}
 {% set title = form.vars.value.id ? 'Edit customer' : 'Add customer' %}
 
-{% block content %}
-<form action="{{ form.vars.value.id ? path('acme_demoflexibleentity_customer_edit', { id: form.vars.value.id }) : path('acme_demoflexibleentity_customer_create') }}" method="POST" class="form-register">
-    <fieldset>
-        <legend>{{ title }} <a class="btn btn-primary pull-right" href="{{ path('acme_demoflexibleentity_customer_list') }}">{{ "Back to list" | trans }}</a></legend>
+{% block page_container %}
+<div class="container-fluid">
+    {% block content %}
+    <form action="{{ form.vars.value.id ? path('acme_demoflexibleentity_customer_edit', { id: form.vars.value.id }) : path('acme_demoflexibleentity_customer_create') }}"  {{ form_enctype(form) }} method="POST" class="form-register">
+        <div class="navigation clearfix navbar-extra navbar-extra-right">
+            <div class="row">
+                {% if form.vars.value.id %}
+                <div class="pull-right">
+                    <div class="pull-right">
+                        <div class="pull-left customer-info-top-actions">
+                            <div class="btn-group">
+                                <a href="{{ app.session.get('back') ? app.session.get('back') : path('acme_demoflexibleentity_customer_list') }}" class="btn">{{ 'Cancel'|trans }}</a>
+                                <button type="submit" class="btn btn-primary"><i class="icon-ok icon-white hide-text">Save </i> {{ ' Save'|trans }}</button>
+                            </div>
+                        </div>
+                        <div class="pull-right" style="clear: right; padding: 10px 0 0;">
+                        </div>
+                    </div>
+                </div>
+                <div class="pull-left">
+                    <div class="customer-info well-small">
+                        <div class="customer-content pull-left">
+                            <div class="clearfix-oro">
+                                <div class="sub-title">{{ 'Customer'|trans }}</div>
+                                <span class="separator">/</span>
+                                <h1 class="usser-name">{{ form.vars.value.fullname(format)|default('N/A') }}</h1>
+                            </div>
+                            <ul class="inline">
+                                <li>{{ 'Created'|trans }}: {{ form.vars.value.created ? macros.time(form.vars.value.created) : 'N/A' }}</li>
+                                <li>{{ 'Updated'|trans }}: {{ form.vars.value.updated ? macros.time(form.vars.value.updated) : 'N/A' }}</li>
+                           </ul>
+                       </div>
+                   </div>
+                </div>
+                {% else %}
+                <div class="pull-left">
+                    <div class="customer-info well-small">
+                        <div class="customer-content">
+                            <h1 class="usser-name">{{ title }}</h1>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="layout-content">
+            <div id="navbarExample" class="navbar navbar-static scrollspy-nav">
+                <div class="navbar-inner">
+                    <div class="container-fluid" style="width: auto;">
+                        <ul class="nav">
+                            <li class="active"><a href="#scroll-main">{{ 'Overview'|trans }}</a></li>
+                            {#<li><a href="#scroll-attributes">{{ 'Additional data'|trans }}</a></li>#}
 
-        {{ form_widget(form) }}
-
-        <br />
-        <legend>Additional information</legend>
-
-        <div class="form-horizontal">
-            <div class="control-group">
-                <label class="control-label">Created at</label>
-                <div class="controls">
-                    <span class="label">{{ form.vars.value.created ? form.vars.value.created|date('Y-m-d h:i:s') : 'N/A' }}</span>
+                            {% if form.values is defined %}
+                            <li><a href="#scroll-attributes">{{ 'Additional data'|trans }}</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
                 </div>
             </div>
-            <div class="control-group">
-                <label class="control-label">Updated at</label>
-                <div class="controls">
-                    <span class="label">{{ form.vars.value.updated ? form.vars.value.updated|date('Y-m-d h:i:s') : 'N/A' }}</span>
+            <div class="clearfix-oro">
+                {% if form_errors(form) %}
+                    <div class="customer-info-actions container-fluid well-small">
+                        <div class="pull-left alert alert-error">
+                            <button class="close" type="button" data-dismiss="alert">×</button>
+                            {{ form_errors(form) }}
+                        </div>
+                    </div>
+                {% endif %}
+                <div data-spy="scroll" data-target="#navbarExample" data-offset="50" class="scrollspy container-fluid">
+                    <div class="usser-row">
+                        <h4 id="scroll-main" class="scrollspy-title">{{ 'Overview'|trans }}</h4>
+                        <div class="row-fluid row-fluid-divider">
+                            <fieldset class="form-horizontal span6">
+                                <h5 class="usser-fiedset"><span>Basic Information</span></h5>
+                                {{ form_row(form.firstname) }}
+                                {{ form_row(form.lastname) }}
+                                {{ form_row(form.email) }}
+                            </fieldset>
+                        </div>
+                    </div>
+
+                    {% if form.values is defined %}
+                    <div class="usser-row">
+                        <h4 id="scroll-attributes" class="scrollspy-title">{{ 'Additional data'|trans }}</h4>
+                        <div class="row-fluid">
+                            <fieldset class="form-horizontal" id="attributes-list">
+                                {{ form_row(form.values) }}
+                            </fieldset>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <div class="hide">
+                        {{ form_rest(form) }}
+                    </div>
                 </div>
             </div>
         </div>
+    </form>
 
-        <div class="form-row">
-            <button class="btn btn-large btn-primary" type="submit">Save</button>
-        </div>
-    </fieldset>
-</form>
+    {% endblock %}
+</div>
 {% endblock %}

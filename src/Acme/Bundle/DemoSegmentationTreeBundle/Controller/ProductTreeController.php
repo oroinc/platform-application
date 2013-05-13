@@ -163,7 +163,7 @@ class ProductTreeController extends Controller
      */
     public function removeNodeAction(Request $request)
     {
-        $this->getSegmentManager()->removeFromId($request->get('id'));
+        $this->getSegmentManager()->removeById($request->get('id'));
         $this->getSegmentManager()->getStorageManager()->flush();
 
         $data = JsonSegmentHelper::statusOKResponse();
@@ -183,13 +183,17 @@ class ProductTreeController extends Controller
     public function moveNodeAction(Request $request)
     {
         $segmentId = $request->get('id');
-        $referenceId = $request->get('ref');
+        $parentId = $request->get('parent');
+        $prevSiblingId = $request->get('prev_sibling');
+
 
         if ($request->get('copy') == 1) {
-            $this->getSegmentManager()->copy($segmentId, $referenceId);
+            $this->getSegmentManager()->copy($segmentId, $parentId, $prevSiblingId);
         } else {
-            $this->getSegmentManager()->move($segmentId, $referenceId);
+            $this->getSegmentManager()->move($segmentId, $parentId, $prevSiblingId);
         }
+
+        $this->getSegmentManager()->getStorageManager()->flush();
 
         // format response to json content
         $data = JsonSegmentHelper::statusOKResponse();
