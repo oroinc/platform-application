@@ -11,166 +11,166 @@
 
 {% block content %}
     <div id="main-content">
-        <section>
-            <form id="my-form">
-                <h2>Configuration</h2>
-                <div style="float: left;">
-                    <fieldset id="config-button">
-                        <legend>Buttons</legend>
-                        <div>
-                            <input type="checkbox" id="button-close" checked="checked" />
-                            <label for="button-close">Close button</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" id="button-maximize" checked="checked" />
-                            <label for="button-maximize">Maximize button</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" id="button-minimize" checked="checked" />
-                            <label for="button-minimize">Minimize button</label>
-                        </div>
-                    </fieldset>
-                    <fieldset id="config-icon">
-                        <legend>Icons</legend>
-                        <div class="wrapper">
-                            <ins class="ui-state-default ui-corner-all"></ins>
-                            <label for="icon-close">Close:</label>
-                            <select id="icon-close" name="icon" rel="close">
-                                <option value="ui-icon-closethick">(default)</option>
-                                <option value="ui-icon-close">ui-icon-close</option>
-                                <option value="ui-icon-cancel">ui-icon-cancel</option>
-                                <option value="ui-icon-circle-close">ui-icon-circle-close</option>
-                            </select>
-                        </div>
-                        <div class="wrapper">
-                            <ins class="ui-state-default ui-corner-all"></ins>
-                            <label for="icon-maximize">Maximize:</label>
-                            <select id="icon-maximize" name="icon" rel="maximize">
-                                <option value="ui-icon-extlink">(default)</option>
-                                <option value="ui-icon-carat-1-ne">ui-icon-carat-1-ne</option>
-                                <option value="ui-icon-arrow-4-diag">ui-icon-arrow-4-diag</option>
-                                <option value="ui-icon-circle-plus">ui-icon-circle-plus</option>
-                            </select>
-                        </div>
-                        <div class="wrapper">
-                            <ins class="ui-state-default ui-corner-all"></ins>
-                            <label for="icon-minimize">Minimize:</label>
-                            <select id="icon-minimize" name="icon" rel="minimize">
-                                <option value="ui-icon-minus">(default)</option>
-                                <option value="ui-icon-carat-1-sw">ui-icon-carat-1-sw</option>
-                                <option value="ui-icon-arrowstop-1-s">ui-icon-arrowstop-1-s</option>
-                                <option value="ui-icon-circle-minus">ui-icon-circle-minus</option>
-                            </select>
-                        </div>
-                        <div class="wrapper">
-                            <ins class="ui-state-default ui-corner-all"></ins>
-                            <label for="icon-restore">Restore:</label>
-                            <select id="icon-restore" name="icon" rel="restore">
-                                <option value="ui-icon-newwin">(default)</option>
-                                <option value="ui-icon-carat-2-n-s">ui-icon-carat-2-n-s</option>
-                                <option value="ui-icon-refresh">ui-icon-refresh</option>
-                                <option value="ui-icon-circle-arrow-n">ui-icon-circle-arrow-n</option>
-                            </select>
-                        </div>
-                    </fieldset>
-                </div>
-                <div style="float: left;">
-                    <fieldset id="config-dblclick">
-                        <legend>Double-click</legend>
-                        <div>
-                            <input type="radio" name="dblclick" id="dblclick-default" value="" />
-                            <label for="dblclick-default">(none)</label>
-                        </div>
-                        <div>
-                            <input type="radio" name="dblclick" id="dblclick-collapse" value="collapse" checked="checked" />
-                            <label for="dblclick-collapse">collapse</label>
-                        </div>
-                        <div>
-                            <input type="radio" name="dblclick" id="dblclick-maximize" value="maximize" />
-                            <label for="dblclick-maximize">maximize</label>
-                        </div>
-                        <div>
-                            <input type="radio" name="dblclick" id="dblclick-minimize" value="minimize" />
-                            <label for="dblclick-minimize">minimize</label>
-                        </div>
-                    </fieldset>
-                    <fieldset id="config-titlebar">
-                        <legend>Title bar</legend>
-                        <div>
-                            <input type="radio" name="titlebar" id="titlebar-default" value="" checked="checked" />
-                            <label for="titlebar-default">(default)</label>
-                        </div>
-                        <div>
-                            <input type="radio" name="titlebar" id="titlebar-transparent" value="transparent" />
-                            <label for="titlebar-transparent">transparent</label>
-                        </div>
-                    </fieldset>
-                </div>
-                <div style="float: left;">
-                    <fieldset id="config-event">
-                        <legend>Events</legend>
-                        <div>
-                            <input type="checkbox" name="event" id="event-b4collapse" rel="beforeCollapse" checked="checked" />
-                            <label for="event-b4collapse">beforeCollapse</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" name="event" id="event-b4maximize" rel="beforeMaximize" checked="checked" />
-                            <label for="event-b4maximize">beforeMaximize</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" name="event" id="event-b4minimize" rel="beforeMinimize" checked="checked" />
-                            <label for="event-b4minimize">beforeMinimize</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" name="event" id="event-b4restore" rel="beforeRestore" checked="checked" />
-                            <label for="event-b4restore">beforeRestore</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" name="event" id="event-collapse" rel="collapse" checked="checked" />
-                            <label for="event-collapse">collapse</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" name="event" id="event-maximize" rel="maximize" checked="checked" />
-                            <label for="event-maximize">maximize</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" name="event" id="event-minimize" rel="minimize" checked="checked" />
-                            <label for="event-minimize">minimize</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" name="event" id="event-restore" rel="restore" checked="checked" />
-                            <label for="event-restore">restore</label>
-                        </div>
-                    </fieldset>
-                </div>
-                <div style="float: left;">
-                    <fieldset id="config-method">
-                        <legend>Methods <small><em>(apply to last dialog)</em></small></legend>
-                        <div>
-                            <button type="button" id="method-collapse">collapse</button>
-                            <button type="button" id="method-maximize">maximize</button>
-                            <button type="button" id="method-minimize">minimize</button>
-                            <button type="button" id="method-restore">restore</button>
-                            <button type="button" id="method-state">state</button>
-                        </div>
-                    </fieldset>
-                    <fieldset id="config-dialog">
-                        <legend>Dialog</legend>
-                        <div>
-                            <input type="checkbox" id="is-modal" />
-                            <label for="is-modal">Modal Dialog</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" id="button-cancel" checked="checked" />
-                            <label for="button-cancel">Cancel Button</label>
-                        </div>
-                        <div>
-                            <input type="checkbox" id="is-resizable" checked="checked" />
-                            <label for="is-resizable">Resizable</label>
-                    </fieldset>
-                </div>
-            </form>
-        </section>
+    <section>
+        <form id="my-form">
+            <h2>Configuration</h2>
+            <div style="float: left;">
+                <fieldset id="config-button">
+                    <legend>Buttons</legend>
+                    <div>
+                        <input type="checkbox" id="button-close" checked="checked" />
+                        <label for="button-close">Close button</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="button-maximize" checked="checked" />
+                        <label for="button-maximize">Maximize button</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="button-minimize" checked="checked" />
+                        <label for="button-minimize">Minimize button</label>
+                    </div>
+                </fieldset>
+                <fieldset id="config-icon">
+                    <legend>Icons</legend>
+                    <div class="wrapper">
+                        <ins class="ui-state-default ui-corner-all"></ins>
+                        <label for="icon-close">Close:</label>
+                        <select id="icon-close" name="icon" rel="close">
+                            <option value="ui-icon-closethick">(default)</option>
+                            <option value="ui-icon-close">ui-icon-close</option>
+                            <option value="ui-icon-cancel">ui-icon-cancel</option>
+                            <option value="ui-icon-circle-close">ui-icon-circle-close</option>
+                        </select>
+                    </div>
+                    <div class="wrapper">
+                        <ins class="ui-state-default ui-corner-all"></ins>
+                        <label for="icon-maximize">Maximize:</label>
+                        <select id="icon-maximize" name="icon" rel="maximize">
+                            <option value="ui-icon-extlink">(default)</option>
+                            <option value="ui-icon-carat-1-ne">ui-icon-carat-1-ne</option>
+                            <option value="ui-icon-arrow-4-diag">ui-icon-arrow-4-diag</option>
+                            <option value="ui-icon-circle-plus">ui-icon-circle-plus</option>
+                        </select>
+                    </div>
+                    <div class="wrapper">
+                        <ins class="ui-state-default ui-corner-all"></ins>
+                        <label for="icon-minimize">Minimize:</label>
+                        <select id="icon-minimize" name="icon" rel="minimize">
+                            <option value="ui-icon-minus">(default)</option>
+                            <option value="ui-icon-carat-1-sw">ui-icon-carat-1-sw</option>
+                            <option value="ui-icon-arrowstop-1-s">ui-icon-arrowstop-1-s</option>
+                            <option value="ui-icon-circle-minus">ui-icon-circle-minus</option>
+                        </select>
+                    </div>
+                    <div class="wrapper">
+                        <ins class="ui-state-default ui-corner-all"></ins>
+                        <label for="icon-restore">Restore:</label>
+                        <select id="icon-restore" name="icon" rel="restore">
+                            <option value="ui-icon-newwin">(default)</option>
+                            <option value="ui-icon-carat-2-n-s">ui-icon-carat-2-n-s</option>
+                            <option value="ui-icon-refresh">ui-icon-refresh</option>
+                            <option value="ui-icon-circle-arrow-n">ui-icon-circle-arrow-n</option>
+                        </select>
+                    </div>
+                </fieldset>
+            </div>
+            <div style="float: left;">
+                <fieldset id="config-dblclick">
+                    <legend>Double-click</legend>
+                    <div>
+                        <input type="radio" name="dblclick" id="dblclick-default" value="" />
+                        <label for="dblclick-default">(none)</label>
+                    </div>
+                    <div>
+                        <input type="radio" name="dblclick" id="dblclick-collapse" value="collapse" checked="checked" />
+                        <label for="dblclick-collapse">collapse</label>
+                    </div>
+                    <div>
+                        <input type="radio" name="dblclick" id="dblclick-maximize" value="maximize" />
+                        <label for="dblclick-maximize">maximize</label>
+                    </div>
+                    <div>
+                        <input type="radio" name="dblclick" id="dblclick-minimize" value="minimize" />
+                        <label for="dblclick-minimize">minimize</label>
+                    </div>
+                </fieldset>
+                <fieldset id="config-titlebar">
+                    <legend>Title bar</legend>
+                    <div>
+                        <input type="radio" name="titlebar" id="titlebar-default" value="" checked="checked" />
+                        <label for="titlebar-default">(default)</label>
+                    </div>
+                    <div>
+                        <input type="radio" name="titlebar" id="titlebar-transparent" value="transparent" />
+                        <label for="titlebar-transparent">transparent</label>
+                    </div>
+                </fieldset>
+            </div>
+            <div style="float: left;">
+                <fieldset id="config-event">
+                    <legend>Events</legend>
+                    <div>
+                        <input type="checkbox" name="event" id="event-b4collapse" rel="beforeCollapse" checked="checked" />
+                        <label for="event-b4collapse">beforeCollapse</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="event" id="event-b4maximize" rel="beforeMaximize" checked="checked" />
+                        <label for="event-b4maximize">beforeMaximize</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="event" id="event-b4minimize" rel="beforeMinimize" checked="checked" />
+                        <label for="event-b4minimize">beforeMinimize</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="event" id="event-b4restore" rel="beforeRestore" checked="checked" />
+                        <label for="event-b4restore">beforeRestore</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="event" id="event-collapse" rel="collapse" checked="checked" />
+                        <label for="event-collapse">collapse</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="event" id="event-maximize" rel="maximize" checked="checked" />
+                        <label for="event-maximize">maximize</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="event" id="event-minimize" rel="minimize" checked="checked" />
+                        <label for="event-minimize">minimize</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="event" id="event-restore" rel="restore" checked="checked" />
+                        <label for="event-restore">restore</label>
+                    </div>
+                </fieldset>
+            </div>
+            <div style="float: left;">
+                <fieldset id="config-method">
+                    <legend>Methods <small><em>(apply to last dialog)</em></small></legend>
+                    <div>
+                        <button type="button" id="method-collapse">collapse</button>
+                        <button type="button" id="method-maximize">maximize</button>
+                        <button type="button" id="method-minimize">minimize</button>
+                        <button type="button" id="method-restore">restore</button>
+                        <button type="button" id="method-state">state</button>
+                    </div>
+                </fieldset>
+                <fieldset id="config-dialog">
+                    <legend>Dialog</legend>
+                    <div>
+                        <input type="checkbox" id="is-modal" />
+                        <label for="is-modal">Modal Dialog</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="button-cancel" checked="checked" />
+                        <label for="button-cancel">Cancel Button</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="is-resizable" checked="checked" />
+                        <label for="is-resizable">Resizable</label>
+                </fieldset>
+            </div>
+        </form>
+    </section>
     </div>
     <br clear="both" />
     <footer>
