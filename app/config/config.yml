@@ -165,7 +165,7 @@ oro_ui:
         application_name:
             value: "ORO"
         application_title:
-            value: "ORO"
+            value: "ORO Business Application Platform"
 
 oro_user:
     settings:
