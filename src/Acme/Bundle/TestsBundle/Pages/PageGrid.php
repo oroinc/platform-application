@@ -167,7 +167,7 @@ class PageGrid extends Page
         $entity = $this->getEntity($entityData);
         $entity->element($this->using('xpath')->value("td[@class = 'action-cell']//a[contains(., '...')]"))->click();
         $entity->element($this->using('xpath')->value("td[@class = 'action-cell']//a[contains(., 'Delete')]"))->click();
-        $this->byXPath("//div[div[contains(., 'Delete Confirmation')]]//a[text()='OK']")->click();
+        $this->byXPath("//div[div[contains(., 'Delete Confirmation')]]//a[text()='Yes, Delete']")->click();
 
         $this->waitPageToLoad();
         $this->waitForAjax();

@@ -48,11 +48,10 @@ class ProductAttributeController extends Controller
      */
     public function indexAction(Request $request)
     {
-        /** @var $em \Doctrine\ORM\EntityManager */
-        $em = $this->getDoctrine()->getManager();
-        $queryBuilder = $em->createQueryBuilder();
+        /** @var $queryBuilder QueryBuilder */
+        $queryBuilder = $this->getDoctrine()->getEntityManager()->createQueryBuilder();
         $queryBuilder
-            ->select('a.id', 'a.code', 'a.attributeType')
+            ->select('a')
             ->from('OroFlexibleEntityBundle:Attribute', 'a')
             ->where("a.entityType = 'Acme\Bundle\DemoFlexibleEntityBundle\Entity\Product'");
 
@@ -86,7 +85,7 @@ class ProductAttributeController extends Controller
      */
     public function createAction()
     {
-        $attribute = $this->getProductManager()->createAttribute();
+        $attribute = $this->getProductManager()->createAttribute('oro_flexibleentity_text');
 
         return $this->editAction($attribute);
     }

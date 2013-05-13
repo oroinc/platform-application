@@ -29,4 +29,12 @@ class CustomerType extends FlexibleType
         $builder->add('lastname', 'text');
         $builder->add('email', 'email', array('required' => true));
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getName()
+    {
+        return 'acme_customer';
+    }
 }

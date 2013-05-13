@@ -34,6 +34,7 @@ assetic:
     debug:                    "%kernel.debug%"
     use_controller:           false
     bundles:
+        - OroAddressBundle
         - OroUIBundle
         - OroUserBundle
         - OroGridBundle
@@ -130,6 +131,7 @@ be_simple_soap:
 stof_doctrine_extensions:
     orm:
         default:
+            translatable:     true
             tree:             true
 
 services:
@@ -159,8 +161,10 @@ oro_search:
 
 oro_ui:
     settings:
-        product_caption:
-          value:              ORO
+        application_name:
+            value: "ORO"
+        application_title:
+            value: "ORO Business Application Platform"
 
 oro_user:
     settings:

@@ -141,47 +141,33 @@ class CustomerControllerTest extends KernelAwareControllerTest
             'offset'     => 'null'
         );
         $this->callQueryActionUrl($params);
-
         // test with only dob
         $params = array(
             'attributes' => 'dob'
         );
         $this->callQueryActionUrl($params);
-
         // test with dob and gender
         $params = array(
             'attributes' => 'dob&gender'
         );
         $this->callQueryActionUrl($params);
-
         // test filtered by firstname
         $params = array(
             'attributes' => 'null',
             'criteria'   => 'firstname=Nicolas'
         );
         $this->callQueryActionUrl($params);
-
-        // test filtered by firstname and company
-        /*$params = array(
-            'criteria'   => 'firstname=Romain&company=Akeneo'
-        );
-        $this->callQueryActionUrl($params);*/
-
         // test dob, company and gender filtered by firstname and company
         $params = array(
             'attributes' => 'dob&company&gender',
             'criteria'   => 'firstname=Romain&company=Akeneo'
         );
         $this->callQueryActionUrl($params);
-
         // test filtered by firstname and limit
         $params = array(
             'criteria' => 'firstname=Nicolas',
-            'limit'    => 10,
-            'offset'   => 0
         );
         $this->callQueryActionUrl($params);
-
         // test select dob filtered by firstname and order by dob desc
         $params = array(
             'attributes' => 'dob',
@@ -220,6 +206,7 @@ class CustomerControllerTest extends KernelAwareControllerTest
         };
 
         $urlSuffix = $this->prepareUrlForQueryAction($attributes, $criteria, $orderBy, $limit, $offset);
+
         foreach (self::$locales as $locale) {
             $this->client->request(
                 'GET',

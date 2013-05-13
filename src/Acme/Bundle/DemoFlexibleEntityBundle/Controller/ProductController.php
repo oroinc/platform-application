@@ -223,11 +223,7 @@ class ProductController extends Controller
     public function editAction(Product $entity, $dataLocale, $dataScope)
     {
         $request = $this->getRequest();
-
-        // create form
-        $entClassName = $this->getProductManager()->getFlexibleName();
-        $valueClassName = $this->getProductManager()->getFlexibleValueName();
-        $form = $this->createForm(new ProductType($entClassName, $valueClassName), $entity);
+        $form = $this->createForm('acme_product', $entity);
 
         if ($request->getMethod() == 'POST') {
             $form->bind($request);
@@ -238,14 +234,17 @@ class ProductController extends Controller
                 $em->flush();
 
                 $this->get('session')->getFlashBag()->add('success', 'Product successfully saved');
+                $params = array(
+                    'id' => $entity->getId(),
+                    'dataLocale' => $request->query->get('dataLocale'),
+                    'dataScope'  => $request->query->get('dataScope')
+                );
 
-                return $this->redirect($this->generateUrl('acme_demoflexibleentity_product_list'));
+                return $this->redirect($this->generateUrl('acme_demoflexibleentity_product_edit', $params));
             }
         }
 
-        return array(
-                'form' => $form->createView(),
-        );
+        return array('form' => $form->createView(),);
     }
 
     /**

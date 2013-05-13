@@ -2,6 +2,8 @@
 
 namespace Acme\Bundle\DemoGridBundle\Datagrid;
 
+use Doctrine\ORM\EntityManager;
+
 use Oro\Bundle\GridBundle\Datagrid\DatagridManager;
 use Oro\Bundle\GridBundle\Field\FieldDescription;
 use Oro\Bundle\GridBundle\Field\FieldDescriptionCollection;
@@ -11,212 +13,213 @@ use Oro\Bundle\GridBundle\Filter\FilterInterface;
 class ProductDatagridManager extends DatagridManager
 {
     /**
-     * @var FieldDescriptionCollection
+     * @var EntityManager
      */
-    protected $fieldsCollection;
+    private $entityManager;
 
     /**
-     * @return FieldDescriptionCollection
+     * {@inheritDoc}
      */
-    protected function getFieldDescriptionCollection()
+    protected function configureFields(FieldDescriptionCollection $fieldsCollection)
     {
-        if (!$this->fieldsCollection) {
-            $this->fieldsCollection = new FieldDescriptionCollection();
+        $fieldManufacturerId = new FieldDescription();
+        $fieldManufacturerId->setName('m_id');
+        $fieldManufacturerId->setOptions(
+            array(
+                'type'         => FieldDescriptionInterface::TYPE_INTEGER,
+                'label'        => 'Manufacturer ID',
+                'entity_alias' => 'm',
+                'field_name'   => 'id',
+                'filter_type'  => FilterInterface::TYPE_NUMBER,
+                'required'     => false,
+                'sortable'     => true,
+                'filterable'   => true,
+                'show_filter'  => true,
+            )
+        );
+        $fieldsCollection->add($fieldManufacturerId);
 
-            $fieldManufacturerId = new FieldDescription();
-            $fieldManufacturerId->setName('m_id');
-            $fieldManufacturerId->setOptions(
-                array(
-                    'type'         => FieldDescriptionInterface::TYPE_INTEGER,
-                    'label'        => 'Manufacturer ID',
-                    'entity_alias' => 'm',
-                    'field_name'   => 'id',
-                    'filter_type'  => FilterInterface::TYPE_NUMBER,
-                    'required'     => false,
-                    'sortable'     => true,
-                    'filterable'   => true,
-                    'show_filter'  => true,
-                )
-            );
-            $this->fieldsCollection->add($fieldManufacturerId);
+        $fieldManufacturerName = new FieldDescription();
+        $fieldManufacturerName->setName('m_name');
+        $fieldManufacturerName->setOptions(
+            array(
+                'type'         => FieldDescriptionInterface::TYPE_TEXT,
+                'label'        => 'Manufacturer name',
+                'entity_alias' => 'm',
+                'field_name'   => 'name',
+                'filter_type'  => FilterInterface::TYPE_STRING,
+                'required'     => false,
+                'sortable'     => true,
+                'filterable'   => true,
+                'show_filter'  => true,
+            )
+        );
+        $fieldsCollection->add($fieldManufacturerName);
 
-            $fieldManufacturerName = new FieldDescription();
-            $fieldManufacturerName->setName('m_name');
-            $fieldManufacturerName->setOptions(
-                array(
-                    'type'         => FieldDescriptionInterface::TYPE_TEXT,
-                    'label'        => 'Manufacturer name',
-                    'entity_alias' => 'm',
-                    'field_name'   => 'name',
-                    'filter_type'  => FilterInterface::TYPE_STRING,
-                    'required'     => false,
-                    'sortable'     => true,
-                    'filterable'   => true,
-                    'show_filter'  => true,
-                )
-            );
-            $this->fieldsCollection->add($fieldManufacturerName);
+        $fieldManufacturerId = new FieldDescription();
+        $fieldManufacturerId->setName('product_count');
+        $fieldManufacturerId->setOptions(
+            array(
+                'type'        => FieldDescriptionInterface::TYPE_INTEGER,
+                'label'       => 'Number of products',
+                'filter_type' => FilterInterface::TYPE_NUMBER,
+                'field_name'  => 'product_count',
+                'required'    => false,
+                'expression'  => 'COUNT(p.id)',
+                'sortable'    => true,
+                'filterable'  => true,
+                'show_filter' => true,
+            )
+        );
+        $fieldsCollection->add($fieldManufacturerId);
 
-            $fieldManufacturerId = new FieldDescription();
-            $fieldManufacturerId->setName('product_count');
-            $fieldManufacturerId->setOptions(
-                array(
-                    'type'        => FieldDescriptionInterface::TYPE_INTEGER,
-                    'label'       => 'Number of products',
-                    'filter_type' => FilterInterface::TYPE_NUMBER,
-                    'field_name'  => 'product_count',
-                    'required'    => false,
-                    'expression'  => 'COUNT(p.id)',
-                    'sortable'    => true,
-                    'filterable'  => true,
-                    'show_filter' => true,
-                )
-            );
-            $this->fieldsCollection->add($fieldManufacturerId);
+        $fieldId = new FieldDescription();
+        $fieldId->setName('id');
+        $fieldId->setOptions(
+            array(
+                'type'         => FieldDescriptionInterface::TYPE_INTEGER,
+                'label'        => 'Product ID',
+                'entity_alias' => 'p',
+                'field_name'   => 'id',
+                'filter_type'  => FilterInterface::TYPE_NUMBER,
+                'required'     => false,
+                'sortable'     => true,
+                'filterable'   => true,
+                'show_filter'  => true,
+            )
+        );
+        $fieldsCollection->add($fieldId);
 
-            $fieldId = new FieldDescription();
-            $fieldId->setName('id');
-            $fieldId->setOptions(
-                array(
-                    'type'         => FieldDescriptionInterface::TYPE_INTEGER,
-                    'label'        => 'Product ID',
-                    'entity_alias' => 'p',
-                    'field_name'   => 'id',
-                    'filter_type'  => FilterInterface::TYPE_NUMBER,
-                    'required'     => false,
-                    'sortable'     => true,
-                    'filterable'   => true,
-                    'show_filter'  => true,
-                )
-            );
-            $this->fieldsCollection->add($fieldId);
+        $fieldName = new FieldDescription();
+        $fieldName->setName('name');
+        $fieldName->setOptions(
+            array(
+                'type'         => FieldDescriptionInterface::TYPE_TEXT,
+                'label'        => 'Name',
+                'entity_alias' => 'p',
+                'field_name'   => 'name',
+                'filter_type'  => FilterInterface::TYPE_STRING,
+                'required'     => false,
+                'sortable'     => true,
+                'filterable'   => true,
+                'show_filter'  => true,
+            )
+        );
+        $fieldsCollection->add($fieldName);
 
-            $fieldName = new FieldDescription();
-            $fieldName->setName('name');
-            $fieldName->setOptions(
-                array(
-                    'type'         => FieldDescriptionInterface::TYPE_TEXT,
-                    'label'        => 'Name',
-                    'entity_alias' => 'p',
-                    'field_name'   => 'name',
-                    'filter_type'  => FilterInterface::TYPE_STRING,
-                    'required'     => false,
-                    'sortable'     => true,
-                    'filterable'   => true,
-                    'show_filter'  => true,
-                )
-            );
-            $this->fieldsCollection->add($fieldName);
+        $fieldPrice = new FieldDescription();
+        $fieldPrice->setName('price');
+        $fieldPrice->setOptions(
+            array(
+                'type'         => FieldDescriptionInterface::TYPE_DECIMAL,
+                'label'        => 'Price',
+                'entity_alias' => 'p',
+                'field_name'   => 'price',
+                'filter_type'  => FilterInterface::TYPE_NUMBER,
+                'required'     => false,
+                'sortable'     => true,
+                'filterable'   => true,
+                'show_filter'  => true,
+            )
+        );
+        $fieldsCollection->add($fieldPrice);
 
-            $fieldPrice = new FieldDescription();
-            $fieldPrice->setName('price');
-            $fieldPrice->setOptions(
-                array(
-                    'type'         => FieldDescriptionInterface::TYPE_DECIMAL,
-                    'label'        => 'Price',
-                    'entity_alias' => 'p',
-                    'field_name'   => 'price',
-                    'filter_type'  => FilterInterface::TYPE_NUMBER,
-                    'required'     => false,
-                    'sortable'     => true,
-                    'filterable'   => true,
-                    'show_filter'  => true,
-                )
-            );
-            $this->fieldsCollection->add($fieldPrice);
+        $fieldCount = new FieldDescription();
+        $fieldCount->setName('count');
+        $fieldCount->setOptions(
+            array(
+                'type'         => FieldDescriptionInterface::TYPE_INTEGER,
+                'label'        => 'Count',
+                'entity_alias' => 'p',
+                'field_name'   => 'count',
+                'filter_type'  => FilterInterface::TYPE_NUMBER,
+                'required'     => false,
+                'sortable'     => true,
+                'filterable'   => true,
+                'show_filter'  => true,
+            )
+        );
+        $fieldsCollection->add($fieldCount);
 
-            $fieldCount = new FieldDescription();
-            $fieldCount->setName('count');
-            $fieldCount->setOptions(
-                array(
-                    'type'         => FieldDescriptionInterface::TYPE_INTEGER,
-                    'label'        => 'Count',
-                    'entity_alias' => 'p',
-                    'field_name'   => 'count',
-                    'filter_type'  => FilterInterface::TYPE_NUMBER,
-                    'required'     => false,
-                    'sortable'     => true,
-                    'filterable'   => true,
-                    'show_filter'  => true,
-                )
-            );
-            $this->fieldsCollection->add($fieldCount);
+        $fieldDescription = new FieldDescription();
+        $fieldDescription->setName('description');
+        $fieldDescription->setOptions(
+            array(
+                'type'         => FieldDescriptionInterface::TYPE_TEXT,
+                'label'        => 'Description',
+                'entity_alias' => 'p',
+                'field_name'   => 'description',
+                'filter_type'  => FilterInterface::TYPE_STRING,
+                'required'     => false,
+                'sortable'     => true,
+                'filterable'   => true,
+                'show_filter'  => true,
+            )
+        );
+        $fieldsCollection->add($fieldDescription);
 
-            $fieldDescription = new FieldDescription();
-            $fieldDescription->setName('description');
-            $fieldDescription->setOptions(
-                array(
-                    'type'         => FieldDescriptionInterface::TYPE_TEXT,
-                    'label'        => 'Description',
-                    'entity_alias' => 'p',
-                    'field_name'   => 'description',
-                    'filter_type'  => FilterInterface::TYPE_STRING,
-                    'required'     => false,
-                    'sortable'     => true,
-                    'filterable'   => true,
-                    'show_filter'  => true,
-                )
-            );
-            $this->fieldsCollection->add($fieldDescription);
-
-            $fieldCreateDate = new FieldDescription();
-            $fieldCreateDate->setName('createDate');
-            $fieldCreateDate->setOptions(
-                array(
-                    'type'         => FieldDescriptionInterface::TYPE_DATETIME,
-                    'label'        => 'Create Date',
-                    'entity_alias' => 'p',
-                    'field_name'   => 'createDate',
-                    'filter_type'  => FilterInterface::TYPE_DATETIME,
-                    'required'     => false,
-                    'sortable'     => true,
-                    'filterable'   => true,
-                    'show_filter'  => true,
-                )
-            );
-            $this->fieldsCollection->add($fieldCreateDate);
-        }
-
-        return $this->fieldsCollection;
+        $fieldCreateDate = new FieldDescription();
+        $fieldCreateDate->setName('createDate');
+        $fieldCreateDate->setOptions(
+            array(
+                'type'         => FieldDescriptionInterface::TYPE_DATETIME,
+                'label'        => 'Create Date',
+                'entity_alias' => 'p',
+                'field_name'   => 'createDate',
+                'filter_type'  => FilterInterface::TYPE_DATETIME,
+                'required'     => false,
+                'sortable'     => true,
+                'filterable'   => true,
+                'show_filter'  => true,
+            )
+        );
+        $fieldsCollection->add($fieldCreateDate);
     }
 
     /**
      * {@inheritdoc}
      */
-    protected function getListFields()
+    protected function createQuery()
     {
-        return $this->getFieldDescriptionCollection()->getElements();
+        $this->queryFactory->setQueryBuilder($this->createQueryBuilder());
+        return $this->queryFactory->createQuery();
     }
 
     /**
-     * {@inheritdoc}
+     * @return \Doctrine\ORM\QueryBuilder
+     * @throws \LogicException
      */
-    protected function getSorters()
+    protected function createQueryBuilder()
     {
-        $fields = array();
-        /** @var $fieldDescription FieldDescription */
-        foreach ($this->getFieldDescriptionCollection() as $fieldDescription) {
-            if ($fieldDescription->isSortable()) {
-                $fields[] = $fieldDescription;
-            }
+        if (!$this->entityManager) {
+            throw new \LogicException('Datagrid manager\'s entity manager is not configured.');
         }
 
-        return $fields;
+        $queryBuilder = $this->entityManager->createQueryBuilder();
+        $queryBuilder
+            ->select(
+                'm.id AS m_id',
+                'm.name AS m_name',
+                'p.id',
+                'p.name',
+                'p.count',
+                'p.price',
+                'p.description',
+                'p.createDate',
+                'COUNT(p.id) AS product_count'
+            )
+            ->from('AcmeDemoBundle:Manufacturer', 'm')
+            ->leftJoin('m.products', 'p')
+            ->groupBy('m.id');
+
+        return $queryBuilder;
     }
 
     /**
-     * {@inheritdoc}
+     * @param EntityManager $entityManager
      */
-    protected function getFilters()
+    public function setEntityManager(EntityManager $entityManager)
     {
-        $fields = array();
-        /** @var $fieldDescription FieldDescription */
-        foreach ($this->getFieldDescriptionCollection() as $fieldDescription) {
-            if ($fieldDescription->isFilterable()) {
-                $fields[] = $fieldDescription;
-            }
-        }
-
-        return $fields;
+        $this->entityManager = $entityManager;
     }
 }
