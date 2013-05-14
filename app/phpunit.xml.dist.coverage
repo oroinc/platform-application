@@ -15,26 +15,19 @@
 
     <testsuites>
         <testsuite name="Project Test Suite">
-            <directory suffix="Test.php">../src/*/*Bundle/Tests/Unit</directory>
-            <directory suffix="Test.php">../src/*/Bundle/*Bundle/Tests/Unit</directory>
-            <directory suffix="Test.php">../src/*/*Bundle/Tests/Functional</directory>
-            <directory suffix="Test.php">../src/*/Bundle/*Bundle/Tests/Functional</directory>
-        </testsuite>
-        <testsuite name="Project Unit Tests">
-            <directory suffix="Test.php">../src/*/*Bundle/Tests/Unit</directory>
-            <directory suffix="Test.php">../src/*/Bundle/*Bundle/Tests/Unit</directory>
-        </testsuite>
-        <testsuite name="Project Functional Tests">
-            <directory suffix="Test.php">../src/*/*Bundle/Tests/Functional</directory>
-            <directory suffix="Test.php">../src/*/Bundle/*Bundle/Tests/Functional</directory>
-        </testsuite>
-        <testsuite name="Project Performance Tests">
-            <directory suffix="Perf.php">../src/*/*Bundle/Tests/Performance</directory>
-            <directory suffix="Perf.php">../src/*/Bundle/*Bundle/Tests/Performance</directory>
-        </testsuite>
-        <testsuite name="Project Selenium Tests">
-            <directory suffix="Test.php">../src/*/*Bundle/Tests/Selenium</directory>
-            <directory suffix="Test.php">../src/*/Bundle/*Bundle/Tests/Selenium</directory>
+            <testsuite name="Project Unit Tests">
+                <directory suffix="Test.php">../src/*/*Bundle/Tests/Unit</directory>
+                <directory suffix="Test.php">../src/*/Bundle/*Bundle/Tests/Unit</directory>
+            </testsuite>
+            <testsuite name="Project Functional Tests">
+                <directory suffix="Test.php">../src/*/*Bundle/Tests/Functional</directory>
+                <directory suffix="Test.php">../src/*/Bundle/*Bundle/Tests/Functional</directory>
+            </testsuite>
+            </testsuite>
+            <testsuite name="Project Selenium Tests">
+                <directory suffix="Test.php">../src/*/*Bundle/Tests/Selenium</directory>
+                <directory suffix="Test.php">../src/*/Bundle/*Bundle/Tests/Selenium</directory>
+            </testsuite>
         </testsuite>
     </testsuites>
 
