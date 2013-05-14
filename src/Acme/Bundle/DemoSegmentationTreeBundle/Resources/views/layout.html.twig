@@ -2,14 +2,6 @@
 
 {% oro_title_set({suffix: " - " ~ "Segmentation tree"|trans}) %}
 
-{% block head_script %}
-    {{ parent() }}
-    <script type="text/javascript" src="{{ asset('bundles/oroui/lib/jstree/jquery.cookie.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/oroui/lib/jstree/jquery.hotkeys.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/oroui/lib/jstree/jquery.jstree.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/oroui/lib/jstree/jquery.jstree.tree_selector.js') }}"></script>
-{% endblock %}
-
 {% block page_container %}
     <div id="tree_menu" style="overflow:auto;">
         <button id="refresh" class="btn btn-small">{{ "acme.demosegmentationtree.button.refresh_tree" | trans }}</button>
@@ -42,6 +34,8 @@
     <!-- JavaScript for the tree -->
     <script type="text/javascript">
         var assetsPath = "{{ asset('bundles/acmedemosegmentationtree/') }}";
+        var treePath = "{{ path('acme_demotree_tree') }}";
+        var childrenPath = "{{ path('acme_demotree_children') }}";
     </script>
     <script type="text/javascript" src="{{ asset('bundles/acmedemosegmentationtree/js/acmedemosegmentationtree.jstree.js') }}"></script>
 {% endblock %}

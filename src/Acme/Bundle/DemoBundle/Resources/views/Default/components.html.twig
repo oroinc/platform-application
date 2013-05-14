@@ -20,7 +20,6 @@
 
 {% block head_script_component %}
     {% include 'OroWindowsBundle:Include:javascript.html.twig' %}
-    {% include 'OroWindowsBundle:Include:stylesheet.html.twig' %}
 
     {% include 'OroNavigationBundle:Js:dot.menu.js.twig' %}
     {% include 'OroNavigationBundle:Js:pinbar.js.twig' %}
@@ -56,13 +55,6 @@
     <script type="text/javascript">
         navigation.Item.prototype.urlRoot = {{ path('oro_api_get_navigationitems', {'type': ''})|json_encode|raw }};
     </script>
-
-    <script type="text/javascript">
-        $(function() {
-            Oro.pagestate = new Oro.PageState.View({ model: new Oro.PageState.Model });
-        })
-    </script>
-
 
     {# TODO: remove after functionality realisation #}
     <style type="text/css">

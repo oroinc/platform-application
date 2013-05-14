@@ -7,7 +7,7 @@ $('#tree').jstree({
     ],
     "tree_selector" : {
         "ajax" : {
-            "url" : "trees"
+            "url" : treePath
         },
     //                "data" :'[{"id":"node_1","title":"Titre 1"},{"id":"node_2","title":"Titre 2"}]',
         "auto_open_root" : true
@@ -27,7 +27,7 @@ $('#tree').jstree({
             }
         ],
         "ajax" : {
-            "url" : "children",
+            "url" : childrenPath,
             "data" : function (node) {
                 // the result is fed to the AJAX request `data` option
                 return {
