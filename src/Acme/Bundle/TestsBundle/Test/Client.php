@@ -106,6 +106,11 @@ class Client extends BaseClient
         }
     }
 
+    public static function getTransactionLevel()
+    {
+        return self::$connection->getTransactionNestingLevel();
+    }
+
     public static function rollbackTransaction()
     {
         if (!is_null(self::$connection)) {
