@@ -3,6 +3,8 @@ oro_menu_config:
         demo_flexible_tab:
             label: 'Flexible Entity'
             uri: '#'
+            extras:
+                routes: ['acme_demoflexibleentity_*']
         demo_flexible_customer:
             label: 'Customers'
             route: 'acme_demoflexibleentity_customer_list'
