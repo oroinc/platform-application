@@ -70,6 +70,7 @@ class AppKernel extends Kernel
         }
 
         if (in_array($this->getEnvironment(), array('test', 'perf'))) {
+            $bundles[] = new Oro\Bundle\TestFrameworkBundle\OroTestFrameworkBundle();
             $bundles[] = new Acme\Bundle\TestsBundle\AcmeTestsBundle();
         }
 
