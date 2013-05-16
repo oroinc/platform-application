@@ -31,17 +31,17 @@ class NavigationTest extends \PHPUnit_Extensions_Selenium2TestCase
             ->setPassword(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_PASS)
             ->submit()
             ->openNavigation()
-            ->tab('Users')
+            ->tab('System')
             ->menu('Users')
             ->assertElementPresent("//table[@class='grid table-hover table table-bordered table-condensed']/tbody");
 
         $login->openNavigation()
-            ->tab('Users')
+            ->tab('System')
             ->menu('Roles')
             ->assertElementPresent("//table[@class='grid table-hover table table-bordered table-condensed']/tbody");
 
         $login->openNavigation()
-            ->tab('Users')
+            ->tab('System')
             ->menu('Groups')
             ->assertElementPresent("//table[@class='grid table-hover table table-bordered table-condensed']/tbody");
     }
