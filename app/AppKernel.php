@@ -32,6 +32,7 @@ class AppKernel extends Kernel
             new Escape\WSSEAuthenticationBundle\EscapeWSSEAuthenticationBundle(),
             new Liip\ImagineBundle\LiipImagineBundle(),
             new YsTools\BackUrlBundle\YsToolsBackUrlBundle(),
+            new Bazinga\ExposeTranslationBundle\BazingaExposeTranslationBundle(),
 
             // BAP bundles
             new Oro\Bundle\FlexibleEntityBundle\OroFlexibleEntityBundle(),
