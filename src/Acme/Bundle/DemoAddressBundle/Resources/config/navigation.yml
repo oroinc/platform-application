@@ -3,6 +3,8 @@ oro_menu_config:
         address_demo_tab:
             label: 'Address Demo'
             uri: '#'
+            extras:
+                routes: ['acme_demo_address_*']
         address_demo_main:
             label: 'Common address'
             route: 'acme_demo_address_create'
