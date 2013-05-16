@@ -3,6 +3,8 @@ oro_menu_config:
         measure_demo_tab:
             name: 'Measure'
             uri: '#'
+            extras:
+                routes: ['acme_demomeasure_measure_*']
         measure_demo:
             name: 'Examples'
             route: 'acme_demomeasure_measure_index'
