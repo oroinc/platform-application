@@ -55,7 +55,6 @@ class AppKernel extends Kernel
             new Acme\Bundle\DemoMenuBundle\AcmeDemoMenuBundle(),
             new Acme\Bundle\DemoFlexibleEntityBundle\AcmeDemoFlexibleEntityBundle(),
             new Acme\Bundle\DemoDataFlowBundle\AcmeDemoDataFlowBundle(),
-            new Acme\Bundle\DemoSearchBundle\AcmeDemoSearchBundle(),
             new Acme\Bundle\DemoSegmentationTreeBundle\AcmeDemoSegmentationTreeBundle(),
             new Acme\Bundle\DemoGridBundle\AcmeDemoGridBundle(),
             new Acme\Bundle\DemoWindowsBundle\AcmeDemoWindowsBundle(),
