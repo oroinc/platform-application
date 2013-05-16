@@ -4,6 +4,8 @@ namespace Acme\Bundle\TestsBundle\Test;
 
 use Symfony\Bundle\FrameworkBundle\Client as BaseClient;
 use Acme\Bundle\TestsBundle\Test\SoapClient;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\TerminableInterface;
 
 class Client extends BaseClient
 {
@@ -34,6 +36,12 @@ class Client extends BaseClient
         }
 
         $this->request('GET', $wsdl);
+        $status = $this->getResponse()->getStatusCode();
+        $statusText = Response::$statusTexts[$status];
+        if ($status >= 400) {
+            throw new \Exception($statusText, $status);
+        }
+
         $wsdl = $this->getResponse()->getContent();
         //save to file
         $file=tempnam(sys_get_temp_dir(), date("Ymd") . '_') . '.xml';

@@ -60,7 +60,7 @@ class ProductTreeController extends Controller
      * @return Response
      *
      * @Method("GET")
-     * @Route("/children")
+     * @Route("/children", name="acme_demotree_children")
      */
     public function childrenAction(Request $request)
     {
@@ -208,7 +208,7 @@ class ProductTreeController extends Controller
      * @return Response
      *
      * @Method("GET")
-     * @Route("/trees")
+     * @Route("/trees", name="acme_demotree_tree")
      */
     public function treesAction(Request $request)
     {
