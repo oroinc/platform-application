@@ -89,7 +89,7 @@ class NavigationTest extends \PHPUnit_Extensions_Selenium2TestCase
         $login->waitForAjax();
         //Check that user, group and roles pages added
         $login->assertElementPresent(
-            "//div[@id='most-viewed-content'][//a[contains(., 'Users')]][//a[contains(., 'Roles')]][//a[contains(., 'Groups')]]",
+            "//div[@id='mostviewed-content'][//a[contains(., 'Users')]][//a[contains(., 'Roles')]][//a[contains(., 'Groups')]]",
             'Not found in Most Viewed section'
         );
     }
@@ -114,18 +114,18 @@ class NavigationTest extends \PHPUnit_Extensions_Selenium2TestCase
         $login->byXPath("//div[@class='tabbable tabs-left']//a[contains(., 'Favorites')]")->click();
         $login->waitForAjax();
         //Check that page is added to favorites
-        $login->assertElementPresent("//div[@id='favorites-content' and @class='tab-pane active']");
+        $login->assertElementPresent("//div[@id='favorite-content' and @class='tab-pane active']");
         $login->waitForAjax();
         $login->assertElementPresent(
-            "//div[@id='favorites-content'][//span[contains(., 'Groups overview - User Management')]]",
+            "//div[@id='favorite-content'][//span[contains(., 'Groups overview - User Management')]]",
             'Not found in favorites section'
         );
         //Remove Groups page from favorites
-        $login->byXPath("//div[@id='favorites-content'][//span[contains(., 'Groups overview - User Management')]]//button[@class='close']")->click();
+        $login->byXPath("//div[@id='favorite-content'][//span[contains(., 'Groups overview - User Management')]]//button[@class='close']")->click();
         $login->waitForAjax();
         //Check that page is deleted from favorites
         $login->assertElementNotPresent(
-            "//div[@id='favorites-content'][//span[contains(., 'Groups overview - User Management')]]",
+            "//div[@id='favorite-content'][//span[contains(., 'Groups overview - User Management')]]",
             'Not found in favorites section'
         );
     }
