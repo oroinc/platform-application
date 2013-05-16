@@ -1,5 +1,0 @@
-entities_config:
-    Acme\Bundle\DemoSearchBundle\Entity\Item:
-        flexible_manager:     search_item_manager
-        flexible_class:       Acme\Bundle\DemoSearchBundle\Entity\Item
-        flexible_value_class: Acme\Bundle\DemoSearchBundle\Entity\ItemValue

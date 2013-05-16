@@ -3,7 +3,7 @@
 namespace Acme\Bundle\TestsBundle\Tests\Selenium;
 
 use Acme\Bundle\TestsBundle\Test\ToolsAPI;
-use Acme\Bundle\TestsBundle\Pages\BAP\Login;
+use Oro\Bundle\TestFrameworkBundle\Pages\Objects\Login;
 
 class GroupsTest extends \PHPUnit_Extensions_Selenium2TestCase
 {
