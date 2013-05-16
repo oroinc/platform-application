@@ -1,2 +1,0 @@
-parameters:
-    test.client.class:    Acme\Bundle\TestsBundle\Test\Client

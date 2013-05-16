@@ -2,8 +2,8 @@
 
 namespace Acme\Bundle\TestsBundle\Tests\Selenium;
 
-use Acme\Bundle\TestsBundle\Pages\BAP\Login;
-use Acme\Bundle\TestsBundle\Pages\BAP\Search;
+use Oro\Bundle\TestFrameworkBundle\Pages\Objects\Login;
+use Oro\Bundle\TestFrameworkBundle\Pages\Objects\Search;
 
 class SimpleSearchTest extends \PHPUnit_Extensions_Selenium2TestCase
 {

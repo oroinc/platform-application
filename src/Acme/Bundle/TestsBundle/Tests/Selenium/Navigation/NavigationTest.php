@@ -2,7 +2,7 @@
 
 namespace Acme\Bundle\TestsBundle\Tests\Selenium;
 
-use Acme\Bundle\TestsBundle\Pages\BAP\Login;
+use Oro\Bundle\TestFrameworkBundle\Pages\Objects\Login;
 
 class NavigationTest extends \PHPUnit_Extensions_Selenium2TestCase
 {
