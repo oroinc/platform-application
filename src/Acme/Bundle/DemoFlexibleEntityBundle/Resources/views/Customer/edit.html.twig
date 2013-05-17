@@ -2,7 +2,7 @@
 {% import 'OroUserBundle::macros.html.twig' as macros %}
 {% set format = get_user_value('oro_user.name_format') %}
 {% form_theme form with 'OroUIBundle:Form:fields.html.twig' %}
-{% set title = form.vars.value.id ? 'Edit customer' : 'Add customer' %}
+{% set title = form.vars.value.id ? 'Edit Customer' : 'Add Customer' %}
 
 {% block page_container %}
 <div class="container-fluid">

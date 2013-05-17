@@ -2,7 +2,7 @@
 {% import 'OroUserBundle::macros.html.twig' as macros %}
 {% set format = get_user_value('oro_user.name_format') %}
 {% form_theme form with 'OroUIBundle:Form:fields.html.twig' %}
-{% set title = form.vars.value.id ? 'Edit product' : 'Add product' %}
+{% set title = form.vars.value.id ? 'Edit Product' : 'Add Product' %}
 
 {% set route_params = app.request.attributes.get('_route_params') %}
 {% if route_params == "" %}
