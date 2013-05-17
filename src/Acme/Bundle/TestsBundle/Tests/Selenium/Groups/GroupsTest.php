@@ -37,7 +37,7 @@ class GroupsTest extends \PHPUnit_Extensions_Selenium2TestCase
             ->setPassword(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_PASS)
             ->submit()
             ->openGroups()
-            ->assertTitle('Groups overview - User Management');
+            ->assertTitle('Groups - User Management');
     }
 
     public function testRolesGridDefaultContent()
