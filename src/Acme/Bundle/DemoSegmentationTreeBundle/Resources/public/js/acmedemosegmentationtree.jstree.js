@@ -10,7 +10,8 @@ $('#tree').jstree({
             "url" : treePath
         },
     //                "data" :'[{"id":"node_1","title":"Titre 1"},{"id":"node_2","title":"Titre 2"}]',
-        "auto_open_root" : true
+        "auto_open_root" : true,
+        "no_tree_message" : "No tree in your database"
     },
     "themes" : {
         "dots" : true,
@@ -19,19 +20,19 @@ $('#tree').jstree({
         "url" : assetsPath + "/css/style.css"
     },
     "json_data" : {
-        "data" : [
-            {
-                "data": "Loading root...",
-                "state": "closed",
-                "attr" : { "id" : "node_1"}
-            }
-        ],
         "ajax" : {
             "url" : childrenPath,
             "data" : function (node) {
                 // the result is fed to the AJAX request `data` option
+                var id = null;
+
+                if (node && node != -1) {
+                    id = node.attr("id").replace('node_','');
+                } else{
+                    id = 1;
+                }
                 return {
-                    "id" : node.attr("id").replace('node_','')
+                    "id" : id
                 };
             }
         }
@@ -67,6 +68,18 @@ $('#tree').jstree({
     }
 })
     .bind('trees_loaded.jstree', function(e, tree_select_id) {
+        var test_option = $('<option>', {
+            text: 'This one send you somewhere',
+            id: 'my_action_in_tree',
+            disabled: true
+        });
+
+        test_option.bind('click', function(e) {
+            window.location = 'http://www.google.com/';
+        });
+
+
+        $('#'+tree_select_id).append(test_option);
         $('#'+tree_select_id).uniform();
     })
     .bind("create.jstree", function (e, data) {
@@ -76,7 +89,7 @@ $('#tree').jstree({
         if (data.rslt.parent == -1) {
             parentId = this_jstree.get_tree_id();
         } else {
-            parentId = data.rslt.parent.attr("id");
+            parentId = data.rslt.parent.attr("id").replace('node_','');
         }
 
         $.post(
@@ -107,9 +120,7 @@ $('#tree').jstree({
                     "id" : this.id.replace('node_','')
                 },
                 success : function (r) {
-                    if(!r.status) {
-                        data.inst.refresh();
-                    }
+                    data.inst.refresh(-1);
                 }
             });
         });
@@ -248,7 +259,7 @@ $.fn.addItem = function(segmentId, itemId) {
             "item_id" : itemId
         },
         success : function (r) {
-            renderItemList(segmentId);
+            $.fn.renderItemList(segmentId);
         }
     });
 };
