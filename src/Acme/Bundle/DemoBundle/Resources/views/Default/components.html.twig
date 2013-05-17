@@ -58,59 +58,6 @@
     <script type="text/javascript">
         navigation.Item.prototype.urlRoot = {{ path('oro_api_get_navigationitems', {'type': ''})|json_encode|raw }};
     </script>
-
-    <style type="text/css">
-        #bottom-anchor {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 1px;
-            height: 1px;
-        }
-
-        #container {
-            overflow: auto;
-        }
-    </style>
-    <script type="text/javascript">
-        $(function() {
-            var anchor = $('#bottom-anchor');
-            if (!anchor.length) {
-                anchor = $('<div id="bottom-anchor"/>').appendTo($(document.body));
-            }
-
-            var content = $('#scrollable-container');
-            if (!content.length) {
-                content = $('#container');
-            }
-            var debugBar = $('.sf-toolbar');
-            var adjustHeight = function() {
-                var debugBarHeight = 0;
-                if (debugBar.length && debugBar.is(':visible')) {
-                    debugBarHeight = debugBar.height();
-                }
-                content.height(anchor.position().top - content.position().top - debugBarHeight);
-            };
-            $(window).on('resize', adjustHeight);
-
-            var tries = 0;
-            var waitForDebugBar = function()
-            {
-                if (debugBar.children().length) {
-                    adjustHeight();
-                } else if (tries < 1000) {
-                    tries++;
-                    window.setTimeout(waitForDebugBar, 500);
-                }
-            }
-
-            if (debugBar.length) {
-                waitForDebugBar();
-            } else {
-                adjustHeight();
-            }
-        });
-    </script>
 {% endblock %}
 
 {% block pin_button %}
