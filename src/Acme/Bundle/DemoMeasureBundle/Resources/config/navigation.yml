@@ -19,5 +19,5 @@ oro_menu_config:
 oro_titles:
     acme_demomeasure_measure_index: Examples
     acme_demomeasure_measure_addedunit: Convert 1 kilometer to dong
-    acme_demomeasure_measure_customfamilymeasure: Create a family
-    acme_demomeasure_measure_dumpconfig: Dump configuration
+    acme_demomeasure_measure_customfamilymeasure: Create a Family
+    acme_demomeasure_measure_dumpconfig: Dump Configuration
