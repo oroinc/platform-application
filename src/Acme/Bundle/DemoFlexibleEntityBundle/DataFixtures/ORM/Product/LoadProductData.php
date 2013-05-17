@@ -129,7 +129,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
 
         // attribute size
         $attributeCode= 'size';
-        $productAttribute = $this->getProductManager()->createAttribute('oro_flexibleentity_metric');
+        $productAttribute = $this->getProductManager()->createAttribute('oro_flexibleentity_number');
         $productAttribute->setCode($attributeCode);
         $productAttribute->setLabel('Size');
         $productAttribute->setSearchable(true);
@@ -225,10 +225,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
             // size
             $value = $this->getProductManager()->createFlexibleValue();
             $value->setAttribute($attSize);
-            $metric = new Metric();
-            $metric->setUnit('mm');
-            $metric->setData(rand(5, 10));
-            $value->setData($metric);
+            $value->setData(rand(5, 10));
             $product->addValue($value);
 
             // color

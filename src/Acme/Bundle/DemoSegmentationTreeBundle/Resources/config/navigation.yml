@@ -17,7 +17,7 @@ oro_menu_config:
                         demo_segmentation_tree_product:
 
 oro_titles:
-    acme_demosegmentationtree_producttree_index: Display index screen
+    acme_demosegmentationtree_producttree_index: Display Index Screen
     oro_user_security_login: Login
-    oro_user_reset_request: Forgot password
-    acme_demosegmentationtree_producttree_index: Product segmentation
+    oro_user_reset_request: Forgot Password
+    acme_demosegmentationtree_producttree_index: Product Segmentation
