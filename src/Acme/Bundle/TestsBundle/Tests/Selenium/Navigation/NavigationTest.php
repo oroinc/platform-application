@@ -117,15 +117,15 @@ class NavigationTest extends \PHPUnit_Extensions_Selenium2TestCase
         $login->assertElementPresent("//div[@id='favorite-content' and @class='tab-pane active']");
         $login->waitForAjax();
         $login->assertElementPresent(
-            "//div[@id='favorite-content'][//span[contains(., 'Groups overview - User Management')]]",
+            "//div[@id='favorites-content'][//span[contains(., 'Groups - User Management')]]",
             'Not found in favorites section'
         );
         //Remove Groups page from favorites
-        $login->byXPath("//div[@id='favorite-content'][//span[contains(., 'Groups overview - User Management')]]//button[@class='close']")->click();
+        $login->byXPath("//div[@id='favorites-content'][//span[contains(., 'Groups - User Management')]]//button[@class='close']")->click();
         $login->waitForAjax();
         //Check that page is deleted from favorites
         $login->assertElementNotPresent(
-            "//div[@id='favorite-content'][//span[contains(., 'Groups overview - User Management')]]",
+            "//div[@id='favorites-content'][//span[contains(., 'Groups - User Management')]]",
             'Not found in favorites section'
         );
     }
@@ -141,7 +141,7 @@ class NavigationTest extends \PHPUnit_Extensions_Selenium2TestCase
         $login->byXPath("//div[@class='top-action-box']//button[@class='btn minimize-button']")->click();
         $login->waitForAjax();
         $login->assertElementPresent(
-            "//div[@class='list-bar']//a[contains(., 'Users overview - User Management')]",
+            "//div[@class='list-bar']//a[contains(., 'Users - User Management')]",
             'Element does not minimised to pinbar tab'
         );
     }
