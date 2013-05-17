@@ -48,6 +48,7 @@ class AppKernel extends Kernel
             new Oro\Bundle\GridBundle\OroGridBundle(),
             new Oro\Bundle\WindowsBundle\OroWindowsBundle(),
             new Oro\Bundle\AddressBundle\OroAddressBundle(),
+            new Oro\Bundle\DataAuditBundle\OroDataAuditBundle(),
 
             // BAP Demo bundles
             new Acme\Bundle\DemoBundle\AcmeDemoBundle(),
