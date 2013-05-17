@@ -83,16 +83,32 @@
             if (!content.length) {
                 content = $('#container');
             }
+            var debugBar = $('.sf-toolbar');
             var adjustHeight = function() {
-                var debugBar = $('.sf-toolbarreset');
                 var debugBarHeight = 0;
-                if (debugBar.is(':visible')) {
+                if (debugBar.length && debugBar.is(':visible')) {
                     debugBarHeight = debugBar.height();
                 }
                 content.height(anchor.position().top - content.position().top - debugBarHeight);
             };
             $(window).on('resize', adjustHeight);
-            adjustHeight();
+
+            var tries = 0;
+            var waitForDebugBar = function()
+            {
+                if (debugBar.children().length) {
+                    adjustHeight();
+                } else if (tries < 1000) {
+                    tries++;
+                    window.setTimeout(waitForDebugBar, 500);
+                }
+            }
+
+            if (debugBar.length) {
+                waitForDebugBar();
+            } else {
+                adjustHeight();
+            }
         });
     </script>
 {% endblock %}
