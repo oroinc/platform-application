@@ -56,7 +56,6 @@ class AppKernel extends Kernel
             new Acme\Bundle\DemoMenuBundle\AcmeDemoMenuBundle(),
             new Acme\Bundle\DemoFlexibleEntityBundle\AcmeDemoFlexibleEntityBundle(),
             new Acme\Bundle\DemoDataFlowBundle\AcmeDemoDataFlowBundle(),
-            new Acme\Bundle\DemoSearchBundle\AcmeDemoSearchBundle(),
             new Acme\Bundle\DemoSegmentationTreeBundle\AcmeDemoSegmentationTreeBundle(),
             new Acme\Bundle\DemoGridBundle\AcmeDemoGridBundle(),
             new Acme\Bundle\DemoWindowsBundle\AcmeDemoWindowsBundle(),
@@ -71,6 +70,7 @@ class AppKernel extends Kernel
         }
 
         if (in_array($this->getEnvironment(), array('test', 'perf'))) {
+            $bundles[] = new Oro\Bundle\TestFrameworkBundle\OroTestFrameworkBundle();
             $bundles[] = new Acme\Bundle\TestsBundle\AcmeTestsBundle();
         }
 

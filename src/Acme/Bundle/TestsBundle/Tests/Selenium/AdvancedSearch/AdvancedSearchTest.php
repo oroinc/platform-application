@@ -2,8 +2,8 @@
 
 namespace Acme\Bundle\TestsBundle\Tests\Selenium;
 
-use Acme\Bundle\TestsBundle\Pages\BAP\Login;
-use Acme\Bundle\TestsBundle\Pages\BAP\Users;
+use Oro\Bundle\TestFrameworkBundle\Pages\Objects\Login;
+use Oro\Bundle\TestFrameworkBundle\Pages\Objects\Users;
 
 class AdvancedSearchTest extends \PHPUnit_Extensions_Selenium2TestCase
 {
