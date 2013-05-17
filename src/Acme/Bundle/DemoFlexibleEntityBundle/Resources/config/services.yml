@@ -40,7 +40,7 @@ services:
             - [ addAttributeType, ['oro_flexibleentity_text'] ]
             - [ addAttributeType, ['oro_flexibleentity_textarea'] ]
             - [ addAttributeType, ['oro_flexibleentity_date'] ]
-            - [ addAttributeType, ['oro_flexibleentity_metric'] ]
+            - [ addAttributeType, ['oro_flexibleentity_number'] ]
             - [ addAttributeType, ['oro_flexibleentity_price'] ]
             - [ addAttributeType, ['oro_flexibleentity_simpleselect'] ]
             - [ addAttributeType, ['oro_flexibleentity_multiselect'] ]
