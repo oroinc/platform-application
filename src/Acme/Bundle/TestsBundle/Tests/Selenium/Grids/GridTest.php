@@ -113,15 +113,16 @@ class GridTest extends \PHPUnit_Extensions_Selenium2TestCase
         $userData = $users->getRandomEntity();
         $this->assertTrue($users->entityExists($userData));
         $countOfRecords = $users->getRowsCount();
-        $this->assertLessThan(
-            $countOfRecords,
-            $users->addFilter('Company')
-                ->filterBy('Company', $userData[strtoupper('Company')], 'is equal to')
-                ->getRowsCount()
-        );
         $this->assertEquals(
             $countOfRecords,
-            $users->removeFilter('Company')
+            $users->removeFilter('Email')
+                ->getRowsCount()
+        );
+
+        $this->assertEquals(
+            1,
+            $users->addFilter('Email')
+                ->filterBy('Email', $userData[strtoupper('Email')], 'is equal to')
                 ->getRowsCount()
         );
     }
