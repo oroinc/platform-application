@@ -40,7 +40,7 @@ class GroupsTest extends \PHPUnit_Extensions_Selenium2TestCase
             ->assertTitle('Groups - User Management');
     }
 
-    public function testRolesGridDefaultContent()
+    public function testGroupsGridDefaultContent()
     {
         $login = new Login($this);
         $groups = $login->setUsername(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_LOGIN)
