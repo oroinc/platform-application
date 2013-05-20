@@ -45,7 +45,7 @@ class UsersTest extends \PHPUnit_Extensions_Selenium2TestCase
             ->save()
             ->assertMessage('User successfully saved')
             ->close()
-            ->assertTitle('Users overview - User Management');
+            ->assertTitle('Users - User Management');
 
         return $username;
     }
@@ -94,7 +94,7 @@ class UsersTest extends \PHPUnit_Extensions_Selenium2TestCase
             ->filterBy('Username', $username)
             ->open(array($username))
             ->delete()
-            ->assertTitle('Users overview - User Management')
+            ->assertTitle('Users - User Management')
             ->assertMessage('User successfully removed');
 
         $login->openUsers()->filterBy('Username', $username)->assertNoDataMessage('No users were found to match your search');

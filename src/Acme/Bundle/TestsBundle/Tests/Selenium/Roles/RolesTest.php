@@ -13,11 +13,11 @@ class RolesTest extends \PHPUnit_Extensions_Selenium2TestCase
 
     protected $defaultRoles = array(
         'header' => array('ID' => 'ID', 'ROLE' => 'ROLE', 'LABEL' => 'LABEL', '' => 'ACTION'),
-        '1' => array('1' => '1', 'ROLE_MANAGER' => 'ROLE_MANAGER', 'Manager' => 'Manager', '...' => 'ACTION'),
-        '2' => array('2' => '2', 'ROLE_ADMIN' => 'ROLE_ADMIN', 'Administrator' => 'Administrator', '...' => 'ACTION'),
-        '3' => array('3' => '3', 'IS_AUTHENTICATED_ANONYMOUSLY' => 'IS_AUTHENTICATED_ANONYMOUSLY', 'Anonymous' => 'Anonymous', '...' => 'ACTION'),
-        '4' => array('4' => '4', 'ROLE_USER' => 'ROLE_USER', 'User' => 'User', '...' => 'ACTION'),
-        '5' => array('5' => '5', 'ROLE_SUPER_ADMIN' => 'ROLE_SUPER_ADMIN', 'Super admin' => 'Super admin', '...' => 'ACTION')
+        'ROLE_MANAGER' => array('1' => '1', 'ROLE_MANAGER' => 'ROLE_MANAGER', 'Manager' => 'Manager', '...' => 'ACTION'),
+        'ROLE_ADMIN' => array('2' => '2', 'ROLE_ADMIN' => 'ROLE_ADMIN', 'Administrator' => 'Administrator', '...' => 'ACTION'),
+        'IS_AUTHENTICATED_ANONYMOUSLY' => array('3' => '3', 'IS_AUTHENTICATED_ANONYMOUSLY' => 'IS_AUTHENTICATED_ANONYMOUSLY', 'Anonymous' => 'Anonymous', '...' => 'ACTION'),
+        'ROLE_USER' => array('4' => '4', 'ROLE_USER' => 'ROLE_USER', 'User' => 'User', '...' => 'ACTION'),
+        'ROLE_SUPER_ADMIN' => array('5' => '5', 'ROLE_SUPER_ADMIN' => 'ROLE_SUPER_ADMIN', 'Super admin' => 'Super admin', '...' => 'ACTION')
     );
 
     protected function setUp()
@@ -40,7 +40,7 @@ class RolesTest extends \PHPUnit_Extensions_Selenium2TestCase
             ->setPassword(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_PASS)
             ->submit()
             ->openRoles()
-            ->assertTitle('Roles overview - User management');
+            ->assertTitle('Roles - User management');
     }
 
     public function testRolesGridDefaultContent()
@@ -65,7 +65,7 @@ class RolesTest extends \PHPUnit_Extensions_Selenium2TestCase
             foreach ($columns as $column) {
                 $content = $column->text();
                 if (is_null($id)) {
-                    $id = $content;
+                    $id = trim($content);
                 }
                 $this->assertArrayHasKey($content, $this->defaultRoles[$id]);
             }
