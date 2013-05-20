@@ -40,9 +40,13 @@
 [submodule "src/Oro/Bundle/AddressBundle"]
 	path = src/Oro/Bundle/AddressBundle
 	url = git@github.com:laboro/AddressBundle.git
-[submodule "src/Oro/Bundle/JsFormValidationBundle"]
-	path = src/Oro/Bundle/JsFormValidationBundle
-	url = git@github.com:laboro/JsFormValidationBundle.git
+[submodule "src/Oro/Bundle/DataAuditBundle"]
+	path = src/Oro/Bundle/DataAuditBundle
+	url = git@github.com:laboro/DataAuditBundle.git
 [submodule "src/Oro/Bundle/TestFrameworkBundle"]
 	path = src/Oro/Bundle/TestFrameworkBundle
 	url = git@github.com:laboro/TestFrameworkBundle.git
+[submodule "src/Oro/Bundle/JsFormValidationBundle"]
+	path = src/Oro/Bundle/JsFormValidationBundle
+	url = git@github.com:laboro/JsFormValidationBundle.git
+
