@@ -117,11 +117,11 @@ class NavigationTest extends \PHPUnit_Extensions_Selenium2TestCase
         $login->assertElementPresent("//div[@id='favorite-content' and @class='tab-pane active']");
         $login->waitForAjax();
         $login->assertElementPresent(
-            "//div[@id='favorites-content'][//span[contains(., 'Groups - User Management')]]",
+            "//li[@id='favorite-tab'][//span[contains(., 'Groups - User Management')]]",
             'Not found in favorites section'
         );
         //Remove Groups page from favorites
-        $login->byXPath("//div[@id='favorites-content'][//span[contains(., 'Groups - User Management')]]//button[@class='close']")->click();
+        $login->byXPath("//div[@id='favorite-content'][//span[contains(., 'Groups - User Management')]]//button[@class='close']")->click();
         $login->waitForAjax();
         //Check that page is deleted from favorites
         $login->assertElementNotPresent(
