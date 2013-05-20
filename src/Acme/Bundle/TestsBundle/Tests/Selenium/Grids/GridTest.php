@@ -189,12 +189,13 @@ class GridTest extends \PHPUnit_Extensions_Selenium2TestCase
     public function columnTitle()
     {
         return array(
-            'ID' => array('ID'),
+            //'ID' => array('ID'),
             'Username' => array('Username'),
             'Email' => array('Email'),
-            'Birthday' => array('Birthday'),
-            'Company' => array('Company'),
-            'Salary' => array('Salary'),
+            'First name' => array('First name'),
+            //'Birthday' => array('Birthday'),
+            //'Company' => array('Company'),
+            //'Salary' => array('Salary'),
         );
     }
 }
