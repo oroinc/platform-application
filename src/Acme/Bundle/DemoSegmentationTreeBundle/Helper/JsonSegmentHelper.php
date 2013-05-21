@@ -39,7 +39,7 @@ class JsonSegmentHelper
         foreach ($segments as $segment) {
             $return[] = array(
                     'attr' => array('id' => 'node_'. $segment->getId(), 'rel' => 'folder'),
-                    'data' => $segment->getTitle(),
+                    'data' => $segment->getCode(),
                     'state'=> 'closed'
             );
         }
@@ -60,7 +60,7 @@ class JsonSegmentHelper
         $return = array();
 
         foreach ($segments as $segment) {
-            $return[] = array('id' => $segment->getId(), 'title' => $segment->getTitle());
+            $return[] = array('id' => $segment->getId(), 'code' => $segment->getCode());
         }
 
         return $return;
