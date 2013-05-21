@@ -9,7 +9,7 @@ $('#tree').jstree({
         "ajax" : {
             "url" : treePath
         },
-    //                "data" :'[{"id":"node_1","title":"Titre 1"},{"id":"node_2","title":"Titre 2"}]',
+    //                "data" :'[{"id":"node_1","code":"code 1"},{"id":"node_2","code":"code 2"}]',
         "auto_open_root" : true,
         "no_tree_message" : "No tree in your database"
     },
@@ -97,7 +97,7 @@ $('#tree').jstree({
             {
                 "id" : parentId,
                 "position" : data.rslt.position,
-                "title" : data.rslt.name,
+                "code" : data.rslt.name,
                 "type" : data.rslt.obj.attr("rel")
             },
             function (r) {
@@ -130,7 +130,7 @@ $('#tree').jstree({
             "rename-node",
             {
                 "id" : data.rslt.obj.attr("id").replace('node_',''),
-                "title" : data.rslt.new_name
+                "code" : data.rslt.new_name
             },
             function (r) {
                 if(!r.status) {
@@ -152,7 +152,7 @@ $('#tree').jstree({
                     "parent" : data.rslt.cr === -1 ? 1 : data.rslt.np.attr("id").replace('node_',''),
                     "prev_sibling" : this_jstree._get_prev(this, true) ? this_jstree._get_prev(this, true).attr('id').replace('node_','') : null,
                     "position" : data.rslt.cp + i,
-                    "title" : data.rslt.name,
+                    "code" : data.rslt.name,
                     "copy" : data.rslt.cy ? 1 : 0
                 },
                 success : function (r) {
@@ -193,7 +193,7 @@ $.fn.removeTree = function(tree_id) {
     });
 };
 
-$.fn.createTree = function (title) {
+$.fn.createTree = function (code) {
     var this_jstree = $.jstree._focused();
 
     $.ajax({
@@ -201,7 +201,7 @@ $.fn.createTree = function (title) {
         type: 'POST',
         url: "create-tree",
         data : {
-            "title" : title
+            "code" : code
         },
         success: function(data) {
             this_jstree.refresh_trees();
@@ -305,7 +305,7 @@ $(function () {
                 $(tree_id).jstree("create");
                 break;
             case "create_tree":
-                $.fn.createTree($("#create_tree_title").val(), '#trees','#tree','#selectedTreeId');
+                $.fn.createTree($("#create_tree_code").val(), '#trees','#tree','#selectedTreeId');
                 break;
             case "add_item":
                 node = $.jstree._focused().get_selected();
