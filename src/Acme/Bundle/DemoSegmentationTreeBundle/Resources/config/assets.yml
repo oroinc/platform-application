@@ -1,5 +1,4 @@
 js:
   - '@OroUIBundle/Resources/public/lib/jstree/jquery.cookie.js'
   - '@OroUIBundle/Resources/public/lib/jstree/jquery.hotkeys.js'
-  - '@OroUIBundle/Resources/public/lib/jstree/jquery.jstree.js'
-  - '@OroSegmentationTreeBundle/Resources/public/js/lib/jstree/jquery.jstree.tree_selector.js'
+
