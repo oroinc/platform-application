@@ -19,7 +19,7 @@ class UserDatagridManager extends FlexibleDatagridManager
     protected function getProperties()
     {
         return array(
-            new UrlProperty('edit_link', $this->router, 'oro_user_edit', array('id')),
+            new UrlProperty('update_link', $this->router, 'oro_user_update', array('id')),
             new UrlProperty('delete_link', $this->router, 'oro_api_delete_profile', array('id')),
         );
     }
@@ -190,14 +190,14 @@ class UserDatagridManager extends FlexibleDatagridManager
      */
     protected function getRowActions()
     {
-        $editAction = array(
-            'name'         => 'edit',
+        $updateAction = array(
+            'name'         => 'update',
             'type'         => ActionInterface::TYPE_REDIRECT,
             'acl_resource' => 'root',
             'options'      => array(
-                'label'=> 'Edit',
+                'label'=> 'Update',
                 'icon' => 'edit',
-                'link' => 'edit_link',
+                'link' => 'update_link',
                 'backUrl' => true,
             )
         );
@@ -213,6 +213,6 @@ class UserDatagridManager extends FlexibleDatagridManager
             )
         );
 
-        return array($editAction, $deleteAction);
+        return array($updateAction, $deleteAction);
     }
 }

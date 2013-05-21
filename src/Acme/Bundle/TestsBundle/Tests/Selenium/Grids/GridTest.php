@@ -95,10 +95,10 @@ class GridTest extends \PHPUnit_Extensions_Selenium2TestCase
     public function filterData()
     {
         return array(
-            'ID' => array('ID', '='),
+            //'ID' => array('ID', '='),
             'Username' => array('Username', 'is equal to'),
             'Email' => array('Email', 'contains'),
-            //'First name' => array('First name', 'is equal to'),
+            'First name' => array('First name', 'is equal to'),
             //'Birthday' => array('Birthday', '')
         );
     }
@@ -189,12 +189,13 @@ class GridTest extends \PHPUnit_Extensions_Selenium2TestCase
     public function columnTitle()
     {
         return array(
-            'ID' => array('ID'),
+            //'ID' => array('ID'),
             'Username' => array('Username'),
             'Email' => array('Email'),
-            'Birthday' => array('Birthday'),
-            'Company' => array('Company'),
-            'Salary' => array('Salary'),
+            'First name' => array('First name'),
+            //'Birthday' => array('Birthday'),
+            //'Company' => array('Company'),
+            //'Salary' => array('Salary'),
         );
     }
 }
