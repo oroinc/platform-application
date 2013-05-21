@@ -1,5 +1,20 @@
 imports:
-    - { resource: config_test.yml }
+    - { resource: config.yml }
+
+framework:
+    router:
+        strict_requirements: false
+
+twig:
+    debug:                    false
+    strict_variables:         false
+
+assetic:
+    debug:                    false
+
+doctrine:
+    orm:
+        auto_generate_proxy_classes: false
 
 parameters:
     performance.customers: 100

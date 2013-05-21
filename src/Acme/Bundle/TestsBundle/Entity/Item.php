@@ -1,11 +1,11 @@
 <?php
-namespace Acme\Bundle\DemoSearchBundle\Entity;
+namespace Acme\Bundle\TestsBundle\Entity;
 
 use Oro\Bundle\FlexibleEntityBundle\Entity\Mapping\AbstractEntityFlexible;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Table(name="demo_search_item")
+ * @ORM\Table(name="test_search_item")
  * @ORM\Entity(repositoryClass="Oro\Bundle\FlexibleEntityBundle\Entity\Repository\FlexibleEntityRepository")
  *
  */

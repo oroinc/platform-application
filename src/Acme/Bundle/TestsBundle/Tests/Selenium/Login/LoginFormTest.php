@@ -4,8 +4,7 @@ namespace Acme\Bundle\TestsBundle\Tests\Selenium;
 
 class LoginFormTest extends \PHPUnit_Extensions_Selenium2TestCase
 {
-    const TIME_OUT  = 1000;
-    const MAX_AJAX_EXECUTION_TIME = 5000;
+    protected $coverageScriptUrl = PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_TESTS_URL_COVERAGE;
 
     protected function setUp()
     {
@@ -31,10 +30,10 @@ class LoginFormTest extends \PHPUnit_Extensions_Selenium2TestCase
                     return null;
                 }
             },
-            self::MAX_AJAX_EXECUTION_TIME
+            intval(MAX_EXECUTION_TIME)
         );
 
-        $this->timeouts()->implicitWait(self::TIME_OUT);
+        $this->timeouts()->implicitWait(intval(TIME_OUT));
     }
 
     protected function waitForAjax()
@@ -48,10 +47,10 @@ class LoginFormTest extends \PHPUnit_Extensions_Selenium2TestCase
                     return null;
                 }
             },
-            self::MAX_AJAX_EXECUTION_TIME
+            intval(MAX_EXECUTION_TIME)
         );
 
-        $this->timeouts()->implicitWait(self::TIME_OUT);
+        $this->timeouts()->implicitWait(intval(TIME_OUT));
     }
 
     public function testHasLoginForm()
@@ -135,7 +134,7 @@ class LoginFormTest extends \PHPUnit_Extensions_Selenium2TestCase
         $this->waitPageToLoad();
         $this->byXPath("//*[@id='top-page']//fieldset//a[contains(.,'Forgot your password?')]")->click();
         $this->waitPageToLoad();
-        $this->assertEquals('Forgot password', $this->title());
+        $this->assertEquals('Forgot Password', $this->title());
 
         $this->byId('prependedInput')->value('123test123');
         $this->byXPath("//button[contains(.,'Request')]")->click();

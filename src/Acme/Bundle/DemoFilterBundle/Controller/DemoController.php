@@ -61,6 +61,14 @@ class DemoController extends Controller
                 )
             )
             ->add(
+                'boolean_filter',
+                'oro_type_boolean_filter',
+                array(
+                    'label' => 'Boolean Filter',
+                    'show_filter' => true
+                )
+            )
+            ->add(
                 'select_filter',
                 'oro_type_choice_filter',
                 array(

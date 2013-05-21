@@ -12,7 +12,7 @@
         "doctrine/data-fixtures": "@dev",
         "doctrine/doctrine-fixtures-bundle": "@dev",
         "twig/extensions": "1.0.*@dev",
-        "symfony/assetic-bundle": "2.1.*",
+        "symfony/assetic-bundle": "2.1.*@dev",
         "symfony/swiftmailer-bundle": "2.1.*",
         "symfony/monolog-bundle": "2.1.*",
         "sensio/distribution-bundle": "2.1.*",
@@ -41,7 +41,9 @@
         "sonata-project/doctrine-orm-admin-bundle": "2.1.x-dev",
         "liip/imagine-bundle": "dev-master",
         "leafo/lessphp": "dev-master",
-        "ys-tools/back-url-bundle": "dev-master"
+        "ys-tools/back-url-bundle": "dev-master",
+        "symfony/icu": "1.2.*@dev",
+        "symfony/intl": "2.3.*@dev"
     },
     "repositories": [
         {

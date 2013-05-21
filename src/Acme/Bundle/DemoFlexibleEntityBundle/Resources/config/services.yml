@@ -5,70 +5,72 @@ parameters:
     manufacturer_entity_class:            Acme\Bundle\DemoFlexibleEntityBundle\Entity\Manufacturer
     product_manager_class:                Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleManager
     product_entity_class:                 Acme\Bundle\DemoFlexibleEntityBundle\Entity\Product
-    customer_grid_manager_class:          Acme\Bundle\DemoFlexibleEntityBundle\Datagrid\CustomerDatagridManager
-    product_grid_manager_class:           Acme\Bundle\DemoFlexibleEntityBundle\Datagrid\ProductDatagridManager
-    customerattribute_grid_manager_class: Acme\Bundle\DemoFlexibleEntityBundle\Datagrid\AttributeDatagridManager
-    productattribute_grid_manager_class:  Acme\Bundle\DemoFlexibleEntityBundle\Datagrid\AttributeDatagridManager
 
 services:
     customer_manager:
         class:     "%customer_manager_class%"
-        arguments: [%customer_entity_class%, %oro_flexibleentity.flexible_config%, "@doctrine.orm.entity_manager", "@event_dispatcher"]
+        arguments:
+            - %customer_entity_class%
+            - %oro_flexibleentity.flexible_config%
+            - @doctrine.orm.entity_manager
+            - @event_dispatcher
+            - @oro_flexibleentity.attributetype.factory
         tags:
             - { name: oro_flexibleentity_manager, entity: %customer_entity_class%}
+        calls:
+            - [ addAttributeType, ['oro_flexibleentity_text'] ]
+            - [ addAttributeType, ['oro_flexibleentity_textarea'] ]
+            - [ addAttributeType, ['oro_flexibleentity_date'] ]
+            - [ addAttributeType, ['oro_flexibleentity_url'] ]
+            - [ addAttributeType, ['oro_flexibleentity_money'] ]
+            - [ addAttributeType, ['oro_flexibleentity_simpleselect'] ]
+            - [ addAttributeType, ['oro_flexibleentity_multiselect'] ]
+
     product_manager:
         class:     "%product_manager_class%"
-        arguments: [%product_entity_class%, %oro_flexibleentity.flexible_config%, "@doctrine.orm.entity_manager", "@event_dispatcher"]
+        arguments:
+            - %product_entity_class%
+            - %oro_flexibleentity.flexible_config%
+            - @doctrine.orm.entity_manager
+            - @event_dispatcher
+            - @oro_flexibleentity.attributetype.factory
         tags:
             - { name: oro_flexibleentity_manager, entity: %product_entity_class%}
+        calls:
+            - [ addAttributeType, ['oro_flexibleentity_text'] ]
+            - [ addAttributeType, ['oro_flexibleentity_textarea'] ]
+            - [ addAttributeType, ['oro_flexibleentity_date'] ]
+            - [ addAttributeType, ['oro_flexibleentity_number'] ]
+            - [ addAttributeType, ['oro_flexibleentity_price'] ]
+            - [ addAttributeType, ['oro_flexibleentity_simpleselect'] ]
+            - [ addAttributeType, ['oro_flexibleentity_multiselect'] ]
+
     manufacturer_manager:
         class:     "%manufacturer_manager_class%"
         arguments: [%manufacturer_entity_class%, "@doctrine.orm.entity_manager"]
 
-    customer_grid_manager:
-        class: "%customer_grid_manager_class%"
+    form.type.acme_product:
+        class: Acme\Bundle\DemoFlexibleEntityBundle\Form\Type\ProductType
+        arguments: [@product_manager, 'acme_product_value']
         tags:
-            - name: oro_grid.datagrid.manager
-              datagrid_name: users
-              entity_name: Acme\Bundle\DemoFlexibleEntityBundle\Entity\Customer
-              entity_hint: customers
-              flexible: true
-              route_name: acme_demoflexibleentity_customer_list
-        calls:
-            - [ setRouter, [ @router ] ]
+            - { name: form.type, alias: acme_product }
 
-    product_grid_manager:
-        class: "%product_grid_manager_class%"
+    form.type.acme_product_value:
+        class: Acme\Bundle\DemoFlexibleEntityBundle\Form\Type\ProductValueType
+        arguments: [@product_manager]
         tags:
-            - name: oro_grid.datagrid.manager
-              datagrid_name: users
-              entity_name: Acme\Bundle\DemoFlexibleEntityBundle\Entity\Product
-              entity_hint: products
-              flexible: true
-              route_name: acme_demoflexibleentity_product_list
-        calls:
-            - [ setRouter, [ @router ] ]
+            - { name: form.type, alias: acme_product_value }
 
-    customerattribute_grid_manager:
-        class: "%customerattribute_grid_manager_class%"
+    form.type.acme_customer:
+        class: Acme\Bundle\DemoFlexibleEntityBundle\Form\Type\CustomerType
+        arguments: [@customer_manager, 'acme_customer_value']
         tags:
-            - name: oro_grid.datagrid.manager
-              datagrid_name: attributes
-              entity_hint: attributes
-              route_name: acme_demoflexibleentity_customerattribute_index
-        calls:
-            - [ setRouter, [ @router ] ]
-            - [ setBaseActionUrl, ["acme_demoflexibleentity_customerattribute"] ]
+            - { name: form.type, alias: acme_customer }
 
-    productattribute_grid_manager:
-        class: "%productattribute_grid_manager_class%"
+    form.type.acme_customer_value:
+        class: Acme\Bundle\DemoFlexibleEntityBundle\Form\Type\CustomerValueType
+        arguments: [@customer_manager]
         tags:
-            - name: oro_grid.datagrid.manager
-              datagrid_name: attributes
-              entity_hint: attributes
-              route_name: acme_demoflexibleentity_productattribute_index
-        calls:
-            - [ setRouter, [ @router ] ]
-            - [ setBaseActionUrl, ["acme_demoflexibleentity_productattribute"] ]
+            - { name: form.type, alias: acme_customer_value }
 
 

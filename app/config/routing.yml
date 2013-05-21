@@ -1,3 +1,7 @@
+acme_demo_address:
+    resource: "@AcmeDemoAddressBundle/Resources/config/routing.yml"
+    prefix:   /address
+
 acme_demo_windows:
     resource: "@AcmeDemoWindowsBundle/Resources/config/routing.yml"
     prefix:   /
@@ -84,6 +88,9 @@ oro_dataflow:
 oro_config:
     resource: "@OroConfigBundle/Resources/config/routing.yml"
 
+oro_dataaudit:
+    resource: "@OroDataAuditBundle/Resources/config/routing.yml"
+
 nelmio_api_doc:
     resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
     prefix:   /api/doc
@@ -94,3 +101,7 @@ fos_js_routing:
 _imagine:
     resource: .
     type:     imagine
+
+oro_address:
+    resource: "@OroAddressBundle/Resources/config/routing.yml"
+    prefix:   /

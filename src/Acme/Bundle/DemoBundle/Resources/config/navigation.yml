@@ -22,7 +22,7 @@ oro_menu_config:
             label: 'Groups'
             route: 'oro_user_group_index'
         demo_search:
-            label: 'Advaced search'
+            label: 'Advanced search'
             route: 'acme_demo_advanced_search'
         demo_ui:
             label: 'UI Components'
@@ -58,9 +58,9 @@ oro_menu_config:
                 shortcut_jobs: ~
 
 oro_titles:
-    acme_demo_job_index: Jobs overview
+    acme_demo_job_index: Jobs
     acme_demo_job_show: Job "%%command%%" (ID: %%id%%)
     acme_demo_advanced_search: Search
     acme_demo_search_product: %%product.name%%
-    acme_demo_create_attribute: Add attribute
-    acme_demo_flexibleproductdemo_edit: Edit attribute
+    acme_demo_create_attribute: Add Attribute
+    acme_demo_flexibleproductdemo_edit: Edit Attribute

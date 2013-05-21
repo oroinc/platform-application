@@ -102,27 +102,26 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
     {
         // attribute name
         $attributeCode = 'name';
-        $attribute = $this->getProductManager()->getFlexibleRepository()->findAttributeByCode($attributeCode);
-        $productAttribute = $this->getProductManager()->createAttributeExtended(new TextType());
-        $productAttribute->setName('Name');
+        $productAttribute = $this->getProductManager()->createAttribute('oro_flexibleentity_text');
         $productAttribute->setCode($attributeCode);
+        $productAttribute->setLabel('Name');
         $productAttribute->setTranslatable(true);
         $productAttribute->setSearchable(true);
         $this->getProductManager()->getStorageManager()->persist($productAttribute);
 
         // attribute price
         $attributeCode = 'price';
-        $productAttribute = $this->getProductManager()->createAttributeExtended(new PriceType());
-        $productAttribute->setName('Price');
+        $productAttribute = $this->getProductManager()->createAttribute('oro_flexibleentity_price');
         $productAttribute->setCode($attributeCode);
+        $productAttribute->setLabel('Price');
         $productAttribute->setSearchable(true);
         $this->getProductManager()->getStorageManager()->persist($productAttribute);
 
         // attribute description
         $attributeCode = 'description';
-        $productAttribute = $this->getProductManager()->createAttributeExtended(new TextAreaType());
-        $productAttribute->setName('Description');
+        $productAttribute = $this->getProductManager()->createAttribute('oro_flexibleentity_textarea');
         $productAttribute->setCode($attributeCode);
+        $productAttribute->setLabel('Short description');
         $productAttribute->setTranslatable(true);
         $productAttribute->setScopable(true);
         $productAttribute->setSearchable(true);
@@ -130,19 +129,17 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
 
         // attribute size
         $attributeCode= 'size';
-        $attribute = $this->getProductManager()->getFlexibleRepository()->findAttributeByCode($attributeCode);
-        $productAttribute = $this->getProductManager()->createAttributeExtended(new MetricType());
-        $productAttribute->setName('Size');
+        $productAttribute = $this->getProductManager()->createAttribute('oro_flexibleentity_number');
         $productAttribute->setCode($attributeCode);
+        $productAttribute->setLabel('Size');
         $productAttribute->setSearchable(true);
         $this->getProductManager()->getStorageManager()->persist($productAttribute);
 
         // attribute color and translated options
         $attributeCode= 'color';
-        $attribute = $this->getProductManager()->getFlexibleRepository()->findAttributeByCode($attributeCode);
-        $productAttribute = $this->getProductManager()->createAttributeExtended(new OptionMultiCheckboxType());
-        $productAttribute->setName('Color');
+        $productAttribute = $this->getProductManager()->createAttribute('oro_flexibleentity_multiselect');
         $productAttribute->setCode($attributeCode);
+        $productAttribute->setLabel('Color');
         $productAttribute->setSearchable(true);
         $productAttribute->setTranslatable(false); // only one value but option can be translated in option values
         $colors = array(
@@ -213,7 +210,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
 
             // description
             $locales = array('en_US', 'fr_FR', 'de_DE');
-            $scopes = array(ProductAttribute::SCOPE_ECOMMERCE, ProductAttribute::SCOPE_MOBILE);
+            $scopes = array('ecommerce', 'mobile');
             foreach ($locales as $locale) {
                 foreach ($scopes as $scope) {
                     $value = $this->getProductManager()->createFlexibleValue();
@@ -228,10 +225,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
             // size
             $value = $this->getProductManager()->createFlexibleValue();
             $value->setAttribute($attSize);
-            $metric = new Metric();
-            $metric->setUnit('mm');
-            $metric->setData(rand(5, 10));
-            $value->setData($metric);
+            $value->setData(rand(5, 10));
             $product->addValue($value);
 
             // color

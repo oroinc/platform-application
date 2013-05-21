@@ -34,6 +34,7 @@ assetic:
     debug:                    "%kernel.debug%"
     use_controller:           false
     bundles:
+        - OroAddressBundle
         - OroUIBundle
         - OroUserBundle
         - OroGridBundle
@@ -93,22 +94,22 @@ knp_paginator:
 
 fos_rest:
     view:
-        failed_validation: HTTP_BAD_REQUEST
-        default_engine: php
+        failed_validation:    HTTP_BAD_REQUEST
+        default_engine:       php
         formats:
-            json: true
-            xml: true
+            json:             true
+            xml:              true
     format_listener:
-        prefer_extension: true
+        prefer_extension:     true
     body_listener:
         decoders:
-            json: fos_rest.decoder.json
-            xml: fos_rest.decoder.xml
+            json:             fos_rest.decoder.json
+            xml:              fos_rest.decoder.xml
     routing_loader:
-        default_format: json
+        default_format:       json
 
 fos_js_routing:
-    routes_to_expose:         [oro_api_*]
+    routes_to_expose:         [oro_*]
 
 be_simple_soap:
     cache:
@@ -130,7 +131,11 @@ be_simple_soap:
 stof_doctrine_extensions:
     orm:
         default:
+            translatable:     true
             tree:             true
+            loggable:         true
+    class:
+        loggable:             Oro\Bundle\DataAuditBundle\EventListener\LoggableListener
 
 services:
     cache:
@@ -143,6 +148,7 @@ services:
 
 escape_wsse_authentication:
     authentication_provider_class: Oro\Bundle\UserBundle\Security\WsseUserProvider
+    authentication_listener_class: Oro\Bundle\UserBundle\Security\WsseAuthListener
 
 liip_imagine:
     filter_sets:
@@ -158,8 +164,10 @@ oro_search:
 
 oro_ui:
     settings:
-        product_caption:
-          value:              ORO
+        application_name:
+            value: "ORO"
+        application_title:
+            value: "ORO Business Application Platform"
 
 oro_user:
     settings:
