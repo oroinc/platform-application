@@ -34,7 +34,7 @@ class ProductController extends Controller
         $datagridView = $datagrid->createView();
 
         if ('json' == $request->getRequestFormat()) {
-            return $this->get('oro_grid.renderer')->renderResultsJson($datagridView);
+            return $this->get('oro_grid.renderer')->renderResultsJsonResponse($datagridView);
         }
 
         return array('datagrid' => $datagrid->createView());
