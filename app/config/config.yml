@@ -28,6 +28,7 @@ twig:
     globals:
         bap:
             layout:           AcmeDemoBundle::layout.html.twig  # default layout across all Oro bundles
+            start_route:      oro_default
 
 # Assetic Configuration
 assetic:
