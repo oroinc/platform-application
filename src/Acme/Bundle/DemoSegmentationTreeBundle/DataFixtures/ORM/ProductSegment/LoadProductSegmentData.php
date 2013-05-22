@@ -87,16 +87,16 @@ class LoadProductSegmentData extends AbstractFixture implements OrderedFixtureIn
     /**
      * Create a Segment entity
      *
-     * @param string               $title    Title of the segment
+     * @param string         $code     Segment's code
      * @param ProductSegment $parent   Parent segment
-     * @param array                $products Products that should be associated to this segment
+     * @param array          $products Products that should be associated to this segment
      *
      * @return ProductSegment
      */
-    protected function createSegment($title, $parent = null, $products = array())
+    protected function createSegment($code, $parent = null, $products = array())
     {
         $segment = new ProductSegment();
-        $segment->setTitle($title);
+        $segment->setCode($code);
         $segment->setParent($parent);
 
         foreach ($products as $product) {
