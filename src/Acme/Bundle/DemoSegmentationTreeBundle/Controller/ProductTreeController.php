@@ -78,7 +78,7 @@ class ProductTreeController extends Controller
     }
 
     /**
-     * Search for a segment by its title
+     * Search for a segment by its code
      *
      * @param Request $request
      *
@@ -92,7 +92,7 @@ class ProductTreeController extends Controller
         $search = $request->get('search_str');
         $treeRootId = $request->get('tree_root_id');
 
-        $segments = $this->getSegmentManager()->search($treeRootId, array('title' => $search));
+        $segments = $this->getSegmentManager()->search($treeRootId, array('code' => $search));
 
         $data = JsonSegmentHelper::searchResponse($segments);
 
@@ -113,11 +113,11 @@ class ProductTreeController extends Controller
     public function createNodeAction(Request $request)
     {
         $parentId = $request->get('id');
-        $title = $request->get('title');
+        $code = $request->get('code');
 
         $segment = $this->getSegmentManager()->getSegmentInstance();
 
-        $segment->setTitle($title);
+        $segment->setCode($code);
 
         $repo = $this->getSegmentManager()->getEntityRepository();
         $parent = $repo->find($parentId);
@@ -144,7 +144,7 @@ class ProductTreeController extends Controller
      */
     public function renameNodeAction(Request $request)
     {
-        $this->getSegmentManager()->rename($request->get('id'), $request->get('title'));
+        $this->getSegmentManager()->rename($request->get('id'), $request->get('code'));
         $this->getSegmentManager()->getStorageManager()->flush();
 
         $data = JsonSegmentHelper::statusOKResponse();
@@ -248,9 +248,9 @@ class ProductTreeController extends Controller
      */
     public function createTreeAction(Request $request)
     {
-        $title = $request->get('title');
+        $code = $request->get('code');
 
-        $rootSegment = $this->getSegmentManager()->createTree($title);
+        $rootSegment = $this->getSegmentManager()->createTree($code);
         $this->getSegmentManager()->getStorageManager()->persist($rootSegment);
         $this->getSegmentManager()->getStorageManager()->flush();
 
