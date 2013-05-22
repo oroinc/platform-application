@@ -98,7 +98,7 @@ class GridTest extends \PHPUnit_Extensions_Selenium2TestCase
             //'ID' => array('ID', '='),
             'Username' => array('Username', 'is equal to'),
             'Email' => array('Email', 'contains'),
-            'First name' => array('First name', 'is equal to'),
+            //'First name' => array('First name', 'is equal to'),
             //'Birthday' => array('Birthday', '')
         );
     }
@@ -192,7 +192,7 @@ class GridTest extends \PHPUnit_Extensions_Selenium2TestCase
             //'ID' => array('ID'),
             'Username' => array('Username'),
             'Email' => array('Email'),
-            'First name' => array('First name'),
+            //'First name' => array('First name'),
             //'Birthday' => array('Birthday'),
             //'Company' => array('Company'),
             //'Salary' => array('Salary'),
