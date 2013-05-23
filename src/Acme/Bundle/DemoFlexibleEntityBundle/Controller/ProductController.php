@@ -55,23 +55,20 @@ class ProductController extends Controller
      *      requirements={"_format"="html|json"},
      *      defaults={"_format" = "html"}
      * )
+     * @Template("AcmeDemoFlexibleEntityBundle:Product:list.html.twig")
      */
     public function listAction(Request $request)
     {
         /** @var $gridManager ProductDatagridManager */
         $gridManager = $this->get('product_grid_manager');
         $datagrid = $gridManager->getDatagrid();
+        $datagridView = $datagrid->createView();
 
         if ('json' == $request->getRequestFormat()) {
-            $view = 'OroGridBundle:Datagrid:list.json.php';
-        } else {
-            $view = 'AcmeDemoFlexibleEntityBundle:Product:list.html.twig';
+            return $this->get('oro_grid.renderer')->renderResultsJsonResponse($datagridView);
         }
 
-        return $this->render(
-            $view,
-            array('datagrid' => $datagrid->createView())
-        );
+        return array('datagrid' => $datagridView);
     }
 
     /**
