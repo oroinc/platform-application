@@ -37,6 +37,6 @@ class ProductController extends Controller
             return $this->get('oro_grid.renderer')->renderResultsJsonResponse($datagridView);
         }
 
-        return array('datagrid' => $datagrid->createView());
+        return array('datagrid' => $datagridView);
     }
 }

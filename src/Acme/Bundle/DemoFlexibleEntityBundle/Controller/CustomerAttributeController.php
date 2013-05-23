@@ -36,6 +36,7 @@ class CustomerAttributeController extends Controller
      *      requirements={"_format"="html|json"},
      *      defaults={"_format" = "html"}
      * )
+     * @Template("AcmeDemoFlexibleEntityBundle:CustomerAttribute:index.html.twig")
      */
     public function indexAction(Request $request)
     {
@@ -45,7 +46,7 @@ class CustomerAttributeController extends Controller
         $queryBuilder
             ->select('a')
             ->from('OroFlexibleEntityBundle:Attribute', 'a')
-            ->where("a.entityType = 'Acme\Bundle\DemoFlexibleEntityBundle\Entity\Customer'");
+            ->where("a.entityType = 'Acme\\Bundle\\DemoFlexibleEntityBundle\\Entity\\Customer'");
 
         /** @var $queryFactory QueryFactory */
         $queryFactory = $this->get('customerattribute_grid_manager.default_query_factory');
@@ -54,17 +55,13 @@ class CustomerAttributeController extends Controller
         /** @var $gridManager AttributeDatagridManager */
         $gridManager = $this->get('customerattribute_grid_manager');
         $datagrid = $gridManager->getDatagrid();
+        $datagridView = $datagrid->createView();
 
         if ('json' == $request->getRequestFormat()) {
-            $view = 'OroGridBundle:Datagrid:list.json.php';
-        } else {
-            $view = 'AcmeDemoFlexibleEntityBundle:CustomerAttribute:index.html.twig';
+            return $this->get('oro_grid.renderer')->renderResultsJsonResponse($datagridView);
         }
 
-        return $this->render(
-            $view,
-            array('datagrid' => $datagrid->createView())
-        );
+        return array('datagrid' => $datagridView);
     }
 
     /**
