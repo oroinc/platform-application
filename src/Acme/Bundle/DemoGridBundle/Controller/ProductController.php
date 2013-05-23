@@ -4,6 +4,7 @@ namespace Acme\Bundle\DemoGridBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Oro\Bundle\GridBundle\Datagrid\ORM\QueryFactory\QueryFactory;
 use Oro\Bundle\NavigationBundle\Annotation\TitleTemplate;
@@ -22,6 +23,7 @@ class ProductController extends Controller
      *      defaults={"_format" = "html"}
      * )
      * @TitleTemplate("Products grid")
+     * @Template("AcmeDemoGridBundle:Product:list.html.twig")
      */
     public function listAction(Request $request)
     {
@@ -29,16 +31,12 @@ class ProductController extends Controller
         $productGridManager = $this->get('acme_demo_grid.product_grid.manager');
         $productGridManager->setEntityManager($this->getDoctrine()->getManager());
         $datagrid = $productGridManager->getDatagrid();
+        $datagridView = $datagrid->createView();
 
         if ('json' == $request->getRequestFormat()) {
-            $view = 'OroGridBundle:Datagrid:list.json.php';
-        } else {
-            $view = 'AcmeDemoGridBundle:Product:list.html.twig';
+            return $this->get('oro_grid.renderer')->renderResultsJsonResponse($datagridView);
         }
 
-        return $this->render(
-            $view,
-            array('datagrid' => $datagrid->createView())
-        );
+        return array('datagrid' => $datagridView);
     }
 }
