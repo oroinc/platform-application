@@ -1,0 +1,90 @@
+{% extends bap.layout is defined ? bap.layout : 'AcmeDemoFormBundle::layout.html.twig' %}
+{% form_theme form with 'OroUIBundle:Form:fields.html.twig' %}
+
+{% block content %}
+    <div class="container-fluid">
+        {{ JSFV(form) }}
+        <form id="{{ form.name }}" action="{{ path('acme_demo_form_person_create') }}" {{ form_enctype(form) }} method="post" data-collect="true" class="scrollable-substructure">
+            <div class="navigation clearfix navbar-extra">
+                <div class="row">
+                    <div class="pull-right">
+                        <div class="pull-right">
+                            <div class="pull-left customer-info-top-actions">
+                                <button type="submit" class="btn btn-success">{{ ' Save'|trans }}</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pull-left">
+                        <div class="customer-info well-small">
+                            <div class="customer-content">
+                                <h1 class="usser-name">Create Person</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layout-content">
+                <div id="navbarExample" class="navbar navbar-static scrollspy-nav">
+                    <div class="navbar-inner">
+                        <div class="container-fluid" style="width: auto;">
+                            <ul class="nav">
+                                <li class="active"><a href="#scroll-main">{{ 'Overview'|trans }}</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix">
+                    {% if form_errors(form) %}
+                        <div class="customer-info-actions container-fluid well-small">
+                            <div class="pull-left alert alert-error">
+                                <button class="close" type="button" data-dismiss="alert">×</button>
+                                {{ form_errors(form) }}
+                            </div>
+                        </div>
+                    {% endif %}
+                    <div data-spy="scroll" data-target="#navbarExample" data-offset="50" class="scrollspy container-fluid scrollable-container">
+                        <div class="usser-row">
+                            <h4 id="scroll-main" class="scrollspy-title">{{ 'Overview'|trans }}</h4>
+                            <div class="row-fluid row-fluid-divider">
+                                <fieldset class="form-horizontal span6">
+                                    <h5 class="usser-fiedset"><span>Basic Information</span></h5>
+                                    {{ form_row(form.gender) }}
+                                    {{ form_row(form.dob) }}
+                                    {{ form_row(form.firstName) }}
+                                    {{ form_row(form.lastName) }}
+                                    {{ form_row(form.about) }}
+                                </fieldset>
+                                <fieldset class="form-horizontal span6">
+                                    <h5 class="usser-fiedset"><span>Account Information</span></h5>
+                                    {{ form_row(form.username) }}
+                                    {{ form_row(form.email) }}
+                                    {{ form_row(form.plainPassword) }}
+                                    {{ form_row(form.email) }}
+                                    {{ form_row(form.avatar) }}
+                                </fieldset>
+                            </div>
+                            <div class="row-fluid">
+                                <fieldset class="form-horizontal">
+                                    {{ form_row(form.hobbies) }}
+                                </fieldset>
+                            </div>
+                            <div class="row-fluid">
+                                <fieldset class="form-horizontal">
+                                    {{ form_row(form.subscriptions) }}
+                                </fieldset>
+                            </div>
+                            <div class="row-fluid">
+                                <fieldset class="form-horizontal">
+                                    {{ form_row(form.acceptTerms) }}
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="hide">
+                            {{ form_rest(form) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock content %}

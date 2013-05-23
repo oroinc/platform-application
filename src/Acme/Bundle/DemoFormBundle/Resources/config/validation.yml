@@ -1,0 +1,52 @@
+Acme\Bundle\DemoFormBundle\Form\Model\Person:
+    properties:
+        firstName:
+            - NotBlank: ~
+            - Length:
+                max: 100
+        lastName:
+            - NotBlank: ~
+            - Length:
+                max: 100
+        about:
+            - NotBlank: ~
+        username:
+            - NotBlank: ~
+            - Length:
+                min: 3
+            - Regex:
+                pattern: "/^[a-z]/i"
+                message: "First character must be a latin letter"
+            - Regex:
+                pattern: "/^[a-z0-9_]{2,*}+$/i"
+                message: "Please, type only latin letters, numbers or underscores"
+        email:
+            - NotBlank: ~
+            - Length:
+                min: 6
+                max: 255
+            - Email: ~
+        plainPassword:
+            - NotBlank: ~
+            - Length:
+                min: 6
+                max: 255
+        gender:
+            - NotBlank: ~
+        hobbies:
+            - Count:
+                min: 1
+                minMessage: "Please, select at least one hobby"
+        subscriptions:
+            - Count:
+                min: 1
+                minMessage: "Please, select at least one subscription"
+        avatar:
+            - File:
+                mimeTypes: ["image/jpeg", "image/png"]
+                maxSize: 1024k
+                mimeTypesMessage: Please upload a valid PNG or JPEG image
+        acceptTerms:
+            - NotBlank: ~
+            - "True":
+                message: "Please, accept terms and conditions"

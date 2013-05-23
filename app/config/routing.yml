@@ -37,6 +37,11 @@ acme_demo_filter:
     type:     annotation
     prefix:   /filter/
 
+acme_demo_form:
+    resource: "@AcmeDemoFormBundle/Controller/"
+    type:     annotation
+    prefix:   /form/
+
 oro_default:
     pattern:  /{_locale}
     defaults:
