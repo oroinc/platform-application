@@ -28,18 +28,21 @@ twig:
     globals:
         bap:
             layout:           AcmeDemoBundle::layout.html.twig  # default layout across all Oro bundles
+            start_route:      oro_default
 
 # Assetic Configuration
 assetic:
     debug:                    "%kernel.debug%"
     use_controller:           false
     bundles:
+        - OroAddressBundle
         - OroUIBundle
         - OroUserBundle
         - OroGridBundle
         - OroFilterBundle
         - OroNavigationBundle
         - OroWindowsBundle
+        - OroSegmentationTreeBundle
         - AcmeDemoBundle
         - AcmeDemoSegmentationTreeBundle
         - AcmeDemoWindowsBundle
@@ -130,7 +133,11 @@ be_simple_soap:
 stof_doctrine_extensions:
     orm:
         default:
+            translatable:     true
             tree:             true
+            loggable:         true
+    class:
+        loggable:             Oro\Bundle\DataAuditBundle\EventListener\LoggableListener
 
 services:
     cache:
@@ -159,8 +166,10 @@ oro_search:
 
 oro_ui:
     settings:
-        product_caption:
-          value:              ORO
+        application_name:
+            value: "ORO"
+        application_title:
+            value: "ORO Business Application Platform"
 
 oro_user:
     settings:

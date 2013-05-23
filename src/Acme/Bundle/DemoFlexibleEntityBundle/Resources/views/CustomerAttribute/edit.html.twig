@@ -1,6 +1,6 @@
 {% extends bap.layout is defined ? bap.layout : 'AcmeDemoFlexibleEntityBundle::layout.html.twig' %}
 
-{% set title = form.vars.value.id ? 'Edit attribute' : 'Add attribute' %}
+{% set title = form.vars.value.id ? 'Edit Attribute' : 'Add Attribute' %}
 
 {% block content %}
 <form action="{{ form.vars.value.id ? path('acme_demoflexibleentity_customerattribute_edit', { id: form.vars.value.id }) : path('acme_demoflexibleentity_customerattribute_create') }}" method="POST" class="form-register">

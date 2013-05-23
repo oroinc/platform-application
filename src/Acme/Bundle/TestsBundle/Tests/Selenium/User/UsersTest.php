@@ -2,7 +2,7 @@
 
 namespace Acme\Bundle\TestsBundle\Tests\Selenium;
 
-use Acme\Bundle\TestsBundle\Pages\BAP\Login;
+use Oro\Bundle\TestFrameworkBundle\Pages\Objects\Login;
 
 class UsersTest extends \PHPUnit_Extensions_Selenium2TestCase
 {
@@ -45,7 +45,7 @@ class UsersTest extends \PHPUnit_Extensions_Selenium2TestCase
             ->save()
             ->assertMessage('User successfully saved')
             ->close()
-            ->assertTitle('Users overview - User Management');
+            ->assertTitle('Users - User Management');
 
         return $username;
     }
@@ -67,7 +67,7 @@ class UsersTest extends \PHPUnit_Extensions_Selenium2TestCase
             ->filterBy('Username', $username)
             ->open(array($username))
             ->edit()
-            ->assertTitle('Last_' . $username . ', First_' . $username . ' - Edit profile - User Management')
+            ->assertTitle('Last_' . $username . ', First_' . $username . ' - Update profile - User Management')
             ->setUsername($newUsername)
             ->setFirstname('First_' . $newUsername)
             ->setLastname('Last_' . $newUsername)
@@ -93,7 +93,7 @@ class UsersTest extends \PHPUnit_Extensions_Selenium2TestCase
             ->filterBy('Username', $username)
             ->open(array($username))
             ->delete()
-            ->assertTitle('Users overview - User Management')
+            ->assertTitle('Users - User Management')
             ->assertMessage('User successfully removed');
 
         $login->openUsers()->filterBy('Username', $username)->assertNoDataMessage('No users were found to match your search');

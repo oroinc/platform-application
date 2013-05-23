@@ -1,0 +1,21 @@
+oro_menu_config:
+    items:
+        address_demo_tab:
+            label: 'Address Demo'
+            uri: '#'
+            extras:
+                routes: ['acme_demo_address_*']
+        address_demo_main:
+            label: 'Common address'
+            route: 'acme_demo_address_create'
+        address_demo_service:
+            label: 'Separated address'
+            route: 'acme_demo_service_address_create'
+
+    tree:
+        application_menu:
+            children:
+                address_demo_tab:
+                    children:
+                        address_demo_main:
+                        address_demo_service:

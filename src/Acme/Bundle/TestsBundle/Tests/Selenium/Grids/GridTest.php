@@ -2,8 +2,8 @@
 
 namespace Acme\Bundle\TestsBundle\Tests\Selenium;
 
-use Acme\Bundle\TestsBundle\Pages\BAP\Login;
-use Acme\Bundle\TestsBundle\Pages\BAP\Users;
+use Oro\Bundle\TestFrameworkBundle\Pages\Objects\Login;
+use Oro\Bundle\TestFrameworkBundle\Pages\Objects\Users;
 
 class GridTest extends \PHPUnit_Extensions_Selenium2TestCase
 {
@@ -95,7 +95,7 @@ class GridTest extends \PHPUnit_Extensions_Selenium2TestCase
     public function filterData()
     {
         return array(
-            'ID' => array('ID', '='),
+            //'ID' => array('ID', '='),
             'Username' => array('Username', 'is equal to'),
             'Email' => array('Email', 'contains'),
             //'First name' => array('First name', 'is equal to'),
@@ -113,15 +113,16 @@ class GridTest extends \PHPUnit_Extensions_Selenium2TestCase
         $userData = $users->getRandomEntity();
         $this->assertTrue($users->entityExists($userData));
         $countOfRecords = $users->getRowsCount();
-        $this->assertLessThan(
-            $countOfRecords,
-            $users->addFilter('Company')
-                ->filterBy('Company', $userData[strtoupper('Company')], 'is equal to')
-                ->getRowsCount()
-        );
         $this->assertEquals(
             $countOfRecords,
-            $users->removeFilter('Company')
+            $users->removeFilter('Email')
+                ->getRowsCount()
+        );
+
+        $this->assertEquals(
+            1,
+            $users->addFilter('Email')
+                ->filterBy('Email', $userData[strtoupper('Email')], 'is equal to')
                 ->getRowsCount()
         );
     }
@@ -188,12 +189,13 @@ class GridTest extends \PHPUnit_Extensions_Selenium2TestCase
     public function columnTitle()
     {
         return array(
-            'ID' => array('ID'),
+            //'ID' => array('ID'),
             'Username' => array('Username'),
             'Email' => array('Email'),
-            'Birthday' => array('Birthday'),
-            'Company' => array('Company'),
-            'Salary' => array('Salary'),
+            //'First name' => array('First name'),
+            //'Birthday' => array('Birthday'),
+            //'Company' => array('Company'),
+            //'Salary' => array('Salary'),
         );
     }
 }

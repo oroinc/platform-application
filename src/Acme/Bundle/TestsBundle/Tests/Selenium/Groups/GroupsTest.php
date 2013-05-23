@@ -2,8 +2,8 @@
 
 namespace Acme\Bundle\TestsBundle\Tests\Selenium;
 
-use Acme\Bundle\TestsBundle\Test\ToolsAPI;
-use Acme\Bundle\TestsBundle\Pages\BAP\Login;
+use Oro\Bundle\TestFrameworkBundle\Test\ToolsAPI;
+use Oro\Bundle\TestFrameworkBundle\Pages\Objects\Login;
 
 class GroupsTest extends \PHPUnit_Extensions_Selenium2TestCase
 {
@@ -13,8 +13,8 @@ class GroupsTest extends \PHPUnit_Extensions_Selenium2TestCase
 
     protected $defaultGroups = array(
         'header' => array('ID' => 'ID', 'NAME' => 'NAME', 'ROLES' => 'ROLES', '' => 'ACTION'),
-        '2' => array('2' => '2', 'Administrators' => 'Administrators', '' => 'ROLES', '...' => 'ACTION'),
-        '1' => array('1' => '1', 'Managers' => 'Managers', '' => 'ROLES', '...' => 'ACTION')
+        'Administrators' => array('2' => '2', 'Administrators' => 'Administrators', '' => 'ROLES', '...' => 'ACTION'),
+        'Managers' => array('1' => '1', 'Managers' => 'Managers', '' => 'ROLES', '...' => 'ACTION')
     );
 
     protected function setUp()
@@ -37,10 +37,10 @@ class GroupsTest extends \PHPUnit_Extensions_Selenium2TestCase
             ->setPassword(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_PASS)
             ->submit()
             ->openGroups()
-            ->assertTitle('Groups overview - User Management');
+            ->assertTitle('Groups - User Management');
     }
 
-    public function testRolesGridDefaultContent()
+    public function testGroupsGridDefaultContent()
     {
         $login = new Login($this);
         $groups = $login->setUsername(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_LOGIN)
@@ -57,7 +57,7 @@ class GroupsTest extends \PHPUnit_Extensions_Selenium2TestCase
         }
 
         foreach ($records as $row) {
-            $columns = $row->elements($this->using('xpath')->value("td"));
+            $columns = $row->elements($this->using('xpath')->value("td[not(contains(@style, 'display: none;'))]"));
             $id = null;
             foreach ($columns as $column) {
                 $content = $column->text();

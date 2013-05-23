@@ -60,7 +60,7 @@ class ProductTreeController extends Controller
      * @return Response
      *
      * @Method("GET")
-     * @Route("/children")
+     * @Route("/children", name="acme_demotree_children")
      */
     public function childrenAction(Request $request)
     {
@@ -78,7 +78,7 @@ class ProductTreeController extends Controller
     }
 
     /**
-     * Search for a segment by its title
+     * Search for a segment by its code
      *
      * @param Request $request
      *
@@ -92,7 +92,7 @@ class ProductTreeController extends Controller
         $search = $request->get('search_str');
         $treeRootId = $request->get('tree_root_id');
 
-        $segments = $this->getSegmentManager()->search($treeRootId, array('title' => $search));
+        $segments = $this->getSegmentManager()->search($treeRootId, array('code' => $search));
 
         $data = JsonSegmentHelper::searchResponse($segments);
 
@@ -113,11 +113,11 @@ class ProductTreeController extends Controller
     public function createNodeAction(Request $request)
     {
         $parentId = $request->get('id');
-        $title = $request->get('title');
+        $code = $request->get('code');
 
         $segment = $this->getSegmentManager()->getSegmentInstance();
 
-        $segment->setTitle($title);
+        $segment->setCode($code);
 
         $repo = $this->getSegmentManager()->getEntityRepository();
         $parent = $repo->find($parentId);
@@ -144,7 +144,7 @@ class ProductTreeController extends Controller
      */
     public function renameNodeAction(Request $request)
     {
-        $this->getSegmentManager()->rename($request->get('id'), $request->get('title'));
+        $this->getSegmentManager()->rename($request->get('id'), $request->get('code'));
         $this->getSegmentManager()->getStorageManager()->flush();
 
         $data = JsonSegmentHelper::statusOKResponse();
@@ -163,7 +163,7 @@ class ProductTreeController extends Controller
      */
     public function removeNodeAction(Request $request)
     {
-        $this->getSegmentManager()->removeFromId($request->get('id'));
+        $this->getSegmentManager()->removeById($request->get('id'));
         $this->getSegmentManager()->getStorageManager()->flush();
 
         $data = JsonSegmentHelper::statusOKResponse();
@@ -183,13 +183,17 @@ class ProductTreeController extends Controller
     public function moveNodeAction(Request $request)
     {
         $segmentId = $request->get('id');
-        $referenceId = $request->get('ref');
+        $parentId = $request->get('parent');
+        $prevSiblingId = $request->get('prev_sibling');
+
 
         if ($request->get('copy') == 1) {
-            $this->getSegmentManager()->copy($segmentId, $referenceId);
+            $this->getSegmentManager()->copy($segmentId, $parentId, $prevSiblingId);
         } else {
-            $this->getSegmentManager()->move($segmentId, $referenceId);
+            $this->getSegmentManager()->move($segmentId, $parentId, $prevSiblingId);
         }
+
+        $this->getSegmentManager()->getStorageManager()->flush();
 
         // format response to json content
         $data = JsonSegmentHelper::statusOKResponse();
@@ -204,7 +208,7 @@ class ProductTreeController extends Controller
      * @return Response
      *
      * @Method("GET")
-     * @Route("/trees")
+     * @Route("/trees", name="acme_demotree_tree")
      */
     public function treesAction(Request $request)
     {
@@ -244,9 +248,9 @@ class ProductTreeController extends Controller
      */
     public function createTreeAction(Request $request)
     {
-        $title = $request->get('title');
+        $code = $request->get('code');
 
-        $rootSegment = $this->getSegmentManager()->createTree($title);
+        $rootSegment = $this->getSegmentManager()->createTree($code);
         $this->getSegmentManager()->getStorageManager()->persist($rootSegment);
         $this->getSegmentManager()->getStorageManager()->flush();
 
