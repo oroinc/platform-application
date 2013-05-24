@@ -19,5 +19,8 @@ monolog:
             type:  firephp
             level: info
 
-#swiftmailer:
-#    delivery_address: me@example.com
+assetic:
+    debug:          true
+    use_controller: true
+    filters:
+        lessphp: ~
