@@ -12,4 +12,5 @@ composer.lock
 /web/uploads/users/*
 /web/media/cache
 /app/config/parameters.yml
+/app/cache/*
 *~
