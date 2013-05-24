@@ -34,8 +34,9 @@ class UsersTest extends \PHPUnit_Extensions_Selenium2TestCase
             ->submit()
             ->openUsers()
             ->add()
-            ->assertTitle('New profile - User Management')
+            ->assertTitle('New Profile - User Management')
             ->setUsername($username)
+            ->enable()
             ->setFirstpassword('123123q')
             ->setSecondpassword('123123q')
             ->setFirstname('First_'.$username)
@@ -67,7 +68,7 @@ class UsersTest extends \PHPUnit_Extensions_Selenium2TestCase
             ->filterBy('Username', $username)
             ->open(array($username))
             ->edit()
-            ->assertTitle('Last_' . $username . ', First_' . $username . ' - Edit profile - User Management')
+            ->assertTitle('Last_' . $username . ', First_' . $username . ' - Update profile - User Management')
             ->setUsername($newUsername)
             ->setFirstname('First_' . $newUsername)
             ->setLastname('Last_' . $newUsername)
@@ -85,7 +86,6 @@ class UsersTest extends \PHPUnit_Extensions_Selenium2TestCase
      */
     public function testDeleteUser($username)
     {
-        $this->markTestSkipped('Bug BAP-726');
         $login = new Login($this);
         $login->setUsername(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_LOGIN)
             ->setPassword(PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_PASS)

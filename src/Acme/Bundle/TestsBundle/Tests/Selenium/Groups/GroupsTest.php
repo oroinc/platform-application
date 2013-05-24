@@ -57,7 +57,7 @@ class GroupsTest extends \PHPUnit_Extensions_Selenium2TestCase
         }
 
         foreach ($records as $row) {
-            $columns = $row->elements($this->using('xpath')->value("td"));
+            $columns = $row->elements($this->using('xpath')->value("td[not(contains(@style, 'display: none;'))]"));
             $id = null;
             foreach ($columns as $column) {
                 $content = $column->text();
