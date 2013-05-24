@@ -34,7 +34,7 @@ class UsersTest extends \PHPUnit_Extensions_Selenium2TestCase
             ->submit()
             ->openUsers()
             ->add()
-            ->assertTitle('New Profile - User Management')
+            ->assertTitle('New User - User Management')
             ->setUsername($username)
             ->enable()
             ->setFirstpassword('123123q')
@@ -68,12 +68,12 @@ class UsersTest extends \PHPUnit_Extensions_Selenium2TestCase
             ->filterBy('Username', $username)
             ->open(array($username))
             ->edit()
-            ->assertTitle('Last_' . $username . ', First_' . $username . ' - Update Profile - User Management')
+            ->assertTitle('Last_' . $username . ', First_' . $username . ' - Update User - User Management')
             ->setUsername($newUsername)
             ->setFirstname('First_' . $newUsername)
             ->setLastname('Last_' . $newUsername)
             ->save()
-            ->assertTitle('Last_' . $newUsername . ', First_' . $newUsername. ' - View Profile - User Management')
+            ->assertTitle('Last_' . $newUsername . ', First_' . $newUsername. ' - View User - User Management')
             ->assertMessage('User successfully saved')
             ->close();
 

@@ -7,7 +7,7 @@ oro_menu_config:
         user_registration_register:
             translateDomain: 'menu'
             route: 'oro_menu_submenu'
-        user_profile_show:
+        user_user_show:
             translateDomain: 'menu'
             showNonAuthorized: true
             route: 'oro_menu_submenu'
@@ -37,7 +37,7 @@ oro_menu_config:
                 brand: 'Oro'
                 brandLink: '/'
             children:
-                user_profile_show:
+                user_user_show:
                     position: 10
                     children:
                         user_change_password: ~
