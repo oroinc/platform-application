@@ -87,6 +87,7 @@ class PersonType extends AbstractType
                 array(
                     'choices' => array('Male' => 'Male', 'Female' => 'Female'),
                     'required' => true,
+                    'empty_value' => 'Choose a gender',
                 )
             )
             ->add(

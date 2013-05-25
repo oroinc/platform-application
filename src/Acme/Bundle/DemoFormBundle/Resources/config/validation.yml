@@ -8,6 +8,8 @@ Acme\Bundle\DemoFormBundle\Form\Model\Person:
             - NotBlank: ~
             - Length:
                 max: 100
+        dob:
+            - Date: ~
         about:
             - NotBlank: ~
         username:
@@ -42,6 +44,7 @@ Acme\Bundle\DemoFormBundle\Form\Model\Person:
                 min: 1
                 minMessage: "Please, select at least one subscription"
         avatar:
+            - NotBlank: ~
             - File:
                 mimeTypes: ["image/jpeg", "image/png"]
                 maxSize: 1024k
