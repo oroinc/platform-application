@@ -1,0 +1,9 @@
+{% extends 'AcmeDemoBundle:Default:index.html.twig' %}
+
+{% block head %}
+{{ parent() }}
+{% block stylesheets %}{% endblock %}
+{% block javascripts %}{% endblock %}
+{% endblock %}
+
+{% oro_title_set({suffix: " - " ~ "Grid Bundle"|trans}) %}

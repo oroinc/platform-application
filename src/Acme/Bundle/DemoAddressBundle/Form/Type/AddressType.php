@@ -15,7 +15,6 @@ class AddressType extends AddressTypeBase
         parent::addEntityFields($builder);
 
         $builder->get('postalCode')->setRequired(false);
-        $builder->get('mark')->setRequired(false);
 
         $builder->add(
             'state',
