@@ -7,8 +7,8 @@
                 <target>Non authorized (EN)</target>
             </trans-unit>
             <trans-unit id="2">
-                <source>user_profile_show</source>
-                <target>User Profile</target>
+                <source>user_user_show</source>
+                <target>User</target>
             </trans-unit>
         </body>
     </file>

@@ -181,20 +181,6 @@ class ProductDatagridManager extends DatagridManager
      */
     protected function createQuery()
     {
-        $this->queryFactory->setQueryBuilder($this->createQueryBuilder());
-        return $this->queryFactory->createQuery();
-    }
-
-    /**
-     * @return \Doctrine\ORM\QueryBuilder
-     * @throws \LogicException
-     */
-    protected function createQueryBuilder()
-    {
-        if (!$this->entityManager) {
-            throw new \LogicException('Datagrid manager\'s entity manager is not configured.');
-        }
-
         $queryBuilder = $this->entityManager->createQueryBuilder();
         $queryBuilder
             ->select(
@@ -205,14 +191,17 @@ class ProductDatagridManager extends DatagridManager
                 'p.count',
                 'p.price',
                 'p.description',
-                'p.createDate',
-                'COUNT(p.id) AS product_count'
+                'p.createDate'
             )
             ->from('AcmeDemoBundle:Manufacturer', 'm')
             ->leftJoin('m.products', 'p')
             ->groupBy('m.id');
 
-        return $queryBuilder;
+        $this->queryFactory->setQueryBuilder($queryBuilder);
+        $query = $this->queryFactory->createQuery();
+        $query->addSelect('COUNT(p.id) AS product_count', true);
+
+        return $query;
     }
 
     /**

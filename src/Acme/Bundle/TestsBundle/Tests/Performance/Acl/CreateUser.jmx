@@ -251,7 +251,7 @@
             <hashTree/>
             <HtmlExtractor guiclass="HtmlExtractorGui" testclass="HtmlExtractor" testname="CSS/JQuery Extractor" enabled="true">
               <stringProp name="HtmlExtractor.refname">csrf_token</stringProp>
-              <stringProp name="HtmlExtractor.expr">input[name=oro_user_profile_form[_token]]</stringProp>
+              <stringProp name="HtmlExtractor.expr">input[name=oro_user_user_form[_token]]</stringProp>
               <stringProp name="HtmlExtractor.attribute">value</stringProp>
               <stringProp name="HtmlExtractor.default"></stringProp>
               <stringProp name="HtmlExtractor.match_number"></stringProp>
@@ -262,177 +262,177 @@
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Save User" enabled="true">
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
               <collectionProp name="Arguments.arguments">
-                <elementProp name="oro_user_profile_form[username]" elementType="HTTPArgument">
+                <elementProp name="oro_user_user_form[username]" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">oro_user_profile_form[username]</stringProp>
+                  <stringProp name="Argument.name">oro_user_user_form[username]</stringProp>
                   <stringProp name="Argument.value">test_${user_counter}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
-                <elementProp name="oro_user_profile_form[plainPassword][first]" elementType="HTTPArgument">
+                <elementProp name="oro_user_user_form[plainPassword][first]" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">oro_user_profile_form[plainPassword][first]</stringProp>
+                  <stringProp name="Argument.name">oro_user_user_form[plainPassword][first]</stringProp>
                   <stringProp name="Argument.value">123123q</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
-                <elementProp name="oro_user_profile_form[plainPassword][second]" elementType="HTTPArgument">
+                <elementProp name="oro_user_user_form[plainPassword][second]" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">oro_user_profile_form[plainPassword][second]</stringProp>
+                  <stringProp name="Argument.name">oro_user_user_form[plainPassword][second]</stringProp>
                   <stringProp name="Argument.value">123123q</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
-                <elementProp name="oro_user_profile_form[firstName]" elementType="HTTPArgument">
+                <elementProp name="oro_user_user_form[firstName]" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">oro_user_profile_form[firstName]</stringProp>
+                  <stringProp name="Argument.name">oro_user_user_form[firstName]</stringProp>
                   <stringProp name="Argument.value">First_${user_counter}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
-                <elementProp name="oro_user_profile_form[lastName]" elementType="HTTPArgument">
+                <elementProp name="oro_user_user_form[lastName]" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">oro_user_profile_form[lastName]</stringProp>
+                  <stringProp name="Argument.name">oro_user_user_form[lastName]</stringProp>
                   <stringProp name="Argument.value">Last_${user_counter}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
-                <elementProp name="oro_user_profile_form[birthday]" elementType="HTTPArgument">
+                <elementProp name="oro_user_user_form[birthday]" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">oro_user_profile_form[birthday]</stringProp>
+                  <stringProp name="Argument.name">oro_user_user_form[birthday]</stringProp>
                   <stringProp name="Argument.value">01/01/1999</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
-                <elementProp name="oro_user_profile_form[email]" elementType="HTTPArgument">
+                <elementProp name="oro_user_user_form[email]" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">oro_user_profile_form[email]</stringProp>
+                  <stringProp name="Argument.name">oro_user_user_form[email]</stringProp>
                   <stringProp name="Argument.value">test_${user_counter}@example.com</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
-                <elementProp name="oro_user_profile_form[groups][]" elementType="HTTPArgument">
+                <elementProp name="oro_user_user_form[groups][]" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">oro_user_profile_form[groups][]</stringProp>
+                  <stringProp name="Argument.name">oro_user_user_form[groups][]</stringProp>
                   <stringProp name="Argument.value">2</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
-                <elementProp name="oro_user_profile_form[rolesCollection][]" elementType="HTTPArgument">
+                <elementProp name="oro_user_user_form[rolesCollection][]" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">oro_user_profile_form[rolesCollection][]</stringProp>
+                  <stringProp name="Argument.name">oro_user_user_form[rolesCollection][]</stringProp>
                   <stringProp name="Argument.value">1</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
-                <elementProp name="oro_user_profile_form[attributes][0][id]" elementType="HTTPArgument">
+                <elementProp name="oro_user_user_form[attributes][0][id]" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">oro_user_profile_form[attributes][0][id]</stringProp>
+                  <stringProp name="Argument.name">oro_user_user_form[attributes][0][id]</stringProp>
                   <stringProp name="Argument.value"></stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
-                <elementProp name="oro_user_profile_form[attributes][0][varchar]" elementType="HTTPArgument">
+                <elementProp name="oro_user_user_form[attributes][0][varchar]" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">oro_user_profile_form[attributes][0][varchar]</stringProp>
+                  <stringProp name="Argument.name">oro_user_user_form[attributes][0][varchar]</stringProp>
                   <stringProp name="Argument.value">MageCore</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
-                <elementProp name="oro_user_profile_form[attributes][1][id]" elementType="HTTPArgument">
+                <elementProp name="oro_user_user_form[attributes][1][id]" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">oro_user_profile_form[attributes][1][id]</stringProp>
+                  <stringProp name="Argument.name">oro_user_user_form[attributes][1][id]</stringProp>
                   <stringProp name="Argument.value"></stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
-                <elementProp name="oro_user_profile_form[attributes][1][decimal]" elementType="HTTPArgument">
+                <elementProp name="oro_user_user_form[attributes][1][decimal]" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">oro_user_profile_form[attributes][1][decimal]</stringProp>
+                  <stringProp name="Argument.name">oro_user_user_form[attributes][1][decimal]</stringProp>
                   <stringProp name="Argument.value">1000</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
-                <elementProp name="oro_user_profile_form[attributes][2][id]" elementType="HTTPArgument">
+                <elementProp name="oro_user_user_form[attributes][2][id]" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">oro_user_profile_form[attributes][2][id]</stringProp>
+                  <stringProp name="Argument.name">oro_user_user_form[attributes][2][id]</stringProp>
                   <stringProp name="Argument.value"></stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
-                <elementProp name="oro_user_profile_form[attributes][2][text]" elementType="HTTPArgument">
+                <elementProp name="oro_user_user_form[attributes][2][text]" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">oro_user_profile_form[attributes][2][text]</stringProp>
+                  <stringProp name="Argument.name">oro_user_user_form[attributes][2][text]</stringProp>
                   <stringProp name="Argument.value">Address</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
-                <elementProp name="oro_user_profile_form[attributes][3][id]" elementType="HTTPArgument">
+                <elementProp name="oro_user_user_form[attributes][3][id]" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">oro_user_profile_form[attributes][3][id]</stringProp>
+                  <stringProp name="Argument.name">oro_user_user_form[attributes][3][id]</stringProp>
                   <stringProp name="Argument.value"></stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
-                <elementProp name="oro_user_profile_form[attributes][3][varchar]" elementType="HTTPArgument">
+                <elementProp name="oro_user_user_form[attributes][3][varchar]" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">oro_user_profile_form[attributes][3][varchar]</stringProp>
+                  <stringProp name="Argument.name">oro_user_user_form[attributes][3][varchar]</stringProp>
                   <stringProp name="Argument.value"></stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
-                <elementProp name="oro_user_profile_form[attributes][4][id]" elementType="HTTPArgument">
+                <elementProp name="oro_user_user_form[attributes][4][id]" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">oro_user_profile_form[attributes][4][id]</stringProp>
+                  <stringProp name="Argument.name">oro_user_user_form[attributes][4][id]</stringProp>
                   <stringProp name="Argument.value"></stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
-                <elementProp name="oro_user_profile_form[attributes][4][option]" elementType="HTTPArgument">
+                <elementProp name="oro_user_user_form[attributes][4][option]" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">oro_user_profile_form[attributes][4][option]</stringProp>
+                  <stringProp name="Argument.name">oro_user_user_form[attributes][4][option]</stringProp>
                   <stringProp name="Argument.value">1</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
-                <elementProp name="oro_user_profile_form[attributes][5][id]" elementType="HTTPArgument">
+                <elementProp name="oro_user_user_form[attributes][5][id]" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">oro_user_profile_form[attributes][5][id]</stringProp>
+                  <stringProp name="Argument.name">oro_user_user_form[attributes][5][id]</stringProp>
                   <stringProp name="Argument.value"></stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
-                <elementProp name="oro_user_profile_form[attributes][5][varchar]" elementType="HTTPArgument">
+                <elementProp name="oro_user_user_form[attributes][5][varchar]" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">oro_user_profile_form[attributes][5][varchar]</stringProp>
+                  <stringProp name="Argument.name">oro_user_user_form[attributes][5][varchar]</stringProp>
                   <stringProp name="Argument.value"></stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
-                <elementProp name="oro_user_profile_form[attributes][6][id]" elementType="HTTPArgument">
+                <elementProp name="oro_user_user_form[attributes][6][id]" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">oro_user_profile_form[attributes][6][id]</stringProp>
+                  <stringProp name="Argument.name">oro_user_user_form[attributes][6][id]</stringProp>
                   <stringProp name="Argument.value"></stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
-                <elementProp name="oro_user_profile_form[id]" elementType="HTTPArgument">
+                <elementProp name="oro_user_user_form[id]" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">oro_user_profile_form[id]</stringProp>
+                  <stringProp name="Argument.name">oro_user_user_form[id]</stringProp>
                   <stringProp name="Argument.value"></stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
-                <elementProp name="oro_user_profile_form[enabled]" elementType="HTTPArgument">
+                <elementProp name="oro_user_user_form[enabled]" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">oro_user_profile_form[enabled]</stringProp>
+                  <stringProp name="Argument.name">oro_user_user_form[enabled]</stringProp>
                   <stringProp name="Argument.value">1</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
-                <elementProp name="oro_user_profile_form[_token]" elementType="HTTPArgument">
+                <elementProp name="oro_user_user_form[_token]" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">oro_user_profile_form[_token]</stringProp>
+                  <stringProp name="Argument.name">oro_user_user_form[_token]</stringProp>
                   <stringProp name="Argument.value">${csrf_token}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
@@ -548,7 +548,7 @@
             <hashTree/>
             <HtmlExtractor guiclass="HtmlExtractorGui" testclass="HtmlExtractor" testname="CSS/JQuery Extractor" enabled="true">
               <stringProp name="HtmlExtractor.refname">csrf_token</stringProp>
-              <stringProp name="HtmlExtractor.expr">input[name=oro_user_profile_form[_token]]</stringProp>
+              <stringProp name="HtmlExtractor.expr">input[name=oro_user_user_form[_token]]</stringProp>
               <stringProp name="HtmlExtractor.attribute">value</stringProp>
               <stringProp name="HtmlExtractor.default"></stringProp>
               <stringProp name="HtmlExtractor.match_number"></stringProp>
@@ -559,177 +559,177 @@
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Save User" enabled="true">
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
               <collectionProp name="Arguments.arguments">
-                <elementProp name="oro_user_profile_form[username]" elementType="HTTPArgument">
+                <elementProp name="oro_user_user_form[username]" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">oro_user_profile_form[username]</stringProp>
+                  <stringProp name="Argument.name">oro_user_user_form[username]</stringProp>
                   <stringProp name="Argument.value">test_${user_counter}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
-                <elementProp name="oro_user_profile_form[plainPassword][first]" elementType="HTTPArgument">
+                <elementProp name="oro_user_user_form[plainPassword][first]" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">oro_user_profile_form[plainPassword][first]</stringProp>
+                  <stringProp name="Argument.name">oro_user_user_form[plainPassword][first]</stringProp>
                   <stringProp name="Argument.value">123123q</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
-                <elementProp name="oro_user_profile_form[plainPassword][second]" elementType="HTTPArgument">
+                <elementProp name="oro_user_user_form[plainPassword][second]" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">oro_user_profile_form[plainPassword][second]</stringProp>
+                  <stringProp name="Argument.name">oro_user_user_form[plainPassword][second]</stringProp>
                   <stringProp name="Argument.value">123123q</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
-                <elementProp name="oro_user_profile_form[firstName]" elementType="HTTPArgument">
+                <elementProp name="oro_user_user_form[firstName]" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">oro_user_profile_form[firstName]</stringProp>
+                  <stringProp name="Argument.name">oro_user_user_form[firstName]</stringProp>
                   <stringProp name="Argument.value">First_${user_counter}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
-                <elementProp name="oro_user_profile_form[lastName]" elementType="HTTPArgument">
+                <elementProp name="oro_user_user_form[lastName]" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">oro_user_profile_form[lastName]</stringProp>
+                  <stringProp name="Argument.name">oro_user_user_form[lastName]</stringProp>
                   <stringProp name="Argument.value">Last_${user_counter}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
-                <elementProp name="oro_user_profile_form[birthday]" elementType="HTTPArgument">
+                <elementProp name="oro_user_user_form[birthday]" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">oro_user_profile_form[birthday]</stringProp>
+                  <stringProp name="Argument.name">oro_user_user_form[birthday]</stringProp>
                   <stringProp name="Argument.value">01/01/1999</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
-                <elementProp name="oro_user_profile_form[email]" elementType="HTTPArgument">
+                <elementProp name="oro_user_user_form[email]" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">oro_user_profile_form[email]</stringProp>
+                  <stringProp name="Argument.name">oro_user_user_form[email]</stringProp>
                   <stringProp name="Argument.value">test_${user_counter}@example.com</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
-                <elementProp name="oro_user_profile_form[groups][]" elementType="HTTPArgument">
+                <elementProp name="oro_user_user_form[groups][]" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">oro_user_profile_form[groups][]</stringProp>
+                  <stringProp name="Argument.name">oro_user_user_form[groups][]</stringProp>
                   <stringProp name="Argument.value">1</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
-                <elementProp name="oro_user_profile_form[rolesCollection][]" elementType="HTTPArgument">
+                <elementProp name="oro_user_user_form[rolesCollection][]" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">oro_user_profile_form[rolesCollection][]</stringProp>
+                  <stringProp name="Argument.name">oro_user_user_form[rolesCollection][]</stringProp>
                   <stringProp name="Argument.value">4</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
-                <elementProp name="oro_user_profile_form[attributes][0][id]" elementType="HTTPArgument">
+                <elementProp name="oro_user_user_form[attributes][0][id]" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">oro_user_profile_form[attributes][0][id]</stringProp>
+                  <stringProp name="Argument.name">oro_user_user_form[attributes][0][id]</stringProp>
                   <stringProp name="Argument.value"></stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
-                <elementProp name="oro_user_profile_form[attributes][0][varchar]" elementType="HTTPArgument">
+                <elementProp name="oro_user_user_form[attributes][0][varchar]" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">oro_user_profile_form[attributes][0][varchar]</stringProp>
+                  <stringProp name="Argument.name">oro_user_user_form[attributes][0][varchar]</stringProp>
                   <stringProp name="Argument.value">MageCore</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
-                <elementProp name="oro_user_profile_form[attributes][1][id]" elementType="HTTPArgument">
+                <elementProp name="oro_user_user_form[attributes][1][id]" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">oro_user_profile_form[attributes][1][id]</stringProp>
+                  <stringProp name="Argument.name">oro_user_user_form[attributes][1][id]</stringProp>
                   <stringProp name="Argument.value"></stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
-                <elementProp name="oro_user_profile_form[attributes][1][decimal]" elementType="HTTPArgument">
+                <elementProp name="oro_user_user_form[attributes][1][decimal]" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">oro_user_profile_form[attributes][1][decimal]</stringProp>
+                  <stringProp name="Argument.name">oro_user_user_form[attributes][1][decimal]</stringProp>
                   <stringProp name="Argument.value">1000</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
-                <elementProp name="oro_user_profile_form[attributes][2][id]" elementType="HTTPArgument">
+                <elementProp name="oro_user_user_form[attributes][2][id]" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">oro_user_profile_form[attributes][2][id]</stringProp>
+                  <stringProp name="Argument.name">oro_user_user_form[attributes][2][id]</stringProp>
                   <stringProp name="Argument.value"></stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
-                <elementProp name="oro_user_profile_form[attributes][2][text]" elementType="HTTPArgument">
+                <elementProp name="oro_user_user_form[attributes][2][text]" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">oro_user_profile_form[attributes][2][text]</stringProp>
+                  <stringProp name="Argument.name">oro_user_user_form[attributes][2][text]</stringProp>
                   <stringProp name="Argument.value">Address</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
-                <elementProp name="oro_user_profile_form[attributes][3][id]" elementType="HTTPArgument">
+                <elementProp name="oro_user_user_form[attributes][3][id]" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">oro_user_profile_form[attributes][3][id]</stringProp>
+                  <stringProp name="Argument.name">oro_user_user_form[attributes][3][id]</stringProp>
                   <stringProp name="Argument.value"></stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
-                <elementProp name="oro_user_profile_form[attributes][3][varchar]" elementType="HTTPArgument">
+                <elementProp name="oro_user_user_form[attributes][3][varchar]" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">oro_user_profile_form[attributes][3][varchar]</stringProp>
+                  <stringProp name="Argument.name">oro_user_user_form[attributes][3][varchar]</stringProp>
                   <stringProp name="Argument.value"></stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
-                <elementProp name="oro_user_profile_form[attributes][4][id]" elementType="HTTPArgument">
+                <elementProp name="oro_user_user_form[attributes][4][id]" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">oro_user_profile_form[attributes][4][id]</stringProp>
+                  <stringProp name="Argument.name">oro_user_user_form[attributes][4][id]</stringProp>
                   <stringProp name="Argument.value"></stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
-                <elementProp name="oro_user_profile_form[attributes][4][option]" elementType="HTTPArgument">
+                <elementProp name="oro_user_user_form[attributes][4][option]" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">oro_user_profile_form[attributes][4][option]</stringProp>
+                  <stringProp name="Argument.name">oro_user_user_form[attributes][4][option]</stringProp>
                   <stringProp name="Argument.value">1</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
-                <elementProp name="oro_user_profile_form[attributes][5][id]" elementType="HTTPArgument">
+                <elementProp name="oro_user_user_form[attributes][5][id]" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">oro_user_profile_form[attributes][5][id]</stringProp>
+                  <stringProp name="Argument.name">oro_user_user_form[attributes][5][id]</stringProp>
                   <stringProp name="Argument.value"></stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
-                <elementProp name="oro_user_profile_form[attributes][5][varchar]" elementType="HTTPArgument">
+                <elementProp name="oro_user_user_form[attributes][5][varchar]" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">oro_user_profile_form[attributes][5][varchar]</stringProp>
+                  <stringProp name="Argument.name">oro_user_user_form[attributes][5][varchar]</stringProp>
                   <stringProp name="Argument.value"></stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
-                <elementProp name="oro_user_profile_form[attributes][6][id]" elementType="HTTPArgument">
+                <elementProp name="oro_user_user_form[attributes][6][id]" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">oro_user_profile_form[attributes][6][id]</stringProp>
+                  <stringProp name="Argument.name">oro_user_user_form[attributes][6][id]</stringProp>
                   <stringProp name="Argument.value"></stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
-                <elementProp name="oro_user_profile_form[id]" elementType="HTTPArgument">
+                <elementProp name="oro_user_user_form[id]" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">oro_user_profile_form[id]</stringProp>
+                  <stringProp name="Argument.name">oro_user_user_form[id]</stringProp>
                   <stringProp name="Argument.value"></stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
-                <elementProp name="oro_user_profile_form[enabled]" elementType="HTTPArgument">
+                <elementProp name="oro_user_user_form[enabled]" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">oro_user_profile_form[enabled]</stringProp>
+                  <stringProp name="Argument.name">oro_user_user_form[enabled]</stringProp>
                   <stringProp name="Argument.value">1</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
-                <elementProp name="oro_user_profile_form[_token]" elementType="HTTPArgument">
+                <elementProp name="oro_user_user_form[_token]" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">oro_user_profile_form[_token]</stringProp>
+                  <stringProp name="Argument.name">oro_user_user_form[_token]</stringProp>
                   <stringProp name="Argument.value">${csrf_token}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>

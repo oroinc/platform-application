@@ -483,7 +483,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
         $val = rand($min, $max);
 
         // Convert back to desired date format
-        return new \DateTime(date('Y-m-d', $val));
+        return new \DateTime(date('Y-m-d', $val), new \DateTimeZone('UTC'));
     }
 
     /**
@@ -530,7 +530,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
      */
     private function generateLastVisit()
     {
-        $lastVisit = new \DateTime('now');
+        $lastVisit = new \DateTime('now', new \DateTimeZone('UTC'));
         $lastVisit->sub(new \DateInterval('P' . rand(1, 30) . 'D'));
         return $lastVisit;
     }
