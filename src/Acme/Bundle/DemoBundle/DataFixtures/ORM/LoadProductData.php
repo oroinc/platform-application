@@ -70,7 +70,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
     public function load(ObjectManager $manager)
     {
         for ($i = 1; $i <= 50; $i++) {
-            $createdDate = new \DateTime('now');
+            $createdDate = new \DateTime('now', new \DateTimeZone('UTC'));
             $createdDate->sub(new \DateInterval('P' . $i . 'D'));
 
             $product = new Product();
