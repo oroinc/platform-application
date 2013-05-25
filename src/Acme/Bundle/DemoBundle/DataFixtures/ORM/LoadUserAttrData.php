@@ -2,13 +2,15 @@
 
 namespace Acme\Bundle\DemoBundle\DataFixtures\ORM;
 
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
+use Oro\Bundle\UserBundle\Entity\UserManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
-class LoadUserAttrData extends AbstractFixture implements ContainerAwareInterface
+class LoadUserAttrData extends AbstractFixture implements ContainerAwareInterface, OrderedFixtureInterface
 {
     /**
      * @var ContainerInterface
@@ -28,17 +30,10 @@ class LoadUserAttrData extends AbstractFixture implements ContainerAwareInterfac
     public function load(ObjectManager $manager)
     {
         /**
-         * @var Oro\Bundle\UserBundle\Entity\UserManager
+         * @var UserManager
          */
         $fm = $this->container->get('oro_user.manager');
         $sm = $fm->getStorageManager();
-
-        $attr = $fm
-            ->createAttribute('oro_flexibleentity_text')
-            ->setCode('company')
-            ->setLabel('Company');
-
-        $sm->persist($attr);
 
         $attr = $fm
             ->createAttribute('oro_flexibleentity_money')
@@ -61,22 +56,11 @@ class LoadUserAttrData extends AbstractFixture implements ContainerAwareInterfac
 
         $sm->persist($attr);
 
-        $attr = $fm
-            ->createAttribute('oro_flexibleentity_simpleselect')
-            ->setCode('gender')
-            ->setLabel('Gender')
-            ->addOption(
-                $fm->createAttributeOption()->addOptionValue(
-                    $fm->createAttributeOptionValue()->setValue('Male')
-                )
-            )
-            ->addOption(
-                $fm->createAttributeOption()->addOptionValue(
-                    $fm->createAttributeOptionValue()->setValue('Female')
-                )
-            );
-
-        $sm->persist($attr);
         $sm->flush();
+    }
+
+    public function getOrder()
+    {
+        return 2;
     }
 }
