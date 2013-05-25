@@ -196,7 +196,7 @@ class LoadCustomerData extends AbstractFixture implements OrderedFixtureInterfac
             $value = $this->getCustomerManager()->createFlexibleValue();
             $value->setAttribute($attDob);
             $customer->addValue($value);
-            $value->setData(new \DateTime($this->generateBirthDate()));
+            $value->setData(new \DateTime($this->generateBirthDate(), new \DateTimeZone('UTC')));
 
             // add company value
             $value = $this->getCustomerManager()->createFlexibleValue();
