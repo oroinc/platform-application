@@ -3,6 +3,7 @@ parameters:
     oro_address.address.service.entity.value.class: Acme\Bundle\DemoAddressBundle\Entity\Value\AddressValue
 
     oro_address.type.address.service.class: Acme\Bundle\DemoAddressBundle\Form\Type\AddressType
+    oro_address.form.service.type.address_value.class: Acme\Bundle\DemoAddressBundle\Form\Type\AddressValueType
 
 services:
     oro_address.address.service.manager.flexible:
@@ -33,12 +34,20 @@ services:
         factory_service: form.factory
         arguments: ["oro_address_service_form", "oro_address_service", null]
 
+    oro_address.form.service.type.address_value:
+        class: %oro_address.form.service.type.address_value.class%
+        arguments:
+            - @oro_address.address.service.manager.flexible
+            - @oro_flexibleentity.value_form.value_subscriber
+        tags:
+            - { name: form.type, alias: oro_address_service_value }
+
     oro_address.form.service.type.address:
         class: %oro_address.type.address.service.class%
         arguments:
+            - @oro_address.address.service.manager.flexible
+            - "oro_address_service_value"
             - @oro_address.form.listener.address
-            - %oro_address.address.base.class%
-            - Oro\Bundle\FlexibleEntityBundle\Entity\Mapping\AbstractEntityFlexibleValue
         tags:
              - { name: form.type, alias: oro_address_service }
 
