@@ -43,7 +43,9 @@
         "leafo/lessphp": "dev-master",
         "ys-tools/back-url-bundle": "dev-master",
         "symfony/icu": "1.2.*@dev",
-        "symfony/intl": "2.3.*@dev"
+        "symfony/intl": "2.3.*@dev",
+        "willdurand/expose-translation-bundle": "0.2.*@dev",
+        "apy/jsfv-bundle": "2.1.*@dev"
     },
     "repositories": [
         {
