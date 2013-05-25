@@ -20,7 +20,7 @@ Acme\Bundle\DemoFormBundle\Form\Model\Person:
                 pattern: "/^[a-z]/i"
                 message: "First character must be a latin letter"
             - Regex:
-                pattern: "/^[a-z0-9_]{2,*}+$/i"
+                pattern: "/^[a-z0-9_]+$/i"
                 message: "Please, type only latin letters, numbers or underscores"
         email:
             - NotBlank: ~
