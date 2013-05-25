@@ -5,7 +5,7 @@
 {% block content %}
 <h1>Jobs</h1>
 
-{{ knp_pagination_render(pager, 'AcmeDemoBundle::pager.bootstrap.html.twig') }}
+{{ knp_pagination_render(pager, 'OroUIBundle::pager.html.twig') }}
 
 <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -47,7 +47,7 @@
     </tbody>
 </table>
 
-{{ knp_pagination_render(pager, 'AcmeDemoBundle::pager.bootstrap.html.twig') }}
+{{ knp_pagination_render(pager, 'OroUIBundle::pager.html.twig') }}
 
 {% endblock %}
 
