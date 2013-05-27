@@ -198,7 +198,6 @@ class UserDatagridManager extends FlexibleDatagridManager
                 'label'=> 'Update',
                 'icon' => 'edit',
                 'link' => 'update_link',
-                'backUrl' => true,
             )
         );
 

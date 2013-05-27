@@ -91,7 +91,6 @@ class ProductDatagridManager extends FlexibleDatagridManager
                 'label'         => 'Edit',
                 'link'          => 'edit_link',
                 'runOnRowClick' => true,
-                'backUrl' => true,
             )
         );
 
@@ -103,7 +102,6 @@ class ProductDatagridManager extends FlexibleDatagridManager
                 'label'=> 'Edit',
                 'icon' => 'edit',
                 'link' => 'edit_link',
-                'backUrl' => true,
             )
         );
 

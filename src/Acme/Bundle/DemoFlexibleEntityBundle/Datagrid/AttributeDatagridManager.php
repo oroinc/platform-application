@@ -113,7 +113,6 @@ class AttributeDatagridManager extends DatagridManager
                 'label'=> 'Edit',
                 'icon' => 'edit',
                 'link' => 'edit_link',
-                'backUrl' => true,
             )
         );
 
