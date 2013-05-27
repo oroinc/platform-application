@@ -8,7 +8,6 @@ use Oro\Bundle\AddressBundle\Entity\Region;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBag;
-use YsTools\BackUrlBundle\Annotation\BackUrl;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 use Oro\Bundle\AddressBundle\Entity\Address;
@@ -75,12 +74,11 @@ class DefaultController extends Controller
      * Edit address form
      *
      * @Template()
-     * @BackUrl("back")
      */
     public function editAction(Address $entity)
     {
         if ($this->get('oro_address.form.handler.address')->process($entity)) {
-            $backUrl = $this->getRedirectUrl($this->generateUrl('acme_demo_address_edit', array('id' => $entity->getId())));
+            $backUrl = $this->generateUrl('acme_demo_address_edit', array('id' => $entity->getId()));
 
             $this->getFlashBag()->add('success', 'Address successfully saved');
             return $this->redirect($backUrl);
@@ -89,28 +87,6 @@ class DefaultController extends Controller
         return array(
             'form' => $this->get('oro_address.form.address')->createView(),
         );
-    }
-
-    /**
-     * Get redirect URLs
-     *
-     * @param  string $default
-     * @return string
-     */
-    protected function getRedirectUrl($default)
-    {
-        $flashBag = $this->getFlashBag();
-        if ($this->getRequest()->query->has('back')) {
-            $backUrl = $this->getRequest()->get('back');
-            $flashBag->set('backUrl', $backUrl);
-        } elseif ($flashBag->has('backUrl')) {
-            $backUrl = $flashBag->get('backUrl');
-            $backUrl = reset($backUrl);
-        } else {
-            $backUrl = null;
-        }
-
-        return $backUrl ? $backUrl : $default;
     }
 
     /**
