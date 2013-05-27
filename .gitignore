@@ -1,0 +1,15 @@
+/.settings
+/.buildpath
+/.project
+/.idea
+/composer.phar
+composer.lock
+/vendor
+/cov
+/web/bundles
+/web/css
+/web/js
+/web/uploads/users/*
+/web/media/cache
+/app/config/parameters.yml
+*~
