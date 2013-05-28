@@ -18,7 +18,7 @@
             <directory suffix="Test.php">../src/*/*Bundle/Tests/Unit</directory>
             <directory suffix="Test.php">../src/*/Bundle/*Bundle/Tests/Unit</directory>
             <directory suffix="Test.php">../src/*/src/*/*Bundle/Tests/Unit</directory>
-            <directory suffix="Test.php">../src/*/src/Oro/Bundle/*Bundle/Tests/Unit</directory>
+            <directory suffix="Test.php">../src/*/src/*/Bundle/*Bundle/Tests/Unit</directory>
             <directory suffix="Test.php">../src/*/*Bundle/Tests/Functional</directory>
             <directory suffix="Test.php">../src/*/Bundle/*Bundle/Tests/Functional</directory>
             <directory suffix="Test.php">../src/*/src/*/*Bundle/Tests/Functional</directory>
@@ -28,7 +28,7 @@
             <directory suffix="Test.php">../src/*/*Bundle/Tests/Unit</directory>
             <directory suffix="Test.php">../src/*/Bundle/*Bundle/Tests/Unit</directory>
             <directory suffix="Test.php">../src/*/src/*/*Bundle/Tests/Unit</directory>
-            <directory suffix="Test.php">../src/*/src/Oro/Bundle/*Bundle/Tests/Unit</directory>
+            <directory suffix="Test.php">../src/*/src/*/Bundle/*Bundle/Tests/Unit</directory>
         </testsuite>
         <testsuite name="Project Functional Tests">
             <directory suffix="Test.php">../src/*/*Bundle/Tests/Functional</directory>
