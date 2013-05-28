@@ -1,5 +1,5 @@
 {
-    "name": "oro/platform",
+    "name": "oro/platform-standard",
     "description": "The \"BAP Development Edition\" distribution",
     "autoload": {
         "psr-0": { "Oro\\Bundle": "src/Oro/src/", "": "src/" }
