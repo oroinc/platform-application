@@ -1,3 +1,3 @@
 [submodule "src/Oro"]
 	path = src/Oro
-	url = git@gitlab.orocrm.com:development/platform.git
+	url = git@gitlab.orocrm.com:platform/dev.git
