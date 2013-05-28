@@ -1,8 +1,8 @@
 {
-    "name": "laboro/bap-dev",
+    "name": "oro/platform",
     "description": "The \"BAP Development Edition\" distribution",
     "autoload": {
-        "psr-0": { "": "src/" }
+        "psr-0": { "Oro\\Bundle": "src/Oro/src/", "": "src/" }
     },
     "require": {
         "php": ">=5.3.3",
@@ -49,7 +49,7 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/laboro/SonataAdminBundle.git"
+            "url": "http://gitlab.orocrm.com/vendors/sonataadminbundle.git"
         }
     ],
     "scripts": {
