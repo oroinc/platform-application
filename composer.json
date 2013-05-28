@@ -11,7 +11,7 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "http://gitlab.orocrm.com/platform.git"
+            "url": "http://gitlab.orocrm.com/platform/platform.git"
         },
         {
             "type": "vcs",
