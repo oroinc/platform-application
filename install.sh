@@ -7,3 +7,6 @@ php app/console oro:acl:load
 php app/console oro:navigation:init
 php app/console assets:install web
 php app/console assetic:dump
+
+chmod -R 777 app/cache/
+chmod -R 777 app/logs/
