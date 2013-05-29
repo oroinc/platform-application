@@ -16,16 +16,16 @@
     <testsuites>
         <testsuite name="Project Test Suite">
             <testsuite name="Project Unit Tests">
-                <directory suffix="Test.php">../src/*/*Bundle/Tests/Unit</directory>
                 <directory suffix="Test.php">../src/*/Bundle/*Bundle/Tests/Unit</directory>
+                <directory suffix="Test.php">../src/*/src/*/Bundle/*Bundle/Tests/Unit</directory>
             </testsuite>
             <testsuite name="Project Functional Tests">
-                <directory suffix="Test.php">../src/*/*Bundle/Tests/Functional</directory>
                 <directory suffix="Test.php">../src/*/Bundle/*Bundle/Tests/Functional</directory>
+                <directory suffix="Test.php">../src/*/src/*/Bundle/*Bundle/Tests/Functional</directory>
             </testsuite>
             <testsuite name="Project Selenium Tests">
-                <directory suffix="Test.php">../src/*/*Bundle/Tests/Selenium</directory>
                 <directory suffix="Test.php">../src/*/Bundle/*Bundle/Tests/Selenium</directory>
+                <directory suffix="Test.php">../src/*/src/*/Bundle/*Bundle/Tests/Selenium</directory>
             </testsuite>
         </testsuite>
     </testsuites>
@@ -51,7 +51,7 @@
         <const name="PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_PASS" value="admin"/>
     </php>
     <listeners>
-        <listener class="TestListener" file="src/Oro/Bundle/TestFrameworkBundle/Test/TestListener.php">
+        <listener class="TestListener" file="src/Oro/src/Oro/Bundle/TestFrameworkBundle/Test/TestListener.php">
             <arguments>
                 <string>app/logs</string>
             </arguments>
@@ -62,13 +62,14 @@
             <directory>../src</directory>
             <exclude>
                 <directory>../vendor</directory>
-                <directory>../src/*/*Bundle/DataFixtures</directory>
                 <directory>../src/*/Bundle/*Bundle/DataFixtures</directory>
-                <directory>../src/*/*Bundle/Resources</directory>
-                <directory>../src/*/*Bundle/Tests</directory>
                 <directory>../src/*/Bundle/*Bundle/Resources</directory>
                 <directory>../src/*/Bundle/*Bundle/Tests</directory>
                 <directory>../src/*/Bundle/*Bundle/vendor</directory>
+                <directory>../src/*/src/*/Bundle/*Bundle/DataFixtures</directory>
+                <directory>../src/*/src/*/Bundle/*Bundle/Resources</directory>
+                <directory>../src/*/src/*/Bundle/*Bundle/Tests</directory>
+                <directory>../src/*/src/*/Bundle/*Bundle/vendor</directory>
             </exclude>
         </whitelist>
     </filter>
