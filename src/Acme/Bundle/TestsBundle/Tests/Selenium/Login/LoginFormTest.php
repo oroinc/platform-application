@@ -99,7 +99,7 @@ class LoginFormTest extends \PHPUnit_Extensions_Selenium2TestCase
         $this->clickOnElement('_submit');
         $this->waitPageToLoad();
 
-        $actualResult = $this->byXPath("//*[@id='top-page']/div/div/div/div[contains(.,'Bad credentials')]")->text();
+        $actualResult = $this->byXPath("//div[contains(@class,'alert')]/div")->text();
 
         $this->assertContains('Login', $this->title());
         $this->assertEquals("Bad credentials", $actualResult);

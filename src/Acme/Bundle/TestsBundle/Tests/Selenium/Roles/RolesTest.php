@@ -12,11 +12,11 @@ class RolesTest extends \PHPUnit_Extensions_Selenium2TestCase
     protected $newRole = array('LABEL' => 'NEW_LABEL_', 'ROLE_NAME' => 'NEW_ROLE_');
 
     protected $defaultRoles = array(
-        'header' => array('' => '', 'ROLE' => 'ROLE', 'LABEL' => 'LABEL', '' => 'ACTION'),
-        'ROLE_MANAGER' => array('' => '', 'ROLE_MANAGER' => 'ROLE_MANAGER', 'Manager' => 'Manager', '...' => 'ACTION'),
-        'ROLE_ADMIN' => array('' => '', 'ROLE_ADMIN' => 'ROLE_ADMIN', 'Administrator' => 'Administrator', '...' => 'ACTION'),
-        'ROLE_USER' => array('' => '', 'ROLE_USER' => 'ROLE_USER', 'User' => 'User', '...' => 'ACTION'),
-        'ROLE_SUPER_ADMIN' => array('' => '', 'ROLE_SUPER_ADMIN' => 'ROLE_SUPER_ADMIN', 'Super admin' => 'Super admin', '...' => 'ACTION')
+        'header' => array('ROLE' => 'ROLE', 'LABEL' => 'LABEL', '' => 'ACTION'),
+        'ROLE_MANAGER' => array('ROLE_MANAGER' => 'ROLE_MANAGER', 'Manager' => 'Manager', '...' => 'ACTION'),
+        'ROLE_ADMINISTRATOR' => array('ROLE_ADMINISTRATOR' => 'ROLE_ADMINISTRATOR', 'Administrator' => 'Administrator', '...' => 'ACTION'),
+        'ROLE_USER' => array('ROLE_USER' => 'ROLE_USER', 'User' => 'User', '...' => 'ACTION'),
+        'ROLE_SUPER_ADMIN' => array('ROLE_SUPER_ADMIN' => 'ROLE_SUPER_ADMIN', 'Super admin' => 'Super admin', '...' => 'ACTION')
     );
 
     protected function setUp()
