@@ -12,9 +12,10 @@ class GroupsTest extends \PHPUnit_Extensions_Selenium2TestCase
     protected $newGroup = array('NAME' => 'NEW_GROUP_', 'ROLE' => 'Administrator');
 
     protected $defaultGroups = array(
-        'header' => array('ID' => 'ID', 'NAME' => 'NAME', 'ROLES' => 'ROLES', '' => 'ACTION'),
-        'Administrators' => array('2' => '2', 'Administrators' => 'Administrators', '' => 'ROLES', '...' => 'ACTION'),
-        'Managers' => array('1' => '1', 'Managers' => 'Managers', '' => 'ROLES', '...' => 'ACTION')
+        'header' => array('NAME' => 'NAME', 'ROLES' => 'ROLES', '' => 'ACTION'),
+        'Administrators' => array('Administrators' => 'Administrators', 'Administrator' => 'ROLES', '...' => 'ACTION'),
+        'Marketing' => array('Marketing' => 'Marketing', 'Manager' => 'ROLES', '...' => 'ACTION'),
+        'Sales' => array('Sales' => 'Sales', 'Manager' => 'ROLES', '...' => 'ACTION')
     );
 
     protected function setUp()
@@ -82,8 +83,7 @@ class GroupsTest extends \PHPUnit_Extensions_Selenium2TestCase
             ->setName($this->newGroup['NAME'] . $randomPrefix)
             ->setRoles(array($this->newGroup['ROLE']))
             ->save()
-            ->assertMessage('Group successfully saved')
-            ->close();
+            ->assertMessage('Group successfully saved');
 
         //verify new GROUP
         $groups->refresh();
