@@ -1,6 +1,6 @@
 {% extends bap.layout is defined ? bap.layout : 'AcmeDemoFlexibleEntityBundle::layout.html.twig' %}
 {% import 'OroUserBundle::macros.html.twig' as macros %}
-{% set format = get_user_value('oro_user.name_format') %}
+{% set format = oro_config_value('oro_user.name_format') %}
 {% form_theme form with 'OroUIBundle:Form:fields.html.twig' %}
 {% set title = form.vars.value.id ? 'Edit Product' : 'Add Product' %}
 
@@ -15,12 +15,12 @@
     {% if dataLocale is null %}
         {% set dataLocale = 'en_US' %}
     {% endif %}
-    
+
     {% set dataScope = route_params['dataScope'] %}
     {% if dataScope is null %}
         {% set dataScope = 'ecommerce' %}
     {% endif %}
-    
+
 {% endif %}
 
 {% block page_container %}
