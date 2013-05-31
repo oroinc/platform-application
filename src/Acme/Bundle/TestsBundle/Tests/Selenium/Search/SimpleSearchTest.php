@@ -44,7 +44,7 @@ class SimpleSearchTest extends \PHPUnit_Extensions_Selenium2TestCase
         $search = new Search($this);
         $result = $search->search('admin')
             ->submit()
-            ->result('admin');
+            ->result('Doe, John');
         $this->assertNotEmpty($result);
     }
 }
