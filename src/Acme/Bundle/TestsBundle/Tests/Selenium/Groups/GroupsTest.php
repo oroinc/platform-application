@@ -86,7 +86,7 @@ class GroupsTest extends \PHPUnit_Extensions_Selenium2TestCase
             ->assertMessage('Group successfully saved');
 
         //verify new GROUP
-        $groups->refresh();
+        //$groups->refresh();
 
         $this->assertTrue($groups->entityExists(array('name' => $this->newGroup['NAME'] . $randomPrefix)));
 
