@@ -18,6 +18,9 @@ monolog:
         firephp:
             type:  firephp
             level: info
+        chromephp:
+            type:  chromephp
+            level: info
 
 #swiftmailer:
 #    delivery_address: me@example.com

@@ -25,3 +25,32 @@ $request = Request::createFromGlobals();
 $response = $kernel->handle($request);
 $response->send();
 $kernel->terminate($request, $response);
+
+// helpful functions
+function www($value)
+{
+    echo "<pre>";
+    print_r($value);
+    echo "</pre>";
+}
+
+function www1($value)
+{
+    echo "<pre>";
+    print_r($value);
+    echo "</pre>";
+    exit();
+}
+
+function www2($value)
+{
+    echo "<pre>";
+    var_dump($value);
+    echo "</pre>";
+    exit();
+}
+
+function www3($value)
+{
+    www1(get_class_methods($value));
+}
