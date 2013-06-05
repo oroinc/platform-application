@@ -36,14 +36,14 @@ class FlexibleControllerTest extends KernelAwareControllerTest
     /**
      * Test related method
      */
-//    public function testEntityConfigAction()
-//    {
-//        foreach (self::$locales as $locale) {
-//            $this->client->request(
-//                'GET',
-//                self::prepareUrl($locale, 'config')
-//            );
-//            $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-//        }
-//    }
+    //    public function testEntityConfigAction()
+    //    {
+    //        foreach (self::$locales as $locale) {
+    //            $this->client->request(
+    //                'GET',
+    //                self::prepareUrl($locale, 'config')
+    //            );
+    //            $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+    //        }
+    //    }
 }
