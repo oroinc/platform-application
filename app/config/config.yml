@@ -160,6 +160,9 @@ liip_imagine:
             filters:
                 thumbnail:    { size: [58, 58], mode: outbound }
                 strip:        ~
+genemu_form:
+    select2: ~
+    autocomplete: ~
 
 oro_search:
     engine:                   orm
