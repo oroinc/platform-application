@@ -64,6 +64,7 @@
             <directory>../src</directory>
             <exclude>
                 <directory>../vendor</directory>
+                <directory>../src/*/tests</directory>
                 <directory>../src/*/Bundle/*Bundle/DataFixtures</directory>
                 <directory>../src/*/Bundle/*Bundle/Resources</directory>
                 <directory>../src/*/Bundle/*Bundle/Tests</directory>
