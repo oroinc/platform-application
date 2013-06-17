@@ -42,10 +42,12 @@
         <const name="PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_HOST" value="127.0.0.1"/>
         <const name="PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_PORT" value="4444"/>
         <const name="PHPUNIT_TESTSUITE_EXTENSION_SELENIUM2_BROWSER" value="phantomjs"/>
-        <const name="PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_TESTS_URL" value="http://localhost.com/app_perf.php"/>
+        <const name="PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_TESTS_URL" value="http://localhost.com"/>
         <const name="PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_TESTS_URL_COVERAGE" value="http://localhost.com/bundles/orotestframework/scripts/phpunit_coverage.php"/>
         <const name="MAX_EXECUTION_TIME" value="60000"/>
         <const name="TIME_OUT" value="5000"/>
+        <const name="viewportWIDTH" value="1900"/>
+        <const name="viewportHEIGHT" value="1080"/>
         <const name="PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_PATH_LOGS" value="app/log"/>
         <const name="PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_LOGIN" value="admin"/>
         <const name="PHPUNIT_TESTSUITE_EXTENSION_SELENIUM_PASS" value="admin"/>
@@ -62,6 +64,8 @@
             <directory>../src</directory>
             <exclude>
                 <directory>../vendor</directory>
+                <directory>../src/*/tests</directory>
+                <directory>../src/*/src/*/Bundle/TestFrameworkBundle</directory>
                 <directory>../src/*/Bundle/*Bundle/DataFixtures</directory>
                 <directory>../src/*/Bundle/*Bundle/Resources</directory>
                 <directory>../src/*/Bundle/*Bundle/Tests</directory>

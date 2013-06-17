@@ -1,8 +1,0 @@
-parameters:
-    search_item_manager_class:    Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleManager
-    search_item_entity_class:     Acme\Bundle\TestsBundle\Entity\Item
-
-services:
-    search_item_manager:
-        class:     "%search_item_manager_class%"
-        arguments: [%search_item_entity_class%, %oro_flexibleentity.flexible_config%, "@doctrine.orm.entity_manager", "@event_dispatcher", "@oro_flexibleentity.attributetype.factory"]
