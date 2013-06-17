@@ -27,7 +27,7 @@ class SeparateAddress extends AddressBase
     /**
      * @var \Oro\Bundle\FlexibleEntityBundle\Model\AbstractFlexibleValue[]
      *
-     * @ORM\OneToMany(targetEntity="Acme\Bundle\DemoAddressBundle\Entity\Value\AddressValue", mappedBy="entity", cascade={"persist", "remove"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="Acme\Bundle\DemoAddressBundle\Entity\Value\AddressValue",mappedBy="entity",cascade={"persist","remove"}, orphanRemoval=true)
      */
     protected $values;
 
