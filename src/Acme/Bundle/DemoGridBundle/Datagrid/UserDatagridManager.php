@@ -26,6 +26,7 @@ class UserDatagridManager extends FlexibleDatagridManager
 
     /**
      * {@inheritDoc}
+     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
     protected function configureFields(FieldDescriptionCollection $fieldsCollection)
     {

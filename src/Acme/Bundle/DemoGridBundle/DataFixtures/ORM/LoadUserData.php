@@ -147,6 +147,8 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
     /**
      * Creates a user
      *
+     * @SuppressWarnings(PHPMD)
+     *
      * @param string $username
      * @param string $email
      * @param string $firstName
