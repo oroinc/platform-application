@@ -43,6 +43,7 @@ assetic:
         - OroFilterBundle
         - OroNavigationBundle
         - OroWindowsBundle
+        - OroSegmentationTreeBundle
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -91,19 +92,19 @@ knp_paginator:
 
 fos_rest:
     view:
-        failed_validation: HTTP_BAD_REQUEST
-        default_engine: php
+        failed_validation:    HTTP_BAD_REQUEST
+        default_engine:       php
         formats:
-            json: true
-            xml: true
+            json:             true
+            xml:              true
     format_listener:
-        prefer_extension: true
+        prefer_extension:     true
     body_listener:
         decoders:
-            json: fos_rest.decoder.json
-            xml: fos_rest.decoder.xml
+            json:             fos_rest.decoder.json
+            xml:              fos_rest.decoder.xml
     routing_loader:
-        default_format: json
+        default_format:       json
 
 fos_js_routing:
     routes_to_expose:         [oro_*]
@@ -121,13 +122,12 @@ be_simple_soap:
             resource_type:    yml
 
 stof_doctrine_extensions:
+    default_locale: en
+    translation_fallback: true
     orm:
         default:
             translatable:     true
             tree:             true
-            loggable:         true
-    class:
-        loggable:             Oro\Bundle\DataAuditBundle\EventListener\LoggableListener
 
 services:
     cache:
@@ -149,6 +149,9 @@ liip_imagine:
             filters:
                 thumbnail:    { size: [58, 58], mode: outbound }
                 strip:        ~
+genemu_form:
+    select2: ~
+    autocomplete: ~
 
 oro_search:
     engine:                   orm
@@ -157,7 +160,7 @@ oro_search:
 oro_ui:
     settings:
         application_name:
-            value: "Oro Platform"
+            value: "Oro Platfrom"
         application_title:
             value: "Oro Platform"
 

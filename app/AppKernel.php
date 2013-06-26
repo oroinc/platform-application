@@ -33,10 +33,12 @@ class AppKernel extends Kernel
             new Liip\ImagineBundle\LiipImagineBundle(),
             new Bazinga\ExposeTranslationBundle\BazingaExposeTranslationBundle(),
             new APY\JsFormValidationBundle\APYJsFormValidationBundle(),
+            new Genemu\Bundle\FormBundle\GenemuFormBundle(),
 
             // BAP bundles
             new Oro\Bundle\FlexibleEntityBundle\OroFlexibleEntityBundle(),
             new Oro\Bundle\UIBundle\OroUIBundle(),
+            new Oro\Bundle\FormBundle\OroFormBundle(),
             new Oro\Bundle\JsFormValidationBundle\OroJsFormValidationBundle(),
             new Oro\Bundle\SoapBundle\OroSoapBundle(),
             new Oro\Bundle\SearchBundle\OroSearchBundle(),
@@ -51,6 +53,7 @@ class AppKernel extends Kernel
             new Oro\Bundle\WindowsBundle\OroWindowsBundle(),
             new Oro\Bundle\AddressBundle\OroAddressBundle(),
             new Oro\Bundle\DataAuditBundle\OroDataAuditBundle(),
+
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'devjs', 'test'))) {
@@ -61,7 +64,6 @@ class AppKernel extends Kernel
 
         if (in_array($this->getEnvironment(), array('test', 'perf'))) {
             $bundles[] = new Oro\Bundle\TestFrameworkBundle\OroTestFrameworkBundle();
-            $bundles[] = new Acme\Bundle\TestsBundle\AcmeTestsBundle();
         }
 
         return $bundles;
@@ -71,4 +73,5 @@ class AppKernel extends Kernel
     {
         $loader->load(__DIR__.'/config/config_'.$this->getEnvironment().'.yml');
     }
+
 }
