@@ -18,9 +18,9 @@ http://getcomposer.org/ or just run the following command:
 
     curl -s https://getcomposer.org/installer | php
 
-- Clone http://github.com/laboro/platform-application.git Platform Application project with
+- Clone http://github.com/orocrm/platform-application.git Platform Application project with
 
-    git clone http://github.com/laboro/platform-application.git
+    git clone http://github.com/orocrm/platform-application.git
 
 - Go to app/config folder and create parameters.yml using parameters.dist.yml as example. Update database name and credentials
 - Install Platform Application dependencies with composer. If installation process seems too slow you can use "--prefer-dist" option.
