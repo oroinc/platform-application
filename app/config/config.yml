@@ -36,6 +36,7 @@ assetic:
     debug:                    false
     use_controller:           false
     bundles:
+        - OroAsseticBundle
         - OroAddressBundle
         - OroUIBundle
         - OroUserBundle
@@ -178,3 +179,7 @@ oro_user:
     settings:
         name_format:
           value:              %%last%%, %%first%%
+
+oro_assetic:
+    uncompress_js: [bootstrap]
+    uncompress_css: [search]
