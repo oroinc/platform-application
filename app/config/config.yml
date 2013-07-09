@@ -181,5 +181,5 @@ oro_user:
           value:              %%last%%, %%first%%
 
 oro_assetic:
-    uncompress_js: [bootstrap]
-    uncompress_css: [search]
+    uncompress_js: ~
+    uncompress_css: ~
