@@ -3,7 +3,7 @@
 namespace Acme\Bundle\DemoAddressBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Oro\Bundle\AddressBundle\Entity\AddressBase;
+use Oro\Bundle\AddressBundle\Entity\AbstractAddress;
 
 /**
  * SeparateAddress
@@ -22,7 +22,7 @@ use Oro\Bundle\AddressBundle\Entity\AddressBase;
  *      )
  * })
  */
-class SeparateAddress extends AddressBase
+class SeparateAddress extends AbstractAddress
 {
     /**
      * @var \Oro\Bundle\FlexibleEntityBundle\Model\AbstractFlexibleValue[]

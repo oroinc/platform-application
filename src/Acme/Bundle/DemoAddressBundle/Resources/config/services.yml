@@ -52,7 +52,7 @@ services:
              - { name: form.type, alias: oro_address_service }
 
     oro_address.form.handler.address.service:
-        class: %oro_address.handler.address.class%
+        class: %oro_address.form.handler.address.class%
         scope: request
         arguments:
             - @oro_address.service.form.address
