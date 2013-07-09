@@ -54,6 +54,7 @@ class AppKernel extends Kernel
             new Oro\Bundle\AddressBundle\OroAddressBundle(),
             new Oro\Bundle\DataAuditBundle\OroDataAuditBundle(),
             new Oro\Bundle\AsseticBundle\OroAsseticBundle(),
+            new Oro\Bundle\TranslationBundle\OroTranslationBundle(),
 
             // BAP Demo bundles
             new Acme\Bundle\DemoBundle\AcmeDemoBundle(),

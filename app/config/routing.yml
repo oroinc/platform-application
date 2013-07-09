@@ -43,22 +43,16 @@ acme_demo_form:
     prefix:   /form/
 
 oro_default:
-    pattern:  /{_locale}
+    pattern:  /
     defaults:
         template:    AcmeDemoBundle:Default:index.html.twig
-        _locale:     %locale%
         _controller: FrameworkBundle:Template:template
-    requirements:
-        _locale:  en|fr|de
 
 acme_default:
-    pattern:  /{_locale}
+    pattern:  /
     defaults:
         template:    AcmeDemoBundle:Default:index.html.twig
-        _locale:     %locale%
         _controller: FrameworkBundle:Template:template
-    requirements:
-        _locale:  en|fr|de
 
 acme_demo:
     resource: "@AcmeDemoBundle/Controller/"
