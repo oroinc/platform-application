@@ -1,7 +1,6 @@
 {% extends bap.layout is defined ? bap.layout : 'AcmeDemoFlexibleEntityBundle::layout.html.twig' %}
 {% import 'OroUserBundle::macros.html.twig' as macros %}
 {% set format = oro_config_value('oro_user.name_format') %}
-{% form_theme form with 'OroUIBundle:Form:fields.html.twig' %}
 {% set title = form.vars.value.id ? 'Edit Customer' : 'Add Customer' %}
 
 {% block page_container %}
