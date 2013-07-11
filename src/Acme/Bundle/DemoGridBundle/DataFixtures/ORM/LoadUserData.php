@@ -114,7 +114,6 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
         for ($i = 0; $i < 50; ++$i) {
             $firstName = $this->generateFirstName();
             $lastName = $this->generateLastName();
-            $middleName = $this->generateMiddleName();
             $birthday = $this->generateBirthday();
             $salary = $this->generateSalary();
             $username = $this->generateUsername($firstName, $lastName);
@@ -123,21 +122,18 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
             $website = $this->generateWebsite($firstName, $lastName);
             $gender = $this->generateGender();
             $hobbies = $this->generateHobbies();
-            $lastVisit = $this->generateLastVisit();
 
             $user = $this->createUser(
                 $username,
                 $email,
                 $firstName,
                 $lastName,
-                $middleName,
                 $birthday,
                 $salary,
                 $company,
                 $website,
                 $gender,
-                $hobbies,
-                $lastVisit
+                $hobbies
             );
 
             $user->setPlainPassword(uniqid());
@@ -151,20 +147,18 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
     /**
      * Creates a user
      *
-     * @SuppressWarnings(PHPMD)
+     * @SuppressWarnings(PHPMD.ExcessiveParameterList)
      *
      * @param string $username
      * @param string $email
      * @param string $firstName
      * @param string $lastName
-     * @param string $middleName
      * @param \DateTime $birthday
      * @param int $salary
      * @param string $company
      * @param string $website
      * @param string $gender
      * @param array $hobbies
-     * @param \DateTime $lastVisit
      * @return User
      */
     private function createUser(
@@ -172,14 +166,12 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
         $email,
         $firstName,
         $lastName,
-        $middleName,
         $birthday,
         $salary,
         $company,
         $website,
         $gender,
-        array $hobbies,
-        $lastVisit
+        array $hobbies
     ) {
         /** @var $user User */
         $user = $this->userManager->createFlexible();
@@ -406,16 +398,6 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
     }
 
     /**
-     * Generate a middle name
-     *
-     * @return string
-     */
-    private function generateMiddleName()
-    {
-        return $this->generateFirstName();
-    }
-
-    /**
      * Loads dictionary from file by name
      *
      * @param string $name
@@ -526,18 +508,6 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
         $randomCount = rand(1, count($hobbies));
         shuffle($hobbies);
         return array_slice($hobbies, 0, $randomCount);
-    }
-
-    /**
-     * Generates hobbies
-     *
-     * @return \DateTime
-     */
-    private function generateLastVisit()
-    {
-        $lastVisit = new \DateTime('now', new \DateTimeZone('UTC'));
-        $lastVisit->sub(new \DateInterval('P' . rand(1, 30) . 'D'));
-        return $lastVisit;
     }
 
     /**
