@@ -11,13 +11,16 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Oro\Bundle\FlexibleEntityBundle\Model\FlexibleValueInterface;
 use Oro\Bundle\FlexibleEntityBundle\Model\AbstractFlexible;
 use Oro\Bundle\FlexibleEntityBundle\Model\AbstractAttributeOption;
-use Oro\Bundle\FlexibleEntityBundle\Model\AbstractAttributeType;
 use Oro\Bundle\FlexibleEntityBundle\Model\AbstractAttribute;
 use Oro\Bundle\FlexibleEntityBundle\Entity\Repository\FlexibleEntityRepository;
 
 use Oro\Bundle\UserBundle\Entity\UserManager;
 use Oro\Bundle\UserBundle\Entity\User;
 
+/**
+ * @SuppressWarnings(PHPMD.TooManyMethods)
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
+ */
 class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
     /**
@@ -41,6 +44,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
 
     /**
      * {@inheritDoc}
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function load(ObjectManager $manager)
     {
@@ -271,7 +275,6 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
             array('attribute' => $attribute)
         );
 
-        $selectedOption = null;
         foreach ($options as $option) {
             if ($value == $option->getOptionValue()->getValue()) {
                 return $option;
@@ -464,10 +467,10 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
      */
     private function generateCompany()
     {
-        $companyNamesDictionary = $this->loadDictionary('company_names.txt');
-        $randomIndex = rand(0, count($companyNamesDictionary) - 1);
+        $companyNames = $this->loadDictionary('company_names.txt');
+        $randomIndex = rand(0, count($companyNames) - 1);
 
-        return trim($companyNamesDictionary[$randomIndex]);
+        return trim($companyNames[$randomIndex]);
     }
 
     /**
