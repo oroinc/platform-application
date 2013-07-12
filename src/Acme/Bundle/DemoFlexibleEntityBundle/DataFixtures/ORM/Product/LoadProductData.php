@@ -6,16 +6,8 @@ use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Oro\Bundle\FlexibleEntityBundle\Model\AbstractAttributeType;
-use Acme\Bundle\DemoFlexibleEntityBundle\Entity\ProductAttribute;
 use Oro\Bundle\FlexibleEntityBundle\Entity\Metric;
 use Oro\Bundle\FlexibleEntityBundle\Entity\Price;
-use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\TextType;
-use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\OptionMultiCheckboxType;
-use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\MetricType;
-use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\TextAreaType;
-use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\MoneyType;
-use Oro\Bundle\FlexibleEntityBundle\Model\AttributeType\PriceType;
 
 /**
  * Load products
@@ -59,11 +51,10 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $this->counter = self::DEFAULT_COUNTER_VALUE;
         if (isset($container->counter)) {
             $this->counter = $container->counter;
-        } else {
-            if ( $this->container->getParameter('kernel.environment') == 'perf'
-                && $container->hasParameter('performance.products')) {
-                $this->counter = $container->getParameter('performance.products');
-            }
+        } elseif ($this->container->getParameter('kernel.environment') == 'perf'
+            && $container->hasParameter('performance.products')
+        ) {
+            $this->counter = $container->getParameter('performance.products');
         }
     }
 
@@ -86,6 +77,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
 
     /**
      * {@inheritDoc}
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function load(ObjectManager $manager)
     {
@@ -190,7 +182,6 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
             $colors[]= $option;
         }
 
-        $descriptions = array('my long description', 'my other description');
         for ($ind= 0; $ind < $nbProducts; $ind++) {
 
             // sku

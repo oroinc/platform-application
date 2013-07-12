@@ -22,7 +22,7 @@ http://getcomposer.org/ or just run the following command:
 
     git clone https://github.com/laboro/platform-dev.git
 
-- Go to app/config folder and create parameters.yml using parameters.dist.yml as example. Update database name and credentials
+- Go to app/config folder and create parameters.yml using parameters.yml.dist as example. Update database name and credentials
 - Install Platform Application dependencies with composer. If installation process seems too slow you can use "--prefer-dist" option.
 
     php composer.phar install
