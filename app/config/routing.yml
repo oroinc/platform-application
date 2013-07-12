@@ -1,11 +1,8 @@
 oro_default:
-    pattern:  /{_locale}
+    pattern:  /
     defaults:
         template:    :Default:index.html.twig
-        _locale:     %locale%
         _controller: FrameworkBundle:Template:template
-    requirements:
-        _locale:  en|fr|de
 
 oro_ui:
     resource: "@OroUIBundle/Resources/config/routing.yml"
@@ -63,3 +60,7 @@ _bazinga_exposetranslation:
 
 _apy_jsformvalidation:
     resource: "@APYJsFormValidationBundle/Resources/config/routing/routing.yml"
+
+oro_assets:
+    resource: .
+    type: oro_assetic

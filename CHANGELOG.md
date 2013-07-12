@@ -1,5 +1,5 @@
 CHANGELOG for 1.0.0-alpha3
-===================
+==========================
 
 This changelog references the relevant changes (new features, changes and bugs) done in 1.0.0-alpha3 versions.
 
@@ -12,4 +12,3 @@ This changelog references the relevant changes (new features, changes and bugs) 
  * Localized countries and regions
  * Enhanced data change log with ability to save changes for collections
  * Removed dependency on lib ICU
-
