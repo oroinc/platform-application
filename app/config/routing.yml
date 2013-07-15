@@ -118,3 +118,7 @@ _apy_jsformvalidation:
 oro_assets:
     resource: .
     type: oro_assetic
+
+oro_tag:
+    resource: "@OroTagBundle/Resources/config/routing.yml"
+    prefix:   /
