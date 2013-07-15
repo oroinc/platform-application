@@ -1,4 +1,4 @@
-<?php
+\<?php
 
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
@@ -53,6 +53,7 @@ class AppKernel extends Kernel
             new Oro\Bundle\WindowsBundle\OroWindowsBundle(),
             new Oro\Bundle\AddressBundle\OroAddressBundle(),
             new Oro\Bundle\DataAuditBundle\OroDataAuditBundle(),
+            new Oro\Bundle\TagBundle\OroTagBundle(),
             new Oro\Bundle\AsseticBundle\OroAsseticBundle(),
             new Oro\Bundle\TranslationBundle\OroTranslationBundle(),
 
