@@ -70,6 +70,7 @@ class AppKernel extends Kernel
             new Acme\Bundle\DemoFilterBundle\AcmeDemoFilterBundle(),
             new Acme\Bundle\DemoAddressBundle\AcmeDemoAddressBundle(),
             new Acme\Bundle\DemoFormBundle\AcmeDemoFormBundle(),
+            new Acme\Bundle\DemoWorkflowBundle\AcmeDemoWorkflowBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
