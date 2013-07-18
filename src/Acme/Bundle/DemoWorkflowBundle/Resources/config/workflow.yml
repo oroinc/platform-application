@@ -1,67 +1,67 @@
 workflows:
-  name: example_workflow
-    label: Example Workflow
-    enabled: true
-    start_step: example_step_one
-    managed_entity_name: Oro\Bundle\FooBundle\Entity\BarEntity
-    steps:
-      example_step_one:
-        label: Example Step One
-        template: ~
-        order: 1
-        attributes:
-          example_text_attribute:
-            form_type: text
-            label: Example Text Attribute
-            options:
-              required: true
-              # ... other attributes
-        allowedTransitions:
-          - from_one_to_who
-          - from_one_to_three
-      example_step_two: ~
-        # step configuration here
-      example_step_three: ~
-        # step configuration here
-    transitions:
-      from_one_to_who:
-        label: From Step One To Step Two
-        step_from: example_step_one
-        step_to: example_step_two
-        transition_definition: example_transition_definition_one
-      from_one_to_three:
-        label: From Step One To Step Three
-        step_from: example_step_one
-        step_to: example_step_three
-        transition_definition: example_transition_definition_one
-      from_two_to_three:
-        label: From Step Two To Step Three
-        step_from: example_step_two
-        step_two: example_step_three
-        transition_definition: example_transition_definition_two
-    transition_definitions:
-      example_transition_definition_one:
-        conditions: # budget >= '2000' and author_is_current_user or lead.name not empty
-          or:
-            - and:
-              - @contact.budget >= 2000
-              - @author_is_current_user
-              # conditions configuration here
-            - @lead.name not empty
-        post_actions:
-          - create_new_entity:
-            - ClassName
-            - @contact
-          - assign_value:
-            - @contact.name
-            - @name
-          - assign_value:
-            - @contact.budget
-            - div: # todo in next iteration
-              - @budget
-              - 2
-      example_transition_definition_two:
-        conditions:
-          # conditions configuration here
-        post_actions:
-          # post actions configuration here
+    example_workflow:
+        label: 'Example Workflow'
+        enabled: true
+        start_step: example_step_one
+        managed_entity_class: Oro\Bundle\FooBundle\Entity\BarEntity
+        steps:
+            example_step_one:
+                label: 'Example Step One'
+                template: ~
+                order: 1
+                attributes:
+                    example_text_attribute:
+                        form_type: text
+                        label: 'Example Text Attribute'
+                        options:
+                            required: true
+                            # ... other attributes
+                allowedTransitions:
+                    - from_one_to_who
+                    - from_one_to_three
+            example_step_two: ~
+                # step configuration here
+            example_step_three: ~
+                # step configuration here
+        transitions:
+            from_one_to_who:
+                label: 'From Step One To Step Two'
+                step_from: example_step_one
+                step_to: example_step_two
+                transition_definition: example_transition_definition_one
+            from_one_to_three:
+                label: 'From Step One To Step Three'
+                step_from: example_step_one
+                step_to: example_step_three
+                transition_definition: example_transition_definition_one
+            from_two_to_three:
+                label: 'From Step Two To Step Three'
+                step_from: example_step_two
+                step_two: example_step_three
+                transition_definition: example_transition_definition_two
+        transition_definitions:
+            example_transition_definition_one:
+                conditions: # budget >= '2000' and author_is_current_user or lead.name not empty
+                    or:
+                        - and:
+                            - @contact.budget >= 2000
+                            - @author_is_current_user
+                            # conditions configuration here
+                        - @lead.name not empty
+                post_actions:
+                    - create_new_entity:
+                        - ClassName
+                        - @contact
+                    - assign_value:
+                        - @contact.name
+                        - @name
+                    - assign_value:
+                        - @contact.budget
+                        - div: # todo in next iteration
+                            - @budget
+                            - 2
+            example_transition_definition_two:
+                conditions: ~
+                    # conditions configuration here
+                post_actions: ~
+                    # post actions configuration here
