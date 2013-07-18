@@ -56,7 +56,6 @@ class PhoneCall
      */
     private $successful;
 
-
     /**
      * Get id
      *
