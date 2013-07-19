@@ -69,9 +69,10 @@ workflows:
                     - @assign_value:
                         parameters:
                             - $contact.budget
-                            - @div: # todo in next iteration
-                                - $budget
-                                - 2
+                            - $budget
+#                            - @div: # todo in next iteration
+#                                - $budget
+#                                - 2
             example_transition_definition_two:
                 conditions: ~
                     # conditions configuration here
