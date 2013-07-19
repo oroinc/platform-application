@@ -42,24 +42,36 @@ workflows:
         transition_definitions:
             example_transition_definition_one:
                 conditions: # budget >= '2000' and author_is_current_user or lead.name not empty
-                    or:
-                        - and:
-                            - @contact.budget >= 2000
-                            - @author_is_current_user
+                    @or:
+                        - @and:
+                            - @graterOrEquals:
+                                - $contact.budget
+                                - 2000
+                            - @isDevMode: ~
+                            - @inChoiceList:
+                                - $contact.type
+                                -
+                                    a: 1
+                                    b: 2
                             # conditions configuration here
-                        - @lead.name not empty
+                        - @notEmpty:
+                            - $lead.name
                 post_actions:
-                    - create_new_entity:
-                        - ClassName
-                        - @contact
-                    - assign_value:
-                        - @contact.name
-                        - @name
-                    - assign_value:
-                        - @contact.budget
-                        - div: # todo in next iteration
-                            - @budget
-                            - 2
+                    - @create_new_entity:
+                        parameters:
+                            - ClassName
+                            - $contact
+                    - @assign_value:
+                        breakOnFailure: true
+                        parameters:
+                            - $contact.name
+                            - $name
+                    - @assign_value:
+                        parameters:
+                            - $contact.budget
+                            - @div: # todo in next iteration
+                                - $budget
+                                - 2
             example_transition_definition_two:
                 conditions: ~
                     # conditions configuration here
