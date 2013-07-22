@@ -56,6 +56,9 @@ class AppKernel extends Kernel
             new Oro\Bundle\TagBundle\OroTagBundle(),
             new Oro\Bundle\AsseticBundle\OroAsseticBundle(),
             new Oro\Bundle\TranslationBundle\OroTranslationBundle(),
+            new Oro\Bundle\EntityBundle\OroEntityBundle(),
+            new Oro\Bundle\EntityConfigBundle\OroEntityConfigBundle(),
+            new Oro\Bundle\EntityExtendBundle\OroEntityExtendBundle(),
 
             // BAP Demo bundles
             new Acme\Bundle\DemoBundle\AcmeDemoBundle(),
@@ -75,6 +78,7 @@ class AppKernel extends Kernel
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
+            $bundles[] = new Khepin\YamlFixturesBundle\KhepinYamlFixturesBundle();
         }
 
         if (in_array($this->getEnvironment(), array('test', 'perf'))) {

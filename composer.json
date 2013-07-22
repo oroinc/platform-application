@@ -15,13 +15,13 @@
         "doctrine/doctrine-fixtures-bundle": "@dev",
         "twig/extensions": "1.0.*@dev",
         "symfony/assetic-bundle": "2.3.*@dev",
+        "symfony/property-access": "2.3.0",
         "symfony/swiftmailer-bundle": "2.3.*",
         "symfony/monolog-bundle": "2.3.*",
         "sensio/distribution-bundle": "2.3.*",
         "sensio/framework-extra-bundle": "2.3.*",
         "sensio/generator-bundle": "2.3.*",
         "incenteev/composer-parameter-handler": "~2.0",
-
         "jms/di-extra-bundle": "1.4.*@dev",
         "jms/job-queue-bundle": "dev-master",
         "jms/aop-bundle": "dev-master",
@@ -46,6 +46,7 @@
         "liip/imagine-bundle": "dev-master",
         "leafo/lessphp": "dev-master",
         "willdurand/expose-translation-bundle": "0.2.*@dev",
+        "khepin/yaml-fixtures-bundle" : "0.7.*",
         "apy/jsfv-bundle": "dev-master",
         "genemu/form-bundle": "2.2.*"
     },
