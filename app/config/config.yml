@@ -192,3 +192,7 @@ oro_user:
 oro_assetic:
     uncompress_js: ~
     uncompress_css: ~
+
+oro_entity_extend:
+    backend:        Dynamic
+
