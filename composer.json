@@ -2,7 +2,11 @@
     "name": "oro/platform-dev",
     "description": "The \"BAP Development Edition\" distribution",
     "autoload": {
-        "psr-0": { "Oro\\Bundle": "src/Oro/src/", "": "src/" }
+        "psr-0": {
+            "Oro\\Bundle": "src/Oro/src/",
+            "Extend\\": "app/entities/",
+            "": "src/"
+        }
     },
     "require": {
         "php": ">=5.3.3",
