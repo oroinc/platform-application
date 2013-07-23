@@ -28,17 +28,14 @@ workflows:
         transitions:
             from_one_to_who:
                 label: 'From Step One To Step Two'
-                step_from: example_step_one
                 step_to: example_step_two
                 transition_definition: example_transition_definition_one
             from_one_to_three:
                 label: 'From Step One To Step Three'
-                step_from: example_step_one
                 step_to: example_step_three
                 transition_definition: example_transition_definition_one
             from_two_to_three:
                 label: 'From Step Two To Step Three'
-                step_from: example_step_two
                 step_to: example_step_three
                 transition_definition: example_transition_definition_two
         transition_definitions:
