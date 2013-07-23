@@ -57,7 +57,7 @@ workflows:
                         - @notEmpty:
                             - $lead.name
                 post_actions:
-                    - @create_new_entity:
+                    - @create_entity:
                         parameters:
                             class: ClassName
                             attribute: $contact
