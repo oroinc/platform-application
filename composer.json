@@ -2,7 +2,11 @@
     "name": "oro/platform-dev",
     "description": "The \"BAP Development Edition\" distribution",
     "autoload": {
-        "psr-0": { "Oro\\Bundle": "src/Oro/src/", "": "src/" }
+        "psr-0": {
+            "Oro\\Bundle": "src/Oro/src/",
+            "Extend\\": "app/entities/",
+            "": "src/"
+        }
     },
     "require": {
         "php": ">=5.3.3",
@@ -21,7 +25,6 @@
         "sensio/framework-extra-bundle": "2.3.*",
         "sensio/generator-bundle": "2.3.*",
         "incenteev/composer-parameter-handler": "~2.0",
-
         "jms/di-extra-bundle": "1.4.*@dev",
         "jms/job-queue-bundle": "dev-master",
         "jms/aop-bundle": "dev-master",

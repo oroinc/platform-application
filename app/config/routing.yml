@@ -94,6 +94,12 @@ oro_config:
 oro_dataaudit:
     resource: "@OroDataAuditBundle/Resources/config/routing.yml"
 
+oro_entity_config:
+    resource: "@OroEntityConfigBundle/Resources/config/routing.yml"
+
+oro_entity_extend:
+    resource: "@OroEntityExtendBundle/Resources/config/routing.yml"
+
 nelmio_api_doc:
     resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
     prefix:   /api/doc
