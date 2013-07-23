@@ -31,14 +31,14 @@ class PhoneCall
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
      */
     private $name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text")
+     * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
 
@@ -59,7 +59,7 @@ class PhoneCall
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -75,14 +75,14 @@ class PhoneCall
     public function setNumber($number)
     {
         $this->number = $number;
-    
+
         return $this;
     }
 
     /**
      * Get number
      *
-     * @return string 
+     * @return string
      */
     public function getNumber()
     {
@@ -98,14 +98,14 @@ class PhoneCall
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -121,14 +121,14 @@ class PhoneCall
     public function setDescription($description)
     {
         $this->description = $description;
-    
+
         return $this;
     }
 
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -144,14 +144,14 @@ class PhoneCall
     public function setTimeout($timeout)
     {
         $this->timeout = $timeout;
-    
+
         return $this;
     }
 
     /**
      * Get timeout
      *
-     * @return integer 
+     * @return integer
      */
     public function getTimeout()
     {
@@ -167,14 +167,14 @@ class PhoneCall
     public function setSuccessful($successful)
     {
         $this->successful = $successful;
-    
+
         return $this;
     }
 
     /**
      * Is successful
      *
-     * @return boolean 
+     * @return boolean
      */
     public function isSuccessful()
     {

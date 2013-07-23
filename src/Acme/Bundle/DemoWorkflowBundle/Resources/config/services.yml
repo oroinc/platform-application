@@ -1,0 +1,6 @@
+parameters:
+    acme_demo_workflow.registry.class: Acme\Bundle\DemoWorkflowBundle\Stubs\WorkflowRegistry
+
+services:
+    oro_workflow.registry:
+        class: %acme_demo_workflow.registry.class%

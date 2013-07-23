@@ -1,0 +1,51 @@
+{% extends 'AcmeDemoWorkflowBundle::layout.html.twig' %}
+
+{% block pagecontent %}
+    <h2>WorkflowItem Properties</h2>
+    <strong>WorkflowItem properties</strong>
+    <table border="1">
+        <tr>
+            <th>Property</th>
+            <th>Value</th>
+        </tr>
+        <tr>
+            <td>id</td>
+            <td>{{ workflowItem.id }}</td>
+        </tr>
+        <tr>
+            <td>workflowName</td>
+            <td>{{ workflowItem.workflowName }}</td>
+        </tr>
+        <tr>
+            <td>currentStepName</td>
+            <td>{{ workflowItem.currentStepName }}</td>
+        </tr>
+        <tr>
+            <td>closed</td>
+            <td>{{ workflowItem.closed }}</td>
+        </tr>
+        <tr>
+            <td>createdAt</td>
+            <td>{{ workflowItem.createdAt|date('d/m/y h:j:s') }}</td>
+        </tr>
+        <tr>
+            <td>updatedAt</td>
+            <td>{{ workflowItem.updatedAt|date('d/m/y h:j:s') }}</td>
+        </tr>
+        <tr>
+            <td>serializedData</td>
+            <td>{{ workflowItem.serializedData }}</td>
+        </tr>
+        <tr>
+            <td>data.phoneCall</td>
+            <td>
+                {% if workflowItem.data.phoneCall is defined %}
+                    Id: {{ workflowItem.data.phoneCall.id }}
+                    Number: {{ workflowItem.data.phoneCall.number }}
+                    var_dump:
+                    {{  dump(workflowItem.data.phoneCall) }}
+                {% endif %}
+            </td>
+        </tr>
+    </table>
+{% endblock %}
