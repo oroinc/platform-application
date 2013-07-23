@@ -59,8 +59,11 @@ workflows:
                 post_actions:
                     - @create_new_entity:
                         parameters:
-                            - ClassName
-                            - $contact
+                            class: ClassName
+                            attribute: $contact
+                    - @bind_entity:
+                        parameters:
+                            attribute: $contact
                     - @assign_value:
                         breakOnFailure: true
                         parameters:
