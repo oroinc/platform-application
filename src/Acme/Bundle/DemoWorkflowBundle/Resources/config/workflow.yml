@@ -16,12 +16,14 @@ workflows:
                         options:
                             required: true
                             # ... other attributes
-                allowedTransitions:
+                allowed_transitions:
                     - from_one_to_who
                     - from_one_to_three
-            example_step_two: ~
+            example_step_two:
+                label: 'Example Step Two'
                 # step configuration here
-            example_step_three: ~
+            example_step_three:
+                label: 'Example Step Three'
                 # step configuration here
         transitions:
             from_one_to_who:
@@ -37,7 +39,7 @@ workflows:
             from_two_to_three:
                 label: 'From Step Two To Step Three'
                 step_from: example_step_two
-                step_two: example_step_three
+                step_to: example_step_three
                 transition_definition: example_transition_definition_two
         transition_definitions:
             example_transition_definition_one:
@@ -77,7 +79,7 @@ workflows:
 #                                - $budget
 #                                - 2
             example_transition_definition_two:
-                conditions: ~
+                conditions: []
                     # conditions configuration here
-                post_actions: ~
+                post_actions: []
                     # post actions configuration here
