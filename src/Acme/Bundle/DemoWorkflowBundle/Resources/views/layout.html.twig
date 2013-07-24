@@ -1,37 +1,3 @@
 {% extends bap.layout is defined ? bap.layout : "OroUIBundle:Default:index.html.twig" %}
 
 {% oro_title_set({suffix: " - " ~ "Workflow"|trans}) %}
-
-{% block content %}
-
-    <div class="row-fluid" id="wrapper">
-        <div class="span3">
-            <div id="sidebar">
-                <br/>
-                <ul id="menu-block">
-                    <li class="subtitle"><strong>Examples</strong></li>
-                    <li><a href="{{ path('acme_demo_workflowbundle_workflowitem_show') }}">Show WorkflowItem</a></li>
-                    <li><a href="{{ path('acme_demo_workflowbundle_workflowitem_update') }}">Update WorkflowData</a></li>
-                    <li><a href="{{ path('acme_demo_workflowbundle_workflowitem_clear') }}">Clear WorkflowItem</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="span9">
-            <div id="content">
-
-                {% for flashMessage in app.session.flashbag.get('notice') %}
-                    <div class="alert alert-success">
-                        <button data-dismiss="alert" class="close" type="button">&times;</button>
-                        <strong>Well done!</strong>
-                        {{ flashMessage }}
-                    </div>
-                {% endfor %}
-
-                {% block pagecontent %}
-                {% endblock %}
-
-            </div>
-        </div>
-    </div>
-
-{% endblock %}

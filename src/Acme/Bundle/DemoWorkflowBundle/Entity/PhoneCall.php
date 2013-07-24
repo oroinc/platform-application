@@ -43,20 +43,6 @@ class PhoneCall
     private $description;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="timeout", type="smallint")
-     */
-    private $timeout;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="successful", type="boolean")
-     */
-    private $successful;
-
-    /**
      * Get id
      *
      * @return integer
@@ -133,51 +119,5 @@ class PhoneCall
     public function getDescription()
     {
         return $this->description;
-    }
-
-    /**
-     * Set timeout
-     *
-     * @param integer $timeout
-     * @return PhoneCall
-     */
-    public function setTimeout($timeout)
-    {
-        $this->timeout = $timeout;
-
-        return $this;
-    }
-
-    /**
-     * Get timeout
-     *
-     * @return integer
-     */
-    public function getTimeout()
-    {
-        return $this->timeout;
-    }
-
-    /**
-     * Set successful
-     *
-     * @param boolean $successful
-     * @return PhoneCall
-     */
-    public function setSuccessful($successful)
-    {
-        $this->successful = $successful;
-
-        return $this;
-    }
-
-    /**
-     * Is successful
-     *
-     * @return boolean
-     */
-    public function isSuccessful()
-    {
-        return $this->successful;
     }
 }

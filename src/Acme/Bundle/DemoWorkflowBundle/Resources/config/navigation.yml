@@ -1,0 +1,19 @@
+oro_menu_config:
+    items:
+        demo_workflow_tab:
+            label: 'Workflow'
+            uri: '#'
+            extras:
+                routes: ['acme_demoworkflow_*']
+        demo_workflow_phone_call:
+            label: 'Phone Calls'
+            route: 'acme_demoworkflow_phone_call_list'
+
+    tree:
+        application_menu:
+            children:
+                demo_workflow_tab:
+                    children:
+                        demo_workflow_phone_call: ~
+oro_titles:
+    demo_workflow_phone_call_list: Phone Calls

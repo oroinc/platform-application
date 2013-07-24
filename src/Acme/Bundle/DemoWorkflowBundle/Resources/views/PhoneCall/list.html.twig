@@ -1,0 +1,29 @@
+{% extends 'AcmeDemoWorkflowBundle::layout.html.twig' %}
+
+{% block content %}
+    <h1>Phone Calls
+        <a class="btn btn-primary pull-right" href="{{ path('acme_demoworkflow_phone_call_create') }}">New Phone Call</a>
+    </h1>
+
+    <table class="table table-bordered table-striped table-condensed">
+        <tr>
+            <th>ID</th>
+            <th>Number</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th></th>
+        </tr>
+        {% for phoneCall in phoneCalls %}
+        <tr>
+            <td>{{ phoneCall.id }}</td>
+            <td>{{ phoneCall.number }}</td>
+            <td>{{ phoneCall.name }}</td>
+            <td>{{ phoneCall.description }}</td>
+            <td>
+                <a href="{{ path('acme_demoworkflow_phone_call_edit', {id: phoneCall.id}) }}">View</a>
+            </td>
+        </tr>
+        <tr>
+            {% endfor %}
+    </table>
+{% endblock %}
