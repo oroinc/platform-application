@@ -1,9 +1,20 @@
 {% extends 'AcmeDemoWorkflowBundle::layout.html.twig' %}
 
-{% set title = currentStep.label %}
+{% set title = workflowStep.label %}
 
 {% block content %}
     <h1>{{ title | trans }}</h1>
 
+    <form action="{{ workflowItem.id ? path('acme_demoworkflow_workflowitem_create', { entityId: entityId, workflowName: workflow.name }) : path('acme_demoworkflow_workflowitem_create', {entityId: entityId, workflowName: workflow.name}) }}" method="POST">
+
+        <div class="usser-row form-container">
+            <fieldset class="form-horizontal">
+                {{ form_rest(workflowStepForm) }}
+            </fieldset>
+        </div>
+        <div class="form-row">
+            <button class="btn btn-large btn-primary pull-right" type="submit">{{ "Save" | trans }}</button>
+        </div>
+    </form>
 
 {% endblock %}
