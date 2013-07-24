@@ -27,9 +27,7 @@ workflows:
             call_timeout:
                 form_type: integer
                 label: 'Call Timeout'
-                options:
-                    form_options:
-                        required: true
+                options: ~
             call_successfull:
                 form_type: choice
                 label: 'Call Successful'

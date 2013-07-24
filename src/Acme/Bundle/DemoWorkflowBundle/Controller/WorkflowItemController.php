@@ -43,11 +43,10 @@ class WorkflowItemController extends Controller
         $stepForm = $this->createStepForm($workflow->getStartStep(), $workflowItem->getData());
 
         return array(
-            'workflowItem' => $workflowItem,
             'workflow' => $workflow,
-            'workflowStep' => $workflow->getStartStep(),
             'workflowStepForm' => $stepForm->createView(),
-            'entityId' => $entityId
+            'entityId' => $entityId,
+            'entity' => $entity
         );
     }
 

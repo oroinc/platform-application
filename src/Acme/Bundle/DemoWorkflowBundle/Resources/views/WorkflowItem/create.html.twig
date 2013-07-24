@@ -1,20 +1,51 @@
 {% extends 'AcmeDemoWorkflowBundle::layout.html.twig' %}
 
-{% set title = workflowStep.label %}
+{% set title = workflow.label %}
 
 {% block content %}
-    <h1>{{ title | trans }}</h1>
+    <h1>Create item of "{{ title | trans }}"</h1>
 
-    <form action="{{ workflowItem.id ? path('acme_demoworkflow_workflowitem_create', { entityId: entityId, workflowName: workflow.name }) : path('acme_demoworkflow_workflowitem_create', {entityId: entityId, workflowName: workflow.name}) }}" method="POST">
+    <h3>Start Step: {{ workflow.startStep.label }}</h3>
 
-        <div class="usser-row form-container">
-            <fieldset class="form-horizontal">
-                {{ form_rest(workflowStepForm) }}
-            </fieldset>
+    <form action="{{ path('acme_demoworkflow_workflowitem_create', {entityId: entityId, workflowName: workflow.name}) }}" method="POST">
+        <div class="form-horizontal">
+            <h5 class="usser-fiedset"><span>Step Data</span></h5>
+
+            <div class="usser-row form-container">
+                <fieldset class="form-horizontal">
+                    {{ form(workflowStepForm) }}
+                </fieldset>
+            </div>
         </div>
         <div class="form-row">
-            <button class="btn btn-large btn-primary pull-right" type="submit">{{ "Save" | trans }}</button>
+            <button class="btn btn-large btn-primary pull-right" type="submit">{{ workflow.startStep.label }}</button>
         </div>
     </form>
+
+    {# Related entities should be added dynamicly #}
+    <h3>Related Entities</h3>
+
+    <div class="form-horizontal">
+        <h5 class="usser-fiedset"><span>Phone Call</span></h5>
+        <div class="control-group">
+            <label class="control-label">Number</label>
+            <div class="controls">
+                <p class="control-label">{{ entity.number }}</p>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">Name</label>
+            <div class="controls">
+                <p class="control-label">{{ entity.name }}</p>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">Description</label>
+            <div class="controls">
+                <p class="control-label">{{ entity.description }}</p>
+            </div>
+        </div>
+    </div>
+
 
 {% endblock %}
