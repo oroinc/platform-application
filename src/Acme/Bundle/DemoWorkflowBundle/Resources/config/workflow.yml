@@ -1,82 +1,108 @@
 workflows:
-    example_workflow:
-        label: 'Example Workflow'
+    phone_call:
+        label: 'Demo Call Workflow'
         enabled: true
-        start_step: example_step_one
-        managed_entity_class: Oro\Bundle\FooBundle\Entity\BarEntity
+        start_step: start_call
+        managed_entity_class: Acme\Bundle\DemoWorkflowBundle\Entity\PhoneCall
         steps:
-            example_step_one:
-                label: 'Example Step One'
-                template: ~
-                order: 1
+            start_call:
+                label: 'Start Phone Call'
                 attributes:
-                    example_text_attribute:
-                        form_type: text
-                        label: 'Example Text Attribute'
-                        options:
-                            required: true
-                            # ... other attributes
+                    - call_timeout
                 allowed_transitions:
-                    - from_one_to_who
-                    - from_one_to_three
-            example_step_two:
-                label: 'Example Step Two'
-                # step configuration here
-            example_step_three:
-                label: 'Example Step Three'
-                # step configuration here
+                    - connected
+                    - not_answered
+            start_conversation:
+                label: 'Call Phone Conversation'
+                attributes:
+                    - conversation_result
+                    - conversation_comment
+                    - conversation_successful
+                allowed_transitions:
+                    - end_conversation
+            end_call:
+                label: 'End Phone Call'
+                is_final: true
+        attributes:
+            call_timeout:
+                form_type: integer
+                label: 'Call Timeout'
+                options:
+                    form_options:
+                        required: true
+            call_successfull:
+                form_type: choice
+                label: 'Call Successful'
+                options:
+                    form_options:
+                      choices: {0: 'Yes', 1: 'No'}
+                      required: true
+                      multiple: false
+            conversation_successful:
+                form_type: choice
+                label: 'Conversation Successful'
+                options:
+                    form_options:
+                        choices: {0: 'Yes', 1: 'No'}
+                        required: true
+                        multiple: false
+            conversation_comment:
+                form_type: text
+                label: 'Conversation Comment'
+            conversation_result:
+                form_type: text
+                label: 'Conversation Result'
+            conversation:
+                form_type: entity
+                label: 'Conversation'
+                options:
+                    entity_class: Acme\Bundle\DemoWorkflowBundle\Entity\PhoneConversation
         transitions:
-            from_one_to_who:
-                label: 'From Step One To Step Two'
-                step_to: example_step_two
-                transition_definition: example_transition_definition_one
-            from_one_to_three:
-                label: 'From Step One To Step Three'
-                step_to: example_step_three
-                transition_definition: example_transition_definition_one
-            from_two_to_three:
-                label: 'From Step Two To Step Three'
-                step_to: example_step_three
-                transition_definition: example_transition_definition_two
+            connected:
+                label: 'Connected'
+                step_to: start_conversation
+                transition_definition: connected_definition
+            not_answered:
+                label: "Not answered"
+                step_to: end_call
+                transition_definition: not_answered_definition
+            end_conversation:
+                label: 'End conversation'
+                step_to: end_call
+                transition_definition: end_conversation_definition
         transition_definitions:
-            example_transition_definition_one:
-                conditions: # budget >= '2000' and author_is_current_user or lead.name not empty
-                    @or:
-                        - @and:
-                            - @graterOrEquals:
-                                - $contact.budget
-                                - 2000
-                            - @isDevMode: ~
-                            - @inChoiceList:
-                                - $contact.type
-                                -
-                                    a: 1
-                                    b: 2
-                            # conditions configuration here
-                        - @notEmpty:
-                            - $lead.name
+            connected_definition: # Try to make call connected
+                # No conditions to check, allow anytime call_successfull = true
+                # conditions: []
+                # Create PhoneConversation and set call_successfull = true
                 post_actions:
-                    - @create_entity:
+                    - @create_entity: # create PhoneConversation
                         parameters:
-                            class: ClassName
-                            attribute: $contact
-                    - @bind_entity:
+                            class: Acme\Bundle\DemoWorkflowBundle\Entity\PhoneConversation
+                            attribute: $conversation
+                    - @bind_entity: # bind created PhoneConversation with current workflow item
                         parameters:
-                            attribute: $contact
+                            attribute: $conversation
+                    - @assign_value: # set current PhoneCall to PhoneConversation
+                        parameters: [$conversation.call, $managed_entity]
                     - @assign_value:
-                        breakOnFailure: true
-                        parameters:
-                            - $contact.name
-                            - $name
+                        parameters: [$call_successfull, true]
+            not_answered_definition: # Callee did not answer
+                # Make sure that caller waited at least 60 seconds
+                conditions: # call_timeout not empty and >= 60
+                    @and:
+                        - @not_blank: [$call_timeout]
+                        - @ge: [$call_timeout, 60]
+                # Set call_successfull = true
+                post_actions:
                     - @assign_value:
-                        parameters:
-                            - $contact.budget
-                            - $budget
-#                            - @div: # todo in next iteration
-#                                - $budget
-#                                - 2
-            example_transition_definition_two:
-                conditions: []
-                    # conditions configuration here
-                post_actions: []
-                    # post actions configuration here
+                        parameters: [$conversation_successful, true]
+            end_conversation_definition:
+                conditions:
+                    # Check required properties are set
+                    @and:
+                        - @not_blank: [$conversation_result]
+                        - @not_blank: [$conversation_comment]
+                        - @not_blank: [$conversation_successful]
+                # Nothing to do
+                # post_actions: []

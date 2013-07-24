@@ -36,7 +36,7 @@ class WorkflowItemController extends Controller
         if (!$workflowItem) {
             /** @var WorkflowRegistry $registry */
             $registry = $this->get('oro_workflow.registry');
-            $workflow = $registry->getWorkflow('phone_call_workflow');
+            $workflow = $registry->getWorkflow('phone_call');
             $workflowItem = $workflow->createWorkflowItem();
             $this->getEntityManager()->persist($workflowItem);
             $this->getEntityManager()->flush();
