@@ -2,7 +2,7 @@
 
 {% block content %}
     <h1>Phone Calls
-        <a class="btn btn-primary pull-right" href="{{ path('acme_demoworkflow_phone_call_create') }}">New Phone Call</a>
+        <a class="btn btn-primary pull-right" href="{{ path('acme_demoworkflow_phonecall_create') }}">New Phone Call</a>
     </h1>
 
     <table class="table table-bordered table-striped table-condensed">
@@ -19,15 +19,15 @@
                 {{ phoneCall.id }}
             </td>
             <td>
-                <a href="{{ path('acme_demoworkflow_phone_call_view', {id: phoneCall.id}) }}">
+                <a href="{{ path('acme_demoworkflow_phonecall_view', {id: phoneCall.id}) }}">
                     {{ phoneCall.number }}
                 </a>
             </td>
             <td>{{ phoneCall.name }}</td>
             <td>{{ phoneCall.description }}</td>
             <td>
-                <a href="{{ path('acme_demoworkflow_phone_call_view', {id: phoneCall.id}) }}">View</a>
-                <a href="{{ path('acme_demoworkflow_phone_call_edit', {id: phoneCall.id}) }}">Edit</a>
+                <a href="{{ path('acme_demoworkflow_phonecall_view', {id: phoneCall.id}) }}">View</a>
+                <a href="{{ path('acme_demoworkflow_phonecall_edit', {id: phoneCall.id}) }}">Edit</a>
             </td>
         </tr>
         <tr>

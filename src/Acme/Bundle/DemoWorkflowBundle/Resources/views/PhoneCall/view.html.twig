@@ -4,25 +4,27 @@
 
 {% block content %}
     <h1>{{ title | trans }}
-        <a class="btn btn-primary pull-right" href="{{ path('acme_demoworkflow_phone_call_list') }}">{{ "Back" | trans }}</a>
+        <a class="btn btn-primary pull-right" href="{{ path('acme_demoworkflow_phonecall_list') }}">{{ "Back" | trans }}</a>
     </h1>
 
     <div class="form-horizontal">
-        <h5 class="usser-fiedset"><span>Phone Call Workflows</span></h5>
-        <div class="control-group">
-            <label class="control-label">Status</label>
-            <div class="controls">
-                Inactive
-            </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label">Actions</label>
-            <div class="controls">
-                <a class="btn btn-primary" href="#">
-                    {{ "Start Call" | trans }}
-                </a>
-            </div>
-        </div>
+        <h5 class="usser-fiedset"><span>Start Workflow</span></h5>
+        {% for workflow in applicableWorkflows %}
+            <table class="table table-bordered table-striped" style="width: auto;">
+                <tr>
+                    <th>Name</th>
+                    <th>Action</th>
+                </tr>
+                <tr>
+                    <td>{{ workflow.label }}</td>
+                    <td>
+                        <a class="btn" href="{{ path('acme_demoworkflow_workflowitem_create', {entityId: phoneCall.id, workflowName: workflow.name}) }}">
+                            {{ workflow.startStep.label }}
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        {% endfor  %}
     </div>
 
     <div class="form-horizontal">

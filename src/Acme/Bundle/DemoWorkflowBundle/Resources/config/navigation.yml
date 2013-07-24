@@ -7,7 +7,7 @@ oro_menu_config:
                 routes: ['acme_demoworkflow_*']
         demo_workflow_phone_call:
             label: 'Phone Calls'
-            route: 'acme_demoworkflow_phone_call_list'
+            route: 'acme_demoworkflow_phonecall_list'
 
     tree:
         application_menu:
@@ -16,4 +16,4 @@ oro_menu_config:
                     children:
                         demo_workflow_phone_call: ~
 oro_titles:
-    acme_demoworkflow_phone_call_list: Phone Calls
+    acme_demoworkflow_phonecall_list: Phone Calls

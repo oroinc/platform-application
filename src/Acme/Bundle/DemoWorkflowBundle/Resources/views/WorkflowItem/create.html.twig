@@ -1,0 +1,9 @@
+{% extends 'AcmeDemoWorkflowBundle::layout.html.twig' %}
+
+{% set title = currentStep.label %}
+
+{% block content %}
+    <h1>{{ title | trans }}</h1>
+
+
+{% endblock %}

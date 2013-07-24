@@ -20,7 +20,7 @@ use Acme\Bundle\DemoWorkflowBundle\Entity\PhoneCall;
 class PhoneCallController extends Controller
 {
     /**
-     * @Route("/", name="acme_demoworkflow_phone_call_list")
+     * @Route("/", name="acme_demoworkflow_phonecall_list")
      * @Template()
      */
     public function listAction()
@@ -32,7 +32,7 @@ class PhoneCallController extends Controller
     }
 
     /**
-     * @Route("/create", name="acme_demoworkflow_phone_call_create")
+     * @Route("/create", name="acme_demoworkflow_phonecall_create")
      * @Template("AcmeDemoWorkflowBundle:PhoneCall:edit.html.twig")
      */
     public function createAction(Request $request)
@@ -43,7 +43,7 @@ class PhoneCallController extends Controller
     }
 
     /**
-     * @Route("/edit/{id}", name="acme_demoworkflow_phone_call_edit", requirements={"id"="\d+"})
+     * @Route("/edit/{id}", name="acme_demoworkflow_phonecall_edit", requirements={"id"="\d+"})
      * @Template("AcmeDemoWorkflowBundle:PhoneCall:edit.html.twig")
      */
     public function editAction(Request $request, PhoneCall $phoneCall)
@@ -67,7 +67,7 @@ class PhoneCallController extends Controller
     }
 
     /**
-     * @Route("/view/{id}", name="acme_demoworkflow_phone_call_view", requirements={"id"="\d+"})
+     * @Route("/view/{id}", name="acme_demoworkflow_phonecall_view", requirements={"id"="\d+"})
      * @Template("AcmeDemoWorkflowBundle:PhoneCall:view.html.twig")
      */
     public function viewAction(PhoneCall $phoneCall)

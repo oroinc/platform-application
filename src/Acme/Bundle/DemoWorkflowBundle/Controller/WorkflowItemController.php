@@ -2,125 +2,98 @@
 
 namespace Acme\Bundle\DemoWorkflowBundle\Controller;
 
-use Acme\Bundle\DemoWorkflowBundle\Entity\PhoneCall;
-use Oro\Bundle\WorkflowBundle\Entity\WorkflowItem;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 use Doctrine\ORM\EntityManager;
 
-use Acme\Bundle\DemoWorkflowBundle\Stubs\WorkflowRegistry;
+use Oro\Bundle\WorkflowBundle\Exception\WorkflowNotFoundException;
+use Oro\Bundle\WorkflowBundle\Model\WorkflowRegistry;
+use Oro\Bundle\WorkflowBundle\Model\Workflow;
 
+/**
+ * @Route("/workflow_item", name="acme_demoworkflow_workflowitem_create")
+ * @Template()
+ */
 class WorkflowItemController extends Controller
 {
     /**
-     * @Route("/index", name="acme_demo_workflowbundle_workflowitem_index")
+     * @Route("/create/{workflowName}/{entityId}", name="acme_demoworkflow_workflowitem_create")
      * @Template()
      */
-    public function indexAction()
+    public function createAction($workflowName, $entityId)
     {
-        return array();
-    }
-
-    /**
-     * @Route("/create_workflow_item", name="acme_demo_workflowbundle_workflowitem_show")
-     * @Template()
-     */
-    public function showAction()
-    {
-        $workflowItem = $this->getWorkflowItem();
-
-        if (!$workflowItem) {
-            /** @var WorkflowRegistry $registry */
-            $registry = $this->get('oro_workflow.registry');
-            $workflow = $registry->getWorkflow('phone_call');
-            $workflowItem = $workflow->createWorkflowItem();
-            $this->getEntityManager()->persist($workflowItem);
-            $this->getEntityManager()->flush();
+        $workflow = $this->getWorkflow($workflowName);
+        $entity = null;
+        if ($workflow->getManagedEntityClass()) {
+            $entity = $this->getWorkflowEntity($workflow, $entityId);
         }
+        $workflowItem = $workflow->createWorkflowItem($entity);
 
         return array(
-            'workflowItem' => $workflowItem
+            'workflowItem' => $workflowItem,
+            'workflow' => $workflow,
+            'currentStep' => $workflow->getStartStep()
         );
     }
 
     /**
-     * @Route("/update_workflow_item", name="acme_demo_workflowbundle_workflowitem_update")
-     * @Template()
+     * Get Workflow by name
+     *
+     * @param string $name
+     * @return Workflow
+     * @throws NotFoundHttpException
      */
-    public function updateWorkflowDataAction()
+    protected function getWorkflow($name)
     {
-        $this->getEntityManager()->beginTransaction();
-
-
-        $workflowItem = $this->getWorkflowItem();
-        $workflowItem->setUpdated();
-
-        $workflowItem->getData()->set('test', 'Random value ' . rand(1, 1000));
-
-        $phoneCall = new PhoneCall();
-        $phoneCall->setName('John Doe');
-        $phoneCall->setDescription('A call to John Doe');
-        $phoneCall->setNumber('0 800 455 66 889');
-        $phoneCall->setSuccessful(true);
-        $phoneCall->setTimeout(50);
-
-        $this->getEntityManager()->persist($phoneCall);
-        $this->getEntityManager()->flush($phoneCall);
-
-        $workflowItem->getData()->set('phoneCall', $phoneCall);
-
-        $this->getEntityManager()->flush();
-
-        $this->getEntityManager()->commit();
-
-        return $this->redirect($this->generateUrl('acme_demo_workflowbundle_workflowitem_show'));
-    }
-
-    /**
-     * @Route("/clear_workflow_item", name="acme_demo_workflowbundle_workflowitem_clear")
-     */
-    public function clearWorkflowItemsAction()
-    {
-        $workflowItems = $this->getWorkflowItemRepository()->findAll();
-
-        foreach ($workflowItems as $workflowItem) {
-            $this->getEntityManager()->remove($workflowItem);
+        /** @var WorkflowRegistry $workflowRegistry */
+        $workflowRegistry = $this->get('oro_workflow.registry');
+        try {
+            $workflow = $workflowRegistry->getWorkflow($name);
+        } catch (WorkflowNotFoundException $e) {
+            throw new NotFoundHttpException(sprintf('Workflow "%s" not found', $name));
         }
-
-        $this->getEntityManager()->flush();
-
-        return $this->redirect($this->generateUrl('acme_demo_workflowbundle_workflowitem_show'));
+        return $workflow;
     }
 
     /**
-     * @return WorkflowItem
+     * Get entity that related to workflow by id
+     *
+     * @param Workflow $workflow
+     * @param mixed $entityId
+     * @return mixed
+     * @throws HttpException
      */
-    protected function getWorkflowItem()
+    protected function getWorkflowEntity(Workflow $workflow, $entityId)
     {
-        return $this->getWorkflowItemRepository()->findOneBy(
-            array(
-                'workflowName' => 'phone_call_workflow'
-            )
-        );
-    }
-
-    /**
-     * @return \Doctrine\ORM\EntityRepository
-     */
-    protected function getWorkflowItemRepository()
-    {
-        return $this->getEntityManager()->getRepository('OroWorkflowBundle:WorkflowItem');
-    }
-
-    /**
-     * @return EntityManager
-     */
-    protected function getEntityManager()
-    {
-        return $this->getDoctrine()->getManager();
+        /** @var EntityManager $em */
+        $em = $this->getDoctrine()->getManagerForClass($workflow->getManagedEntityClass());
+        if (!$em) {
+            throw new HttpException(
+                500,
+                sprintf(
+                    'Workflow "%s" managed class "%s" is not managed entity',
+                    $workflow->getName(),
+                    $workflow->getManagedEntityClass()
+                )
+            );
+        }
+        $entity = $em->find($workflow->getManagedEntityClass(), $entityId);
+        if (!$entity) {
+            throw new NotFoundHttpException(
+                sprintf(
+                    'Entity of workflow "%s" with id=%s not found',
+                    $workflow->getName(),
+                    $workflow->getManagedEntityClass()
+                )
+            );
+        }
+        return $entity;
     }
 }
