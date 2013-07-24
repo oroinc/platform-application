@@ -23,7 +23,7 @@ class WorkflowRegistry extends BaseWorkflowRegistry
     {
         if (!$this->workflow) {
             $this->workflow = new Workflow();
-            $this->workflow->setManagedEntityType('Acme\Bundle\DemoWorkflowBundle\Entity\PhoneCall');
+            $this->workflow->setManagedEntityClass('Acme\Bundle\DemoWorkflowBundle\Entity\PhoneCall');
             $this->workflow->setName('phone_call_workflow');
             $this->workflow->setEnabled(true);
 
@@ -31,7 +31,7 @@ class WorkflowRegistry extends BaseWorkflowRegistry
             $step->setName('Initial Step');
 
             $this->workflow->getSteps()->add($step);
-            $this->workflow->setStartStep($step);
+            $this->workflow->setStartStepName($step->getName());
 
             $phoneCallAttribute = new StepAttribute();
             $phoneCallAttribute->setName('phoneCall');
