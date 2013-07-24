@@ -132,3 +132,7 @@ oro_assets:
 oro_tag:
     resource: "@OroTagBundle/Resources/config/routing.yml"
     prefix:   /
+
+oro_organization:
+    resource: "@OroOrganizationBundle/Resources/config/routing.yml"
+    prefix:   /
