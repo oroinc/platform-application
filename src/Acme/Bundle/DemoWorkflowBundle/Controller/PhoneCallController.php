@@ -2,7 +2,6 @@
 
 namespace Acme\Bundle\DemoWorkflowBundle\Controller;
 
-use Acme\Bundle\DemoWorkflowBundle\Form\PhoneCallType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -10,6 +9,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
+use Oro\Bundle\WorkflowBundle\Model\WorkflowRegistry;
+
+use Acme\Bundle\DemoWorkflowBundle\Form\PhoneCallType;
 use Acme\Bundle\DemoWorkflowBundle\Entity\PhoneCall;
 
 /**
@@ -70,16 +72,14 @@ class PhoneCallController extends Controller
      */
     public function viewAction(PhoneCall $phoneCall)
     {
-        // @TODO Get workflows that are applicable to PhoneCall
+        /** @var WorkflowRegistry $workflowRegistry */
+        $workflowRegistry = $this->get('oro_workflow.registry');
 
+        $applicableWorkflows = $workflowRegistry->getWorkflowsByEntity($phoneCall);
 
         return array(
+            'applicableWorkflows' => $applicableWorkflows,
             'phoneCall' => $phoneCall
         );
-    }
-
-    protected function getWorkflowItemsByPhoneCall(PhoneCall $phoneCall)
-    {
-        return array();
     }
 }
