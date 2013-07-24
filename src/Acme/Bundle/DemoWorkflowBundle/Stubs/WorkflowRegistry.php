@@ -2,7 +2,7 @@
 namespace Acme\Bundle\DemoWorkflowBundle\Stubs;
 
 use Oro\Bundle\WorkflowBundle\Model\Step;
-use Oro\Bundle\WorkflowBundle\Model\StepAttribute;
+use Oro\Bundle\WorkflowBundle\Model\Attribute;
 use Oro\Bundle\WorkflowBundle\Model\Workflow;
 use Oro\Bundle\WorkflowBundle\Model\WorkflowRegistry as BaseWorkflowRegistry;
 
@@ -33,7 +33,7 @@ class WorkflowRegistry extends BaseWorkflowRegistry
             $this->workflow->getSteps()->add($step);
             $this->workflow->setStartStepName($step->getName());
 
-            $phoneCallAttribute = new StepAttribute();
+            $phoneCallAttribute = new Attribute();
             $phoneCallAttribute->setName('phoneCall');
             $phoneCallAttribute->setOptions(
                 array(
@@ -42,7 +42,7 @@ class WorkflowRegistry extends BaseWorkflowRegistry
             );
             $step->getAttributes()->set($phoneCallAttribute->getName(), $phoneCallAttribute);
 
-            $conversationAttribute = new StepAttribute();
+            $conversationAttribute = new Attribute();
             $conversationAttribute->setName('conversation');
             $conversationAttribute->setOptions(
                 array(
@@ -51,12 +51,12 @@ class WorkflowRegistry extends BaseWorkflowRegistry
             );
             $step->getAttributes()->set($conversationAttribute->getName(), $conversationAttribute);
 
-            $nameAttribute = new StepAttribute();
+            $nameAttribute = new Attribute();
             $nameAttribute->setName('name');
             $nameAttribute->setFormTypeName('text');
             $step->getAttributes()->set($nameAttribute->getName(), $nameAttribute);
 
-            $numberAttribute = new StepAttribute();
+            $numberAttribute = new Attribute();
             $numberAttribute->setName('number');
             $numberAttribute->setFormTypeName('text');
             $step->getAttributes()->set($numberAttribute->getName(), $numberAttribute);
