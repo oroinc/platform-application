@@ -59,23 +59,7 @@ class WorkflowItemController extends Controller
      */
     protected function createStepForm(Step $step, WorkflowData $workflowData)
     {
-        // $form = $this->createForm('oro_workflow_step', $data, array('attributes' => $attributes));
-        $formBuilder = $this->createFormBuilder($workflowData);
-
-        /** @var Attribute $attribute */
-        foreach ($step->getAttributes() as $attribute) {
-            $formOptions = $attribute->getOption('form_options');
-            $formOptions = $formOptions ? $formOptions : array();
-            $formOptions['label'] = $attribute->getLabel();
-
-            $formBuilder->add(
-                $attribute->getName(),
-                $attribute->getFormTypeName(),
-                $formOptions
-            );
-        }
-
-        return $formBuilder->getForm();
+        return $this->createForm('oro_workflow_step', $workflowData, array('step' => $step));
     }
 
     /**

@@ -48,7 +48,7 @@ class PhoneCallController extends Controller
      */
     public function editAction(Request $request, PhoneCall $phoneCall)
     {
-        $form = $this->createForm('acme_workflow_phone_call', $phoneCall);
+        $form = $this->createForm(new PhoneCallType(), $phoneCall);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
