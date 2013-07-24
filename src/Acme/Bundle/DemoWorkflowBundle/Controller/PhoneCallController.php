@@ -70,8 +70,16 @@ class PhoneCallController extends Controller
      */
     public function viewAction(PhoneCall $phoneCall)
     {
+        // @TODO Get workflows that are applicable to PhoneCall
+
+
         return array(
             'phoneCall' => $phoneCall
         );
+    }
+
+    protected function getWorkflowItemsByPhoneCall(PhoneCall $phoneCall)
+    {
+        return array();
     }
 }

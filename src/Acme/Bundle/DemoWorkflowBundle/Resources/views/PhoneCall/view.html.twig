@@ -4,8 +4,25 @@
 
 {% block content %}
     <h1>{{ title | trans }}
-        <a class="btn btn-primary pull-right" style="margin-left:10px;" href="{{ path('acme_demoworkflow_phone_call_list') }}">{{ "Back" | trans }}</a>
+        <a class="btn btn-primary pull-right" href="{{ path('acme_demoworkflow_phone_call_list') }}">{{ "Back" | trans }}</a>
     </h1>
+
+    <div class="form-horizontal">
+        <h5 class="usser-fiedset"><span>Phone Call Workflow</span></h5>
+        <div class="control-group">
+            <label class="control-label">Status</label>
+            <div class="controls">
+                Inactive
+            </div>
+        </div><div class="control-group">
+            <label class="control-label">Actions</label>
+            <div class="controls">
+                <a class="btn btn-primary" href="#">
+                    {{ "Start Call" | trans }}
+                </a>
+            </div>
+        </div>
+    </div>
 
     <div class="form-horizontal">
         <h5 class="usser-fiedset"><span>Basic Information</span></h5>

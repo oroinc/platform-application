@@ -16,4 +16,4 @@ oro_menu_config:
                     children:
                         demo_workflow_phone_call: ~
 oro_titles:
-    demo_workflow_phone_call_list: Phone Calls
+    acme_demoworkflow_phone_call_list: Phone Calls
