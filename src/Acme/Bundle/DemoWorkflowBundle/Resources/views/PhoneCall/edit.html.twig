@@ -9,13 +9,26 @@
 
     <form action="{{ phoneCall.id ? path('acme_demoworkflow_phone_call_edit', { id: phoneCall.id }) : path('acme_demoworkflow_phone_call_create', {'id': phoneCall.id}) }}" method="POST">
 
-        <fieldset>
-            {{ form_widget(form) }}
-
-            <div class="form-row">
-                <button class="btn btn-large btn-primary pull-right" type="submit">{{ "Save" | trans }}</button>
-            </div>
-        </fieldset>
+        <div class="usser-row form-container">
+            <fieldset class="form-horizontal">
+                <div class="control-group">
+                    <label class="control-label">Number</label>
+                    <div class="controls">
+                        {{ form_widget(form.number) }}
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">Name</label>
+                    <div class="controls">
+                        {{ form_widget(form.name) }}
+                    </div>
+                </div>
+                {{ form_rest(form) }}
+            </fieldset>
+        </div>
+        <div class="form-row">
+            <button class="btn btn-large btn-primary pull-right" type="submit">{{ "Save" | trans }}</button>
+        </div>
     </form>
 
 {% endblock %}

@@ -63,4 +63,15 @@ class PhoneCallController extends Controller
             'form' => $form->createView(),
         );
     }
+
+    /**
+     * @Route("/view/{id}", name="acme_demoworkflow_phone_call_view", requirements={"id"="\d+"})
+     * @Template("AcmeDemoWorkflowBundle:PhoneCall:view.html.twig")
+     */
+    public function viewAction(PhoneCall $phoneCall)
+    {
+        return array(
+            'phoneCall' => $phoneCall
+        );
+    }
 }

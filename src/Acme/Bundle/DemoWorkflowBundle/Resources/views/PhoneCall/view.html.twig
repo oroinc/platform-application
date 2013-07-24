@@ -1,0 +1,33 @@
+{% extends 'AcmeDemoWorkflowBundle::layout.html.twig' %}
+
+{% set title = "Phone Call" %}
+
+{% block content %}
+    <h1>{{ title | trans }}
+        <a class="btn btn-primary pull-right" style="margin-left:10px;" href="{{ path('acme_demoworkflow_phone_call_list') }}">{{ "Back" | trans }}</a>
+    </h1>
+
+    <div class="form-horizontal">
+        <h5 class="usser-fiedset"><span>Basic Information</span></h5>
+        <div class="control-group">
+            <label class="control-label">Number</label>
+            <div class="controls">
+                <p class="control-label">{{ phoneCall.number }}</p>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">Name</label>
+            <div class="controls">
+                <p class="control-label">{{ phoneCall.name }}</p>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">Description</label>
+            <div class="controls">
+                <p class="control-label">{{ phoneCall.description }}</p>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

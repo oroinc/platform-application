@@ -15,12 +15,19 @@
         </tr>
         {% for phoneCall in phoneCalls %}
         <tr>
-            <td>{{ phoneCall.id }}</td>
-            <td>{{ phoneCall.number }}</td>
+            <td>
+                {{ phoneCall.id }}
+            </td>
+            <td>
+                <a href="{{ path('acme_demoworkflow_phone_call_view', {id: phoneCall.id}) }}">
+                    {{ phoneCall.number }}
+                </a>
+            </td>
             <td>{{ phoneCall.name }}</td>
             <td>{{ phoneCall.description }}</td>
             <td>
-                <a href="{{ path('acme_demoworkflow_phone_call_edit', {id: phoneCall.id}) }}">View</a>
+                <a href="{{ path('acme_demoworkflow_phone_call_view', {id: phoneCall.id}) }}">View</a>
+                <a href="{{ path('acme_demoworkflow_phone_call_edit', {id: phoneCall.id}) }}">Edit</a>
             </td>
         </tr>
         <tr>
