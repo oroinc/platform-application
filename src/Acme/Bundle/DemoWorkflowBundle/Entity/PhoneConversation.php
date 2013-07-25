@@ -32,28 +32,28 @@ class PhoneConversation
     /**
      * @var string
      *
-     * @ORM\Column(name="result", type="string", length=255)
+     * @ORM\Column(name="result", type="string", length=255, nullable=true)
      */
     private $result;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="comment", type="string", length=255)
+     * @ORM\Column(name="comment", type="string", length=255, nullable=true)
      */
     private $comment;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="successful", type="boolean")
+     * @ORM\Column(name="successful", type="boolean", nullable=true)
      */
     private $successful;
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -69,14 +69,14 @@ class PhoneConversation
     public function setResult($result)
     {
         $this->result = $result;
-    
+
         return $this;
     }
 
     /**
      * Get result
      *
-     * @return string 
+     * @return string
      */
     public function getResult()
     {
@@ -92,14 +92,14 @@ class PhoneConversation
     public function setComment($comment)
     {
         $this->comment = $comment;
-    
+
         return $this;
     }
 
     /**
      * Get comment
      *
-     * @return string 
+     * @return string
      */
     public function getComment()
     {
@@ -115,14 +115,14 @@ class PhoneConversation
     public function setSuccessful($successful)
     {
         $this->successful = $successful;
-    
+
         return $this;
     }
 
     /**
      * Is successful
      *
-     * @return boolean 
+     * @return boolean
      */
     public function isSuccessful()
     {

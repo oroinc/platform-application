@@ -113,12 +113,24 @@ class WorkflowItemController extends Controller
         if (!$transition) {
             throw new HttpException(500, sprintf('Transition "%s" not found', $transitionName));
         }
+
         if ($workflow->isTransitionAllowed($workflowItem, $transition)) {
-            $workflowItem->setUpdated();
+            $em = $this->getEntityManager();
+            $em->beginTransaction();
+            try {
+                $workflow->transit($workflowItem, $transition);
+                $workflowItem->setUpdated();
+                $em->flush();
+                $em->commit();
+            } catch (\Exception $e) {
+                $em->rollback();
+                throw $e;
+            }
+
             $this->get('session')->getFlashBag()->add(
                 'success',
                 sprintf(
-                    'Transition "%s" successfully performed. Workflow "%s" is in step "%s"',
+                    'Transition "%s" successfully performed. Workflow "%s" is now in step "%s"',
                     $transition->getLabel(),
                     $workflow->getLabel(),
                     $transition->getLabel()
