@@ -2,6 +2,8 @@
 
 namespace Acme\Bundle\DemoWorkflowBundle\Controller;
 
+use Doctrine\ORM\EntityManager;
+
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -10,15 +12,11 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
-use Doctrine\ORM\EntityManager;
-
 use Oro\Bundle\WorkflowBundle\Exception\WorkflowNotFoundException;
 use Oro\Bundle\WorkflowBundle\Model\WorkflowRegistry;
 use Oro\Bundle\WorkflowBundle\Model\Workflow;
+use Oro\Bundle\WorkflowBundle\Model\Transition;
 use Oro\Bundle\WorkflowBundle\Entity\WorkflowItem;
-use Oro\Bundle\WorkflowBundle\Model\Attribute;
-use Oro\Bundle\WorkflowBundle\Model\WorkflowData;
-use Oro\Bundle\WorkflowBundle\Model\Step;
 
 /**
  * @Route("/workflow_item")
@@ -108,6 +106,31 @@ class WorkflowItemController extends Controller
      */
     public function transitAction(WorkflowItem $workflowItem, $transitionName)
     {
+        $workflow = $this->getWorkflow($workflowItem->getWorkflowName());
+
+        /** @var Transition $transition */
+        $transition = $workflow->getTransitions()->get($transitionName);
+        if (!$transition) {
+            throw new HttpException(500, sprintf('Transition "%s" not found', $transitionName));
+        }
+        if ($workflow->isTransitionAllowed($workflowItem, $transition)) {
+            $workflowItem->setUpdated();
+            $this->get('session')->getFlashBag()->add(
+                'success',
+                sprintf(
+                    'Transition "%s" successfully performed. Workflow "%s" is in step "%s"',
+                    $transition->getLabel(),
+                    $workflow->getLabel(),
+                    $transition->getLabel()
+                )
+            );
+        } else {
+            $this->get('session')->getFlashBag()->add(
+                'error',
+                sprintf('Transition "%s" is not allowed', $transition->getLabel())
+            );
+        }
+
         return $this->redirect(
             $this->generateUrl(
                 'acme_demoworkflow_workflowitem_edit',

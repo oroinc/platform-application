@@ -22,17 +22,21 @@
             <br/>
             <br/>
 
-            <h5 class="usser-fiedset"><span>Allowed Transitions</span></h5>
-            {% for transitionName in currentStep.allowedTransitions %}
-                {% set transition = workflow.transitions[transitionName] %}
-                {% if workflow.isTransitionAllowed(workflowItem, transition) %}
-                    <a class="btn btn-large btn-success" href="{{ path('acme_demoworkflow_workflowitem_transit', {id: workflowItem.id, transitionName: transitionName}) }}">
-                        {{ transition.label }}
-                    </a>
-                {% else %}
-                    <button class="btn btn-large btn-info" type="submit" disabled="disabled">{{ transition.label }}</button>
-                {% endif %}
-            {% endfor %}
+            {% if currentStep.allowedTransitions|length %}
+                <h5 class="usser-fiedset"><span>Allowed Transitions</span></h5>
+                {% for transitionName in currentStep.allowedTransitions %}
+                    {% set transition = workflow.transitions[transitionName] %}
+                    {% if workflow.isTransitionAllowed(workflowItem, transition) %}
+                        <a class="btn btn-large btn-success" href="{{ path('acme_demoworkflow_workflowitem_transit', {id: workflowItem.id, transitionName: transitionName}) }}">
+                            {{ transition.label }}
+                        </a>
+                    {% else %}
+                        <button class="btn btn-large btn-info" type="submit" disabled="disabled">{{ transition.label }}</button>
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+                <h4><span>No Transitions Are Allowed</h4>
+            {% endif %}
         </div>
     </form>
 
