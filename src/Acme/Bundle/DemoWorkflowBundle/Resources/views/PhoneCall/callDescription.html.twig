@@ -1,0 +1,44 @@
+<div class="span6">
+    <h5 class="usser-fiedset"><span>Basic Information</span></h5>
+    <div class="control-group">
+        <label class="control-label">Number</label>
+        <div class="controls">
+            <p class="control-label">{{ phoneCall.number }}</p>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">Name</label>
+        <div class="controls">
+            <p class="control-label">{{ phoneCall.name }}</p>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">Description</label>
+        <div class="controls">
+            <p class="control-label">{{ phoneCall.description }}</p>
+        </div>
+    </div>
+</div>
+<div class="span6">
+    <div class="form-horizontal">
+        <h5 class="usser-fiedset"><span>Conversations</span></h5>
+        {% if phoneCall.conversations is not empty %}
+            <table class="table table-bordered table-striped" style="width: auto;">
+                <tr>
+                    <th>Result</th>
+                    <th>Comment</th>
+                    <th>Successful</th>
+                </tr>
+                {% for conversation in phoneCall.conversations %}
+                    <tr>
+                        <td>{{ conversation.result }}</td>
+                        <td>{{ conversation.comment }}</td>
+                        <td>{{ conversation.successful ? 'yes' : 'no' }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            No conversations found.
+        {% endif %}
+    </div>
+</div>

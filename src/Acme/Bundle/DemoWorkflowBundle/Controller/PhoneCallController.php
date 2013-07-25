@@ -10,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 use Oro\Bundle\WorkflowBundle\Model\WorkflowRegistry;
+use Oro\Bundle\WorkflowBundle\Entity\Repository\WorkflowItemRepository;
 
 use Acme\Bundle\DemoWorkflowBundle\Form\PhoneCallType;
 use Acme\Bundle\DemoWorkflowBundle\Entity\PhoneCall;
@@ -76,12 +77,16 @@ class PhoneCallController extends Controller
     {
         /** @var WorkflowRegistry $workflowRegistry */
         $workflowRegistry = $this->get('oro_workflow.registry');
-
         $applicableWorkflows = $workflowRegistry->getWorkflowsByEntity($phoneCall);
+
+        /** @var WorkflowItemRepository $workflowItems */
+        $workflowItemsRepository = $this->getDoctrine()->getRepository('OroWorkflowBundle:WorkflowItem');
+        $workflowItems = $workflowItemsRepository->findWorkflowItemsByEntity($phoneCall);
 
         return array(
             'applicableWorkflows' => $applicableWorkflows,
-            'phoneCall' => $phoneCall
+            'phoneCall' => $phoneCall,
+            'workflowItems' => $workflowItems,
         );
     }
 }

@@ -24,7 +24,7 @@ class PhoneConversation
     /**
      * @var PhoneCall
      *
-     * @ORM\OneToOne(targetEntity="PhoneCall")
+     * @ORM\ManyToOne(targetEntity="PhoneCall", inversedBy="conversations")
      * @ORM\JoinColumn(name="call_id", referencedColumnName="id")
      */
     private $call;

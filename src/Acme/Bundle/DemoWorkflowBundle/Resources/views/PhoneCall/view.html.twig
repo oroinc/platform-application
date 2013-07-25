@@ -24,30 +24,50 @@
                     </td>
                 </tr>
             </table>
-        {% endfor  %}
+        {% endfor %}
     </div>
 
     <div class="form-horizontal">
-        <h5 class="usser-fiedset"><span>Basic Information</span></h5>
-        <div class="control-group">
-            <label class="control-label">Number</label>
-            <div class="controls">
-                <p class="control-label">{{ phoneCall.number }}</p>
-            </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label">Name</label>
-            <div class="controls">
-                <p class="control-label">{{ phoneCall.name }}</p>
-            </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label">Description</label>
-            <div class="controls">
-                <p class="control-label">{{ phoneCall.description }}</p>
+        {% include 'AcmeDemoWorkflowBundle:PhoneCall:callDescription.html.twig' with {'phoneCall': phoneCall} %}
+        <div class="span6">
+            <div class="form-horizontal">
+                <h5 class="usser-fiedset"><span>Workflow Items</span></h5>
+                {% if workflowItems is not empty %}
+                    <table class="table table-bordered table-striped" style="width: auto;">
+                        <tr>
+                            <th>Workflow</th>
+                            <th>Current Step</th>
+                            <th>Closed</th>
+                            <th>Created</th>
+                            <th>Updated</th>
+                        </tr>
+                        {% for workflowItem in workflowItems %}
+                            <tr>
+                                <td>{{ workflowItem.workflowName }}</td>
+                                <td>
+                                    <a href="{{ path('acme_demoworkflow_workflowitem_edit', {id: workflowItem.id}) }}">
+                                        {{ workflowItem.currentStepName }}
+                                    </a>
+                                </td>
+                                <td>{{ workflowItem.closed ? 'yes' : 'no' }}</td>
+                                <td>
+                                    {% if workflowItem.createdAt is not empty %}
+                                        {{ workflowItem.createdAt|date("m/d/Y H:i") }}
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if workflowItem.updatedAt is not empty %}
+                                        {{ workflowItem.updatedAt|date("m/d/Y H:i") }}
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                {% else %}
+                    No workflow items found.
+                {% endif %}
             </div>
         </div>
     </div>
-
 
 {% endblock %}

@@ -2,6 +2,8 @@
 
 namespace Acme\Bundle\DemoWorkflowBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -41,6 +43,18 @@ class PhoneCall
      * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="PhoneConversation", mappedBy="call")
+     **/
+    private $conversations;
+
+    public function __construct()
+    {
+        $this->conversations = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -119,5 +133,15 @@ class PhoneCall
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Get description
+     *
+     * @return ArrayCollection
+     */
+    public function getConversations()
+    {
+        return $this->conversations;
     }
 }
