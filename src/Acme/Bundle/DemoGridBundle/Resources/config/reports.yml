@@ -1,0 +1,20 @@
+reports:
+    -
+        name:     DemoReport
+        distinct: false
+        select:   "u.username, u.firstName, u.loginCount, a.apiKey, COUNT(u.firstName) AS cnt"
+        from:
+            - { table: OroUserBundle:User, alias: u }
+        join:
+            left:
+                - { join: u.api, alias: a }
+                - { join: u.statuses, alias: s }
+        where:
+            and:
+                - "u.loginCount >= 0"
+            or:
+                - "u.enabled = 0"
+        groupBy:  "u.firstName"
+        having:   "COUNT(u.firstName) > 1"
+        orderBy:
+            - { column: "u.firstName", dir: "asc" }

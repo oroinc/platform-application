@@ -1,6 +1,7 @@
 parameters:
     acme_demo_grid.user_grid.manager.class: Acme\Bundle\DemoGridBundle\Datagrid\UserDatagridManager
     acme_demo_grid.product_grid.manager.class: Acme\Bundle\DemoGridBundle\Datagrid\ProductDatagridManager
+    acme_demo_grid.report_grid.manager.class: Acme\Bundle\DemoGridBundle\Datagrid\ReportDatagridManager
 
 services:
     acme_demo_grid.user_grid.manager:
@@ -32,3 +33,11 @@ services:
 #              translator: ~
 #              validator: ~
 #              request: ~
+
+    acme_demo_grid.report_grid.manager:
+        class: %acme_demo_grid.report_grid.manager.class%
+        tags:
+            - name: oro_grid.datagrid.manager
+              datagrid_name: report
+              entity_hint: reports
+              route_name: acme_demo_gridbundle_report_list
