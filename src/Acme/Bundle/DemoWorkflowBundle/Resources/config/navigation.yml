@@ -21,4 +21,10 @@ oro_menu_config:
                         demo_workflow_workflowitem: ~
 oro_titles:
     acme_demoworkflow_phonecall_list: Phone Calls
+    acme_demoworkflow_phonecall_create: Create Phone Call
+    acme_demoworkflow_phonecall_edit: Edit Phone Call
+    acme_demoworkflow_phonecall_view: View Phone Call
     acme_demoworkflow_workflowitem_list: Workflow Items
+    acme_demoworkflow_workflowitem_create: Create Workflow Item
+    acme_demoworkflow_workflowitem_edit: Edit Workflow Item
+    acme_demoworkflow_workflowitem_transit: Transit Workflow Item

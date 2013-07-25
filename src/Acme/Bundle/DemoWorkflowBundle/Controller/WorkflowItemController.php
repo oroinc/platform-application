@@ -76,11 +76,24 @@ class WorkflowItemController extends Controller
      * @Route("/edit/{id}", name="acme_demoworkflow_workflowitem_edit")
      * @Template()
      */
-    public function editAction(WorkflowItem $workflowItem)
+    public function editAction(Request $request, WorkflowItem $workflowItem)
     {
         $workflow = $this->getWorkflow($workflowItem->getWorkflowName());
         $currentStep = $workflow->getStep($workflowItem->getCurrentStepName());
-        $stepForm = $this->createStepForm($currentStep, $workflowItem->getData());
+        $workflowData = $workflowItem->getData();
+        $stepForm = $this->createForm('oro_workflow_step', $workflowData, array('step' => $currentStep));
+
+        if ($request->isMethod('POST')) {
+            $stepForm->submit($request);
+
+            if ($stepForm->isValid()) {
+                $workflowItem->setUpdated();
+                $this->getEntityManager()->flush();
+
+                $this->get('session')->getFlashBag()->add('success', 'Workflow item data successfully saved');
+            }
+        }
+
         return array(
             'workflow' => $workflow,
             'currentStep' => $currentStep,
@@ -90,15 +103,17 @@ class WorkflowItemController extends Controller
     }
 
     /**
-     * Create form for WorkflowItem's WorkflowData
-     *
-     * @param Step $step
-     * @param WorkflowData $workflowData
-     * @return \Symfony\Component\Form\Form
+     * @Route("/transit/{id}/{transitionName}", name="acme_demoworkflow_workflowitem_transit")
+     * @Template()
      */
-    protected function createStepForm(Step $step, WorkflowData $workflowData)
+    public function transitAction(WorkflowItem $workflowItem, $transitionName)
     {
-        return $this->createForm('oro_workflow_step', $workflowData, array('step' => $step));
+        return $this->redirect(
+            $this->generateUrl(
+                'acme_demoworkflow_workflowitem_edit',
+                array('id' => $workflowItem->getId())
+            )
+        );
     }
 
     /**

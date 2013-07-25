@@ -8,7 +8,7 @@
 
     <form action="{{ path('acme_demoworkflow_workflowitem_edit', {id: workflowItem.id}) }}" method="POST">
         <div class="form-horizontal">
-            <h5 class="usser-fiedset"><span>Step Data</span></h5>
+            <h5 class="usser-fiedset"><span>Workflow Data</span></h5>
 
             <div class="usser-row form-container">
                 <fieldset class="form-horizontal">
@@ -16,9 +16,23 @@
                     {{ form_rest(stepForm) }}
                 </fieldset>
             </div>
-        </div>
-        <div class="form-row">
-            <button class="btn btn-large btn-primary pull-right" type="submit">{{ "Save" | trans }}</button>
+            <div class="form-row">
+                <button class="btn btn-large btn-primary pull-right" type="submit">{{ "Save" | trans }}</button>
+            </div>
+            <br/>
+            <br/>
+
+            <h5 class="usser-fiedset"><span>Allowed Transitions</span></h5>
+            {% for transitionName in currentStep.allowedTransitions %}
+                {% set transition = workflow.transitions[transitionName] %}
+                {% if workflow.isTransitionAllowed(workflowItem, transition) %}
+                    <a class="btn btn-large btn-success" href="{{ path('acme_demoworkflow_workflowitem_transit', {id: workflowItem.id, transitionName: transitionName}) }}">
+                        {{ transition.label }}
+                    </a>
+                {% else %}
+                    <button class="btn btn-large btn-info" type="submit" disabled="disabled">{{ transition.label }}</button>
+                {% endif %}
+            {% endfor %}
         </div>
     </form>
 
