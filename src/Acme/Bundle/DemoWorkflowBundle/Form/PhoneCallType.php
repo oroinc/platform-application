@@ -39,7 +39,7 @@ class PhoneCallType extends AbstractType
         $resolver->setDefaults(
             array(
                 'data_class' => 'Acme\Bundle\DemoWorkflowBundle\Entity\PhoneCall',
-                'intention'  => 'phone_call',
+                'intention'  => 'phonecall',
             )
         );
     }
@@ -49,6 +49,6 @@ class PhoneCallType extends AbstractType
      */
     public function getName()
     {
-        return 'acme_workflow_phone_call';
+        return 'acme_workflow_phonecall';
     }
 }

@@ -27,15 +27,17 @@ workflows:
             call_timeout:
                 form_type: integer
                 label: 'Call Timeout'
-                options: ~
+                options:
+                    form_options:
+                        required: false
             call_successfull:
                 form_type: choice
                 label: 'Call Successful'
                 options:
                     form_options:
-                      choices: {0: 'Yes', 1: 'No'}
-                      required: true
-                      multiple: false
+                        choices: {0: 'Yes', 1: 'No'}
+                        required: true
+                        multiple: false
             conversation_successful:
                 form_type: choice
                 label: 'Conversation Successful'

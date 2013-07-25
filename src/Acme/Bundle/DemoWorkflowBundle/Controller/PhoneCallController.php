@@ -57,7 +57,9 @@ class PhoneCallController extends Controller
             $em->flush();
 
             $this->get('session')->getFlashBag()->add('success', 'Phone call successfully saved');
-            return $this->redirect($this->generateUrl('acme_demo_workflowbundle_phone_call_list'));
+            return $this->redirect(
+                $this->generateUrl('acme_demoworkflow_phonecall_view', array('id' => $phoneCall->getId()))
+            );
         }
 
         return array(
