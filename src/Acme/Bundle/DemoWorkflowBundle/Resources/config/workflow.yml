@@ -76,17 +76,21 @@ workflows:
                 # conditions: []
                 # Create PhoneConversation and set call_successfull = true
                 post_actions:
+                    - @assign_value:
+                        parameters: [$call_successfull, true]
                     - @create_entity: # create PhoneConversation
                         parameters:
                             class: Acme\Bundle\DemoWorkflowBundle\Entity\PhoneConversation
                             attribute: $conversation
+                            data:
+                                result: 'test_result'
+                                comment: 'test_comment'
+                                successful: $call_successfull
                     - @bind_entity: # bind created PhoneConversation with current workflow item
                         parameters:
                             attribute: $conversation
                     - @assign_value: # set current PhoneCall to PhoneConversation
                         parameters: [$conversation.call, $managed_entity]
-                    - @assign_value:
-                        parameters: [$call_successfull, true]
             not_answered_definition: # Callee did not answer
                 # Make sure that caller waited at least 60 seconds
                 conditions: # call_timeout not empty and >= 60
