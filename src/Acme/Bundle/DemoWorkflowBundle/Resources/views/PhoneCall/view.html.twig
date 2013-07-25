@@ -4,7 +4,8 @@
 
 {% block content %}
     <h1>{{ title | trans }}
-        <a class="btn btn-primary pull-right" href="{{ path('acme_demoworkflow_phonecall_list') }}">{{ "Back" | trans }}</a>
+        <a class="btn btn-primary pull-right" style="margin-left:10px;" href="{{ path('acme_demoworkflow_phonecall_list') }}">{{ "List" | trans }}</a>
+        <a class="btn btn-primary pull-right" style="margin-left:10px;" href="{{ path('acme_demoworkflow_phonecall_edit', {id: phoneCall.id}) }}">{{ "Edit" | trans }}</a>
     </h1>
 
     <div class="form-horizontal">

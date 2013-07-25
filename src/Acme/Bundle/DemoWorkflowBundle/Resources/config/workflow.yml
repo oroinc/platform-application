@@ -93,10 +93,10 @@ workflows:
                     @and:
                         - @not_blank: [$call_timeout]
                         - @ge: [$call_timeout, 60]
-                # Set call_successfull = true
+                # Set call_successfull = false
                 post_actions:
                     - @assign_value:
-                        parameters: [$conversation_successful, true]
+                        parameters: [$call_successfull, false]
             end_conversation_definition:
                 conditions:
                     # Check required properties are set
@@ -104,5 +104,11 @@ workflows:
                         - @not_blank: [$conversation_result]
                         - @not_blank: [$conversation_comment]
                         - @not_blank: [$conversation_successful]
-                # Nothing to do
-                # post_actions: []
+                # Pass data from workflow to conversation
+                post_actions:
+                    - @assign_value:
+                        parameters: [$conversation.result, $conversation_result]
+                    - @assign_value:
+                        parameters: [$conversation.comment, $conversation_comment]
+                    - @assign_value:
+                        parameters: [$conversation.successful, $conversation_successful]

@@ -8,21 +8,25 @@
 
     <form action="{{ path('acme_demoworkflow_workflowitem_edit', {id: workflowItem.id}) }}" method="POST">
         <div class="form-horizontal">
-            <h5 class="usser-fiedset"><span>Workflow Data</span></h5>
-
-            <div class="usser-row form-container">
-                <fieldset class="form-horizontal">
-                    {{ form_widget(stepForm) }}
-                    {{ form_rest(stepForm) }}
-                </fieldset>
-            </div>
-            <div class="form-row">
-                <button class="btn btn-large btn-primary pull-right" type="submit">{{ "Save" | trans }}</button>
-            </div>
-            <br/>
-            <br/>
-
-            {% if currentStep.allowedTransitions|length %}
+            {% if stepForm.children|length > 1 %}
+                <h5 class="usser-fiedset"><span>Workflow Data</span></h5>
+                <div class="usser-row form-container">
+                    <fieldset class="form-horizontal">
+                        {{ form_widget(stepForm) }}
+                        {{ form_rest(stepForm) }}
+                    </fieldset>
+                </div>
+                <div class="form-row">
+                    <button class="btn btn-large btn-primary pull-right" type="submit">{{ "Save" | trans }}</button>
+                </div>
+            {% else %}
+                <h4>No data to show</h4>
+            {% endif %}
+            {% if workflowItem.isClosed %}
+                <h4>Workflow is closed</h4>
+            {% elseif currentStep.allowedTransitions|length %}
+                <br/>
+                <br/>
                 <h5 class="usser-fiedset"><span>Allowed Transitions</span></h5>
                 {% for transitionName in currentStep.allowedTransitions %}
                     {% set transition = workflow.transitions[transitionName] %}
@@ -34,36 +38,20 @@
                         <button class="btn btn-large btn-info" type="submit" disabled="disabled">{{ transition.label }}</button>
                     {% endif %}
                 {% endfor %}
-            {% else %}
-                <h4><span>No Transitions Are Allowed</h4>
             {% endif %}
         </div>
     </form>
 
-    {#&#123;&#35; Related entities should be added dynamicly &#35;&#125;#}
-    {#<h3>Related Entities</h3>#}
+    <h3>Related entities</h3>
+    <h4>Phone Call</h4>
 
-    {#<div class="form-horizontal">#}
-        {#<h5 class="usser-fiedset"><span>Phone Call</span></h5>#}
-        {#<div class="control-group">#}
-            {#<label class="control-label">Number</label>#}
-            {#<div class="controls">#}
-                {#<p class="control-label">{{ entity.number }}</p>#}
-            {#</div>#}
-        {#</div>#}
-        {#<div class="control-group">#}
-            {#<label class="control-label">Name</label>#}
-            {#<div class="controls">#}
-                {#<p class="control-label">{{ entity.name }}</p>#}
-            {#</div>#}
-        {#</div>#}
-        {#<div class="control-group">#}
-            {#<label class="control-label">Description</label>#}
-            {#<div class="controls">#}
-                {#<p class="control-label">{{ entity.description }}</p>#}
-            {#</div>#}
-        {#</div>#}
-    {#</div>#}
-
+    <div class="form-horizontal">
+        {% include 'AcmeDemoWorkflowBundle:PhoneCall:callDescription.html.twig' with {'phoneCall': workflowItem.data.managed_entity} %}
+        <div class="span12">
+            <a class="btn btn-primary" style="margin-left:10px;" href="{{ path('acme_demoworkflow_phonecall_view', {id: workflowItem.data.managed_entity.id}) }}">
+                {{ "View" | trans }}
+            </a>
+        </div>
+    </div>
 
 {% endblock %}

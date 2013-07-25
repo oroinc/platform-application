@@ -130,7 +130,7 @@ class WorkflowItemController extends Controller
             $this->get('session')->getFlashBag()->add(
                 'success',
                 sprintf(
-                    'Transition "%s" successfully performed. Workflow "%s" is now in step "%s"',
+                    'Transition "%s" successfully performed. "%s" is now in step "%s"',
                     $transition->getLabel(),
                     $workflow->getLabel(),
                     $transition->getLabel()
