@@ -71,6 +71,10 @@ oro_form:
     resource: "@OroFormBundle/Resources/config/routing.yml"
     prefix:   /
 
+oro_notification:
+    resource: "@OroNotificationBundle/Resources/config/routing.yml"
+    prefix:   /
+
 oro_user:
     resource: "@OroUserBundle/Resources/config/routing.yml"
 
@@ -98,6 +102,12 @@ oro_config:
 
 oro_dataaudit:
     resource: "@OroDataAuditBundle/Resources/config/routing.yml"
+
+oro_entity_config:
+    resource: "@OroEntityConfigBundle/Resources/config/routing.yml"
+
+oro_entity_extend:
+    resource: "@OroEntityExtendBundle/Resources/config/routing.yml"
 
 oro_workflow:
     resource: "@OroWorkflowBundle/Resources/config/routing.yml"
@@ -130,4 +140,8 @@ oro_assets:
 
 oro_tag:
     resource: "@OroTagBundle/Resources/config/routing.yml"
+    prefix:   /
+
+oro_organization:
+    resource: "@OroOrganizationBundle/Resources/config/routing.yml"
     prefix:   /
