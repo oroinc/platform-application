@@ -9,4 +9,3 @@ classes:
   - Oro\Bundle\AddressBundle\Controller\Api\Soap\CountryController
   - Oro\Bundle\AddressBundle\Controller\Api\Soap\RegionController
   - Oro\Bundle\DataAuditBundle\Controller\Api\Soap\AuditController
-  - Oro\Bundle\OrganizationBundle\Controller\Api\Soap\BusinessUnitController

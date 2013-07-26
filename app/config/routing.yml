@@ -66,10 +66,6 @@ oro_form:
     resource: "@OroFormBundle/Resources/config/routing.yml"
     prefix:   /
 
-oro_notification:
-    resource: "@OroNotificationBundle/Resources/config/routing.yml"
-    prefix:   /
-
 oro_user:
     resource: "@OroUserBundle/Resources/config/routing.yml"
 
@@ -119,8 +115,8 @@ oro_address:
     resource: "@OroAddressBundle/Resources/config/routing.yml"
     prefix:   /
 
-_bazinga_exposetranslation:
-    resource: "@BazingaExposeTranslationBundle/Resources/config/routing/routing.yml"
+oro_translation_bundle:
+    resource: "@OroTranslationBundle/Resources/config/routing.yml"
 
 _apy_jsformvalidation:
     resource: "@APYJsFormValidationBundle/Resources/config/routing/routing.yml"
@@ -131,8 +127,4 @@ oro_assets:
 
 oro_tag:
     resource: "@OroTagBundle/Resources/config/routing.yml"
-    prefix:   /
-
-oro_organization:
-    resource: "@OroOrganizationBundle/Resources/config/routing.yml"
     prefix:   /
