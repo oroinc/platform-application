@@ -63,7 +63,7 @@ workflows:
                 step_to: start_conversation
                 transition_definition: connected_definition
             not_answered:
-                label: "Not answered"git p
+                label: "Not answered"
                 step_to: end_call
                 transition_definition: not_answered_definition
             end_conversation:
