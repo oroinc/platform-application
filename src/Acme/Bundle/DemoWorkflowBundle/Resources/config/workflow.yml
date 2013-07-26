@@ -72,25 +72,13 @@ workflows:
                 transition_definition: end_conversation_definition
         transition_definitions:
             connected_definition: # Try to make call connected
-                # No conditions to check, allow anytime call_successfull = true
-                # conditions: []
-                # Create PhoneConversation and set call_successfull = true
+                # Check that timeout is set
+                conditions:
+                    @not_blank: [$call_timeout]
+                # Set call_successfull = true
                 post_actions:
                     - @assign_value:
                         parameters: [$call_successfull, true]
-                    - @create_entity: # create PhoneConversation
-                        parameters:
-                            class: Acme\Bundle\DemoWorkflowBundle\Entity\PhoneConversation
-                            attribute: $conversation
-                            data:
-                                result: 'test_result'
-                                comment: 'test_comment'
-                                successful: $call_successfull
-                    - @bind_entity: # bind created PhoneConversation with current workflow item
-                        parameters:
-                            attribute: $conversation
-                    - @assign_value: # set current PhoneCall to PhoneConversation
-                        parameters: [$conversation.call, $managed_entity]
             not_answered_definition: # Callee did not answer
                 # Make sure that caller waited at least 60 seconds
                 conditions: # call_timeout not empty and >= 60
@@ -108,11 +96,18 @@ workflows:
                         - @not_blank: [$conversation_result]
                         - @not_blank: [$conversation_comment]
                         - @not_blank: [$conversation_successful]
+                # Create PhoneConversation and set it's properties
                 # Pass data from workflow to conversation
                 post_actions:
-                    - @assign_value:
-                        parameters: [$conversation.result, $conversation_result]
-                    - @assign_value:
-                        parameters: [$conversation.comment, $conversation_comment]
-                    - @assign_value:
-                        parameters: [$conversation.successful, $conversation_successful]
+                    - @create_entity: # create PhoneConversation
+                        parameters:
+                            class: Acme\Bundle\DemoWorkflowBundle\Entity\PhoneConversation
+                            attribute: $conversation
+                            data:
+                                result: $conversation_result
+                                comment: $conversation_comment
+                                successful: $conversation_successful
+                                call: $managed_entity
+                    - @bind_entity: # bind created PhoneConversation with current workflow item
+                        parameters:
+                            attribute: $conversation
