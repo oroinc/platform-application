@@ -58,6 +58,7 @@ assetic:
         - AcmeDemoWindowsBundle
         - AcmeDemoGridBundle
         - AcmeDemoFilterBundle
+        - OroEntityExtendBundle
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -200,6 +201,8 @@ oro_assetic:
 
 oro_entity_extend:
     backend:        Dynamic
+    backup:         "%kernel.root_dir%/entities/Backup/"
+
 
 a2lix_translation_form:
     locales: [en, fr]
