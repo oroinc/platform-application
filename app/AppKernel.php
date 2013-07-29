@@ -64,9 +64,6 @@ class AppKernel extends Kernel
             new Oro\Bundle\EntityConfigBundle\OroEntityConfigBundle(),
             new Oro\Bundle\EntityExtendBundle\OroEntityExtendBundle(),
 
-            // BAPP bundles
-            new OroProfessional\Bundle\EwsBundle\OroProfessionalEwsBundle(),
-
             // BAP Demo bundles
             new Acme\Bundle\DemoBundle\AcmeDemoBundle(),
             new Acme\Bundle\DemoMeasureBundle\AcmeDemoMeasureBundle(),
