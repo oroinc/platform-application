@@ -12,8 +12,10 @@ use Oro\Bundle\EntityExtendBundle\Metadata\Annotation\Extend;
  *
  * @ORM\Table()
  * @ORM\Entity
- *
- * @Configurable(routeName="account")
+ * @Configurable(
+ *      routeName="account",
+ *      defaultValues={"entity"={"icon"="account","label"="Account", "plural_label"="Accounts"}}
+ * )
  * @Extend
  */
 class Account
