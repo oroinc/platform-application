@@ -6,3 +6,9 @@ services:
     demo_product_manager:
         class:     "%demo_product_manager_class%"
         arguments: [%demo_product_entity_class%, %oro_flexibleentity.flexible_config%, "@doctrine.orm.entity_manager", "@event_dispatcher", @oro_flexibleentity.attributetype.factory]
+
+    demo_account.form.account:
+        class:                        Symfony\Component\Form\Form
+        factory_method:               createNamed
+        factory_service:              form.factory
+        arguments:                    ["oro_user_user_form", "oro_user_user", null]

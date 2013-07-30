@@ -1,3 +1,7 @@
+acme_demo:
+    resource: "@AcmeDemoBundle/Controller/"
+    type:     annotation
+
 acme_demo_address:
     resource: "@AcmeDemoAddressBundle/Resources/config/routing.yml"
     prefix:   /address
