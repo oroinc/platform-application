@@ -1,3 +1,4 @@
+
 oro_default:
     pattern:  /
     defaults:
@@ -10,6 +11,10 @@ oro_ui:
 
 oro_form:
     resource: "@OroFormBundle/Resources/config/routing.yml"
+    prefix:   /
+
+oro_notification:
+    resource: "@OroNotificationBundle/Resources/config/routing.yml"
     prefix:   /
 
 oro_user:
@@ -40,6 +45,12 @@ oro_config:
 oro_dataaudit:
     resource: "@OroDataAuditBundle/Resources/config/routing.yml"
 
+oro_entity_config:
+    resource: "@OroEntityConfigBundle/Resources/config/routing.yml"
+
+oro_entity_extend:
+    resource: "@OroEntityExtendBundle/Resources/config/routing.yml"
+
 nelmio_api_doc:
     resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
     prefix:   /api/doc
@@ -55,8 +66,8 @@ oro_address:
     resource: "@OroAddressBundle/Resources/config/routing.yml"
     prefix:   /
 
-_bazinga_exposetranslation:
-    resource: "@BazingaExposeTranslationBundle/Resources/config/routing/routing.yml"
+oro_translation_bundle:
+    resource: "@OroTranslationBundle/Resources/config/routing.yml"
 
 _apy_jsformvalidation:
     resource: "@APYJsFormValidationBundle/Resources/config/routing/routing.yml"
@@ -64,3 +75,15 @@ _apy_jsformvalidation:
 oro_assets:
     resource: .
     type: oro_assetic
+
+oro_tag:
+    resource: "@OroTagBundle/Resources/config/routing.yml"
+    prefix:   /
+
+oro_email:
+    resource: "@OroEmailBundle/Resources/config/routing.yml"
+    prefix:   /
+
+oro_organization:
+    resource: "@OroOrganizationBundle/Resources/config/routing.yml"
+    prefix:   /
