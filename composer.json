@@ -1,23 +1,19 @@
 {
     "name": "oro/platform-application",
     "description": "Oro Platform Empty Application",
-    "homepage": "https://github.com/laboro/platform-application.git",
+    "homepage": "https://github.com/orocrm/platform-application.git",
     "license": "MIT",
     "autoload": {
         "psr-0": { "": "src/" }
     },
     "require": {
         "php": ">=5.3.3",
-        "oro/platform": "dev-release"
+        "oro/platform": "1.0.*@dev"
     },
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/laboro/platform.git"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/laboro/SonataAdminBundle.git"
+            "url": "https://github.com/orocrm/SonataAdminBundle.git"
         }
     ],
     "scripts": {
@@ -42,9 +38,8 @@
     "extra": {
         "symfony-app-dir": "app",
         "symfony-web-dir": "web",
-        "symfony-assets-install": "symlink",
-        "incenteev-parameters": {
-            "file": "app/config/parameters.yml"
+        "branch-alias": {
+            "dev-master": "1.0-dev"
         }
     }
 }
