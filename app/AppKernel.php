@@ -34,6 +34,7 @@ class AppKernel extends Kernel
             new Bazinga\ExposeTranslationBundle\BazingaExposeTranslationBundle(),
             new APY\JsFormValidationBundle\APYJsFormValidationBundle(),
             new Genemu\Bundle\FormBundle\GenemuFormBundle(),
+            new A2lix\TranslationFormBundle\A2lixTranslationFormBundle(),
 
             // BAP bundles
             new Oro\Bundle\FlexibleEntityBundle\OroFlexibleEntityBundle(),
@@ -55,11 +56,16 @@ class AppKernel extends Kernel
             new Oro\Bundle\DataAuditBundle\OroDataAuditBundle(),
             new Oro\Bundle\TagBundle\OroTagBundle(),
             new Oro\Bundle\AsseticBundle\OroAsseticBundle(),
+            new Oro\Bundle\OrganizationBundle\OroOrganizationBundle(),
             new Oro\Bundle\NotificationBundle\OroNotificationBundle($this),
             new Oro\Bundle\TranslationBundle\OroTranslationBundle(),
+            new Oro\Bundle\EmailBundle\OroEmailBundle(),
             new Oro\Bundle\EntityBundle\OroEntityBundle(),
             new Oro\Bundle\EntityConfigBundle\OroEntityConfigBundle(),
             new Oro\Bundle\EntityExtendBundle\OroEntityExtendBundle(),
+
+            // BAPP bundles
+            new OroProfessional\Bundle\EwsBundle\OroProfessionalEwsBundle(),
 
             // BAP Demo bundles
             new Acme\Bundle\DemoBundle\AcmeDemoBundle(),
