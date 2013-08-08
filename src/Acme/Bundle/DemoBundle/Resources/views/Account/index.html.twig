@@ -1,0 +1,16 @@
+{% extends 'OroUIBundle:actions:index.html.twig' %}
+{% import 'OroUIBundle::macros.html.twig' as UI %}
+{% set gridId = 'account-grid' %}
+
+{% block content %}
+    {% set pageTitle = 'Accounts' %}
+    {% set buttons = [] %}
+
+    {% if resource_granted('oro_user_group_create') %}
+        {% set buttons = buttons|merge([
+            UI.addButton({'path' : path('account_create'), 'title' : 'Create Account', 'label' : 'Create'})
+        ]) %}
+    {% endif %}
+
+    {{ parent() }}
+{% endblock %}
