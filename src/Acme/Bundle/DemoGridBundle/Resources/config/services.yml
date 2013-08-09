@@ -41,4 +41,3 @@ services:
               datagrid_name: report
               entity_hint: reports
               route_name: acme_demo_gridbundle_report_list
-              query_factory: oro_grid.orm.query_factory.report
