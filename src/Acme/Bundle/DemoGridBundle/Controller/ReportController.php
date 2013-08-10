@@ -9,6 +9,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 use Oro\Bundle\NavigationBundle\Annotation\TitleTemplate;
 
+use Oro\Bundle\GridBundle\Datagrid\DatagridManagerInterface;
+
 /**
  * @Route("/report")
  */
@@ -25,8 +27,25 @@ class ReportController extends Controller
      */
     public function listAction()
     {
-        $gridManager = $this->get('acme_demo_grid.report_grid.manager');
+        return $this->getGridResponse($this->get('acme_demo_grid.report.manager'));
+    }
 
+    /**
+     * @Route("/mage/state/list.{_format}",
+     *      name="acme_demo_gridbundle_mage_report_state_list",
+     *      requirements={"_format"="html|json"},
+     *      defaults={"_format" = "html"}
+     * )
+     * @TitleTemplate("Magento order state report sample")
+     * @Template
+     */
+    public function mageStateListAction()
+    {
+        return $this->getGridResponse($this->get('acme_demo_grid.mage_report_state.manager'));
+    }
+
+    protected function getGridResponse(DatagridManagerInterface $gridManager)
+    {
         $gridManager->setEntityManager($this->getDoctrine()->getManager());
 
         $grid     = $gridManager->getDatagrid();

@@ -13,7 +13,7 @@ use Oro\Bundle\GridBundle\Field\FieldDescriptionCollection;
 use Oro\Bundle\GridBundle\Field\FieldDescriptionInterface;
 use Oro\Bundle\GridBundle\Filter\FilterInterface;
 
-class ReportDatagridManager extends DatagridManager
+class MageOrderStateDatagridManager extends DatagridManager
 {
     /**
      * @var EntityManager
@@ -28,13 +28,32 @@ class ReportDatagridManager extends DatagridManager
     {
         $field = new FieldDescription();
 
-        $field->setName('username');
+        $field->setName('date');
+        $field->setOptions(
+            array(
+                'type'         => FieldDescriptionInterface::TYPE_DATE,
+                'label'        => 'Date',
+                'entity_alias' => 'm',
+                'field_name'   => 'createdAt',
+                'filter_type'  => FilterInterface::TYPE_DATE,
+                'required'     => false,
+                'sortable'     => true,
+                'filterable'   => true,
+                'show_filter'  => true,
+            )
+        );
+
+        $fieldsCollection->add($field);
+
+        $field = new FieldDescription();
+
+        $field->setName('state');
         $field->setOptions(
             array(
                 'type'         => FieldDescriptionInterface::TYPE_TEXT,
-                'label'        => 'Username',
-                'entity_alias' => 'u',
-                'field_name'   => 'username',
+                'label'        => 'state',
+                'entity_alias' => 'm',
+                'field_name'   => 'state',
                 'filter_type'  => FilterInterface::TYPE_STRING,
                 'required'     => false,
                 'sortable'     => true,
@@ -47,33 +66,14 @@ class ReportDatagridManager extends DatagridManager
 
         $field = new FieldDescription();
 
-        $field->setName('firstname');
-        $field->setOptions(
-            array(
-                'type'         => FieldDescriptionInterface::TYPE_TEXT,
-                'label'        => 'First name',
-                'entity_alias' => 'u',
-                'field_name'   => 'firstName',
-                'filter_type'  => FilterInterface::TYPE_STRING,
-                'required'     => false,
-                'sortable'     => true,
-                'filterable'   => true,
-                'show_filter'  => true,
-            )
-        );
-
-        $fieldsCollection->add($field);
-
-        $field = new FieldDescription();
-
-        $field->setName('nameCount');
+        $field->setName('orderCount');
         $field->setOptions(
             array(
                 'type'         => FieldDescriptionInterface::TYPE_INTEGER,
-                'label'        => 'Name count',
-                'field_name'   => 'cnt',
+                'label'        => 'Orders count',
+                'field_name'   => 'orderCount',
                 'filter_type'  => FilterInterface::TYPE_NUMBER,
-                'expression'   => 'COUNT(u.firstName)',
+                'expression'   => 'SUM(m.orderCount)',
                 'required'     => false,
                 'sortable'     => true,
                 'filterable'   => true,
@@ -85,37 +85,18 @@ class ReportDatagridManager extends DatagridManager
 
         $field = new FieldDescription();
 
-        $field->setName('loginCount');
+        $field->setName('avgTotal');
         $field->setOptions(
             array(
-                'type'         => FieldDescriptionInterface::TYPE_INTEGER,
-                'label'        => 'Login count',
-                'entity_alias' => 'u',
-                'field_name'   => 'loginCount',
+                'type'         => FieldDescriptionInterface::TYPE_DECIMAL,
+                'label'        => 'Average total',
+                'field_name'   => 'avgTotal',
                 'filter_type'  => FilterInterface::TYPE_NUMBER,
+                'expression'   => 'AVG(m.avgBaseGrandTotal)',
                 'required'     => false,
                 'sortable'     => true,
                 'filterable'   => true,
                 'show_filter'  => true,
-            )
-        );
-
-        $fieldsCollection->add($field);
-
-        $field = new FieldDescription();
-
-        $field->setName('api');
-        $field->setOptions(
-            array(
-                'type'         => FieldDescriptionInterface::TYPE_TEXT,
-                'label'        => 'API key',
-                'entity_alias' => 'a',
-                'field_name'   => 'apiKey',
-                'filter_type'  => FilterInterface::TYPE_STRING,
-                'required'     => false,
-                'sortable'     => false,
-                'filterable'   => true,
-                'show_filter'  => false,
             )
         );
 
@@ -131,7 +112,7 @@ class ReportDatagridManager extends DatagridManager
         $converter = new YamlConverter();
 
         $this->queryFactory->setQueryBuilder(
-            $converter->parse($input['reports'][0], $this->entityManager)
+            $converter->parse($input['reports'][1], $this->entityManager)
         );
 
         return $this->queryFactory->createQuery();

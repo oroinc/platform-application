@@ -18,3 +18,13 @@ reports:
         having:   "COUNT(u.firstName) > 1"
         orderBy:
             - { column: "u.firstName", dir: "asc" }
+
+    -
+        name:     MageOrderState
+        select:   "m.createdAt, m.state, SUM(m.orderCount) AS orderCount, AVG(m.avgBaseGrandTotal) AS avgTotal"
+        from:
+            - { table: AcmeDemoGridBundle:ReportMageOrderState, alias: m }
+        groupBy:  "m.createdAt, m.state"
+        orderBy:
+            - { column: "m.createdAt", dir: "desc" }
+            - { column: "avgTotal" }
