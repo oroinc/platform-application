@@ -20,7 +20,7 @@ class SeparateController extends Controller
         /** @var  $addressManager \Oro\Bundle\AddressBundle\Entity\Manager\AddressManager */
         $addressManager = $this->get('oro_address.address.provider')->getStorage('service');
 
-        $address = $addressManager->createFlexible();
+        $address = $addressManager->createAddress();
 
         return $this->editAction($address);
     }
