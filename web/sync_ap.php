@@ -14,15 +14,15 @@
  *      Response is a JSON
  *          [
  *              {
- *                  "url": "//somehost.com/entity/type/1",
+ *                  "channel": "//somehost.com/entity/type/1",
  *                  "token": "MzU5NDUyOWI5YWI5"
  *              },
  *              {
- *                  "url": "//somehost.com/entity/type/2",
+ *                  "channel": "//somehost.com/entity/type/2",
  *                  "token": "ZjZhMzJkYjU0ZTgy"
  *              },
  *              {
- *                  "url": "//somehost.com/some/other/entity/type/4",
+ *                  "channel": "//somehost.com/some/other/entity/type/4",
  *                  "error": "Forbidden" // client has no access to provided channel
  *              }
  *          ]
@@ -34,7 +34,7 @@
  *      Response is a JSON
  *          [
  *              {
- *                  "url": "//somehost.com/entity/type/2",
+ *                  "channel": "//somehost.com/entity/type/2",
  *                  "attributes": {
  *                      "first_name": "John",
  *                      "last_name": "Doe",
@@ -69,7 +69,7 @@ class Controller
         $user = $this->getUser();
         foreach ($channels as $channel) {
             $subscription = $this->createSubscription($user, $channel);
-            $item = array('url' => $channel);
+            $item = array('channel' => $channel);
             if ($subscription) {
                 $item['token'] = $subscription->getToken();
             } else {
@@ -91,8 +91,8 @@ class Controller
         /** @var array $update */
         foreach ($this->fetchUpdates($subscriptions) as $update) {
             $response[] = array(
-                'url' => $update['channel'],
-                'attributes' => json_decode($update['json'], true),
+                'channel' => $update['channel'],
+                'attributes' => json_decode($update['attributes'], true),
             );
         }
 
@@ -132,21 +132,20 @@ class Controller
          * Model has fields in database
          *  - channel
          *  - created_at
-         *  - json
+         *  - attributes
          */
         //@TODO implement fetching updates for corresponded subscriptions collection
         // where subscription.channel = update.channel and subscription.updated_at <= update.created_at
-//        return array();
-        return array(
-            array(
-                'channel' => '//somehost.com/entity/type/1',
-                'json' => '{"first_name": "John","last_name": "Doe"}'
-            ),
-            array(
-                'channel' => '//somehost.com/entity/type/2',
-                'json' => '{"first_name": "Jane","last_name": "Doe"}'
-            )
-        );
+        $result = array();
+        $file = "update.csv";
+        if (file_exists($file) && ($handle = fopen($file, 'r')) !== false) {
+            while (($data = fgetcsv($handle)) !== false) {
+                $result[] = array_combine(array('channel', 'attributes'), $data);
+            }
+            fclose($handle);
+            unlink($file);
+        }
+        return $result;
     }
 
     /**
