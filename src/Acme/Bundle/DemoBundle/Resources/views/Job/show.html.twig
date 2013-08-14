@@ -140,19 +140,7 @@
 {% block javascripts %}
     {{ parent() }}
 
-    {% if statisticData is not empty %}
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-    <script type="text/javascript">
-        google.load("visualization", "1", {packages:["corechart"]});
-        google.setOnLoadCallback(function() {
-            var chart = new google.visualization.LineChart($('#statistics').get(0));
-            chart.draw(google.visualization.arrayToDataTable({{ statisticData|json_encode|raw }}), {{ statisticOptions|json_encode|raw }});
-        });
-    </script>
-    {% endif %}
-
     <script language="javascript" type="text/javascript">//<![CDATA[
-
         function toggle(id, clazz) {
             var el = document.getElementById(id),
                 current = el.style.display,
@@ -182,5 +170,15 @@
             icon1.style.visibility = visibility2;
             icon2.style.visibility = visibility1;
         }
+
+        {% if statisticData is not empty %}
+        $.getScript('https://www.google.com/jsapi', function(data, textStatus, jqxhr) {
+            google.load("visualization", "1", {packages:["corechart"]});
+            google.setOnLoadCallback(function() {
+                var chart = new google.visualization.LineChart($('#statistics').get(0));
+                chart.draw(google.visualization.arrayToDataTable({{ statisticData|json_encode|raw }}), {{ statisticOptions|json_encode|raw }});
+            });
+        });
+        {% endif %}
       //]]></script>
 {% endblock %}

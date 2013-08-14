@@ -160,7 +160,7 @@ class JobController extends Controller
                 $this->get('session')->getFlashBag()->add('success', $ret['message']);
             }
 
-            return $this->redirect($this->generateUrl('acme_demo_job'));
+            return $this->redirect($this->generateUrl('acme_demo_job_index'));
         }
     }
 
@@ -197,7 +197,7 @@ class JobController extends Controller
                 $this->get('session')->getFlashBag()->add('success', $ret['message']);
             }
 
-            return $this->redirect($this->generateUrl('acme_demo_job'));
+            return $this->redirect($this->generateUrl('acme_demo_job_index'));
         }
     }
 
@@ -219,7 +219,7 @@ class JobController extends Controller
 
         $em->flush();
 
-        return $this->redirect($this->generateUrl('jobs'));
+        return $this->redirect($this->generateUrl('acme_demo_job_index'));
     }
 
     /**
@@ -229,7 +229,7 @@ class JobController extends Controller
     {
         return $this->getRequest()->isXmlHttpRequest()
             ? new Response($this->getDaemonPid())
-            : $this->redirect($this->generateUrl('jobs'));
+            : $this->redirect($this->generateUrl('acme_demo_job_index'));
     }
 
     /**

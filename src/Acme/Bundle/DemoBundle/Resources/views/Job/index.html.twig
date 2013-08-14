@@ -1,6 +1,19 @@
-{% extends 'AcmeDemoBundle:Default:twoColumnLeft.html.twig' %}
+{% extends 'AcmeDemoBundle:Default:index.html.twig' %}
 {% import 'JMSJobQueueBundle:Job:macros.html.twig' as macros %}
 {% use 'AcmeDemoBundle:Job:sidebar.html.twig' %}
+
+{% block page_container %}
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span2">
+            {{ block('sidebar') }}
+        </div>
+        <div class="span10">
+            {{ block('content') }}
+        </div>
+    </div>
+</div>
+{% endblock page_container %}
 
 {% block content %}
 <h1>Jobs</h1>
