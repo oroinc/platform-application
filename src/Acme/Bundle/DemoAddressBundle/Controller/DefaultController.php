@@ -20,12 +20,11 @@ class DefaultController extends Controller
         /** @var  $addressManager \Oro\Bundle\AddressBundle\Entity\Manager\AddressManager */
         $addressManager = $this->get('oro_address.address.provider')->getStorage();
 
-        $country = new Country();
-        $country->setIso2Code('US')
-            ->setIso3Code('USA')
+        $country = new Country('US');
+        $country->setIso3Code('USA')
             ->setName('United States');
 
-        $region = new Region();
+        $region = new Region('US.AL');
         $region->setCountry($country)
             ->setCode('AL')
             ->setName('Alabama');
@@ -45,7 +44,8 @@ class DefaultController extends Controller
         /** @var  $addressManager \Oro\Bundle\AddressBundle\Entity\Manager\AddressManager */
         $addressManager = $this->get('oro_address.address.provider')->getStorage();
 
-        $country = $addressManager->getStorageManager()->getRepository(get_class(new Country()))->find('US');
+        $country = $addressManager->getStorageManager()
+            ->getRepository('Oro\Bundle\AddressBundle\Entity\Country')->find('US');
         if ($country) {
             $addressManager->getStorageManager()->remove($country);
             $addressManager->getStorageManager()->flush();
@@ -65,7 +65,7 @@ class DefaultController extends Controller
         /** @var  $addressManager \Oro\Bundle\AddressBundle\Entity\Manager\AddressManager */
         $addressManager = $this->get('oro_address.address.provider')->getStorage();
 
-        $address = $addressManager->createFlexible();
+        $address = $addressManager->createAddress();
 
         return $this->editAction($address);
     }
