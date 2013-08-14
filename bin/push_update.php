@@ -3,7 +3,7 @@
 require dirname(__DIR__) . '/vendor/autoload.php';
 
 $result = array();
-$file = realpath(__DIR__ . "/../web/update.csv");
+$file = realpath(__DIR__ . "/../web/" . (!empty($argv[1]) ? $argv[1] : 'update.csv'));
 if (file_exists($file) && ($handle = fopen($file, 'r')) !== false) {
 
     $context = new ZMQContext();
