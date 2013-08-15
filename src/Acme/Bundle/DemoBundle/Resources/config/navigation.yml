@@ -6,12 +6,6 @@ oro_menu_config:
         demo_search_tab:
             label: 'Search'
             uri: '#'
-        demo_jobs_tab:
-            label: 'Jobs'
-            uri: '#'
-        demo_jobs:
-            label: 'Jobs examples'
-            route: 'acme_demo_job_index'
         demo_users:
             label: 'Users'
             route: 'oro_user_index'
@@ -29,14 +23,8 @@ oro_menu_config:
             route: 'oro_ui_index'
         demo_dashboard:
             label: 'Dashboard'
-            route: 'acme_default'
+            route: 'oro_default'
 
-        shortcut_jobs:
-            label: Jobs List
-            route: acme_demo_job_index
-            extras:
-                description: Create new user instance
-        
         demo_account:
             label: 'Demo Entity Account'
             route: 'account'
@@ -55,20 +43,11 @@ oro_menu_config:
                 demo_search_tab:
                     children:
                         demo_search: ~
-                demo_jobs_tab:
-                    children:
-                        demo_jobs: ~
                 system_tab:
                     children:
                         demo_account: ~
 
-        shortcuts:
-            children:
-                shortcut_jobs: ~
-
 oro_titles:
-    acme_demo_job_index: Jobs
-    acme_demo_job_show: Job "%%command%%" (ID: %%id%%)
     acme_demo_advanced_search: Search
     acme_demo_search_product: %%product.name%%
     acme_demo_create_attribute: Add Attribute
