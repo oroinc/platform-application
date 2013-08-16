@@ -13,11 +13,6 @@ use Oro\Bundle\GridBundle\Filter\FilterInterface;
 class ProductDatagridManager extends DatagridManager
 {
     /**
-     * @var EntityManager
-     */
-    private $entityManager;
-
-    /**
      * {@inheritDoc}
      * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
