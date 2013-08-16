@@ -8,9 +8,24 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 use Doctrine\ORM\Query;
 use Doctrine\DBAL\ConnectionException;
+use Doctrine\DBAL\DriverManager;
 
-class MageReportCommand extends ContainerAwareCommand
+use Oro\Bundle\CronBundle\Command\CronCommandInterface;
+
+class MageReportCommand extends ContainerAwareCommand implements CronCommandInterface
 {
+    /**
+     * MAgento DB connection
+     *
+     * @var \Doctrine\DBAL\Connection
+     */
+    protected static $sourceConn;
+
+    public function getDefaultDefinition()
+    {
+        return '*/5 * * * *';
+    }
+
     protected function configure()
     {
         $this
@@ -20,7 +35,7 @@ class MageReportCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->getEm()->getConnection()->getConfiguration()->setSQLLogger(null);
+        $this->getTargetEm()->getConnection()->getConfiguration()->setSQLLogger(null);
 
         $this->processOrderData($output, 'oro_report_mage_order_state', array('state'));
         $this->processOrderData($output, 'oro_report_mage_order_status', array('status'));
@@ -100,7 +115,7 @@ class MageReportCommand extends ContainerAwareCommand
                 %s, DATE(o.`created_at`)
         ";
 
-        $stmt = $this->getEm()->getConnection()->prepare(sprintf($query, implode(', ', $fields), implode(', ', $group)));
+        $stmt = $this->getSourceConn()->prepare(sprintf($query, implode(', ', $fields), implode(', ', $group)));
 
         $stmt->execute();
 
@@ -119,7 +134,7 @@ class MageReportCommand extends ContainerAwareCommand
      */
     protected function importData($table, $data)
     {
-        $conn = $this->getEm()->getConnection();
+        $conn = $this->getTargetEm()->getConnection();
 
         $conn->beginTransaction();
 
@@ -159,8 +174,35 @@ class MageReportCommand extends ContainerAwareCommand
     /**
      * @return \Doctrine\ORM\EntityManager
      */
-    protected function getEm()
+    protected function getTargetEm()
     {
         return $this->getContainer()->get('doctrine.orm.entity_manager');
+    }
+
+    /**
+     * Source (Magento) DB connection
+     * Temporarily hardcoded!
+     *
+     * @return \Doctrine\DBAL\Connection
+     */
+    protected function getSourceConn()
+    {
+        if (self::$sourceConn) {
+            return self::$sourceConn;
+        }
+
+        $config = new \Doctrine\DBAL\Configuration();
+        $params = array(
+            'dbname'   => 'warby',
+            'user'     => 'root',
+            'password' => '123456',
+            'host'     => '127.0.0.1',
+            'driver'   => 'pdo_mysql',
+            'charset'  => 'utf8',
+        );
+
+        self::$sourceConn = DriverManager::getConnection($params, $config);
+
+        return self::$sourceConn;
     }
 }
