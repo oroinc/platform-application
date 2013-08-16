@@ -6,25 +6,11 @@ parameters:
     oro_address.form.service.type.address_value.class: Acme\Bundle\DemoAddressBundle\Form\Type\AddressValueType
 
 services:
-    oro_address.address.service.manager.flexible:
-        class: %oro_address.address.manager.flexible.class%
-        arguments:
-            - %oro_address.address.service.entity.class%
-            - %oro_flexibleentity.flexible_config%
-            - @doctrine.orm.entity_manager
-            - @event_dispatcher
-            - @oro_flexibleentity.attributetype.factory
-        tags:
-            - { name: oro_flexibleentity_manager, entity: %oro_address.address.service.entity.class%}
-        calls:
-            - [ addAttributeType, ['oro_flexibleentity_text'] ]
-
     oro_address.address.service.manager:
         class: %oro_address.address.manager.class%
         arguments:
             - %oro_address.address.service.entity.class%
             - @doctrine.orm.entity_manager
-            - @oro_address.address.service.manager.flexible
         tags:
             - { name: oro_address.storage, alias: service}
 
@@ -34,20 +20,8 @@ services:
         factory_service: form.factory
         arguments: ["oro_address_service_form", "oro_address_service", null]
 
-    oro_address.form.service.type.address_value:
-        class: %oro_address.form.service.type.address_value.class%
-        arguments:
-            - @oro_address.address.service.manager.flexible
-            - @oro_flexibleentity.value_form.value_subscriber
-        tags:
-            - { name: form.type, alias: oro_address_service_value }
-
     oro_address.form.service.type.address:
         class: %oro_address.type.address.service.class%
-        arguments:
-            - @oro_address.address.service.manager.flexible
-            - "oro_address_service_value"
-            - @oro_address.form.listener.address
         tags:
              - { name: form.type, alias: oro_address_service }
 

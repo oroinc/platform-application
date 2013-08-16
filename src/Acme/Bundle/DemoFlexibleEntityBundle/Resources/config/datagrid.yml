@@ -9,7 +9,7 @@ services:
         class: "%customer_grid_manager_class%"
         tags:
             - name: oro_grid.datagrid.manager
-              datagrid_name: users
+              datagrid_name: demo_flexible_customers
               entity_name: Acme\Bundle\DemoFlexibleEntityBundle\Entity\Customer
               entity_hint: customers
               flexible: true
@@ -19,7 +19,7 @@ services:
         class: "%product_grid_manager_class%"
         tags:
             - name: oro_grid.datagrid.manager
-              datagrid_name: users
+              datagrid_name: demo_flexible_products
               entity_name: Acme\Bundle\DemoFlexibleEntityBundle\Entity\Product
               entity_hint: products
               flexible: true
@@ -29,7 +29,7 @@ services:
         class: "%customerattribute_grid_manager_class%"
         tags:
             - name: oro_grid.datagrid.manager
-              datagrid_name: attributes
+              datagrid_name: demo_flexible_customer_attributes
               entity_hint: attributes
               route_name: acme_demoflexibleentity_customerattribute_index
         calls:
@@ -39,7 +39,7 @@ services:
         class: "%productattribute_grid_manager_class%"
         tags:
             - name: oro_grid.datagrid.manager
-              datagrid_name: attributes
+              datagrid_name: demo_flexible_product_attributes
               entity_hint: attributes
               route_name: acme_demoflexibleentity_productattribute_index
         calls:

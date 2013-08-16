@@ -60,6 +60,7 @@ assetic:
         - AcmeDemoWindowsBundle
         - AcmeDemoGridBundle
         - AcmeDemoFilterBundle
+        - OroEntityExtendBundle
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -151,7 +152,8 @@ stof_doctrine_extensions:
             tree:             true
 
 services:
-    cache:
+    oro.cache.abstract:
+        abstract: true
         class:                Doctrine\Common\Cache\PhpFileCache
         arguments:            [%kernel.cache_dir%]
     twig.extension.intl:
@@ -191,10 +193,18 @@ oro_user:
         name_format:
           value:              %%last%%, %%first%%
 
-oro_assetic:
-    uncompress_js: ~
-    uncompress_css: ~
+oro_translation:
+    js_translation:
+        # order of domains reflects messages fallback
+        domains: [jsmessages, validators]
+
+jms_di_extra:
+    doctrine_integration: false
 
 oro_entity_extend:
     backend:        Dynamic
+    backup:         "%kernel.root_dir%/entities/Backup/"
 
+a2lix_translation_form:
+    locales: [en, fr]
+    templating: "OroUIBundle:Form:translateable.html.twig"

@@ -1,3 +1,7 @@
+acme_demo:
+    resource: "@AcmeDemoBundle/Controller/"
+    type:     annotation
+
 acme_demo_address:
     resource: "@AcmeDemoAddressBundle/Resources/config/routing.yml"
     prefix:   /address
@@ -75,6 +79,10 @@ oro_notification:
     resource: "@OroNotificationBundle/Resources/config/routing.yml"
     prefix:   /
 
+oro_grid:
+    resource: "@OroGridBundle/Resources/config/routing.yml"
+    prefix:   /
+
 oro_user:
     resource: "@OroUserBundle/Resources/config/routing.yml"
 
@@ -128,8 +136,8 @@ oro_address:
     resource: "@OroAddressBundle/Resources/config/routing.yml"
     prefix:   /
 
-_bazinga_exposetranslation:
-    resource: "@BazingaExposeTranslationBundle/Resources/config/routing/routing.yml"
+oro_translation_bundle:
+    resource: "@OroTranslationBundle/Resources/config/routing.yml"
 
 _apy_jsformvalidation:
     resource: "@APYJsFormValidationBundle/Resources/config/routing/routing.yml"
@@ -140,6 +148,10 @@ oro_assets:
 
 oro_tag:
     resource: "@OroTagBundle/Resources/config/routing.yml"
+    prefix:   /
+
+oro_email:
+    resource: "@OroEmailBundle/Resources/config/routing.yml"
     prefix:   /
 
 oro_organization:

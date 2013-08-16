@@ -24,14 +24,7 @@ use Oro\Bundle\AddressBundle\Entity\AbstractAddress;
  */
 class SeparateAddress extends AbstractAddress
 {
-    /**
-     * @var \Oro\Bundle\FlexibleEntityBundle\Model\AbstractFlexibleValue[]
-     *
-     * @ORM\OneToMany(targetEntity="Acme\Bundle\DemoAddressBundle\Entity\Value\AddressValue",mappedBy="entity",cascade={"persist","remove"}, orphanRemoval=true)
-     */
-    protected $values;
-
-    /******************************************************* ADDING ADDITIONAL FIELDS *************************************************************/
+    /************************************* ADDING ADDITIONAL FIELDS ***************************************************/
     /**
      * @var string
      * @ORM\Column(name="working_hours", type="string", length=255, nullable=true)
@@ -60,5 +53,5 @@ class SeparateAddress extends AbstractAddress
 
         return $this;
     }
-    /************************************************* END OF ADDING ADDITIONAL FIELDS *************************************************************/
+    /*********************************** END OF ADDING ADDITIONAL FIELDS **********************************************/
 }
