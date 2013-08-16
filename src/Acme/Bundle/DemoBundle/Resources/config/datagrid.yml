@@ -7,7 +7,7 @@ services:
         #arguments: [@oro_entity_extend.exted_manager]
         tags:
             - name: oro_grid.datagrid.manager
-              datagrid_name: accounts
+              datagrid_name: demo_accounts
               entity_name: Acme\Bundle\DemoBundle\Entity\Account
               query_entity_alias: accounts
               entity_hint: accounts
