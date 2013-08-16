@@ -14,18 +14,4 @@ use Oro\Bundle\FlexibleEntityBundle\Entity\Repository\FlexibleEntityRepository;
  */
 class ProductRepository extends FlexibleEntityRepository
 {
-    /**
-     * Add join to values tables
-     *
-     * @param QueryBuilder $qb
-     */
-    protected function addJoinToValueTables(QueryBuilder $qb)
-    {
-        parent::addJoinToValueTables($qb);
-
-        $qb->addSelect('ValueMetric')->addSelect('ValuePrice')->addSelect('ValueMedia');
-        $qb->leftJoin('Value.price', 'ValuePrice')
-            ->leftJoin('Value.media', 'ValueMedia')
-            ->leftJoin('Value.metric', 'ValueMetric');
-    }
 }
