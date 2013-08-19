@@ -4,6 +4,8 @@ namespace Acme\Bundle\DemoWorkflowBundle\Controller;
 
 use Doctrine\ORM\EntityManager;
 
+use Oro\Bundle\WorkflowBundle\Exception\ForbiddenTransitionException;
+use Oro\Bundle\WorkflowBundle\Exception\UnknownTransitionException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -50,17 +52,7 @@ class WorkflowItemController extends Controller
      */
     public function createAction($workflowName, $entityId)
     {
-        $workflow = $this->getWorkflow($workflowName);
-        $entity = null;
-        if ($workflow->getManagedEntityClass()) {
-            $entity = $this->getWorkflowEntity($workflow, $entityId);
-        }
-
-        $workflowItem = $workflow->createWorkflowItem($entity);
-        $em = $this->getEntityManager();
-
-        $em->persist($workflowItem);
-        $em->flush();
+        $workflowItem = $this->get('oro_workflow.manager')->getWorkflowItem($workflowName, $entityId);
 
         return $this->redirect(
             $this->generateUrl(
@@ -111,40 +103,24 @@ class WorkflowItemController extends Controller
      */
     public function transitAction(WorkflowItem $workflowItem, $transitionName)
     {
-        $workflow = $this->getWorkflow($workflowItem->getWorkflowName());
-
-        /** @var Transition $transition */
-        $transition = $workflow->getTransitions()->get($transitionName);
-        if (!$transition) {
-            throw new HttpException(500, sprintf('Transition "%s" not found', $transitionName));
-        }
-
-        if ($workflow->isTransitionAllowed($workflowItem, $transition)) {
-            $em = $this->getEntityManager();
-            $em->beginTransaction();
-            try {
-                $workflow->transit($workflowItem, $transition);
-                $workflowItem->setUpdated();
-                $em->flush();
-                $em->commit();
-            } catch (\Exception $e) {
-                $em->rollback();
-                throw $e;
-            }
+        try {
+            $this->get('oro_workflow.manager')->transit($workflowItem, $transitionName);
 
             $this->get('session')->getFlashBag()->add(
                 'success',
-                sprintf(
-                    'Transition "%s" successfully performed. "%s" is now in step "%s"',
-                    $transition->getLabel(),
-                    $workflow->getLabel(),
-                    $transition->getLabel()
-                )
+                'Transition successfully performed.'
             );
-        } else {
+        } catch (WorkflowNotFoundException $e) {
+            throw new HttpException(
+                500,
+                sprintf('Workflow "%s" not found', $workflowItem->getWorkflowName())
+            );
+        } catch (UnknownTransitionException $e) {
+            throw new HttpException(500, $e->getMessage());
+        } catch (ForbiddenTransitionException $e) {
             $this->get('session')->getFlashBag()->add(
                 'error',
-                sprintf('Transition "%s" is not allowed', $transition->getLabel())
+                sprintf('Transition "%s" is not allowed', $transitionName)
             );
         }
 
@@ -174,43 +150,6 @@ class WorkflowItemController extends Controller
         }
         return $workflow;
     }
-
-    /**
-     * Get entity that related to workflow by id
-     *
-     * @param Workflow $workflow
-     * @param mixed $entityId
-     * @return mixed
-     * @throws HttpException
-     */
-    protected function getWorkflowEntity(Workflow $workflow, $entityId)
-    {
-        /** @var EntityManager $em */
-        $em = $this->getDoctrine()->getManagerForClass($workflow->getManagedEntityClass());
-        if (!$em) {
-            throw new HttpException(
-                500,
-                sprintf(
-                    'Workflow "%s" managed class "%s" is not managed entity',
-                    $workflow->getName(),
-                    $workflow->getManagedEntityClass()
-                )
-            );
-        }
-        $entity = $em->find($workflow->getManagedEntityClass(), $entityId);
-        if (!$entity) {
-            throw new HttpException(
-                500,
-                sprintf(
-                    'Entity of workflow "%s" with id=%s not found',
-                    $workflow->getName(),
-                    $workflow->getManagedEntityClass()
-                )
-            );
-        }
-        return $entity;
-    }
-
     /**
      * @return EntityManager
      */
