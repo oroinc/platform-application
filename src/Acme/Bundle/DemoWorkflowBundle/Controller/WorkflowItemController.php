@@ -79,7 +79,12 @@ class WorkflowItemController extends Controller
         $workflow = $this->getWorkflow($workflowItem->getWorkflowName());
         $currentStep = $workflow->getStep($workflowItem->getCurrentStepName());
         $workflowData = $workflowItem->getData();
-        $stepForm = $this->createForm('oro_workflow_step', $workflowData, array('step' => $currentStep));
+
+        $stepForm = $this->createForm(
+            $currentStep->getFormType(),
+            $workflowData,
+            array('workflow' => $workflow, 'step' => $currentStep)
+        );
 
         if ($request->isMethod('POST')) {
             $stepForm->submit($request);
