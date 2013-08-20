@@ -36,6 +36,12 @@ workflows:
                 label: 'End Phone Call'
                 is_final: true
         attributes:
+            phone_call:
+                label: Phone Call
+                type: entity
+                options:
+                    class: Acme\Bundle\DemoWorkflowBundle\Entity\PhoneCall
+                    managed_entity: true
             call_timeout:
                 type: integer
                 label: 'Call Timeout'
@@ -106,7 +112,7 @@ workflows:
                                 result: $conversation_result
                                 comment: $conversation_comment
                                 successful: $conversation_successful
-                                call: $managed_entity
+                                call: $phone_call
                     - @bind_entity: # bind created PhoneConversation with current workflow item
                         parameters:
                             attribute: $conversation

@@ -46,9 +46,9 @@
     <h4>Phone Call</h4>
 
     <div class="form-horizontal">
-        {% include 'AcmeDemoWorkflowBundle:PhoneCall:callDescription.html.twig' with {'phoneCall': workflowItem.data.managed_entity} %}
+        {% include 'AcmeDemoWorkflowBundle:PhoneCall:callDescription.html.twig' with {'phoneCall': workflowItem.data.phone_call} %}
         <div class="span12">
-            <a class="btn btn-primary" style="margin-left:10px;" href="{{ path('acme_demoworkflow_phonecall_view', {id: workflowItem.data.managed_entity.id}) }}">
+            <a class="btn btn-primary" style="margin-left:10px;" href="{{ path('acme_demoworkflow_phonecall_view', {id: workflowItem.data.phone_call.id}) }}">
                 {{ "View" | trans }}
             </a>
         </div>
