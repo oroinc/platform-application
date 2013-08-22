@@ -8,19 +8,11 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 use Doctrine\ORM\Query;
 use Doctrine\DBAL\ConnectionException;
-use Doctrine\DBAL\DriverManager;
 
 use Oro\Bundle\CronBundle\Command\CronCommandInterface;
 
 class MageReportCommand extends ContainerAwareCommand implements CronCommandInterface
 {
-    /**
-     * MAgento DB connection
-     *
-     * @var \Doctrine\DBAL\Connection
-     */
-    protected static $sourceConn;
-
     public function getDefaultDefinition()
     {
         return '*/5 * * * *';
@@ -35,7 +27,7 @@ class MageReportCommand extends ContainerAwareCommand implements CronCommandInte
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->getTargetEm()->getConnection()->getConfiguration()->setSQLLogger(null);
+        $this->getTargetConn()->getConfiguration()->setSQLLogger(null);
 
         $this->processOrderData($output, 'oro_report_mage_order_state', array('state'));
         $this->processOrderData($output, 'oro_report_mage_order_status', array('status'));
@@ -134,7 +126,7 @@ class MageReportCommand extends ContainerAwareCommand implements CronCommandInte
      */
     protected function importData($table, $data)
     {
-        $conn = $this->getTargetEm()->getConnection();
+        $conn = $this->getTargetConn();
 
         $conn->beginTransaction();
 
@@ -172,37 +164,20 @@ class MageReportCommand extends ContainerAwareCommand implements CronCommandInte
     }
 
     /**
-     * @return \Doctrine\ORM\EntityManager
+     * @return \Doctrine\DBAL\Connection
      */
-    protected function getTargetEm()
+    protected function getTargetConn()
     {
-        return $this->getContainer()->get('doctrine.orm.entity_manager');
+        return $this->getContainer()->get('doctrine.dbal.report_target_connection');
     }
 
     /**
      * Source (Magento) DB connection
-     * Temporarily hardcoded!
      *
      * @return \Doctrine\DBAL\Connection
      */
     protected function getSourceConn()
     {
-        if (self::$sourceConn) {
-            return self::$sourceConn;
-        }
-
-        $config = new \Doctrine\DBAL\Configuration();
-        $params = array(
-            'dbname'   => 'warby',
-            'user'     => 'root',
-            'password' => '123456',
-            'host'     => '127.0.0.1',
-            'driver'   => 'pdo_mysql',
-            'charset'  => 'utf8',
-        );
-
-        self::$sourceConn = DriverManager::getConnection($params, $config);
-
-        return self::$sourceConn;
+        return $this->getContainer()->get('doctrine.dbal.report_source_connection');
     }
 }
