@@ -17,8 +17,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Oro\Bundle\WorkflowBundle\Exception\WorkflowNotFoundException;
 use Oro\Bundle\WorkflowBundle\Model\WorkflowRegistry;
 use Oro\Bundle\WorkflowBundle\Model\Workflow;
-use Oro\Bundle\WorkflowBundle\Model\Transition;
 use Oro\Bundle\WorkflowBundle\Entity\WorkflowItem;
+use Oro\Bundle\WorkflowBundle\Model\WorkflowManager;
 
 /**
  * @Route("/workflow_item")
@@ -47,12 +47,22 @@ class WorkflowItemController extends Controller
     }
 
     /**
-     * @Route("/create/{workflowName}/{entityId}/{transition}", name="acme_demoworkflow_workflowitem_create")
+     * @Route(
+     *      "/start/{workflowName}/{entityClass}/{entityId}/{transition}",
+     *      name="acme_demoworkflow_workflowitem_start"
+     * )
      * @Template()
      */
-    public function createAction($workflowName, $entityId, $transition)
+    public function startAction($workflowName, $entityClass, $entityId, $transition)
     {
-        $workflowItem = $this->get('oro_workflow.manager')->startWorkflow($workflowName, $entityId);
+        /** @var WorkflowManager $workflowManager */
+        $workflowManager = $this->get('oro_workflow.manager');
+        $workflowItem = $workflowManager->startWorkflow(
+            $workflowName,
+            $entityClass,
+            $entityId,
+            $transition
+        );
 
         return $this->redirect(
             $this->generateUrl(
@@ -148,6 +158,7 @@ class WorkflowItemController extends Controller
         } catch (WorkflowNotFoundException $e) {
             throw new HttpException(500, sprintf('Workflow "%s" not found', $name));
         }
+
         return $workflow;
     }
     /**

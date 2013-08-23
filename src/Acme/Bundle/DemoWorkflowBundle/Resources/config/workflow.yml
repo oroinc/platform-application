@@ -3,7 +3,6 @@ workflows:
         label: 'Demo Call Workflow'
         enabled: true
         start_step: start_call
-        managed_entity_class: Acme\Bundle\DemoWorkflowBundle\Entity\PhoneCall
         steps:
             start_call:
                 label: 'Start Phone Call'
@@ -42,6 +41,7 @@ workflows:
                 options:
                     class: Acme\Bundle\DemoWorkflowBundle\Entity\PhoneCall
                     managed_entity: true
+                    multiple: true
             call_timeout:
                 type: integer
                 label: 'Call Timeout'
