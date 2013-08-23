@@ -113,6 +113,3 @@ workflows:
                                 comment: $conversation_comment
                                 successful: $conversation_successful
                                 call: $phone_call
-                    - @bind_entity: # bind created PhoneConversation with current workflow item
-                        parameters:
-                            attribute: $conversation
