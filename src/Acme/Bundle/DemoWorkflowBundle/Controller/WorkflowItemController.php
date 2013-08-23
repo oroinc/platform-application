@@ -47,12 +47,12 @@ class WorkflowItemController extends Controller
     }
 
     /**
-     * @Route("/create/{workflowName}/{entityId}", name="acme_demoworkflow_workflowitem_create")
+     * @Route("/create/{workflowName}/{entityId}/{transition}", name="acme_demoworkflow_workflowitem_create")
      * @Template()
      */
-    public function createAction($workflowName, $entityId)
+    public function createAction($workflowName, $entityId, $transition)
     {
-        $workflowItem = $this->get('oro_workflow.manager')->getWorkflowItem($workflowName, $entityId);
+        $workflowItem = $this->get('oro_workflow.manager')->startWorkflow($workflowName, $entityId);
 
         return $this->redirect(
             $this->generateUrl(
