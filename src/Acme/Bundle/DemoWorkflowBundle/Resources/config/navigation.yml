@@ -25,6 +25,6 @@ oro_titles:
     acme_demoworkflow_phonecall_edit: Edit Phone Call
     acme_demoworkflow_phonecall_view: View Phone Call
     acme_demoworkflow_workflowitem_list: Workflow Items
-    acme_demoworkflow_workflowitem_create: Create Workflow Item
+    acme_demoworkflow_workflowitem_start: Start Workflow
     acme_demoworkflow_workflowitem_edit: Edit Workflow Item
     acme_demoworkflow_workflowitem_transit: Transit Workflow Item

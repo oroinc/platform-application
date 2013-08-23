@@ -10,18 +10,27 @@
 
     <div class="form-horizontal">
         <h5 class="usser-fiedset"><span>Start Workflow</span></h5>
-        {% for workflow in applicableWorkflows %}
+        {% for workflowData in applicableWorkflowsData %}
+            {% set workflow = workflowData.workflow %}
+            {% set startTransitions = workflowData.startTransitions %}
             <table class="table table-bordered table-striped" style="width: auto;">
                 <tr>
                     <th>Name</th>
-                    <th>Action</th>
+                    <th>Actions</th>
                 </tr>
                 <tr>
                     <td>{{ workflow.label }}</td>
                     <td>
-                        <a class="btn" href="{{ path('acme_demoworkflow_workflowitem_create', {entityId: phoneCall.id, workflowName: workflow.name}) }}">
-                            {{ workflow.startStep.label }}
-                        </a>
+                        {% for transition in startTransitions %}
+                            <a class="btn" href="{{ path('acme_demoworkflow_workflowitem_start', {
+                                workflowName: workflow.name,
+                                entityClass: 'Acme\\Bundle\\DemoWorkflowBundle\\Entity\\PhoneCall',
+                                entityId: phoneCall.id,
+                                transition: transition.name
+                            }) }}">
+                                {{ transition.label }}
+                            </a>
+                        {% endfor %}
                     </td>
                 </tr>
             </table>

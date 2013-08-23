@@ -6,10 +6,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+use Doctrine\Common\Util\ClassUtils;
+
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
-use Oro\Bundle\WorkflowBundle\Model\WorkflowRegistry;
+use Oro\Bundle\WorkflowBundle\Model\WorkflowManager;
 use Oro\Bundle\WorkflowBundle\Entity\Repository\WorkflowItemRepository;
 
 use Acme\Bundle\DemoWorkflowBundle\Form\PhoneCallType;
@@ -75,16 +77,33 @@ class PhoneCallController extends Controller
      */
     public function viewAction(PhoneCall $phoneCall)
     {
-        /** @var WorkflowRegistry $workflowRegistry */
-        $workflowRegistry = $this->get('oro_workflow.registry');
-        $applicableWorkflows = $workflowRegistry->getWorkflowsByEntity($phoneCall);
-
-        /** @var WorkflowItemRepository $workflowItems */
+        /** @var WorkflowItemRepository $workflowItemsRepository */
         $workflowItemsRepository = $this->getDoctrine()->getRepository('OroWorkflowBundle:WorkflowItem');
         $workflowItems = $workflowItemsRepository->findWorkflowItemsByEntity($phoneCall);
 
+        /** @var WorkflowManager $workflowManager */
+        $workflowManager = $this->get('oro_workflow.manager');
+        $applicableWorkflows = $workflowManager->getApplicableWorkflows($phoneCall, $workflowItems);
+
+        $applicableWorkflowsData = array();
+        $entityClass = ClassUtils::getRealClass(get_class($phoneCall));
+        foreach ($applicableWorkflows as $workflow) {
+            $startTransitions = $workflowManager->getAllowedStartTransitions(
+                $workflow->getName(),
+                $entityClass,
+                $phoneCall->getId()
+            );
+
+            if (count($startTransitions) > 0) {
+                $applicableWorkflowsData[] = array(
+                    'workflow' => $workflow,
+                    'startTransitions' => $startTransitions,
+                );
+            }
+        }
+
         return array(
-            'applicableWorkflows' => $applicableWorkflows,
+            'applicableWorkflowsData' => $applicableWorkflowsData,
             'phoneCall' => $phoneCall,
             'workflowItems' => $workflowItems,
         );
