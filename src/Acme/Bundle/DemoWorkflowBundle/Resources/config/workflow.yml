@@ -2,8 +2,8 @@ workflows:
     phone_call:
         label: 'Demo Call Workflow'
         enabled: true
+        type: wizard
         start_step: start_call
-        managed_entity_class: Acme\Bundle\DemoWorkflowBundle\Entity\PhoneCall
         steps:
             start_call:
                 label: 'Start Phone Call'
@@ -113,3 +113,6 @@ workflows:
                                 comment: $conversation_comment
                                 successful: $conversation_successful
                                 call: $phone_call
+                    - @bind_entity: # bind created PhoneConversation with current workflow item
+                        parameters:
+                            attribute: $conversation
