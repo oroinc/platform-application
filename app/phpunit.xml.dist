@@ -35,6 +35,9 @@
         <testsuite name="Project Selenium Tests">
             <directory suffix="Test.php">../src/*/src/*/Bundle/*Bundle/Tests/Selenium</directory>
         </testsuite>
+        <testsuite name="Project Behat Tests">
+            <directory suffix="Test.php">../src/Oro*/src/Oro*/Bundle/*Bundle/Tests/Behat</directory>
+        </testsuite>
     </testsuites>
 
     <!--
