@@ -9,6 +9,7 @@ php app/console-framework doctrine:fixture:load --no-debug --no-interaction --en
 php app/console-framework oro:acl:load --env %ENV% || goto :error
 php app/console-framework oro:navigation:init --env %ENV% || goto :error
 php app/console-framework oro:entity-config:update --env %ENV% || goto :error
+php app/console-framework oro:entity-extend:create --env %ENV% || goto :error
 php app/console-framework assets:install web --env %ENV% || goto :error
 php app/console assetic:dump --env %ENV% || goto :error
 php app/console oro:assetic:dump || goto :error
