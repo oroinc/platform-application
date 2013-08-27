@@ -41,13 +41,6 @@ class MageReportCommand extends ContainerAwareCommand implements CronCommandInte
             array('a.`country_id`', 'a.`region`'),
             true
         );
-//        $this->processOrderData(
-//            $output,
-//            'oro_report_mage_order_zip',
-//            array('a.`country_id`', 'a.`postcode` zip'),
-//            array('a.`country_id`', 'a.`postcode`'),
-//            true
-//        );
     }
 
     protected function processOrderData(OutputInterface $output, $table, $fields, $group = array(), $address = false)
