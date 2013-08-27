@@ -36,12 +36,6 @@ oro_menu_config:
             route: acme_demo_job_index
             extras:
                 description: Create new user instance
-        
-        demo_account:
-            label: 'Demo Entity Account'
-            route: 'account'
-            extras:
-                routes: ['account*']
 
     tree:
         application_menu:
