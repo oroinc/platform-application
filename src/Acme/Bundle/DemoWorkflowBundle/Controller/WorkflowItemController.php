@@ -51,23 +51,34 @@ class WorkflowItemController extends Controller
      *      "/start/{workflowName}/{entityClass}/{entityId}/{transition}",
      *      name="acme_demoworkflow_workflowitem_start"
      * )
-     * @Template()
      */
     public function startAction($workflowName, $entityClass, $entityId, $transition)
     {
-        /** @var WorkflowManager $workflowManager */
-        $workflowManager = $this->get('oro_workflow.manager');
-        $workflowItem = $workflowManager->startWorkflow(
-            $workflowName,
-            $entityClass,
-            $entityId,
-            $transition
+        // TODO: refactor and use JS widgets instead
+        $response = $this->forward(
+            'OroWorkflowBundle:Api/Rest/Workflow:start',
+            array(
+                'workflowName'   => $workflowName,
+                'entityClass'    => $entityClass,
+                'entityId'       => $entityId,
+                'transitionName' => $transition,
+                '_format'        => 'json'
+            )
         );
+
+        if ($response->getStatusCode() != 200) {
+            return $response;
+        }
+
+        $responseData = json_decode($response->getContent(), true);
+        if (empty($responseData['workflowItemId'])) {
+            throw new \LogicException('There is no workflow item ID');
+        }
 
         return $this->redirect(
             $this->generateUrl(
                 'acme_demoworkflow_workflowitem_edit',
-                array('id' => $workflowItem->getId())
+                array('id' => $responseData['workflowItemId'])
             )
         );
     }
@@ -79,8 +90,13 @@ class WorkflowItemController extends Controller
     public function editAction(Request $request, WorkflowItem $workflowItem)
     {
         $workflow = $this->getWorkflow($workflowItem->getWorkflowName());
-        $currentStep = $workflow->getStep($workflowItem->getCurrentStepName());
         $workflowData = $workflowItem->getData();
+        $currentStep = $workflow->getStep($workflowItem->getCurrentStepName());
+        if (!$currentStep) {
+            throw new \LogicException(
+                sprintf('There is no step "%s"', $workflowItem->getCurrentStepName())
+            );
+        }
 
         $stepForm = $this->createForm(
             $currentStep->getFormType(),
@@ -109,29 +125,21 @@ class WorkflowItemController extends Controller
 
     /**
      * @Route("/transit/{id}/{transitionName}", name="acme_demoworkflow_workflowitem_transit")
-     * @Template()
      */
     public function transitAction(WorkflowItem $workflowItem, $transitionName)
     {
-        try {
-            $this->get('oro_workflow.manager')->transit($workflowItem, $transitionName);
+        // TODO: refactor and use JS widgets instead
+        $response = $this->forward(
+            'OroWorkflowBundle:Api/Rest/Workflow:transit',
+            array(
+                'workflowItemId' => $workflowItem->getId(),
+                'transitionName' => $transitionName,
+                '_format'        => 'json'
+            )
+        );
 
-            $this->get('session')->getFlashBag()->add(
-                'success',
-                'Transition successfully performed.'
-            );
-        } catch (WorkflowNotFoundException $e) {
-            throw new HttpException(
-                500,
-                sprintf('Workflow "%s" not found', $workflowItem->getWorkflowName())
-            );
-        } catch (UnknownTransitionException $e) {
-            throw new HttpException(500, $e->getMessage());
-        } catch (ForbiddenTransitionException $e) {
-            $this->get('session')->getFlashBag()->add(
-                'error',
-                sprintf('Transition "%s" is not allowed', $transitionName)
-            );
+        if ($response->getStatusCode() != 200) {
+            return $response;
         }
 
         return $this->redirect(

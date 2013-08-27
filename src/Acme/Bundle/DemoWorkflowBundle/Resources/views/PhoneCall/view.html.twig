@@ -24,7 +24,7 @@
                         {% for transition in startTransitions %}
                             <a class="btn" href="{{ path('acme_demoworkflow_workflowitem_start', {
                                 workflowName: workflow.name,
-                                entityClass: 'Acme\\Bundle\\DemoWorkflowBundle\\Entity\\PhoneCall',
+                                entityClass: oro_class_name(phoneCall),
                                 entityId: phoneCall.id,
                                 transition: transition.name
                             }) }}">
