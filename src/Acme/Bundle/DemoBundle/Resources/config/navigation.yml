@@ -52,9 +52,6 @@ oro_menu_config:
                 demo_jobs_tab:
                     children:
                         demo_jobs: ~
-                system_tab:
-                    children:
-                        demo_account: ~
 
         shortcuts:
             children:
