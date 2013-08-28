@@ -25,12 +25,6 @@ oro_menu_config:
             label: 'Dashboard'
             route: 'oro_default'
 
-        demo_account:
-            label: 'Demo Entity Account'
-            route: 'account'
-            extras:
-                routes: ['account*']
-
     tree:
         application_menu:
             children:
@@ -43,9 +37,6 @@ oro_menu_config:
                 demo_search_tab:
                     children:
                         demo_search: ~
-                system_tab:
-                    children:
-                        demo_account: ~
 
 oro_titles:
     acme_demo_advanced_search: Search

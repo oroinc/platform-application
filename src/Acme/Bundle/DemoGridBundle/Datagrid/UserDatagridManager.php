@@ -31,8 +31,8 @@ class UserDatagridManager extends FlexibleDatagridManager
     protected function configureFields(FieldDescriptionCollection $fieldsCollection)
     {
         $demoFieldId = new FieldDescription();
-        $demoFfieldId->setName('id');
-        $demoFfieldId->setOptions(
+        $demoFieldId->setName('id');
+        $demoFieldId->setOptions(
             array(
                 'type'        => FieldDescriptionInterface::TYPE_INTEGER,
                 'label'       => 'ID',
@@ -44,11 +44,11 @@ class UserDatagridManager extends FlexibleDatagridManager
                 'show_filter' => true,
             )
         );
-        $fieldsCollection->add($demoFfieldId);
+        $fieldsCollection->add($demoFieldId);
 
-        $demoFfieldUsername = new FieldDescription();
-        $demoFfieldUsername->setName('username');
-        $demoFfieldUsername->setOptions(
+        $demoFieldUsername = new FieldDescription();
+        $demoFieldUsername->setName('username');
+        $demoFieldUsername->setOptions(
             array(
                 'type'        => FieldDescriptionInterface::TYPE_TEXT,
                 'label'       => 'Username',
@@ -60,11 +60,11 @@ class UserDatagridManager extends FlexibleDatagridManager
                 'show_filter' => true,
             )
         );
-        $fieldsCollection->add($demoFfieldUsername);
+        $fieldsCollection->add($demoFieldUsername);
 
-        $demoFfieldEmail = new FieldDescription();
-        $demoFfieldEmail->setName('email');
-        $demoFfieldEmail->setOptions(
+        $demoFieldEmail = new FieldDescription();
+        $demoFieldEmail->setName('email');
+        $demoFieldEmail->setOptions(
             array(
                 'type'        => FieldDescriptionInterface::TYPE_TEXT,
                 'label'       => 'Email',
@@ -76,11 +76,11 @@ class UserDatagridManager extends FlexibleDatagridManager
                 'show_filter' => true,
             )
         );
-        $fieldsCollection->add($demoFfieldEmail);
+        $fieldsCollection->add($demoFieldEmail);
 
-        $demoFfieldFirstName = new FieldDescription();
-        $demoFfieldFirstName->setName('firstName');
-        $demoFfieldFirstName->setOptions(
+        $demoFieldFirstName = new FieldDescription();
+        $demoFieldFirstName->setName('firstName');
+        $demoFieldFirstName->setOptions(
             array(
                 'type'        => FieldDescriptionInterface::TYPE_TEXT,
                 'label'       => 'First name',
@@ -92,11 +92,11 @@ class UserDatagridManager extends FlexibleDatagridManager
                 'show_filter' => true,
             )
         );
-        $demoFfieldsCollection->add($fieldFirstName);
+        $fieldsCollection->add($demoFieldFirstName);
 
-        $demoFfieldLastName = new FieldDescription();
-        $demoFfieldLastName->setName('lastName');
-        $demoFfieldLastName->setOptions(
+        $demoFieldLastName = new FieldDescription();
+        $demoFieldLastName->setName('lastName');
+        $demoFieldLastName->setOptions(
             array(
                 'type'        => FieldDescriptionInterface::TYPE_TEXT,
                 'label'       => 'Last name',
@@ -108,11 +108,11 @@ class UserDatagridManager extends FlexibleDatagridManager
                 'show_filter' => true,
             )
         );
-        $fieldsCollection->add($demoFfieldLastName);
+        $fieldsCollection->add($demoFieldLastName);
 
-        $demoFfieldBirthday = new FieldDescription();
-        $demoFfieldBirthday->setName('birthday');
-        $demoFfieldBirthday->setOptions(
+        $demoFieldBirthday = new FieldDescription();
+        $demoFieldBirthday->setName('birthday');
+        $demoFieldBirthday->setOptions(
             array(
                 'type'        => FieldDescriptionInterface::TYPE_DATE,
                 'label'       => 'Birthday',
@@ -124,11 +124,11 @@ class UserDatagridManager extends FlexibleDatagridManager
                 'show_filter' => true,
             )
         );
-        $fieldsCollection->add($demoFfieldBirthday);
+        $fieldsCollection->add($demoFieldBirthday);
 
-        $demoFfieldLastName = new FieldDescription();
-        $demoFfieldLastName->setName('enabled');
-        $demoFfieldLastName->setOptions(
+        $demoFieldLastName = new FieldDescription();
+        $demoFieldLastName->setName('enabled');
+        $demoFieldLastName->setOptions(
             array(
                 'type'        => FieldDescriptionInterface::TYPE_BOOLEAN,
                 'label'       => 'Enabled',
@@ -148,13 +148,13 @@ class UserDatagridManager extends FlexibleDatagridManager
                 */
             )
         );
-        $fieldsCollection->add($demoFfieldLastName);
+        $fieldsCollection->add($demoFieldLastName);
 
         $this->configureFlexibleFields($fieldsCollection, array('gender' => array('multiple' => false)));
 
-        $demoFfieldCreated = new FieldDescription();
-        $demoFfieldCreated->setName('created');
-        $demoFfieldCreated->setOptions(
+        $demoFieldCreated = new FieldDescription();
+        $demoFieldCreated->setName('created');
+        $demoFieldCreated->setOptions(
             array(
                 'type'        => FieldDescriptionInterface::TYPE_DATETIME,
                 'label'       => 'Created At',
@@ -166,11 +166,11 @@ class UserDatagridManager extends FlexibleDatagridManager
                 'show_filter' => true,
             )
         );
-        $fieldsCollection->add($demoFfieldCreated);
+        $fieldsCollection->add($demoFieldCreated);
 
-        $demoFfieldUpdated = new FieldDescription();
-        $demoFfieldUpdated->setName('updated');
-        $demoFfieldUpdated->setOptions(
+        $demoFieldUpdated = new FieldDescription();
+        $demoFieldUpdated->setName('updated');
+        $demoFieldUpdated->setOptions(
             array(
                 'type'        => FieldDescriptionInterface::TYPE_DATETIME,
                 'label'       => 'Updated At',
