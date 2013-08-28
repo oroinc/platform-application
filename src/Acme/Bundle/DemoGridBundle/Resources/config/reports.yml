@@ -23,7 +23,7 @@ reports:
         name:     MageOrderState
         select:   "m.createdAt, m.state, SUM(m.orderCount) AS orderCount, AVG(m.avgBaseGrandTotal) AS avgTotal"
         from:
-            - { table: AcmeDemoGridBundle:ReportMageOrderState, alias: m }
+            - { table: AcmeDemoBundle:ReportMage\ReportMageOrderState, alias: m }
         groupBy:  "m.createdAt, m.state"
         orderBy:
             - { column: "m.createdAt", dir: "desc" }

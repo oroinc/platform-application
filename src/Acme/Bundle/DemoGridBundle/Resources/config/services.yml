@@ -48,6 +48,6 @@ services:
         class:                %acme_demo_grid.mage_report_state.manager.class%
         tags:
             - name:           oro_grid.datagrid.manager
-              datagrid_name:  report
+              datagrid_name:  mage_report
               entity_hint:    reports
               route_name:     acme_demo_gridbundle_mage_report_state_list
