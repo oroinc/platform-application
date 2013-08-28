@@ -10,7 +10,7 @@ services:
         class: %acme_demo_grid.user_grid.manager.class%
         tags:
             - name: oro_grid.datagrid.manager
-              datagrid_name: users
+              datagrid_name: demo_grid_users
               entity_name: Oro\Bundle\UserBundle\Entity\User
               entity_hint: users
               flexible: true
@@ -26,7 +26,7 @@ services:
         class: %acme_demo_grid.product_grid.manager.class%
         tags:
             - name: oro_grid.datagrid.manager
-              datagrid_name: product
+              datagrid_name: demo_grid_products
               entity_hint: products
               route_name: acme_demo_gridbundle_product_list
 #              query_factory: ~

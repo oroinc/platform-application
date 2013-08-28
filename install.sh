@@ -11,6 +11,7 @@ php app/console-framework doctrine:fixture:load --no-debug --no-interaction --en
 php app/console-framework oro:acl:load --env $ENV
 php app/console-framework oro:navigation:init --env $ENV
 php app/console-framework oro:entity-config:update --env $ENV
+php app/console-framework oro:entity-extend:create --env $ENV
 php app/console-framework assets:install web --env $ENV
 php app/console-framework assetic:dump --env $ENV
 php app/console-framework oro:assetic:dump
