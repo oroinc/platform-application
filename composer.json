@@ -4,7 +4,10 @@
     "homepage": "https://github.com/laboro/platform-application.git",
     "license": "MIT",
     "autoload": {
-        "psr-0": { "": "src/" }
+        "psr-0": { 
+           "": "src/",
+           "Extend\\": "app/entities/"
+         }
     },
     "require": {
         "php": ">=5.3.3",
