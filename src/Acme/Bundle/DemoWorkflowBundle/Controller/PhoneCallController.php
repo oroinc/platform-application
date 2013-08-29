@@ -77,23 +77,14 @@ class PhoneCallController extends Controller
      */
     public function viewAction(PhoneCall $phoneCall)
     {
-        /** @var WorkflowItemRepository $workflowItemsRepository */
-        $workflowItemsRepository = $this->getDoctrine()->getRepository('OroWorkflowBundle:WorkflowItem');
-        $workflowItems = $workflowItemsRepository->findWorkflowItemsByEntity($phoneCall);
-
         /** @var WorkflowManager $workflowManager */
         $workflowManager = $this->get('oro_workflow.manager');
+        $workflowItems = $workflowManager->getWorkflowItemsByEntity($phoneCall);
         $applicableWorkflows = $workflowManager->getApplicableWorkflows($phoneCall, $workflowItems);
 
         $applicableWorkflowsData = array();
-        $entityClass = ClassUtils::getRealClass(get_class($phoneCall));
         foreach ($applicableWorkflows as $workflow) {
-            $startTransitions = $workflowManager->getAllowedStartTransitions(
-                $workflow->getName(),
-                $entityClass,
-                $phoneCall->getId()
-            );
-
+            $startTransitions = $workflowManager->getAllowedStartTransitions($workflow, $phoneCall);
             if (count($startTransitions) > 0) {
                 $applicableWorkflowsData[] = array(
                     'workflow' => $workflow,
