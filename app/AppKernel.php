@@ -35,6 +35,7 @@ class AppKernel extends Kernel
             new APY\JsFormValidationBundle\APYJsFormValidationBundle(),
             new Genemu\Bundle\FormBundle\GenemuFormBundle(),
             new A2lix\TranslationFormBundle\A2lixTranslationFormBundle(),
+            new JDare\ClankBundle\JDareClankBundle(),
 
             // BAP bundles
             new Oro\Bundle\FlexibleEntityBundle\OroFlexibleEntityBundle(),

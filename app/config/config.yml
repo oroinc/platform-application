@@ -60,6 +60,7 @@ assetic:
         - AcmeDemoGridBundle
         - AcmeDemoFilterBundle
         - OroEntityExtendBundle
+        - JDareClankBundle
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -193,6 +194,11 @@ liip_imagine:
 genemu_form:
     select2: ~
     autocomplete: ~
+
+clank:
+    web_socket_server:
+        port:                 8080        #The port the socket server will listen on
+        host:                 127.0.0.1   #(optional) The host ip to bind to
 
 oro_search:
     engine:                   orm
