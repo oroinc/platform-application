@@ -1,0 +1,79 @@
+{% extends bap.layout %}
+
+{% oro_title_set({titleTemplate: 'WAMP Demo'}) %}
+
+{% block content %}
+<div class="container-fluid">
+    <h1>Web sockets demonstration</h1>
+    <a class="btn btn-primary btn-large no-hash" id="wamp-server-broadcast" href="{{ path('acme_demo_wamp_broadcast') }}">Server broadcast</a>
+    <a class="btn btn-primary btn-large no-hash" id="wamp-client-broadcast" href="javascript: void(0);">Client broadcast</a>
+    <a class="btn btn-primary btn-large no-hash" id="wamp-rpc-call" href="javascript: void(0);">RPC call</a>
+    <h2>Session log:<span class="pull-right"><a class="btn no-hash" id="wamp-console-clear" href="javascript: void(0);">Clear log</a></span></h2>
+    <pre id="wamp-console"></pre>
+</div>
+
+<script type="text/javascript">
+$(function() {
+    var OroWamp = Clank.connect('ws://bap.loc:8080'),
+        wampCon = $('#wamp-console');
+
+    OroWamp.on('socket/connect', function(session) {
+        // session is an Autobahn JS WAMP session.
+        wampCon.append('<p>Successfully connected</p>');
+
+        // the callback function in "subscribe" is called everytime an event is published in that channel.
+        session.subscribe('acme/client-channel', onWsEvent);
+        session.subscribe('acme/server-channel', onWsEvent);
+
+        $('#wamp-client-broadcast').click(function () {
+            session.publish('acme/client-channel', { msg: 'Published from a client side!' });
+        });
+
+        $('#wamp-server-broadcast').click(function () {
+            wampCon.append('<p>Sending AJAX request to "' + $(this).attr('href') + '", awaiting response..</p>');
+
+            $.get($(this).attr('href'), function (data) {
+                wampCon.append('<p>AJAX call to a server broadcast action successfully finished</p>');
+            }).fail(function(jqXHR, textStatus, errorThrown) {
+                wampCon.append('<p>AJAX request failed: ' + textStatus + '</p>');
+            });
+
+            return false;
+        });
+
+        $('#wamp-rpc-call').click(function () {
+            //this will call the server side function "AcmeRpc::addFunc"
+            session
+                .call('acme/get_username')
+                .then(//using "then" promises.
+                    // the function for a valid result
+                    function (result) {
+                        wampCon.append('<p>RPC valid: ' + result + '</p>');
+                    },
+                    // the function to handle an error
+                    function (error, desc) {
+                        wampCon.append('<p>RPC error: ' + error + ' -> ' + desc + '</p>');
+                    }
+
+                );
+        });
+    })
+
+    OroWamp.on('socket/disconnect', function(error) {
+        // error provides us with some insight into the disconnection: error.reason and error.code
+        wampCon.append('<p>Disconnected for ' + error.reason + ' with code ' + error.code + '</p>');
+    })
+
+    $('#wamp-console-clear').click(function () {
+        wampCon.empty();
+    });
+
+    function onWsEvent(uri, payload) {
+        console.log(payload);
+        wampCon.append('<p>Received message from "' + uri + '": "' + (!_.isUndefined(payload.msg) ? payload.msg : payload) + '"</p>');
+    }
+});
+</script>
+
+{{ clank_client() }}
+{% endblock %}

@@ -1,8 +1,38 @@
 parameters:
     demo_product_manager_class:      Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleManager
     demo_product_entity_class:       Acme\Bundle\DemoBundle\Entity\Product
+    demo_wamp_topic_class:           Acme\Bundle\DemoBundle\Wamp\AcmeTopic
+    demo_wamp_rpc_class:             Acme\Bundle\DemoBundle\Wamp\AcmeRpc
+    demo_wamp_publisher_class:       Acme\Bundle\DemoBundle\Wamp\TopicPublisher
+    demo_wamp_listener_class:        Acme\Bundle\DemoBundle\EventListener\AcmeWampEventListener
 
 services:
     demo_product_manager:
-        class:     "%demo_product_manager_class%"
-        arguments: [%demo_product_entity_class%, %oro_flexibleentity.flexible_config%, "@doctrine.orm.entity_manager", "@event_dispatcher", @oro_flexibleentity.attributetype.factory]
+        class:     %demo_product_manager_class%
+        arguments:
+            - %demo_product_entity_class%
+            - %oro_flexibleentity.flexible_config%
+            - "@doctrine.orm.entity_manager"
+            - "@event_dispatcher"
+            - "@oro_flexibleentity.attributetype.factory"
+
+    acme_demo.wamp.topic_service:
+        class:      %demo_wamp_topic_class%
+
+    acme_demo.wamp.rpc_service:
+        class:      %demo_wamp_rpc_class%
+        arguments:  ["@security.context"]
+
+    acme_demo.wamp.publisher:
+        class:      %demo_wamp_publisher_class%
+        arguments:
+            - %jdare_clank.web_socket_server.host%
+            - %jdare_clank.web_socket_server.port%
+
+    kernel.listener.clank.client_event:
+        class:      %demo_wamp_listener_class%
+        arguments:  ["@security.context"]
+        tags:
+            - { name: kernel.event_listener, event: clank.client.connected, method: onClientConnect }
+            - { name: kernel.event_listener, event: clank.client.disconnected, method: onClientDisconnect }
+            - { name: kernel.event_listener, event: clank.client.error, method: onClientError }
