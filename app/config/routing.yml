@@ -8,11 +8,10 @@ acme_demo_address:
 
 acme_demo_windows:
     resource: "@AcmeDemoWindowsBundle/Resources/config/routing.yml"
-    prefix:   /
 
 acme_demo_segmentation_tree:
-    resource:     "@AcmeDemoSegmentationTreeBundle/Resources/config/routing.yml"
-    prefix:       /segmentation-tree
+    resource: "@AcmeDemoSegmentationTreeBundle/Resources/config/routing.yml"
+    prefix:   /segmentation-tree
 
 acme_demo_flexible_entity:
     resource: "@AcmeDemoFlexibleEntityBundle/Controller/"
@@ -23,12 +22,10 @@ acme_demo_flexible_entity:
 acme_demo_menu:
     resource: "@AcmeDemoMenuBundle/Controller/"
     type:     annotation
-    prefix:   /
 
 acme_demo_measure:
     resource: "@AcmeDemoMeasureBundle/Controller/"
     type:     annotation
-    prefix:   /
 
 acme_demo_grid:
     resource: "@AcmeDemoGridBundle/Controller/"
@@ -46,21 +43,31 @@ acme_demo_form:
     type:     annotation
     prefix:   /form/
 
+#
+# 3rd party routes
+#
+nelmio_api_doc:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /api/doc
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+
+_imagine:
+    resource: .
+    type:     imagine
+
+_apy_jsformvalidation:
+    resource: "@APYJsFormValidationBundle/Resources/config/routing/routing.yml"
+
+#
+# ORO routes
+#
 oro_default:
     pattern:  /
     defaults:
         template:    AcmeDemoBundle:Default:index.html.twig
         _controller: FrameworkBundle:Template:template
-
-acme_default:
-    pattern:  /
-    defaults:
-        template:    AcmeDemoBundle:Default:index.html.twig
-        _controller: FrameworkBundle:Template:template
-
-acme_demo:
-    resource: "@AcmeDemoBundle/Controller/"
-    type:     annotation
 
 oro_ui:
     resource: "@OroUIBundle/Resources/config/routing.yml"
@@ -68,11 +75,9 @@ oro_ui:
 
 oro_form:
     resource: "@OroFormBundle/Resources/config/routing.yml"
-    prefix:   /
 
 oro_notification:
     resource: "@OroNotificationBundle/Resources/config/routing.yml"
-    prefix:   /
 
 oro_grid:
     resource: "@OroGridBundle/Resources/config/routing.yml"
@@ -83,15 +88,12 @@ oro_user:
 
 oro_search:
     resource: "@OroSearchBundle/Resources/config/routing.yml"
-    prefix:   /
 
 oro_navigation:
     resource: "@OroNavigationBundle/Resources/config/routing.yml"
-    prefix:   /
 
 oro_windows:
     resource: "@OroWindowsBundle/Resources/config/routing.yml"
-    prefix: /
 
 oro_soap:
     resource: "@OroSoapBundle/Resources/config/routing.yml"
@@ -112,39 +114,25 @@ oro_entity_config:
 oro_entity_extend:
     resource: "@OroEntityExtendBundle/Resources/config/routing.yml"
 
-nelmio_api_doc:
-    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
-    prefix:   /api/doc
-
-fos_js_routing:
-    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
-
-_imagine:
-    resource: .
-    type:     imagine
-
 oro_address:
     resource: "@OroAddressBundle/Resources/config/routing.yml"
-    prefix:   /
 
 oro_translation_bundle:
     resource: "@OroTranslationBundle/Resources/config/routing.yml"
 
-_apy_jsformvalidation:
-    resource: "@APYJsFormValidationBundle/Resources/config/routing/routing.yml"
-
 oro_assets:
     resource: .
-    type: oro_assetic
+    type:     oro_assetic
 
 oro_tag:
     resource: "@OroTagBundle/Resources/config/routing.yml"
-    prefix:   /
 
 oro_email:
     resource: "@OroEmailBundle/Resources/config/routing.yml"
-    prefix:   /
 
 oro_organization:
     resource: "@OroOrganizationBundle/Resources/config/routing.yml"
-    prefix:   /
+
+oro_cron:
+    resource: "@OroCronBundle/Resources/config/routing.yml"
+    prefix:   /cron
