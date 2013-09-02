@@ -20,7 +20,7 @@ class AppKernel extends Kernel
             new JMS\AopBundle\JMSAopBundle(),
             new JMS\DiExtraBundle\JMSDiExtraBundle($this),
             //new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
-            //new JMS\JobQueueBundle\JMSJobQueueBundle(),
+            new JMS\JobQueueBundle\JMSJobQueueBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle($this),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new FOS\RestBundle\FOSRestBundle(),
