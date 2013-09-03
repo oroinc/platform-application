@@ -14,7 +14,7 @@
 
 <script type="text/javascript">
 $(function() {
-    var OroWamp = Clank.connect('ws://bap.loc:8080'),
+    var OroWamp = Clank.connect('ws://{{ ws.host == '*' ? app.request.headers.get('host') : ws.host }}:{{ ws.port }}'),
         wampCon = $('#wamp-console');
 
     OroWamp.on('socket/connect', function(session) {
@@ -52,6 +52,7 @@ $(function() {
                     },
                     // the function to handle an error
                     function (error, desc) {
+                        console.log(error);
                         wampCon.append('<p>RPC error: ' + error + ' -> ' + desc + '</p>');
                     }
 

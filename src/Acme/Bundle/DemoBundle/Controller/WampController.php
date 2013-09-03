@@ -26,7 +26,7 @@ class WampController extends Controller
      */
     public function broadcastAction()
     {
-        $this->get('acme_demo.wamp.publisher')->send(
+        $this->get('oro_wamp.publisher')->send(
             'acme/server-channel',
             array('msg' => 'Server generated event')
         );

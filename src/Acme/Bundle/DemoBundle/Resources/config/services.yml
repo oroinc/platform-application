@@ -3,8 +3,6 @@ parameters:
     demo_product_entity_class:       Acme\Bundle\DemoBundle\Entity\Product
     demo_wamp_topic_class:           Acme\Bundle\DemoBundle\Wamp\AcmeTopic
     demo_wamp_rpc_class:             Acme\Bundle\DemoBundle\Wamp\AcmeRpc
-    demo_wamp_publisher_class:       Acme\Bundle\DemoBundle\Wamp\TopicPublisher
-    demo_wamp_listener_class:        Acme\Bundle\DemoBundle\EventListener\AcmeWampEventListener
 
 services:
     demo_product_manager:
@@ -21,15 +19,3 @@ services:
 
     acme_demo.wamp.rpc_service:
         class:      %demo_wamp_rpc_class%
-
-    acme_demo.wamp.publisher:
-        class:      %demo_wamp_publisher_class%
-        arguments:
-            - %jdare_clank.web_socket_server.host%
-            - %jdare_clank.web_socket_server.port%
-
-    kernel.listener.clank.client_event:
-        class:      %demo_wamp_listener_class%
-        arguments:  ["@session.handler.pdo", %session.storage.options%]
-        tags:
-            - { name: kernel.event_listener, event: clank.client.connected, method: onClientConnect }

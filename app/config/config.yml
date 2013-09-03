@@ -29,10 +29,12 @@ twig:
     strict_variables:         "%kernel.debug%"
     exception_controller:     "FOS\RestBundle\Controller\ExceptionController::showAction"
     globals:
-        env: %kernel.environment%
         bap:
             layout:           AcmeDemoBundle::layout.html.twig  # default layout across all Oro bundles
             start_route:      oro_default
+        ws:
+            port:             "%websocket_port%"
+            host:             "%websocket_host%"
     form:
         resources:
             - 'OroUIBundle:Form:fields.html.twig'
@@ -218,14 +220,14 @@ clank:
         port:                 %websocket_port%               # The port the socket server will listen on
 #        host:                 %websocket_host%               # (optional) The host ip to bind to
     session_handler:          session.handler.pdo
-#    topic:
-#        -
-#            name:             "acme"                         # Important! this is the topic namespace used to match to this service!
-#            service:          "acme_demo.wamp.topic_service" # The service id.
-#    rpc:
-#        -
-#            name:             "acme"                         # Important! this is the network namespace used to match calls to this service!
-#            service:          "acme_demo.wamp.rpc_service"   # The service id.
+    topic:
+        -
+            name:             "acme"                         # Important! this is the topic namespace used to match to this service!
+            service:          "acme_demo.wamp.topic_service" # The service id.
+    rpc:
+        -
+            name:             "acme"                         # Important! this is the network namespace used to match calls to this service!
+            service:          "acme_demo.wamp.rpc_service"   # The service id.
 
 
 jms_di_extra:
