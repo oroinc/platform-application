@@ -177,27 +177,21 @@ services:
         abstract:             true
         class:                Doctrine\Common\Cache\PhpFileCache
         arguments:            [%kernel.cache_dir%]
-    oro.pdo:
-        class:                PDO
-        arguments:
-            dsn:              "mysql:host=%database_host%;dbname=%database_name%"
-            user:             %database_user%
-            password:         %database_password%
-        calls:
-            - [setAttribute, [3, 2]] # \PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION
     twig.extension.intl:
          class:               Twig_Extensions_Extension_Intl
          tags:
              - { name: twig.extension }
+    doctrine.dbal.default.wrapped_connection:
+        factory_service:      doctrine.dbal.default_connection
+        factory_method:       getWrappedConnection
+        class:                PDO
     session.handler.pdo:
         class:                Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler
         arguments:
-            - "@oro.pdo"
+            - "@doctrine.dbal.default.wrapped_connection"
             -
               db_table:       oro_session
-              db_id_col:      session_id
-              db_data_col:    session_value
-              db_time_col:    session_time
+              db_id_col:      id
 
 escape_wsse_authentication:
     authentication_provider_class: Oro\Bundle\UserBundle\Security\WsseUserProvider
