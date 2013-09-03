@@ -213,20 +213,6 @@ genemu_form:
     select2: ~
     autocomplete: ~
 
-clank:
-    web_socket_server:
-        port:                 8080        # The port the socket server will listen on
-        host:                 bap.loc     # (optional) The host ip to bind to
-    session_handler:          session.handler.pdo
-    topic:
-        -
-            name:             "acme"                         # Important! this is the topic namespace used to match to this service!
-            service:          "acme_demo.wamp.topic_service" # The service id.
-    rpc:
-        -
-            name:             "acme"                         # Important! this is the network namespace used to match calls to this service!
-            service:          "acme_demo.wamp.rpc_service"   # The service id.
-
 oro_search:
     engine:                   orm
     realtime_update:          true
