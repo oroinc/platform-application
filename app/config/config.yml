@@ -175,10 +175,6 @@ services:
         abstract:             true
         class:                Doctrine\Common\Cache\PhpFileCache
         arguments:            [%kernel.cache_dir%]
-    twig.extension.intl:
-         class:               Twig_Extensions_Extension_Intl
-         tags:
-             - { name: twig.extension }
     oro.pdo:
         class:                PDO
         arguments:
@@ -187,15 +183,19 @@ services:
             password:         %database_password%
         calls:
             - [setAttribute, [3, 2]] # \PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION
+    twig.extension.intl:
+         class:               Twig_Extensions_Extension_Intl
+         tags:
+             - { name: twig.extension }
     session.handler.pdo:
         class:                Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler
         arguments:
             - "@oro.pdo"
             -
-              db_table:    oro_session
-              db_id_col:   session_id
-              db_data_col: session_value
-              db_time_col: session_time
+              db_table:       oro_session
+              db_id_col:      session_id
+              db_data_col:    session_value
+              db_time_col:    session_time
 
 escape_wsse_authentication:
     authentication_provider_class: Oro\Bundle\UserBundle\Security\WsseUserProvider
@@ -213,6 +213,31 @@ genemu_form:
     select2: ~
     autocomplete: ~
 
+clank:
+    web_socket_server:
+        port:                 %websocket_port%               # The port the socket server will listen on
+#        host:                 %websocket_host%               # (optional) The host ip to bind to
+    session_handler:          session.handler.pdo
+#    topic:
+#        -
+#            name:             "acme"                         # Important! this is the topic namespace used to match to this service!
+#            service:          "acme_demo.wamp.topic_service" # The service id.
+#    rpc:
+#        -
+#            name:             "acme"                         # Important! this is the network namespace used to match calls to this service!
+#            service:          "acme_demo.wamp.rpc_service"   # The service id.
+
+
+jms_di_extra:
+    doctrine_integration: false
+
+a2lix_translation_form:
+    locales: [en, fr]
+    templating: "OroUIBundle:Form:translateable.html.twig"
+
+#
+# ORO Bundles config
+#
 oro_search:
     engine:                   orm
     realtime_update:          true
@@ -220,9 +245,9 @@ oro_search:
 oro_ui:
     settings:
         application_name:
-            value: "ORO"
+            value:            "ORO"
         application_title:
-            value: "ORO Business Application Platform"
+            value:            "ORO Business Application Platform"
 
 oro_user:
     settings:
@@ -232,15 +257,8 @@ oro_user:
 oro_translation:
     js_translation:
         # order of domains reflects messages fallback
-        domains: [jsmessages, validators]
-
-jms_di_extra:
-    doctrine_integration: false
+        domains:              [jsmessages, validators]
 
 oro_entity_extend:
-    backend:        Dynamic
-    backup:         "%kernel.root_dir%/entities/Backup/"
-
-a2lix_translation_form:
-    locales: [en, fr]
-    templating: "OroUIBundle:Form:translateable.html.twig"
+    backend:                  Dynamic
+    backup:                   "%kernel.root_dir%/entities/Backup/"
