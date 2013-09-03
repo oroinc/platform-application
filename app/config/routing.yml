@@ -43,6 +43,11 @@ acme_demo_form:
     type:     annotation
     prefix:   /form/
 
+acme_demo_workflow:
+    resource: "@AcmeDemoWorkflowBundle/Controller/"
+    type:     annotation
+    prefix:   /workflow/
+
 #
 # 3rd party routes
 #
