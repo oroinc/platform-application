@@ -54,13 +54,16 @@ class AcmeTopic implements TopicInterface
             //shout something to all subs.
         */
 
+        $session = $conn->Session;
+        $user    = $session->get('user');
 
         $topic->broadcast(
             sprintf(
-                'Server (conn #%s) handled topic (%s) publishing: %s',
+                'Server (conn #%s) handled topic (%s) publishing from "%s": %s',
                 $conn->resourceId,
                 $topic->getId(),
-                isset($event['msg']) ? $event['msg'] : $event
+                is_object($user) ? $user->getUsername() : 'Guest',
+                isset($event['msg']) ? $event['msg'] : (string) $event
             )
         );
     }

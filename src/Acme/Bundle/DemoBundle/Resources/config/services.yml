@@ -21,7 +21,6 @@ services:
 
     acme_demo.wamp.rpc_service:
         class:      %demo_wamp_rpc_class%
-        arguments:  ["@security.context"]
 
     acme_demo.wamp.publisher:
         class:      %demo_wamp_publisher_class%
@@ -31,8 +30,6 @@ services:
 
     kernel.listener.clank.client_event:
         class:      %demo_wamp_listener_class%
-        arguments:  ["@security.context"]
+        arguments:  ["@session.handler.pdo", %session.storage.options%]
         tags:
             - { name: kernel.event_listener, event: clank.client.connected, method: onClientConnect }
-            - { name: kernel.event_listener, event: clank.client.disconnected, method: onClientDisconnect }
-            - { name: kernel.event_listener, event: clank.client.error, method: onClientError }

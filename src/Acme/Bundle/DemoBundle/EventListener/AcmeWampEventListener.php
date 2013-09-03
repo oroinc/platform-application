@@ -1,26 +1,34 @@
 <?php
 namespace Acme\Bundle\DemoBundle\EventListener;
 
-use Symfony\Component\Security\Core\SecurityContextInterface;
+use Symfony\Component\HttpFoundation\Session\Session;
+
+use Ratchet\Session\Serialize\PhpHandler;
+use Ratchet\Session\Storage\VirtualSessionStorage;
 
 use JDare\ClankBundle\Event\ClientEvent;
-use JDare\ClankBundle\Event\ClientErrorEvent;
 
 class AcmeWampEventListener
 {
     /**
-     * @var SecurityContextInterface
+     * @var \SessionHandlerInterface
      */
-    protected $security;
+    protected $handler;
 
     /**
-     * DI setter for security context
+     * Session options
      *
-     * @param SecurityContextInterface $security
+     * @var array
      */
-    public function __construct(SecurityContextInterface $security)
+    protected $options;
+
+    /**
+     * @param \SessionHandlerInterface $handler
+     */
+    public function __construct(\SessionHandlerInterface $handler, array $options = array())
     {
-        $this->security = $security;
+        $this->handler = $handler;
+        $this->options = $options;
     }
 
     /**
@@ -30,33 +38,34 @@ class AcmeWampEventListener
      */
     public function onClientConnect(ClientEvent $event)
     {
+        /*
+         * $conn has following properties:
+         *  - resourceId
+         *  - remoteAddress
+         *  - WebSocket
+         *  - Session
+         *  - WAMP
+         */
         $conn = $event->getConnection();
+        $name = isset($this->options['name']) ? $this->options['name'] : ini_get('session.name');
 
-        echo $conn->resourceId . " connected" . PHP_EOL;
-    }
+        if ($id = $conn->WebSocket->request->getCookie($name)) {
+            $storage = new VirtualSessionStorage($this->handler, $id, new PhpHandler());
 
-    /**
-     * Called whenever a client disconnects
-     *
-     * @param ClientEvent $event
-     */
-    public function onClientDisconnect(ClientEvent $event)
-    {
-        $conn = $event->getConnection();
+            $storage->setOptions($this->options);
 
-        echo $conn->resourceId . " disconnected" . PHP_EOL;
-    }
+            $conn->Session = new Session($storage);
 
-    /**
-     * Called whenever a client errors
-     *
-     * @param ClientErrorEvent $event
-     */
-    public function onClientError(ClientErrorEvent $event)
-    {
-        $conn = $event->getConnection();
-        $e = $event->getException();
+            $conn->Session->start();
+        }
 
-        echo "connection error occurred: " . $e->getMessage() . PHP_EOL;
+        $session = $conn->Session;
+        $token   = $session->get('_security_main');
+
+        if ($token) {
+            $token = unserialize($token);
+
+            $session->set('user', $token ? $token->getUser() : null);
+        }
     }
 }
