@@ -1,12 +1,12 @@
 parameters:
-    demo_product_manager_class:      Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleManager
-    demo_product_entity_class:       Acme\Bundle\DemoBundle\Entity\Product
-    demo_wamp_topic_class:           Acme\Bundle\DemoBundle\Wamp\AcmeTopic
-    demo_wamp_rpc_class:             Acme\Bundle\DemoBundle\Wamp\AcmeRpc
+    demo_product_manager_class:     Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleManager
+    demo_product_entity_class:      Acme\Bundle\DemoBundle\Entity\Product
+    demo_wamp_topic_class:          Acme\Bundle\DemoBundle\Wamp\AcmeTopic
+    demo_wamp_rpc_class:            Acme\Bundle\DemoBundle\Wamp\AcmeRpc
 
 services:
     demo_product_manager:
-        class:     %demo_product_manager_class%
+        class:                      %demo_product_manager_class%
         arguments:
             - %demo_product_entity_class%
             - %oro_flexibleentity.flexible_config%
@@ -15,7 +15,7 @@ services:
             - "@oro_flexibleentity.attributetype.factory"
 
     acme_demo.wamp.topic_service:
-        class:      %demo_wamp_topic_class%
+        class:                      %demo_wamp_topic_class%
 
     acme_demo.wamp.rpc_service:
-        class:      %demo_wamp_rpc_class%
+        class:                      %demo_wamp_rpc_class%

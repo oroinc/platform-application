@@ -33,7 +33,6 @@ class AcmeTopic implements TopicInterface
         $topic->broadcast($conn->resourceId . ' has left ' . $topic->getId());
     }
 
-
     /**
      * This will receive any Publish requests for this topic.
      *
@@ -54,8 +53,8 @@ class AcmeTopic implements TopicInterface
             //shout something to all subs.
         */
 
-        $session = $conn->Session;
-        $user    = $session->get('user');
+        $token = $conn->security->getToken();
+        $user  = $token ? $token->getUser() : null;
 
         $topic->broadcast(
             sprintf(

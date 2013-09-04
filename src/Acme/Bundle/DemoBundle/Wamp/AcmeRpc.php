@@ -7,9 +7,7 @@ use Ratchet\ConnectionInterface as Conn;
 class AcmeRpc
 {
     /**
-     * Adds the params together
-     *
-     * Note: $conn isnt used here, but contains the connection of the person making this request.
+     * Simply return current session username
      *
      * @param  Conn  $conn
      * @param  array $params
@@ -17,16 +15,9 @@ class AcmeRpc
      */
     public function getUsername(Conn $conn, $params)
     {
-        $session = $conn->Session;
-        $user    = $session->get('user');
+        $token = $conn->security->getToken();
+        $user  = $token ? $token->getUser() : null;
 
-        return array(
-            sprintf(
-                'User identified as "%s", session name is "%s", session id: %s',
-                is_object($user) ? $user->getUsername() : 'Guest',
-                $session->getName(),
-                $session->getId()
-            )
-        );
+        return array(sprintf('User identified as "%s"', is_object($user) ? $user->getUsername() : 'Guest'));
     }
 }
