@@ -72,31 +72,24 @@ class PhoneCallController extends Controller
     }
 
     /**
+     * @Route("/info/{id}", name="acme_demoworkflow_phonecall_info", requirements={"id"="\d+"})
+     * @Template()
+     */
+    public function infoAction(PhoneCall $phoneCall)
+    {
+        return array(
+            'entity' => $phoneCall,
+        );
+    }
+
+    /**
      * @Route("/view/{id}", name="acme_demoworkflow_phonecall_view", requirements={"id"="\d+"})
      * @Template("AcmeDemoWorkflowBundle:PhoneCall:view.html.twig")
      */
     public function viewAction(PhoneCall $phoneCall)
     {
-        /** @var WorkflowManager $workflowManager */
-        $workflowManager = $this->get('oro_workflow.manager');
-        $workflowItems = $workflowManager->getWorkflowItemsByEntity($phoneCall);
-        $applicableWorkflows = $workflowManager->getApplicableWorkflows($phoneCall, $workflowItems);
-
-        $applicableWorkflowsData = array();
-        foreach ($applicableWorkflows as $workflow) {
-            $startTransitions = $workflowManager->getAllowedStartTransitions($workflow, $phoneCall);
-            if (count($startTransitions) > 0) {
-                $applicableWorkflowsData[] = array(
-                    'workflow' => $workflow,
-                    'startTransitions' => $startTransitions,
-                );
-            }
-        }
-
         return array(
-            'applicableWorkflowsData' => $applicableWorkflowsData,
-            'phoneCall' => $phoneCall,
-            'workflowItems' => $workflowItems,
+            'entity' => $phoneCall,
         );
     }
 }

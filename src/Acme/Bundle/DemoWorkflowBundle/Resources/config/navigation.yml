@@ -8,10 +8,6 @@ oro_menu_config:
         demo_workflow_phonecall:
             label: 'Phone Calls'
             route: 'acme_demoworkflow_phonecall_list'
-        demo_workflow_workflowitem:
-            label: 'Workflow Items'
-            route: 'acme_demoworkflow_workflowitem_list'
-
     tree:
         application_menu:
             children:
@@ -19,12 +15,9 @@ oro_menu_config:
                     children:
                         demo_workflow_phonecall: ~
                         demo_workflow_workflowitem: ~
+
 oro_titles:
     acme_demoworkflow_phonecall_list: Phone Calls
     acme_demoworkflow_phonecall_create: Create Phone Call
     acme_demoworkflow_phonecall_edit: Edit Phone Call
     acme_demoworkflow_phonecall_view: View Phone Call
-    acme_demoworkflow_workflowitem_list: Workflow Items
-    acme_demoworkflow_workflowitem_start: Start Workflow
-    acme_demoworkflow_workflowitem_edit: Edit Workflow Item
-    acme_demoworkflow_workflowitem_transit: Transit Workflow Item

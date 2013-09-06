@@ -1,83 +1,59 @@
-{% extends 'AcmeDemoWorkflowBundle::layout.html.twig' %}
-
+{% extends 'OroUIBundle:actions:view.html.twig' %}
 {% set title = "Phone Call" %}
 
-{% block content %}
-    <h1>{{ title | trans }}
-        <a class="btn btn-primary pull-right" style="margin-left:10px;" href="{{ path('acme_demoworkflow_phonecall_list') }}">{{ "List" | trans }}</a>
-        <a class="btn btn-primary pull-right" style="margin-left:10px;" href="{{ path('acme_demoworkflow_phonecall_edit', {id: phoneCall.id}) }}">{{ "Edit" | trans }}</a>
-    </h1>
+{% block navButtons %}
+    {{ UI.button({
+        'path' : path('acme_demoworkflow_phonecall_list'),
+        'iClass' : 'icon-list',
+        'title' : 'List',
+        'label' : 'List'
+    }) }}
 
-    <div class="form-horizontal">
-        <h5 class="usser-fiedset"><span>Start Workflow</span></h5>
-        {% for workflowData in applicableWorkflowsData %}
-            {% set workflow = workflowData.workflow %}
-            {% set startTransitions = workflowData.startTransitions %}
-            <table class="table table-bordered table-striped" style="width: auto;">
-                <tr>
-                    <th>Name</th>
-                    <th>Actions</th>
-                </tr>
-                <tr>
-                    <td>{{ workflow.label }}</td>
-                    <td>
-                        {% for transition in startTransitions %}
-                            <a class="btn" href="{{ path('acme_demoworkflow_workflowitem_start', {
-                                workflowName: workflow.name,
-                                entityClass: oro_class_name(phoneCall),
-                                entityId: phoneCall.id,
-                                transition: transition.name
-                            }) }}">
-                                {{ transition.label }}
-                            </a>
-                        {% endfor %}
-                    </td>
-                </tr>
-            </table>
-        {% endfor %}
-    </div>
+    {{ UI.button({
+        'path' : path('acme_demoworkflow_phonecall_edit', {id: entity.id}),
+        'iClass' : 'icon-edit',
+        'title' : 'Edit',
+        'label' : 'Edit'
+    }) }}
+{% endblock navButtons %}
 
-    <div class="form-horizontal">
-        {% include 'AcmeDemoWorkflowBundle:PhoneCall:callDescription.html.twig' with {'phoneCall': phoneCall} %}
-        <div class="span6">
-            <div class="form-horizontal">
-                <h5 class="usser-fiedset"><span>Workflow Items</span></h5>
-                {% if workflowItems is not empty %}
-                    <table class="table table-bordered table-striped" style="width: auto;">
-                        <tr>
-                            <th>Workflow</th>
-                            <th>Current Step</th>
-                            <th>Closed</th>
-                            <th>Created</th>
-                            <th>Updated</th>
-                        </tr>
-                        {% for workflowItem in workflowItems %}
-                            <tr>
-                                <td>{{ workflowItem.workflowName }}</td>
-                                <td>
-                                    <a href="{{ path('acme_demoworkflow_workflowitem_edit', {id: workflowItem.id}) }}">
-                                        {{ workflowItem.currentStepName }}
-                                    </a>
-                                </td>
-                                <td>{{ workflowItem.closed ? 'yes' : 'no' }}</td>
-                                <td>
-                                    {% if workflowItem.createdAt is not empty %}
-                                        {{ workflowItem.createdAt|date("m/d/Y H:i") }}
-                                    {% endif %}
-                                </td>
-                                <td>
-                                    {% if workflowItem.updatedAt is not empty %}
-                                        {{ workflowItem.updatedAt|date("m/d/Y H:i") }}
-                                    {% endif %}
-                                </td>
-                            </tr>
-                        {% endfor %}
-                    </table>
-                {% else %}
-                    No workflow items found.
-                {% endif %}
+{% block pageHeader %}
+    {% set breadcrumbs = {
+        'entity': entity,
+        'indexPath': path('acme_demoworkflow_phonecall_list'),
+        'indexLabel': 'Phone Calls',
+        'entityTitle': entity.name
+    } %}
+    {% block stats %}
+    {% endblock stats %}
+    {{ parent() }}
+{% endblock pageHeader %}
+
+{% block content_data %}
+    <div class="well-small form-horizontal dark-bg">
+        <div class="clearfix">
+            <div class="row-fluid well-small-bottom">
+                <div class="span6">
+                    {{
+                        oro_widget_render({
+                            'widgetType': 'block',
+                            'url': path('acme_demoworkflow_phonecall_info', {id: entity.id}),
+                            'title': 'Phone Call Information'
+                        })
+                    }}
+                </div>
+                <div class="span6">
+                    {{
+                        oro_widget_render({
+                            'widgetType': 'block',
+                            'url': path('oro_workflow_widget_workflow_items', {entityClass: oro_class_name(entity), entityId: entity.id}),
+                            'title': 'Workflow Items',
+                            'contentClasses': []
+                        })
+                    }}
+                </div>
             </div>
         </div>
     </div>
+{% endblock content_data %}
 
-{% endblock %}
