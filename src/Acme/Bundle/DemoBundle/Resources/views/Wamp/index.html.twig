@@ -28,9 +28,9 @@ $(function() {
         session.subscribe('oro/maintenance', function (uri, payload) {
             var text, href;
 
-            wampCon.append('<h3>' + (!_.isUndefined(payload.msg) ? payload.msg : payload) + '</h3>');
+            Oro.NotificationMessage(payload.isOn ? 'error' : 'success', payload.msg, { flash: true });
 
-            if (!_.isUndefined(payload.isOn) && payload.isOn) {
+            if (payload.isOn) {
                 text = 'Switch OFF maintenance mode';
                 href = '{{ path('acme_demo_wamp_maintenance', { mode: 'off' }) }}';
             } else {
