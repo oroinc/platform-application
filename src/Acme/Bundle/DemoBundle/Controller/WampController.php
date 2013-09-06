@@ -43,7 +43,6 @@ class WampController extends Controller
     {
         if ('on' == $mode) {
             $this->get('oro_platform.maintenance')->on();
-            echo 'on';
         } else {
             $this->get('oro_platform.maintenance')->off();
         }

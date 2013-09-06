@@ -39,9 +39,9 @@ $(function() {
             }
 
             $('#wamp-maintenance')
-                .text(text)
+                .attr('href', href)
                 .toggleClass('btn-warning', 'btn-danger')
-                .attr('href', href);
+                .text(text);
         });
 
         $('#wamp-client-broadcast').click(function () {
@@ -71,7 +71,6 @@ $(function() {
                     },
                     // the function to handle an error
                     function (error, desc) {
-                        console.log(error);
                         wampCon.append('<p>RPC error: ' + error + ' -> ' + desc + '</p>');
                     }
 
@@ -97,7 +96,6 @@ $(function() {
     });
 
     function onWsEvent(uri, payload) {
-        console.log(payload);
         wampCon.append('<p>Received message from "' + uri + '": "' + (!_.isUndefined(payload.msg) ? payload.msg : payload) + '"</p>');
     }
 });
