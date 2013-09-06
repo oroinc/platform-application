@@ -211,21 +211,21 @@ genemu_form:
 
 clank:
     web_socket_server:
-        port:                 %websocket_port%               # The port the socket server will listen on
-#        host:                 %websocket_host%               # (optional) The host ip to bind to
+        port:                 %websocket_port%                # The port the socket server will listen on
+#        host:                 %websocket_host%                # (optional) The host ip to bind to
     session_handler:          session.handler.pdo
     periodic:
         -
             service:          "oro_wamp.db_ping"
-            time:             60000                          # the time in milliseconds between the "tick" function being called
+            time:             60000                           # the time in milliseconds between the "tick" function being called
     topic:
         -
-            name:             "acme"                         # Important! this is the topic namespace used to match to this service!
-            service:          "acme_demo.wamp.topic_service" # The service id.
+            name:             "acme"                          # Important! this is the topic namespace used to match to this service!
+            service:          "acme_demo.wamp.topic_service"  # The service id.
     rpc:
         -
-            name:             "acme"                         # Important! this is the network namespace used to match calls to this service!
-            service:          "acme_demo.wamp.rpc_service"   # The service id.
+            name:             "acme"                          # Important! this is the network namespace used to match calls to this service!
+            service:          "acme_demo.wamp.rpc_service"    # The service id.
 
 
 jms_di_extra:
@@ -234,6 +234,15 @@ jms_di_extra:
 a2lix_translation_form:
     locales: [en, fr]
     templating: "OroUIBundle:Form:translateable.html.twig"
+
+lexik_maintenance:
+    authorized:
+        path:                 "maintenance"                   # Only for demo purposes, remove in production!
+#        ips:                  ["127.0.0.1"]                   # Optional. Authorized ip addresses
+    driver:
+        class:                Lexik\Bundle\MaintenanceBundle\Drivers\FileDriver
+        options:
+            file_path:        %kernel.cache_dir%/lock
 
 #
 # ORO Bundles config
