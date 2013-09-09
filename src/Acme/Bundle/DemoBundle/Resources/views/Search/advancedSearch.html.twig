@@ -1,7 +1,9 @@
 {% extends bap.layout %}
 {% block content %}
     <div style="background: #FFF">
-        <script>
+        <script type="text/javascript">
+        require(['jquery'],
+        function($) {
             $(function () {
                 $("#sendButton").click(function () {
                     ajaxsearch();
@@ -37,6 +39,7 @@
                     }
                 }
             });
+        });
         </script>
 
         <div class="container-fluid">

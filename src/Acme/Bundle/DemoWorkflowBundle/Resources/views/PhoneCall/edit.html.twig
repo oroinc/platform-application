@@ -1,0 +1,36 @@
+{% extends 'AcmeDemoWorkflowBundle::layout.html.twig' %}
+
+{% set title = phoneCall.id ? "Edit Phone Call" : "Create Phone Call" %}
+
+{% block content %}
+    <h1>
+        {{ title | trans }}
+        <a class="btn btn-primary pull-right" style="margin-left:10px;" href="{{ path('acme_demoworkflow_phonecall_list') }}">{{ "List" | trans }}</a>
+        {% if phoneCall.id %}
+            <a class="btn btn-primary pull-right" style="margin-left:10px;" href="{{ path('acme_demoworkflow_phonecall_view', {id: phoneCall.id}) }}">{{ "View" | trans }}</a>
+        {% endif %}
+    </h1>
+
+    <form action="{{ phoneCall.id ? path('acme_demoworkflow_phonecall_edit', { id: phoneCall.id }) : path('acme_demoworkflow_phonecall_create', {'id': phoneCall.id}) }}" method="POST">
+        <div class="usser-row form-container">
+            <fieldset class="form-horizontal">
+                <div class="control-group">
+                    <label class="control-label">Number</label>
+                    <div class="controls">
+                        {{ form_widget(form.number) }}
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">Name</label>
+                    <div class="controls">
+                        {{ form_widget(form.name) }}
+                    </div>
+                </div>
+                {{ form_rest(form) }}
+            </fieldset>
+        </div>
+        <div class="form-row">
+            <button class="btn btn-large btn-primary pull-right" type="submit">{{ "Save" | trans }}</button>
+        </div>
+    </form>
+{% endblock %}
