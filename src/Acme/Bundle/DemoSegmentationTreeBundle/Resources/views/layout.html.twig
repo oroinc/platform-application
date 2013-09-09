@@ -33,11 +33,13 @@
 
     <!-- JavaScript for the tree -->
     <script type="text/javascript">
-        var assetsPath = "{{ asset('bundles/acmedemosegmentationtree/') }}";
-        var treePath = "{{ path('acme_demotree_tree') }}";
-        var childrenPath = "{{ path('acme_demotree_children') }}";
+        define('acmedemosegmentationtree/settings', {
+            assetsPath: "{{ asset('bundles/acmedemosegmentationtree/') }}",
+            treePath: "{{ path('acme_demotree_tree') }}",
+            childrenPath: "{{ path('acme_demotree_children') }}"
+        });
+        require(['acmedemosegmentationtree/js/acmedemosegmentationtree.jstree']);
     </script>
-    <script type="text/javascript" src="{{ asset('bundles/acmedemosegmentationtree/js/acmedemosegmentationtree.jstree.js') }}"></script>
 {% endblock %}
 
 {% block content %}
