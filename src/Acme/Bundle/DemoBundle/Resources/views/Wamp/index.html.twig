@@ -1,0 +1,66 @@
+{% extends bap.layout %}
+
+{% oro_title_set({titleTemplate: 'WAMP Demo'}) %}
+
+{% block content %}
+<div class="container-fluid">
+    <h1>Web sockets demonstration</h1>
+    <a class="btn btn-primary btn-large no-hash" id="wamp-server-broadcast" href="{{ path('acme_demo_wamp_broadcast') }}">Server broadcast</a>
+    <a class="btn {{ maintenance ? 'btn-warning' : 'btn-danger' }} btn-large no-hash pull-right" id="wamp-maintenance" href="{{ path('acme_demo_wamp_maintenance') }}">Switch {{ maintenance ? 'OFF' : 'ON' }} maintenance mode</a>
+    <h2>Session log:<span class="pull-right"><a class="btn no-hash" id="wamp-console-clear" href="javascript: void(0);">Clear log</a></span></h2>
+    <pre id="wamp-console"></pre>
+</div>
+
+<script type="text/javascript">
+    require(['jquery', 'oro/sync'],
+    function($, sync) {
+        var wampCon = $('#wamp-console');
+            wamp = sync.getService();
+
+        wamp.subscribe('acme/server-channel', function (response) {
+            wampCon.append('<p>Received message from acme/server-channel: "' + (!_.isUndefined(response.msg) ? response.msg : response) + '"</p>');
+        });
+
+        wamp.subscribe('oro/maintenance', function (response) {
+            var text, href;
+
+            if (response.isOn) {
+                text = 'Switch OFF maintenance mode';
+                href = '{{ path('acme_demo_wamp_maintenance', { mode: 'off' }) }}';
+            } else {
+                text = 'Switch ON maintenance mode';
+                href = '{{ path('acme_demo_wamp_maintenance', { mode: 'on' }) }}';
+            }
+
+            $('#wamp-maintenance')
+                .attr('href', href)
+                .toggleClass('btn-warning', 'btn-danger')
+                .text(text);
+        });
+
+        $('#wamp-server-broadcast').click(function () {
+            wampCon.append('<p>Sending AJAX request to "' + $(this).attr('href') + '", awaiting response..</p>');
+
+            $.get($(this).attr('href'), function (data) {
+                wampCon.append('<p>AJAX call to a server broadcast action successfully finished</p>');
+            }).fail(function(jqXHR, textStatus, errorThrown) {
+                wampCon.append('<p>AJAX request failed: ' + textStatus + '</p>');
+            });
+
+            return false;
+        });
+
+        $('#wamp-maintenance').click(function () {
+            wampCon.append('<p>Request server to switch maintenance mode..</p>');
+
+            $.get($(this).attr('href'));
+
+            return false;
+        });
+
+        $('#wamp-console-clear').click(function () {
+            wampCon.empty();
+        });
+    });
+</script>
+{% endblock %}
