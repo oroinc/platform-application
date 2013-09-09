@@ -6,31 +6,25 @@
 <div class="container-fluid">
     <h1>Web sockets demonstration</h1>
     <a class="btn btn-primary btn-large no-hash" id="wamp-server-broadcast" href="{{ path('acme_demo_wamp_broadcast') }}">Server broadcast</a>
-    <a class="btn btn-primary btn-large no-hash" id="wamp-client-broadcast" href="javascript: void(0);">Client broadcast</a>
-    <a class="btn btn-primary btn-large no-hash" id="wamp-rpc-call" href="javascript: void(0);">RPC call</a>
     <a class="btn {{ maintenance ? 'btn-warning' : 'btn-danger' }} btn-large no-hash pull-right" id="wamp-maintenance" href="{{ path('acme_demo_wamp_maintenance') }}">Switch {{ maintenance ? 'OFF' : 'ON' }} maintenance mode</a>
     <h2>Session log:<span class="pull-right"><a class="btn no-hash" id="wamp-console-clear" href="javascript: void(0);">Clear log</a></span></h2>
     <pre id="wamp-console"></pre>
 </div>
 
 <script type="text/javascript">
-$(function() {
-    var OroWamp = Clank.connect('ws://{{ ws.host == '*' ? app.request.headers.get('host') : ws.host }}:{{ ws.port }}'),
-        wampCon = $('#wamp-console');
+    require(['jquery', 'oro/sync'],
+    function($, sync) {
+        var wampCon = $('#wamp-console');
+            wamp = sync.getService();
 
-    OroWamp.on('socket/connect', function(session) {
-        // session is an Autobahn JS WAMP session.
-        wampCon.append('<p>Successfully connected</p>');
+        wamp.subscribe('acme/server-channel', function (response) {
+            wampCon.append('<p>Received message from acme/server-channel: "' + (!_.isUndefined(response.msg) ? response.msg : response) + '"</p>');
+        });
 
-        // the callback function in "subscribe" is called everytime an event is published in that channel.
-        session.subscribe('acme/client-channel', onWsEvent);
-        session.subscribe('acme/server-channel', onWsEvent);
-        session.subscribe('oro/maintenance', function (uri, payload) {
+        wamp.subscribe('oro/maintenance', function (response) {
             var text, href;
 
-            Oro.NotificationMessage(payload.isOn ? 'error' : 'success', payload.msg, { flash: true });
-
-            if (payload.isOn) {
+            if (response.isOn) {
                 text = 'Switch OFF maintenance mode';
                 href = '{{ path('acme_demo_wamp_maintenance', { mode: 'off' }) }}';
             } else {
@@ -42,10 +36,6 @@ $(function() {
                 .attr('href', href)
                 .toggleClass('btn-warning', 'btn-danger')
                 .text(text);
-        });
-
-        $('#wamp-client-broadcast').click(function () {
-            session.publish('acme/client-channel', { msg: 'Published from a client side!' });
         });
 
         $('#wamp-server-broadcast').click(function () {
@@ -60,23 +50,6 @@ $(function() {
             return false;
         });
 
-        $('#wamp-rpc-call').click(function () {
-            //this will call the server side function "AcmeRpc::addFunc"
-            session
-                .call('acme/get_username')
-                .then(//using "then" promises.
-                    // the function for a valid result
-                    function (result) {
-                        wampCon.append('<p>RPC valid: ' + result + '</p>');
-                    },
-                    // the function to handle an error
-                    function (error, desc) {
-                        wampCon.append('<p>RPC error: ' + error + ' -> ' + desc + '</p>');
-                    }
-
-                );
-        });
-
         $('#wamp-maintenance').click(function () {
             wampCon.append('<p>Request server to switch maintenance mode..</p>');
 
@@ -84,22 +57,10 @@ $(function() {
 
             return false;
         });
-    })
 
-    OroWamp.on('socket/disconnect', function(error) {
-        // error provides us with some insight into the disconnection: error.reason and error.code
-        wampCon.append('<p>Disconnected for ' + error.reason + ' with code ' + error.code + '</p>');
-    })
-
-    $('#wamp-console-clear').click(function () {
-        wampCon.empty();
+        $('#wamp-console-clear').click(function () {
+            wampCon.empty();
+        });
     });
-
-    function onWsEvent(uri, payload) {
-        wampCon.append('<p>Received message from "' + uri + '": "' + (!_.isUndefined(payload.msg) ? payload.msg : payload) + '"</p>');
-    }
-});
 </script>
-
-{{ clank_client() }}
 {% endblock %}
