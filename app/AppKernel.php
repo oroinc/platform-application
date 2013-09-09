@@ -67,6 +67,7 @@ class AppKernel extends Kernel
             new Oro\Bundle\EntityExtendBundle\OroEntityExtendBundle(),
             new Oro\Bundle\CronBundle\OroCronBundle(),
             new Oro\Bundle\WorkflowBundle\OroWorkflowBundle(),
+            new Oro\Bundle\SyncBundle\OroSyncBundle(),
             new Oro\Bundle\PlatformBundle\OroPlatformBundle(),
 
             // BAPP bundles
