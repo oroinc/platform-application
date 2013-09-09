@@ -36,6 +36,7 @@ class AppKernel extends Kernel
             new Genemu\Bundle\FormBundle\GenemuFormBundle(),
             new A2lix\TranslationFormBundle\A2lixTranslationFormBundle(),
             new JDare\ClankBundle\JDareClankBundle(),
+            new Lexik\Bundle\MaintenanceBundle\LexikMaintenanceBundle(),
 
             // BAP bundles
             new Oro\Bundle\FlexibleEntityBundle\OroFlexibleEntityBundle(),
@@ -67,6 +68,7 @@ class AppKernel extends Kernel
             new Oro\Bundle\CronBundle\OroCronBundle(),
             new Oro\Bundle\WorkflowBundle\OroWorkflowBundle(),
             new Oro\Bundle\SyncBundle\OroSyncBundle(),
+            new Oro\Bundle\PlatformBundle\OroPlatformBundle(),
 
             // BAPP bundles
             new OroPro\Bundle\EwsBundle\OroProfessionalEwsBundle(),

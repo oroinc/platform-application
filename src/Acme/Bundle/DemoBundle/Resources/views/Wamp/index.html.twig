@@ -8,6 +8,7 @@
     <a class="btn btn-primary btn-large no-hash" id="wamp-server-broadcast" href="{{ path('acme_demo_wamp_broadcast') }}">Server broadcast</a>
     <a class="btn btn-primary btn-large no-hash" id="wamp-client-broadcast" href="javascript: void(0);">Client broadcast</a>
     <a class="btn btn-primary btn-large no-hash" id="wamp-rpc-call" href="javascript: void(0);">RPC call</a>
+    <a class="btn {{ maintenance ? 'btn-warning' : 'btn-danger' }} btn-large no-hash pull-right" id="wamp-maintenance" href="{{ path('acme_demo_wamp_maintenance') }}">Switch {{ maintenance ? 'OFF' : 'ON' }} maintenance mode</a>
     <h2>Session log:<span class="pull-right"><a class="btn no-hash" id="wamp-console-clear" href="javascript: void(0);">Clear log</a></span></h2>
     <pre id="wamp-console"></pre>
 </div>
@@ -24,6 +25,24 @@ $(function() {
         // the callback function in "subscribe" is called everytime an event is published in that channel.
         session.subscribe('acme/client-channel', onWsEvent);
         session.subscribe('acme/server-channel', onWsEvent);
+        session.subscribe('oro/maintenance', function (uri, payload) {
+            var text, href;
+
+            Oro.NotificationMessage(payload.isOn ? 'error' : 'success', payload.msg, { flash: true });
+
+            if (payload.isOn) {
+                text = 'Switch OFF maintenance mode';
+                href = '{{ path('acme_demo_wamp_maintenance', { mode: 'off' }) }}';
+            } else {
+                text = 'Switch ON maintenance mode';
+                href = '{{ path('acme_demo_wamp_maintenance', { mode: 'on' }) }}';
+            }
+
+            $('#wamp-maintenance')
+                .attr('href', href)
+                .toggleClass('btn-warning', 'btn-danger')
+                .text(text);
+        });
 
         $('#wamp-client-broadcast').click(function () {
             session.publish('acme/client-channel', { msg: 'Published from a client side!' });
@@ -52,11 +71,18 @@ $(function() {
                     },
                     // the function to handle an error
                     function (error, desc) {
-                        console.log(error);
                         wampCon.append('<p>RPC error: ' + error + ' -> ' + desc + '</p>');
                     }
 
                 );
+        });
+
+        $('#wamp-maintenance').click(function () {
+            wampCon.append('<p>Request server to switch maintenance mode..</p>');
+
+            $.get($(this).attr('href'));
+
+            return false;
         });
     })
 
@@ -70,7 +96,6 @@ $(function() {
     });
 
     function onWsEvent(uri, payload) {
-        console.log(payload);
         wampCon.append('<p>Received message from "' + uri + '": "' + (!_.isUndefined(payload.msg) ? payload.msg : payload) + '"</p>');
     }
 });
