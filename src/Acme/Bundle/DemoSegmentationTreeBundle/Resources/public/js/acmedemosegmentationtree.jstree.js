@@ -1,3 +1,8 @@
+/* global require */
+require(['jquery', 'acmedemosegmentationtree/settings', 'jquery.jstree', 'jquery.uniform', 'jstree/jquery.hotkeys',
+    'jstree/jquery.cookie', 'jstree/jquery.jstree.tree_selector'],
+function($, settings) {
+'use strict';
 $('#tree').jstree({
     "core" : {
         "animation" : 200
@@ -7,7 +12,7 @@ $('#tree').jstree({
     ],
     "tree_selector" : {
         "ajax" : {
-            "url" : treePath
+            "url" : settings.treePath
         },
     //                "data" :'[{"id":"node_1","code":"code 1"},{"id":"node_2","code":"code 2"}]',
         "auto_open_root" : true,
@@ -17,11 +22,11 @@ $('#tree').jstree({
         "dots" : true,
         "icons" : true,
         "themes" : "bap",
-        "url" : assetsPath + "/css/style.css"
+        "url" : settings.assetsPath + "/css/style.css"
     },
     "json_data" : {
         "ajax" : {
-            "url" : childrenPath,
+            "url" : settings.childrenPath,
             "data" : function (node) {
                 // the result is fed to the AJAX request `data` option
                 var id = null;
@@ -56,12 +61,12 @@ $('#tree').jstree({
             "default" : {
                 "valid_children" : "folder",
                 "icon" : {
-                    "image" : assetsPath + "images/folder.png"
+                    "image" : settings.assetsPath + "images/folder.png"
                 }
             },
             "folder" : {
                 "icon" : {
-                    "image" : assetsPath + "images/folder.png"
+                    "image" : settings.assetsPath + "images/folder.png"
                 }
             }
         }
@@ -281,7 +286,7 @@ $.fn.removeItem = function(segmentId, itemId) {
 
 $(function () {
     $("#tree_menu button").click(function () {
-        var tree_id = "#tree";
+        var tree_id = "#tree", node, nodeId, segmentId, itemId;
         switch(this.id) {
             case "refresh":
                 $(tree_id).jstree('refresh',-1);
@@ -325,4 +330,5 @@ $(function () {
                 break;
         }
    });
+});
 });

@@ -4,8 +4,6 @@
 
 {% block head_script %}
     {{ parent() }}
-
-    <script type="text/javascript" src="{{ asset('bundles/orowindows/js/jquery.dialog.extended.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('bundles/orowindows/css/jquery.dialog.extended.css') }}" media="all" />
 {% endblock head_script %}
 
@@ -178,6 +176,8 @@
         <div style="padding-top: 100em;">(demo dialogExtend features with page scroll)</div>
     </footer>
     <script>
+    require(['jquery', 'jquery.dialog.extended'],
+    function($){
         $(function(){
             var dialogWidget;
             // preview icon
@@ -247,7 +247,7 @@
                     }
                 }
             });
-
         });
+    });
     </script>
 {% endblock content %}

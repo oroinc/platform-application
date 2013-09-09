@@ -66,7 +66,7 @@ class AppKernel extends Kernel
             new Oro\Bundle\EntityConfigBundle\OroEntityConfigBundle(),
             new Oro\Bundle\EntityExtendBundle\OroEntityExtendBundle(),
             new Oro\Bundle\CronBundle\OroCronBundle(),
-            new Oro\Bundle\SyncBundle\OroSyncBundle(),
+            new Oro\Bundle\WorkflowBundle\OroWorkflowBundle(),
             new Oro\Bundle\PlatformBundle\OroPlatformBundle(),
 
             // BAPP bundles
@@ -84,6 +84,7 @@ class AppKernel extends Kernel
             new Acme\Bundle\DemoFilterBundle\AcmeDemoFilterBundle(),
             new Acme\Bundle\DemoAddressBundle\AcmeDemoAddressBundle(),
             new Acme\Bundle\DemoFormBundle\AcmeDemoFormBundle(),
+            new Acme\Bundle\DemoWorkflowBundle\AcmeDemoWorkflowBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
