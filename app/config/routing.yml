@@ -104,9 +104,6 @@ oro_soap:
     resource: "@OroSoapBundle/Resources/config/routing.yml"
     prefix:   /api
 
-oro_dataflow:
-    resource: "@OroDataFlowBundle/Resources/config/routing.yml"
-
 oro_config:
     resource: "@OroConfigBundle/Resources/config/routing.yml"
 
