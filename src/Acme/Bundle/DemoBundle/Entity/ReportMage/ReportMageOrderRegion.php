@@ -5,7 +5,13 @@ namespace Acme\Bundle\DemoBundle\Entity\ReportMage;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Table(name="oro_report_mage_order_region", indexes={@ORM\Index(name="IDX_COUNTRY_REGION", columns={"country_id", "region"}), @ORM\Index(name="IDX_CREATED", columns={"created_at"})})
+ * @ORM\Table(
+ *  name="oro_report_mage_order_region",
+ *  indexes={
+ *      @ORM\Index(name="IDX_COUNTRY_REGION", columns={"country_id", "region"}),
+ *      @ORM\Index(name="IDX_CREATED", columns={"created_at"})
+ *  }
+ * )
  * @ORM\Entity
  */
 class ReportMageOrderRegion

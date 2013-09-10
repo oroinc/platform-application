@@ -36,11 +36,11 @@ class AcmeTopic implements TopicInterface
     /**
      * This will receive any Publish requests for this topic.
      *
-     * @param  Conn       $conn
-     * @param  Topic      $topic
-     * @param  type       $event
-     * @param  array      $exclude
-     * @param  array      $eligible
+     * @param Conn  $conn
+     * @param Topic $topic
+     * @param type  $event
+     * @param array $exclude
+     * @param array $eligible
      */
     public function onPublish(Conn $conn, $topic, $event, array $exclude, array $eligible)
     {
