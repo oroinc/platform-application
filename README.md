@@ -29,7 +29,11 @@ http://getcomposer.org/ or just run the following command:
 
     php composer.phar install
 
+- Create the database (default name is "bap_standard")
+
 - Initialize application with install script (for Linux and Mac OS install.sh, for Windows install.bat)
+
+- Create a virtual host or run "app/console server:run"
 
 After installation you can login as application administrator using user name "admin" and password "admin".
 
