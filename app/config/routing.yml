@@ -141,3 +141,6 @@ oro_organization:
 oro_cron:
     resource: "@OroCronBundle/Resources/config/routing.yml"
     prefix:   /cron
+
+oro_installer:
+    resource: "@OroInstallerBundle/Resources/config/routing.yml"

@@ -37,6 +37,7 @@ class AppKernel extends Kernel
             new A2lix\TranslationFormBundle\A2lixTranslationFormBundle(),
             new JDare\ClankBundle\JDareClankBundle(),
             new Lexik\Bundle\MaintenanceBundle\LexikMaintenanceBundle(),
+            new Sylius\Bundle\FlowBundle\SyliusFlowBundle(),
 
             // BAP bundles
             new Oro\Bundle\FlexibleEntityBundle\OroFlexibleEntityBundle(),
@@ -68,6 +69,7 @@ class AppKernel extends Kernel
             new Oro\Bundle\WorkflowBundle\OroWorkflowBundle(),
             new Oro\Bundle\SyncBundle\OroSyncBundle(),
             new Oro\Bundle\PlatformBundle\OroPlatformBundle(),
+            new Oro\Bundle\InstallerBundle\OroInstallerBundle(),
 
             // BAPP bundles
             new OroPro\Bundle\EwsBundle\OroProfessionalEwsBundle(),
