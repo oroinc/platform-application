@@ -10,11 +10,11 @@ php app/console-framework oro:navigation:init --env %ENV% || goto :error
 php app/console-framework oro:entity-config:update --env %ENV% || goto :error
 php app/console-framework oro:entity-extend:create --env %ENV% || goto :error
 php app/console-framework cache:clear --env %ENV% || goto :error
-php app/console-framework doctrine:schema:update --force --env %ENV% || goto :error
+php app/console-framework doctrine:schema:update --env %ENV% --force || goto :error
 php app/console-framework oro:search:create-index --env %ENV% || goto :error
 php app/console-framework assets:install web --env %ENV% || goto :error
-php app/console assetic:dump --env %ENV% || goto :error
-php app/console oro:assetic:dump || goto :error
+php app/console-framework assetic:dump --env %ENV% || goto :error
+php app/console-framework oro:assetic:dump || goto :error
 goto :EOF
 
 :error

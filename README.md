@@ -34,3 +34,10 @@ http://getcomposer.org/ or just run the following command:
 After installation you can login as application administrator using user name "admin" and password "admin".
 
 [1]:  http://getcomposer.org/
+
+Instant messaging between the browser and the web server
+--------------------------------------------------------
+To use this feature you need to configure parameters.yml websocket parameters and run server with console command
+
+ ```bash
+app/console clank:server
