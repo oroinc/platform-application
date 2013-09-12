@@ -1,15 +1,35 @@
 parameters:
-    database_driver:   pdo_mysql
-    database_host:     127.0.0.1
-    database_port:     ~
-    database_name:     bap_standard
-    database_user:     root
-    database_password: root
+    database_driver:        pdo_mysql
+    database_host:          127.0.0.1
+    database_port:          ~
+    database_name:          bap_standard
+    database_user:          root
+    database_password:      root
 
-    mailer_transport:  smtp
-    mailer_host:       127.0.0.1
-    mailer_user:       ~
-    mailer_password:   ~
+    # report source connection
+    database_driver_rs:     %database_driver%
+    database_host_rs:       %database_host%
+    database_port_rs:       %database_port%
+    database_name_rs:       %database_name%
+    database_user_rs:       %database_user%
+    database_password_rs:   %database_password%
 
-    locale:            en
-    secret:            ThisTokenIsNotSoSecretChangeIt
+    # report target connection
+    database_driver_rt:     %database_driver%
+    database_host_rt:       %database_host%
+    database_port_rt:       %database_port%
+    database_name_rt:       %database_name%
+    database_user_rt:       %database_user%
+    database_password_rt:   %database_password%
+
+    mailer_transport:       smtp
+    mailer_host:            127.0.0.1
+    mailer_user:            ~
+    mailer_password:        ~
+
+    # WebSocket server config
+    websocket_host:         "127.0.0.1"
+    websocket_port:         8080
+
+    locale:                 en
+    secret:                 ThisTokenIsNotSoSecretChangeIt

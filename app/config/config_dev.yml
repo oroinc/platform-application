@@ -22,5 +22,11 @@ monolog:
             type:  chromephp
             level: info
 
+oro_assetic:
+    js_debug:       ~
+    js_debug_all:   false
+    css_debug:      ~
+    css_debug_all:  false
+
 #swiftmailer:
 #    delivery_address: me@example.com

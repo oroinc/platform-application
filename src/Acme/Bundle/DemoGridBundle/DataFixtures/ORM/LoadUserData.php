@@ -182,7 +182,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
         //$user->setMiddlename($middleName);
         $user->setLastname($lastName);
         $user->setBirthday($birthday);
-
+        $user->setOwner($this->getReference('default_business_unit'));
         $this->setFlexibleAttributeValue($user, 'company', $company);
         $this->setFlexibleAttributeValue($user, 'salary', $salary);
         $this->setFlexibleAttributeValueOption($user, 'gender', $gender);
@@ -548,6 +548,6 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
      */
     public function getOrder()
     {
-        return 3;
+        return 10;
     }
 }

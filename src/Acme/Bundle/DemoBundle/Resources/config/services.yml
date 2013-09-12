@@ -1,14 +1,21 @@
 parameters:
-    demo_product_manager_class:      Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleManager
-    demo_product_entity_class:       Acme\Bundle\DemoBundle\Entity\Product
+    demo_product_manager_class:     Oro\Bundle\FlexibleEntityBundle\Manager\FlexibleManager
+    demo_product_entity_class:      Acme\Bundle\DemoBundle\Entity\Product
+    demo_wamp_topic_class:          Acme\Bundle\DemoBundle\Wamp\AcmeTopic
+    demo_wamp_rpc_class:            Acme\Bundle\DemoBundle\Wamp\AcmeRpc
 
 services:
     demo_product_manager:
-        class:     "%demo_product_manager_class%"
-        arguments: [%demo_product_entity_class%, %oro_flexibleentity.flexible_config%, "@doctrine.orm.entity_manager", "@event_dispatcher", @oro_flexibleentity.attributetype.factory]
+        class:                      %demo_product_manager_class%
+        arguments:
+            - %demo_product_entity_class%
+            - %oro_flexibleentity.flexible_config%
+            - "@doctrine.orm.entity_manager"
+            - "@event_dispatcher"
+            - "@oro_flexibleentity.attributetype.factory"
 
-    demo_account.form.account:
-        class:                        Symfony\Component\Form\Form
-        factory_method:               createNamed
-        factory_service:              form.factory
-        arguments:                    ["oro_user_user_form", "oro_user_user", null]
+    acme_demo.wamp.topic_service:
+        class:                      %demo_wamp_topic_class%
+
+    acme_demo.wamp.rpc_service:
+        class:                      %demo_wamp_rpc_class%

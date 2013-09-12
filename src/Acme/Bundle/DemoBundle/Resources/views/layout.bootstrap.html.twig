@@ -18,8 +18,8 @@
 
         {% block stylesheets %}{% endblock %}
 
-        {% javascripts
-            '@OroUIBundle/Resources/public/lib/jquery.min.js'
+        {# % javascripts
+            '@OroUIBundle/Resources/public/lib/jquery-1.10.2.js'
             '@OroUIBundle/Resources/public/lib/less-1.3.1.min.js'
             '@OroUIBundle/Resources/public/lib/bootstrap.min.js'
             '@OroUIBundle/Resources/public/js/layout.js'
@@ -30,9 +30,9 @@
             '@OroUIBundle/Resources/public/js/backbone/app.js'
             '@OroUIBundle/Resources/public/js/backbone/setup.js'
             output='js/acme.all.js'
-        %}
+        % }
             <script type="text/javascript" src="{{ asset_url }}"></script>
-        {% endjavascripts %}
+        { % endjavascripts % #}
 
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
     </head>
@@ -49,12 +49,6 @@
                                 <li><a href="{{ path('acme_demoflexibleentity_customer_index') }}">Customers</a></li>
                                 <li><a href="{{ path('acme_demoflexibleentity_product_index') }}">Products</a></li>
                                 <li><a href="{{ path('acme_demoflexibleentity_manufacturer_index') }}">Manufacturers</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="{{ path('acme_demoflexibleentity_customer_index') }}" class="dropdown-toggle" data-toggle="dropdown">Dataflow<b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="{{ path('oro_dataflow_connector_index') }}">Connectors</a></li>
                             </ul>
                         </li>
                         <li>
