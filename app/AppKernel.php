@@ -35,6 +35,8 @@ class AppKernel extends Kernel
             new APY\JsFormValidationBundle\APYJsFormValidationBundle(),
             new Genemu\Bundle\FormBundle\GenemuFormBundle(),
             new A2lix\TranslationFormBundle\A2lixTranslationFormBundle(),
+            new JDare\ClankBundle\JDareClankBundle(),
+            new Lexik\Bundle\MaintenanceBundle\LexikMaintenanceBundle(),
 
             // BAP bundles
             new Oro\Bundle\FlexibleEntityBundle\OroFlexibleEntityBundle(),
@@ -43,7 +45,6 @@ class AppKernel extends Kernel
             new Oro\Bundle\JsFormValidationBundle\OroJsFormValidationBundle(),
             new Oro\Bundle\SoapBundle\OroSoapBundle(),
             new Oro\Bundle\SearchBundle\OroSearchBundle(),
-            new Oro\Bundle\DataFlowBundle\OroDataFlowBundle(),
             new Oro\Bundle\UserBundle\OroUserBundle(),
             new Oro\Bundle\MeasureBundle\OroMeasureBundle(),
             new Oro\Bundle\SegmentationTreeBundle\OroSegmentationTreeBundle(),
@@ -63,7 +64,11 @@ class AppKernel extends Kernel
             new Oro\Bundle\EntityBundle\OroEntityBundle(),
             new Oro\Bundle\EntityConfigBundle\OroEntityConfigBundle(),
             new Oro\Bundle\EntityExtendBundle\OroEntityExtendBundle(),
-            new Oro\Bundle\CronBundle\OroCronBundle()
+            new Oro\Bundle\CronBundle\OroCronBundle(),
+            new Oro\Bundle\WorkflowBundle\OroWorkflowBundle(),
+            new Oro\Bundle\SyncBundle\OroSyncBundle(),
+            new Oro\Bundle\PlatformBundle\OroPlatformBundle(),
+
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
