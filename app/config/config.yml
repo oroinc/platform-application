@@ -22,6 +22,8 @@ framework:
     fragments:
         enabled: true
         path: /_fragment # used for controller action in template
+    serializer:
+        enabled: true
 
 # Twig Configuration
 twig:
@@ -29,10 +31,12 @@ twig:
     strict_variables:         "%kernel.debug%"
     exception_controller:     "FOS\RestBundle\Controller\ExceptionController::showAction"
     globals:
-        env: %kernel.environment%
         bap:
             layout:           AcmeDemoBundle::layout.html.twig  # default layout across all Oro bundles
             start_route:      oro_default
+        ws:
+            port:             "%websocket_port%"
+            host:             "%websocket_host%"
     form:
         resources:
             - 'OroUIBundle:Form:fields.html.twig'
@@ -172,30 +176,24 @@ stof_doctrine_extensions:
 
 services:
     oro.cache.abstract:
-        abstract: true
+        abstract:             true
         class:                Doctrine\Common\Cache\PhpFileCache
         arguments:            [%kernel.cache_dir%]
-    oro.pdo:
-        class:                PDO
-        arguments:
-            dsn:              "mysql:host=%database_host%;dbname=%database_name%"
-            user:             %database_user%
-            password:         %database_password%
-        calls:
-            - [setAttribute, [3, 2]] # \PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION
     twig.extension.intl:
          class:               Twig_Extensions_Extension_Intl
          tags:
              - { name: twig.extension }
+    doctrine.dbal.default.wrapped_connection:
+        factory_service:      doctrine.dbal.default_connection
+        factory_method:       getWrappedConnection
+        class:                PDO
     session.handler.pdo:
         class:                Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler
         arguments:
-            - "@oro.pdo"
+            - "@doctrine.dbal.default.wrapped_connection"
             -
               db_table:       oro_session
-              db_id_col:      session_id
-              db_data_col:    session_value
-              db_time_col:    session_time
+              db_id_col:      id
 
 escape_wsse_authentication:
     authentication_provider_class: Oro\Bundle\UserBundle\Security\WsseUserProvider
@@ -215,17 +213,21 @@ genemu_form:
 
 clank:
     web_socket_server:
-        port:                 %websocket_port%               # The port the socket server will listen on
-#        host:                 %websocket_host%               # (optional) The host ip to bind to
+        port:                 %websocket_port%                # The port the socket server will listen on
+        host:                 %websocket_host%                # (optional) The host ip to bind to
     session_handler:          session.handler.pdo
-#    topic:
-#        -
-#            name:             "acme"                         # Important! this is the topic namespace used to match to this service!
-#            service:          "acme_demo.wamp.topic_service" # The service id.
-#    rpc:
-#        -
-#            name:             "acme"                         # Important! this is the network namespace used to match calls to this service!
-#            service:          "acme_demo.wamp.rpc_service"   # The service id.
+    periodic:
+        -
+            service:          "oro_wamp.db_ping"
+            time:             60000                           # the time in milliseconds between the "tick" function being called
+    topic:
+        -
+            name:             "acme"                          # Important! this is the topic namespace used to match to this service!
+            service:          "acme_demo.wamp.topic_service"  # The service id.
+    rpc:
+        -
+            name:             "acme"                          # Important! this is the network namespace used to match calls to this service!
+            service:          "acme_demo.wamp.rpc_service"    # The service id.
 
 
 jms_di_extra:
@@ -234,6 +236,15 @@ jms_di_extra:
 a2lix_translation_form:
     locales: [en, fr]
     templating: "OroUIBundle:Form:translateable.html.twig"
+
+lexik_maintenance:
+    authorized:
+        path:                 "maintenance|.*\.js"             # "maintenance" is only for demo purposes, remove in production!
+#        ips:                  ["127.0.0.1"]                   # Optional. Authorized ip addresses
+    driver:
+        class:                Lexik\Bundle\MaintenanceBundle\Drivers\FileDriver
+        options:
+            file_path:        %kernel.cache_dir%/lock
 
 #
 # ORO Bundles config

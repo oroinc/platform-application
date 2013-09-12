@@ -5,7 +5,13 @@ namespace Acme\Bundle\DemoBundle\Entity\ReportMage;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Table(name="oro_report_mage_order_zip", indexes={@ORM\Index(name="IDX_COUNTRY_ZIP", columns={"country_id", "zip"}), @ORM\Index(name="IDX_CREATED", columns={"created_at"})})
+ * @ORM\Table(
+ *  name="oro_report_mage_order_zip",
+ *  indexes={
+ *      @ORM\Index(name="IDX_COUNTRY_ZIP", columns={"country_id", "zip"}),
+ *      @ORM\Index(name="IDX_CREATED", columns={"created_at"})
+ *  }
+ * )
  * @ORM\Entity
  */
 class ReportMageOrderZip

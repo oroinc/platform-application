@@ -12,7 +12,7 @@
     "require": {
         "php": ">=5.3.3",
 
-        "symfony/symfony": "2.3.*",
+        "symfony/symfony": "v2.3.4",
 
         "doctrine/orm": ">=2.2.3,<2.4-dev",
         "doctrine/doctrine-bundle": "1.2.*",
@@ -51,8 +51,9 @@
         "apy/jsfv-bundle": "dev-master",
         "genemu/form-bundle": "2.2.*",
         "a2lix/translation-form-bundle" : "1.*@dev",
+        "mtdowling/cron-expression": "1.0.*",
         "jdare/clank-bundle": "dev-master",
-        "mtdowling/cron-expression": "1.0.*"
+        "lexik/maintenance-bundle": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [

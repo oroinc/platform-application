@@ -17,10 +17,12 @@
     </div>
 
     <script>
+    require(['jquery', 'oro/dialog-widget'],
+    function($, DialogWidget) {
         $(function(){
             var pos = 0;
             $("#opener1").click(function(){
-                new Oro.widget.DialogView({
+                new DialogWidget({
                     url: {{ path('acme_demowindows_forms_test')|json_encode|raw }},
                     dialogOptions: {
                         appendTo: '#window-container',
@@ -35,7 +37,7 @@
                 }).render();
             });
             $("#opener2").click(function(){
-                new Oro.widget.DialogView({
+                new DialogWidget({
                     url: {{ path('acme_demowindows_forms_test2')|json_encode|raw }},
                     dialogOptions: {
                         appendTo: '#window-container',
@@ -48,7 +50,7 @@
                 }).render();
             });
             $("#opener3").click(function(){
-                new Oro.widget.DialogView({
+                new DialogWidget({
                     url: {{ path('acme_demowindows_forms_testget', {'id': 10})|json_encode|raw }},
                     dialogOptions: {
                         appendTo: '#window-container',
@@ -59,5 +61,6 @@
                 }).render();
             });
         });
+    });
     </script>
 {% endblock content %}

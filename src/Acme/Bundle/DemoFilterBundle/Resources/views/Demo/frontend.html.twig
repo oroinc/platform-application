@@ -12,6 +12,8 @@
     {{ oro_filter_render_header_javascript() }}
 
     <script type="text/javascript">
+    require(['jquery', 'oro/datafilter/list'],
+    function($, FilterList) {
         $(function() {
             var demoFilters = {
                 'text_filter':        {{ oro_filter_render_filter_javascript(form.children.text_filter) }},
@@ -23,7 +25,7 @@
                 'multiselect_filter': {{ oro_filter_render_filter_javascript(form.children.multiselect_filter) }}
             };
 
-            var filtersList = new Oro.Filter.List({ filters: demoFilters });
+            var filtersList = new FilterList({ filters: demoFilters });
             $('#demoFilterList').html(filtersList.render().$el);
 
             // service functions for demo
@@ -92,6 +94,7 @@
                 filtersList.setValues(values);
             });
         });
+    });
     </script>
 {% endblock %}
 
