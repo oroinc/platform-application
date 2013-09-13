@@ -16,7 +16,7 @@ class AclAccessController extends Controller
      * @Acl(
      *      id = "acme_demo_test_1",
      *      label ="demo1",
-     *      type = action",
+     *      type = "action",
      *      group_name=""
      * )
      * @return \Symfony\Component\HttpFoundation\Response
