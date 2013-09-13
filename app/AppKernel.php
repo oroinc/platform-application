@@ -35,15 +35,17 @@ class AppKernel extends Kernel
             new APY\JsFormValidationBundle\APYJsFormValidationBundle(),
             new Genemu\Bundle\FormBundle\GenemuFormBundle(),
             new A2lix\TranslationFormBundle\A2lixTranslationFormBundle(),
+            new JDare\ClankBundle\JDareClankBundle(),
+            new Lexik\Bundle\MaintenanceBundle\LexikMaintenanceBundle(),
 
             // BAP bundles
+            new Oro\Bundle\SecurityBundle\OroSecurityBundle(),
             new Oro\Bundle\FlexibleEntityBundle\OroFlexibleEntityBundle(),
             new Oro\Bundle\UIBundle\OroUIBundle(),
             new Oro\Bundle\FormBundle\OroFormBundle(),
             new Oro\Bundle\JsFormValidationBundle\OroJsFormValidationBundle(),
             new Oro\Bundle\SoapBundle\OroSoapBundle(),
             new Oro\Bundle\SearchBundle\OroSearchBundle(),
-            //new Oro\Bundle\BatchBundle\OroDataFlowBundle(),
             new Oro\Bundle\UserBundle\OroUserBundle(),
             new Oro\Bundle\MeasureBundle\OroMeasureBundle(),
             new Oro\Bundle\SegmentationTreeBundle\OroSegmentationTreeBundle(),
@@ -64,7 +66,9 @@ class AppKernel extends Kernel
             new Oro\Bundle\EntityConfigBundle\OroEntityConfigBundle(),
             new Oro\Bundle\EntityExtendBundle\OroEntityExtendBundle(),
             new Oro\Bundle\CronBundle\OroCronBundle(),
-            new Oro\Bundle\SecurityBundle\OroSecurityBundle(),
+            new Oro\Bundle\WorkflowBundle\OroWorkflowBundle(),
+            new Oro\Bundle\SyncBundle\OroSyncBundle(),
+            new Oro\Bundle\PlatformBundle\OroPlatformBundle(),
 
             // BAPP bundles
             new OroPro\Bundle\EwsBundle\OroProfessionalEwsBundle(),
