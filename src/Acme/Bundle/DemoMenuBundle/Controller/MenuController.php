@@ -45,7 +45,7 @@ class MenuController extends Controller
      * @Acl(
      *      id = "oro_menu_controller_submenu",
      *      label="Oro menu test controller submenu",
-     *      type = "action"
+     *      type = "action",
      *      group_name=""
      * )
      * @Template
