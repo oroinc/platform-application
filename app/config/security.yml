@@ -18,6 +18,11 @@ security:
             pattern:                        ^/(_(profiler|wdt)|css|images|js)/
             security:                       false
 
+        install:
+            pattern:                        ^/installer
+            security:                       false
+            anonymous:                      true
+
         wsse_secured:
             pattern:                        ^/api/(rest|soap).*
             wsse:
