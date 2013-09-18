@@ -18,6 +18,7 @@ framework:
     session:
         cookie_lifetime:      43200
         name:                 BAPID
+        handler_id:           session.handler.pdo
     fragments:
         enabled: true
         path: /_fragment # used for controller action in template
@@ -30,10 +31,12 @@ twig:
     strict_variables:         "%kernel.debug%"
     exception_controller:     "FOS\RestBundle\Controller\ExceptionController::showAction"
     globals:
-        env: %kernel.environment%
         bap:
             layout:           AcmeDemoBundle::layout.html.twig  # default layout across all Oro bundles
             start_route:      oro_default
+        ws:
+            port:             "%websocket_port%"
+            host:             "%websocket_host%"
     form:
         resources:
             - 'OroUIBundle:Form:fields.html.twig'
@@ -64,6 +67,8 @@ assetic:
         - AcmeDemoFilterBundle
         - OroEntityExtendBundle
         - OroSecurityBundle
+        - JDareClankBundle
+
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -174,13 +179,24 @@ stof_doctrine_extensions:
 
 services:
     oro.cache.abstract:
-        abstract: true
+        abstract:             true
         class:                Doctrine\Common\Cache\PhpFileCache
         arguments:            [%kernel.cache_dir%]
     twig.extension.intl:
-         class: Twig_Extensions_Extension_Intl
+         class:               Twig_Extensions_Extension_Intl
          tags:
              - { name: twig.extension }
+    doctrine.dbal.default.wrapped_connection:
+        factory_service:      doctrine.dbal.default_connection
+        factory_method:       getWrappedConnection
+        class:                PDO
+    session.handler.pdo:
+        class:                Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler
+        arguments:
+            - "@doctrine.dbal.default.wrapped_connection"
+            -
+              db_table:       oro_session
+              db_id_col:      id
 
 escape_wsse_authentication:
     authentication_provider_class: Oro\Bundle\UserBundle\Security\WsseUserProvider
@@ -198,6 +214,44 @@ genemu_form:
     select2: ~
     autocomplete: ~
 
+clank:
+    web_socket_server:
+        port:                 %websocket_port%                # The port the socket server will listen on
+        host:                 %websocket_host%                # (optional) The host ip to bind to
+    session_handler:          session.handler.pdo
+    periodic:
+        -
+            service:          "oro_wamp.db_ping"
+            time:             60000                           # the time in milliseconds between the "tick" function being called
+    topic:
+        -
+            name:             "acme"                          # Important! this is the topic namespace used to match to this service!
+            service:          "acme_demo.wamp.topic_service"  # The service id.
+    rpc:
+        -
+            name:             "acme"                          # Important! this is the network namespace used to match calls to this service!
+            service:          "acme_demo.wamp.rpc_service"    # The service id.
+
+
+jms_di_extra:
+    doctrine_integration: false
+
+a2lix_translation_form:
+    locales: [en, fr]
+    templating: "OroUIBundle:Form:translateable.html.twig"
+
+lexik_maintenance:
+    authorized:
+        path:                 "maintenance|.*\.js"             # "maintenance" is only for demo purposes, remove in production!
+#        ips:                  ["127.0.0.1"]                   # Optional. Authorized ip addresses
+    driver:
+        class:                Lexik\Bundle\MaintenanceBundle\Drivers\FileDriver
+        options:
+            file_path:        %kernel.root_dir%/cache/lock
+
+#
+# ORO Bundles config
+#
 oro_search:
     engine:                   orm
     realtime_update:          true
@@ -205,9 +259,9 @@ oro_search:
 oro_ui:
     settings:
         application_name:
-            value: "ORO"
+            value:            "ORO"
         application_title:
-            value: "ORO Business Application Platform"
+            value:            "ORO Business Application Platform"
 
 oro_user:
     settings:
@@ -218,15 +272,8 @@ oro_user:
 oro_translation:
     js_translation:
         # order of domains reflects messages fallback
-        domains: [jsmessages, validators]
-
-jms_di_extra:
-    doctrine_integration: false
+        domains:              [jsmessages, validators]
 
 oro_entity_extend:
-    backend:        Dynamic
-    backup:         "%kernel.root_dir%/entities/Backup/"
-
-a2lix_translation_form:
-    locales: [en, fr]
-    templating: "OroUIBundle:Form:translateable.html.twig"
+    backend:                  Dynamic
+    backup:                   "%kernel.root_dir%/entities/Backup/"

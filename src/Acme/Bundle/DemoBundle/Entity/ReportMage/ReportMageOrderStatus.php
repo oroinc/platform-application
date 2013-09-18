@@ -5,7 +5,13 @@ namespace Acme\Bundle\DemoBundle\Entity\ReportMage;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Table(name="oro_report_mage_order_status", indexes={@ORM\Index(name="IDX_STATUS", columns={"status"}), @ORM\Index(name="IDX_CREATED", columns={"created_at"})})
+ * @ORM\Table(
+ *  name="oro_report_mage_order_status",
+ *  indexes={
+ *      @ORM\Index(name="IDX_STATUS", columns={"status"}),
+ *      @ORM\Index(name="IDX_CREATED", columns={"created_at"})
+ *  }
+ * )
  * @ORM\Entity
  */
 class ReportMageOrderStatus
