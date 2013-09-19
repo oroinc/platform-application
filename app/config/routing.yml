@@ -43,6 +43,11 @@ acme_demo_form:
     type:     annotation
     prefix:   /form/
 
+acme_demo_workflow:
+    resource: "@AcmeDemoWorkflowBundle/Controller/"
+    type:     annotation
+    prefix:   /workflow/
+
 #
 # 3rd party routes
 #
@@ -99,9 +104,6 @@ oro_soap:
     resource: "@OroSoapBundle/Resources/config/routing.yml"
     prefix:   /api
 
-oro_dataflow:
-    resource: "@OroDataFlowBundle/Resources/config/routing.yml"
-
 oro_config:
     resource: "@OroConfigBundle/Resources/config/routing.yml"
 
@@ -116,6 +118,9 @@ oro_entity_config:
 
 oro_entity_extend:
     resource: "@OroEntityExtendBundle/Resources/config/routing.yml"
+
+oro_workflow:
+    resource: "@OroWorkflowBundle/Resources/config/routing.yml"
 
 oro_address:
     resource: "@OroAddressBundle/Resources/config/routing.yml"

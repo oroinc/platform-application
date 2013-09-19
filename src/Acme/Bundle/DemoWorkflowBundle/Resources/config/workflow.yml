@@ -1,0 +1,120 @@
+workflows:
+    phone_call:
+        label: 'Demo Call Workflow'
+        enabled: true
+        type: wizard
+        start_step: start_call
+        steps:
+            start_call:
+                label: 'Start Phone Call'
+                template: 'AcmeDemoWorkflowBundle:Workflow:phoneCall.html.twig'
+                allowed_transitions:
+                    - connected
+                    - not_answered
+                form_options:
+                    attribute_fields:
+                        call_timeout:
+                            form_type: integer
+                            options:
+                                required: true
+            start_conversation:
+                label: 'Call Phone Conversation'
+                template: 'AcmeDemoWorkflowBundle:Workflow:phoneCall.html.twig'
+                allowed_transitions:
+                    - end_conversation
+                form_options:
+                    attribute_fields:
+                        conversation_result:
+                            form_type: text
+                        conversation_comment:
+                            form_type: text
+                        conversation_successful:
+                            form_type: choice
+                            options:
+                                choices: {1: 'Yes', 0: 'No'}
+                                required: true
+                                multiple: false
+            end_call:
+                label: 'End Phone Call'
+                template: 'AcmeDemoWorkflowBundle:Workflow:phoneCall.html.twig'
+                is_final: true
+        attributes:
+            phone_call:
+                label: Phone Call
+                type: entity
+                options:
+                    class: Acme\Bundle\DemoWorkflowBundle\Entity\PhoneCall
+                    managed_entity: true
+                    multiple: true
+            call_timeout:
+                type: integer
+                label: 'Call Timeout'
+            call_successfull:
+                type: boolean
+                label: 'Call Successful'
+            conversation_successful:
+                type: boolean
+                label: 'Conversation Successful'
+            conversation_comment:
+                type: string
+                label: 'Conversation Comment'
+            conversation_result:
+                type: string
+                label: 'Conversation Result'
+            conversation:
+                type: entity
+                label: 'Conversation'
+                options:
+                    class: Acme\Bundle\DemoWorkflowBundle\Entity\PhoneConversation
+        transitions:
+            connected:
+                label: 'Connected'
+                step_to: start_conversation
+                transition_definition: connected_definition
+            not_answered:
+                label: "Not answered"
+                step_to: end_call
+                transition_definition: not_answered_definition
+            end_conversation:
+                label: 'End conversation'
+                step_to: end_call
+                transition_definition: end_conversation_definition
+        transition_definitions:
+            connected_definition: # Try to make call connected
+                # Check that timeout is set
+                conditions:
+                    @not_blank: [$call_timeout]
+                # Set call_successfull = true
+                post_actions:
+                    - @assign_value:
+                        parameters: [$call_successfull, true]
+            not_answered_definition: # Callee did not answer
+                # Make sure that caller waited at least 60 seconds
+                conditions: # call_timeout not empty and >= 60
+                    @and:
+                        - @not_blank: [$call_timeout]
+                        - @ge: [$call_timeout, 60]
+                # Set call_successfull = false
+                post_actions:
+                    - @assign_value:
+                        parameters: [$call_successfull, false]
+            end_conversation_definition:
+                conditions:
+                    # Check required properties are set
+                    @and:
+                        - @not_blank: [$conversation_result]
+                        - @not_blank: [$conversation_comment]
+                        - @not_blank: [$conversation_successful]
+                # Create PhoneConversation and set it's properties
+                # Pass data from workflow to conversation
+                post_actions:
+                    - @create_entity: # create PhoneConversation
+                        parameters:
+                            class: Acme\Bundle\DemoWorkflowBundle\Entity\PhoneConversation
+                            attribute: $conversation
+                            data:
+                                result: $conversation_result
+                                comment: $conversation_comment
+                                successful: $conversation_successful
+                                call: $phone_call
+

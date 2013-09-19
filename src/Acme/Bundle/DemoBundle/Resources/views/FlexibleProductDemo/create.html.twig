@@ -58,6 +58,8 @@
     {{ parent() }}
     {% if form.options is defined %}
         <script type="text/javascript">
+        require(['jquery'],
+        function($) {
             // Get the div that holds the collection of options
             var collectionHolder = $('ul.options');
 
@@ -65,7 +67,7 @@
             var $addOptionLink = $('<a href="#" class="add_option_link">Add an option</a>');
             var $newOptionLinkLi = $('<li class="not-sortable"></li>').append($addOptionLink);
 
-            jQuery(document).ready(function() {
+            $(function() {
                 console.info('jquery is ready');
                 // add a delete link to all of the existing option form li elements
                 collectionHolder.find('li.att-option').each(function() {
@@ -128,6 +130,7 @@
 
                 console.info('end of add option form delete link function');
             }
+        });
         </script>
     {% endif %}
 {% endblock %}
