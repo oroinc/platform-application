@@ -14,6 +14,7 @@ php app/console-framework oro:search:create-index --env %ENV% || goto :error
 php app/console-framework assets:install web --env %ENV% || goto :error
 php app/console assetic:dump --env %ENV% || goto :error
 php app/console oro:assetic:dump || goto :error
+php app/console oro:translation:dump || goto :error
 goto :EOF
 
 :error

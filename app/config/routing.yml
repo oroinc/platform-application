@@ -116,8 +116,8 @@ oro_entity_config:
 oro_entity_extend:
     resource: "@OroEntityExtendBundle/Resources/config/routing.yml"
 
-# oro_workflow:
-#    resource: "@OroWorkflowBundle/Resources/config/routing.yml"
+oro_workflow:
+    resource: "@OroWorkflowBundle/Resources/config/routing.yml"
 
 oro_address:
     resource: "@OroAddressBundle/Resources/config/routing.yml"
