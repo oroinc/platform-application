@@ -5,24 +5,19 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 
-use Oro\Bundle\UserBundle\Annotation\Acl;
+use Oro\Bundle\SecurityBundle\Annotation\Acl;
 
 /**
  * @Route("/acl")
- * @Acl(
- *      id = "acme_demo_test_controller",
- *      name="Test controller",
- *      description = "Test controller for ACL"
- * )
  */
 class AclAccessController extends Controller
 {
     /**
-     * @Acl(
+     * Acl(
      *      id = "acme_demo_test_1",
-     *      name="demo1",
-     *      description = "Action for ROLE_USER",
-     *      parent = "acme_demo_test_controller_role_user"
+     *      label ="demo1",
+     *      type = "action",
+     *      group_name=""
      * )
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -32,11 +27,11 @@ class AclAccessController extends Controller
     }
 
     /**
-     * @Acl(
+     * Acl(
      *      id = "acme_demo_test_2",
-     *      name="demo2",
-     *      description = "Action for ROLE_USER",
-     *      parent = "acme_demo_test_controller_role_user"
+     *      label="demo2",
+     *      type = "action",
+     *      group_name=""
      * )
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -46,11 +41,11 @@ class AclAccessController extends Controller
     }
 
     /**
-     * @Acl(
+     * Acl(
      *      id = "acme_demo_test_3",
-     *      name="demo3",
-     *      description = "Action for ROLE_USER",
-     *      parent = "acme_demo_test_controller_role_user"
+     *      label="demo3",
+     *      type = "action",
+     *      group_name=""
      * )
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -60,11 +55,11 @@ class AclAccessController extends Controller
     }
 
     /**
-     * @Acl(
+     * Acl(
      *      id = "acme_demo_test_controller_role_user",
-     *      name="Action for ROLE_USER",
-     *      description = "Action for ROLE_USER",
-     *      parent = "acme_demo_test_controller"
+     *      label="Action for ROLE_USER",
+     *      type = "action",
+     *      group_name=""
      * )
      * @Route("/users", name="acme_demo_acl_users_only")
      */
@@ -74,11 +69,11 @@ class AclAccessController extends Controller
     }
 
     /**
-     * @Acl(
+     * Acl(
      *      id = "acme_demo_test_controller_role_manager",
-     *      name="Action for ROLE_MANAGER",
-     *      description = "Action for ROLE_MANAGER",
-     *      parent = "acme_demo_test_controller"
+     *      label="Action for ROLE_MANAGER",
+     *      type = "action",
+     *      group_name=""
      * )
      * @Route("/manager", name="acme_demo_acl_manager_only")
      */
@@ -88,11 +83,11 @@ class AclAccessController extends Controller
     }
 
     /**
-     * @Acl(
+     * Acl(
      *      id = "acme_demo_test_controller_role_admin",
-     *      name="Action for ROLE_ADMIN",
-     *      description = "Action for ROLE_ADMIN",
-     *      parent = "acme_demo_test_controller"
+     *      label="Action for ROLE_ADMIN",
+     *      type = "action",
+     *      group_name=""
      * )
      * @Route("/admin", name="acme_demo_acl_manager_only")
      */

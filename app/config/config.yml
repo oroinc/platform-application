@@ -44,6 +44,7 @@ twig:
             - 'OroTranslationBundle:Form:fields.html.twig'
             - 'OroAddressBundle:Include:fields.html.twig'
             - 'OroOrganizationBundle:Form:fields.html.twig'
+            - 'OroSecurityBundle:Form:fields.html.twig'
 
 # Assetic Configuration
 assetic:
@@ -65,7 +66,9 @@ assetic:
         - AcmeDemoGridBundle
         - AcmeDemoFilterBundle
         - OroEntityExtendBundle
+        - OroSecurityBundle
         - JDareClankBundle
+
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -264,6 +267,7 @@ oro_user:
     settings:
         name_format:
           value:              %%last%%, %%first%%
+
 
 oro_translation:
     js_translation:

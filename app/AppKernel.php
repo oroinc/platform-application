@@ -39,6 +39,7 @@ class AppKernel extends Kernel
             new Lexik\Bundle\MaintenanceBundle\LexikMaintenanceBundle(),
 
             // BAP bundles
+            new Oro\Bundle\SecurityBundle\OroSecurityBundle(),
             new Oro\Bundle\FlexibleEntityBundle\OroFlexibleEntityBundle(),
             new Oro\Bundle\UIBundle\OroUIBundle(),
             new Oro\Bundle\FormBundle\OroFormBundle(),
