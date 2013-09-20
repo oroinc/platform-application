@@ -110,6 +110,9 @@ oro_config:
 oro_dataaudit:
     resource: "@OroDataAuditBundle/Resources/config/routing.yml"
 
+oro_entity:
+    resource: "@OroEntityBundle/Resources/config/routing.yml"
+
 oro_entity_config:
     resource: "@OroEntityConfigBundle/Resources/config/routing.yml"
 
