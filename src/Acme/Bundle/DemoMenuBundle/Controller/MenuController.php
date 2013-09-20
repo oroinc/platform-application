@@ -42,7 +42,7 @@ class MenuController extends Controller
 
     /**
      * @Route("/submenu", name="oro_menu_submenu")
-     * @Acl(
+     * Acl(
      *      id = "oro_menu_controller_submenu",
      *      label="Oro menu test controller submenu",
      *      type = "action",

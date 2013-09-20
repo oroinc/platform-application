@@ -13,7 +13,7 @@ use Oro\Bundle\SecurityBundle\Annotation\Acl;
 class AclAccessController extends Controller
 {
     /**
-     * @Acl(
+     * Acl(
      *      id = "acme_demo_test_1",
      *      label ="demo1",
      *      type = "action",
@@ -27,7 +27,7 @@ class AclAccessController extends Controller
     }
 
     /**
-     * @Acl(
+     * Acl(
      *      id = "acme_demo_test_2",
      *      label="demo2",
      *      type = "action",
@@ -41,7 +41,7 @@ class AclAccessController extends Controller
     }
 
     /**
-     * @Acl(
+     * Acl(
      *      id = "acme_demo_test_3",
      *      label="demo3",
      *      type = "action",
@@ -55,7 +55,7 @@ class AclAccessController extends Controller
     }
 
     /**
-     * @Acl(
+     * Acl(
      *      id = "acme_demo_test_controller_role_user",
      *      label="Action for ROLE_USER",
      *      type = "action",
@@ -69,7 +69,7 @@ class AclAccessController extends Controller
     }
 
     /**
-     * @Acl(
+     * Acl(
      *      id = "acme_demo_test_controller_role_manager",
      *      label="Action for ROLE_MANAGER",
      *      type = "action",
@@ -83,7 +83,7 @@ class AclAccessController extends Controller
     }
 
     /**
-     * @Acl(
+     * Acl(
      *      id = "acme_demo_test_controller_role_admin",
      *      label="Action for ROLE_ADMIN",
      *      type = "action",
