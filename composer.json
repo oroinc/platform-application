@@ -10,7 +10,7 @@
         }
     },
     "require": {
-        "php": ">=5.3.3",
+        "php": ">5.3.8",
 
         "symfony/symfony": "v2.3.4",
 
