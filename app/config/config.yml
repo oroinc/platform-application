@@ -86,7 +86,7 @@ doctrine:
         default_connection:   default
         connections:
             default:
-                driver:       "%database_driver%"
+                driver:       pdo_mysql
                 host:         "%database_host%"
                 port:         "%database_port%"
                 dbname:       "%database_name%"
@@ -94,7 +94,7 @@ doctrine:
                 password:     "%database_password%"
                 charset:      UTF8
             report_source:
-                driver:       "%database_driver_rs%"
+                driver:       pdo_mysql
                 host:         "%database_host_rs%"
                 port:         "%database_port_rs%"
                 dbname:       "%database_name_rs%"
@@ -102,7 +102,7 @@ doctrine:
                 password:     "%database_password_rs%"
                 charset:      UTF8
             report_target:
-                driver:       "%database_driver_rt%"
+                driver:       pdo_mysql
                 host:         "%database_host_rt%"
                 port:         "%database_port_rt%"
                 dbname:       "%database_name_rt%"
