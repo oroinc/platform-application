@@ -147,3 +147,6 @@ oro_cron:
 
 oro_installer:
     resource: "@OroInstallerBundle/Resources/config/routing.yml"
+
+oro_importexport:
+    resource: "@OroImportExportBundle/Resources/config/routing.yml"
