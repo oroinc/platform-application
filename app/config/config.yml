@@ -18,7 +18,7 @@ framework:
     session:
         cookie_lifetime:      43200
         name:                 BAPID
-        handler_id:           session.handler.pdo
+        handler_id:           %session_handler%
     fragments:
         enabled: true
         path: /_fragment # used for controller action in template
@@ -44,6 +44,7 @@ twig:
             - 'OroTranslationBundle:Form:fields.html.twig'
             - 'OroAddressBundle:Include:fields.html.twig'
             - 'OroOrganizationBundle:Form:fields.html.twig'
+            - 'OroSecurityBundle:Form:fields.html.twig'
 
 # Assetic Configuration
 assetic:
@@ -65,7 +66,9 @@ assetic:
         - AcmeDemoGridBundle
         - AcmeDemoFilterBundle
         - OroEntityExtendBundle
+        - OroSecurityBundle
         - JDareClankBundle
+
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -109,6 +112,7 @@ doctrine:
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
         auto_mapping:         true
+        class_metadata_factory_name: Oro\Bundle\EntityExtendBundle\Mapping\ExtendClassMetadataFactory
         resolve_target_entities:
             Symfony\Component\Security\Core\User\UserInterface: Oro\Bundle\UserBundle\Entity\User
 
@@ -265,11 +269,11 @@ oro_user:
         name_format:
           value:              %%last%%, %%first%%
 
+
 oro_translation:
     js_translation:
         # order of domains reflects messages fallback
         domains:              [jsmessages, validators]
 
 oro_entity_extend:
-    backend:                  Dynamic
-    backup:                   "%kernel.root_dir%/entities/Backup/"
+    backup:         "%kernel.root_dir%/entities/Extend/Backup/"
