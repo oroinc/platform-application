@@ -5,7 +5,7 @@
         "psr-0": {
             "Oro\\Bundle": "src/Oro/src/",
             "OroPro\\Bundle": "src/OroPro/src/",
-            "Extend\\": "app/entities/",
+            "OroEmail\\": "app/emails/",
             "": "src/"
         }
     },
