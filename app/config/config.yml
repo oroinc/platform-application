@@ -233,10 +233,6 @@ clank:
             name:             "acme"                          # Important! this is the network namespace used to match calls to this service!
             service:          "acme_demo.wamp.rpc_service"    # The service id.
 
-
-jms_di_extra:
-    doctrine_integration: false
-
 a2lix_translation_form:
     locales: [en, fr]
     templating: "OroUIBundle:Form:translateable.html.twig"
