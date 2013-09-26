@@ -236,6 +236,9 @@ a2lix_translation_form:
     locales: [en, fr]
     templating: "OroUIBundle:Form:translateable.html.twig"
 
+apy_js_form_validation:
+    check_modes: [submit]
+
 lexik_maintenance:
     authorized:
         path:                 "maintenance|.*\.js"             # "maintenance" is only for demo purposes, remove in production!
@@ -266,6 +269,3 @@ oro_translation:
 
 oro_entity_extend:
     backup:         "%kernel.root_dir%/entities/Extend/Backup/"
-
-apy_js_form_validation:
-    check_modes: [submit]
