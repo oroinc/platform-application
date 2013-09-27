@@ -11,7 +11,7 @@ Installation
 
 ### Using Composer
 
-[As both Symfony 2 and Oro Platform use [Composer][1] to manage their dependencies, this is the recommended way to install Oro Platform.]
+[As both Symfony 2 and Oro Platform use [Composer][2] to manage their dependencies, this is the recommended way to install Oro Platform.]
 
 If you don't have Composer yet, download it following the instructions on
 http://getcomposer.org/ or just run the following command:
@@ -36,4 +36,5 @@ http://getcomposer.org/ or just run the following command:
 
 After installation you can login as application administrator using user name "admin" and password "admin".
 
-[1]:  http://getcomposer.org/
+[1]:  http://symfony.com/doc/2.3/book/installation.html
+[2]:  http://getcomposer.org/
