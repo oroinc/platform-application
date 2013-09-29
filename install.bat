@@ -8,7 +8,7 @@ php app/console-framework oro:entity-extend:clear --env %ENV% || goto :error
 php app/console doctrine:schema:drop --force --full-database --env %ENV% || goto :error
 php app/console-framework doctrine:schema:create --env %ENV% || goto :error
 php app/console-framework doctrine:fixture:load --no-debug --no-interaction --env %ENV% || goto :error
-php app/console-framework doctrine:fixtures:load --fixtures=src/Oro/src/Oro/Bundle/TestFrameworkBundle/Fixtures/ --append --no-debug --no-interaction --env %ENV% || goto :error
+php app/console-framework doctrine:fixtures:load --fixtures=vendor/oro/platform/src/Oro/Bundle/TestFrameworkBundle/Fixtures/ --append --no-debug --no-interaction --env %ENV% || goto :error
 php app/console-framework oro:navigation:init --env %ENV% || goto :error
 php app/console-framework oro:entity-config:init --env %ENV% || goto :error
 php app/console-framework oro:entity-extend:init --env %ENV% || goto :error
