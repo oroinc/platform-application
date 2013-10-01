@@ -1,0 +1,2 @@
+oro_installer:
+    resource: "@OroInstallerBundle/Resources/config/routing.yml"
