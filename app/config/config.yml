@@ -274,9 +274,19 @@ oro_entity_extend:
     backup:         "%kernel.root_dir%/entities/Extend/Backup/"
 
 oro_require_js:
-    config_path: 'js/require-config.js'
+    config_path: "js/require-config.js"
     config:
         # @see http://requirejs.org/docs/api.html#config
-        waitSeconds: 0                # @see http://requirejs.org/docs/api.html#config-waitSeconds
-#        enforceDefine: false          # @see http://requirejs.org/docs/api.html#config-enforceDefine
-#        scriptType: 'text/javascript' # @see http://requirejs.org/docs/api.html#config-scriptType
+        waitSeconds: 0
+#        enforceDefine: true
+#        scriptType: 'text/javascript'
+    build_path: "js/oro.min.js"
+    building_timeout: 3600
+    build:
+        # @see https://github.com/jrburke/r.js/blob/master/build/example.build.js
+        optimize: "uglify2"
+        preserveLicenseComments: true
+#        generateSourceMaps: true
+#        useSourceUrl: true
+    # it's better to set "node" as js_engine, if nodejs is installed
+    js_engine: "java -Xss10m -Xms256m -Xmx512m -cp app/Resources/java/js.jar org.mozilla.javascript.tools.shell.Main"
