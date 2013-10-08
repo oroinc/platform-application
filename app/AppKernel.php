@@ -9,30 +9,6 @@ class AppKernel extends OroKernel
     public function registerBundles()
     {
         $bundles = array(
-            new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
-            new Symfony\Bundle\SecurityBundle\SecurityBundle(),
-            new Symfony\Bundle\TwigBundle\TwigBundle(),
-            new Symfony\Bundle\MonologBundle\MonologBundle(),
-            new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
-            new Symfony\Bundle\AsseticBundle\AsseticBundle(),
-            new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
-            new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
-            new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-
-            new JMS\SerializerBundle\JMSSerializerBundle($this),
-            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
-            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
-            new FOS\RestBundle\FOSRestBundle(),
-            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
-            new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
-            new BeSimple\SoapBundle\BeSimpleSoapBundle(),
-            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
-            new Escape\WSSEAuthenticationBundle\EscapeWSSEAuthenticationBundle(),
-            new Liip\ImagineBundle\LiipImagineBundle(),
-            new Bazinga\ExposeTranslationBundle\BazingaExposeTranslationBundle(),
-            new Genemu\Bundle\FormBundle\GenemuFormBundle(),
-            new A2lix\TranslationFormBundle\A2lixTranslationFormBundle(),
-
             // BAPP bundles
             new OroPro\Bundle\EwsBundle\OroProfessionalEwsBundle(),
 
@@ -60,7 +36,7 @@ class AppKernel extends OroKernel
             $bundles[] = new Oro\Bundle\TestFrameworkBundle\OroTestFrameworkBundle();
         }
 
-        return array_merge($bundles, parent::registerBundles());
+        return array_merge(parent::registerBundles(), $bundles);
     }
 
     public function registerContainerConfiguration(LoaderInterface $loader)
