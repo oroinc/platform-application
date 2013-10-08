@@ -1,9 +1,10 @@
 <?php
 
-use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
 
-class AppKernel extends Kernel
+use Oro\Bundle\DistributionBundle\OroKernel;
+
+class AppKernel extends OroKernel
 {
     public function registerBundles()
     {
@@ -18,25 +19,19 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
 
-            //new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
-            new JMS\JobQueueBundle\JMSJobQueueBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle($this),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new FOS\RestBundle\FOSRestBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
             new BeSimple\SoapBundle\BeSimpleSoapBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
-            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Escape\WSSEAuthenticationBundle\EscapeWSSEAuthenticationBundle(),
             new Liip\ImagineBundle\LiipImagineBundle(),
             new Bazinga\ExposeTranslationBundle\BazingaExposeTranslationBundle(),
-            new APY\JsFormValidationBundle\APYJsFormValidationBundle(),
             new Genemu\Bundle\FormBundle\GenemuFormBundle(),
             new A2lix\TranslationFormBundle\A2lixTranslationFormBundle(),
-            new JDare\ClankBundle\JDareClankBundle(),
-            new Lexik\Bundle\MaintenanceBundle\LexikMaintenanceBundle(),
-            new Sylius\Bundle\FlowBundle\SyliusFlowBundle(),
 
             // BAPP bundles
             new OroPro\Bundle\EwsBundle\OroProfessionalEwsBundle(),
@@ -65,10 +60,7 @@ class AppKernel extends Kernel
             $bundles[] = new Oro\Bundle\TestFrameworkBundle\OroTestFrameworkBundle();
         }
 
-        // BAP bundles
-        $bundles = array_merge($bundles, Oro\Bundle\PlatformBundle\OroPlatformBundle::registeredBundles($this));
-
-        return $bundles;
+        return array_merge($bundles, parent::registerBundles());
     }
 
     public function registerContainerConfiguration(LoaderInterface $loader)
