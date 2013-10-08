@@ -20,5 +20,4 @@ php app/console-framework assets:install web --env $ENV
 php app/console-framework assetic:dump --env $ENV
 php app/console-framework oro:assetic:dump --env $ENV
 php app/console-framework oro:translation:dump --env $ENV
-php app/console-framework oro:requirejs:config --env $ENV
 php app/console-framework oro:requirejs:build --env $ENV
