@@ -1,12 +1,11 @@
 <?php
-namespace Acme\Bundle\DemoFlexibleEntityBundle\DataFixtures\ORM\Manufacturer;
+namespace Acme\Bundle\DemoFlexibleEntityBundle\DataFixtures\Demo\Manufacturer;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Oro\Bundle\FlexibleEntityBundle\Model\AbstractAttributeType;
 
 /**
 * Load manufacturer
