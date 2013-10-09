@@ -1,14 +1,15 @@
 <?php
 
-namespace Acme\Bundle\DemoBundle\DataFixtures\ORM;
+namespace Acme\Bundle\DemoBundle\DataFixtures\Demo;
 
-use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
-use Oro\Bundle\UserBundle\Entity\UserManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\Persistence\ObjectManager;
+
+use Oro\Bundle\UserBundle\Entity\UserManager;
 
 class LoadUserAttrData extends AbstractFixture implements ContainerAwareInterface, OrderedFixtureInterface
 {
@@ -61,6 +62,6 @@ class LoadUserAttrData extends AbstractFixture implements ContainerAwareInterfac
 
     public function getOrder()
     {
-        return 2;
+        return 3;
     }
 }

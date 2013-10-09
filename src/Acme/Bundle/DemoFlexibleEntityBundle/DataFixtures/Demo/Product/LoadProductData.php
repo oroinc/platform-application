@@ -1,12 +1,12 @@
 <?php
-namespace Acme\Bundle\DemoFlexibleEntityBundle\DataFixtures\ORM\Product;
+namespace Acme\Bundle\DemoFlexibleEntityBundle\DataFixtures\Demo\Product;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Oro\Bundle\FlexibleEntityBundle\Entity\Metric;
+
 use Oro\Bundle\FlexibleEntityBundle\Entity\Price;
 
 /**
