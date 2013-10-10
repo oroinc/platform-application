@@ -1,5 +1,5 @@
 <?php
-namespace Acme\Bundle\DemoGridBundle\DataFixtures\ORM;
+namespace Acme\Bundle\DemoGridBundle\DataFixtures\Demo;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
@@ -17,12 +17,19 @@ use Oro\Bundle\FlexibleEntityBundle\Entity\Repository\FlexibleEntityRepository;
 use Oro\Bundle\UserBundle\Entity\UserManager;
 use Oro\Bundle\UserBundle\Entity\User;
 
+use Oro\Bundle\OrganizationBundle\Entity\BusinessUnit;
+
 /**
  * @SuppressWarnings(PHPMD.TooManyMethods)
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
 class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
+    /**
+     * @var BusinessUnit
+     */
+    protected $businessUnit;
+
     /**
      * @var UserManager
      */
@@ -38,7 +45,8 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
      */
     public function setContainer(ContainerInterface $container = null)
     {
-        $this->userManager = $container->get('oro_user.manager');
+        $this->businessUnit   = $container->get('oro_organization.business_unit_manager')->getBusinessUnit();
+        $this->userManager    = $container->get('oro_user.manager');
         $this->userRepository = $this->userManager->getFlexibleRepository();
     }
 
@@ -74,11 +82,6 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
             );
             $this->persist($hobbyAttribute);
         }
-
-        // if (!$this->findAttribute('last_visit')) {
-        //     $lastVisitAttribute = $this->createAttribute(new DateTimeType(), 'last_visit');
-        //     $this->persist($lastVisitAttribute);
-        // }
 
         $this->flush();
     }
@@ -179,16 +182,14 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
         $user->setEmail($email);
         $user->setUsername($username);
         $user->setFirstname($firstName);
-        //$user->setMiddlename($middleName);
         $user->setLastname($lastName);
         $user->setBirthday($birthday);
-        $user->setOwner($this->getReference('default_business_unit'));
+        $user->setOwner($this->businessUnit);
         $this->setFlexibleAttributeValue($user, 'company', $company);
         $this->setFlexibleAttributeValue($user, 'salary', $salary);
         $this->setFlexibleAttributeValueOption($user, 'gender', $gender);
         $this->setFlexibleAttributeValue($user, 'website', $website);
         $this->addFlexibleAttributeValueOptions($user, 'hobby', $hobbies);
-        // $this->setFlexibleAttributeValue($user, 'last_visit', $lastVisit);
 
         return $user;
     }

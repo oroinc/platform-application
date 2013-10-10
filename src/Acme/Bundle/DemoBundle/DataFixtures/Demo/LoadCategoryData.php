@@ -1,25 +1,15 @@
 <?php
 
-namespace Acme\Bundle\DemoBundle\DataFixtures\ORM;
+namespace Acme\Bundle\DemoBundle\DataFixtures\Demo;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
-
 use Acme\Bundle\DemoBundle\Entity\Category;
 
-class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
+class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterface
 {
-    private $container;
-
-    public function setContainer(ContainerInterface $container = null)
-    {
-        $this->container = $container;
-    }
-
     /**
      * Load sample data
      *

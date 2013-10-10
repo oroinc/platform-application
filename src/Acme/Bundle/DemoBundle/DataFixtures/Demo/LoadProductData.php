@@ -1,33 +1,20 @@
 <?php
 
-namespace Acme\Bundle\DemoBundle\DataFixtures\ORM;
+namespace Acme\Bundle\DemoBundle\DataFixtures\Demo;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
-
 use Acme\Bundle\DemoBundle\Entity\Product;
 use Acme\Bundle\DemoBundle\Entity\Manufacturer;
 
-class LoadProductData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
+class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
 {
-    /**
-     * @var ContainerInterface
-     */
-    private $container;
-
     /**
      * @var Manufacturer[]
      */
     protected $manufacturers;
-
-    public function setContainer(ContainerInterface $container = null)
-    {
-        $this->container = $container;
-    }
 
     /**
      * @return Manufacturer
