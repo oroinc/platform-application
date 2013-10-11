@@ -110,7 +110,7 @@ doctrine:
                 password:     "%database_password%"
                 charset:      UTF8
         types:
-            datetime: Oro\Bundle\LocaleBundle\DoctrineExtensions\DBAL\Types\UTCDateTimeType                
+            datetime: Oro\Bundle\LocaleBundle\DoctrineExtensions\DBAL\Types\UTCDateTimeType
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
         auto_mapping:         true
@@ -289,3 +289,11 @@ oro_require_js:
 #        useSourceUrl: true
     # it's better to set "node" as js_engine, if nodejs is installed
     js_engine: "java -Xss10m -Xms256m -Xmx512m -cp %kernel.root_dir%/Resources/java/js.jar org.mozilla.javascript.tools.shell.Main"
+
+oro_help:
+    defaults:
+        server: http://wiki.orocrm.com/
+        prefix: Third_Party
+        vendors:
+            Oro:
+                alias: Platform
