@@ -365,7 +365,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
      */
     private function generateUsername($firstName, $lastName)
     {
-        $uniqueString = substr(uniqid(rand()), -5, 5);
+        $uniqueString = mt_rand(1000, 10000);
         return sprintf("%s.%s_%s", strtolower($firstName), strtolower($lastName), $uniqueString);
     }
 
@@ -378,7 +378,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
      */
     private function generateEmail($firstName, $lastName)
     {
-        $uniqueString = substr(uniqid(rand()), -5, 5);
+        $uniqueString = mt_rand(1000, 10000);
         $domains = array('yahoo.com', 'gmail.com', 'example.com', 'hotmail.com', 'aol.com', 'msn.com');
         $randomIndex = rand(0, count($domains) - 1);
         $domain = $domains[$randomIndex];
