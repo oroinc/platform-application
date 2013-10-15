@@ -294,6 +294,10 @@ oro_help:
     defaults:
         server: http://wiki.orocrm.com/
         prefix: Third_Party
-        vendors:
-            Oro:
-                alias: Platform
+    vendors:
+        Oro:
+            prefix: ~
+            alias: Platform
+    routes:
+        oro_default:
+            uri: Platform/Dashboard
