@@ -17,7 +17,7 @@ use Oro\Bundle\FlexibleEntityBundle\Entity\Repository\FlexibleEntityRepository;
 use Oro\Bundle\UserBundle\Entity\UserManager;
 use Oro\Bundle\UserBundle\Entity\User;
 
-use Oro\Bundle\OrganizationBundle\Entity\BusinessUnit;
+use Oro\Bundle\OrganizationBundle\Entity\Manager\BusinessUnitManager;
 
 /**
  * @SuppressWarnings(PHPMD.TooManyMethods)
@@ -26,9 +26,9 @@ use Oro\Bundle\OrganizationBundle\Entity\BusinessUnit;
 class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
     /**
-     * @var BusinessUnit
+     * @var BusinessUnitManager
      */
-    protected $businessUnit;
+    protected $buManager;
 
     /**
      * @var UserManager
@@ -45,7 +45,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
      */
     public function setContainer(ContainerInterface $container = null)
     {
-        $this->businessUnit   = $container->get('oro_organization.business_unit_manager')->getBusinessUnit();
+        $this->buManager      = $container->get('oro_organization.business_unit_manager');
         $this->userManager    = $container->get('oro_user.manager');
         $this->userRepository = $this->userManager->getFlexibleRepository();
     }
@@ -184,7 +184,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
         $user->setFirstname($firstName);
         $user->setLastname($lastName);
         $user->setBirthday($birthday);
-        $user->setOwner($this->businessUnit);
+        $user->setOwner($this->buManager->getBusinessUnit());
         $this->setFlexibleAttributeValue($user, 'company', $company);
         $this->setFlexibleAttributeValue($user, 'salary', $salary);
         $this->setFlexibleAttributeValueOption($user, 'gender', $gender);
