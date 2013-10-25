@@ -11,6 +11,7 @@ composer.lock
 /web/js
 /web/uploads/users/*
 /web/media/cache
+/web/build.js
 /app/config/parameters.yml
 /app/config/parameters_test.yml
 *~
