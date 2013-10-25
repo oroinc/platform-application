@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
-use Oro\Bundle\UserBundle\Annotation\Acl;
+use Oro\Bundle\SecurityBundle\Annotation\Acl;
 
 /**
  * Menu Demo controller
@@ -42,10 +42,11 @@ class MenuController extends Controller
 
     /**
      * @Route("/submenu", name="oro_menu_submenu")
-     * @Acl(
+     * Acl(
      *      id = "oro_menu_controller_submenu",
-     *      name="Oro menu test controller submenu",
-     *      description = "Test controller for submenu"
+     *      label="Oro menu test controller submenu",
+     *      type = "action",
+     *      group_name=""
      * )
      * @Template
      */

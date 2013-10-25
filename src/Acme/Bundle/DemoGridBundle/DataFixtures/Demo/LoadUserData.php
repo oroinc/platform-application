@@ -1,5 +1,5 @@
 <?php
-namespace Acme\Bundle\DemoGridBundle\DataFixtures\ORM;
+namespace Acme\Bundle\DemoGridBundle\DataFixtures\Demo;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
@@ -17,12 +17,19 @@ use Oro\Bundle\FlexibleEntityBundle\Entity\Repository\FlexibleEntityRepository;
 use Oro\Bundle\UserBundle\Entity\UserManager;
 use Oro\Bundle\UserBundle\Entity\User;
 
+use Oro\Bundle\OrganizationBundle\Entity\Manager\BusinessUnitManager;
+
 /**
  * @SuppressWarnings(PHPMD.TooManyMethods)
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
 class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
+    /**
+     * @var BusinessUnitManager
+     */
+    protected $buManager;
+
     /**
      * @var UserManager
      */
@@ -38,7 +45,8 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
      */
     public function setContainer(ContainerInterface $container = null)
     {
-        $this->userManager = $container->get('oro_user.manager');
+        $this->buManager      = $container->get('oro_organization.business_unit_manager');
+        $this->userManager    = $container->get('oro_user.manager');
         $this->userRepository = $this->userManager->getFlexibleRepository();
     }
 
@@ -74,11 +82,6 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
             );
             $this->persist($hobbyAttribute);
         }
-
-        // if (!$this->findAttribute('last_visit')) {
-        //     $lastVisitAttribute = $this->createAttribute(new DateTimeType(), 'last_visit');
-        //     $this->persist($lastVisitAttribute);
-        // }
 
         $this->flush();
     }
@@ -179,16 +182,14 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
         $user->setEmail($email);
         $user->setUsername($username);
         $user->setFirstname($firstName);
-        //$user->setMiddlename($middleName);
         $user->setLastname($lastName);
         $user->setBirthday($birthday);
-        $user->setOwner($this->getReference('default_business_unit'));
+        $user->setOwner($this->buManager->getBusinessUnit());
         $this->setFlexibleAttributeValue($user, 'company', $company);
         $this->setFlexibleAttributeValue($user, 'salary', $salary);
         $this->setFlexibleAttributeValueOption($user, 'gender', $gender);
         $this->setFlexibleAttributeValue($user, 'website', $website);
         $this->addFlexibleAttributeValueOptions($user, 'hobby', $hobbies);
-        // $this->setFlexibleAttributeValue($user, 'last_visit', $lastVisit);
 
         return $user;
     }
@@ -364,7 +365,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
      */
     private function generateUsername($firstName, $lastName)
     {
-        $uniqueString = substr(uniqid(rand()), -5, 5);
+        $uniqueString = mt_rand(1000, 10000);
         return sprintf("%s.%s_%s", strtolower($firstName), strtolower($lastName), $uniqueString);
     }
 
@@ -377,7 +378,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
      */
     private function generateEmail($firstName, $lastName)
     {
-        $uniqueString = substr(uniqid(rand()), -5, 5);
+        $uniqueString = mt_rand(1000, 10000);
         $domains = array('yahoo.com', 'gmail.com', 'example.com', 'hotmail.com', 'aol.com', 'msn.com');
         $randomIndex = rand(0, count($domains) - 1);
         $domain = $domains[$randomIndex];

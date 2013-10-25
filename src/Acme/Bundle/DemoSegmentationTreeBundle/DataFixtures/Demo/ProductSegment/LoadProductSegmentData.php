@@ -1,11 +1,8 @@
 <?php
-namespace Acme\Bundle\DemoSegmentationTreeBundle\DataFixtures\ORM\ProductSegment;
+namespace Acme\Bundle\DemoSegmentationTreeBundle\DataFixtures\Demo\ProductSegment;
 
 use Acme\Bundle\DemoSegmentationTreeBundle\Entity\ProductSegment;
 use Acme\Bundle\DemoSegmentationTreeBundle\Entity\Product;
-
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
@@ -20,25 +17,12 @@ use Doctrine\Common\Persistence\ObjectManager;
  * @copyright 2012 Akeneo SAS (http://www.akeneo.com)
  * @license   http://opensource.org/licenses/MIT MIT
  */
-class LoadProductSegmentData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
+class LoadProductSegmentData extends AbstractFixture implements OrderedFixtureInterface
 {
-    /**
-     * @var ContainerInterface
-     */
-    protected $container;
-
     /**
      * @var ObjectManager
      */
     protected $manager;
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setContainer(ContainerInterface $container = null)
-    {
-        $this->container = $container;
-    }
 
     /**
      * {@inheritdoc}

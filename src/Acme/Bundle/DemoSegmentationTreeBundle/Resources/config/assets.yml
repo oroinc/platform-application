@@ -1,5 +1,0 @@
-js:
-  'demo_segmentation':
-      - '@OroUIBundle/Resources/public/lib/jstree/jquery.cookie.js'
-      - '@OroUIBundle/Resources/public/lib/jstree/jquery.hotkeys.js'
-

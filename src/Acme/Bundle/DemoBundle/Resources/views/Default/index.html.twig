@@ -29,9 +29,7 @@
         <h2>Workflow</h2>
         <a class="btn" href="{{ path('acme_demoworkflow_phonecall_list') }}">Run demo</a>
     </div>
-
-    <div class="version-container">
-        {# TODO Replace hardcoded version with data from backend #}
-        <strong>Version:</strong> 1.0.0-alpha5
-    </div>
+        <div class="version-container">
+            Version: {{ constant('Oro\\Bundle\\PlatformBundle\\OroPlatformBundle::VERSION') }}
+        </div>
 {% endblock %}

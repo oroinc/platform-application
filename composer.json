@@ -4,12 +4,13 @@
     "autoload": {
         "psr-0": {
             "Oro\\Bundle": "src/Oro/src/",
-            "Extend\\": "app/entities/",
+            "OroPro\\Bundle": "src/OroPro/src/",
+            "OroEmail\\": "app/emails/",
             "": "src/"
         }
     },
     "require": {
-        "php": ">=5.3.3",
+        "php": ">=5.4.4",
 
         "symfony/symfony": "v2.3.4",
 
@@ -25,9 +26,7 @@
         "sensio/framework-extra-bundle": "2.3.*",
         "sensio/generator-bundle": "2.3.*",
         "incenteev/composer-parameter-handler": "~2.0",
-        "jms/di-extra-bundle": "1.4.*@dev",
         "jms/job-queue-bundle": "dev-master",
-        "jms/aop-bundle": "dev-master",
         "jms/serializer": "0.12.*@dev",
         "jms/serializer-bundle": "0.12.*@dev",
         "kriswallsmith/assetic": "1.1.*@dev",
@@ -52,7 +51,8 @@
         "a2lix/translation-form-bundle" : "1.*@dev",
         "mtdowling/cron-expression": "1.0.*",
         "jdare/clank-bundle": "dev-master",
-        "lexik/maintenance-bundle": "dev-master"
+        "lexik/maintenance-bundle": "dev-master",
+        "sylius/flow-bundle": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [
