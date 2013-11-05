@@ -3,6 +3,7 @@
 require_once __DIR__ . '/SymfonyRequirements.php';
 
 use Symfony\Component\Process\ProcessBuilder;
+use Symfony\Component\Intl\Intl;
 
 /**
  * This class specifies all requirements and optional recommendations that are necessary to run the Oro Application.
@@ -22,6 +23,9 @@ class OroRequirements extends SymfonyRequirements
         $jreExists = $jreExists->getProcess();
 
         $jreExists->run();
+        while ($jreExists->isRunning()) {
+            // waiting for process to finish
+        }
 
         $phpVersion  = phpversion();
         $gdVersion   = defined('GD_VERSION') ? GD_VERSION : null;
