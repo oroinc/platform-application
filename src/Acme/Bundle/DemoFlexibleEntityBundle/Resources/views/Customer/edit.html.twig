@@ -1,6 +1,4 @@
 {% extends bap.layout is defined ? bap.layout : 'AcmeDemoFlexibleEntityBundle::layout.html.twig' %}
-{% import 'OroLocaleBundle::macros.html.twig' as macros %}
-{% set format = oro_config_value('oro_user.name_format') %}
 {% set title = form.vars.value.id ? 'Edit Customer' : 'Add Customer' %}
 
 {% block page_container %}
@@ -28,11 +26,11 @@
                             <div class="clearfix-oro">
                                 <div class="sub-title">{{ 'Customer'|trans }}</div>
                                 <span class="separator">/</span>
-                                <h1 class="user-name">{{ form.vars.value.fullname(format)|default('N/A') }}</h1>
+                                <h1 class="user-name">{{ form.vars.value|default('N/A') }}</h1>
                             </div>
                             <ul class="inline">
-                                <li>{{ 'Created'|trans }}: {{ form.vars.value.created ? macros.time(form.vars.value.created) : 'N/A' }}</li>
-                                <li>{{ 'Updated'|trans }}: {{ form.vars.value.updated ? macros.time(form.vars.value.updated) : 'N/A' }}</li>
+                                <li>{{ 'Created'|trans }}: {{ form.vars.value.created ? form.vars.value.created|oro_format_datetime : 'N/A' }}</li>
+                                <li>{{ 'Updated'|trans }}: {{ form.vars.value.updated ? form.vars.value.updated|oro_format_datetime : 'N/A' }}</li>
                            </ul>
                        </div>
                    </div>
