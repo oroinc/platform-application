@@ -94,66 +94,76 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
     {
         // attribute name
         $attributeCode = 'name';
-        $productAttribute = $this->getProductManager()->createAttribute('oro_flexibleentity_text');
-        $productAttribute->setCode($attributeCode);
-        $productAttribute->setLabel('Name');
-        $productAttribute->setTranslatable(true);
-        $productAttribute->setSearchable(true);
-        $this->getProductManager()->getStorageManager()->persist($productAttribute);
-
+        $productAttribute = $this->getProductManager()->getFlexibleRepository()->findAttributeByCode($attributeCode);
+        if (!$productAttribute) {
+            $productAttribute = $this->getProductManager()->createAttribute('oro_flexibleentity_text');
+            $productAttribute->setCode($attributeCode);
+            $productAttribute->setLabel('Name');
+            $productAttribute->setTranslatable(true);
+            $productAttribute->setSearchable(true);
+            $this->getProductManager()->getStorageManager()->persist($productAttribute);
+        }
         // attribute price
         $attributeCode = 'price';
-        $productAttribute = $this->getProductManager()->createAttribute('oro_flexibleentity_price');
-        $productAttribute->setCode($attributeCode);
-        $productAttribute->setLabel('Price');
-        $productAttribute->setSearchable(true);
-        $this->getProductManager()->getStorageManager()->persist($productAttribute);
-
+        $productAttribute = $this->getProductManager()->getFlexibleRepository()->findAttributeByCode($attributeCode);
+        if (!$productAttribute) {
+            $productAttribute = $this->getProductManager()->createAttribute('oro_flexibleentity_price');
+            $productAttribute->setCode($attributeCode);
+            $productAttribute->setLabel('Price');
+            $productAttribute->setSearchable(true);
+            $this->getProductManager()->getStorageManager()->persist($productAttribute);
+        }
         // attribute description
         $attributeCode = 'description';
-        $productAttribute = $this->getProductManager()->createAttribute('oro_flexibleentity_textarea');
-        $productAttribute->setCode($attributeCode);
-        $productAttribute->setLabel('Short description');
-        $productAttribute->setTranslatable(true);
-        $productAttribute->setScopable(true);
-        $productAttribute->setSearchable(true);
-        $this->getProductManager()->getStorageManager()->persist($productAttribute);
-
+        $productAttribute = $this->getProductManager()->getFlexibleRepository()->findAttributeByCode($attributeCode);
+        if (!$productAttribute) {
+            $productAttribute = $this->getProductManager()->createAttribute('oro_flexibleentity_textarea');
+            $productAttribute->setCode($attributeCode);
+            $productAttribute->setLabel('Short description');
+            $productAttribute->setTranslatable(true);
+            $productAttribute->setScopable(true);
+            $productAttribute->setSearchable(true);
+            $this->getProductManager()->getStorageManager()->persist($productAttribute);
+        }
         // attribute size
         $attributeCode= 'size';
-        $productAttribute = $this->getProductManager()->createAttribute('oro_flexibleentity_number');
-        $productAttribute->setCode($attributeCode);
-        $productAttribute->setLabel('Size');
-        $productAttribute->setSearchable(true);
-        $this->getProductManager()->getStorageManager()->persist($productAttribute);
-
+        $productAttribute = $this->getProductManager()->getFlexibleRepository()->findAttributeByCode($attributeCode);
+        if (!$productAttribute) {
+            $productAttribute = $this->getProductManager()->createAttribute('oro_flexibleentity_number');
+            $productAttribute->setCode($attributeCode);
+            $productAttribute->setLabel('Size');
+            $productAttribute->setSearchable(true);
+            $this->getProductManager()->getStorageManager()->persist($productAttribute);
+        }
         // attribute color and translated options
         $attributeCode= 'color';
-        $productAttribute = $this->getProductManager()->createAttribute('oro_flexibleentity_multiselect');
-        $productAttribute->setCode($attributeCode);
-        $productAttribute->setLabel('Color');
-        $productAttribute->setSearchable(true);
-        $productAttribute->setTranslatable(false); // only one value but option can be translated in option values
-        $colors = array(
-            array('en_US' => 'Red', 'fr_FR' => 'Rouge', 'de_DE' => 'Rot'),
-            array('en_US' => 'Blue', 'fr_FR' => 'Bleu', 'de_DE' => 'Blau'),
-            array('en_US' => 'Green', 'fr_FR' => 'Vert', 'de_DE' => 'Grün'),
-            array('en_US' => 'Purple', 'fr_FR' => 'Violet', 'de_DE' => 'Lila'),
-            array('en_US' => 'Orange', 'fr_FR' => 'Orange', 'de_DE' => 'Orange'),
-        );
-        foreach ($colors as $color) {
-            $option = $this->getProductManager()->createAttributeOption();
-            $option->setTranslatable(true);
-            $productAttribute->addOption($option);
-            foreach ($color as $locale => $translated) {
-                $optionValue = $this->getProductManager()->createAttributeOptionValue();
-                $optionValue->setValue($translated);
-                $optionValue->setLocale($locale);
-                $option->addOptionValue($optionValue);
+        $productAttribute = $this->getProductManager()->getFlexibleRepository()->findAttributeByCode($attributeCode);
+        if (!$productAttribute) {
+            $productAttribute = $this->getProductManager()->createAttribute('oro_flexibleentity_multiselect');
+            $productAttribute->setCode($attributeCode);
+            $productAttribute->setLabel('Color');
+            $productAttribute->setSearchable(true);
+            $productAttribute->setTranslatable(false); // only one value but option can be translated in option values
+            $colors = array(
+                array('en_US' => 'Red', 'fr_FR' => 'Rouge', 'de_DE' => 'Rot'),
+                array('en_US' => 'Blue', 'fr_FR' => 'Bleu', 'de_DE' => 'Blau'),
+                array('en_US' => 'Green', 'fr_FR' => 'Vert', 'de_DE' => 'Grün'),
+                array('en_US' => 'Purple', 'fr_FR' => 'Violet', 'de_DE' => 'Lila'),
+                array('en_US' => 'Orange', 'fr_FR' => 'Orange', 'de_DE' => 'Orange'),
+            );
+            foreach ($colors as $color) {
+                $option = $this->getProductManager()->createAttributeOption();
+                $option->setTranslatable(true);
+                $productAttribute->addOption($option);
+                foreach ($color as $locale => $translated) {
+                    $optionValue = $this->getProductManager()->createAttributeOptionValue();
+                    $optionValue->setValue($translated);
+                    $optionValue->setLocale($locale);
+                    $option->addOptionValue($optionValue);
+                }
             }
+            $this->getProductManager()->getStorageManager()->persist($productAttribute);
         }
-        $this->getProductManager()->getStorageManager()->persist($productAttribute);
-
         $this->getProductManager()->getStorageManager()->flush();
     }
 
