@@ -28,8 +28,7 @@ framework:
 
 # Twig Configuration
 twig:
-    debug:                    true
-    cache:                    false
+    debug:                    "%kernel.debug%"
     strict_variables:         "%kernel.debug%"
     exception_controller:     "FOS\RestBundle\Controller\ExceptionController::showAction"
     globals:
@@ -238,7 +237,7 @@ oro_require_js:
         # @see https://github.com/jrburke/r.js/blob/master/build/example.build.js
         preserveLicenseComments: true
     # it's better to set "node" as js_engine, if nodejs is installed
-    js_engine:                node
+    js_engine:                "java -Xss10m -Xms512m -Xmx1024m -cp %kernel.root_dir%/Resources/java/js.jar org.mozilla.javascript.tools.shell.Main"
 
 oro_help:
     defaults:
