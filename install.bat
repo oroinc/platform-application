@@ -15,6 +15,7 @@ php app/console-framework doctrine:fixture:load --append --no-debug --no-interac
 php app/console-framework doctrine:fixtures:load --fixtures=src/Oro/src/Oro/Bundle/TestFrameworkBundle/Fixtures/ --append --no-debug --no-interaction --env %ENV% || goto :error
 php app/console-framework oro:navigation:init --env %ENV% || goto :error
 php app/console-framework oro:search:create-index --env %ENV% || goto :error
+php app/console-framework oro:localization:dump --env $ENV || goto :error
 php app/console-framework assets:install web --env %ENV% || goto :error
 php app/console-framework assetic:dump --env %ENV% || goto :error
 php app/console-framework oro:assetic:dump --env %ENV%|| goto :error
