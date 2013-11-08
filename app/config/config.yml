@@ -91,6 +91,7 @@ doctrine:
                 password:     "%database_password%"
                 charset:      UTF8
         types:
+            date:     Oro\Bundle\LocaleBundle\DoctrineExtensions\DBAL\Types\UTCDateType
             datetime: Oro\Bundle\LocaleBundle\DoctrineExtensions\DBAL\Types\UTCDateTimeType
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
@@ -103,6 +104,8 @@ doctrine:
 swiftmailer:
     transport:                "%mailer_transport%"
     host:                     "%mailer_host%"
+    port:                     "%mailer_port%"
+    encryption:               "%mailer_encryption%"
     username:                 "%mailer_user%"
     password:                 "%mailer_password%"
     spool:                    { type: memory }
