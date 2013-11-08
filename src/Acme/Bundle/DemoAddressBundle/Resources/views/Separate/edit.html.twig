@@ -1,5 +1,4 @@
 {% extends bap.layout is defined ? bap.layout : 'AcmeDemoFlexibleEntityBundle::layout.html.twig' %}
-{% import 'OroLocaleBundle::macros.html.twig' as macros %}
 
 {% set title = form.vars.value.id ? 'Edit Address' : 'Add Address' %}
 
@@ -13,8 +12,8 @@
                             <div class="customer-content">
                                 <h1 class="address-title">{{ form.vars.value.id ? 'Edit Address' : 'New Address' }}</h1>
                                 <ul class="inline">
-                                    <li>{{ 'Created'|trans }}: {{ form.vars.value.createdAt ? macros.time(form.vars.value.createdAt) : 'N/A' }}</li>
-                                    <li>{{ 'Updated'|trans }}: {{ form.vars.value.updatedAt ? macros.time(form.vars.value.updatedAt) : 'N/A' }}</li>
+                                    <li>{{ 'Created'|trans }}: {{ form.vars.value.createdAt ? form.vars.value.createdAt|oro_format_datetime : 'N/A' }}</li>
+                                    <li>{{ 'Updated'|trans }}: {{ form.vars.value.updatedAt ? form.vars.value.updatedAt|oro_format_datetime : 'N/A' }}</li>
                                 </ul>
                             </div>
                         </div>
