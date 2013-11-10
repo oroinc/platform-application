@@ -1,4 +1,7 @@
+/* global module, config */
 module.exports = function(config) {
+  'use strict';
+
   config.set({
     // base path, that will be used to resolve files and exclude
     basePath: '../',
@@ -8,7 +11,7 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       {pattern: 'web/bundles/**/*.js', included: false},
-      {pattern: 'src/*/src/*/Bundle/*Bundle/Tests/JS/**/*.js', included: false},
+      {pattern: 'src/*/src/*/Bundle/*Bundle/Tests/JS/**/*Spec.js', included: false},
 
       'web/js/require-config.js',
       'src/Oro/src/Oro/Bundle/TestFrameworkBundle/Karma/main.js'
