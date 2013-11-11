@@ -10,7 +10,7 @@
          }
     },
     "require": {
-        "oro/platform": "dev-master"
+        "oro/platform": "1.0.0-beta3"
     },
     "scripts": {
         "post-install-cmd": [
