@@ -10,14 +10,8 @@
          }
     },
     "require": {
-        "oro/platform": "dev-release"
+        "oro/platform": "1.0.0-beta3"
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/laboro/platform.git"
-        }
-    ],
     "scripts": {
         "post-install-cmd": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
