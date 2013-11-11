@@ -38,32 +38,11 @@ twig:
         ws:
             port:             "%websocket_port%"
             host:             "%websocket_host%"
-    form:
-        resources:
-            - 'OroUIBundle:Form:fields.html.twig'
-            - 'OroFormBundle:Form:fields.html.twig'
-            - 'OroTranslationBundle:Form:fields.html.twig'
-            - 'OroAddressBundle:Include:fields.html.twig'
-            - 'OroOrganizationBundle:Form:fields.html.twig'
-            - 'OroSecurityBundle:Form:fields.html.twig'
 
 # Assetic Configuration
 assetic:
     debug:                    false
     use_controller:           false
-    bundles:
-        - OroAsseticBundle
-        - OroAddressBundle
-        - OroUIBundle
-        - OroUserBundle
-        - OroGridBundle
-        - OroFilterBundle
-        - OroNavigationBundle
-        - OroWindowsBundle
-        - OroSegmentationTreeBundle
-        - OroEntityExtendBundle
-        - OroSecurityBundle
-        - JDareClankBundle
 
     #java: /usr/bin/java
     filters:
@@ -106,6 +85,7 @@ doctrine:
                 password:     "%database_password%"
                 charset:      UTF8
         types:
+            date:     Oro\Bundle\LocaleBundle\DoctrineExtensions\DBAL\Types\UTCDateType
             datetime: Oro\Bundle\LocaleBundle\DoctrineExtensions\DBAL\Types\UTCDateTimeType
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
@@ -118,6 +98,8 @@ doctrine:
 swiftmailer:
     transport:                "%mailer_transport%"
     host:                     "%mailer_host%"
+    port:                     "%mailer_port%"
+    encryption:               "%mailer_encryption%"
     username:                 "%mailer_user%"
     password:                 "%mailer_password%"
     spool:                    { type: memory }
@@ -160,8 +142,8 @@ be_simple_soap:
         soap:
             namespace:        http://symfony.loc/Api/1.0/
             binding:          rpc-literal
-            resource:         "%kernel.root_dir%/../app/config/soap.yml"
-            resource_type:    yml
+            resource:         .
+            resource_type:    oro_soap
 
 stof_doctrine_extensions:
     default_locale: en
@@ -237,41 +219,14 @@ lexik_maintenance:
 #
 # ORO Bundles config
 #
-oro_search:
-    engine:                   orm
-    realtime_update:          true
-
-oro_ui:
-    settings:
-        application_name:
-            value:            "ORO"
-        application_title:
-            value:            "ORO Business Application Platform"
-
-oro_translation:
-    js_translation:
-        # order of domains reflects messages fallback
-        domains:              [jsmessages, validators]
-
-oro_entity_extend:
-    backup:         "%kernel.root_dir%/entities/Extend/Backup/"
-
 oro_require_js:
-    config:
-        # @see http://requirejs.org/docs/api.html#config
-        waitSeconds: 0
-#        enforceDefine: true
-#        scriptType: 'text/javascript'
-    build_path: "js/oro.min.js"
-    building_timeout: 3600
+    build_path:               "js/oro.min.js"
+    building_timeout:         3600
     build:
         # @see https://github.com/jrburke/r.js/blob/master/build/example.build.js
-        optimize: "uglify2"
         preserveLicenseComments: true
-#        generateSourceMaps: true
-#        useSourceUrl: true
     # it's better to set "node" as js_engine, if nodejs is installed
-    js_engine: "java -Xss10m -Xms512m -Xmx1024m -cp %kernel.root_dir%/Resources/java/js.jar org.mozilla.javascript.tools.shell.Main"
+    js_engine:                "java -Xss10m -Xms512m -Xmx1024m -cp %kernel.root_dir%/Resources/java/js.jar org.mozilla.javascript.tools.shell.Main"
 
 oro_help:
     defaults:
