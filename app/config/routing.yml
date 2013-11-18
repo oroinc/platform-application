@@ -71,7 +71,7 @@ _apy_jsformvalidation:
 oro_default:
     pattern:  /
     defaults:
-        template:    AcmeDemoBundle:Default:index.html.twig
+        template:    :Default:index.html.twig
         _controller: FrameworkBundle:Template:template
 
 oro_assets:
