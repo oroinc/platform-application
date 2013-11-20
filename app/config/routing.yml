@@ -74,10 +74,6 @@ oro_default:
         template:    :Default:index.html.twig
         _controller: FrameworkBundle:Template:template
 
-oro_assets:
-    resource: .
-    type:     oro_assetic
-
 oro_auto_routing:
     resource: .
     type:     oro_auto
