@@ -16,11 +16,15 @@ Installation
 If you don't have Composer yet, download it following the instructions on
 http://getcomposer.org/ or just run the following command:
 
+```bash
     curl -s https://getcomposer.org/installer | php
+```
 
 - Clone https://github.com/orocrm/platform-application.git Platform Application project with
 
+```bash
     git clone https://github.com/orocrm/platform-application.git
+```
 
 - Make sure that you have installed Java
 
@@ -30,13 +34,21 @@ http://getcomposer.org/ or just run the following command:
   
 - Install Platform Application dependencies with composer. If installation process seems too slow you can use "--prefer-dist" option.
 
-    php composer.phar install
+```bash
+    php composer.phar install --prefer-dist
+```
 
 - Create the database (default name is "bap_standard")
 
 - Open the BAP URL and initialize application with Install Wizard
-  Alternatively with script (for Linux and Mac OS install.sh, for Windows install.bat)
-  After installation you can login as application administrator using user name "admin" and password "admin".
+
+- Alternatively with command line
+
+```bash  
+app/console oro:install
+```
+
+After installation you can login as application administrator using user name "admin" and password "admin".
 
 Instant messaging between the browser and the web server
 --------------------------------------------------------
@@ -44,6 +56,7 @@ To use this feature you need to configure parameters.yml websocket parameters an
 
  ```bash
 app/console clank:server
+```
 
 [1]:  http://symfony.com/doc/2.3/book/installation.html
 [2]:  http://getcomposer.org/
