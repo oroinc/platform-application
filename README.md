@@ -40,15 +40,23 @@ http://getcomposer.org/ or just run the following command:
 
 - Create the database (default name is "bap_standard")
 
-- Open the OroCRM URL and initialize application with Install Wizard
+- Open the BAP URL and initialize application with Install Wizard
 
-- Alternatively with command line 
+- Alternatively with command line
 
-```bash
+```bash  
 app/console oro:install
 ```
 
 After installation you can login as application administrator using user name "admin" and password "admin".
+
+Instant messaging between the browser and the web server
+--------------------------------------------------------
+To use this feature you need to configure parameters.yml websocket parameters and run server with console command
+
+ ```bash
+app/console clank:server
+```
 
 [1]:  http://symfony.com/doc/2.3/book/installation.html
 [2]:  http://getcomposer.org/
