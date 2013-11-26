@@ -2,7 +2,6 @@
 
 {% block content %}
     <div class="container-fluid">
-        {{ JSFV(form) }}
         <form id="{{ form.name }}" action="{{ path('acme_demo_form_person_create') }}" {{ form_enctype(form) }} method="post" data-collect="true" class="scrollable-substructure">
             <div class="navigation clearfix navbar-extra">
                 <div class="row">
@@ -85,5 +84,6 @@
                 </div>
             </div>
         </form>
+        {{ oro_form_js_validation(form) }}
     </div>
 {% endblock content %}
