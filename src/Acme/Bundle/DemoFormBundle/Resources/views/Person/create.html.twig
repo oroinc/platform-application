@@ -41,11 +41,11 @@
                         </div>
                     {% endif %}
                     <div data-spy="scroll" data-target="#navbarExample" data-offset="50" class="scrollspy container-fluid scrollable-container">
-                        <div class="usser-row">
+                        <div class="responsive-section">
                             <h4 id="scroll-main" class="scrollspy-title">{{ 'Overview'|trans }}</h4>
                             <div class="row-fluid row-fluid-divider">
                                 <fieldset class="form-horizontal span6">
-                                    <h5 class="usser-fiedset"><span>Basic Information</span></h5>
+                                    <h5 class="user-fiedset"><span>Basic Information</span></h5>
                                     {{ form_row(form.gender) }}
                                     {{ form_row(form.dob) }}
                                     {{ form_row(form.firstName) }}
@@ -53,7 +53,7 @@
                                     {{ form_row(form.about) }}
                                 </fieldset>
                                 <fieldset class="form-horizontal span6">
-                                    <h5 class="usser-fiedset"><span>Account Information</span></h5>
+                                    <h5 class="user-fiedset"><span>Account Information</span></h5>
                                     {{ form_row(form.username) }}
                                     {{ form_row(form.email) }}
                                     {{ form_row(form.plainPassword) }}
