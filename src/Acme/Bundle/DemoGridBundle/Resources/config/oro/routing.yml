@@ -1,0 +1,5 @@
+acme_demo_grid:
+    resource: "@AcmeDemoGridBundle/Controller/"
+    type:     annotation
+    prefix:   /{_locale}/grid/
+    defaults: { _locale: %locale% }

@@ -11,19 +11,6 @@ class AppKernel extends OroKernel
         $bundles = array(
             // BAPP bundles
             new OroPro\Bundle\EwsBundle\OroProfessionalEwsBundle(),
-
-            // BAP Demo bundles
-            new Acme\Bundle\DemoBundle\AcmeDemoBundle(),
-            new Acme\Bundle\DemoMeasureBundle\AcmeDemoMeasureBundle(),
-            new Acme\Bundle\DemoMenuBundle\AcmeDemoMenuBundle(),
-            new Acme\Bundle\DemoFlexibleEntityBundle\AcmeDemoFlexibleEntityBundle(),
-            new Acme\Bundle\DemoSegmentationTreeBundle\AcmeDemoSegmentationTreeBundle(),
-            new Acme\Bundle\DemoGridBundle\AcmeDemoGridBundle(),
-            new Acme\Bundle\DemoWindowsBundle\AcmeDemoWindowsBundle(),
-            new Acme\Bundle\DemoFilterBundle\AcmeDemoFilterBundle(),
-            new Acme\Bundle\DemoAddressBundle\AcmeDemoAddressBundle(),
-            new Acme\Bundle\DemoFormBundle\AcmeDemoFormBundle(),
-            new Acme\Bundle\DemoWorkflowBundle\AcmeDemoWorkflowBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
