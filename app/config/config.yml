@@ -43,13 +43,6 @@ twig:
 assetic:
     debug:                    false
     use_controller:           false
-    bundles:
-        - AcmeDemoBundle
-        - AcmeDemoSegmentationTreeBundle
-        - AcmeDemoWindowsBundle
-        - AcmeDemoGridBundle
-        - AcmeDemoFilterBundle
-
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -205,14 +198,6 @@ clank:
         -
             service:          "oro_wamp.db_ping"
             time:             60000                           # the time in milliseconds between the "tick" function being called
-    topic:
-        -
-            name:             "acme"                          # Important! this is the topic namespace used to match to this service!
-            service:          "acme_demo.wamp.topic_service"  # The service id.
-    rpc:
-        -
-            name:             "acme"                          # Important! this is the network namespace used to match calls to this service!
-            service:          "acme_demo.wamp.rpc_service"    # The service id.
 
 a2lix_translation_form:
     locales: [en, fr]

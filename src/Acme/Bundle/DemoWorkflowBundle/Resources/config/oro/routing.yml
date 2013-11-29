@@ -1,0 +1,4 @@
+acme_demo_workflow:
+    resource: "@AcmeDemoWorkflowBundle/Controller/"
+    type:     annotation
+    prefix:   /workflow/
