@@ -1,0 +1,4 @@
+acme_demo_filter:
+    resource: "@AcmeDemoFilterBundle/Controller/"
+    type:     annotation
+    prefix:   /filter/
