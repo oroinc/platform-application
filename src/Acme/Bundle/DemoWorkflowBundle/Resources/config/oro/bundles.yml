@@ -1,0 +1,2 @@
+bundles:
+    - { name: Acme\Bundle\DemoWorkflowBundle\AcmeDemoWorkflowBundle, priority: 100 }

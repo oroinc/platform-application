@@ -1,0 +1,2 @@
+bundles:
+    - { name: Acme\Bundle\DemoFlexibleEntityBundle\AcmeDemoFlexibleEntityBundle, priority: 100 }

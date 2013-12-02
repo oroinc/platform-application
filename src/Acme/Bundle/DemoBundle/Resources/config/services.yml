@@ -19,3 +19,8 @@ services:
 
     acme_demo.wamp.rpc_service:
         class:                      %demo_wamp_rpc_class%
+
+    acme_demo.twig.extension.debug:
+        class:        Twig_Extension_Debug
+        tags:
+             - { name: 'twig.extension' }    
