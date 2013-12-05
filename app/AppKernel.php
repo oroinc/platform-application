@@ -1,6 +1,5 @@
 <?php
 
-use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
 
 use Oro\Bundle\DistributionBundle\OroKernel;
@@ -9,7 +8,9 @@ class AppKernel extends OroKernel
 {
     public function registerBundles()
     {
-        $bundles = array();
+        $bundles = array(
+        // bundles
+        );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
