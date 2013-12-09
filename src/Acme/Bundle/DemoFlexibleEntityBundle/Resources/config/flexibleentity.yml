@@ -1,9 +1,0 @@
-entities_config:
-    Acme\Bundle\DemoFlexibleEntityBundle\Entity\Customer:
-        flexible_manager:     customer_manager
-        flexible_class:       Acme\Bundle\DemoFlexibleEntityBundle\Entity\Customer
-        flexible_value_class: Acme\Bundle\DemoFlexibleEntityBundle\Entity\CustomerValue
-    Acme\Bundle\DemoFlexibleEntityBundle\Entity\Product:
-        flexible_manager:         product_manager
-        flexible_class:           Acme\Bundle\DemoFlexibleEntityBundle\Entity\Product
-        flexible_value_class:     Acme\Bundle\DemoFlexibleEntityBundle\Entity\ProductValue
