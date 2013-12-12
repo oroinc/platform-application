@@ -2,18 +2,25 @@
 
 namespace Acme\Bundle\DemoBundle\Entity;
 
-use Oro\Bundle\FlexibleEntityBundle\Entity\Mapping\AbstractEntityFlexible;
-
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Acme\Bundle\DemoBundle\Entity\Product
  *
  * @ORM\Table(name="demo_product")
- * @ORM\Entity(repositoryClass="Oro\Bundle\FlexibleEntityBundle\Entity\Repository\FlexibleEntityRepository")
+ * @ORM\Entity
  */
-class Product extends AbstractEntityFlexible
+class Product
 {
+    /**
+     * @var integer $id
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
     /**
      * @var string $name
      *

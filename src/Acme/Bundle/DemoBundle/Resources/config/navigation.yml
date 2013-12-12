@@ -41,5 +41,3 @@ oro_menu_config:
 oro_titles:
     acme_demo_advanced_search: Search
     acme_demo_search_product: %%product.name%%
-    acme_demo_create_attribute: Add Attribute
-    acme_demo_flexibleproductdemo_edit: Edit Attribute
