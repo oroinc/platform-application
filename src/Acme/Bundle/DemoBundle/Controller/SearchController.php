@@ -7,7 +7,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 use Acme\Bundle\DemoBundle\Entity\Product;
-use Acme\Bundle\DemoBundle\Form\ProductType;
 
 use Acme\Bundle\DemoBundle\Entity\Customer;
 use Acme\Bundle\DemoBundle\Form\CustomerType;
