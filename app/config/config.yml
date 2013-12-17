@@ -229,3 +229,6 @@ oro_help:
     routes:
         oro_default:
             uri: Platform/Dashboard
+
+oro_theme:
+    active_theme: oro

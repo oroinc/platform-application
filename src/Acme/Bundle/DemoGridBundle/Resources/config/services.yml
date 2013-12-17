@@ -13,7 +13,6 @@ services:
               datagrid_name: demo_grid_users
               entity_name: Oro\Bundle\UserBundle\Entity\User
               entity_hint: users
-              flexible: true
               route_name: acme_demo_gridbundle_user_list
 #              datagrid_builder: ~
 #              list_builder: ~
