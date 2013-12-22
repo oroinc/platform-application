@@ -1,0 +1,88 @@
+imports:
+    - { resource: @OroDistributionBundle/Resources/config/security.yml }
+    - { resource: ../parameters.yml }
+
+framework:
+    #esi:             ~
+    translator:      { fallback: "%locale%" }
+    secret:          "%secret%"
+    router:
+        resource: "%kernel.root_dir%/config/dist/routing.yml"
+        strict_requirements: "%kernel.debug%"
+    form:            true
+    csrf_protection: true
+    validation:      { enable_annotations: true }
+    templating:      { engines: ['twig', 'php'] } #assets_version: SomeVersionScheme
+    default_locale:           "%locale%"
+    trusted_proxies:          ~
+    session:
+        name:                 BAPID
+        handler_id:           %session_handler%
+        save_path:            %kernel.root_dir%/cache/sessions
+        gc_maxlifetime:       3600
+    fragments:
+        enabled:              true
+        path:                 /_fragment # used for controller action in template
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        default_connection:   default
+        connections:
+            default:
+                driver:       pdo_mysql
+                host:         "%database_host%"
+                port:         "%database_port%"
+                dbname:       "%database_name%"
+                user:         "%database_user%"
+                password:     "%database_password%"
+                charset:      UTF8
+        types:
+            date:     Oro\Bundle\LocaleBundle\DoctrineExtensions\DBAL\Types\UTCDateType
+            datetime: Oro\Bundle\LocaleBundle\DoctrineExtensions\DBAL\Types\UTCDateTimeType
+    orm:
+        auto_generate_proxy_classes: "%kernel.debug%"
+        auto_mapping:         true
+        class_metadata_factory_name: Oro\Bundle\EntityExtendBundle\Mapping\ExtendClassMetadataFactory
+        resolve_target_entities:
+            Symfony\Component\Security\Core\User\UserInterface: Oro\Bundle\UserBundle\Entity\User
+        mappings:
+          Users:
+            mapping:              true
+            type:                 annotation
+            dir:                  %kernel.root_dir%/../src/Oro/src/Oro/Bundle/UserBundle/Entity
+            prefix:               Oro\Bundle\UserBundle\Entity
+            is_bundle:            false
+          Orgnaization:
+            mapping:              true
+            type:                 annotation
+            dir:                  %kernel.root_dir%/../src/Oro/src/Oro/Bundle/OrganizationBundle/Entity
+            prefix:               Oro\Bundle\OrganizationBundle\Entity
+            is_bundle:            false
+          Imap:
+            mapping:              true
+            type:                 annotation
+            dir:                  %kernel.root_dir%/../src/Oro/src/Oro/Bundle/ImapBundle/Entity
+            prefix:               Oro\Bundle\ImapBundle\Entity
+            is_bundle:            false
+          Email:
+            mapping:              true
+            type:                 annotation
+            dir:                  %kernel.root_dir%/../src/Oro/src/Oro/Bundle/EmailBundle/Entity
+            prefix:               Oro\Bundle\EmailBundle\Entity
+            is_bundle:            false
+
+# Twig Configuration
+twig:
+    debug:                    "%kernel.debug%"
+    strict_variables:         "%kernel.debug%"
+
+services:
+    oro.cache.abstract:
+        abstract:             true
+        class:                Doctrine\Common\Cache\PhpFileCache
+        arguments:            [%kernel.cache_dir%/dist]
+    twig.extension.intl:
+         class:               Twig_Extensions_Extension_Intl
+         tags:
+             - { name: twig.extension }
