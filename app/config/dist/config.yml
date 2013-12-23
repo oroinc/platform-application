@@ -24,6 +24,18 @@ framework:
         enabled:              true
         path:                 /_fragment # used for controller action in template
 
+# Assetic Configuration
+assetic:
+    debug:                    false
+    use_controller:           false
+    filters:
+        cssrewrite: ~
+        lessphp:
+            file: %kernel.root_dir%/../vendor/leafo/lessphp/lessc.inc.php
+            apply_to: "\.less$"
+        cssmin:
+            file: %kernel.root_dir%/Resources/php/cssmin-v3.0.1.php
+
 # Doctrine Configuration
 doctrine:
     dbal:
@@ -50,25 +62,25 @@ doctrine:
           Users:
             mapping:              true
             type:                 annotation
-            dir:                  %kernel.root_dir%/../src/Oro/src/Oro/Bundle/UserBundle/Entity
+            dir:                  %kernel.root_dir%/../vendor/oro/platform/src/Oro/Bundle/UserBundle/Entity
             prefix:               Oro\Bundle\UserBundle\Entity
             is_bundle:            false
           Orgnaization:
             mapping:              true
             type:                 annotation
-            dir:                  %kernel.root_dir%/../src/Oro/src/Oro/Bundle/OrganizationBundle/Entity
+            dir:                  %kernel.root_dir%/../vendor/oro/platform/src/Oro/Bundle/OrganizationBundle/Entity
             prefix:               Oro\Bundle\OrganizationBundle\Entity
             is_bundle:            false
           Imap:
             mapping:              true
             type:                 annotation
-            dir:                  %kernel.root_dir%/../src/Oro/src/Oro/Bundle/ImapBundle/Entity
+            dir:                  %kernel.root_dir%/../vendor/oro/platform/src/Oro/Bundle/ImapBundle/Entity
             prefix:               Oro\Bundle\ImapBundle\Entity
             is_bundle:            false
           Email:
             mapping:              true
             type:                 annotation
-            dir:                  %kernel.root_dir%/../src/Oro/src/Oro/Bundle/EmailBundle/Entity
+            dir:                  %kernel.root_dir%/../vendor/oro/platform/src/Oro/Bundle/EmailBundle/Entity
             prefix:               Oro\Bundle\EmailBundle\Entity
             is_bundle:            false
 
