@@ -16,7 +16,7 @@ framework:
     default_locale:           "%locale%"
     trusted_proxies:          ~
     session:
-        name:                 BAPID
+        name:                 BAPID_DIST
         handler_id:           %session_handler%
         save_path:            %kernel.root_dir%/cache/sessions
         gc_maxlifetime:       3600
