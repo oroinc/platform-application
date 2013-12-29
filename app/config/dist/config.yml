@@ -16,7 +16,7 @@ framework:
     default_locale:           "%locale%"
     trusted_proxies:          ~
     session:
-        name:                 BAPID
+        name:                 BAPID_DIST
         handler_id:           %session_handler%
         save_path:            %kernel.root_dir%/cache/sessions
         gc_maxlifetime:       3600
@@ -49,40 +49,9 @@ doctrine:
                 user:         "%database_user%"
                 password:     "%database_password%"
                 charset:      UTF8
-        types:
-            date:     Oro\Bundle\LocaleBundle\DoctrineExtensions\DBAL\Types\UTCDateType
-            datetime: Oro\Bundle\LocaleBundle\DoctrineExtensions\DBAL\Types\UTCDateTimeType
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
         auto_mapping:         true
-        class_metadata_factory_name: Oro\Bundle\EntityExtendBundle\Mapping\ExtendClassMetadataFactory
-        resolve_target_entities:
-            Symfony\Component\Security\Core\User\UserInterface: Oro\Bundle\UserBundle\Entity\User
-        mappings:
-          Users:
-            mapping:              true
-            type:                 annotation
-            dir:                  %kernel.root_dir%/../vendor/oro/platform/src/Oro/Bundle/UserBundle/Entity
-            prefix:               Oro\Bundle\UserBundle\Entity
-            is_bundle:            false
-          Orgnaization:
-            mapping:              true
-            type:                 annotation
-            dir:                  %kernel.root_dir%/../vendor/oro/platform/src/Oro/Bundle/OrganizationBundle/Entity
-            prefix:               Oro\Bundle\OrganizationBundle\Entity
-            is_bundle:            false
-          Imap:
-            mapping:              true
-            type:                 annotation
-            dir:                  %kernel.root_dir%/../vendor/oro/platform/src/Oro/Bundle/ImapBundle/Entity
-            prefix:               Oro\Bundle\ImapBundle\Entity
-            is_bundle:            false
-          Email:
-            mapping:              true
-            type:                 annotation
-            dir:                  %kernel.root_dir%/../vendor/oro/platform/src/Oro/Bundle/EmailBundle/Entity
-            prefix:               Oro\Bundle\EmailBundle\Entity
-            is_bundle:            false
 
 # Twig Configuration
 twig:

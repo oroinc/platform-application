@@ -34,7 +34,6 @@ twig:
     globals:
         bap:
             layout:           ::base.html.twig  # default layout across all Oro bundles
-            start_route:      oro_default
         ws:
             port:             "%websocket_port%"
             host:             "%websocket_host%"
@@ -83,12 +82,17 @@ doctrine:
         types:
             date:     Oro\Bundle\LocaleBundle\DoctrineExtensions\DBAL\Types\UTCDateType
             datetime: Oro\Bundle\LocaleBundle\DoctrineExtensions\DBAL\Types\UTCDateTimeType
+            time:     Oro\Bundle\LocaleBundle\DoctrineExtensions\DBAL\Types\UTCTimeType
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
         auto_mapping:         true
         class_metadata_factory_name: Oro\Bundle\EntityExtendBundle\Mapping\ExtendClassMetadataFactory
         resolve_target_entities:
             Symfony\Component\Security\Core\User\UserInterface: Oro\Bundle\UserBundle\Entity\User
+        mappings:
+            OroDistributionBundle:
+                mapping:   false
+                is_bundle: true
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -136,7 +140,7 @@ be_simple_soap:
         limit:                5
     services:
         soap:
-            namespace:        http://symfony.loc/Api/1.0/
+            namespace:        urn:OroPlatform
             binding:          rpc-literal
             resource:         .
             resource_type:    oro_soap
@@ -150,10 +154,11 @@ stof_doctrine_extensions:
             tree:             true
 
 services:
+    # this cache should be used to caching data which need to be shared between nodes in a web farm
     oro.cache.abstract:
-        abstract:             true
-        class:                Doctrine\Common\Cache\PhpFileCache
-        arguments:            [%kernel.cache_dir%]
+        abstract: true
+        class:                Oro\Bundle\SecurityBundle\Cache\FilesystemCache
+        arguments:            [%kernel.cache_dir%/oro_data]
     twig.extension.intl:
          class:               Twig_Extensions_Extension_Intl
          tags:
@@ -228,7 +233,10 @@ oro_help:
             alias: Platform
     routes:
         oro_default:
-            uri: Platform/Dashboard
+            uri: Platform/OroDashboardBundle
+
+oro_dashboard:
+    default_dashboard: main
 
 oro_theme:
     active_theme: oro

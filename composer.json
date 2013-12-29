@@ -3,16 +3,26 @@
     "description": "Oro Platform Empty Application",
     "homepage": "https://github.com/orocrm/platform-application.git",
     "license": "MIT",
+    "config": {
+        "github-oauth": {
+            "github.com": "bb8f791840e2b4fed940f4c57ed621b03d5fb2b8"
+        }
+    },
     "autoload": {
-        "psr-0": { 
-           "": "src/",
-           "OroEmail\\": "app/emails"
-         }
+        "psr-0": {
+            "": "src/",
+            "OroEmail\\": "app/emails"
+        }
     },
     "require": {
-        "oro/platform": "dev-release"
+        "oro/platform": "dev-master",
+        "oro/crm": "1.0.0-beta6"
     },
     "repositories": [
+        {
+            "type": "composer",
+            "url": "http://packagist-home.com/"
+        },
         {
             "type": "vcs",
             "url": "https://github.com/laboro/platform.git"
@@ -29,10 +39,15 @@
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
-            "Oro\\Bundle\\InstallerBundle\\Composer\\ScriptHandler::installAssets"
+            "Oro\\Bundle\\InstallerBundle\\Composer\\ScriptHandler::installAssets",
+            "php app/console cache:clear --no-warmup --env=prod --quiet"
+        ],
+        "cache-clear": [
+            "php app/console cache:clear --no-warmup --env=prod --quiet"
         ]
     },
     "minimum-stability": "dev",
+    "prefer-stable": true,
     "extra": {
         "symfony-app-dir": "app",
         "symfony-web-dir": "web",
