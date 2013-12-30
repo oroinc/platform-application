@@ -6,10 +6,25 @@ This repository contains application configuration settings and depends on Oro P
 
 Important Note: this application is not production ready and is intended for evaluation and development only!
 
+## Requirements
+
+Oro Platform is Symfony 2 based application with following requirements:
+
+* PHP 5.4.4 and above
+* PHP Extensions
+    * GD
+    * Mcrypt
+    * JSON
+    * ctype
+    * Tokenizer
+    * SimpleXML
+    * PCRE
+* MySQL 5.1 and above
+
 Installation
 ------------
 
-### Using Composer
+## Installation instructions
 
 [As both Symfony 2 and Oro Platform use [Composer][2] to manage their dependencies, this is the recommended way to install Oro Platform.]
 
@@ -40,9 +55,7 @@ http://getcomposer.org/ or just run the following command:
 
 - Create the database (default name is "bap_standard")
 
-- Open the BAP URL and initialize application with Install Wizard
-
-- Alternatively with command line
+- Initialize application with Installation Wizard by opening install.php in the browser or from CLI:
 
 ```bash  
 app/console oro:install
