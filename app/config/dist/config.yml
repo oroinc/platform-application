@@ -67,3 +67,12 @@ services:
          class:               Twig_Extensions_Extension_Intl
          tags:
              - { name: twig.extension }
+
+oro_help:
+    defaults:
+        server: http://help.orocrm.com/
+        prefix: Third_Party
+    vendors:
+        Oro:
+            prefix: ~
+            alias: Platform
