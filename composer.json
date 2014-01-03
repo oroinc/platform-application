@@ -10,7 +10,8 @@
          }
     },
     "require": {
-        "oro/platform": "1.0.0-rc1"
+        "oro/platform": "1.0.0-rc1",
+        "escapestudios/wsse-authentication-bundle": "2.3.x-dev#ac3f700a88966e6483ff84d5de2b751d7622736d"
     },
     "scripts": {
         "post-install-cmd": [
