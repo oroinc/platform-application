@@ -67,3 +67,10 @@ services:
          class:               Twig_Extensions_Extension_Intl
          tags:
              - { name: twig.extension }
+
+monolog:
+    handlers:
+        oro_distribution:
+            type: stream
+            path: %kernel.logs_dir%/%kernel.environment%.distribution.log
+            channels: oro_distribution
