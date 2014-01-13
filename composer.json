@@ -15,8 +15,7 @@
         }
     },
     "require": {
-        "oro/platform": "dev-master",
-        "oro/crm": "1.0.0-beta6"
+        "oro/platform": "dev-master"
     },
     "repositories": [
         {
