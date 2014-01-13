@@ -19,12 +19,12 @@
     },
     "repositories": [
         {
-            "type": "composer",
-            "url": "http://packagist-home.com/"
+            "type": "vcs",
+            "url": "https://github.com/laboro/platform.git"
         },
         {
             "type": "vcs",
-            "url": "https://github.com/laboro/platform.git"
+            "url": "https://github.com/laboro/crm.git"
         }
     ],
     "scripts": {
@@ -46,7 +46,7 @@
         ]
     },
     "minimum-stability": "dev",
-    "prefer-stable": true,
+    "prefer-stable": false,
     "extra": {
         "symfony-app-dir": "app",
         "symfony-web-dir": "web",
