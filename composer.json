@@ -15,17 +15,13 @@
         }
     },
     "require": {
-        "oro/platform": "dev-master",
+        "oro/platform": "1.0.x-dev",
         "escapestudios/wsse-authentication-bundle": "dev-master#ac3f700a88966e6483ff84d5de2b751d7622736d"
     },
     "repositories": [
         {
-            "type": "vcs",
-            "url": "https://github.com/laboro/platform.git"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/laboro/crm.git"
+            "type": "composer",
+            "url": "http://lab:magecore@satis.dev.orocrm.com"
         }
     ],
     "scripts": {
@@ -39,11 +35,7 @@
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
-            "Oro\\Bundle\\InstallerBundle\\Composer\\ScriptHandler::installAssets",
-            "php app/console cache:clear --no-warmup --env=prod --quiet"
-        ],
-        "cache-clear": [
-            "php app/console cache:clear --no-warmup --env=prod --quiet"
+            "Oro\\Bundle\\InstallerBundle\\Composer\\ScriptHandler::installAssets"
         ]
     },
     "minimum-stability": "dev",
