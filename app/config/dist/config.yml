@@ -76,3 +76,10 @@ oro_help:
         Oro:
             prefix: ~
             alias: Platform
+
+monolog:
+    handlers:
+        oro_distribution:
+            type: stream
+            path: %kernel.logs_dir%/%kernel.environment%.distribution.log
+            channels: oro_distribution
