@@ -19,6 +19,7 @@ class DistributionKernel extends Kernel
             new Oro\Bundle\DistributionBundle\OroDistributionBundle(),
             new \Symfony\Bundle\SecurityBundle\SecurityBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
+            new \Oro\Bundle\HelpBundle\OroHelpBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev'))) {
