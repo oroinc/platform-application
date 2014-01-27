@@ -1,14 +1,13 @@
 <?php
 
-namespace Acme\Bundle\DemoBundle\DataFixtures\Demo;
+namespace Acme\Bundle\DemoBundle\Migrations\DataFixtures\Demo\ORM\v1_0;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
-use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
 use Acme\Bundle\DemoBundle\Entity\Category;
 
-class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterface
+class LoadCategoryData extends AbstractFixture
 {
     /**
      * Load sample data
@@ -33,10 +32,5 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
         $this->addReference('CATEGORY_mocasines', $category);
 
         $manager->flush();
-    }
-
-    public function getOrder()
-    {
-        return 2; // the order in which fixtures will be loaded
     }
 }
