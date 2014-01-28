@@ -1,11 +1,10 @@
 <?php
-namespace Acme\Bundle\DemoGridBundle\DataFixtures\Demo;
+namespace Acme\Bundle\DemoGridBundle\Migrations\DataFixtures\Demo\ORM\v1_0;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
-use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 
 use Doctrine\Common\Persistence\ObjectManager;
 
@@ -18,7 +17,7 @@ use Oro\Bundle\OrganizationBundle\Entity\Manager\BusinessUnitManager;
  * @SuppressWarnings(PHPMD.TooManyMethods)
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
-class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
+class LoadUserData extends AbstractFixture implements ContainerAwareInterface
 {
     /**
      * @var BusinessUnitManager
@@ -229,15 +228,5 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
     private function flush()
     {
         $this->userManager->getStorageManager()->flush();
-    }
-
-    /**
-     * Get the order of this fixture
-     *
-     * @return integer
-     */
-    public function getOrder()
-    {
-        return 10;
     }
 }

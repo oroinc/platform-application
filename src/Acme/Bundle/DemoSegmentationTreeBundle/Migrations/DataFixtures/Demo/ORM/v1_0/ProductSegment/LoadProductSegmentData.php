@@ -1,11 +1,10 @@
 <?php
-namespace Acme\Bundle\DemoSegmentationTreeBundle\DataFixtures\Demo\ProductSegment;
+namespace Acme\Bundle\DemoSegmentationTreeBundle\Migrations\DataFixtures\Demo\ORM\v1_0\ProductSegment;
 
 use Acme\Bundle\DemoSegmentationTreeBundle\Entity\ProductSegment;
 use Acme\Bundle\DemoSegmentationTreeBundle\Entity\Product;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
-use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
 /**
@@ -17,7 +16,7 @@ use Doctrine\Common\Persistence\ObjectManager;
  * @copyright 2012 Akeneo SAS (http://www.akeneo.com)
  * @license   http://opensource.org/licenses/MIT MIT
  */
-class LoadProductSegmentData extends AbstractFixture implements OrderedFixtureInterface
+class LoadProductSegmentData extends AbstractFixture
 {
     /**
      * @var ObjectManager
@@ -109,13 +108,5 @@ class LoadProductSegmentData extends AbstractFixture implements OrderedFixtureIn
         $this->manager->persist($product);
 
         return $product;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getOrder()
-    {
-        return 1;
     }
 }
