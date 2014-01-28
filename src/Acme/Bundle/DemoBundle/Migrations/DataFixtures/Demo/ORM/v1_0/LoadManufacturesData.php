@@ -1,14 +1,13 @@
 <?php
 
-namespace Acme\Bundle\DemoBundle\DataFixtures\Demo;
+namespace Acme\Bundle\DemoBundle\Migrations\DataFixtures\Demo\ORM\v1_0;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
-use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
 use Acme\Bundle\DemoBundle\Entity\Manufacturer;
 
-class LoadManufacturesData extends AbstractFixture implements OrderedFixtureInterface
+class LoadManufacturesData extends AbstractFixture
 {
     /**
      * Load sample manufactures data
@@ -53,10 +52,5 @@ class LoadManufacturesData extends AbstractFixture implements OrderedFixtureInte
         $manufacturer->setName($name);
         $manager->persist($manufacturer);
         $this->addReference($reference, $manufacturer);
-    }
-
-    public function getOrder()
-    {
-        return 1; // the order in which fixtures will be loaded
     }
 }
