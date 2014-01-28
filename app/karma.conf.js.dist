@@ -10,11 +10,12 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      {pattern: 'web/bundles/**/*.js', included: false},
-      {pattern: 'src/*/src/*/Bundle/*Bundle/Tests/JS/**/*Spec.js', included: false},
-
       'web/js/require-config.js',
-      'src/Oro/src/Oro/Bundle/TestFrameworkBundle/Karma/main.js'
+      'src/Oro/src/Oro/Bundle/TestFrameworkBundle/Karma/main.js',
+
+      {pattern: 'web/js/**/*.js', included: false},
+      {pattern: 'web/bundles/**/*.js', included: false},
+      {pattern: 'src/*/src/*/Bundle/*Bundle/Tests/JS/**/*Spec.js', included: false}
     ],
 
     // list of files to exclude
