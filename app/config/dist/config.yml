@@ -67,3 +67,19 @@ services:
          class:               Twig_Extensions_Extension_Intl
          tags:
              - { name: twig.extension }
+
+oro_help:
+    defaults:
+        server: http://help.orocrm.com/
+        prefix: Third_Party
+    vendors:
+        Oro:
+            prefix: ~
+            alias: Platform
+
+monolog:
+    handlers:
+        oro_distribution:
+            type: stream
+            path: %kernel.logs_dir%/%kernel.environment%.distribution.log
+            channels: oro_distribution

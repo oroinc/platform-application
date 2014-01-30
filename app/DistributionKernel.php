@@ -15,9 +15,11 @@ class DistributionKernel extends Kernel
             new \Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new \Symfony\Bundle\TwigBundle\TwigBundle(),
             new \Symfony\Bundle\AsseticBundle\AsseticBundle(),
+            new \Symfony\Bundle\MonologBundle\MonologBundle(),
             new Oro\Bundle\DistributionBundle\OroDistributionBundle(),
             new \Symfony\Bundle\SecurityBundle\SecurityBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
+            new \Oro\Bundle\HelpBundle\OroHelpBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev'))) {
@@ -36,6 +38,17 @@ class DistributionKernel extends Kernel
     {
         return $this->rootDir . '/cache/dist/' . $this->environment;
     }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @api
+     */
+    public function getLogDir()
+    {
+        return $this->rootDir.'/logs/dist';
+    }
+
 
     /**
      * {@inheritdoc}
