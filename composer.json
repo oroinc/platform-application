@@ -16,7 +16,7 @@
     },
     "require": {
         "oro/platform": "1.0.x-dev",
-        "escapestudios/wsse-authentication-bundle": "dev-master#ac3f700a88966e6483ff84d5de2b751d7622736d"
+        "escapestudios/wsse-authentication-bundle": "2.3.x-dev"
     },
     "repositories": [
         {
