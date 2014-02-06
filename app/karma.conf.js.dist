@@ -13,6 +13,18 @@ module.exports = function(config) {
       'web/js/require-config.js',
       'src/Oro/src/Oro/Bundle/TestFrameworkBundle/Karma/main.js',
 
+      // test framework's libs
+      {pattern: 'src/Oro/src/Oro/Bundle/TestFrameworkBundle/Karma/lib/**/require-config.js', included: true},
+      {pattern: 'src/Oro/src/Oro/Bundle/TestFrameworkBundle/Karma/lib/**/*.js', included: false},
+
+      // fixtures
+      {
+        pattern: 'src/*/src/*/Bundle/*Bundle/Tests/JS/Fixture/**/*.html',
+        watched: true,
+        included: false,
+        served: true
+      },
+
       {pattern: 'web/js/**/*.js', included: false},
       {pattern: 'web/bundles/**/*.js', included: false},
       {pattern: 'src/*/src/*/Bundle/*Bundle/Tests/JS/**/*Spec.js', included: false}
