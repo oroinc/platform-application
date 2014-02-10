@@ -1,3 +1,0 @@
-acme_demo_measure:
-    resource: "@AcmeDemoMeasureBundle/Controller/"
-    type:     annotation
