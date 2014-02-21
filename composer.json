@@ -10,12 +10,11 @@
     },
     "autoload": {
         "psr-0": {
-            "": "src/",
-            "OroEmail\\": "app/emails"
+            "": "src/"
         }
     },
     "require": {
-        "oro/platform": "1.0.x-dev"
+        "oro/platform": "dev-release"
     },
     "repositories": [
         {
