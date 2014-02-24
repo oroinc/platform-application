@@ -1,5 +1,5 @@
 <?php
-namespace Acme\Bundle\DemoSegmentationTreeBundle\Migrations\DataFixtures\Demo\ORM\v1_0\ProductSegment;
+namespace Acme\Bundle\DemoSegmentationTreeBundle\Migrations\DataFixtures\Demo\ORM\ProductSegment;
 
 use Acme\Bundle\DemoSegmentationTreeBundle\Entity\ProductSegment;
 use Acme\Bundle\DemoSegmentationTreeBundle\Entity\Product;

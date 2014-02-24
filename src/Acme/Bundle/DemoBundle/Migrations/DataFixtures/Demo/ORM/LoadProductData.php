@@ -1,6 +1,6 @@
 <?php
 
-namespace Acme\Bundle\DemoBundle\Migrations\DataFixtures\Demo\ORM\v1_0;
+namespace Acme\Bundle\DemoBundle\Migrations\DataFixtures\Demo\ORM;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
