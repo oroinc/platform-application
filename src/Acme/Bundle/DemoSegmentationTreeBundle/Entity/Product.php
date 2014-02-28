@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @license   http://opensource.org/licenses/MIT MIT
  *
  * @ORM\Entity
- * @ORM\Table(name="acme_demosegmentationtree_product")
+ * @ORM\Table(name="acme_segmtree_product")
  */
 class Product
 {

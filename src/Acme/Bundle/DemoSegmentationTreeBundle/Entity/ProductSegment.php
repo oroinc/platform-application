@@ -17,7 +17,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @license   http://opensource.org/licenses/MIT MIT
  *
  * @ORM\Entity(repositoryClass="Oro\Bundle\SegmentationTreeBundle\Entity\Repository\SegmentRepository")
- * @ORM\Table(name="acme_demosegmentationtree_productsegment")
+ * @ORM\Table(name="acme_segmenttree_prsegment")
  * @Gedmo\Tree(type="nested")
  */
 class ProductSegment extends AbstractSegment
@@ -42,7 +42,7 @@ class ProductSegment extends AbstractSegment
 
     /**
      * @ORM\ManyToMany(targetEntity="Product")
-     * @ORM\JoinTable(name="acme_demosegmentationtree_segments_products",
+     * @ORM\JoinTable(name="acme_segmenttree_segm_prod",
      *      joinColumns={@ORM\JoinColumn(name="segment_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="product_id", referencedColumnName="id")}
      *      )
