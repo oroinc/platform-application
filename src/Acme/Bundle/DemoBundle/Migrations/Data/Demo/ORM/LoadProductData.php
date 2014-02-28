@@ -1,6 +1,6 @@
 <?php
 
-namespace Acme\Bundle\DemoBundle\Migrations\DataFixtures\Demo\ORM\v1_0;
+namespace Acme\Bundle\DemoBundle\Migrations\Data\Demo\ORM;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -20,7 +20,7 @@ class LoadProductData extends AbstractFixture implements DependentFixtureInterfa
     public function getDependencies()
     {
         return [
-            'Acme\Bundle\DemoBundle\Migrations\DataFixtures\Demo\ORM\v1_0\LoadManufacturesData'
+            'Acme\Bundle\DemoBundle\Migrations\Data\Demo\ORM\LoadManufacturesData'
         ];
     }
 
