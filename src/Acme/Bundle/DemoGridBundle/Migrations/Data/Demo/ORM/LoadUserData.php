@@ -1,5 +1,5 @@
 <?php
-namespace Acme\Bundle\DemoGridBundle\Migrations\DataFixtures\Demo\ORM\v1_0;
+namespace Acme\Bundle\DemoGridBundle\Migrations\Data\Demo\ORM;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
