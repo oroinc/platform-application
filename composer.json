@@ -17,6 +17,7 @@
         "ext-gd": "*",
         "ext-xml": "*",
         "ext-mysql": "*",
+
         "symfony/symfony": "v2.3.6",
         "doctrine/orm": "2.4.1",
         "doctrine/doctrine-bundle": "1.2.0",
