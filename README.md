@@ -47,8 +47,22 @@ http://getcomposer.org/ or just run the following command:
 ```bash  
 app/console oro:install
 ```
-
 After installation you can login as application administrator using user name "admin" and password "admin".
+
+## Installation notes
+
+Using MySQL 5.6 with HDD is potentially risky because of performance issues
+
+Recommended configuration for this case:
+
+    innodb_file_per_table = 0
+
+And ensure that timeout has default value
+
+    wait_timeout = 28800
+
+See [Optimizing InnoDB Disk I/O][3] for more
+
 
 Instant messaging between the browser and the web server
 --------------------------------------------------------
@@ -60,3 +74,4 @@ app/console clank:server
 
 [1]:  http://symfony.com/doc/2.3/book/installation.html
 [2]:  http://getcomposer.org/
+[3]:  http://dev.mysql.com/doc/refman/5.6/en/optimizing-innodb-diskio.html
