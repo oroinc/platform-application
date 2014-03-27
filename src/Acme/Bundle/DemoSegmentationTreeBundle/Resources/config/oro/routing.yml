@@ -1,4 +1,0 @@
-acme_demo_segmentation_tree:
-    resource:     "@AcmeDemoSegmentationTreeBundle/Controller"
-    type:         annotation
-    prefix:       /segmentation-tree

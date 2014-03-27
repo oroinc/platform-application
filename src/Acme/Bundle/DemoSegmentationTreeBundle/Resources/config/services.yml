@@ -1,5 +1,0 @@
-services:
-    acme_demo_segmentation_tree.product_segment_manager:
-        class: %oro_segmentation_tree.segment_manager.class%
-        arguments: [@doctrine.orm.entity_manager, 'Acme\Bundle\DemoSegmentationTreeBundle\Entity\ProductSegment']
-
