@@ -68,6 +68,7 @@ security:
                 key:                        %secret%
                 name:                       BAPRM
                 lifetime:                   1209600   # stay logged for two weeks
+                httponly:                   true
             anonymous:                      false
 
     access_control:
