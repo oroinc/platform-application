@@ -18,8 +18,16 @@
     },
     "repositories": [
         {
-            "type": "composer",
-            "url": "http://lab:magecore@satis.dev.orocrm.com"
+            "type": "vcs",
+            "url": "https://github.com/laboro/platform.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/laboro/crm.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/laboro/OroCRMMagentoContactUsBundle.git"
         }
     ],
     "scripts": {

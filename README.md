@@ -6,8 +6,23 @@ This repository contains application configuration settings and depends on Oro P
 
 Important Note: this application is not production ready and is intended for evaluation and development only!
 
-Installation
-------------
+## Requirements
+
+Oro Platform is Symfony 2 based application with following requirements:
+
+* PHP 5.4.4 and above
+* PHP Extensions
+    * GD
+    * Mcrypt
+    * JSON
+    * ctype
+    * Tokenizer
+    * SimpleXML
+    * PCRE
+    * ICU
+* MySQL 5.1 and above
+
+## Installation instructions
 
 ### Using Composer
 
@@ -51,6 +66,8 @@ After installation you can login as application administrator using user name "a
 
 ## Installation notes
 
+Installed PHP Accelerators must be compatible with Symfony and Doctrine (support DOCBLOCKs)
+
 Using MySQL 5.6 with HDD is potentially risky because of performance issues
 
 Recommended configuration for this case:
@@ -64,13 +81,18 @@ And ensure that timeout has default value
 See [Optimizing InnoDB Disk I/O][3] for more
 
 
-Instant messaging between the browser and the web server
---------------------------------------------------------
+## Instant messaging between the browser and the web server
+
 To use this feature you need to configure parameters.yml websocket parameters and run server with console command
 
  ```bash
 app/console clank:server
 ```
+Configure crontab or scheduled tasks execution to run command below every minute:
+
+ ```bash
+    php app/console oro:cron
+ ```
 
 [1]:  http://symfony.com/doc/2.3/book/installation.html
 [2]:  http://getcomposer.org/

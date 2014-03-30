@@ -1,3 +1,51 @@
+CHANGELOG for 1.0.0
+===================
+This changelog references the relevant changes (new features, changes and bugs) done in 1.0.0 versions.
+
+* 1.0.0 (2014-04-01)
+ * Workflow management UI
+ * Segmentation
+ * Reminders
+ * Package management
+ * Page & Grand totals for grids
+ * Proper formatting of Money and Percent values
+ * Configurable Sidebars
+ * Notification of content changes in the Pinbar
+
+CHANGELOG for 1.0.0-rc3
+===================
+This changelog references the relevant changes (new features, changes and bugs) done in 1.0.0-rc3 versions.
+
+* 1.0.0-rc3 (2014-02-25)
+ * Embedded forms
+ * CSV export
+
+CHANGELOG for 1.0.0-rc2
+===================
+This changelog references the relevant changes (new features, changes and bugs) done in 1.0.0-rc2 versions.
+
+* 1.0.0-rc2 (2014-01-30)
+ * Package management
+ * Translations management
+ * FontAwesome web-application icons
+
+CHANGELOG for 1.0.0-rc1
+===================
+This changelog references the relevant changes (new features, changes and bugs) done in 1.0.0-rc1 versions.
+
+* 1.0.0-rc1 (2013-12-30)
+ * Table reports creation wizard
+ * Manageable labels of entities and entity fields
+ * Record updates notification
+ * Sidebars widgets
+ * Mobile Web
+ * Package Definition and Management
+ * Themes
+ * Notifications for owners
+ * --force option for oro:install
+ * Remove old Grid bundle
+ * Basic dashboards
+
 CHANGELOG for 1.0.0-beta5
 ===================
 This changelog references the relevant changes (new features, changes and bugs) done in 1.0.0-beta5 versions.
