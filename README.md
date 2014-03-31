@@ -11,6 +11,7 @@ Important Note: this application is not production ready and is intended for eva
 Oro Platform is Symfony 2 based application with following requirements:
 
 * PHP 5.4.4 and above
+* PHP 5.4.4 and above command line interface
 * PHP Extensions
     * GD
     * Mcrypt
