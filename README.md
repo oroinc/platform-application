@@ -1,16 +1,16 @@
 Oro Platform Empty Application
 ==============================
 
-An example of empty application built using the Oro Platform.
+An example of an empty application using the Oro Platform.
 
-This repository contains application configuration settings and depends on Oro Platform. It can be used as a base for new application creation.
+This repository contains application configuration settings and depends on Oro Platform. It can be used as a starting point to build applications using the oro Platform.
 
 ## Requirements
 
-Oro Platform is Symfony 2 based application with following requirements:
+Oro Platform is a Symfony 2 based application with the following requirements:
 
-* PHP 5.4.4 and above
-* PHP 5.4.4 and above command line interface
+* PHP 5.4.4 or above
+* PHP 5.4.4 or above with command line interface
 * PHP Extensions
     * GD
     * Mcrypt
@@ -20,15 +20,15 @@ Oro Platform is Symfony 2 based application with following requirements:
     * SimpleXML
     * PCRE
     * ICU
-* MySQL 5.1 and above
+* MySQL 5.1 or above
 
 ## Installation instructions
 
 ### Using Composer
 
-As both Symfony 2 and Oro Platform use [Composer][2] to manage their dependencies, this is the recommended way to install Oro Platform.
+As both Symfony 2 and Oro Platform use [Composer][2] to manage their dependencies, this is the recommended way to install the Oro Platform.
 
-If you don't have Composer yet, download it following the instructions on
+If you don't have Composer yet, download it and follow the instructions on
 http://getcomposer.org/ or just run the following command:
 
 ```bash
@@ -58,13 +58,13 @@ php composer.phar install --prefer-dist
 php app/console oro:install
 ```
 
-- Enable instant messaging between the browser and the web server
+- Enable WebSockets messaging
 
 ```bash
 php app/console clank:server --env prod
 ```
 
-- Configure crontab or scheduled tasks execution to run command below every minute:
+- Configure crontab or scheduled tasks execution to run the command below every minute:
 
 ```bash
 php app/console oro:cron
@@ -76,7 +76,7 @@ php app/console oro:cron
 
 Installed PHP Accelerators must be compatible with Symfony and Doctrine (support DOCBLOCKs)
 
-Using MySQL 5.6 with HDD is potentially risky because of performance issues
+Using MySQL 5.6 on HDD is potentially risky because of performance issues
 
 Recommended configuration for this case:
 
