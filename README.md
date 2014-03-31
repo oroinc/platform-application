@@ -92,7 +92,7 @@ app/console clank:server
 Configure crontab or scheduled tasks execution to run command below every minute:
 
  ```bash
-    php app/console oro:cron
+php app/console oro:cron
  ```
 
 [1]:  http://symfony.com/doc/2.3/book/installation.html
