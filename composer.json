@@ -9,7 +9,7 @@
         }
     },
     "require": {
-        "oro/platform": "1.0.0-rc3"
+        "oro/platform": "1.0.0"
     },
     "scripts": {
         "post-install-cmd": [
