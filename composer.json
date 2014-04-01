@@ -8,6 +8,12 @@
             "": "src/"
         }
     },
+    "repositories": [
+       {
+            "type": "composer",
+            "url": "http://packagist.orocrm.com"
+        }
+    ],
     "require": {
         "oro/platform": "1.0.0"
     },
