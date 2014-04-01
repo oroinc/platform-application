@@ -88,6 +88,10 @@ And ensure that timeout has default value
 
 See [Optimizing InnoDB Disk I/O][3] for more
 
+## Package Manager Configuration
+
+Github OAuth token should be configured in package manager settings
+
 
 [1]:  http://symfony.com/doc/2.3/book/installation.html
 [2]:  http://getcomposer.org/
