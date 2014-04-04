@@ -96,3 +96,4 @@ Github OAuth token should be configured in package manager settings
 [1]:  http://symfony.com/doc/2.3/book/installation.html
 [2]:  http://getcomposer.org/
 [3]:  http://dev.mysql.com/doc/refman/5.6/en/optimizing-innodb-diskio.html
+[4]:  http://nodejs.org/
