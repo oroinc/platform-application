@@ -19,12 +19,14 @@
 
     <testsuites>
         <testsuite name="Project Test Suite">
+            <directory suffix="Test.php">../src/*/src/*/Component/*/Tests/Unit</directory>
             <directory suffix="Test.php">../src/*/src/*/Bundle/*Bundle/Tests/Unit</directory>
             <directory suffix="Test.php">../src/*/src/*/Bundle/*Bundle/Tests/Functional</directory>
             <directory suffix="Test.php">../src/*/Bundle/*Bundle/Tests/Unit</directory>
             <directory suffix="Test.php">../src/*/Bundle/*Bundle/Tests/Functional</directory>
         </testsuite>
         <testsuite name="Project Unit Tests">
+            <directory suffix="Test.php">../src/*/src/*/Component/*/Tests/Unit</directory>
             <directory suffix="Test.php">../src/*/src/*/Bundle/*Bundle/Tests/Unit</directory>
             <directory suffix="Test.php">../src/*/Bundle/*Bundle/Tests/Unit</directory>
         </testsuite>
@@ -75,6 +77,8 @@
             <exclude>
                 <directory>../vendor</directory>
                 <directory>../src/*/tests</directory>
+                <directory>../src/*/Component/*/Tests</directory>
+                <directory>../src/*/src/*/Component/*/Tests</directory>
                 <directory>../src/*/src/*/Bundle/TestFrameworkBundle</directory>
                 <directory>../src/*/Bundle/*Bundle/DataFixtures</directory>
                 <directory>../src/*/Bundle/*Bundle/Resources</directory>
