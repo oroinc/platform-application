@@ -3,6 +3,7 @@
     "description": "The \"OroCRM Development Edition\" distribution",
     "autoload": {
         "psr-0": {
+            "Oro\\Component": "src/Oro/src",
             "Oro\\Bundle": "src/Oro/src",
             "OroPro\\Bundle": "src/OroPro/src",
             "OroCRM\\Bundle": "src/OroCRM/src",
@@ -58,7 +59,8 @@
         "luxifer/doctrine-functions": "dev-master",
         "nesbot/Carbon": "1.8.*",
         "akeneo/batch-bundle": "0.1.2",
-        "monolog/monolog": "1.7.*"
+        "monolog/monolog": "1.7.*",
+        "ocramius/proxy-manager": "0.4.*"
     },
     "scripts": {
         "post-install-cmd": [
