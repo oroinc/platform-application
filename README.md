@@ -76,6 +76,8 @@ php app/console oro:cron --env prod
 
 Installed PHP Accelerators must be compatible with Symfony and Doctrine (support DOCBLOCKs)
 
+Note that the port used in Websocket must be open in firewall for outgoing/incoming connections
+
 Using MySQL 5.6 on HDD is potentially risky because of performance issues
 
 Recommended configuration for this case:
@@ -88,11 +90,14 @@ And ensure that timeout has default value
 
 See [Optimizing InnoDB Disk I/O][3] for more
 
+## Web Server Configuration
+
+The Oro Platform application is based on symfony standard application so web server cofiguration recomendation are the [same][4].
+
 ## Package Manager Configuration
 
 Github OAuth token should be configured in package manager settings
-
-
 [1]:  http://symfony.com/doc/2.3/book/installation.html
 [2]:  http://getcomposer.org/
 [3]:  http://dev.mysql.com/doc/refman/5.6/en/optimizing-innodb-diskio.html
+[4]:  http://symfony.com/doc/2.3/cookbook/configuration/web_server_configuration.html
