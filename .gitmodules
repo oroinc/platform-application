@@ -1,6 +1,3 @@
 [submodule "src/Oro"]
 	path = src/Oro
 	url = git@github.com:laboro/platform.git
-[submodule "src/OroPro"]
-	path = src/OroPro
-	url = git@github.com:laboro/platform-professional.git
