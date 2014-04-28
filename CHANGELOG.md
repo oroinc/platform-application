@@ -1,3 +1,13 @@
+CHANGELOG for 1.1.0
+===================
+This changelog references the relevant changes (new features, changes and bugs) done in 1.1.0 versions.
+
+* 1.1.0 (2014-04-28)
+ * Dashboard management
+ * Fixed problem with creation of on-demand segments
+ * Fixed broken WSSE authentication
+ * Fixed Incorrectly calculated totals in grids
+
 CHANGELOG for 1.0.0
 ===================
 This changelog references the relevant changes (new features, changes and bugs) done in 1.0.0 versions.
