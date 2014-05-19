@@ -247,7 +247,6 @@ class OroRequirements extends SymfonyRequirements
         return (float) $val;
     }
     
-
     /**
      * {@inheritdoc}
      */
