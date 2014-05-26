@@ -15,7 +15,7 @@
         }
     ],
     "require": {
-        "oro/platform": "1.1.0"
+        "oro/platform": "1.1.1"
     },
     "scripts": {
         "post-install-cmd": [
