@@ -84,8 +84,6 @@ doctrine:
             date:     Oro\Bundle\LocaleBundle\DoctrineExtensions\DBAL\Types\UTCDateType
             datetime: Oro\Bundle\LocaleBundle\DoctrineExtensions\DBAL\Types\UTCDateTimeType
             time:     Oro\Bundle\LocaleBundle\DoctrineExtensions\DBAL\Types\UTCTimeType
-            percent:  Oro\Bundle\EntityBundle\Entity\Type\PercentType
-            money:    Oro\Bundle\EntityBundle\Entity\Type\MoneyType
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
         auto_mapping:         true
