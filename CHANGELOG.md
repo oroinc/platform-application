@@ -1,3 +1,57 @@
+CHANGELOG for 1.2.0
+===================
+This changelog references the relevant changes (new features, changes and bugs) done in 1.2.0 versions.
+
+* 1.2.0 (2014-05-28)
+ * Ability to delete Channels
+ * Workflow view
+ * Reset of Workflow data
+ * Line charts in Reports
+ * Fixed issues with Duplicated emails
+ * Fixed Issue Use of SQL keywords as extended entity field names
+ * Fixed Issue Creating one-to-many relationship on custom entity that inverses many-to-one relationship fails
+ * Fixed Community requests
+
+CHANGELOG for 1.2.0-rc1
+===================
+This changelog references the relevant changes (new features, changes and bugs) done in 1.2.0 RC1 versions.
+
+* 1.2.0 RC1 (2014-05-12)
+ * Ability to delete Channels
+ * Workflow view
+ * Reset of Workflow data
+ * Fixed issues with Duplicated emails
+ * Fixed Issue Use of SQL keywords as extended entity field names
+ * Fixed Issue Creating one-to-many relationship on custom entity that inverses many-to-one relationship fails
+
+CHANGELOG for 1.1.0
+===================
+This changelog references the relevant changes (new features, changes and bugs) done in 1.1.0 versions.
+
+* 1.1.0 (2014-04-28)
+ * Dashboard management
+ * Fixed problem with creation of on-demand segments
+ * Fixed broken WSSE authentication
+ * Fixed Incorrectly calculated totals in grids
+
+CHANGELOG for 1.0.1
+===================
+This changelog references the relevant changes (new features, changes and bugs) done in 1.0.1 versions.
+
+* 1.0.1 (2014-04-18)
+ * Issue #3979 – Problems with DB server verification on install
+ * Issue #3916 – Memory consumption is too high on installation
+ * Issue #3918 – Problems with installation of packages from console
+ * Issue #3841 – Very slow installation of packages
+ * Issue #3916 – Installed application is not working correctly because of knp-menu version
+ * Issue #3839 – Cache regeneration is too slow
+ * Issue #3525 – Broken filters on Entity Configuration grid
+ * Issue #3974 – Settings are not saved in sidebar widgets 
+ * Issue #3962 – Workflow window opens with a significant delay
+ * Issue #2203 – Incorrect timezone processing in Calendar
+ * Issue #3909 – Multi-selection filters might be too long
+ * Issue #3899 – Broken link from Opportunity to related Contact Request
+
 CHANGELOG for 1.0.0
 ===================
 This changelog references the relevant changes (new features, changes and bugs) done in 1.0.0 versions.
@@ -63,7 +117,6 @@ CHANGELOG for 1.0.0-beta4
 This changelog references the relevant changes (new features, changes and bugs) done in 1.0.0-beta4 versions.
 
 * 1.0.0-beta4 (2013-11-21)
- * Removed install.bat/install.sh 
  * Grid refactoring
  * Form validation improvements
  * Make all entities as Extended
