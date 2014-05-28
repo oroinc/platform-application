@@ -14,7 +14,7 @@ class OroRequirements extends SymfonyRequirements
     const REQUIRED_GD_VERSION   = '2.0';
     const REQUIRED_CURL_VERSION = '7.0';
     const REQUIRED_ICU_VERSION  = '3.8';
-    
+
     const EXCLUDE_REQUIREMENTS_MASK = '/5\.3\.(3|4|8|16)|5\.4\.0/';
 
     public function __construct()
