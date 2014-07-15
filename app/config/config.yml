@@ -90,7 +90,10 @@ doctrine:
             OroDistributionBundle:
                 mapping:   false
                 is_bundle: true
-                
+        metadata_cache_driver:
+            type: service
+            id: doctrine.metadata.cache
+
         dql:
             datetime_functions:
                 date:         Luxifer\DQL\Datetime\Date
@@ -168,6 +171,10 @@ services:
         factory_service:      doctrine.dbal.default_connection
         factory_method:       getWrappedConnection
         class:                PDO
+    doctrine.metadata.cache:
+        parent: oro.cache.abstract
+        calls:
+            - [ setNamespace, [ "doctrine.metadata.cache" ] ]
     session.handler.pdo:
         class:                Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler
         arguments:
