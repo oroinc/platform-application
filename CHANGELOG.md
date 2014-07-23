@@ -1,3 +1,15 @@
+CHANGELOG for 1.3.0
+===================
+This changelog references the relevant changes (new features, changes and bugs) done in 1.3.0 versions.
+
+* 1.3.0 (2014-07-23)
+ * Redesign of the Navigation panel and left-side menu bar
+ * Website event tracking
+ * Processes
+ * New custom field types for entities: File and Image
+ * New control for record lookup (relations)
+ * Data import in CSV format
+
 CHANGELOG for 1.2.0
 ===================
 This changelog references the relevant changes (new features, changes and bugs) done in 1.2.0 versions.
