@@ -9,8 +9,8 @@ This repository contains application configuration settings and depends on Oro P
 
 Oro Platform is a Symfony 2 based application with the following requirements:
 
-* PHP 5.4.4 or above
-* PHP 5.4.4 or above with command line interface
+* PHP 5.4.9 or above
+* PHP 5.4.9 or above with command line interface
 * PHP Extensions
     * GD
     * Mcrypt
@@ -21,6 +21,7 @@ Oro Platform is a Symfony 2 based application with the following requirements:
     * PCRE
     * ICU
 * MySQL 5.1 or above
+* PostgreSQL 9.1 or above
 
 ## Installation instructions
 
@@ -89,6 +90,15 @@ And ensure that timeout has default value
     wait_timeout = 28800
 
 See [Optimizing InnoDB Disk I/O][3] for more
+
+## PostgreSQL installation notes
+
+You need to load `uuid-ossp` extension for proper doctrine's `guid` type handling.
+Log into database and run sql query:
+
+```
+CREATE EXTENSION "uuid-ossp";
+```
 
 ## Web Server Configuration
 
