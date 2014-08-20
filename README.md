@@ -48,7 +48,7 @@ http://getcomposer.org/ or just run the following command:
   Go to crm-application folder and run composer installation:
 
 ```bash
-php composer.phar install --prefer-dist
+php composer.phar install --prefer-dist --no-dev
 ```
 
 - Create the database with the name specified on previous step (default name is "bap_standard").
