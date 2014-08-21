@@ -73,6 +73,28 @@ php app/console oro:cron --env prod
  
 **Note:** ``app/console`` is a path from project root folder. Please make sure you are using full path for crontab configuration or if you running console command from other location.
 
+### Using vagrant (for development)
+
+If you want to use the provided vagrant setup, make sure you have [vagrant](http://docs.vagrantup.com/v2/installation/) and [VirtualBox](https://www.virtualbox.org/wiki/Downloads) installed on your machine. Then run the following command
+
+```bash
+vagrant up
+```
+
+To actually setup the application, you have to login to your vagrant box and start the installation:
+```bash
+vagrant ssh # connect to the virtual machine
+php app/console oro:install --env prod # start the oro installation
+```
+
+To be able to easily access your vagrant setup on your host system, add a new host entry (usually in `/etc/hosts`):
+
+```
+172.21.33.72  oroplatform.lo
+```
+
+After that you'll be able to access your installation using the following URL: http://oroplatform.lo
+
 ## Installation notes
 
 Installed PHP Accelerators must be compatible with Symfony and Doctrine (support DOCBLOCKs)

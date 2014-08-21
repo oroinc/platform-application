@@ -4,8 +4,8 @@
 /.idea
 /node_modules
 /composer.phar
-composer.lock
 /build/logs/*
+/.vagrant/*
 /vendor
 /cov
 /web/bundles
