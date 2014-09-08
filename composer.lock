@@ -3366,7 +3366,7 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:orocrm/platform.git",
-                "reference": "6e7c1740e89cdd416db48cf338045fd90e01e6be"
+                "reference": "6bd95d677e56b1d9ad9ee2146cd3e890d975d9d2"
             },
             "require": {
                 "a2lix/translation-form-bundle": "1.2",
@@ -3445,7 +3445,7 @@
             ],
             "description": "Business Application Platform (BAP)",
             "homepage": "https://github.com/orocrm/platform.git",
-            "time": "2014-09-05 06:17:45"
+            "time": "2014-09-06 06:10:45"
         },
         {
             "name": "phpcollection/phpcollection",
