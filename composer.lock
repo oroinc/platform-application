@@ -3304,16 +3304,16 @@
         },
         {
             "name": "oro/doctrine-extensions",
-            "version": "1.0.3",
+            "version": "1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orocrm/doctrine-extensions.git",
-                "reference": "250471c9fcd9cd2e6c6d7000e58493dda757f0aa"
+                "reference": "50d111475daa3608c73ca97a9e6698f8914b308b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/orocrm/doctrine-extensions/zipball/250471c9fcd9cd2e6c6d7000e58493dda757f0aa",
-                "reference": "250471c9fcd9cd2e6c6d7000e58493dda757f0aa",
+                "url": "https://api.github.com/repos/orocrm/doctrine-extensions/zipball/50d111475daa3608c73ca97a9e6698f8914b308b",
+                "reference": "50d111475daa3608c73ca97a9e6698f8914b308b",
                 "shasum": ""
             },
             "require": {
@@ -3353,7 +3353,7 @@
                 "postgresql",
                 "type"
             ],
-            "time": "2014-08-08 19:26:37"
+            "time": "2014-09-18 11:53:25"
         },
         {
             "name": "oro/platform",
@@ -3361,12 +3361,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/orocrm/platform.git",
-                "reference": "e2dcefc83d3c121c197f04d5e55c34759d1928b4"
+                "reference": "1d8d85d249270d2519c36cbc7f037f1ea8c8470f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/orocrm/platform/zipball/e2dcefc83d3c121c197f04d5e55c34759d1928b4",
-                "reference": "e2dcefc83d3c121c197f04d5e55c34759d1928b4",
+                "url": "https://api.github.com/repos/orocrm/platform/zipball/1d8d85d249270d2519c36cbc7f037f1ea8c8470f",
+                "reference": "1d8d85d249270d2519c36cbc7f037f1ea8c8470f",
                 "shasum": ""
             },
             "require": {
@@ -3446,7 +3446,7 @@
             ],
             "description": "Business Application Platform (BAP)",
             "homepage": "https://github.com/orocrm/platform.git",
-            "time": "2014-09-17 09:44:08"
+            "time": "2014-09-18 06:11:00"
         },
         {
             "name": "phpcollection/phpcollection",
