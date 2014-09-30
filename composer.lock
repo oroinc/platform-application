@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "63511b9372eddae051425425df90c028",
+    "hash": "aca4690ae11c03560df9acf660cc9581",
     "packages": [
         {
             "name": "a2lix/translation-form-bundle",
@@ -2665,7 +2665,7 @@
                     "email": "stof@notk.org"
                 },
                 {
-                    "name": "KnpLabs",
+                    "name": "Knplabs",
                     "homepage": "http://knplabs.com"
                 },
                 {
@@ -2721,7 +2721,7 @@
                     "email": "stof@notk.org"
                 },
                 {
-                    "name": "KnpLabs",
+                    "name": "Knplabs",
                     "homepage": "http://knplabs.com"
                 },
                 {
@@ -3349,16 +3349,16 @@
         },
         {
             "name": "oro/platform",
-            "version": "dev-master",
+            "version": "1.4.0-rc1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orocrm/platform.git",
-                "reference": "75d87d90ea3fe039d9c9196994e24b2d5191a9c4"
+                "reference": "4310021103a980381bcc4602303e958723bf1f56"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/orocrm/platform/zipball/75d87d90ea3fe039d9c9196994e24b2d5191a9c4",
-                "reference": "75d87d90ea3fe039d9c9196994e24b2d5191a9c4",
+                "url": "https://api.github.com/repos/orocrm/platform/zipball/4310021103a980381bcc4602303e958723bf1f56",
+                "reference": "4310021103a980381bcc4602303e958723bf1f56",
                 "shasum": ""
             },
             "require": {
@@ -3426,7 +3426,7 @@
                     "Oro\\Bundle": "src/"
                 }
             },
-            "notification-url": "http://packagist.orocrm.com/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -3438,7 +3438,7 @@
             ],
             "description": "Business Application Platform (BAP)",
             "homepage": "https://github.com/orocrm/platform.git",
-            "time": "2014-09-30 06:12:37"
+            "time": "2014-09-30 15:51:42"
         },
         {
             "name": "phpcollection/phpcollection",
@@ -4890,12 +4890,21 @@
             "time": "2013-04-15 11:43:47"
         }
     ],
-    "packages-dev": [],
-    "aliases": [],
+    "packages-dev": [
+
+    ],
+    "aliases": [
+
+    ],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "oro/platform": 20
-    },
-    "platform": [],
-    "platform-dev": []
+    "stability-flags": [
+
+    ],
+    "prefer-stable": true,
+    "platform": [
+
+    ],
+    "platform-dev": [
+
+    ]
 }
