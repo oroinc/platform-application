@@ -1,7 +1,7 @@
 <?php
+
 /**
  * This is tracking endpoint, which must be as fast as possible.
- * KISS.
  */
 
 $trackingFolder = '../app/logs/tracking';
@@ -142,6 +142,6 @@ if ($settings['piwik_host']) {
     passDataToUrl($piwikTrackingUrl);
 }
 
-//Send 1x1 blank gif
+// Send 1x1 blank gif
 header('Content-Type: image/gif');
 echo base64_decode('R0lGODlhAQABAJAAAP8AAAAAACH5BAUQAAAALAAAAAABAAEAAAICBAEAOw==');

@@ -1,0 +1,23 @@
+oro_distribution:
+    entry_point: ~
+
+oro_require_js:
+    build_path:               "js/oro.min.js"
+    building_timeout:         3600
+    build:
+        preserveLicenseComments: true
+
+oro_help:
+    defaults:
+        server: http://help.orocrm.com/
+        prefix: Third_Party
+    vendors:
+        Oro:
+            prefix: ~
+            alias: Platform
+    routes:
+        oro_default:
+            uri: Platform/OroDashboardBundle
+
+oro_theme:
+    active_theme: oro

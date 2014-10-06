@@ -13,12 +13,19 @@ parameters:
     mailer_user:            ~
     mailer_password:        ~
 
+    locale:            en
+
+    # A secret key that's used to generate certain security-related tokens
+    secret:            ThisTokenIsNotSoSecretChangeIt
+
+    debug_toolbar:          true
+    debug_redirects:        false
+    use_assetic_controller: true
+
     # WebSocket server config
     websocket_host:         "127.0.0.1"
     websocket_port:         8080
 
     session_handler:        session.handler.native_file
 
-    locale:                 en
-    secret:                 ThisTokenIsNotSoSecretChangeIt
     installed:              ~

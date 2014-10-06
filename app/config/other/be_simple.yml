@@ -1,0 +1,11 @@
+be_simple_soap:
+    cache:
+        type:                 disk
+        lifetime:             86400
+        limit:                5
+    services:
+        soap:
+            namespace:        urn:OroPlatform
+            binding:          rpc-literal
+            resource:         .
+            resource_type:    oro_soap

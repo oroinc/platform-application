@@ -1,15 +1,22 @@
 <?php
 
 use Doctrine\Common\Annotations\AnnotationRegistry;
+use Composer\Autoload\ClassLoader;
+use Symfony\Component\VarDumper\VarDumper;
 
-$loader = require __DIR__.'/../vendor/autoload.php';
-
-// intl
-if (!function_exists('intl_get_error_code')) {
-    require_once __DIR__.'/../vendor/symfony/symfony/src/Symfony/Component/Locale/Resources/stubs/functions.php';
-
-    $loader->add('', __DIR__.'/../vendor/symfony/symfony/src/Symfony/Component/Locale/Resources/stubs');
+if (!function_exists('dump')) {
+    function dump($var)
+    {
+        foreach (func_get_args() as $var) {
+            VarDumper::dump($var);
+        }
+    }
 }
+
+/**
+ * @var ClassLoader $loader
+ */
+$loader = require __DIR__.'/../vendor/autoload.php';
 
 AnnotationRegistry::registerLoader(array($loader, 'loadClass'));
 

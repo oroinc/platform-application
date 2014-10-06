@@ -1,21 +1,16 @@
 imports:
-    - { resource: config_prod.yml }
-    - { resource: parameters_test.yml }
-    - { resource: security_test.yml }
+    - { resource: config_dev.yml }
 
 framework:
     test: ~
     session:
         storage_id: session.storage.mock_file
-    csrf_protection: true
     profiler:
-        enabled: false
+        collect: false
 
-services:
-    twig.extension.debug:
-        class: Twig_Extensions_Extension_Debug
-        tags:
-            - { name: twig.extension }
+web_profiler:
+    toolbar: false
+    intercept_redirects: false
 
 swiftmailer:
     disable_delivery: true
