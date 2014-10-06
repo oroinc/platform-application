@@ -39,7 +39,7 @@ class DistributionKernel extends Kernel
      */
     public function getCacheDir()
     {
-        return $this->rootDir . '/cache/dist/' . $this->environment;
+        return $this->rootDir.'/cache/dist/'.$this->environment;
     }
 
     /**
@@ -58,6 +58,6 @@ class DistributionKernel extends Kernel
      */
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
-        $loader->load(__DIR__ . '/config/dist/config_' . $this->getEnvironment().'.yml');
+        $loader->load(__DIR__.'/config/dist/config_'.$this->getEnvironment().'.yml');
     }
 }
