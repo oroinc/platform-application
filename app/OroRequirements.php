@@ -336,6 +336,21 @@ class OroRequirements extends SymfonyRequirements
      */
     protected function checkNodeExists()
     {
+        /**
+         * Fix for ubuntu
+         */
+        $nodeExists = new ProcessBuilder(array('nodejs', '--version'));
+        $nodeExists = $nodeExists->getProcess();
+
+        if (isset($_SERVER['PATH'])) {
+            $nodeExists->setEnv(array('PATH' => $_SERVER['PATH']));
+        }
+        $nodeExists->run();
+
+        if ($nodeExists->getErrorOutput() === null) {
+            return $nodeExists->getErrorOutput() === null;
+        }
+        
         $nodeExists = new ProcessBuilder(array('node', '--version'));
         $nodeExists = $nodeExists->getProcess();
 
