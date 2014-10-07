@@ -42,7 +42,11 @@ http://getcomposer.org/ or just run the following command:
     git clone https://github.com/orocrm/platform-application.git
 ```
 
-- Make sure that you have [NodeJS][4] installed
+- Make sure that you have [NodeJS][5] installed or another Js Engine eg. Rhino. (If using NodeJS and Ubuntu ensure you set the config.yml with the following).
+```
+oro_require_js:
+    js_engine:                "nodejs"
+```
 
 - Install OroCRM dependencies with composer. If installation process seems too slow you can use "--prefer-dist" option.
   Go to crm-application folder and run composer installation:
@@ -111,3 +115,4 @@ Github OAuth token should be configured in package manager settings
 [2]:  http://getcomposer.org/
 [3]:  http://dev.mysql.com/doc/refman/5.6/en/optimizing-innodb-diskio.html
 [4]:  http://symfony.com/doc/2.3/cookbook/configuration/web_server_configuration.html
+[5]:  http://symfony.com/doc/current/cookbook/assetic/uglifyjs.html
