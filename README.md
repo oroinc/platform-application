@@ -37,7 +37,7 @@ curl -s https://getcomposer.org/installer | php
 - Clone https://github.com/orocrm/crm-application.git OroCRM project with:
 
 ```bash
-git clone http://github.com/orocrm/crm-application.git
+git clone https://github.com/orocrm/platform-application.git
 ```
 
 - Make sure that you have [NodeJS][5] installed or another Js Engine eg. Rhino. (If using NodeJS and Ubuntu ensure you set the config.yml with the following).
@@ -53,7 +53,7 @@ oro_require_js:
 php composer.phar install --prefer-dist --no-dev
 ```
 
-- Create the database with the name specified on previous step (default name is "oro_crm").
+- Create the database with the name specified on previous step (default name is "bap_standard").
 
 - Install application and admin user with Installation Wizard by opening install.php in the browser or from CLI:
 
