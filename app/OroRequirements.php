@@ -13,64 +13,44 @@ use Oro\Bundle\InstallerBundle\Process\PhpExecutableFinder;
  */
 class OroRequirements extends SymfonyRequirements
 {
-    const REQUIRED_PHP_VERSION = '5.4.9';
-    const REQUIRED_GD_VERSION = '2.0';
+    const REQUIRED_PHP_VERSION  = '5.4.9';
+    const REQUIRED_GD_VERSION   = '2.0';
     const REQUIRED_CURL_VERSION = '7.0';
-    const REQUIRED_ICU_VERSION = '3.8';
+    const REQUIRED_ICU_VERSION  = '3.8';
 
     const EXCLUDE_REQUIREMENTS_MASK = '/5\.3\.(3|4|8|16)|5\.4\.(0|8)/';
 
     private $_jsMsg;
-    private $_baseDir;
-    private $_jsConfig = null;
 
     public function __construct()
     {
-        $this->_baseDir = realpath(__DIR__ . '/..');
-
         parent::__construct();
 
-        $phpVersion = phpversion();
-        $gdVersion = defined('GD_VERSION') ? GD_VERSION : null;
+        $phpVersion  = phpversion();
+        $gdVersion   = defined('GD_VERSION') ? GD_VERSION : null;
         $curlVersion = function_exists('curl_version') ? curl_version() : null;
-        $icuVersion = Intl::getIcuVersion();
+        $icuVersion  = Intl::getIcuVersion();
 
         $this->addOroRequirement(
             version_compare($phpVersion, self::REQUIRED_PHP_VERSION, '>='),
-            sprintf(
-                'PHP version must be at least %s (%s installed)',
-                self::REQUIRED_PHP_VERSION,
-                $phpVersion
-            ),
+            sprintf('PHP version must be at least %s (%s installed)', self::REQUIRED_PHP_VERSION, $phpVersion),
             sprintf(
                 'You are running PHP version "<strong>%s</strong>", but Oro needs at least PHP "<strong>%s</strong>" to run.' .
                 'Before using Oro, upgrade your PHP installation, preferably to the latest version.',
                 $phpVersion,
                 self::REQUIRED_PHP_VERSION
             ),
-            sprintf(
-                'Install PHP %s or newer (installed version is %s)',
-                self::REQUIRED_PHP_VERSION,
-                $phpVersion
-            )
+            sprintf('Install PHP %s or newer (installed version is %s)', self::REQUIRED_PHP_VERSION, $phpVersion)
         );
 
         $this->addOroRequirement(
-            null !== $gdVersion && version_compare(
-                $gdVersion,
-                self::REQUIRED_GD_VERSION,
-                '>='
-            ),
+            null !== $gdVersion && version_compare($gdVersion, self::REQUIRED_GD_VERSION, '>='),
             'GD extension must be at least ' . self::REQUIRED_GD_VERSION,
             'Install and enable the <strong>GD</strong> extension at least ' . self::REQUIRED_GD_VERSION . ' version'
         );
 
         $this->addOroRequirement(
-            null !== $curlVersion && version_compare(
-                $curlVersion['version'],
-                self::REQUIRED_CURL_VERSION,
-                '>='
-            ),
+            null !== $curlVersion && version_compare($curlVersion['version'], self::REQUIRED_CURL_VERSION, '>='),
             'cURL extension must be at least ' . self::REQUIRED_CURL_VERSION,
             'Install and enable the <strong>cURL</strong> extension at least ' . self::REQUIRED_CURL_VERSION . ' version'
         );
@@ -88,11 +68,7 @@ class OroRequirements extends SymfonyRequirements
         );
 
         $this->addOroRequirement(
-            null !== $icuVersion && version_compare(
-                $icuVersion,
-                self::REQUIRED_ICU_VERSION,
-                '>='
-            ),
+            null !== $icuVersion && version_compare($icuVersion, self::REQUIRED_ICU_VERSION, '>='),
             'icu library must be at least ' . self::REQUIRED_ICU_VERSION,
             'Install and enable the <strong>icu</strong> library at least ' . self::REQUIRED_ICU_VERSION . ' version'
         );
@@ -142,8 +118,8 @@ class OroRequirements extends SymfonyRequirements
             $this->add($requirement);
         }
 
-
-        $mem = $this->getBytes(ini_get('memory_limit'));
+        $baseDir = realpath(__DIR__ . '/..');
+        $mem     = $this->getBytes(ini_get('memory_limit'));
 
         $this->addPhpIniRequirement(
             'memory_limit',
@@ -162,81 +138,70 @@ class OroRequirements extends SymfonyRequirements
         );
 
         $this->addOroRequirement(
-            is_writable($this->_baseDir . '/web/uploads'),
+            is_writable($baseDir . '/web/uploads'),
             'web/uploads/ directory must be writable',
             'Change the permissions of the "<strong>web/uploads/</strong>" directory so that the web server can write into it.'
         );
         $this->addOroRequirement(
-            is_writable($this->_baseDir . '/web/media'),
+            is_writable($baseDir . '/web/media'),
             'web/media/ directory must be writable',
             'Change the permissions of the "<strong>web/media/</strong>" directory so that the web server can write into it.'
         );
         $this->addOroRequirement(
-            is_writable($this->_baseDir . '/web/bundles'),
+            is_writable($baseDir . '/web/bundles'),
             'web/bundles/ directory must be writable',
             'Change the permissions of the "<strong>web/bundles/</strong>" directory so that the web server can write into it.'
         );
         $this->addOroRequirement(
-            is_writable($this->_baseDir . '/app/attachment'),
+            is_writable($baseDir . '/app/attachment'),
             'app/attachment/ directory must be writable',
             'Change the permissions of the "<strong>app/attachment/</strong>" directory so that the web server can write into it.'
         );
 
-
-        if (is_dir($this->_baseDir . '/web/js')) {
+        if (is_dir($baseDir . '/web/js')) {
             $this->addOroRequirement(
-                is_writable($this->_baseDir . '/web/js'),
+                is_writable($baseDir . '/web/js'),
                 'web/js directory must be writable',
                 'Change the permissions of the "<strong>web/js</strong>" directory so that the web server can write into it.'
             );
         }
 
-        if (is_dir($this->_baseDir . '/web/css')) {
+        if (is_dir($baseDir . '/web/css')) {
             $this->addOroRequirement(
-                is_writable($this->_baseDir . '/web/css'),
+                is_writable($baseDir . '/web/css'),
                 'web/css directory must be writable',
                 'Change the permissions of the "<strong>web/css</strong>" directory so that the web server can write into it.'
             );
         }
 
-        if (!is_dir($this->_baseDir . '/web/css') || !is_dir(
-                $this->_baseDir . '/web/js'
-            )
-        ) {
+        if (!is_dir($baseDir . '/web/css') || !is_dir($baseDir . '/web/js')) {
             $this->addOroRequirement(
-                is_writable($this->_baseDir . '/web'),
+                is_writable($baseDir . '/web'),
                 'web directory must be writable',
                 'Change the permissions of the "<strong>web</strong>" directory so that the web server can write into it.'
             );
         }
 
-        if (is_file($this->_baseDir . '/app/config/parameters.yml')) {
+        if (is_file($baseDir . '/app/config/parameters.yml')) {
             $this->addOroRequirement(
-                is_writable($this->_baseDir . '/app/config/parameters.yml'),
+                is_writable($baseDir . '/app/config/parameters.yml'),
                 'app/config/parameters.yml file must be writable',
                 'Change the permissions of the "<strong>app/config/parameters.yml</strong>" file so that the web server can write into it.'
             );
         }
-
     }
 
     /**
      * Adds an Oro specific requirement.
      *
-     * @param Boolean $fulfilled Whether the requirement is fulfilled
-     * @param string $testMessage The message for testing the requirement
-     * @param string $helpHtml The help text formatted in HTML for resolving the problem
+     * @param Boolean     $fulfilled Whether the requirement is fulfilled
+     * @param string      $testMessage The message for testing the requirement
+     * @param string      $helpHtml The help text formatted in HTML for resolving the problem
      * @param string|null $helpText The help text (when null, it will be inferred from $helpHtml, i.e. stripped from HTML tags)
      */
-    public function addOroRequirement(
-        $fulfilled,
-        $testMessage,
-        $helpHtml,
-        $helpText = null
-    ) {
-        $this->add(
-            new OroRequirement($fulfilled, $testMessage, $helpHtml, $helpText, false)
-        );
+    public function addOroRequirement($fulfilled, $testMessage, $helpHtml, $helpText = null)
+    {
+        $this->add(new OroRequirement($fulfilled, $testMessage, $helpHtml, $helpText, false));
     }
 
     /**
@@ -333,8 +298,9 @@ class OroRequirements extends SymfonyRequirements
         return (float)$val;
     }
 
+
     /**
-     * {@inheritdoc}
+     *  {@inheritdoc}
      */
     public function getRequirements()
     {
@@ -342,11 +308,7 @@ class OroRequirements extends SymfonyRequirements
 
         foreach ($requirements as $key => $requirement) {
             $testMessage = $requirement->getTestMessage();
-            if (preg_match_all(
-                self::EXCLUDE_REQUIREMENTS_MASK,
-                $testMessage,
-                $matches
-            )) {
+            if (preg_match_all(self::EXCLUDE_REQUIREMENTS_MASK, $testMessage, $matches)) {
                 unset($requirements[$key]);
             }
         }
@@ -355,7 +317,7 @@ class OroRequirements extends SymfonyRequirements
     }
 
     /**
-     * {@inheritdoc}
+     *  {@inheritdoc}
      */
     public function getRecommendations()
     {
@@ -363,11 +325,7 @@ class OroRequirements extends SymfonyRequirements
 
         foreach ($recommendations as $key => $recommendation) {
             $testMessage = $recommendation->getTestMessage();
-            if (preg_match_all(
-                self::EXCLUDE_REQUIREMENTS_MASK,
-                $testMessage,
-                $matches
-            )) {
+            if (preg_match_all(self::EXCLUDE_REQUIREMENTS_MASK, $testMessage, $matches)) {
                 unset($recommendations[$key]);
             }
         }
@@ -377,14 +335,18 @@ class OroRequirements extends SymfonyRequirements
 
     private function _checkJsConfig()
     {
+        $baseDir = realpath(__DIR__ . '/..');
+
         $configTest = Yaml::parse(
-            file_get_contents($this->_baseDir . '/app/config/config.yml')
+            file_get_contents($baseDir . '/app/config/config.yml')
         );
         if (isset($configTest['oro_require_js'])) {
             if (isset($configTest['oro_require_js']['js_engine'])) {
-                $this->_jsConfig = $configTest['oro_require_js']['js_engine'];
+                return $configTest['oro_require_js']['js_engine'];
             }
         }
+
+        return null;
     }
 
     /**
@@ -401,15 +363,13 @@ class OroRequirements extends SymfonyRequirements
      */
     protected function checkJsEngine()
     {
-        $this->_checkJsConfig();
+        $jsConfig = $this->_checkJsConfig();
 
-        if ($this->_jsConfig !== null) {
-            $node = $this->_jsConfig;
-        } else {
-            $node = 'node';
+        if ($jsConfig === null) {
+            $jsConfig = 'node';
         }
 
-        $jsExists = new ProcessBuilder(array($node, '--version'));
+        $jsExists = new ProcessBuilder(array($jsConfig, '--version'));
         $jsExists = $jsExists->getProcess();
 
         if (isset($_SERVER['PATH'])) {
@@ -418,9 +378,9 @@ class OroRequirements extends SymfonyRequirements
         $jsExists->run();
 
         if ($jsExists->getErrorOutput() === null) {
-            $this->_jsMsg = "A JS Engine ('$node') is installed";
-        } elseif ($jsExists->getErrorOutput() !== null && $this->_jsConfig !== null) {
-            $this->_jsMsg = "A JS Engine ('$node') is not installed correctly";
+            $this->_jsMsg = "A JS Engine ('$jsConfig') is installed";
+        } elseif ($jsExists->getErrorOutput() !== null && $jsConfig !== null) {
+            $this->_jsMsg = "A JS Engine ('$jsConfig') is not installed correctly";
         } else {
             $this->_jsMsg = "A JS Engine such as NodeJS is not installed correctly";
         }
@@ -456,7 +416,7 @@ class OroRequirements extends SymfonyRequirements
      */
     protected function checkCliRequirements()
     {
-        $finder = new PhpExecutableFinder();
+        $finder  = new PhpExecutableFinder();
         $command = sprintf(
             '%s %soro-check.php',
             $finder->find(),

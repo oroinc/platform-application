@@ -25,21 +25,19 @@ Oro Platform is a Symfony 2 based application with the following requirements:
 
 ## Installation instructions
 
-### Using Composer
+OroCRM uses [Composer][1] to manage package dependencies, this is the a recommended way to install OroCRM.
 
-As both Symfony 2 and Oro Platform use [Composer][2] to manage their dependencies, this is the recommended way to install the Oro Platform.
-
-If you don't have Composer yet, download it and follow the instructions on
-http://getcomposer.org/ or just run the following command:
+- If you don't have Composer yet, download it and follow the instructions on http://getcomposer.org/
+or just run the following command:
 
 ```bash
-    curl -s https://getcomposer.org/installer | php
+curl -s https://getcomposer.org/installer | php
 ```
 
-- Clone https://github.com/orocrm/platform-application.git Platform Application project with
+- Clone https://github.com/orocrm/crm-application.git OroCRM project with:
 
 ```bash
-    git clone https://github.com/orocrm/platform-application.git
+git clone http://github.com/orocrm/crm-application.git
 ```
 
 - Make sure that you have [NodeJS][5] installed or another Js Engine eg. Rhino. (If using NodeJS and Ubuntu ensure you set the config.yml with the following).
@@ -55,7 +53,7 @@ oro_require_js:
 php composer.phar install --prefer-dist --no-dev
 ```
 
-- Create the database with the name specified on previous step (default name is "bap_standard").
+- Create the database with the name specified on previous step (default name is "oro_crm").
 
 - Install application and admin user with Installation Wizard by opening install.php in the browser or from CLI:
 
@@ -69,7 +67,7 @@ php app/console oro:install --env prod
 php app/console clank:server --env prod
 ```
 
-- Configure crontab or scheduled tasks execution to run the command below every minute:
+- Configure crontab or scheduled tasks execution to run command below every minute:
 
 ```bash
 php app/console oro:cron --env prod
@@ -79,11 +77,11 @@ php app/console oro:cron --env prod
 
 ## Installation notes
 
-Installed PHP Accelerators must be compatible with Symfony and Doctrine (support DOCBLOCKs)
+Installed PHP Accelerators must be compatible with Symfony and Doctrine (support DOCBLOCKs).
 
 Note that the port used in Websocket must be open in firewall for outgoing/incoming connections
 
-Using MySQL 5.6 on HDD is potentially risky because of performance issues
+Using MySQL 5.6 on HDD is potentially risky because of performance issues.
 
 Recommended configuration for this case:
 
@@ -114,5 +112,5 @@ Github OAuth token should be configured in package manager settings
 [1]:  http://symfony.com/doc/2.3/book/installation.html
 [2]:  http://getcomposer.org/
 [3]:  http://dev.mysql.com/doc/refman/5.6/en/optimizing-innodb-diskio.html
-[4]:  http://symfony.com/doc/2.3/cookbook/configuration/web_server_configuration.html
-[5]:  http://symfony.com/doc/current/cookbook/assetic/uglifyjs.html
+[4]:  https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager
+[5]:  http://symfony.com/doc/2.3/cookbook/configuration/web_server_configuration.html
