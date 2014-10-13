@@ -3353,12 +3353,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/orocrm/platform.git",
-                "reference": "bb4bb0780f0611659e562c11ab81a080b1abda26"
+                "reference": "b72988be00e77df4e3d073b33e4191c547536c7c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/orocrm/platform/zipball/bb4bb0780f0611659e562c11ab81a080b1abda26",
-                "reference": "bb4bb0780f0611659e562c11ab81a080b1abda26",
+                "url": "https://api.github.com/repos/orocrm/platform/zipball/b72988be00e77df4e3d073b33e4191c547536c7c",
+                "reference": "b72988be00e77df4e3d073b33e4191c547536c7c",
                 "shasum": ""
             },
             "require": {
@@ -3412,6 +3412,7 @@
                 "symfony/swiftmailer-bundle": "2.3.*",
                 "symfony/symfony": "2.3.*",
                 "twig/extensions": "1.0.1",
+                "twig/twig": "<=1.16.0",
                 "zendframework/zend-mail": "2.1.5"
             },
             "type": "library",
@@ -3438,7 +3439,7 @@
             ],
             "description": "Business Application Platform (BAP)",
             "homepage": "https://github.com/orocrm/platform.git",
-            "time": "2014-10-10 06:14:15"
+            "time": "2014-10-13 11:58:18"
         },
         {
             "name": "phpcollection/phpcollection",
@@ -4530,16 +4531,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v1.16.1",
+            "version": "v1.16.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fabpot/Twig.git",
-                "reference": "7c4c01dcf578523cfcddf383641a4f12790270ec"
+                "reference": "8ce37115802e257a984a82d38254884085060024"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Twig/zipball/7c4c01dcf578523cfcddf383641a4f12790270ec",
-                "reference": "7c4c01dcf578523cfcddf383641a4f12790270ec",
+                "url": "https://api.github.com/repos/fabpot/Twig/zipball/8ce37115802e257a984a82d38254884085060024",
+                "reference": "8ce37115802e257a984a82d38254884085060024",
                 "shasum": ""
             },
             "require": {
@@ -4583,7 +4584,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2014-10-10 14:09:53"
+            "time": "2014-07-05 12:19:05"
         },
         {
             "name": "willdurand/jsonp-callback-validator",
