@@ -9,7 +9,6 @@ This repository contains application configuration settings and depends on Oro P
 
 Oro Platform is a Symfony 2 based application with the following requirements:
 
-* PHP 5.4.9 or above
 * PHP 5.4.9 or above with command line interface
 * PHP Extensions
     * GD
