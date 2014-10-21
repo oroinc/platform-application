@@ -101,7 +101,7 @@ CREATE EXTENSION "uuid-ossp";
 
 ## Web Server Configuration
 
-The Oro Platform application is based on symfony standard application so web server cofiguration recomendation are the [same][4].
+The Oro Platform application is based on the Symfony standard application so web server configuration recommendations are the [same][4].
 
 [1]:  http://symfony.com/doc/2.3/book/installation.html
 [2]:  http://getcomposer.org/
