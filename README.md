@@ -24,24 +24,26 @@ Oro Platform is a Symfony 2 based application with the following requirements:
 
 ## Installation instructions
 
-### Using Composer
+OroCRM uses [Composer][1] to manage package dependencies, this is the a recommended way to install OroCRM.
 
-As both Symfony 2 and Oro Platform use [Composer][2] to manage their dependencies, this is the recommended way to install the Oro Platform.
-
-If you don't have Composer yet, download it and follow the instructions on
-http://getcomposer.org/ or just run the following command:
+- If you don't have Composer yet, download it and follow the instructions on http://getcomposer.org/
+or just run the following command:
 
 ```bash
-    curl -s https://getcomposer.org/installer | php
+curl -s https://getcomposer.org/installer | php
 ```
 
-- Clone https://github.com/orocrm/platform-application.git Platform Application project with
+- Clone https://github.com/orocrm/crm-application.git OroCRM project with:
 
 ```bash
-    git clone https://github.com/orocrm/platform-application.git
+git clone https://github.com/orocrm/platform-application.git
 ```
 
-- Make sure that you have [NodeJS][4] installed
+- Make sure that you have [NodeJS][5] installed or another Js Engine eg. Rhino. (If using NodeJS and Ubuntu ensure you set the config.yml with the following).
+```
+oro_require_js:
+    js_engine:                "nodejs"
+```
 
 - Install OroCRM dependencies with composer. If installation process seems too slow you can use "--prefer-dist" option.
   Go to crm-application folder and run composer installation:
@@ -64,7 +66,7 @@ php app/console oro:install --env prod
 php app/console clank:server --env prod
 ```
 
-- Configure crontab or scheduled tasks execution to run the command below every minute:
+- Configure crontab or scheduled tasks execution to run command below every minute:
 
 ```bash
 php app/console oro:cron --env prod
@@ -74,11 +76,11 @@ php app/console oro:cron --env prod
 
 ## Installation notes
 
-Installed PHP Accelerators must be compatible with Symfony and Doctrine (support DOCBLOCKs)
+Installed PHP Accelerators must be compatible with Symfony and Doctrine (support DOCBLOCKs).
 
 Note that the port used in Websocket must be open in firewall for outgoing/incoming connections
 
-Using MySQL 5.6 on HDD is potentially risky because of performance issues
+Using MySQL 5.6 on HDD is potentially risky because of performance issues.
 
 Recommended configuration for this case:
 
