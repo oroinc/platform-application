@@ -3699,12 +3699,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/orocrm/platform.git",
-                "reference": "c18d295129960b92f22ec403956d922073a12a09"
+                "reference": "505dd33735273c7d6f6d035fb36148d6a7b5cdfd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/orocrm/platform/zipball/c18d295129960b92f22ec403956d922073a12a09",
-                "reference": "c18d295129960b92f22ec403956d922073a12a09",
+                "url": "https://api.github.com/repos/orocrm/platform/zipball/505dd33735273c7d6f6d035fb36148d6a7b5cdfd",
+                "reference": "505dd33735273c7d6f6d035fb36148d6a7b5cdfd",
                 "shasum": ""
             },
             "require": {
@@ -3794,7 +3794,7 @@
             ],
             "description": "Business Application Platform (BAP)",
             "homepage": "https://github.com/orocrm/platform.git",
-            "time": "2015-04-03 06:20:42"
+            "time": "2015-04-04 06:20:52"
         },
         {
             "name": "phpcollection/phpcollection",
@@ -3897,16 +3897,16 @@
         },
         {
             "name": "piwik/device-detector",
-            "version": "3.1",
+            "version": "3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/piwik/device-detector.git",
-                "reference": "a1931172879fdc40226bab62d51eeddccd23b42f"
+                "reference": "3d36a5bd0710896311d69b10fd6eb1ca3b2d3c19"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/piwik/device-detector/zipball/a1931172879fdc40226bab62d51eeddccd23b42f",
-                "reference": "a1931172879fdc40226bab62d51eeddccd23b42f",
+                "url": "https://api.github.com/repos/piwik/device-detector/zipball/3d36a5bd0710896311d69b10fd6eb1ca3b2d3c19",
+                "reference": "3d36a5bd0710896311d69b10fd6eb1ca3b2d3c19",
                 "shasum": ""
             },
             "require": {
@@ -3943,7 +3943,7 @@
                 "parser",
                 "useragent"
             ],
-            "time": "2015-03-31 21:09:18"
+            "time": "2015-04-04 16:44:30"
         },
         {
             "name": "psr/log",
