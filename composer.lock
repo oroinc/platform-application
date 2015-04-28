@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "23e36cfd2a603326a913254e6811711f",
+    "hash": "eeeec1aaedd61b9820fb60eebc43389e",
     "packages": [
         {
             "name": "a2lix/translation-form-bundle",
@@ -3694,7 +3694,7 @@
         },
         {
             "name": "oro/platform",
-            "version": "dev-master",
+            "version": "1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orocrm/platform.git",
@@ -4176,7 +4176,6 @@
                 "identifier",
                 "uuid"
             ],
-            "abandoned": "ramsey/uuid",
             "time": "2014-10-30 03:36:49"
         },
         {
@@ -5436,9 +5435,7 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "oro/platform": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": [],
