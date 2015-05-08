@@ -435,16 +435,16 @@
         },
         {
             "name": "components/jquery",
-            "version": "2.1.3",
+            "version": "2.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/components/jquery.git",
-                "reference": "f8edb647d1833fd5d57410ab70860f03534cb2e8"
+                "reference": "7b1d1104656a092423fbfba13c5920e9bbba290c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/components/jquery/zipball/f8edb647d1833fd5d57410ab70860f03534cb2e8",
-                "reference": "f8edb647d1833fd5d57410ab70860f03534cb2e8",
+                "url": "https://api.github.com/repos/components/jquery/zipball/7b1d1104656a092423fbfba13c5920e9bbba290c",
+                "reference": "7b1d1104656a092423fbfba13c5920e9bbba290c",
                 "shasum": ""
             },
             "type": "component",
@@ -473,7 +473,7 @@
             ],
             "description": "jQuery JavaScript Library",
             "homepage": "http://jquery.com",
-            "time": "2014-12-23 06:48:45"
+            "time": "2015-05-08 05:04:47"
         },
         {
             "name": "components/underscore",
