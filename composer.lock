@@ -3701,12 +3701,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/orocrm/platform.git",
-                "reference": "814ea37fac79bcdbb57e5dda10d5322197a1a53e"
+                "reference": "fc8bbdb1986590f53cfa465eb1a12dbee0c80a04"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/orocrm/platform/zipball/814ea37fac79bcdbb57e5dda10d5322197a1a53e",
-                "reference": "814ea37fac79bcdbb57e5dda10d5322197a1a53e",
+                "url": "https://api.github.com/repos/orocrm/platform/zipball/fc8bbdb1986590f53cfa465eb1a12dbee0c80a04",
+                "reference": "fc8bbdb1986590f53cfa465eb1a12dbee0c80a04",
                 "shasum": ""
             },
             "require": {
@@ -3796,7 +3796,7 @@
             ],
             "description": "Business Application Platform (BAP)",
             "homepage": "https://github.com/orocrm/platform.git",
-            "time": "2015-05-09 06:22:46"
+            "time": "2015-05-14 06:22:31"
         },
         {
             "name": "phpcollection/phpcollection",
