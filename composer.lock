@@ -2919,7 +2919,7 @@
                     "email": "stof@notk.org"
                 },
                 {
-                    "name": "KnpLabs",
+                    "name": "Knplabs",
                     "homepage": "http://knplabs.com"
                 },
                 {
@@ -4230,12 +4230,12 @@
             "version": "2.7.4",
             "source": {
                 "type": "git",
-                "url": "https://github.com/ramsey/uuid.git",
+                "url": "https://github.com/ramsey/rhumsaa-uuid.git",
                 "reference": "eb1d371067aa8c2b83d6691837ee4896a6f76a44"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ramsey/uuid/zipball/eb1d371067aa8c2b83d6691837ee4896a6f76a44",
+                "url": "https://api.github.com/repos/ramsey/rhumsaa-uuid/zipball/eb1d371067aa8c2b83d6691837ee4896a6f76a44",
                 "reference": "eb1d371067aa8c2b83d6691837ee4896a6f76a44",
                 "shasum": ""
             },
