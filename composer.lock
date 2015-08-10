@@ -4455,16 +4455,16 @@
         },
         {
             "name": "robloach/component-installer",
-            "version": "0.2.2",
+            "version": "0.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/RobLoach/component-installer.git",
-                "reference": "0553c9bbf60fa1623594d125e8425edd9e8ecce3"
+                "reference": "908a859aa7c4949ba9ad67091e67bac10b66d3d7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RobLoach/component-installer/zipball/0553c9bbf60fa1623594d125e8425edd9e8ecce3",
-                "reference": "0553c9bbf60fa1623594d125e8425edd9e8ecce3",
+                "url": "https://api.github.com/repos/RobLoach/component-installer/zipball/908a859aa7c4949ba9ad67091e67bac10b66d3d7",
+                "reference": "908a859aa7c4949ba9ad67091e67bac10b66d3d7",
                 "shasum": ""
             },
             "require": {
@@ -4499,7 +4499,7 @@
                 }
             ],
             "description": "Allows installation of Components via Composer.",
-            "time": "2015-08-07 13:12:01"
+            "time": "2015-08-10 12:35:38"
         },
         {
             "name": "seld/jsonlint",
