@@ -1,3 +1,16 @@
+CHANGELOG for 1.8.0
+===================
+This changelog references the relevant changes (new features, changes and bugs) done in 1.8.0 versions.
+* 1.8.0 (2015-08-26)
+ * Visual workflow configurator
+ * New and extended APIs to work with emails
+ * Segmentation based on Data audit
+ * Improvements to search
+ * Improved filtering on option set attributes, allowing for multiple selections
+ * The application has been upgraded to Symfony 2.7 and migrated to Doctrine 2.5
+ * Select2 component has been improved to automatically initializes select2 widget
+ * Documentation for the new Oro Layout component has been added with examples of use
+
 CHANGELOG for 1.7.0
 ===================
 This changelog references the relevant changes (new features, changes and bugs) done in 1.7.0 versions.
