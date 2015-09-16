@@ -17,6 +17,9 @@
     "require": {
         "oro/platform": "1.8.*"
     },
+    "require-dev": {
+        "sensio/generator-bundle": "2.5.3"
+    },
     "config": {
         "component-dir": "web/bundles/components"
     },
