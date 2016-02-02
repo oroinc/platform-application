@@ -22,7 +22,8 @@
         "oro/platform": "1.x-dev"
     },
     "require-dev": {
-        "sensio/generator-bundle": "2.5.3"
+        "sensio/generator-bundle": "2.5.3",
+        "phpunit/phpunit": "4.8.*"
     },
     "config": {
         "component-dir": "web/bundles/components"
