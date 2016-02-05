@@ -19,7 +19,7 @@
         }
     ],
     "require": {
-        "oro/platform": "@dev"
+        "oro/platform": "self.version"
     },
     "require-dev": {
         "sensio/generator-bundle": "2.5.3",
