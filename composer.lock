@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ef53ba3b48b26c3b1ba20ef9c6e3010c",
-    "content-hash": "47aa68614b86bb7f5ade21a9ab992c63",
+    "hash": "d5c5712d053d743fca6c3ed7c957847a",
+    "content-hash": "6172b6a86ebe550891b5988fee4164a0",
     "packages": [
         {
             "name": "a2lix/translation-form-bundle",
@@ -4001,11 +4001,11 @@
         },
         {
             "name": "oro/platform",
-            "version": "dev-composer-p",
+            "version": "dev-master",
             "dist": {
                 "type": "path",
                 "url": "../../package/platform/",
-                "reference": "01c5d1bd8ded6058ffa68b6de1dce29122ba87c5",
+                "reference": "b3d34467a8496d241364afea0e175ad8e8e5d12f",
                 "shasum": null
             },
             "require": {
@@ -4075,11 +4075,6 @@
                 "sensio/generator-bundle": "2.5.3"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.x-dev"
-                }
-            },
             "autoload": {
                 "psr-0": {
                     "Oro\\Component": "src/",
