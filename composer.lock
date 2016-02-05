@@ -4133,7 +4133,7 @@
             "version": "dev-master",
             "dist": {
                 "type": "path",
-                "url": "../../package/platform/",
+                "url": "../../package/platform\\",
                 "reference": "bfb60f7750afdfe4ca78911b6dacaa32",
                 "shasum": null
             },
