@@ -9,10 +9,10 @@
 >
     <testsuites>
         <testsuite name="Bundles Unit Tests">
-            <directory suffix="Test.php">vendor/oro/platform/src/Oro/Bundle/*Bundle/Tests/Unit</directory>
+            <directory suffix="Test.php">vendor/oro/platform/src/*/Bundle/*Bundle/Tests/Unit</directory>
         </testsuite>
         <testsuite name="Components Unit Tests">
-            <directory suffix="Test.php">vendor/oro/platform/src/Oro/Component/*/Tests/Unit</directory>
+            <directory suffix="Test.php">vendor/oro/platform/src/*/Component/*/Tests/Unit</directory>
         </testsuite>
     </testsuites>
 </phpunit>
