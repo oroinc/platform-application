@@ -12,6 +12,10 @@
         {
             "type": "path",
             "url": "../../package/*"
+        },
+        {
+            "type": "composer",
+            "url": "http://packagist.orocrm.com"
         }
     ],
     "require": {
@@ -19,7 +23,7 @@
     },
     "require-dev": {
         "sensio/generator-bundle": "2.5.3",
-        "phpunit/phpunit": "4.8.*"
+        "squizlabs/php_codesniffer": "2.3.3"
     },
     "config": {
         "component-dir": "web/bundles/components"
