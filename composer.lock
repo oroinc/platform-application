@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d946a757c9afec427eaf3a851032ae43",
-    "content-hash": "e39738d1f8a7392f804bfce976ba2fcd",
+    "hash": "7101a0d3b1447a63232a271910441691",
+    "content-hash": "3df9bc8f238e44ea6f4b7d12c6b76968",
     "packages": [
         {
             "name": "a2lix/translation-form-bundle",
@@ -1081,16 +1081,16 @@
         },
         {
             "name": "doctrine/doctrine-cache-bundle",
-            "version": "1.2.2",
+            "version": "1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/DoctrineCacheBundle.git",
-                "reference": "030ff41ef1db66370b36467086bfb817a661fe6a"
+                "reference": "18c600a9b82f6454d2e81ca4957cdd56a1cf3504"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/DoctrineCacheBundle/zipball/030ff41ef1db66370b36467086bfb817a661fe6a",
-                "reference": "030ff41ef1db66370b36467086bfb817a661fe6a",
+                "url": "https://api.github.com/repos/doctrine/DoctrineCacheBundle/zipball/18c600a9b82f6454d2e81ca4957cdd56a1cf3504",
+                "reference": "18c600a9b82f6454d2e81ca4957cdd56a1cf3504",
                 "shasum": ""
             },
             "require": {
@@ -1104,6 +1104,7 @@
                 "instaclick/object-calisthenics-sniffs": "dev-master",
                 "instaclick/symfony2-coding-standard": "dev-remaster",
                 "phpunit/phpunit": "~4",
+                "predis/predis": "~0.8",
                 "satooshi/php-coveralls": "~0.6.1",
                 "squizlabs/php_codesniffer": "~1.5",
                 "symfony/console": "~2.2|~3.0",
@@ -1164,7 +1165,7 @@
                 "cache",
                 "caching"
             ],
-            "time": "2015-11-27 04:59:07"
+            "time": "2016-01-26 17:28:51"
         },
         {
             "name": "doctrine/doctrine-fixtures-bundle",
@@ -2798,20 +2799,20 @@
         },
         {
             "name": "justinrainbow/json-schema",
-            "version": "v1.6.0",
+            "version": "1.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/justinrainbow/json-schema.git",
-                "reference": "f9e27c3e202faf14fd581ef41355d83bb4b7eb7d"
+                "reference": "cc84765fb7317f6b07bd8ac78364747f95b86341"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/justinrainbow/json-schema/zipball/f9e27c3e202faf14fd581ef41355d83bb4b7eb7d",
-                "reference": "f9e27c3e202faf14fd581ef41355d83bb4b7eb7d",
+                "url": "https://api.github.com/repos/justinrainbow/json-schema/zipball/cc84765fb7317f6b07bd8ac78364747f95b86341",
+                "reference": "cc84765fb7317f6b07bd8ac78364747f95b86341",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.2"
+                "php": ">=5.3.29"
             },
             "require-dev": {
                 "json-schema/json-schema-test-suite": "1.1.0",
@@ -2824,7 +2825,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.4.x-dev"
+                    "dev-master": "1.6.x-dev"
                 }
             },
             "autoload": {
@@ -2860,7 +2861,7 @@
                 "json",
                 "schema"
             ],
-            "time": "2016-01-06 14:37:04"
+            "time": "2016-01-25 15:43:01"
         },
         {
             "name": "knplabs/gaufrette",
@@ -3445,16 +3446,16 @@
         },
         {
             "name": "moment/moment",
-            "version": "2.11.1",
+            "version": "2.11.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/moment/moment.git",
-                "reference": "d731fe7e2678e585ae66cbe86033d1890688ef40"
+                "reference": "dd9cff0104c0dc3f114f54107397c59920e764cc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/moment/moment/zipball/d731fe7e2678e585ae66cbe86033d1890688ef40",
-                "reference": "d731fe7e2678e585ae66cbe86033d1890688ef40",
+                "url": "https://api.github.com/repos/moment/moment/zipball/dd9cff0104c0dc3f114f54107397c59920e764cc",
+                "reference": "dd9cff0104c0dc3f114f54107397c59920e764cc",
                 "shasum": ""
             },
             "require": {
@@ -3495,7 +3496,7 @@
                 "time",
                 "validate"
             ],
-            "time": "2016-01-09 13:13:07"
+            "time": "2016-02-03 22:43:05"
         },
         {
             "name": "monolog/monolog",
@@ -4000,16 +4001,16 @@
         },
         {
             "name": "oro/platform",
-            "version": "1.9.0-RC2",
+            "version": "1.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orocrm/platform.git",
-                "reference": "90b4715640e852365a53785e1dd1863add6cf7d6"
+                "reference": "213325852416311d091dc2028ff797df60971509"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/orocrm/platform/zipball/90b4715640e852365a53785e1dd1863add6cf7d6",
-                "reference": "90b4715640e852365a53785e1dd1863add6cf7d6",
+                "url": "https://api.github.com/repos/orocrm/platform/zipball/213325852416311d091dc2028ff797df60971509",
+                "reference": "213325852416311d091dc2028ff797df60971509",
                 "shasum": ""
             },
             "require": {
@@ -4102,7 +4103,7 @@
             ],
             "description": "Business Application Platform (BAP)",
             "homepage": "https://github.com/orocrm/platform.git",
-            "time": "2016-01-18 09:29:15"
+            "time": "2016-02-15 11:21:09"
         },
         {
             "name": "phpcollection/phpcollection",
@@ -4206,16 +4207,16 @@
         },
         {
             "name": "piwik/device-detector",
-            "version": "3.5.0",
+            "version": "3.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/piwik/device-detector.git",
-                "reference": "df9e81508f65f33436bab0daaaf942e1d59c89a1"
+                "reference": "e46f0574e545b77c919f529a6941a23a58d4c515"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/piwik/device-detector/zipball/df9e81508f65f33436bab0daaaf942e1d59c89a1",
-                "reference": "df9e81508f65f33436bab0daaaf942e1d59c89a1",
+                "url": "https://api.github.com/repos/piwik/device-detector/zipball/e46f0574e545b77c919f529a6941a23a58d4c515",
+                "reference": "e46f0574e545b77c919f529a6941a23a58d4c515",
                 "shasum": ""
             },
             "require": {
@@ -4253,7 +4254,7 @@
                 "parser",
                 "useragent"
             ],
-            "time": "2015-12-31 15:58:23"
+            "time": "2016-02-11 23:21:53"
         },
         {
             "name": "psr/log",
