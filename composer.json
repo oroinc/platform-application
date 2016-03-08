@@ -19,7 +19,8 @@
         }
     ],
     "require": {
-        "oro/platform": "self.version"
+        "oro/platform": "self.version",
+        "oro/platform-serialised-fields" : "self.version"
     },
     "require-dev": {
         "sensio/generator-bundle": "2.5.3",
