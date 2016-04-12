@@ -4010,7 +4010,7 @@
             "dist": {
                 "type": "path",
                 "url": "../../package/platform/",
-                "reference": "67e178d9fa0059abcb88604afc4e64de41333c74",
+                "reference": "2cfbf8563eeb909a77a9db4415dede5245af07ac",
                 "shasum": null
             },
             "require": {
@@ -4023,7 +4023,6 @@
                 "components/jquery": "2.1.*",
                 "components/underscore": "1.7.*",
                 "composer/composer": "1.0.0-p1",
-                "doctrine/cache": "<1.6",
                 "doctrine/data-fixtures": "1.1.1",
                 "doctrine/dbal": "2.5.1",
                 "doctrine/doctrine-bundle": "~1.6.0",
@@ -5537,37 +5536,38 @@
         },
         {
             "name": "zendframework/zend-code",
-            "version": "2.6.2",
+            "version": "2.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-code.git",
-                "reference": "c4e8f976a772cfb14b47dabd69b5245a423082b4"
+                "reference": "0e76eec4f47858da3fef96a7f828e2340327310b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-code/zipball/c4e8f976a772cfb14b47dabd69b5245a423082b4",
-                "reference": "c4e8f976a772cfb14b47dabd69b5245a423082b4",
+                "url": "https://api.github.com/repos/zendframework/zend-code/zipball/0e76eec4f47858da3fef96a7f828e2340327310b",
+                "reference": "0e76eec4f47858da3fef96a7f828e2340327310b",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.5",
-                "zendframework/zend-eventmanager": "^2.6|^3.0"
+                "php": ">=5.3.3",
+                "zendframework/zend-eventmanager": "self.version"
             },
             "require-dev": {
-                "doctrine/annotations": "~1.0",
+                "doctrine/common": ">=2.1",
                 "fabpot/php-cs-fixer": "1.7.*",
                 "phpunit/phpunit": "~4.0",
-                "zendframework/zend-stdlib": "~2.7"
+                "satooshi/php-coveralls": "dev-master",
+                "zendframework/zend-stdlib": "self.version"
             },
             "suggest": {
-                "doctrine/annotations": "Doctrine\\Common\\Annotations >=1.0 for annotation features",
+                "doctrine/common": "Doctrine\\Common >=2.1 for annotation features",
                 "zendframework/zend-stdlib": "Zend\\Stdlib component"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.6-dev",
-                    "dev-develop": "2.7-dev"
+                    "dev-master": "2.1-dev",
+                    "dev-develop": "2.2-dev"
                 }
             },
             "autoload": {
@@ -5585,7 +5585,7 @@
                 "code",
                 "zf2"
             ],
-            "time": "2016-01-05 05:58:37"
+            "time": "2013-04-17 15:15:58"
         },
         {
             "name": "zendframework/zend-crypt",
@@ -5640,37 +5640,32 @@
         },
         {
             "name": "zendframework/zend-eventmanager",
-            "version": "3.0.1",
+            "version": "2.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-eventmanager.git",
-                "reference": "5c80bdee0e952be112dcec0968bad770082c3a6e"
+                "reference": "01b3d7daec6a237e48f5db22d7e4efd65407deac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-eventmanager/zipball/5c80bdee0e952be112dcec0968bad770082c3a6e",
-                "reference": "5c80bdee0e952be112dcec0968bad770082c3a6e",
+                "url": "https://api.github.com/repos/zendframework/zend-eventmanager/zipball/01b3d7daec6a237e48f5db22d7e4efd65407deac",
+                "reference": "01b3d7daec6a237e48f5db22d7e4efd65407deac",
                 "shasum": ""
             },
             "require": {
-                "php": "^5.5 || ^7.0"
+                "php": ">=5.3.3",
+                "zendframework/zend-stdlib": "self.version"
             },
             "require-dev": {
-                "athletic/athletic": "^0.1",
-                "container-interop/container-interop": "^1.1.0",
+                "fabpot/php-cs-fixer": "1.7.*",
                 "phpunit/phpunit": "~4.0",
-                "squizlabs/php_codesniffer": "^2.0",
-                "zendframework/zend-stdlib": "^2.7.3 || ^3.0"
-            },
-            "suggest": {
-                "container-interop/container-interop": "^1.1.0, to use the lazy listeners feature",
-                "zendframework/zend-stdlib": "^2.7.3 || ^3.0, to use the FilterChain feature"
+                "satooshi/php-coveralls": "dev-master"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.0-dev",
-                    "dev-develop": "3.1-dev"
+                    "dev-master": "2.1-dev",
+                    "dev-develop": "2.2-dev"
                 }
             },
             "autoload": {
@@ -5682,15 +5677,12 @@
             "license": [
                 "BSD-3-Clause"
             ],
-            "description": "Trigger and listen to events within a PHP application",
-            "homepage": "https://github.com/zendframework/zend-eventmanager",
+            "homepage": "https://github.com/zendframework/zend-event-manager",
             "keywords": [
-                "event",
                 "eventmanager",
-                "events",
                 "zf2"
             ],
-            "time": "2016-02-18 20:53:00"
+            "time": "2013-04-17 13:32:54"
         },
         {
             "name": "zendframework/zend-i18n",
