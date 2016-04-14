@@ -4010,7 +4010,7 @@
             "dist": {
                 "type": "path",
                 "url": "../../package/platform/",
-                "reference": "2cfbf8563eeb909a77a9db4415dede5245af07ac",
+                "reference": "f7785e328551d93235090237d36cddf1ea745504",
                 "shasum": null
             },
             "require": {
@@ -4066,7 +4066,6 @@
                 "stof/doctrine-extensions-bundle": "1.1.0",
                 "sylius/flow-bundle": "0.6.*",
                 "symfony/assetic-bundle": "2.3.0",
-                "symfony/icu": "~1.1",
                 "symfony/monolog-bundle": "2.7.*",
                 "symfony/swiftmailer-bundle": "2.3.*",
                 "symfony/symfony": "2.7.*",
@@ -4110,7 +4109,7 @@
             "dist": {
                 "type": "path",
                 "url": "../../package/serialized-fields/",
-                "reference": "8f8d066f39c50068001e58e96ea07da08fb19a71",
+                "reference": "8bea9537bcf22670db232be17d081ddaddb33ba3",
                 "shasum": null
             },
             "require": {
@@ -4951,55 +4950,6 @@
                 "minification"
             ],
             "time": "2013-05-16 05:32:23"
-        },
-        {
-            "name": "symfony/icu",
-            "version": "v1.2.2",
-            "target-dir": "Symfony/Component/Icu",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/icu.git",
-                "reference": "d4d85d6055b87f394d941b45ddd3a9173e1e3d2a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/icu/zipball/d4d85d6055b87f394d941b45ddd3a9173e1e3d2a",
-                "reference": "d4d85d6055b87f394d941b45ddd3a9173e1e3d2a",
-                "shasum": ""
-            },
-            "require": {
-                "ext-intl": "*",
-                "lib-icu": ">=4.4",
-                "php": ">=5.3.3",
-                "symfony/intl": "~2.3"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Symfony\\Component\\Icu\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Symfony Community",
-                    "homepage": "http://symfony.com/contributors"
-                },
-                {
-                    "name": "Bernhard Schussek",
-                    "email": "bschussek@gmail.com"
-                }
-            ],
-            "description": "Contains an excerpt of the ICU data and classes to load it.",
-            "homepage": "http://symfony.com",
-            "keywords": [
-                "icu",
-                "intl"
-            ],
-            "time": "2014-07-25 09:58:17"
         },
         {
             "name": "symfony/monolog-bundle",
