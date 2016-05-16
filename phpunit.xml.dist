@@ -18,7 +18,12 @@
         </testsuite>
     </testsuites>
 
+    <listeners>
+        <listener class="JohnKary\PHPUnit\Listener\SpeedTrapListener"/>
+        <listener class="MyBuilder\PhpunitAccelerator\TestListener"/>
+    </listeners>
+
     <php>
-        <server name="KERNEL_DIR" value="app/" />
+        <server name="KERNEL_DIR" value="app/"/>
     </php>
 </phpunit>
