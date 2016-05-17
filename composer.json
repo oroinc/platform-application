@@ -10,12 +10,17 @@
     },
     "repositories": [
         {
+            "type": "path",
+            "url": "../../package/*"
+        },
+        {
             "type": "composer",
             "url": "https://packagist.orocrm.com"
         }
     ],
     "require": {
-        "oro/platform": "1.x-dev"
+        "oro/platform": "self.version",
+        "oro/platform-serialised-fields" : "self.version"
     },
     "require-dev": {
         "sensio/generator-bundle": "2.5.3",
