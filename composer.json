@@ -18,7 +18,8 @@
         "oro/platform": "1.x-dev"
     },
     "require-dev": {
-        "sensio/generator-bundle": "2.5.3"
+        "sensio/generator-bundle": "2.5.3",
+        "squizlabs/php_codesniffer": "2.3.3"
     },
     "config": {
         "component-dir": "web/bundles/components"
