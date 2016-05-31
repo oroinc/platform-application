@@ -4,6 +4,7 @@
 /.idea
 /node_modules
 /composer.phar
+behat.yml
 /build/logs/*
 /vendor
 /cov
