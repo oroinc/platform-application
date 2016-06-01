@@ -4,6 +4,7 @@
 /.idea
 /node_modules
 /composer.phar
+behat.yml
 /build/logs/*
 /vendor
 /cov
@@ -15,6 +16,7 @@
 /web/build.js
 /app/config/parameters.yml
 /app/config/parameters_test.yml
+behat.yml
 *~
 
 /app/SymfonyRequirements.php
