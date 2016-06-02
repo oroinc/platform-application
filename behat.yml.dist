@@ -1,13 +1,13 @@
 imports:
-  - ./src/Oro/src/Oro/Bundle/TestFrameworkBundle/Resources/config/behat.yml.dist
+  - ../../package/platform/src/Oro/Bundle/TestFrameworkBundle/Resources/config/behat.yml.dist
 
 default: &default
     extensions:
         Behat\MinkExtension:
-            base_url: 'http://platform-application.local/'
+            base_url: 'http://dev-platform.local/'
 
 selenium2:
     <<: *default
     extensions:
         Behat\MinkExtension:
-            base_url: 'http://platform-application.local/'
+            base_url: 'http://dev-platform.local/'
