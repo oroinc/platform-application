@@ -20,7 +20,8 @@
     ],
     "require": {
         "oro/platform": "self.version",
-        "oro/platform-serialised-fields" : "self.version"
+        "oro/platform-serialised-fields" : "self.version",
+        "nelmio/alice": "^2.1"
     },
     "require-dev": {
         "sensio/generator-bundle": "2.5.3",
