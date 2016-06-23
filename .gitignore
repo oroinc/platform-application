@@ -4,7 +4,6 @@
 /.idea
 /node_modules
 /composer.phar
-composer.lock
 /build/logs/*
 /vendor
 /cov
