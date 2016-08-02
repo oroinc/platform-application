@@ -14,13 +14,17 @@
             "url": "https://github.com/orocrm/TranslationFormBundle.git"
         },
         {
+            "type": "path",
+            "url": "../../package/*"
+        },
+        {
             "type": "composer",
             "url": "https://packagist.orocrm.com"
         }
     ],
     "require": {
-        "oro/platform": "1.10.x-dev",
-        "oro/platform-serialised-fields" : "1.10.x-dev"
+        "oro/platform": "dev-master as 1.10.x-dev",
+        "oro/platform-serialised-fields" : "dev-master as 1.10.x-dev"
     },
     "require-dev": {
         "sensio/generator-bundle": "2.5.3",
