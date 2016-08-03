@@ -24,7 +24,8 @@
     ],
     "require": {
         "oro/platform": "self.version",
-        "oro/platform-serialised-fields" : "self.version"
+        "oro/platform-serialised-fields" : "self.version",
+        "composer/composer": "1.2.*"
     },
     "require-dev": {
         "sensio/generator-bundle": "2.5.3",
