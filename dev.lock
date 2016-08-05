@@ -3287,7 +3287,7 @@
                     "email": "stof@notk.org"
                 },
                 {
-                    "name": "Knplabs",
+                    "name": "KnpLabs",
                     "homepage": "http://knplabs.com"
                 },
                 {
@@ -4318,7 +4318,7 @@
             "dist": {
                 "type": "path",
                 "url": "../../package/platform",
-                "reference": "26424faacb5a31e5b0c8a7f09852406ee7bb4262",
+                "reference": "8bfc8cfbb3a4dcca9d1d5c22478c16d23fefd98d",
                 "shasum": null
             },
             "require": {
