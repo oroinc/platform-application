@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "78bdb607c203374368e419ff907c9ba2",
-    "content-hash": "eb9717f5079eb898806b477e72867dc1",
+    "hash": "94dc438324b9fd7d2af1d5983091ff7f",
+    "content-hash": "b460a13dad41befa962bae041bbb6b9f",
     "packages": [
         {
             "name": "a2lix/translation-form-bundle",
@@ -1186,16 +1186,16 @@
         },
         {
             "name": "doctrine/doctrine-bundle",
-            "version": "1.6.3",
+            "version": "1.6.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/DoctrineBundle.git",
-                "reference": "fd51907c6c76acaa8a5234822a4f901c1500afc1"
+                "reference": "dd40b0a7fb16658cda9def9786992b8df8a49be7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/DoctrineBundle/zipball/fd51907c6c76acaa8a5234822a4f901c1500afc1",
-                "reference": "fd51907c6c76acaa8a5234822a4f901c1500afc1",
+                "url": "https://api.github.com/repos/doctrine/DoctrineBundle/zipball/dd40b0a7fb16658cda9def9786992b8df8a49be7",
+                "reference": "dd40b0a7fb16658cda9def9786992b8df8a49be7",
                 "shasum": ""
             },
             "require": {
@@ -1204,6 +1204,7 @@
                 "jdorn/sql-formatter": "~1.1",
                 "php": ">=5.3.2",
                 "symfony/console": "~2.3|~3.0",
+                "symfony/dependency-injection": "~2.3|~3.0",
                 "symfony/doctrine-bridge": "~2.2|~3.0",
                 "symfony/framework-bundle": "~2.3|~3.0"
             },
@@ -1262,7 +1263,7 @@
                 "orm",
                 "persistence"
             ],
-            "time": "2016-04-21 19:55:56"
+            "time": "2016-08-10 15:35:22"
         },
         {
             "name": "doctrine/doctrine-cache-bundle",
@@ -4314,12 +4315,17 @@
         },
         {
             "name": "oro/platform",
-            "version": "dev-master",
+            "version": "1.10.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/orocrm/platform.git",
+                "reference": "a2cd6ed860e3fefdb5aa39e144b92f1a5bc4ddff"
+            },
             "dist": {
-                "type": "path",
-                "url": "../../package/platform",
-                "reference": "26424faacb5a31e5b0c8a7f09852406ee7bb4262",
-                "shasum": null
+                "type": "zip",
+                "url": "https://api.github.com/repos/orocrm/platform/zipball/a2cd6ed860e3fefdb5aa39e144b92f1a5bc4ddff",
+                "reference": "a2cd6ed860e3fefdb5aa39e144b92f1a5bc4ddff",
+                "shasum": ""
             },
             "require": {
                 "a2lix/translation-form-bundle": "dev-1.x-symfony2.8",
@@ -4406,6 +4412,7 @@
                     "Oro\\Bundle": "src/"
                 }
             },
+            "notification-url": "https://packagist.orocrm.com/downloads/",
             "license": [
                 "MIT"
             ],
@@ -4416,50 +4423,8 @@
                 }
             ],
             "description": "Business Application Platform (BAP)",
-            "homepage": "https://github.com/orocrm/platform.git"
-        },
-        {
-            "name": "oro/platform-serialised-fields",
-            "version": "dev-master",
-            "target-dir": "src/Oro/Bundle/EntitySerializedFieldsBundle",
-            "dist": {
-                "type": "path",
-                "url": "../../package/serialized-fields",
-                "reference": "e0443843de6b39b05d308015bc5e24563abfb783",
-                "shasum": null
-            },
-            "require": {
-                "oro/platform": "1.10.x-dev",
-                "php": ">=5.5.9"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Oro\\Bundle\\EntitySerializedFieldsBundle": "src/"
-                }
-            },
-            "license": [
-                "OSL-3.0"
-            ],
-            "authors": [
-                {
-                    "name": "Oro, Inc",
-                    "homepage": "http://www.orocrm.com"
-                }
-            ],
-            "description": "Oro Platform Serialized Fields",
-            "homepage": "https://github.com/orocrm/OroEntitySerializedFieldsBundle",
-            "keywords": [
-                "Oro",
-                "Platform",
-                "entity",
-                "fields"
-            ]
+            "homepage": "https://github.com/orocrm/platform.git",
+            "time": "2016-08-13 07:48:07"
         },
         {
             "name": "paragonie/random_compat",
@@ -8842,28 +8807,29 @@
         },
         {
             "name": "webmozart/assert",
-            "version": "1.0.2",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webmozart/assert.git",
-                "reference": "30eed06dd6bc88410a4ff7f77b6d22f3ce13dbde"
+                "reference": "bb2d123231c095735130cc8f6d31385a44c7b308"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webmozart/assert/zipball/30eed06dd6bc88410a4ff7f77b6d22f3ce13dbde",
-                "reference": "30eed06dd6bc88410a4ff7f77b6d22f3ce13dbde",
+                "url": "https://api.github.com/repos/webmozart/assert/zipball/bb2d123231c095735130cc8f6d31385a44c7b308",
+                "reference": "bb2d123231c095735130cc8f6d31385a44c7b308",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.3"
+                "php": "^5.3.3|^7.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^4.6"
+                "phpunit/phpunit": "^4.6",
+                "sebastian/version": "^1.0.1"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0-dev"
+                    "dev-master": "1.2-dev"
                 }
             },
             "autoload": {
@@ -8887,28 +8853,12 @@
                 "check",
                 "validate"
             ],
-            "time": "2015-08-24 13:29:44"
+            "time": "2016-08-09 15:02:57"
         }
     ],
-    "aliases": [
-        {
-            "alias": "1.10.x-dev",
-            "alias_normalized": "1.10.9999999.9999999-dev",
-            "version": "9999999-dev",
-            "package": "oro/platform"
-        },
-        {
-            "alias": "1.10.x-dev",
-            "alias_normalized": "1.10.9999999.9999999-dev",
-            "version": "9999999-dev",
-            "package": "oro/platform-serialised-fields"
-        }
-    ],
+    "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "oro/platform": 20,
-        "oro/platform-serialised-fields": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": [],
