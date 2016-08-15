@@ -10,8 +10,8 @@
     },
     "repositories": [
         {
-            "type": "path",
-            "url": "../../package/*"
+            "type": "git",
+            "url": "https://github.com/orocrm/TranslationFormBundle.git"
         },
         {
             "type": "composer",
@@ -19,8 +19,8 @@
         }
     ],
     "require": {
-        "oro/platform": "self.version",
-        "oro/platform-serialised-fields" : "self.version"
+        "oro/platform": "1.x-dev",
+        "oro/platform-serialised-fields" : "1.x-dev"
     },
     "require-dev": {
         "sensio/generator-bundle": "2.5.3",
@@ -28,8 +28,11 @@
         "behat/behat": "3.1.0",
         "behat/mink-extension": "^2.0",
         "behat/mink-selenium2-driver": "1.*",
-        "bossa/phpspec2-expect": "~1.0",
-        "behat/symfony2-extension": "2.1.1"
+        "behat/symfony2-extension": "2.1.1",
+        "nelmio/alice": "^2.1",
+        "phpunit/phpunit": "4.8.*",
+        "johnkary/phpunit-speedtrap": "1.0.*",
+        "mybuilder/phpunit-accelerator": "1.1.*"
     },
     "config": {
         "component-dir": "web/bundles/components"
