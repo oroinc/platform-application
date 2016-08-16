@@ -5,6 +5,10 @@ default: &default
     extensions:
         Behat\MinkExtension:
             base_url: 'http://dev-platform.local/'
+        Oro\Bundle\TestFrameworkBundle\Behat\ServiceContainer\OroTestFrameworkExtension:
+            application_suites:
+                - OroUserBundle
+                - OroNavigationBundle
 
 selenium2:
     <<: *default
