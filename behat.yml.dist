@@ -9,6 +9,7 @@ default: &default
             application_suites:
                 - OroUserBundle
                 - OroNavigationBundle
+                - OroDashboardBundle
 
 selenium2:
     <<: *default
