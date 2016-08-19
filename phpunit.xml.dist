@@ -10,6 +10,7 @@
          colors="true"
          bootstrap="app/autoload.php"
 >
+
     <groups>
         <exclude>
             <group>soap</group>
