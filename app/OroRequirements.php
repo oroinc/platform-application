@@ -79,7 +79,7 @@ class OroRequirements extends SymfonyRequirements
 
         $this->addRecommendation(
             extension_loaded('tidy'),
-            'Tidy extension should be installed to increase work with emails',
+            'Tidy extension should be installed to make sure that any HTML is correctly converted into a text representation.',
             'Install and enable the <strong>Tidy</strong> extension.'
         );
 
