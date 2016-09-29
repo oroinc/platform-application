@@ -15,7 +15,7 @@ _liip_imagine:
 # ORO routes
 #
 oro_default:
-    pattern:  /
+    path:  /
     defaults:
         _controller: OroDashboardBundle:Dashboard:view
 
