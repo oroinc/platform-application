@@ -15,6 +15,3 @@ default: &default
 
 selenium2:
     <<: *default
-    extensions:
-        Behat\MinkExtension:
-            base_url: 'http://dev-platform.local/'
