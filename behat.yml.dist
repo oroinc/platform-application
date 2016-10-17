@@ -12,6 +12,8 @@ default: &default
                 - OroNavigationBundle
                 - OroDashboardBundle
                 - OroSearchBundle
+                - OroHelpBundle
+                - OroEmailBundle
 
 selenium2:
     <<: *default
