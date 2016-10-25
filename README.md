@@ -35,6 +35,12 @@ http://getcomposer.org/ or just run the following command:
     curl -s https://getcomposer.org/installer | php
 ```
 
+Oro Platform uses [fxpio/composer-asset-plugin][9] to manage dependency on third-party asset libraries. The plugin have to be installed globally (per user):
+ 
+```bash
+    composer global require "fxp/composer-asset-plugin:~1.2"
+```
+
 - Clone https://github.com/orocrm/platform-application.git Platform Application project with
 
 ```bash
@@ -141,3 +147,4 @@ The Oro Platform application is based on the Symfony standard application so web
 [6]:  http://symfony.com/doc/current/doctrine.html#configuring-the-database
 [7]:  http://dev.mysql.com/doc/refman/5.6/en/innodb-parameters.html#sysvar_innodb_large_prefix
 [8]:  https://mathiasbynens.be/notes/mysql-utf8mb4#utf8-to-utf8mb4
+[9]:  https://github.com/fxpio/composer-asset-plugin/blob/master/Resources/doc/index.md
