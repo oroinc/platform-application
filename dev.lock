@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "6e94a3559a40f819fc17942edc34990b",
-    "content-hash": "44461535267e40d191da9f2405f818b6",
+    "hash": "592a01c5e6a0d8f35e27460139e14371",
+    "content-hash": "c338f6eb5ce5332a83f5f449c500c776",
     "packages": [
         {
             "name": "a2lix/translation-form-bundle",
@@ -789,35 +789,35 @@
         },
         {
             "name": "doctrine/annotations",
-            "version": "v1.2.7",
+            "version": "v1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/annotations.git",
-                "reference": "f25c8aab83e0c3e976fd7d19875f198ccf2f7535"
+                "reference": "30e07cf03edc3cd3ef579d0dd4dd8c58250799a5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/annotations/zipball/f25c8aab83e0c3e976fd7d19875f198ccf2f7535",
-                "reference": "f25c8aab83e0c3e976fd7d19875f198ccf2f7535",
+                "url": "https://api.github.com/repos/doctrine/annotations/zipball/30e07cf03edc3cd3ef579d0dd4dd8c58250799a5",
+                "reference": "30e07cf03edc3cd3ef579d0dd4dd8c58250799a5",
                 "shasum": ""
             },
             "require": {
                 "doctrine/lexer": "1.*",
-                "php": ">=5.3.2"
+                "php": "^5.6 || ^7.0"
             },
             "require-dev": {
                 "doctrine/cache": "1.*",
-                "phpunit/phpunit": "4.*"
+                "phpunit/phpunit": "^5.6.1"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.3.x-dev"
+                    "dev-master": "1.4.x-dev"
                 }
             },
             "autoload": {
-                "psr-0": {
-                    "Doctrine\\Common\\Annotations\\": "lib/"
+                "psr-4": {
+                    "Doctrine\\Common\\Annotations\\": "lib/Doctrine/Common/Annotations"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -853,7 +853,7 @@
                 "docblock",
                 "parser"
             ],
-            "time": "2015-08-31 12:32:49"
+            "time": "2016-10-24 11:45:47"
         },
         {
             "name": "doctrine/cache",
@@ -3312,7 +3312,7 @@
                     "email": "stof@notk.org"
                 },
                 {
-                    "name": "KnpLabs",
+                    "name": "Knplabs",
                     "homepage": "http://knplabs.com"
                 },
                 {
@@ -3798,16 +3798,16 @@
         },
         {
             "name": "moment/moment",
-            "version": "2.15.1",
+            "version": "2.15.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/moment/moment.git",
-                "reference": "986dba9497b7c173760d1d7bc85606c574ed2c44"
+                "reference": "dc1e659b34365c98896e73e2e858f9efa4b3d5dc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/moment/moment/zipball/986dba9497b7c173760d1d7bc85606c574ed2c44",
-                "reference": "986dba9497b7c173760d1d7bc85606c574ed2c44",
+                "url": "https://api.github.com/repos/moment/moment/zipball/dc1e659b34365c98896e73e2e858f9efa4b3d5dc",
+                "reference": "dc1e659b34365c98896e73e2e858f9efa4b3d5dc",
                 "shasum": ""
             },
             "require": {
@@ -3848,7 +3848,7 @@
                 "time",
                 "validate"
             ],
-            "time": "2016-09-21 03:33:57"
+            "time": "2016-10-24 06:42:14"
         },
         {
             "name": "monolog/monolog",
@@ -3974,20 +3974,23 @@
         },
         {
             "name": "mustangostang/spyc",
-            "version": "0.5.1",
+            "version": "0.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mustangostang/spyc.git",
-                "reference": "dc4785b4d7227fd9905e086d499fb8abfadf9977"
+                "reference": "022532641d61d383fd3ae666982bd46e61e5915e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mustangostang/spyc/zipball/dc4785b4d7227fd9905e086d499fb8abfadf9977",
-                "reference": "dc4785b4d7227fd9905e086d499fb8abfadf9977",
+                "url": "https://api.github.com/repos/mustangostang/spyc/zipball/022532641d61d383fd3ae666982bd46e61e5915e",
+                "reference": "022532641d61d383fd3ae666982bd46e61e5915e",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.3.*@dev"
             },
             "type": "library",
             "extra": {
@@ -4002,7 +4005,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "MIT License"
+                "MIT"
             ],
             "authors": [
                 {
@@ -4017,7 +4020,7 @@
                 "yaml",
                 "yml"
             ],
-            "time": "2013-02-21 10:52:01"
+            "time": "2016-10-21 00:03:34"
         },
         {
             "name": "nelmio/api-doc-bundle",
@@ -4212,6 +4215,40 @@
                 "service proxies"
             ],
             "time": "2014-09-28 14:18:11"
+        },
+        {
+            "name": "oro/calendar-bundle",
+            "version": "dev-master",
+            "target-dir": "Oro/Bundle/CalendarBundle",
+            "dist": {
+                "type": "path",
+                "url": "../../package/calendar",
+                "reference": "735f973be6d9de30659fa8e305df057b593783a8",
+                "shasum": null
+            },
+            "require": {
+                "oro/platform": "1.x-dev",
+                "php": ">=5.5.9"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Oro\\Bundle\\CalendarBundle": ""
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "BAP Calendar Bundle",
+            "keywords": [
+                "BAP",
+                "Calendar"
+            ]
         },
         {
             "name": "oro/doctrine-extensions",
@@ -8963,7 +9000,8 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "oro/platform": 20,
-        "oro/platform-serialised-fields": 20
+        "oro/platform-serialised-fields": 20,
+        "oro/calendar-bundle": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
