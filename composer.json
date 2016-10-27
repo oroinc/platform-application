@@ -16,8 +16,7 @@
     },
     "require": {
         "oro/platform": "1.x-dev",
-        "oro/platform-serialised-fields": "1.x-dev",
-        "oro/calendar-bundle": "1.x-dev"
+        "oro/platform-serialised-fields": "1.x-dev"
     },
     "require-dev": {
         "sensio/generator-bundle": "2.5.3",
@@ -59,6 +58,10 @@
         "symfony-web-dir": "web",
         "incenteev-parameters": {
             "file": "app/config/parameters.yml"
+        },
+        "asset-installer-paths": {
+            "npm-asset-library": "web/bundles/npmassets",
+            "bower-asset-library": "web/bundles/bowerassets"
         }
     }
 }
