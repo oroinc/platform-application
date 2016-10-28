@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ef6aef52d30746d52d069fadbb5ffbee",
-    "content-hash": "1a231dfc82e8543df52f53d0ffd91db5",
+    "hash": "51b3359ee5d31371697ac880e50b86e7",
+    "content-hash": "8ac25d6a4af4cf7c81e7046860c7155c",
     "packages": [
         {
             "name": "a2lix/translation-form-bundle",
@@ -5602,7 +5602,7 @@
             "dist": {
                 "type": "path",
                 "url": "../../package/platform",
-                "reference": "bc4f817a74f22a940f1ad6ca8a5d76e5c2dbcfdc",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -5649,6 +5649,7 @@
                 "components/jqueryui": "1.11.2",
                 "components/underscore": "1.7.*",
                 "composer/composer": "1.2.*",
+                "doctrine/annotations": "~1.2.7",
                 "doctrine/data-fixtures": "1.1.1",
                 "doctrine/dbal": "2.5.1",
                 "doctrine/doctrine-bundle": "1.6.3",
@@ -5711,7 +5712,7 @@
                 "behat/mink-selenium2-driver": "1.*",
                 "behat/symfony2-extension": "2.1.1",
                 "bossa/phpspec2-expect": "~1.0",
-                "nelmio/alice": "^2.1",
+                "nelmio/alice": "2.1.4",
                 "sensio/generator-bundle": "2.5.3"
             },
             "type": "library",
@@ -9098,6 +9099,41 @@
             "time": "2016-01-07 14:44:47"
         },
         {
+            "name": "oro/calendar-bundle",
+            "version": "dev-master",
+            "target-dir": "Oro/Bundle/CalendarBundle",
+            "dist": {
+                "type": "path",
+                "url": "../../package/calendar",
+                "reference": "4ea835c2b108e0355aa6d4bd1249fd9fa601913d",
+                "shasum": null
+            },
+            "require": {
+                "bower-asset/fullcalendar": "2.2.3",
+                "oro/platform": "1.x-dev",
+                "php": ">=5.5.9"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Oro\\Bundle\\CalendarBundle": ""
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "BAP Calendar Bundle",
+            "keywords": [
+                "BAP",
+                "Calendar"
+            ]
+        },
+        {
             "name": "phpdocumentor/reflection-common",
             "version": "1.0",
             "source": {
@@ -10225,7 +10261,8 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "oro/platform": 20,
-        "oro/platform-serialised-fields": 20
+        "oro/platform-serialised-fields": 20,
+        "oro/calendar-bundle": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
