@@ -19,6 +19,7 @@
     }
   ],
   "require": {
+    "robloach/component-installer" : "0.2.*",
     "oro/platform": "1.x-dev",
     "oro/platform-serialised-fields": "1.x-dev",
     "oro/calendar-bundle": "1.x-dev"
