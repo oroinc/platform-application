@@ -47,10 +47,22 @@ Oro Platform uses [fxpio/composer-asset-plugin][9] to manage dependency in third
     git clone https://github.com/orocrm/platform-application.git
 ```
 
+- Go to platform-application folder and look at list of releases.
+ 
+```bash
+git branch -a
+```
+
+- Select the latest release (release_branch for example can be 1.10)
+
+```bash
+git checkout release_branch
+```
+
 - Make sure that you have [NodeJS][3] installed
 
 - Install OroCRM dependencies with the Composer. If the installation process is too slow, you can use the "--prefer-dist" option.
-  Go to crm-application folder and run the Composer installation:
+  Run the Composer installation:
 
 ```bash
 php composer.phar install --prefer-dist --no-dev
