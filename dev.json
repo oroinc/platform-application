@@ -19,7 +19,6 @@
     }
   ],
   "require": {
-    "robloach/component-installer" : "0.2.*",
     "oro/platform": "1.x-dev",
     "oro/platform-serialised-fields": "1.x-dev",
     "oro/calendar-bundle": "1.x-dev"
@@ -41,6 +40,7 @@
   },
   "scripts": {
     "post-install-cmd": [
+      "Oro\\Bundle\\InstallerBundle\\Composer\\ScriptHandler::checkComposerPlugin",
       "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
       "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
       "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
@@ -49,6 +49,7 @@
       "Oro\\Bundle\\InstallerBundle\\Composer\\ScriptHandler::setAssetsVersion"
     ],
     "post-update-cmd": [
+      "Oro\\Bundle\\InstallerBundle\\Composer\\ScriptHandler::checkComposerPlugin",
       "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
       "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
       "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
