@@ -33,8 +33,7 @@
     "nelmio/alice": "2.1.*",
     "phpunit/phpunit": "4.8.*",
     "johnkary/phpunit-speedtrap": "1.0.*",
-    "mybuilder/phpunit-accelerator": "1.1.*",
-    "jms/cg": "~1.1"
+    "mybuilder/phpunit-accelerator": "1.1.*"
   },
   "config": {
     "component-dir": "web/bundles/components"
