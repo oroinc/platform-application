@@ -9,31 +9,38 @@
     "packages": [
         {
             "name": "a2lix/translation-form-bundle",
-            "version": "1.x-dev",
+            "version": "2.1.2",
             "target-dir": "A2lix/TranslationFormBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/a2lix/TranslationFormBundle.git",
-                "reference": "5041f05883685d944e2d9b44343709b51a1d476f"
+                "reference": "a04a8db282caabc084cf9fcccd82d2fcfbee36af"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/a2lix/TranslationFormBundle/zipball/5041f05883685d944e2d9b44343709b51a1d476f",
-                "reference": "5041f05883685d944e2d9b44343709b51a1d476f",
+                "url": "https://api.github.com/repos/a2lix/TranslationFormBundle/zipball/a04a8db282caabc084cf9fcccd82d2fcfbee36af",
+                "reference": "a04a8db282caabc084cf9fcccd82d2fcfbee36af",
                 "shasum": ""
             },
             "require": {
                 "symfony/symfony": ">=2.3"
             },
+            "require-dev": {
+                "doctrine/common": "~2.3",
+                "gedmo/doctrine-extensions": "~2.4",
+                "knplabs/doctrine-behaviors": "1.0.*",
+                "phpunit/phpunit": "~4.1"
+            },
             "suggest": {
                 "a2lix/i18n-doctrine-bundle": "For A2lix strategy",
+                "gedmo/doctrine-extensions": "For Gedmo strategy",
                 "knplabs/doctrine-behaviors": "For Knp strategy",
-                "stof/doctrine-extensions-bundle": "For Gedmo strategy"
+                "prezent/doctrine-translatable-bundle": "For Prezent strategy"
             },
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.x-dev"
+                    "dev-master": "2.x-dev"
                 }
             },
             "autoload": {
@@ -47,14 +54,11 @@
             ],
             "authors": [
                 {
-                    "name": "David ALLIX"
-                },
-                {
-                    "name": "A2lix",
-                    "homepage": "http://www.a2lix.fr"
+                    "name": "David ALLIX",
+                    "homepage": "http://a2lix.fr"
                 }
             ],
-            "description": "Translate your doctrine objects easily with a custom form field",
+            "description": "Translate your doctrine objects easily with some helps",
             "homepage": "https://github.com/a2lix/TranslationFormBundle",
             "keywords": [
                 "Symfony2",
@@ -67,29 +71,30 @@
                 "translatable",
                 "translation"
             ],
-            "time": "2016-08-05 18:11:57"
+            "time": "2016-04-11 12:49:49"
         },
         {
             "name": "akeneo/batch-bundle",
-            "version": "0.4.6",
+            "version": "0.4.2",
             "target-dir": "Akeneo/Bundle/BatchBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/akeneo/BatchBundle.git",
-                "reference": "28bffd52cbb3970817c3a5bfcaf04f564217db32"
+                "reference": "3ecebd637ba8a4b3269c641bc55905a8397af34c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/akeneo/BatchBundle/zipball/28bffd52cbb3970817c3a5bfcaf04f564217db32",
-                "reference": "28bffd52cbb3970817c3a5bfcaf04f564217db32",
+                "url": "https://api.github.com/repos/akeneo/BatchBundle/zipball/3ecebd637ba8a4b3269c641bc55905a8397af34c",
+                "reference": "3ecebd637ba8a4b3269c641bc55905a8397af34c",
                 "shasum": ""
             },
             "require": {
-                "doctrine/orm": "^2.1.3",
-                "monolog/monolog": "^1.1.0",
+                "doctrine/orm": ">=2.1.3",
+                "monolog/monolog": ">=1.1.0",
                 "php": ">=5.4.4",
-                "symfony/swiftmailer-bundle": "^2.3.5",
-                "symfony/symfony": "^2.1"
+                "swiftmailer/swiftmailer": ">=4.1.3",
+                "symfony/swiftmailer-bundle": ">=2.3.5",
+                "symfony/symfony": ">=2.1"
             },
             "require-dev": {
                 "phpspec/phpspec": "2.1.*"
@@ -118,7 +123,7 @@
                 "reader",
                 "writer"
             ],
-            "time": "2016-12-08 14:03:40"
+            "time": "2015-05-05 21:23:02"
         },
         {
             "name": "ass/xmlsecurity",
@@ -5345,12 +5350,12 @@
             "dist": {
                 "type": "path",
                 "url": "../../package/platform",
-                "reference": "b9b98c0c03078517a220f31e6323a86419483f60",
+                "reference": "e3595e8772ff4a8599e2b9217f57448bf0dbe754",
                 "shasum": null
             },
             "require": {
-                "a2lix/translation-form-bundle": "1.x-dev",
-                "akeneo/batch-bundle": "0.4.6",
+                "a2lix/translation-form-bundle": "2.1.2",
+                "akeneo/batch-bundle": "0.4.2",
                 "ass/xmlsecurity": "1.1.1",
                 "besimple/soap": "0.2.2",
                 "bower-asset/autobahnjs": "0.8.0",
