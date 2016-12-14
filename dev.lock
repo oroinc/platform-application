@@ -4442,22 +4442,22 @@
         },
         {
             "name": "leafo/lessphp",
-            "version": "v0.5.0",
+            "version": "v0.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/leafo/lessphp.git",
-                "reference": "0f5a7f5545d2bcf4e9fad9a228c8ad89cc9aa283"
+                "reference": "51f3f06f0fe78a722dabfd14578444bdd078d9de"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/leafo/lessphp/zipball/0f5a7f5545d2bcf4e9fad9a228c8ad89cc9aa283",
-                "reference": "0f5a7f5545d2bcf4e9fad9a228c8ad89cc9aa283",
+                "url": "https://api.github.com/repos/leafo/lessphp/zipball/51f3f06f0fe78a722dabfd14578444bdd078d9de",
+                "reference": "51f3f06f0fe78a722dabfd14578444bdd078d9de",
                 "shasum": ""
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.4.x-dev"
+                    "dev-master": "0.3-dev"
                 }
             },
             "autoload": {
@@ -4479,7 +4479,7 @@
             ],
             "description": "lessphp is a compiler for LESS written in PHP.",
             "homepage": "http://leafo.net/lessphp/",
-            "time": "2014-11-24 18:39:20"
+            "time": "2013-08-09 17:09:19"
         },
         {
             "name": "lexik/maintenance-bundle",
@@ -5350,7 +5350,7 @@
             "dist": {
                 "type": "path",
                 "url": "../../package/platform",
-                "reference": "e3595e8772ff4a8599e2b9217f57448bf0dbe754",
+                "reference": "818566b6e99ed12b314ad4f00d2ec14b7feb31cd",
                 "shasum": null
             },
             "require": {
@@ -5423,7 +5423,7 @@
                 "knplabs/knp-menu": "2.2.*",
                 "knplabs/knp-menu-bundle": "2.1.*",
                 "kriswallsmith/assetic": "1.4.0",
-                "leafo/lessphp": "0.5.0",
+                "leafo/lessphp": "0.4.0",
                 "lexik/maintenance-bundle": "2.1.1",
                 "liip/imagine-bundle": "1.6.*",
                 "liuggio/excelbundle": "2.1.*",
