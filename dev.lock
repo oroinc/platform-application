@@ -226,79 +226,6 @@
             "time": "2015-09-28 16:26:35"
         },
         {
-            "name": "besimple/soap",
-            "version": "v0.2.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/BeSimple/BeSimpleSoap.git",
-                "reference": "3a2b8e32eec56f19c494bc416b715676be890e3f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/BeSimple/BeSimpleSoap/zipball/3a2b8e32eec56f19c494bc416b715676be890e3f",
-                "reference": "3a2b8e32eec56f19c494bc416b715676be890e3f",
-                "shasum": ""
-            },
-            "require": {
-                "ass/xmlsecurity": "~1.0",
-                "ext-curl": "*",
-                "ext-soap": "*",
-                "php": ">=5.3.0",
-                "symfony/framework-bundle": "~2.0",
-                "symfony/twig-bundle": "~2.0",
-                "zendframework/zend-mime": "2.1.*"
-            },
-            "replace": {
-                "besimple/soap-bundle": "self.version",
-                "besimple/soap-client": "self.version",
-                "besimple/soap-common": "self.version",
-                "besimple/soap-server": "self.version",
-                "besimple/soap-wsdl": "self.version"
-            },
-            "require-dev": {
-                "ext-mcrypt": "*",
-                "mikey179/vfsstream": "dev-master",
-                "symfony/filesystem": "~2.3",
-                "symfony/process": "~2.3"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "0.2-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "BeSimple\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Francis Besset",
-                    "email": "francis.besset@gmail.com",
-                    "homepage": "http://www.apercite.fr"
-                },
-                {
-                    "name": "Andreas Schamberger",
-                    "email": "mail@andreass.net"
-                },
-                {
-                    "name": "Christian Kerl",
-                    "email": "christian-kerl@web.de"
-                }
-            ],
-            "description": "Build and consume SOAP and WSDL based web services",
-            "homepage": "http://besim.pl",
-            "keywords": [
-                "soap"
-            ],
-            "time": "2013-12-13 07:26:18"
-        },
-        {
             "name": "bower-asset/Autolinker.js",
             "version": "0.11.0",
             "source": {
@@ -5350,14 +5277,13 @@
             "dist": {
                 "type": "path",
                 "url": "../../package/platform",
-                "reference": "818566b6e99ed12b314ad4f00d2ec14b7feb31cd",
+                "reference": "f3bbdce776f213c7cbe5dd6ceb5911beb02ef0b9",
                 "shasum": null
             },
             "require": {
                 "a2lix/translation-form-bundle": "2.1.2",
                 "akeneo/batch-bundle": "0.4.2",
                 "ass/xmlsecurity": "1.1.1",
-                "besimple/soap": "0.2.2",
                 "bower-asset/autobahnjs": "0.8.0",
                 "bower-asset/autolinker.js": "0.11.0",
                 "bower-asset/backbone": "1.2.3",
@@ -5437,7 +5363,7 @@
                 "ocramius/proxy-manager": "0.5.*",
                 "oro/doctrine-extensions": "1.0.*",
                 "php": ">=5.6",
-                "phpdocumentor/reflection-docblock": "2.0.4",
+                "phpdocumentor/reflection-docblock": "2.0.*",
                 "piwik/device-detector": "3.7.*",
                 "robloach/component-installer": "0.2.*",
                 "sensio/distribution-bundle": "4.0.*",
@@ -5448,7 +5374,7 @@
                 "symfony/monolog-bundle": "3.0.*",
                 "symfony/polyfill-php70": "1.*",
                 "symfony/swiftmailer-bundle": "2.4.*",
-                "symfony/symfony": "2.8.*, !=2.8.10",
+                "symfony/symfony": "2.8.*, !=2.8.10, <=2.8.13",
                 "tinymce/tinymce": "4.1.*",
                 "twig/extensions": "1.4.*",
                 "twig/twig": "1.29.*",
@@ -7246,16 +7172,16 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v2.8.15",
+            "version": "v2.8.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "3ec15b9379ebb0758e296d4193926a7b4121a964"
+                "reference": "d04e2eb13ae63068fc8862530b403756e3702896"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/3ec15b9379ebb0758e296d4193926a7b4121a964",
-                "reference": "3ec15b9379ebb0758e296d4193926a7b4121a964",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/d04e2eb13ae63068fc8862530b403756e3702896",
+                "reference": "d04e2eb13ae63068fc8862530b403756e3702896",
                 "shasum": ""
             },
             "require": {
@@ -7271,7 +7197,7 @@
                 "symfony/polyfill-php70": "~1.0",
                 "symfony/polyfill-util": "~1.0",
                 "symfony/security-acl": "~2.7|~3.0.0",
-                "twig/twig": "~1.28|~2.0"
+                "twig/twig": "~1.27|~2.0"
             },
             "conflict": {
                 "phpdocumentor/reflection": "<1.0.7"
@@ -7377,7 +7303,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2016-12-13 12:16:34"
+            "time": "2016-10-27 02:18:45"
         },
         {
             "name": "tinymce/tinymce",
