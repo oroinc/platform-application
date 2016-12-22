@@ -38,7 +38,7 @@ http://getcomposer.org/ website or simply run the following command:
 Oro Platform uses [fxpio/composer-asset-plugin][9] to manage dependency in third-party asset libraries. The plugin has to be installed globally (per user):
  
 ```bash
-    composer global require "fxp/composer-asset-plugin:~1.2"
+composer global require "fxp/composer-asset-plugin:~1.2"
 ```
 
 - Clone https://github.com/orocrm/platform-application.git Platform Application project with
