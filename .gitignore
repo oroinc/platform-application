@@ -18,5 +18,6 @@ behat.yml
 /app/config/parameters_test.yml
 behat.yml
 *~
+bin
 
 /app/SymfonyRequirements.php
