@@ -111,7 +111,7 @@ See [Symfony Performance](http://symfony.com/doc/current/performance.html)
 
 ##Using Redis for application caching
 
-To use Redis for application caching, follow the corresponding [configuration instructions][7]
+To use Redis for application caching, follow the corresponding [configuration instructions][8]
 
 [1]:    https://github.com/orocrm/platform
 [2]:    https://www.orocrm.com/documentation/index/current/system-requirements
