@@ -117,13 +117,6 @@ lexik_maintenance:
         options:
             file_path:        %kernel.root_dir%/cache/maintenance_lock
 
-liip_imagine:
-    loaders:
-        default:
-            filesystem:
-                bundle_resources:
-                    enabled: true
-
 #
 # ORO Bundles config
 #
