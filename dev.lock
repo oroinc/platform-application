@@ -5209,13 +5209,13 @@
             "dist": {
                 "type": "path",
                 "url": "../../package/calendar",
-                "reference": "6622679e045bce60b875a86abae7c6ebab83408e",
+                "reference": "a6fc82d2b9020736beb5572e934eabd2d2b4d663",
                 "shasum": null
             },
             "require": {
                 "bower-asset/fullcalendar": "2.2.3",
                 "oro/platform": "2.x-dev",
-                "php": ">=5.6"
+                "php": ">=7.0"
             },
             "type": "symfony-bundle",
             "extra": {
@@ -5308,7 +5308,7 @@
             "dist": {
                 "type": "path",
                 "url": "../../package/platform",
-                "reference": "a78b9ad7f68e8b765961260dfed6f994fec5f476",
+                "reference": "00b5088168dc78e348fb15af2c3877042d0a65c1",
                 "shasum": null
             },
             "require": {
@@ -5397,7 +5397,7 @@
                 "ocramius/proxy-manager": "0.5.*",
                 "oro/doctrine-extensions": "1.1.*",
                 "oro/redis-config": "~2.0",
-                "php": ">=5.6",
+                "php": ">=7.0",
                 "piwik/device-detector": "3.7.*",
                 "robloach/component-installer": "0.2.*",
                 "sensio/distribution-bundle": "4.0.*",
@@ -5461,12 +5461,12 @@
             "dist": {
                 "type": "path",
                 "url": "../../package/serialized-fields",
-                "reference": "9dbb217e64e3f77f28120de55b77337cd90b6bfb",
+                "reference": "fbcccae7809cef24a13f60cd312d194883c16d1a",
                 "shasum": null
             },
             "require": {
                 "oro/platform": "2.x-dev",
-                "php": ">=5.6"
+                "php": ">=7.0"
             },
             "type": "library",
             "extra": {
