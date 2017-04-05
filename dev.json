@@ -19,9 +19,9 @@
     }
   ],
   "require": {
-    "oro/platform": "1.x-dev",
-    "oro/platform-serialised-fields": "1.x-dev",
-    "oro/calendar-bundle": "1.x-dev"
+    "oro/platform": "2.0.x-dev",
+    "oro/platform-serialised-fields": "2.0.x-dev",
+    "oro/calendar-bundle": "2.0.x-dev"
   },
   "require-dev": {
     "sensio/generator-bundle": "3.1.2",
