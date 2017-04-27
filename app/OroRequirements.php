@@ -2,25 +2,28 @@
 
 require_once __DIR__ . '/SymfonyRequirements.php';
 
-use Symfony\Component\Process\ProcessBuilder;
-use Symfony\Component\Intl\Intl;
-
 use Oro\Bundle\InstallerBundle\Process\PhpExecutableFinder;
 use Oro\Bundle\RequireJSBundle\DependencyInjection\Configuration as RequireJSConfiguration;
+
+use Symfony\Component\Intl\Intl;
+use Symfony\Component\Process\ProcessBuilder;
 
 /**
  * This class specifies all requirements and optional recommendations that are necessary to run the Oro Application.
  */
 class OroRequirements extends SymfonyRequirements
 {
-    const REQUIRED_PHP_VERSION  = '5.6';
+    const REQUIRED_PHP_VERSION  = '7.0';
     const REQUIRED_GD_VERSION   = '2.0';
     const REQUIRED_CURL_VERSION = '7.0';
     const REQUIRED_ICU_VERSION  = '3.8';
 
-    const EXCLUDE_REQUIREMENTS_MASK = '/5\.[0-5]\./';
+    const EXCLUDE_REQUIREMENTS_MASK = '/5\.[0-6]/';
 
-    public function __construct()
+    /**
+     * @param string $env
+     */
+    public function __construct($env = 'prod')
     {
         parent::__construct();
 
@@ -185,8 +188,12 @@ class OroRequirements extends SymfonyRequirements
             'app/attachment/ directory must be writable',
             'Change the permissions of the "<strong>app/attachment/</strong>" directory so that the web server can write into it.'
         );
+        $this->addOroRequirement(
+            is_writable($baseDir . '/app/import_export'),
+            'app/import_export/ directory must be writable',
+            'Change the permissions of the "<strong>app/import_export/</strong>" directory so that the web server can write into it.'
+        );
 
-       
         if (is_dir($baseDir . '/web/js')) {
             $this->addOroRequirement(
                 is_writable($baseDir . '/web/js'),
@@ -218,7 +225,6 @@ class OroRequirements extends SymfonyRequirements
                 'Change the permissions of the "<strong>app/config/parameters.yml</strong>" file so that the web server can write into it.'
             );
         }
-
     }
 
     /**

@@ -1,5 +1,5 @@
 imports:
-  - ../../package/platform/src/Oro/Bundle/TestFrameworkBundle/Resources/config/behat.yml.dist
+  - ./vendor/oro/platform/src/Oro/Bundle/TestFrameworkBundle/Resources/config/behat.yml.dist
 
 default: &default
     gherkin:
@@ -9,14 +9,7 @@ default: &default
         Behat\MinkExtension:
             base_url: 'http://dev-platform.local/'
         Behat\Symfony2Extension: ~
-        Oro\Bundle\TestFrameworkBundle\Behat\ServiceContainer\OroTestFrameworkExtension:
-            application_suites:
-                - OroUserBundle
-                - OroNavigationBundle
-                - OroDashboardBundle
-                - OroSearchBundle
-                - OroHelpBundle
-                - OroEmailBundle
+        Oro\Bundle\TestFrameworkBundle\Behat\ServiceContainer\OroTestFrameworkExtension: ~
 
 selenium2:
     <<: *default
