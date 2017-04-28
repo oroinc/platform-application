@@ -20,7 +20,10 @@ class OroRequirements extends SymfonyRequirements
 
     const EXCLUDE_REQUIREMENTS_MASK = '/5\.[0-6]/';
 
-    public function __construct()
+    /**
+     * @param string $env
+     */
+    public function __construct($env = 'prod')
     {
         parent::__construct();
 
@@ -190,7 +193,7 @@ class OroRequirements extends SymfonyRequirements
             'app/import_export/ directory must be writable',
             'Change the permissions of the "<strong>app/import_export/</strong>" directory so that the web server can write into it.'
         );
-       
+
         if (is_dir($baseDir . '/web/js')) {
             $this->addOroRequirement(
                 is_writable($baseDir . '/web/js'),
@@ -370,7 +373,7 @@ class OroRequirements extends SymfonyRequirements
      */
     protected function checkFileNameLength()
     {
-        $getConf = new ProcessBuilder(['getconf', 'NAME_MAX', __DIR__]);
+        $getConf = new ProcessBuilder(array('getconf', 'NAME_MAX', __DIR__));
         $getConf = $getConf->getProcess();
 
         if (isset($_SERVER['PATH'])) {

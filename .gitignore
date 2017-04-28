@@ -16,6 +16,10 @@ behat.yml
 /web/build.js
 /app/config/parameters.yml
 /app/config/parameters_test.yml
+/app/cache/*
+/app/logs/*
+!app/cache/.gitkeep
+!app/logs/.gitkeep
 behat.yml
 *~
 bin
