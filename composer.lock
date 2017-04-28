@@ -182,25 +182,29 @@
         },
         {
             "name": "behat/transliterator",
-            "version": "v1.1.0",
+            "version": "v1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Behat/Transliterator.git",
-                "reference": "868e05be3a9f25ba6424c2dd4849567f50715003"
+                "reference": "826ce7e9c2a6664c0d1f381cbb38b1fb80a7ee2c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Behat/Transliterator/zipball/868e05be3a9f25ba6424c2dd4849567f50715003",
-                "reference": "868e05be3a9f25ba6424c2dd4849567f50715003",
+                "url": "https://api.github.com/repos/Behat/Transliterator/zipball/826ce7e9c2a6664c0d1f381cbb38b1fb80a7ee2c",
+                "reference": "826ce7e9c2a6664c0d1f381cbb38b1fb80a7ee2c",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
+            "require-dev": {
+                "chuyskywalker/rolling-curl": "^3.1",
+                "php-yaoi/php-yaoi": "^1.0"
+            },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.1-dev"
+                    "dev-master": "1.2-dev"
                 }
             },
             "autoload": {
@@ -218,7 +222,7 @@
                 "slug",
                 "transliterator"
             ],
-            "time": "2015-09-28T16:26:35+00:00"
+            "time": "2017-04-04T11:38:05+00:00"
         },
         {
             "name": "bower-asset/Autolinker.js",
@@ -1193,24 +1197,24 @@
         },
         {
             "name": "bower-asset/moment-timezone",
-            "version": "0.5.11",
+            "version": "0.5.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/moment/moment-timezone.git",
-                "reference": "2124976c909dd440bea4499c5fd9c8ca4da95fd8"
+                "reference": "2b8da8f103f019949d45dc86fd6763960c8474d8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/moment/moment-timezone/zipball/2124976c909dd440bea4499c5fd9c8ca4da95fd8",
-                "reference": "2124976c909dd440bea4499c5fd9c8ca4da95fd8",
+                "url": "https://api.github.com/repos/moment/moment-timezone/zipball/2b8da8f103f019949d45dc86fd6763960c8474d8",
+                "reference": "2b8da8f103f019949d45dc86fd6763960c8474d8",
                 "shasum": ""
             },
             "require": {
-                "bower-asset/moment": ">=2.6.0"
+                "bower-asset/moment": ">=2.9.0"
             },
             "type": "bower-asset-library",
             "extra": {
-                "bower-asset-main": "builds/moment-timezone-with-data-2010-2020.js",
+                "bower-asset-main": "builds/moment-timezone-with-data-2012-2022.js",
                 "bower-asset-ignore": [
                     "**/.*",
                     "tests",
@@ -1766,16 +1770,16 @@
         },
         {
             "name": "composer/spdx-licenses",
-            "version": "1.1.5",
+            "version": "1.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/spdx-licenses.git",
-                "reference": "96c6a07b05b716e89a44529d060bc7f5c263cb13"
+                "reference": "2603a0d7ddc00a015deb576fa5297ca43dee6b1c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/spdx-licenses/zipball/96c6a07b05b716e89a44529d060bc7f5c263cb13",
-                "reference": "96c6a07b05b716e89a44529d060bc7f5c263cb13",
+                "url": "https://api.github.com/repos/composer/spdx-licenses/zipball/2603a0d7ddc00a015deb576fa5297ca43dee6b1c",
+                "reference": "2603a0d7ddc00a015deb576fa5297ca43dee6b1c",
                 "shasum": ""
             },
             "require": {
@@ -1823,7 +1827,7 @@
                 "spdx",
                 "validator"
             ],
-            "time": "2016-09-28T07:17:45+00:00"
+            "time": "2017-04-03T19:08:52+00:00"
         },
         {
             "name": "doctrine/annotations",
@@ -4172,7 +4176,7 @@
                     "email": "stof@notk.org"
                 },
                 {
-                    "name": "Knplabs",
+                    "name": "KnpLabs",
                     "homepage": "http://knplabs.com"
                 },
                 {
@@ -5260,16 +5264,16 @@
         },
         {
             "name": "oro/platform",
-            "version": "2.1.0",
+            "version": "2.1.1",
             "source": {
                 "type": "git",
                 "url": "git@github.com:orocrm/platform.git",
-                "reference": "122cb2d80ebe66dfb20dd8b512e68eb63ae4c5e3"
+                "reference": "9bb8b75875847ba9b66c4a71c964b22a69eb8cf0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/orocrm/platform/zipball/122cb2d80ebe66dfb20dd8b512e68eb63ae4c5e3",
-                "reference": "122cb2d80ebe66dfb20dd8b512e68eb63ae4c5e3",
+                "url": "https://api.github.com/repos/orocrm/platform/zipball/9bb8b75875847ba9b66c4a71c964b22a69eb8cf0",
+                "reference": "9bb8b75875847ba9b66c4a71c964b22a69eb8cf0",
                 "shasum": ""
             },
             "require": {
@@ -5416,7 +5420,7 @@
             ],
             "description": "Business Application Platform (BAP)",
             "homepage": "https://github.com/orocrm/platform.git",
-            "time": "2017-03-29T14:46:21+00:00"
+            "time": "2017-04-26T11:54:26+00:00"
         },
         {
             "name": "oro/platform-serialised-fields",
@@ -5714,16 +5718,16 @@
         },
         {
             "name": "piwik/device-detector",
-            "version": "3.7.6",
+            "version": "3.7.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/piwik/device-detector.git",
-                "reference": "f5b6ffc44e4092b1964d32f21142dc721f5a0899"
+                "reference": "f0e5d6bc159241fdfc2e02f7abd4ab5d519d2c30"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/piwik/device-detector/zipball/f5b6ffc44e4092b1964d32f21142dc721f5a0899",
-                "reference": "f5b6ffc44e4092b1964d32f21142dc721f5a0899",
+                "url": "https://api.github.com/repos/piwik/device-detector/zipball/f0e5d6bc159241fdfc2e02f7abd4ab5d519d2c30",
+                "reference": "f0e5d6bc159241fdfc2e02f7abd4ab5d519d2c30",
                 "shasum": ""
             },
             "require": {
@@ -5761,7 +5765,7 @@
                 "parser",
                 "useragent"
             ],
-            "time": "2017-02-27T17:14:38+00:00"
+            "time": "2017-04-02T17:25:50+00:00"
         },
         {
             "name": "predis/predis",
@@ -6461,16 +6465,16 @@
         },
         {
             "name": "swiftmailer/swiftmailer",
-            "version": "v5.4.6",
+            "version": "v5.4.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/swiftmailer/swiftmailer.git",
-                "reference": "81fdccfaf8bdc5d5d7a1ef6bb3a61bbb1a6c4a3e"
+                "reference": "56db4ed32a6d5c9824c3ecc1d2e538f663f47eb4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/81fdccfaf8bdc5d5d7a1ef6bb3a61bbb1a6c4a3e",
-                "reference": "81fdccfaf8bdc5d5d7a1ef6bb3a61bbb1a6c4a3e",
+                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/56db4ed32a6d5c9824c3ecc1d2e538f663f47eb4",
+                "reference": "56db4ed32a6d5c9824c3ecc1d2e538f663f47eb4",
                 "shasum": ""
             },
             "require": {
@@ -6511,7 +6515,7 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2017-02-13T07:52:53+00:00"
+            "time": "2017-04-20T17:32:18+00:00"
         },
         {
             "name": "sylius/flow-bundle",
@@ -7571,16 +7575,16 @@
         },
         {
             "name": "vakata/jstree",
-            "version": "3.3.3",
+            "version": "3.3.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vakata/jstree.git",
-                "reference": "9770c6711f0a155ec494f635aaf0add9b3cfb45c"
+                "reference": "a6a0d0dfb784d5ef0b3415d847ac7b6bfbab1f16"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vakata/jstree/zipball/9770c6711f0a155ec494f635aaf0add9b3cfb45c",
-                "reference": "9770c6711f0a155ec494f635aaf0add9b3cfb45c",
+                "url": "https://api.github.com/repos/vakata/jstree/zipball/a6a0d0dfb784d5ef0b3415d847ac7b6bfbab1f16",
+                "reference": "a6a0d0dfb784d5ef0b3415d847ac7b6bfbab1f16",
                 "shasum": ""
             },
             "require": {
@@ -7624,7 +7628,7 @@
             ],
             "description": "jsTree is jquery plugin, that provides interactive trees.",
             "homepage": "http://jstree.com",
-            "time": "2016-10-31T09:49:21+00:00"
+            "time": "2017-04-06T14:23:09+00:00"
         },
         {
             "name": "willdurand/jsonp-callback-validator",
@@ -7700,7 +7704,7 @@
             ],
             "authors": [
                 {
-                    "name": "William DURAND",
+                    "name": "William Durand",
                     "email": "william.durand1@gmail.com"
                 }
             ],
@@ -8715,7 +8719,7 @@
                 {
                     "name": "Anthon Pang",
                     "email": "apang@softwaredevelopment.ca",
-                    "role": "Fork Maintainer"
+                    "role": "Fork maintainer"
                 }
             ],
             "description": "PHP WebDriver for Selenium 2",
@@ -8823,16 +8827,16 @@
         },
         {
             "name": "myclabs/deep-copy",
-            "version": "1.6.0",
+            "version": "1.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/myclabs/DeepCopy.git",
-                "reference": "5a5a9fc8025a08d8919be87d6884d5a92520cefe"
+                "reference": "8e6e04167378abf1ddb4d3522d8755c5fd90d102"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/5a5a9fc8025a08d8919be87d6884d5a92520cefe",
-                "reference": "5a5a9fc8025a08d8919be87d6884d5a92520cefe",
+                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/8e6e04167378abf1ddb4d3522d8755c5fd90d102",
+                "reference": "8e6e04167378abf1ddb4d3522d8755c5fd90d102",
                 "shasum": ""
             },
             "require": {
@@ -8861,7 +8865,7 @@
                 "object",
                 "object graph"
             ],
-            "time": "2017-01-26T22:05:40+00:00"
+            "time": "2017-04-12T18:52:22+00:00"
         },
         {
             "name": "nelmio/alice",
@@ -9243,16 +9247,16 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "4.0.7",
+            "version": "4.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "09e2277d14ea467e5a984010f501343ef29ffc69"
+                "reference": "ef7b2f56815df854e66ceaee8ebe9393ae36a40d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/09e2277d14ea467e5a984010f501343ef29ffc69",
-                "reference": "09e2277d14ea467e5a984010f501343ef29ffc69",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/ef7b2f56815df854e66ceaee8ebe9393ae36a40d",
+                "reference": "ef7b2f56815df854e66ceaee8ebe9393ae36a40d",
                 "shasum": ""
             },
             "require": {
@@ -9302,7 +9306,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2017-03-01T09:12:17+00:00"
+            "time": "2017-04-02T07:44:40+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -9492,16 +9496,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "5.7.17",
+            "version": "5.7.19",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "68752b665d3875f9a38a357e3ecb35c79f8673bf"
+                "reference": "69c4f49ff376af2692bad9cebd883d17ebaa98a1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/68752b665d3875f9a38a357e3ecb35c79f8673bf",
-                "reference": "68752b665d3875f9a38a357e3ecb35c79f8673bf",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/69c4f49ff376af2692bad9cebd883d17ebaa98a1",
+                "reference": "69c4f49ff376af2692bad9cebd883d17ebaa98a1",
                 "shasum": ""
             },
             "require": {
@@ -9570,7 +9574,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2017-03-19T16:52:12+00:00"
+            "time": "2017-04-03T02:22:27+00:00"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -10434,16 +10438,16 @@
         },
         {
             "name": "theseer/fdomdocument",
-            "version": "1.6.1",
+            "version": "1.6.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/theseer/fDOMDocument.git",
-                "reference": "d9ad139d6c2e8edf5e313ffbe37ff13344cf0684"
+                "reference": "8dcfd392135a5bd938c3c83ea71419501ad9855d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/theseer/fDOMDocument/zipball/d9ad139d6c2e8edf5e313ffbe37ff13344cf0684",
-                "reference": "d9ad139d6c2e8edf5e313ffbe37ff13344cf0684",
+                "url": "https://api.github.com/repos/theseer/fDOMDocument/zipball/8dcfd392135a5bd938c3c83ea71419501ad9855d",
+                "reference": "8dcfd392135a5bd938c3c83ea71419501ad9855d",
                 "shasum": ""
             },
             "require": {
@@ -10470,7 +10474,7 @@
             ],
             "description": "The classes contained within this repository extend the standard DOM to use exceptions at all occasions of errors instead of PHP warnings or notices. They also add various custom methods and shortcuts for convenience and to simplify the usage of DOM.",
             "homepage": "https://github.com/theseer/fDOMDocument",
-            "time": "2015-05-27T22:58:02+00:00"
+            "time": "2017-04-21T14:50:31+00:00"
         },
         {
             "name": "webmozart/assert",
