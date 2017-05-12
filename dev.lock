@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "90916b8e2c095514338a524617ce8bba",
+    "content-hash": "e526ef7e4f6d430dd76a87d5b49a3d2a",
     "packages": [
         {
             "name": "a2lix/translation-form-bundle",
@@ -182,29 +182,25 @@
         },
         {
             "name": "behat/transliterator",
-            "version": "v1.2.0",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Behat/Transliterator.git",
-                "reference": "826ce7e9c2a6664c0d1f381cbb38b1fb80a7ee2c"
+                "reference": "868e05be3a9f25ba6424c2dd4849567f50715003"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Behat/Transliterator/zipball/826ce7e9c2a6664c0d1f381cbb38b1fb80a7ee2c",
-                "reference": "826ce7e9c2a6664c0d1f381cbb38b1fb80a7ee2c",
+                "url": "https://api.github.com/repos/Behat/Transliterator/zipball/868e05be3a9f25ba6424c2dd4849567f50715003",
+                "reference": "868e05be3a9f25ba6424c2dd4849567f50715003",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
-            "require-dev": {
-                "chuyskywalker/rolling-curl": "^3.1",
-                "php-yaoi/php-yaoi": "^1.0"
-            },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.2-dev"
+                    "dev-master": "1.1-dev"
                 }
             },
             "autoload": {
@@ -222,7 +218,7 @@
                 "slug",
                 "transliterator"
             ],
-            "time": "2017-04-04T11:38:05+00:00"
+            "time": "2015-09-28T16:26:35+00:00"
         },
         {
             "name": "bower-asset/Autolinker.js",
@@ -840,12 +836,12 @@
             "version": "3.37.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/jquery-form/form.git",
+                "url": "https://github.com/malsup/form.git",
                 "reference": "5e7391bca903586137b75304a6352cb2e60fbb22"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jquery-form/form/zipball/5e7391bca903586137b75304a6352cb2e60fbb22",
+                "url": "https://api.github.com/repos/malsup/form/zipball/5e7391bca903586137b75304a6352cb2e60fbb22",
                 "reference": "5e7391bca903586137b75304a6352cb2e60fbb22",
                 "shasum": ""
             },
@@ -915,12 +911,12 @@
             "version": "1.11.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/jquery-validation/jquery-validation.git",
+                "url": "https://github.com/jzaefferer/jquery-validation.git",
                 "reference": "3b39aec630e2ecd336bc36d457d1a645bd91660f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jquery-validation/jquery-validation/zipball/3b39aec630e2ecd336bc36d457d1a645bd91660f",
+                "url": "https://api.github.com/repos/jzaefferer/jquery-validation/zipball/3b39aec630e2ecd336bc36d457d1a645bd91660f",
                 "reference": "3b39aec630e2ecd336bc36d457d1a645bd91660f",
                 "shasum": ""
             },
@@ -3002,20 +2998,20 @@
         },
         {
             "name": "gedmo/doctrine-extensions",
-            "version": "v2.4.27",
+            "version": "v2.4.28",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Atlantic18/DoctrineExtensions.git",
-                "reference": "fe152e1239f2f46287d369e43cc9fa817cc3cd36"
+                "reference": "58038d5d217b6ba2c75de90cb2f6d424d86fab56"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Atlantic18/DoctrineExtensions/zipball/fe152e1239f2f46287d369e43cc9fa817cc3cd36",
-                "reference": "fe152e1239f2f46287d369e43cc9fa817cc3cd36",
+                "url": "https://api.github.com/repos/Atlantic18/DoctrineExtensions/zipball/58038d5d217b6ba2c75de90cb2f6d424d86fab56",
+                "reference": "58038d5d217b6ba2c75de90cb2f6d424d86fab56",
                 "shasum": ""
             },
             "require": {
-                "behat/transliterator": "~1.0",
+                "behat/transliterator": "1.1",
                 "doctrine/common": "~2.4",
                 "php": ">=5.3.2"
             },
@@ -3076,7 +3072,7 @@
                 "tree",
                 "uploadable"
             ],
-            "time": "2017-03-22T09:48:22+00:00"
+            "time": "2017-04-23T08:59:41+00:00"
         },
         {
             "name": "genemu/form-bundle",
@@ -4176,7 +4172,7 @@
                     "email": "stof@notk.org"
                 },
                 {
-                    "name": "KnpLabs",
+                    "name": "Knplabs",
                     "homepage": "http://knplabs.com"
                 },
                 {
@@ -4235,7 +4231,7 @@
                     "email": "stof@notk.org"
                 },
                 {
-                    "name": "KnpLabs",
+                    "name": "Knplabs",
                     "homepage": "http://knplabs.com"
                 },
                 {
@@ -8804,7 +8800,7 @@
                 {
                     "name": "Anthon Pang",
                     "email": "apang@softwaredevelopment.ca",
-                    "role": "Fork maintainer"
+                    "role": "Fork Maintainer"
                 }
             ],
             "description": "PHP WebDriver for Selenium 2",
