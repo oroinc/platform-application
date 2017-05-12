@@ -15,6 +15,12 @@ framework:
 - Removed `doctrine.dbal.default.wrapped_connection` service. 
 - Removed `session.handler.pdo` service. From now a declaration of this service is located in `OroPlatformBundle`. Remove this service from your `app/config/config.yml` to be sure that PDO session will work properly. If you need to override this service, you can keep it in your `app/config/config.yml`, but make sure that a default database connection is not used here. You can use `doctrine.dbal.session_connection.wrapped` service if sessions are stored in a main database.
 
+## app/config/parameters.yml.dist
+- Added parameter for `assets_version` following the above change in app/config/config.yml like so:
+``` yaml
+    assets_version:         ~
+```
+
 ## app/Resources
 - Removed `app/Resources/DoctrineBundle/views/Collector/db.html.twig`.
 - Removed `app/Resources/SecurityBundle/views/Collector/security.html.twig`.
