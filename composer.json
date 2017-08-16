@@ -1,7 +1,7 @@
 {
     "name": "oro/platform-application",
     "description": "Oro Platform Empty Application",
-    "homepage": "https://github.com/orocrm/platform-application.git",
+    "homepage": "https://github.com/oroinc/platform-application.git",
     "license": "MIT",
     "autoload": {
         "psr-4": {"": "src/"},
