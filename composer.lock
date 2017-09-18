@@ -4770,12 +4770,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:orocrm/platform.git",
-                "reference": "45f84db6e6be4d1592fc65c4886acb8a66f63ed5"
+                "reference": "19a37600649edd11884c9912b2000e949c7fe359"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/orocrm/platform/zipball/45f84db6e6be4d1592fc65c4886acb8a66f63ed5",
-                "reference": "45f84db6e6be4d1592fc65c4886acb8a66f63ed5",
+                "url": "https://api.github.com/repos/orocrm/platform/zipball/19a37600649edd11884c9912b2000e949c7fe359",
+                "reference": "19a37600649edd11884c9912b2000e949c7fe359",
                 "shasum": ""
             },
             "require": {
@@ -4928,7 +4928,7 @@
             ],
             "description": "Business Application Platform (BAP)",
             "homepage": "https://github.com/oroinc/platform.git",
-            "time": "2017-09-13T11:29:03+00:00"
+            "time": "2017-09-15T15:19:39+00:00"
         },
         {
             "name": "oro/platform-serialised-fields",
@@ -6917,16 +6917,16 @@
         },
         {
             "name": "tinymce/tinymce",
-            "version": "4.6.6",
+            "version": "4.6.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tinymce/tinymce-dist.git",
-                "reference": "50b5a77af8ef1a1da362e60ad32ace4131e2dbf0"
+                "reference": "9f9cf10d009892009a296dff48970b079ec78c7a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tinymce/tinymce-dist/zipball/50b5a77af8ef1a1da362e60ad32ace4131e2dbf0",
-                "reference": "50b5a77af8ef1a1da362e60ad32ace4131e2dbf0",
+                "url": "https://api.github.com/repos/tinymce/tinymce-dist/zipball/9f9cf10d009892009a296dff48970b079ec78c7a",
+                "reference": "9f9cf10d009892009a296dff48970b079ec78c7a",
                 "shasum": ""
             },
             "type": "component",
@@ -6959,7 +6959,7 @@
                 "tinymce",
                 "wysiwyg"
             ],
-            "time": "2017-08-30T12:11:58+00:00"
+            "time": "2017-09-18T11:31:55+00:00"
         },
         {
             "name": "twig/extensions",
