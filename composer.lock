@@ -4770,12 +4770,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:orocrm/platform.git",
-                "reference": "19a37600649edd11884c9912b2000e949c7fe359"
+                "reference": "ca9c6d790af94f5d15aaae57f8c09c24b5d282b4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/orocrm/platform/zipball/19a37600649edd11884c9912b2000e949c7fe359",
-                "reference": "19a37600649edd11884c9912b2000e949c7fe359",
+                "url": "https://api.github.com/repos/orocrm/platform/zipball/ca9c6d790af94f5d15aaae57f8c09c24b5d282b4",
+                "reference": "ca9c6d790af94f5d15aaae57f8c09c24b5d282b4",
                 "shasum": ""
             },
             "require": {
@@ -4928,7 +4928,7 @@
             ],
             "description": "Business Application Platform (BAP)",
             "homepage": "https://github.com/oroinc/platform.git",
-            "time": "2017-09-15T15:19:39+00:00"
+            "time": "2017-09-19T08:43:05+00:00"
         },
         {
             "name": "oro/platform-serialised-fields",
