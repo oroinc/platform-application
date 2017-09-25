@@ -10,3 +10,6 @@ default: &default
             base_url: 'http://dev-platform.local/'
         Behat\Symfony2Extension: ~
         Oro\Bundle\TestFrameworkBundle\Behat\ServiceContainer\OroTestFrameworkExtension: ~
+
+chromedriver:
+    <<: *default
