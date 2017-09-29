@@ -1454,37 +1454,33 @@
         },
         {
             "name": "doctrine/cache",
-            "version": "v1.7.1",
+            "version": "v1.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/cache.git",
-                "reference": "b3217d58609e9c8e661cd41357a54d926c4a2a1a"
+                "reference": "eb152c5100571c7a45470ff2a35095ab3f3b900b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/cache/zipball/b3217d58609e9c8e661cd41357a54d926c4a2a1a",
-                "reference": "b3217d58609e9c8e661cd41357a54d926c4a2a1a",
+                "url": "https://api.github.com/repos/doctrine/cache/zipball/eb152c5100571c7a45470ff2a35095ab3f3b900b",
+                "reference": "eb152c5100571c7a45470ff2a35095ab3f3b900b",
                 "shasum": ""
             },
             "require": {
-                "php": "~7.1"
+                "php": "~5.5|~7.0"
             },
             "conflict": {
                 "doctrine/common": ">2.2,<2.4"
             },
             "require-dev": {
-                "alcaeus/mongo-php-adapter": "^1.1",
-                "mongodb/mongodb": "^1.1",
-                "phpunit/phpunit": "^5.7",
-                "predis/predis": "~1.0"
-            },
-            "suggest": {
-                "alcaeus/mongo-php-adapter": "Required to use legacy MongoDB driver"
+                "phpunit/phpunit": "~4.8|~5.0",
+                "predis/predis": "~1.0",
+                "satooshi/php-coveralls": "~0.6"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.7.x-dev"
+                    "dev-master": "1.6.x-dev"
                 }
             },
             "autoload": {
@@ -1524,24 +1520,24 @@
                 "cache",
                 "caching"
             ],
-            "time": "2017-08-25T07:02:50+00:00"
+            "time": "2017-07-22T12:49:21+00:00"
         },
         {
             "name": "doctrine/collections",
-            "version": "v1.5.0",
+            "version": "v1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/collections.git",
-                "reference": "a01ee38fcd999f34d9bfbcee59dbda5105449cbf"
+                "reference": "1a4fb7e902202c33cce8c55989b945612943c2ba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/collections/zipball/a01ee38fcd999f34d9bfbcee59dbda5105449cbf",
-                "reference": "a01ee38fcd999f34d9bfbcee59dbda5105449cbf",
+                "url": "https://api.github.com/repos/doctrine/collections/zipball/1a4fb7e902202c33cce8c55989b945612943c2ba",
+                "reference": "1a4fb7e902202c33cce8c55989b945612943c2ba",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.1"
+                "php": "^5.6 || ^7.0"
             },
             "require-dev": {
                 "doctrine/coding-standard": "~0.1@dev",
@@ -1591,7 +1587,7 @@
                 "collections",
                 "iterator"
             ],
-            "time": "2017-07-22T10:37:32+00:00"
+            "time": "2017-01-03T10:49:41+00:00"
         },
         {
             "name": "doctrine/common",
@@ -4770,16 +4766,16 @@
         },
         {
             "name": "oro/platform",
-            "version": "2.4.x-dev",
+            "version": "2.4.0",
             "source": {
                 "type": "git",
                 "url": "git@github.com:oroinc/platform.git",
-                "reference": "ed968c9145cf05a23071656399d9c11bed1c5e85"
+                "reference": "1a5a8ee667469ff80cdfcf4fcbca7dfad2d219a5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/oroinc/platform/zipball/ed968c9145cf05a23071656399d9c11bed1c5e85",
-                "reference": "ed968c9145cf05a23071656399d9c11bed1c5e85",
+                "url": "https://api.github.com/repos/oroinc/platform/zipball/1a5a8ee667469ff80cdfcf4fcbca7dfad2d219a5",
+                "reference": "1a5a8ee667469ff80cdfcf4fcbca7dfad2d219a5",
                 "shasum": ""
             },
             "require": {
@@ -4932,20 +4928,20 @@
             ],
             "description": "Business Application Platform (BAP)",
             "homepage": "https://github.com/oroinc/platform.git",
-            "time": "2017-09-26T09:03:36+00:00"
+            "time": "2017-09-28T11:01:20+00:00"
         },
         {
             "name": "oro/platform-serialised-fields",
-            "version": "2.4.x-dev",
+            "version": "2.4.0",
             "source": {
                 "type": "git",
                 "url": "git@github.com:orocrm/OroEntitySerializedFieldsBundle.git",
-                "reference": "babccf375d5f9786585260787e570e23297bb1ec"
+                "reference": "5efc57316a3fb3de8120cacee643dc63711e6ade"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/orocrm/OroEntitySerializedFieldsBundle/zipball/babccf375d5f9786585260787e570e23297bb1ec",
-                "reference": "babccf375d5f9786585260787e570e23297bb1ec",
+                "url": "https://api.github.com/repos/orocrm/OroEntitySerializedFieldsBundle/zipball/5efc57316a3fb3de8120cacee643dc63711e6ade",
+                "reference": "5efc57316a3fb3de8120cacee643dc63711e6ade",
                 "shasum": ""
             },
             "require": {
@@ -4984,7 +4980,7 @@
                 "entity",
                 "fields"
             ],
-            "time": "2017-09-13T11:29:03+00:00"
+            "time": "2017-09-21T16:44:29+00:00"
         },
         {
             "name": "oro/redis-config",
@@ -5027,16 +5023,16 @@
         },
         {
             "name": "paragonie/random_compat",
-            "version": "v2.0.10",
+            "version": "v2.0.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paragonie/random_compat.git",
-                "reference": "634bae8e911eefa89c1abfbf1b66da679ac8f54d"
+                "reference": "5da4d3c796c275c55f057af5a643ae297d96b4d8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/634bae8e911eefa89c1abfbf1b66da679ac8f54d",
-                "reference": "634bae8e911eefa89c1abfbf1b66da679ac8f54d",
+                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/5da4d3c796c275c55f057af5a643ae297d96b4d8",
+                "reference": "5da4d3c796c275c55f057af5a643ae297d96b4d8",
                 "shasum": ""
             },
             "require": {
@@ -5071,7 +5067,7 @@
                 "pseudorandom",
                 "random"
             ],
-            "time": "2017-03-13T16:27:32+00:00"
+            "time": "2017-09-27T21:40:39+00:00"
         },
         {
             "name": "phpcollection/phpcollection",
