@@ -5268,16 +5268,16 @@
         },
         {
             "name": "oro/platform",
-            "version": "2.0.22",
+            "version": "2.0.23",
             "source": {
                 "type": "git",
                 "url": "git@github.com:oroinc/platform.git",
-                "reference": "51e14e7d394276d6c38c8077dc7d1227502f2f98"
+                "reference": "5b5a180b0602022c848be200e3ed03e43e56ce34"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/oroinc/platform/zipball/51e14e7d394276d6c38c8077dc7d1227502f2f98",
-                "reference": "51e14e7d394276d6c38c8077dc7d1227502f2f98",
+                "url": "https://api.github.com/repos/oroinc/platform/zipball/5b5a180b0602022c848be200e3ed03e43e56ce34",
+                "reference": "5b5a180b0602022c848be200e3ed03e43e56ce34",
                 "shasum": ""
             },
             "require": {
@@ -5420,7 +5420,7 @@
             ],
             "description": "Business Application Platform (BAP)",
             "homepage": "https://github.com/oroinc/platform.git",
-            "time": "2017-09-19T15:45:47+00:00"
+            "time": "2017-09-28T10:39:42+00:00"
         },
         {
             "name": "oro/platform-serialised-fields",
