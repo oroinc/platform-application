@@ -66,7 +66,7 @@
                 "translatable",
                 "translation"
             ],
-            "time": "2016-08-05 18:11:57"
+            "time": "2016-08-05T18:11:57+00:00"
         },
         {
             "name": "akeneo/batch-bundle",
@@ -487,8 +487,7 @@
                 "reference": "df0ddedcab1a8fdb3a7abafc5fe97819931e7bd5",
                 "shasum": null
             },
-            "type": "bower-asset",
-            "time": "2014-07-21 18:45:41"
+            "type": "bower-asset"
         },
         {
             "name": "bower-asset/font-awesome",
@@ -683,8 +682,7 @@
                 "reference": "e25ba46913160617935f837836016ea7ed2be08c",
                 "shasum": null
             },
-            "type": "bower-asset",
-            "time": "2017-02-08 18:28:50"
+            "type": "bower-asset"
         },
         {
             "name": "bower-asset/jsplumb",
@@ -3472,16 +3470,16 @@
         },
         {
             "name": "justinrainbow/json-schema",
-            "version": "5.2.2",
+            "version": "5.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/justinrainbow/json-schema.git",
-                "reference": "b80053b620826810b38211b3c5f935ba9cddf6b3"
+                "reference": "7ccb0e67ea8ace0f84c40900ca3c8a234467628c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/justinrainbow/json-schema/zipball/b80053b620826810b38211b3c5f935ba9cddf6b3",
-                "reference": "b80053b620826810b38211b3c5f935ba9cddf6b3",
+                "url": "https://api.github.com/repos/justinrainbow/json-schema/zipball/7ccb0e67ea8ace0f84c40900ca3c8a234467628c",
+                "reference": "7ccb0e67ea8ace0f84c40900ca3c8a234467628c",
                 "shasum": ""
             },
             "require": {
@@ -3534,7 +3532,7 @@
                 "json",
                 "schema"
             ],
-            "time": "2017-10-03T00:49:49+00:00"
+            "time": "2017-10-04T20:57:36+00:00"
         },
         {
             "name": "knplabs/gaufrette",
@@ -4767,16 +4765,16 @@
         },
         {
             "name": "oro/platform",
-            "version": "2.3.8",
+            "version": "2.3.9",
             "source": {
                 "type": "git",
                 "url": "git@github.com:oroinc/platform.git",
-                "reference": "f9cae4ad86690d7bb645d6d4bf52da75fbf7ada7"
+                "reference": "9f67e88b87b3cf4d2637cd6c9b7884e42533ec3b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/oroinc/platform/zipball/f9cae4ad86690d7bb645d6d4bf52da75fbf7ada7",
-                "reference": "f9cae4ad86690d7bb645d6d4bf52da75fbf7ada7",
+                "url": "https://api.github.com/repos/oroinc/platform/zipball/9f67e88b87b3cf4d2637cd6c9b7884e42533ec3b",
+                "reference": "9f67e88b87b3cf4d2637cd6c9b7884e42533ec3b",
                 "shasum": ""
             },
             "require": {
@@ -4929,7 +4927,7 @@
             ],
             "description": "Business Application Platform (BAP)",
             "homepage": "https://github.com/oroinc/platform.git",
-            "time": "2017-09-29T12:39:30+00:00"
+            "time": "2017-10-04T16:59:47+00:00"
         },
         {
             "name": "oro/platform-serialised-fields",
