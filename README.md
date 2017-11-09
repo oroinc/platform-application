@@ -27,4 +27,6 @@ Please see the [Quick Start Installation Hints for OroPlatform](https://www.oroc
 License
 -------
 
-[MIT][LICENSE] Copyright (c) 2013 - 2017, Oro, Inc.
+[MIT][1] Copyright (c) 2013 - 2017, Oro, Inc.
+
+[1]:    LICENSE
