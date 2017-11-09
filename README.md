@@ -26,6 +26,5 @@ Please see the [Quick Start Installation Hints for OroPlatform](https://www.oroc
 
 License
 -------
- 
-[OSL-3.0](LICENSE) Copyright (c) 2015 - 2017, Oro, Inc.
- 
+
+[MIT][LICENSE] Copyright (c) 2013 - 2017, Oro, Inc.
