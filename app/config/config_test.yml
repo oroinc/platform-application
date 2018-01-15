@@ -33,6 +33,7 @@ services:
             - '@oro_message_queue.test.message_collector.inner'
 
 swiftmailer:
+    logging: true
     disable_delivery: true
 
 oro_require_js:
