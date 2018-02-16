@@ -4850,7 +4850,7 @@
             "dist": {
                 "type": "path",
                 "url": "../../package/platform",
-                "reference": "0c2c55f4e1c7d98d923516bd70663f1bba8eabad",
+                "reference": "06bb9c1c9e89f0820c7e6b8a94cc99b1f375c078",
                 "shasum": null
             },
             "require": {
@@ -4952,7 +4952,7 @@
                 "symfony/monolog-bundle": "3.0.*",
                 "symfony/polyfill-php70": "1.*",
                 "symfony/swiftmailer-bundle": "2.4.*",
-                "symfony/symfony": "2.8.*, !=2.8.10, <=2.8.32",
+                "symfony/symfony": "2.8.*, !=2.8.10, <=2.8.33",
                 "tinymce/tinymce": "4.6.*",
                 "twig/extensions": "1.4.*",
                 "twig/twig": "1.35.*",
@@ -5050,17 +5050,17 @@
         },
         {
             "name": "oro/redis-config",
-            "version": "2.1.1",
+            "version": "2.1.2",
             "target-dir": "Oro/Bundle/RedisConfigBundle",
             "source": {
                 "type": "git",
                 "url": "git@github.com:orocrm/redis-config.git",
-                "reference": "5b2884400b65ad438cd9e34f32503609e1c61cc7"
+                "reference": "d47814db6d2f0ca29a4ea0f5e2824998d3cf8e9c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/orocrm/redis-config/zipball/5b2884400b65ad438cd9e34f32503609e1c61cc7",
-                "reference": "5b2884400b65ad438cd9e34f32503609e1c61cc7",
+                "url": "https://api.github.com/repos/orocrm/redis-config/zipball/d47814db6d2f0ca29a4ea0f5e2824998d3cf8e9c",
+                "reference": "d47814db6d2f0ca29a4ea0f5e2824998d3cf8e9c",
                 "shasum": ""
             },
             "require": {
@@ -5088,7 +5088,7 @@
                 "OroPlatform",
                 "Redis"
             ],
-            "time": "2018-02-13T15:25:38+00:00"
+            "time": "2018-02-15T17:17:37+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -6910,16 +6910,16 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v2.8.32",
+            "version": "v2.8.33",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "0efa80d0a01f60e28ae5800c94d6288239cefefe"
+                "reference": "a3bb63a81e5cb9bec9f3c8f30405d3107411ba8c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/0efa80d0a01f60e28ae5800c94d6288239cefefe",
-                "reference": "0efa80d0a01f60e28ae5800c94d6288239cefefe",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/a3bb63a81e5cb9bec9f3c8f30405d3107411ba8c",
+                "reference": "a3bb63a81e5cb9bec9f3c8f30405d3107411ba8c",
                 "shasum": ""
             },
             "require": {
@@ -7045,7 +7045,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2017-12-04T22:02:29+00:00"
+            "time": "2018-01-05T06:19:59+00:00"
         },
         {
             "name": "tinymce/tinymce",
@@ -8382,77 +8382,6 @@
                 "fixtures"
             ],
             "time": "2017-08-15T16:48:10+00:00"
-        },
-        {
-            "name": "genemu/form-bundle",
-            "version": "v2.3.0",
-            "target-dir": "Genemu/Bundle/FormBundle",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/genemu/GenemuFormBundle.git",
-                "reference": "1bcc635d7604a409fbce569af709ea691d60b8e1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/genemu/GenemuFormBundle/zipball/1bcc635d7604a409fbce569af709ea691d60b8e1",
-                "reference": "1bcc635d7604a409fbce569af709ea691d60b8e1",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.2",
-                "symfony/form": "~2.6",
-                "symfony/framework-bundle": "~2.6",
-                "twig/twig": "~1.14"
-            },
-            "require-dev": {
-                "doctrine/doctrine-bundle": "1.*",
-                "doctrine/mongodb-odm-bundle": "*",
-                "doctrine/orm": "2.*",
-                "propel/propel-bundle": "*",
-                "symfony/doctrine-bridge": "~2.6",
-                "symfony/finder": "2.*"
-            },
-            "suggest": {
-                "doctrine/doctrine-bundle": "In order to use some form types with Doctrine",
-                "doctrine/mongodb-odm-bundle": "For MongoDB integration",
-                "symfony/finder": "For an image type",
-                "symfony/twig-bridge": "For integration into Twig templates"
-            },
-            "type": "symfony-bundle",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.3-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Genemu\\Bundle\\FormBundle": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Olivier Chauvel",
-                    "email": "olivier@generation-multiple.com"
-                },
-                {
-                    "name": "Community contributions",
-                    "homepage": "https://github.com/genemu/GenemuFormBundle/contributors"
-                },
-                {
-                    "name": "Bilal Amarni",
-                    "email": "bilal.amarni@gmail.com"
-                }
-            ],
-            "description": "Extra form types for your Symfony2 projects",
-            "keywords": [
-                "extra form",
-                "form"
-            ],
-            "time": "2016-01-27T16:52:41+00:00"
         },
         {
             "name": "instaclick/php-webdriver",
