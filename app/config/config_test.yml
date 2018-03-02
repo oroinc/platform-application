@@ -33,6 +33,7 @@ services:
             - '@oro_message_queue.test.message_collector.inner'
 
 swiftmailer:
+    logging: true
     disable_delivery: true
 
 oro_require_js:
@@ -55,3 +56,7 @@ oro_user:
 twig:
     strict_variables: true
     debug: false
+
+oro_message_queue:
+    transport:
+        dbal: null
