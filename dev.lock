@@ -4747,11 +4747,11 @@
         },
         {
             "name": "oro/calendar-bundle",
-            "version": "dev-master",
+            "version": "dev-3.0-beta",
             "dist": {
                 "type": "path",
                 "url": "../../package/calendar",
-                "reference": "e5a1d75e0ece7aa7c1d4ae6390fcaf71349a69b1",
+                "reference": "4e0b1e705c56e9bee6d8dbb971675d361b6b4657",
                 "shasum": null
             },
             "require": {
@@ -4762,7 +4762,7 @@
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.0.x-dev"
+                    "dev-3.0-beta": "3.0.x-dev"
                 }
             },
             "autoload": {
@@ -4846,11 +4846,11 @@
         },
         {
             "name": "oro/platform",
-            "version": "dev-master",
+            "version": "dev-3.0-beta",
             "dist": {
                 "type": "path",
                 "url": "../../package/platform",
-                "reference": "7a492fbd2bb306457cffe12f0e942bfc91adc121",
+                "reference": "ef2c498710377cd24d935e723b7219899aadc7a1",
                 "shasum": null
             },
             "require": {
@@ -4980,7 +4980,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.0.x-dev"
+                    "dev-3.0-beta": "3.0.x-dev"
                 }
             },
             "autoload": {
@@ -5005,11 +5005,11 @@
         },
         {
             "name": "oro/platform-serialised-fields",
-            "version": "dev-master",
+            "version": "dev-3.0-beta",
             "dist": {
                 "type": "path",
                 "url": "../../package/serialized-fields",
-                "reference": "252f93d0307de5cd39d7faf3aeb9e43f049824ae",
+                "reference": "f35a8d1600ed0be118a585434e2ac8d53795e8a4",
                 "shasum": null
             },
             "require": {
@@ -5019,7 +5019,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.0.x-dev"
+                    "dev-3.0-beta": "3.0.x-dev"
                 }
             },
             "autoload": {
@@ -5050,12 +5050,12 @@
         },
         {
             "name": "oro/redis-config",
-            "version": "dev-master",
+            "version": "dev-3.0-beta",
             "target-dir": "Oro/Bundle/RedisConfigBundle",
             "dist": {
                 "type": "path",
                 "url": "../../package/redis-config",
-                "reference": "062811cc3db96a39229c4bcaab2f87bf09d0ed44",
+                "reference": "daf7b9dc12587c37593f8c6186fd16d689dc2bb7",
                 "shasum": null
             },
             "require": {
@@ -5068,7 +5068,7 @@
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.0.x-dev"
+                    "dev-3.0-beta": "3.0.x-dev"
                 }
             },
             "autoload": {
@@ -8370,7 +8370,7 @@
             ],
             "authors": [
                 {
-                    "name": "François Zaninotto"
+                    "name": "Francois Zaninotto"
                 }
             ],
             "description": "Faker is a PHP library that generates fake data for you.",
