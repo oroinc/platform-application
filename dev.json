@@ -29,6 +29,7 @@
     "oro/platform": "2.x-dev",
     "oro/platform-serialised-fields": "2.x-dev",
     "oro/calendar-bundle": "2.x-dev",
+    "oro/redis-config": "2.x-dev",
     "symfony/security-acl": "^3.0"
   },
   "require-dev": {
