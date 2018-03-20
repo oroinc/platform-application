@@ -4,11 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-<<<<<<< .merge_file_VXrx6N
-    "content-hash": "082575a6a90b69f824d55c69d8a1bbb6",
-=======
     "content-hash": "1010ddc71f7a230130c1d8b9e9991748",
->>>>>>> .merge_file_TZfhLN
     "packages": [
         {
             "name": "a2lix/translation-form-bundle",
@@ -70,31 +66,6 @@
                 "translatable",
                 "translation"
             ],
-<<<<<<< .merge_file_VXrx6N
-            "time": "2016-08-05 18:11:57"
-        },
-        {
-            "name": "akeneo/batch-bundle",
-            "version": "0.4.7",
-            "target-dir": "Akeneo/Bundle/BatchBundle",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/laboro/BatchBundle.git",
-                "reference": "82c3e15ac5921a6950085cd6980b31bf302aece3"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/laboro/BatchBundle/zipball/82c3e15ac5921a6950085cd6980b31bf302aece3",
-                "reference": "82c3e15ac5921a6950085cd6980b31bf302aece3",
-                "shasum": ""
-            },
-            "require": {
-                "doctrine/orm": "^2.1.3",
-                "monolog/monolog": "^1.1.0",
-                "php": ">=5.4.4",
-                "symfony/swiftmailer-bundle": "^2.3.5",
-                "symfony/symfony": "^2.1"
-=======
             "time": "2016-08-05T18:11:57+00:00"
         },
         {
@@ -119,7 +90,6 @@
                 "swiftmailer/swiftmailer": ">=4.1.3",
                 "symfony/swiftmailer-bundle": ">=2.3.5",
                 "symfony/symfony": ">=2.1"
->>>>>>> .merge_file_TZfhLN
             },
             "require-dev": {
                 "phpspec/phpspec": "2.1.*"
@@ -135,28 +105,12 @@
                     "Akeneo\\Bundle\\BatchBundle": ""
                 }
             },
-<<<<<<< .merge_file_VXrx6N
-=======
             "notification-url": "https://packagist.org/downloads/",
->>>>>>> .merge_file_TZfhLN
             "license": [
                 "MIT"
             ],
             "description": "Akeneo Batch Bundle",
             "keywords": [
-<<<<<<< .merge_file_VXrx6N
-                "Akeneo",
-                "Batch",
-                "Job",
-                "Processor",
-                "Reader",
-                "Writer"
-            ],
-            "support": {
-                "source": "https://github.com/laboro/BatchBundle/tree/0.4.7"
-            },
-            "time": "2018-03-13T10:18:11+00:00"
-=======
                 "akeneo",
                 "batch",
                 "job",
@@ -165,7 +119,6 @@
                 "writer"
             ],
             "time": "2015-05-05T21:23:02+00:00"
->>>>>>> .merge_file_TZfhLN
         },
         {
             "name": "ass/xmlsecurity",
@@ -535,11 +488,7 @@
                 "shasum": null
             },
             "type": "bower-asset",
-<<<<<<< .merge_file_VXrx6N
-            "time": "2014-07-21 18:45:41"
-=======
             "time": "2014-07-21T18:45:41+00:00"
->>>>>>> .merge_file_TZfhLN
         },
         {
             "name": "bower-asset/font-awesome",
@@ -774,11 +723,7 @@
                 "shasum": null
             },
             "type": "bower-asset",
-<<<<<<< .merge_file_VXrx6N
-            "time": "2017-02-08 18:28:50"
-=======
             "time": "2017-02-08T18:28:50+00:00"
->>>>>>> .merge_file_TZfhLN
         },
         {
             "name": "bower-asset/jsplumb",
@@ -1048,58 +993,6 @@
             "time": "2016-10-17T22:08:04+00:00"
         },
         {
-<<<<<<< .merge_file_VXrx6N
-            "name": "cboden/ratchet",
-            "version": "v0.2.8",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ratchetphp/Ratchet.git",
-                "reference": "ebd17c6675b51044e711a1089b1534fd8c68c9e0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ratchetphp/Ratchet/zipball/ebd17c6675b51044e711a1089b1534fd8c68c9e0",
-                "reference": "ebd17c6675b51044e711a1089b1534fd8c68c9e0",
-                "shasum": ""
-            },
-            "require": {
-                "guzzle/http": ">=3.6.0,<3.8.0-dev",
-                "php": ">=5.3.3",
-                "react/socket": ">=0.2.0,<0.4.0-dev",
-                "symfony/http-foundation": "~2.1"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Ratchet": "src",
-                    "Ratchet\\Tests": "tests"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Chris Boden",
-                    "email": "cboden@gmail.com",
-                    "homepage": "http://res.im",
-                    "role": "Developer"
-                }
-            ],
-            "description": "PHP WebSocket library",
-            "homepage": "http://socketo.me",
-            "keywords": [
-                "Ratchet",
-                "WebSockets",
-                "server",
-                "sockets"
-            ],
-            "time": "2013-09-20T00:55:12+00:00"
-        },
-        {
-=======
->>>>>>> .merge_file_TZfhLN
             "name": "components/jquery",
             "version": "3.1.1",
             "source": {
@@ -2371,49 +2264,21 @@
         },
         {
             "name": "escapestudios/wsse-authentication-bundle",
-<<<<<<< .merge_file_VXrx6N
-            "version": "1.0.2",
-=======
             "version": "2.2.2",
->>>>>>> .merge_file_TZfhLN
             "target-dir": "Escape/WSSEAuthenticationBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/djoos/EscapeWSSEAuthenticationBundle.git",
-<<<<<<< .merge_file_VXrx6N
-                "reference": "c2d56effd53cae5ebd685f6d50a81c024bc089af"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/djoos/EscapeWSSEAuthenticationBundle/zipball/c2d56effd53cae5ebd685f6d50a81c024bc089af",
-                "reference": "c2d56effd53cae5ebd685f6d50a81c024bc089af",
-=======
                 "reference": "49facf00b4e0b32d9c01bff9ee62d5f4c7adc4d1"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/djoos/EscapeWSSEAuthenticationBundle/zipball/49facf00b4e0b32d9c01bff9ee62d5f4c7adc4d1",
                 "reference": "49facf00b4e0b32d9c01bff9ee62d5f4c7adc4d1",
->>>>>>> .merge_file_TZfhLN
                 "shasum": ""
             },
             "require": {
                 "doctrine/common": "~2.2",
-<<<<<<< .merge_file_VXrx6N
-                "php": ">=5.3.2",
-                "symfony/framework-bundle": "~2.3",
-                "symfony/security-bundle": "~2.3"
-            },
-            "require-dev": {
-                "symfony/finder": "~2.3"
-            },
-            "type": "symfony-bundle",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.3.x-dev"
-                }
-            },
-=======
                 "php": ">=5.3.9",
                 "symfony/framework-bundle": "~2.3|~3.0",
                 "symfony/security-bundle": "~2.3|~3.0"
@@ -2423,7 +2288,6 @@
                 "symfony/phpunit-bridge": "~2.7|~3.0"
             },
             "type": "symfony-bundle",
->>>>>>> .merge_file_TZfhLN
             "autoload": {
                 "psr-0": {
                     "Escape\\WSSEAuthenticationBundle": ""
@@ -2436,17 +2300,6 @@
             "authors": [
                 {
                     "name": "David Joos",
-<<<<<<< .merge_file_VXrx6N
-                    "email": "david@escapestudios.com"
-                },
-                {
-                    "name": "Community contributors",
-                    "homepage": "https://github.com/escapestudios/EscapeWSSEAuthenticationBundle/graphs/contributors"
-                }
-            ],
-            "description": "Symfony2 bundle to implement WSSE authentication",
-            "homepage": "https://github.com/escapestudios/EscapeWSSEAuthenticationBundle",
-=======
                     "email": "david.joos@escapestudios.com"
                 },
                 {
@@ -2456,32 +2309,11 @@
             ],
             "description": "Symfony2 bundle to implement WSSE authentication",
             "homepage": "https://github.com/djoos/EscapeWSSEAuthenticationBundle",
->>>>>>> .merge_file_TZfhLN
             "keywords": [
                 "Authentication",
                 "bundle",
                 "wsse"
             ],
-<<<<<<< .merge_file_VXrx6N
-            "time": "2014-07-16T12:24:32+00:00"
-        },
-        {
-            "name": "evenement/evenement",
-            "version": "v1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/igorw/evenement.git",
-                "reference": "fa966683e7df3e5dd5929d984a44abfbd6bafe8d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/igorw/evenement/zipball/fa966683e7df3e5dd5929d984a44abfbd6bafe8d",
-                "reference": "fa966683e7df3e5dd5929d984a44abfbd6bafe8d",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-=======
             "time": "2016-09-16T09:21:45+00:00"
         },
         {
@@ -2500,76 +2332,10 @@
             },
             "require": {
                 "php": ">=5.2"
->>>>>>> .merge_file_TZfhLN
             },
             "type": "library",
             "autoload": {
                 "psr-0": {
-<<<<<<< .merge_file_VXrx6N
-                    "Evenement": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Igor Wiedler",
-                    "email": "igor@wiedler.ch",
-                    "homepage": "http://wiedler.ch/igor/"
-                }
-            ],
-            "description": "Événement is a very simple event dispatching library for PHP 5.3",
-            "keywords": [
-                "event-dispatcher"
-            ],
-            "time": "2012-05-30T15:01:08+00:00"
-        },
-        {
-            "name": "ezyang/htmlpurifier",
-            "version": "v4.8.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ezyang/htmlpurifier.git",
-                "reference": "d0c392f77d2f2a3dcf7fcb79e2a1e2b8804e75b2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ezyang/htmlpurifier/zipball/d0c392f77d2f2a3dcf7fcb79e2a1e2b8804e75b2",
-                "reference": "d0c392f77d2f2a3dcf7fcb79e2a1e2b8804e75b2",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.2"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "HTMLPurifier": "library/"
-                },
-                "files": [
-                    "library/HTMLPurifier.composer.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "LGPL"
-            ],
-            "authors": [
-                {
-                    "name": "Edward Z. Yang",
-                    "email": "admin@htmlpurifier.org",
-                    "homepage": "http://ezyang.com"
-                }
-            ],
-            "description": "Standards compliant HTML filter written in PHP",
-            "homepage": "http://htmlpurifier.org/",
-            "keywords": [
-                "html"
-            ],
-            "time": "2016-07-16T12:58:58+00:00"
-=======
                     "HTMLPurifier": "library/"
                 },
                 "files": [
@@ -2647,7 +2413,6 @@
                 "rest"
             ],
             "time": "2016-10-17T18:31:11+00:00"
->>>>>>> .merge_file_TZfhLN
         },
         {
             "name": "friendsofsymfony/jsrouting-bundle",
@@ -3289,94 +3054,6 @@
             "time": "2015-11-10T17:04:01+00:00"
         },
         {
-<<<<<<< .merge_file_VXrx6N
-            "name": "ircmaxell/password-compat",
-            "version": "v1.0.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ircmaxell/password_compat.git",
-                "reference": "5c5cde8822a69545767f7c7f3058cb15ff84614c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ircmaxell/password_compat/zipball/5c5cde8822a69545767f7c7f3058cb15ff84614c",
-                "reference": "5c5cde8822a69545767f7c7f3058cb15ff84614c",
-                "shasum": ""
-            },
-            "require-dev": {
-                "phpunit/phpunit": "4.*"
-            },
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "lib/password.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Anthony Ferrara",
-                    "email": "ircmaxell@php.net",
-                    "homepage": "http://blog.ircmaxell.com"
-                }
-            ],
-            "description": "A compatibility library for the proposed simplified password hashing algorithm: https://wiki.php.net/rfc/password_hash",
-            "homepage": "https://github.com/ircmaxell/password_compat",
-            "keywords": [
-                "hashing",
-                "password"
-            ],
-            "time": "2014-11-20T16:49:30+00:00"
-        },
-        {
-            "name": "jdare/clank-bundle",
-            "version": "0.1.6",
-            "target-dir": "JDare/ClankBundle",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/JDare/ClankBundle.git",
-                "reference": "3661c4583cef2f464ba8f34948ef1a5fdee629f0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/JDare/ClankBundle/zipball/3661c4583cef2f464ba8f34948ef1a5fdee629f0",
-                "reference": "3661c4583cef2f464ba8f34948ef1a5fdee629f0",
-                "shasum": ""
-            },
-            "require": {
-                "cboden/ratchet": "0.2.*",
-                "php": ">=5.3.2",
-                "symfony/framework-bundle": "~2.1"
-            },
-            "type": "symfony-bundle",
-            "autoload": {
-                "psr-0": {
-                    "JDare\\ClankBundle": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jeremy Dare",
-                    "email": "jeremy.d.dare@gmail.com"
-                }
-            ],
-            "description": "Symfony ClankBundle",
-            "homepage": "https://github.com/JDare/ClankBundle",
-            "keywords": [
-                "Web Socket Application"
-            ],
-            "time": "2013-11-23T17:19:59+00:00"
-        },
-        {
-=======
->>>>>>> .merge_file_TZfhLN
             "name": "jdorn/sql-formatter",
             "version": "v1.2.17",
             "source": {
@@ -5049,20 +4726,12 @@
             "dist": {
                 "type": "path",
                 "url": "../../package/platform",
-<<<<<<< .merge_file_VXrx6N
-                "reference": "59d6aa86275d045495d8334eeee1962ae79f77e3",
-=======
                 "reference": "f1a0c2e551e5fd7238ad3894e15ec67a864b721b",
->>>>>>> .merge_file_TZfhLN
                 "shasum": null
             },
             "require": {
                 "a2lix/translation-form-bundle": "1.x-dev",
-<<<<<<< .merge_file_VXrx6N
-                "akeneo/batch-bundle": "0.4.7",
-=======
                 "akeneo/batch-bundle": "0.4.2",
->>>>>>> .merge_file_TZfhLN
                 "ass/xmlsecurity": "1.1.1",
                 "bower-asset/autobahnjs": "0.8.0",
                 "bower-asset/autolinker.js": "1.4.*",
@@ -5110,11 +4779,7 @@
                 "doctrine/doctrine-bundle": "1.6.5",
                 "doctrine/doctrine-fixtures-bundle": "2.3.0",
                 "doctrine/orm": "2.5.5",
-<<<<<<< .merge_file_VXrx6N
-                "escapestudios/wsse-authentication-bundle": "1.0.2",
-=======
                 "escapestudios/wsse-authentication-bundle": "2.2.*",
->>>>>>> .merge_file_TZfhLN
                 "ext-gd": "*",
                 "ext-intl": "*",
                 "ext-mbstring": "*",
@@ -5128,10 +4793,6 @@
                 "guzzle/guzzle": "3.7.*",
                 "hwi/oauth-bundle": "0.5.*",
                 "incenteev/composer-parameter-handler": "2.1.2",
-<<<<<<< .merge_file_VXrx6N
-                "jdare/clank-bundle": "0.1.*",
-=======
->>>>>>> .merge_file_TZfhLN
                 "jms/cg": "1.2.*",
                 "jms/serializer": "1.5.0",
                 "jms/serializer-bundle": "1.2.*",
@@ -5154,30 +4815,18 @@
                 "npm-asset/xregexp": "3.2.*",
                 "ocramius/proxy-manager": "0.5.*",
                 "oro/doctrine-extensions": "1.1.*",
-<<<<<<< .merge_file_VXrx6N
-                "oro/redis-config": "2.x-dev",
-=======
                 "oro/redis-config": "~2.0",
->>>>>>> .merge_file_TZfhLN
                 "php": "7.1.*",
                 "piwik/device-detector": "3.7.*",
                 "robloach/component-installer": "0.2.*",
                 "sensio/distribution-bundle": "5.0.*",
                 "sensio/framework-extra-bundle": "3.0.*",
                 "stof/doctrine-extensions-bundle": "1.2.2",
-<<<<<<< .merge_file_VXrx6N
-                "sylius/flow-bundle": "0.19.*",
-=======
->>>>>>> .merge_file_TZfhLN
                 "symfony/assetic-bundle": "2.8.1",
                 "symfony/monolog-bundle": "3.0.*",
                 "symfony/polyfill-php70": "1.*",
                 "symfony/swiftmailer-bundle": "2.4.*",
-<<<<<<< .merge_file_VXrx6N
-                "symfony/symfony": "2.8.*, !=2.8.10, <=2.8.33",
-=======
                 "symfony/symfony": "3.3.*",
->>>>>>> .merge_file_TZfhLN
                 "tinymce/tinymce": "4.6.*",
                 "twig/extensions": "1.4.*",
                 "twig/twig": "1.35.*",
@@ -5189,26 +4838,12 @@
                 "behat/mink-extension": "2.2.*",
                 "behat/mink-selenium2-driver": "1.*",
                 "behat/symfony2-extension": "2.1.1",
-<<<<<<< .merge_file_VXrx6N
-                "friendsofphp/php-cs-fixer": "2.1.*",
-=======
->>>>>>> .merge_file_TZfhLN
                 "johnkary/phpunit-speedtrap": "1.0.*",
                 "mybuilder/phpunit-accelerator": "1.2.*",
                 "nelmio/alice": "2.2.*",
                 "phpmd/phpmd": "2.6.*",
-<<<<<<< .merge_file_VXrx6N
-                "phpunit/phpcov": "3.1.*",
-                "phpunit/phpunit": "5.7.*",
-                "phpunit/phpunit-selenium": "3.0.*",
-                "sebastian/phpcpd": "3.0.*",
-                "sensio/generator-bundle": "3.1.2",
-                "squizlabs/php_codesniffer": "2.8.*",
-                "symfony/phpunit-bridge": "3.2.*"
-=======
                 "sensio/generator-bundle": "3.1.2",
                 "squizlabs/php_codesniffer": "2.8.*"
->>>>>>> .merge_file_TZfhLN
             },
             "type": "library",
             "extra": {
@@ -5283,15 +4918,6 @@
         },
         {
             "name": "oro/redis-config",
-<<<<<<< .merge_file_VXrx6N
-            "version": "dev-master",
-            "target-dir": "Oro/Bundle/RedisConfigBundle",
-            "dist": {
-                "type": "path",
-                "url": "../../package/redis-config",
-                "reference": "ebb33607b791385b6628708eb86dbf607dc9984d",
-                "shasum": null
-=======
             "version": "2.1.2",
             "target-dir": "Oro/Bundle/RedisConfigBundle",
             "source": {
@@ -5304,7 +4930,6 @@
                 "url": "https://api.github.com/repos/orocrm/redis-config/zipball/d47814db6d2f0ca29a4ea0f5e2824998d3cf8e9c",
                 "reference": "d47814db6d2f0ca29a4ea0f5e2824998d3cf8e9c",
                 "shasum": ""
->>>>>>> .merge_file_TZfhLN
             },
             "require": {
                 "predis/predis": "~1.0",
@@ -5314,36 +4939,16 @@
                 "phpunit/phpunit": "5.7.*"
             },
             "type": "symfony-bundle",
-<<<<<<< .merge_file_VXrx6N
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.x-dev"
-                }
-            },
-=======
->>>>>>> .merge_file_TZfhLN
             "autoload": {
                 "psr-0": {
                     "Oro\\Bundle\\RedisConfigBundle": "./"
                 }
             },
-<<<<<<< .merge_file_VXrx6N
-=======
             "notification-url": "https://packagist.orocrm.com/downloads/",
->>>>>>> .merge_file_TZfhLN
             "license": [
                 "MIT"
             ],
             "description": "OroRedisConfigBundle",
-<<<<<<< .merge_file_VXrx6N
-            "homepage": "https://github.com/oroinc/redis-config",
-            "keywords": [
-                "Oro",
-                "OroCrm",
-                "OroPlatform",
-                "Redis"
-            ]
-=======
             "homepage": "https://github.com/orocrm/redis-config",
             "keywords": [
                 "Oro",
@@ -5352,7 +4957,6 @@
                 "Redis"
             ],
             "time": "2018-02-15T17:17:37+00:00"
->>>>>>> .merge_file_TZfhLN
         },
         {
             "name": "paragonie/random_compat",
@@ -5660,19 +5264,6 @@
             "time": "2016-06-16T16:22:20+00:00"
         },
         {
-<<<<<<< .merge_file_VXrx6N
-            "name": "psr/http-message",
-            "version": "1.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/php-fig/http-message.git",
-                "reference": "f6561bf28d520154e4b0ec72be95418abe6d9363"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/http-message/zipball/f6561bf28d520154e4b0ec72be95418abe6d9363",
-                "reference": "f6561bf28d520154e4b0ec72be95418abe6d9363",
-=======
             "name": "psr/cache",
             "version": "1.0.1",
             "source": {
@@ -5684,7 +5275,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/php-fig/cache/zipball/d11b50ad223250cf17b86e38383413f5a6764bf8",
                 "reference": "d11b50ad223250cf17b86e38383413f5a6764bf8",
->>>>>>> .merge_file_TZfhLN
                 "shasum": ""
             },
             "require": {
@@ -5698,11 +5288,7 @@
             },
             "autoload": {
                 "psr-4": {
-<<<<<<< .merge_file_VXrx6N
-                    "Psr\\Http\\Message\\": "src/"
-=======
                     "Psr\\Cache\\": "src/"
->>>>>>> .merge_file_TZfhLN
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -5715,32 +5301,6 @@
                     "homepage": "http://www.php-fig.org/"
                 }
             ],
-<<<<<<< .merge_file_VXrx6N
-            "description": "Common interface for HTTP messages",
-            "homepage": "https://github.com/php-fig/http-message",
-            "keywords": [
-                "http",
-                "http-message",
-                "psr",
-                "psr-7",
-                "request",
-                "response"
-            ],
-            "time": "2016-08-06T14:39:51+00:00"
-        },
-        {
-            "name": "psr/log",
-            "version": "1.0.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/php-fig/log.git",
-                "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/log/zipball/4ebe3a8bf773a19edfe0a84b6585ba3d401b724d",
-                "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d",
-=======
             "description": "Common interface for caching libraries",
             "keywords": [
                 "cache",
@@ -5761,7 +5321,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/php-fig/container/zipball/b7ce3b176482dbbc1245ebf52b181af44c2cf55f",
                 "reference": "b7ce3b176482dbbc1245ebf52b181af44c2cf55f",
->>>>>>> .merge_file_TZfhLN
                 "shasum": ""
             },
             "require": {
@@ -5775,11 +5334,7 @@
             },
             "autoload": {
                 "psr-4": {
-<<<<<<< .merge_file_VXrx6N
-                    "Psr\\Log\\": "Psr/Log/"
-=======
                     "Psr\\Container\\": "src/"
->>>>>>> .merge_file_TZfhLN
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -5792,38 +5347,6 @@
                     "homepage": "http://www.php-fig.org/"
                 }
             ],
-<<<<<<< .merge_file_VXrx6N
-            "description": "Common interface for logging libraries",
-            "homepage": "https://github.com/php-fig/log",
-            "keywords": [
-                "log",
-                "psr",
-                "psr-3"
-            ],
-            "time": "2016-10-10T12:19:37+00:00"
-        },
-        {
-            "name": "react/event-loop",
-            "version": "v0.3.5",
-            "target-dir": "React/EventLoop",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/reactphp/event-loop.git",
-                "reference": "13e03b17e54ea864c6653a2cf6d146dad8464e91"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/reactphp/event-loop/zipball/13e03b17e54ea864c6653a2cf6d146dad8464e91",
-                "reference": "13e03b17e54ea864c6653a2cf6d146dad8464e91",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3"
-            },
-            "suggest": {
-                "ext-libev": "*",
-                "ext-libevent": ">=0.0.5"
-=======
             "description": "Common Container Interface (PHP FIG PSR-11)",
             "homepage": "https://github.com/php-fig/container",
             "keywords": [
@@ -5851,60 +5374,22 @@
             },
             "require": {
                 "php": ">=5.3.0"
->>>>>>> .merge_file_TZfhLN
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-<<<<<<< .merge_file_VXrx6N
-                    "dev-master": "0.3-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "React\\EventLoop": ""
-=======
                     "dev-master": "1.0.x-dev"
                 }
             },
             "autoload": {
                 "psr-4": {
                     "Psr\\Http\\Message\\": "src/"
->>>>>>> .merge_file_TZfhLN
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
-<<<<<<< .merge_file_VXrx6N
-            "description": "Event loop abstraction layer that libraries can use for evented I/O.",
-            "keywords": [
-                "event-loop"
-            ],
-            "time": "2016-12-28T22:48:03+00:00"
-        },
-        {
-            "name": "react/socket",
-            "version": "v0.3.4",
-            "target-dir": "React/Socket",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/reactphp/socket.git",
-                "reference": "19bc0c4309243717396022ffb2e59be1cc784327"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/reactphp/socket/zipball/19bc0c4309243717396022ffb2e59be1cc784327",
-                "reference": "19bc0c4309243717396022ffb2e59be1cc784327",
-                "shasum": ""
-            },
-            "require": {
-                "evenement/evenement": "1.0.*",
-                "php": ">=5.3.3",
-                "react/event-loop": "0.3.*",
-                "react/stream": "0.3.*"
-=======
             "authors": [
                 {
                     "name": "PHP-FIG",
@@ -5939,62 +5424,22 @@
             },
             "require": {
                 "php": ">=5.3.0"
->>>>>>> .merge_file_TZfhLN
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-<<<<<<< .merge_file_VXrx6N
-                    "dev-master": "0.3-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "React\\Socket": ""
-=======
                     "dev-master": "1.0.x-dev"
                 }
             },
             "autoload": {
                 "psr-4": {
                     "Psr\\Link\\": "src/"
->>>>>>> .merge_file_TZfhLN
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
-<<<<<<< .merge_file_VXrx6N
-            "description": "Library for building an evented socket server.",
-            "keywords": [
-                "Socket"
-            ],
-            "time": "2014-02-17T22:32:00+00:00"
-        },
-        {
-            "name": "react/stream",
-            "version": "v0.3.4",
-            "target-dir": "React/Stream",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/reactphp/stream.git",
-                "reference": "feef56628afe3fa861f0da5f92c909e029efceac"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/reactphp/stream/zipball/feef56628afe3fa861f0da5f92c909e029efceac",
-                "reference": "feef56628afe3fa861f0da5f92c909e029efceac",
-                "shasum": ""
-            },
-            "require": {
-                "evenement/evenement": "1.0.*",
-                "php": ">=5.3.3"
-            },
-            "suggest": {
-                "react/event-loop": "0.3.*",
-                "react/promise": "~1.0"
-=======
             "authors": [
                 {
                     "name": "PHP-FIG",
@@ -6075,40 +5520,22 @@
             },
             "require": {
                 "php": ">=5.3.0"
->>>>>>> .merge_file_TZfhLN
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-<<<<<<< .merge_file_VXrx6N
-                    "dev-master": "0.3-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "React\\Stream": ""
-=======
                     "dev-master": "1.0.x-dev"
                 }
             },
             "autoload": {
                 "psr-4": {
                     "Psr\\SimpleCache\\": "src/"
->>>>>>> .merge_file_TZfhLN
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
-<<<<<<< .merge_file_VXrx6N
-            "description": "Basic readable and writable stream interfaces that support piping.",
-            "keywords": [
-                "pipe",
-                "stream"
-            ],
-            "time": "2014-02-16T19:48:52+00:00"
-=======
             "authors": [
                 {
                     "name": "PHP-FIG",
@@ -6124,7 +5551,6 @@
                 "simple-cache"
             ],
             "time": "2017-10-23T01:57:42+00:00"
->>>>>>> .merge_file_TZfhLN
         },
         {
             "name": "robloach/component-installer",
@@ -6648,70 +6074,6 @@
             "time": "2018-01-23T07:37:21+00:00"
         },
         {
-<<<<<<< .merge_file_VXrx6N
-            "name": "sylius/flow-bundle",
-            "version": "v0.19.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Sylius/SyliusFlowBundle.git",
-                "reference": "aa055fc0dbb2f16487365dde669d1679fb7c7384"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Sylius/SyliusFlowBundle/zipball/aa055fc0dbb2f16487365dde669d1679fb7c7384",
-                "reference": "aa055fc0dbb2f16487365dde669d1679fb7c7384",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^5.6|^7.0",
-                "symfony/framework-bundle": "^2.8"
-            },
-            "require-dev": {
-                "phpspec/phpspec": "^2.4",
-                "symfony/yaml": "~2.1"
-            },
-            "type": "symfony-bundle",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "0.19-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Sylius\\Bundle\\FlowBundle\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Sylius project",
-                    "homepage": "http://sylius.org"
-                },
-                {
-                    "name": "Community contributions",
-                    "homepage": "http://github.com/Sylius/Sylius/contributors"
-                },
-                {
-                    "name": "Paweł Jędrzejewski",
-                    "homepage": "http://pjedrzejewski.com"
-                }
-            ],
-            "description": "Multiple action setups for Symfony2, build your checkouts/installers or whatever needs more than one step to complete.",
-            "homepage": "http://sylius.org",
-            "keywords": [
-                "checkout",
-                "flow",
-                "installation",
-                "steps"
-            ],
-            "time": "2016-05-24T12:26:59+00:00"
-        },
-        {
-=======
->>>>>>> .merge_file_TZfhLN
             "name": "symfony/assetic-bundle",
             "version": "v2.8.1",
             "source": {
@@ -7015,123 +6377,6 @@
             "time": "2018-01-30T19:27:44+00:00"
         },
         {
-<<<<<<< .merge_file_VXrx6N
-            "name": "symfony/polyfill-php54",
-            "version": "v1.7.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/polyfill-php54.git",
-                "reference": "84e2b616c197ef400c6d0556a0606cee7c9e21d5"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php54/zipball/84e2b616c197ef400c6d0556a0606cee7c9e21d5",
-                "reference": "84e2b616c197ef400c6d0556a0606cee7c9e21d5",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.7-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Polyfill\\Php54\\": ""
-                },
-                "files": [
-                    "bootstrap.php"
-                ],
-                "classmap": [
-                    "Resources/stubs"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Nicolas Grekas",
-                    "email": "p@tchwork.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony polyfill backporting some PHP 5.4+ features to lower PHP versions",
-            "homepage": "https://symfony.com",
-            "keywords": [
-                "compatibility",
-                "polyfill",
-                "portable",
-                "shim"
-            ],
-            "time": "2018-01-30T19:27:44+00:00"
-        },
-        {
-            "name": "symfony/polyfill-php55",
-            "version": "v1.7.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/polyfill-php55.git",
-                "reference": "168371cb3dfb10e0afde96e7c2688be02470d143"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php55/zipball/168371cb3dfb10e0afde96e7c2688be02470d143",
-                "reference": "168371cb3dfb10e0afde96e7c2688be02470d143",
-                "shasum": ""
-            },
-            "require": {
-                "ircmaxell/password-compat": "~1.0",
-                "php": ">=5.3.3"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.7-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Polyfill\\Php55\\": ""
-                },
-                "files": [
-                    "bootstrap.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Nicolas Grekas",
-                    "email": "p@tchwork.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony polyfill backporting some PHP 5.5+ features to lower PHP versions",
-            "homepage": "https://symfony.com",
-            "keywords": [
-                "compatibility",
-                "polyfill",
-                "portable",
-                "shim"
-            ],
-            "time": "2018-01-30T19:27:44+00:00"
-        },
-        {
-=======
->>>>>>> .merge_file_TZfhLN
             "name": "symfony/polyfill-php56",
             "version": "v1.7.0",
             "source": {
@@ -7420,18 +6665,6 @@
         },
         {
             "name": "symfony/symfony",
-<<<<<<< .merge_file_VXrx6N
-            "version": "v2.8.33",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/symfony.git",
-                "reference": "a3bb63a81e5cb9bec9f3c8f30405d3107411ba8c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/a3bb63a81e5cb9bec9f3c8f30405d3107411ba8c",
-                "reference": "a3bb63a81e5cb9bec9f3c8f30405d3107411ba8c",
-=======
             "version": "v3.3.16",
             "source": {
                 "type": "git",
@@ -7442,34 +6675,11 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/symfony/zipball/98e128ccee7afff6313dc3e9cce619f6e1caedbc",
                 "reference": "98e128ccee7afff6313dc3e9cce619f6e1caedbc",
->>>>>>> .merge_file_TZfhLN
                 "shasum": ""
             },
             "require": {
                 "doctrine/common": "~2.4",
                 "ext-xml": "*",
-<<<<<<< .merge_file_VXrx6N
-                "php": ">=5.3.9",
-                "psr/log": "~1.0",
-                "symfony/polyfill-apcu": "~1.1",
-                "symfony/polyfill-intl-icu": "~1.0",
-                "symfony/polyfill-mbstring": "~1.0",
-                "symfony/polyfill-php54": "~1.0",
-                "symfony/polyfill-php55": "~1.0",
-                "symfony/polyfill-php56": "~1.0",
-                "symfony/polyfill-php70": "~1.0",
-                "symfony/polyfill-util": "~1.0",
-                "symfony/security-acl": "~2.7|~3.0.0",
-                "twig/twig": "~1.34|~2.4"
-            },
-            "conflict": {
-                "phpdocumentor/reflection": "<1.0.7",
-                "phpunit/phpunit": "<4.8.35|<5.4.3,>=5.0"
-            },
-            "replace": {
-                "symfony/asset": "self.version",
-                "symfony/browser-kit": "self.version",
-=======
                 "fig/link-util": "^1.0",
                 "php": "^5.5.9|>=7.0.8",
                 "psr/cache": "~1.0",
@@ -7498,7 +6708,6 @@
                 "symfony/asset": "self.version",
                 "symfony/browser-kit": "self.version",
                 "symfony/cache": "self.version",
->>>>>>> .merge_file_TZfhLN
                 "symfony/class-loader": "self.version",
                 "symfony/config": "self.version",
                 "symfony/console": "self.version",
@@ -7508,10 +6717,7 @@
                 "symfony/dependency-injection": "self.version",
                 "symfony/doctrine-bridge": "self.version",
                 "symfony/dom-crawler": "self.version",
-<<<<<<< .merge_file_VXrx6N
-=======
                 "symfony/dotenv": "self.version",
->>>>>>> .merge_file_TZfhLN
                 "symfony/event-dispatcher": "self.version",
                 "symfony/expression-language": "self.version",
                 "symfony/filesystem": "self.version",
@@ -7520,15 +6726,9 @@
                 "symfony/framework-bundle": "self.version",
                 "symfony/http-foundation": "self.version",
                 "symfony/http-kernel": "self.version",
-<<<<<<< .merge_file_VXrx6N
-                "symfony/intl": "self.version",
-                "symfony/ldap": "self.version",
-                "symfony/locale": "self.version",
-=======
                 "symfony/inflector": "self.version",
                 "symfony/intl": "self.version",
                 "symfony/ldap": "self.version",
->>>>>>> .merge_file_TZfhLN
                 "symfony/monolog-bridge": "self.version",
                 "symfony/options-resolver": "self.version",
                 "symfony/process": "self.version",
@@ -7544,33 +6744,12 @@
                 "symfony/security-http": "self.version",
                 "symfony/serializer": "self.version",
                 "symfony/stopwatch": "self.version",
-<<<<<<< .merge_file_VXrx6N
-                "symfony/swiftmailer-bridge": "self.version",
-=======
->>>>>>> .merge_file_TZfhLN
                 "symfony/templating": "self.version",
                 "symfony/translation": "self.version",
                 "symfony/twig-bridge": "self.version",
                 "symfony/twig-bundle": "self.version",
                 "symfony/validator": "self.version",
                 "symfony/var-dumper": "self.version",
-<<<<<<< .merge_file_VXrx6N
-                "symfony/web-profiler-bundle": "self.version",
-                "symfony/yaml": "self.version"
-            },
-            "require-dev": {
-                "doctrine/annotations": "~1.0",
-                "doctrine/data-fixtures": "1.0.*",
-                "doctrine/dbal": "~2.4",
-                "doctrine/doctrine-bundle": "~1.2",
-                "doctrine/orm": "~2.4,>=2.4.5",
-                "egulias/email-validator": "~1.2,>=1.2.1",
-                "monolog/monolog": "~1.11",
-                "ocramius/proxy-manager": "~0.4|~1.0|~2.0",
-                "phpdocumentor/reflection": "^1.0.7",
-                "sensio/framework-extra-bundle": "^3.0.2",
-                "symfony/phpunit-bridge": "~3.4|~4.0"
-=======
                 "symfony/web-link": "self.version",
                 "symfony/web-profiler-bundle": "self.version",
                 "symfony/web-server-bundle": "self.version",
@@ -7593,16 +6772,11 @@
                 "sensio/framework-extra-bundle": "^3.0.2",
                 "symfony/phpunit-bridge": "~3.4|~4.0",
                 "symfony/security-acl": "~2.8|~3.0"
->>>>>>> .merge_file_TZfhLN
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-<<<<<<< .merge_file_VXrx6N
-                    "dev-master": "2.8-dev"
-=======
                     "dev-master": "3.3-dev"
->>>>>>> .merge_file_TZfhLN
                 }
             },
             "autoload": {
@@ -7610,10 +6784,6 @@
                     "Symfony\\Bridge\\Doctrine\\": "src/Symfony/Bridge/Doctrine/",
                     "Symfony\\Bridge\\Monolog\\": "src/Symfony/Bridge/Monolog/",
                     "Symfony\\Bridge\\ProxyManager\\": "src/Symfony/Bridge/ProxyManager/",
-<<<<<<< .merge_file_VXrx6N
-                    "Symfony\\Bridge\\Swiftmailer\\": "src/Symfony/Bridge/Swiftmailer/",
-=======
->>>>>>> .merge_file_TZfhLN
                     "Symfony\\Bridge\\Twig\\": "src/Symfony/Bridge/Twig/",
                     "Symfony\\Bundle\\": "src/Symfony/Bundle/",
                     "Symfony\\Component\\": "src/Symfony/Component/"
@@ -7644,11 +6814,7 @@
             "keywords": [
                 "framework"
             ],
-<<<<<<< .merge_file_VXrx6N
-            "time": "2018-01-05T06:19:59+00:00"
-=======
             "time": "2018-01-29T11:42:20+00:00"
->>>>>>> .merge_file_TZfhLN
         },
         {
             "name": "tinymce/tinymce",
@@ -9046,8 +8212,6 @@
             "time": "2017-06-30T04:02:48+00:00"
         },
         {
-<<<<<<< .merge_file_VXrx6N
-=======
             "name": "ircmaxell/password-compat",
             "version": "v1.0.4",
             "source": {
@@ -9090,7 +8254,6 @@
             "time": "2014-11-20T16:49:30+00:00"
         },
         {
->>>>>>> .merge_file_TZfhLN
             "name": "johnkary/phpunit-speedtrap",
             "version": "v1.0.3",
             "source": {
@@ -10055,77 +9218,6 @@
             "time": "2017-06-30T09:13:00+00:00"
         },
         {
-<<<<<<< .merge_file_VXrx6N
-            "name": "phpunit/phpunit-selenium",
-            "version": "3.0.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/giorgiosironi/phpunit-selenium.git",
-                "reference": "343ba4e389ad97046c78fb2c7111e199795e7a80"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/giorgiosironi/phpunit-selenium/zipball/343ba4e389ad97046c78fb2c7111e199795e7a80",
-                "reference": "343ba4e389ad97046c78fb2c7111e199795e7a80",
-                "shasum": ""
-            },
-            "require": {
-                "ext-curl": "*",
-                "ext-dom": "*",
-                "php": ">=5.6",
-                "phpunit/phpunit": "~5.0",
-                "sebastian/comparator": "~1.0"
-            },
-            "require-dev": {
-                "phing/phing": "2.*"
-            },
-            "type": "library",
-            "autoload": {
-                "classmap": [
-                    "PHPUnit/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "include-path": [
-                ""
-            ],
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Giorgio Sironi",
-                    "email": "info@giorgiosironi.com",
-                    "role": "developer"
-                },
-                {
-                    "name": "Ivan Kurnosov",
-                    "email": "zerkms@zerkms.com",
-                    "role": "developer"
-                },
-                {
-                    "name": "Sebastian Bergmann",
-                    "email": "sb@sebastian-bergmann.de",
-                    "role": "original developer"
-                },
-                {
-                    "name": "Paul Briton",
-                    "role": "developer"
-                }
-            ],
-            "description": "Selenium Server integration for PHPUnit",
-            "homepage": "http://www.phpunit.de/",
-            "keywords": [
-                "phpunit",
-                "selenium",
-                "testing",
-                "xunit"
-            ],
-            "time": "2017-01-23T22:12:35+00:00"
-        },
-        {
-=======
->>>>>>> .merge_file_TZfhLN
             "name": "sebastian/code-unit-reverse-lookup",
             "version": "1.0.1",
             "source": {
@@ -10920,8 +10012,6 @@
             "time": "2017-06-02T09:43:35+00:00"
         },
         {
-<<<<<<< .merge_file_VXrx6N
-=======
             "name": "symfony/polyfill-php54",
             "version": "v1.7.0",
             "source": {
@@ -11036,7 +10126,6 @@
             "time": "2018-01-30T19:27:44+00:00"
         },
         {
->>>>>>> .merge_file_TZfhLN
             "name": "symfony/polyfill-php72",
             "version": "v1.7.0",
             "source": {
@@ -11235,12 +10324,7 @@
     "stability-flags": {
         "oro/platform": 20,
         "oro/platform-serialised-fields": 20,
-<<<<<<< .merge_file_VXrx6N
-        "oro/calendar-bundle": 20,
-        "oro/redis-config": 20
-=======
         "oro/calendar-bundle": 20
->>>>>>> .merge_file_TZfhLN
     },
     "prefer-stable": true,
     "prefer-lowest": false,
