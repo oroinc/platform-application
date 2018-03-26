@@ -66,7 +66,7 @@
                 "translatable",
                 "translation"
             ],
-            "time": "2016-08-05 18:11:57"
+            "time": "2016-08-05T18:11:57+00:00"
         },
         {
             "name": "akeneo/batch-bundle",
@@ -487,7 +487,7 @@
                 "shasum": null
             },
             "type": "bower-asset",
-            "time": "2014-07-21 18:45:41"
+            "time": "2014-07-21T18:45:41+00:00"
         },
         {
             "name": "bower-asset/font-awesome",
@@ -722,7 +722,7 @@
                 "shasum": null
             },
             "type": "bower-asset",
-            "time": "2017-02-08 18:28:50"
+            "time": "2017-02-08T18:28:50+00:00"
         },
         {
             "name": "bower-asset/jsplumb",
@@ -2458,7 +2458,7 @@
                     "homepage": "https://github.com/friendsofsymfony/FOSJsRoutingBundle/contributors"
                 },
                 {
-                    "name": "William Durand",
+                    "name": "William DURAND",
                     "email": "william.durand1@gmail.com"
                 }
             ],
@@ -3451,16 +3451,16 @@
         },
         {
             "name": "knplabs/gaufrette",
-            "version": "v0.5.0",
+            "version": "v0.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/KnpLabs/Gaufrette.git",
-                "reference": "2f228650fd4cc50c3d3c1d6541546ffc169b2240"
+                "reference": "a7c71edef4528d9881f534515f9061660255afe3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/Gaufrette/zipball/2f228650fd4cc50c3d3c1d6541546ffc169b2240",
-                "reference": "2f228650fd4cc50c3d3c1d6541546ffc169b2240",
+                "url": "https://api.github.com/repos/KnpLabs/Gaufrette/zipball/a7c71edef4528d9881f534515f9061660255afe3",
+                "reference": "a7c71edef4528d9881f534515f9061660255afe3",
                 "shasum": ""
             },
             "require": {
@@ -3477,8 +3477,7 @@
                 "dropbox-php/dropbox-php": "*",
                 "google/apiclient": "~1.1.3",
                 "league/flysystem": "~1.0",
-                "microsoft/azure-storage": "~0.15.0",
-                "microsoft/windowsazure": "~0.4",
+                "microsoft/azure-storage-blob": "^1.0",
                 "mikey179/vfsstream": "~1.2.0",
                 "mongodb/mongodb": "^1.1",
                 "phpseclib/phpseclib": "^2.0",
@@ -3507,7 +3506,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.5.x-dev"
+                    "dev-master": "0.7.x-dev"
                 }
             },
             "autoload": {
@@ -3537,7 +3536,7 @@
                 "filesystem",
                 "media"
             ],
-            "time": "2018-01-04T19:50:08+00:00"
+            "time": "2018-03-26T12:19:49+00:00"
         },
         {
             "name": "knplabs/knp-gaufrette-bundle",
@@ -4725,7 +4724,7 @@
             "dist": {
                 "type": "path",
                 "url": "../../package/platform",
-                "reference": "d45d1ecfa4a1117ca01b40edad2d24eb7ff3bbc6",
+                "reference": "ac315eb95adb68e9da2e3e23b69d7b3d3118e500",
                 "shasum": null
             },
             "require": {
@@ -4824,6 +4823,7 @@
                 "symfony/assetic-bundle": "2.8.1",
                 "symfony/monolog-bundle": "3.0.*",
                 "symfony/polyfill-php70": "1.*",
+                "symfony/security-acl": "~2.7|~3.0.0",
                 "symfony/swiftmailer-bundle": "2.4.*",
                 "symfony/symfony": "3.3.*",
                 "tinymce/tinymce": "4.6.*",
