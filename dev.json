@@ -9,10 +9,7 @@
         "app/AppKernel.php",
         "app/AppCache.php"
     ],
-    "exclude-from-classmap": [
-      "**/Tests/",
-      "vendor/symfony/symfony/src/Symfony/Component/Debug"
-    ]
+    "exclude-from-classmap": ["vendor/symfony/symfony/src/Symfony/Component/Debug", "**/Tests/"]
   },
   "repositories": [
     {
