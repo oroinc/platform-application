@@ -5,6 +5,9 @@
 /node_modules
 /composer.phar
 behat.yml
+/var/
+!var/cache/.gitkeep
+!var/logs/.gitkeep
 /build/logs/*
 /vendor
 /cov
@@ -23,7 +26,8 @@ behat.yml
 !app/logs/.gitkeep
 behat.yml
 *~
-bin
+bin/*
+!bin/console
 phpunit.xml
 /app/SymfonyRequirements.php
 /web/uploads/behat
