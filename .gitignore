@@ -13,6 +13,7 @@ behat.yml
 /web/js
 /web/uploads/users/*
 /web/media/cache
+/web/media/js
 /web/build.js
 /app/config/parameters.yml
 /app/config/parameters_test.yml
