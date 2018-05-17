@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "aeca3176b3ae88ac9097fa0ffa79893d",
+    "content-hash": "c95930a30a487bb2902cca2557559329",
     "packages": [
         {
             "name": "akeneo/batch-bundle",
@@ -4558,22 +4558,22 @@
         },
         {
             "name": "oro/calendar-bundle",
-            "version": "dev-master",
+            "version": "dev-3.0-rc",
             "dist": {
                 "type": "path",
                 "url": "../../package/calendar",
-                "reference": "5b85db0dd34ebe6bb36294fee865514c3d99f2f8",
+                "reference": "84f59bdc7f1ff4efe589d837fcfbf36468f66874",
                 "shasum": null
             },
             "require": {
                 "bower-asset/fullcalendar": "3.4.0",
-                "oro/platform": "2.x-dev",
+                "oro/platform": "3.0.*",
                 "php": "7.1.*"
             },
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.x-dev"
+                    "dev-3.0-rc": "3.0.x-dev"
                 }
             },
             "autoload": {
@@ -4657,11 +4657,11 @@
         },
         {
             "name": "oro/platform",
-            "version": "dev-master",
+            "version": "dev-3.0-rc",
             "dist": {
                 "type": "path",
                 "url": "../../package/platform",
-                "reference": "f999b8e6e0403f6d28d002f42558f2aafc30048c",
+                "reference": "5d804984cdd2aa6b125e4be56771774ebc09f5f2",
                 "shasum": null
             },
             "require": {
@@ -4749,7 +4749,7 @@
                 "npm-asset/xregexp": "3.2.*",
                 "ocramius/proxy-manager": "0.5.*",
                 "oro/doctrine-extensions": "1.1.*",
-                "oro/redis-config": "2.x-dev",
+                "oro/redis-config": "3.0.*",
                 "php": "7.1.*",
                 "piwik/device-detector": "3.7.*",
                 "robloach/component-installer": "0.2.*",
@@ -4783,7 +4783,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.x-dev"
+                    "dev-3.0-rc": "3.0.x-dev"
                 }
             },
             "autoload": {
@@ -4808,21 +4808,21 @@
         },
         {
             "name": "oro/platform-serialised-fields",
-            "version": "dev-master",
+            "version": "dev-3.0-rc",
             "dist": {
                 "type": "path",
                 "url": "../../package/serialized-fields",
-                "reference": "2fed41810540ea4ddd30c9d33a0c4104dcddeb00",
+                "reference": "3749e8190760fb928863c2171adde565a109718d",
                 "shasum": null
             },
             "require": {
-                "oro/platform": "2.x-dev",
+                "oro/platform": "3.0.*",
                 "php": "7.1.*"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.x-dev"
+                    "dev-3.0-rc": "3.0.x-dev"
                 }
             },
             "autoload": {
@@ -4853,12 +4853,12 @@
         },
         {
             "name": "oro/redis-config",
-            "version": "dev-master",
+            "version": "dev-3.0-rc",
             "target-dir": "Oro/Bundle/RedisConfigBundle",
             "dist": {
                 "type": "path",
                 "url": "../../package/redis-config",
-                "reference": "ebb33607b791385b6628708eb86dbf607dc9984d",
+                "reference": "6775ed321ce674dc118356a02e2fb6e75f3e3468",
                 "shasum": null
             },
             "require": {
@@ -4871,7 +4871,7 @@
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.x-dev"
+                    "dev-3.0-rc": "3.0.x-dev"
                 }
             },
             "autoload": {
@@ -6074,6 +6074,7 @@
                 "compression",
                 "minification"
             ],
+            "abandoned": "symfony/webpack-encore-pack",
             "time": "2016-11-22T11:42:57+00:00"
         },
         {
@@ -10255,12 +10256,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "oro/platform": 20,
-        "oro/platform-serialised-fields": 20,
-        "oro/calendar-bundle": 20,
-        "oro/redis-config": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": [],
