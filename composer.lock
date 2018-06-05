@@ -264,7 +264,7 @@
             "version": "1.2.3",
             "source": {
                 "type": "git",
-                "url": "git@github.com:jashkenas/backbone.git",
+                "url": "https://github.com/jashkenas/backbone.git",
                 "reference": "05fde9e201f7e2137796663081105cd6dad12a98"
             },
             "dist": {
@@ -4851,16 +4851,16 @@
         },
         {
             "name": "oro/platform",
-            "version": "2.6.13",
+            "version": "2.6.14",
             "source": {
                 "type": "git",
                 "url": "git@github.com:oroinc/platform.git",
-                "reference": "926df52895e96e5e32e96a69c16a57505a0b5be4"
+                "reference": "7d2c3cac18e68e16a0084a9aa70769e561367ada"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/oroinc/platform/zipball/926df52895e96e5e32e96a69c16a57505a0b5be4",
-                "reference": "926df52895e96e5e32e96a69c16a57505a0b5be4",
+                "url": "https://api.github.com/repos/oroinc/platform/zipball/7d2c3cac18e68e16a0084a9aa70769e561367ada",
+                "reference": "7d2c3cac18e68e16a0084a9aa70769e561367ada",
                 "shasum": ""
             },
             "require": {
@@ -5014,7 +5014,7 @@
             ],
             "description": "Business Application Platform (BAP)",
             "homepage": "https://github.com/oroinc/platform.git",
-            "time": "2018-05-18T15:56:58+00:00"
+            "time": "2018-06-04T12:37:53+00:00"
         },
         {
             "name": "oro/platform-serialised-fields",
@@ -8563,25 +8563,28 @@
         },
         {
             "name": "myclabs/deep-copy",
-            "version": "1.7.0",
+            "version": "1.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/myclabs/DeepCopy.git",
-                "reference": "3b8a3a99ba1f6a3952ac2747d989303cbd6b7a3e"
+                "reference": "478465659fd987669df0bd8a9bf22a8710e5f1b6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/3b8a3a99ba1f6a3952ac2747d989303cbd6b7a3e",
-                "reference": "3b8a3a99ba1f6a3952ac2747d989303cbd6b7a3e",
+                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/478465659fd987669df0bd8a9bf22a8710e5f1b6",
+                "reference": "478465659fd987669df0bd8a9bf22a8710e5f1b6",
                 "shasum": ""
             },
             "require": {
-                "php": "^5.6 || ^7.0"
+                "php": "^7.1"
+            },
+            "replace": {
+                "myclabs/deep-copy": "self.version"
             },
             "require-dev": {
                 "doctrine/collections": "^1.0",
                 "doctrine/common": "^2.6",
-                "phpunit/phpunit": "^4.1"
+                "phpunit/phpunit": "^7.1"
             },
             "type": "library",
             "autoload": {
@@ -8604,7 +8607,7 @@
                 "object",
                 "object graph"
             ],
-            "time": "2017-10-19T19:58:43+00:00"
+            "time": "2018-05-29T17:25:09+00:00"
         },
         {
             "name": "nelmio/alice",
