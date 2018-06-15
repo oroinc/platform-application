@@ -4851,16 +4851,16 @@
         },
         {
             "name": "oro/platform",
-            "version": "2.6.14",
+            "version": "2.6.15",
             "source": {
                 "type": "git",
                 "url": "git@github.com:oroinc/platform.git",
-                "reference": "7d2c3cac18e68e16a0084a9aa70769e561367ada"
+                "reference": "0b3b828b343c55f247700cba15036ced9abc5e64"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/oroinc/platform/zipball/7d2c3cac18e68e16a0084a9aa70769e561367ada",
-                "reference": "7d2c3cac18e68e16a0084a9aa70769e561367ada",
+                "url": "https://api.github.com/repos/oroinc/platform/zipball/0b3b828b343c55f247700cba15036ced9abc5e64",
+                "reference": "0b3b828b343c55f247700cba15036ced9abc5e64",
                 "shasum": ""
             },
             "require": {
@@ -5014,7 +5014,7 @@
             ],
             "description": "Business Application Platform (BAP)",
             "homepage": "https://github.com/oroinc/platform.git",
-            "time": "2018-06-04T12:37:53+00:00"
+            "time": "2018-06-13T14:58:18+00:00"
         },
         {
             "name": "oro/platform-serialised-fields",
@@ -5070,17 +5070,17 @@
         },
         {
             "name": "oro/redis-config",
-            "version": "2.1.3",
+            "version": "2.1.4",
             "target-dir": "Oro/Bundle/RedisConfigBundle",
             "source": {
                 "type": "git",
                 "url": "git@github.com:orocrm/redis-config.git",
-                "reference": "facc5b360ff4ed66ceeabe47928f84b1378476c0"
+                "reference": "0065697501673684fd9016045ed3d4b15a6cb9d6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/orocrm/redis-config/zipball/facc5b360ff4ed66ceeabe47928f84b1378476c0",
-                "reference": "facc5b360ff4ed66ceeabe47928f84b1378476c0",
+                "url": "https://api.github.com/repos/orocrm/redis-config/zipball/0065697501673684fd9016045ed3d4b15a6cb9d6",
+                "reference": "0065697501673684fd9016045ed3d4b15a6cb9d6",
                 "shasum": ""
             },
             "require": {
@@ -5113,20 +5113,20 @@
                 "OroPlatform",
                 "Redis"
             ],
-            "time": "2018-03-19T13:56:26+00:00"
+            "time": "2018-06-13T08:31:31+00:00"
         },
         {
             "name": "paragonie/random_compat",
-            "version": "v2.0.12",
+            "version": "v2.0.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paragonie/random_compat.git",
-                "reference": "258c89a6b97de7dfaf5b8c7607d0478e236b04fb"
+                "reference": "10bcb46e8f3d365170f6de9d05245aa066b81f09"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/258c89a6b97de7dfaf5b8c7607d0478e236b04fb",
-                "reference": "258c89a6b97de7dfaf5b8c7607d0478e236b04fb",
+                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/10bcb46e8f3d365170f6de9d05245aa066b81f09",
+                "reference": "10bcb46e8f3d365170f6de9d05245aa066b81f09",
                 "shasum": ""
             },
             "require": {
@@ -5158,10 +5158,11 @@
             "description": "PHP 5.x polyfill for random_bytes() and random_int() from PHP 7",
             "keywords": [
                 "csprng",
+                "polyfill",
                 "pseudorandom",
                 "random"
             ],
-            "time": "2018-04-04T21:24:14+00:00"
+            "time": "2018-06-08T15:26:40+00:00"
         },
         {
             "name": "phpcollection/phpcollection",
@@ -5838,16 +5839,16 @@
         },
         {
             "name": "sensio/distribution-bundle",
-            "version": "v5.0.21",
+            "version": "v5.0.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioDistributionBundle.git",
-                "reference": "eb6266b3b472e4002538610b28a0a04bcf94891a"
+                "reference": "209b11f8cee5bf71986dd703e45e27d3ed7a6d15"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/eb6266b3b472e4002538610b28a0a04bcf94891a",
-                "reference": "eb6266b3b472e4002538610b28a0a04bcf94891a",
+                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/209b11f8cee5bf71986dd703e45e27d3ed7a6d15",
+                "reference": "209b11f8cee5bf71986dd703e45e27d3ed7a6d15",
                 "shasum": ""
             },
             "require": {
@@ -5886,7 +5887,7 @@
                 "configuration",
                 "distribution"
             ],
-            "time": "2017-08-25T16:55:44+00:00"
+            "time": "2018-06-07T06:22:12+00:00"
         },
         {
             "name": "sensio/framework-extra-bundle",
@@ -8563,16 +8564,16 @@
         },
         {
             "name": "myclabs/deep-copy",
-            "version": "1.8.0",
+            "version": "1.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/myclabs/DeepCopy.git",
-                "reference": "478465659fd987669df0bd8a9bf22a8710e5f1b6"
+                "reference": "3e01bdad3e18354c3dce54466b7fbe33a9f9f7f8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/478465659fd987669df0bd8a9bf22a8710e5f1b6",
-                "reference": "478465659fd987669df0bd8a9bf22a8710e5f1b6",
+                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/3e01bdad3e18354c3dce54466b7fbe33a9f9f7f8",
+                "reference": "3e01bdad3e18354c3dce54466b7fbe33a9f9f7f8",
                 "shasum": ""
             },
             "require": {
@@ -8607,7 +8608,7 @@
                 "object",
                 "object graph"
             ],
-            "time": "2018-05-29T17:25:09+00:00"
+            "time": "2018-06-11T23:09:50+00:00"
         },
         {
             "name": "nelmio/alice",
