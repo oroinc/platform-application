@@ -18,6 +18,7 @@ behat.yml
 !var/import_export/
 /var/import_export/*
 !var/import_export/.gitkeep
+!var/php/
 !var/oro-check.php
 !var/OroRequirements.php
 /build/logs/*
