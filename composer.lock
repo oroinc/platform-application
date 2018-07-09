@@ -4851,16 +4851,16 @@
         },
         {
             "name": "oro/platform",
-            "version": "2.6.17",
+            "version": "2.6.18",
             "source": {
                 "type": "git",
-                "url": "git@github.com:oroinc/platform.git",
-                "reference": "d8832e2c9ee671350ec6e9c88d397bc8b6b9c1b6"
+                "url": "https://github.com/oroinc/platform.git",
+                "reference": "e792ea09b82ea53cdfefc83ccec9023887c23d20"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/oroinc/platform/zipball/d8832e2c9ee671350ec6e9c88d397bc8b6b9c1b6",
-                "reference": "d8832e2c9ee671350ec6e9c88d397bc8b6b9c1b6",
+                "url": "https://api.github.com/repos/oroinc/platform/zipball/e792ea09b82ea53cdfefc83ccec9023887c23d20",
+                "reference": "e792ea09b82ea53cdfefc83ccec9023887c23d20",
                 "shasum": ""
             },
             "require": {
@@ -5002,7 +5002,6 @@
                     "/Tests/"
                 ]
             },
-            "notification-url": "https://packagist.orocrm.com/downloads/",
             "license": [
                 "MIT"
             ],
@@ -5014,19 +5013,23 @@
             ],
             "description": "Business Application Platform (BAP)",
             "homepage": "https://github.com/oroinc/platform.git",
-            "time": "2018-06-26T15:59:41+00:00"
+            "support": {
+                "source": "https://github.com/oroinc/platform/tree/2.6",
+                "issues": "https://github.com/oroinc/platform/issues"
+            },
+            "time": "2018-07-06T12:13:16+00:00"
         },
         {
             "name": "oro/platform-serialised-fields",
             "version": "2.6.1",
             "source": {
                 "type": "git",
-                "url": "git@github.com:orocrm/OroEntitySerializedFieldsBundle.git",
+                "url": "https://github.com/oroinc/OroEntitySerializedFieldsBundle.git",
                 "reference": "06a034a6e21d43ccf95b7a5087de88c1eeb2fd08"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/orocrm/OroEntitySerializedFieldsBundle/zipball/06a034a6e21d43ccf95b7a5087de88c1eeb2fd08",
+                "url": "https://api.github.com/repos/oroinc/OroEntitySerializedFieldsBundle/zipball/06a034a6e21d43ccf95b7a5087de88c1eeb2fd08",
                 "reference": "06a034a6e21d43ccf95b7a5087de88c1eeb2fd08",
                 "shasum": ""
             },
@@ -5074,12 +5077,12 @@
             "target-dir": "Oro/Bundle/RedisConfigBundle",
             "source": {
                 "type": "git",
-                "url": "git@github.com:orocrm/redis-config.git",
+                "url": "https://github.com/oroinc/redis-config.git",
                 "reference": "0065697501673684fd9016045ed3d4b15a6cb9d6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/orocrm/redis-config/zipball/0065697501673684fd9016045ed3d4b15a6cb9d6",
+                "url": "https://api.github.com/repos/oroinc/redis-config/zipball/0065697501673684fd9016045ed3d4b15a6cb9d6",
                 "reference": "0065697501673684fd9016045ed3d4b15a6cb9d6",
                 "shasum": ""
             },
@@ -5117,16 +5120,16 @@
         },
         {
             "name": "paragonie/random_compat",
-            "version": "v2.0.15",
+            "version": "v2.0.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paragonie/random_compat.git",
-                "reference": "10bcb46e8f3d365170f6de9d05245aa066b81f09"
+                "reference": "29af24f25bab834fcbb38ad2a69fa93b867e070d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/10bcb46e8f3d365170f6de9d05245aa066b81f09",
-                "reference": "10bcb46e8f3d365170f6de9d05245aa066b81f09",
+                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/29af24f25bab834fcbb38ad2a69fa93b867e070d",
+                "reference": "29af24f25bab834fcbb38ad2a69fa93b867e070d",
                 "shasum": ""
             },
             "require": {
@@ -5162,7 +5165,7 @@
                 "pseudorandom",
                 "random"
             ],
-            "time": "2018-06-08T15:26:40+00:00"
+            "time": "2018-07-04T16:31:37+00:00"
         },
         {
             "name": "phpcollection/phpcollection",
