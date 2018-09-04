@@ -4853,16 +4853,16 @@
         },
         {
             "name": "oro/platform",
-            "version": "2.6.27",
+            "version": "2.6.28",
             "source": {
                 "type": "git",
                 "url": "https://github.com/oroinc/platform.git",
-                "reference": "22da39f4f2c237b7c4a4f74a66abcc8e896f066b"
+                "reference": "b1161e909744d95e23f5af2a2478ad8db801b979"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/oroinc/platform/zipball/22da39f4f2c237b7c4a4f74a66abcc8e896f066b",
-                "reference": "22da39f4f2c237b7c4a4f74a66abcc8e896f066b",
+                "url": "https://api.github.com/repos/oroinc/platform/zipball/b1161e909744d95e23f5af2a2478ad8db801b979",
+                "reference": "b1161e909744d95e23f5af2a2478ad8db801b979",
                 "shasum": ""
             },
             "require": {
@@ -5019,7 +5019,7 @@
                 "source": "https://github.com/oroinc/platform/tree/2.6",
                 "issues": "https://github.com/oroinc/platform/issues"
             },
-            "time": "2018-08-27T17:51:26+00:00"
+            "time": "2018-09-03T14:26:40+00:00"
         },
         {
             "name": "oro/platform-serialised-fields",
