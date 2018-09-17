@@ -3628,16 +3628,16 @@
         },
         {
             "name": "knplabs/gaufrette",
-            "version": "v0.6.0",
+            "version": "v0.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/KnpLabs/Gaufrette.git",
-                "reference": "a7c71edef4528d9881f534515f9061660255afe3"
+                "reference": "a0627e91e8753f442eea6560cb347151cd306b2c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/Gaufrette/zipball/a7c71edef4528d9881f534515f9061660255afe3",
-                "reference": "a7c71edef4528d9881f534515f9061660255afe3",
+                "url": "https://api.github.com/repos/KnpLabs/Gaufrette/zipball/a0627e91e8753f442eea6560cb347151cd306b2c",
+                "reference": "a0627e91e8753f442eea6560cb347151cd306b2c",
                 "shasum": ""
             },
             "require": {
@@ -3713,7 +3713,7 @@
                 "filesystem",
                 "media"
             ],
-            "time": "2018-03-26T12:19:49+00:00"
+            "time": "2018-08-30T13:26:15+00:00"
         },
         {
             "name": "knplabs/knp-gaufrette-bundle",
@@ -4853,16 +4853,16 @@
         },
         {
             "name": "oro/platform",
-            "version": "2.6.28",
+            "version": "2.6.29",
             "source": {
                 "type": "git",
                 "url": "https://github.com/oroinc/platform.git",
-                "reference": "b1161e909744d95e23f5af2a2478ad8db801b979"
+                "reference": "25872f80266ab3969927a7195a961856272b5e3c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/oroinc/platform/zipball/b1161e909744d95e23f5af2a2478ad8db801b979",
-                "reference": "b1161e909744d95e23f5af2a2478ad8db801b979",
+                "url": "https://api.github.com/repos/oroinc/platform/zipball/25872f80266ab3969927a7195a961856272b5e3c",
+                "reference": "25872f80266ab3969927a7195a961856272b5e3c",
                 "shasum": ""
             },
             "require": {
@@ -5019,20 +5019,20 @@
                 "source": "https://github.com/oroinc/platform/tree/2.6",
                 "issues": "https://github.com/oroinc/platform/issues"
             },
-            "time": "2018-09-03T14:26:40+00:00"
+            "time": "2018-09-12T12:21:10+00:00"
         },
         {
             "name": "oro/platform-serialised-fields",
-            "version": "2.6.1",
+            "version": "2.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/oroinc/OroEntitySerializedFieldsBundle.git",
-                "reference": "06a034a6e21d43ccf95b7a5087de88c1eeb2fd08"
+                "reference": "e39a6a692cd6e587dbe0116c108224893288f6b7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/oroinc/OroEntitySerializedFieldsBundle/zipball/06a034a6e21d43ccf95b7a5087de88c1eeb2fd08",
-                "reference": "06a034a6e21d43ccf95b7a5087de88c1eeb2fd08",
+                "url": "https://api.github.com/repos/oroinc/OroEntitySerializedFieldsBundle/zipball/e39a6a692cd6e587dbe0116c108224893288f6b7",
+                "reference": "e39a6a692cd6e587dbe0116c108224893288f6b7",
                 "shasum": ""
             },
             "require": {
@@ -5053,7 +5053,6 @@
                     "/Tests/"
                 ]
             },
-            "notification-url": "https://packagist.orocrm.com/downloads/",
             "license": [
                 "OSL-3.0"
             ],
@@ -5071,21 +5070,25 @@
                 "entity",
                 "fields"
             ],
-            "time": "2018-01-30T11:00:41+00:00"
+            "support": {
+                "source": "https://github.com/oroinc/OroEntitySerializedFieldsBundle/tree/2.6",
+                "issues": "https://github.com/oroinc/OroEntitySerializedFieldsBundle/issues"
+            },
+            "time": "2018-09-07T12:13:35+00:00"
         },
         {
             "name": "oro/redis-config",
-            "version": "2.1.4",
+            "version": "2.1.5",
             "target-dir": "Oro/Bundle/RedisConfigBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/oroinc/redis-config.git",
-                "reference": "0065697501673684fd9016045ed3d4b15a6cb9d6"
+                "reference": "04aba66f0500f61b0f0f2e0f949931ce1d31f850"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/oroinc/redis-config/zipball/0065697501673684fd9016045ed3d4b15a6cb9d6",
-                "reference": "0065697501673684fd9016045ed3d4b15a6cb9d6",
+                "url": "https://api.github.com/repos/oroinc/redis-config/zipball/04aba66f0500f61b0f0f2e0f949931ce1d31f850",
+                "reference": "04aba66f0500f61b0f0f2e0f949931ce1d31f850",
                 "shasum": ""
             },
             "require": {
@@ -5106,7 +5109,6 @@
                     "Oro\\Bundle\\RedisConfigBundle": "./"
                 }
             },
-            "notification-url": "https://packagist.orocrm.com/downloads/",
             "license": [
                 "MIT"
             ],
@@ -5114,11 +5116,15 @@
             "homepage": "https://github.com/oroinc/redis-config",
             "keywords": [
                 "Oro",
-                "OroCRM",
+                "OroCrm",
                 "OroPlatform",
                 "Redis"
             ],
-            "time": "2018-06-13T08:31:31+00:00"
+            "support": {
+                "source": "https://github.com/oroinc/redis-config/tree/2.6",
+                "issues": "https://github.com/oroinc/redis-config/issues"
+            },
+            "time": "2018-09-11T11:50:50+00:00"
         },
         {
             "name": "paragonie/random_compat",
