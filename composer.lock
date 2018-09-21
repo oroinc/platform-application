@@ -4853,16 +4853,16 @@
         },
         {
             "name": "oro/platform",
-            "version": "2.6.29",
+            "version": "2.6.30",
             "source": {
                 "type": "git",
                 "url": "https://github.com/oroinc/platform.git",
-                "reference": "25872f80266ab3969927a7195a961856272b5e3c"
+                "reference": "c5275f4abe78b62ed243804248c1f48d68174d67"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/oroinc/platform/zipball/25872f80266ab3969927a7195a961856272b5e3c",
-                "reference": "25872f80266ab3969927a7195a961856272b5e3c",
+                "url": "https://api.github.com/repos/oroinc/platform/zipball/c5275f4abe78b62ed243804248c1f48d68174d67",
+                "reference": "c5275f4abe78b62ed243804248c1f48d68174d67",
                 "shasum": ""
             },
             "require": {
@@ -5019,7 +5019,7 @@
                 "source": "https://github.com/oroinc/platform/tree/2.6",
                 "issues": "https://github.com/oroinc/platform/issues"
             },
-            "time": "2018-09-12T12:21:10+00:00"
+            "time": "2018-09-19T12:29:52+00:00"
         },
         {
             "name": "oro/platform-serialised-fields",
@@ -7305,16 +7305,16 @@
         },
         {
             "name": "vakata/jstree",
-            "version": "3.3.5",
+            "version": "3.3.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vakata/jstree.git",
-                "reference": "0097fab41981daf36c234b73b683166daabd5f28"
+                "reference": "39d167dc3f931fa95e588d4d106d9b44cbcdb6f9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vakata/jstree/zipball/0097fab41981daf36c234b73b683166daabd5f28",
-                "reference": "0097fab41981daf36c234b73b683166daabd5f28",
+                "url": "https://api.github.com/repos/vakata/jstree/zipball/39d167dc3f931fa95e588d4d106d9b44cbcdb6f9",
+                "reference": "39d167dc3f931fa95e588d4d106d9b44cbcdb6f9",
                 "shasum": ""
             },
             "require": {
@@ -7358,7 +7358,7 @@
             ],
             "description": "jsTree is jquery plugin, that provides interactive trees.",
             "homepage": "http://jstree.com",
-            "time": "2018-01-02T08:13:23+00:00"
+            "time": "2018-09-17T12:38:44+00:00"
         },
         {
             "name": "willdurand/jsonp-callback-validator",
