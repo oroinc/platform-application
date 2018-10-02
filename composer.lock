@@ -4853,16 +4853,16 @@
         },
         {
             "name": "oro/platform",
-            "version": "2.6.30",
+            "version": "2.6.31",
             "source": {
                 "type": "git",
                 "url": "https://github.com/oroinc/platform.git",
-                "reference": "c5275f4abe78b62ed243804248c1f48d68174d67"
+                "reference": "4980712862b6bd922224184781f2e3bd9fa0235c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/oroinc/platform/zipball/c5275f4abe78b62ed243804248c1f48d68174d67",
-                "reference": "c5275f4abe78b62ed243804248c1f48d68174d67",
+                "url": "https://api.github.com/repos/oroinc/platform/zipball/4980712862b6bd922224184781f2e3bd9fa0235c",
+                "reference": "4980712862b6bd922224184781f2e3bd9fa0235c",
                 "shasum": ""
             },
             "require": {
@@ -5019,20 +5019,20 @@
                 "source": "https://github.com/oroinc/platform/tree/2.6",
                 "issues": "https://github.com/oroinc/platform/issues"
             },
-            "time": "2018-09-19T12:29:52+00:00"
+            "time": "2018-09-27T14:31:59+00:00"
         },
         {
             "name": "oro/platform-serialised-fields",
-            "version": "2.6.2",
+            "version": "2.6.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/oroinc/OroEntitySerializedFieldsBundle.git",
-                "reference": "e39a6a692cd6e587dbe0116c108224893288f6b7"
+                "reference": "00e6a6e52fcaa289d257f4be18b5cf9d530019e9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/oroinc/OroEntitySerializedFieldsBundle/zipball/e39a6a692cd6e587dbe0116c108224893288f6b7",
-                "reference": "e39a6a692cd6e587dbe0116c108224893288f6b7",
+                "url": "https://api.github.com/repos/oroinc/OroEntitySerializedFieldsBundle/zipball/00e6a6e52fcaa289d257f4be18b5cf9d530019e9",
+                "reference": "00e6a6e52fcaa289d257f4be18b5cf9d530019e9",
                 "shasum": ""
             },
             "require": {
@@ -5074,21 +5074,21 @@
                 "source": "https://github.com/oroinc/OroEntitySerializedFieldsBundle/tree/2.6",
                 "issues": "https://github.com/oroinc/OroEntitySerializedFieldsBundle/issues"
             },
-            "time": "2018-09-07T12:13:35+00:00"
+            "time": "2018-09-20T11:49:48+00:00"
         },
         {
             "name": "oro/redis-config",
-            "version": "2.1.5",
+            "version": "2.1.6",
             "target-dir": "Oro/Bundle/RedisConfigBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/oroinc/redis-config.git",
-                "reference": "04aba66f0500f61b0f0f2e0f949931ce1d31f850"
+                "reference": "b12375aafcc2dec1a5b08f02e420c2bd56298fa0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/oroinc/redis-config/zipball/04aba66f0500f61b0f0f2e0f949931ce1d31f850",
-                "reference": "04aba66f0500f61b0f0f2e0f949931ce1d31f850",
+                "url": "https://api.github.com/repos/oroinc/redis-config/zipball/b12375aafcc2dec1a5b08f02e420c2bd56298fa0",
+                "reference": "b12375aafcc2dec1a5b08f02e420c2bd56298fa0",
                 "shasum": ""
             },
             "require": {
@@ -5124,7 +5124,7 @@
                 "source": "https://github.com/oroinc/redis-config/tree/2.6",
                 "issues": "https://github.com/oroinc/redis-config/issues"
             },
-            "time": "2018-09-11T11:50:50+00:00"
+            "time": "2018-09-23T17:20:22+00:00"
         },
         {
             "name": "paragonie/random_compat",
