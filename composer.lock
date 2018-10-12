@@ -487,8 +487,7 @@
                 "reference": "df0ddedcab1a8fdb3a7abafc5fe97819931e7bd5",
                 "shasum": null
             },
-            "type": "bower-asset",
-            "time": "2014-07-21T18:45:41+00:00"
+            "type": "bower-asset"
         },
         {
             "name": "bower-asset/font-awesome",
@@ -699,8 +698,7 @@
                 "reference": "58df70e97f9031c58361d38d59997485e7a693a2",
                 "shasum": null
             },
-            "type": "bower-asset",
-            "time": "2018-04-29T21:14:49+00:00"
+            "type": "bower-asset"
         },
         {
             "name": "bower-asset/jsplumb",
@@ -4853,16 +4851,16 @@
         },
         {
             "name": "oro/platform",
-            "version": "2.6.31",
+            "version": "2.6.32",
             "source": {
                 "type": "git",
                 "url": "https://github.com/oroinc/platform.git",
-                "reference": "4980712862b6bd922224184781f2e3bd9fa0235c"
+                "reference": "8a7738cdf01fb84ddd7e4ea867eedf82d6a84c8c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/oroinc/platform/zipball/4980712862b6bd922224184781f2e3bd9fa0235c",
-                "reference": "4980712862b6bd922224184781f2e3bd9fa0235c",
+                "url": "https://api.github.com/repos/oroinc/platform/zipball/8a7738cdf01fb84ddd7e4ea867eedf82d6a84c8c",
+                "reference": "8a7738cdf01fb84ddd7e4ea867eedf82d6a84c8c",
                 "shasum": ""
             },
             "require": {
@@ -5019,7 +5017,7 @@
                 "source": "https://github.com/oroinc/platform/tree/2.6",
                 "issues": "https://github.com/oroinc/platform/issues"
             },
-            "time": "2018-09-27T14:31:59+00:00"
+            "time": "2018-10-09T16:20:47+00:00"
         },
         {
             "name": "oro/platform-serialised-fields",
