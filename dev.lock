@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
     "content-hash": "433a1fd9e8bc8b1e40277dcd8c52d833",
@@ -12,7 +12,7 @@
             "target-dir": "Akeneo/Bundle/BatchBundle",
             "source": {
                 "type": "git",
-                "url": "git@github.com:laboro/BatchBundle.git",
+                "url": "https://github.com/laboro/BatchBundle.git",
                 "reference": "aff218f6ba5714baae575698c0578bf8da207f41"
             },
             "dist": {
@@ -54,6 +54,9 @@
                 "Reader",
                 "Writer"
             ],
+            "support": {
+                "source": "https://github.com/laboro/BatchBundle/tree/0.4.8"
+            },
             "time": "2018-03-20T11:52:51+00:00"
         },
         {
@@ -424,7 +427,7 @@
                 "shasum": null
             },
             "type": "bower-asset",
-            "time": "2014-07-21 18:45:41"
+            "time": "2014-07-21T18:45:41+00:00"
         },
         {
             "name": "bower-asset/font-awesome",
@@ -659,7 +662,7 @@
                 "shasum": null
             },
             "type": "bower-asset",
-            "time": "2018-04-29 21:14:49"
+            "time": "2018-04-29T21:14:49+00:00"
         },
         {
             "name": "bower-asset/jsplumb",
