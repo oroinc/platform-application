@@ -22,8 +22,8 @@
         }
     },
     "require": {
-        "oro/platform": "3.1.*",
-        "oro/platform-serialised-fields": "3.1.*"
+        "oro/platform": "3.2-dev",
+        "oro/platform-serialised-fields": "3.2-dev"
     },
     "require-dev": {
         "sensio/generator-bundle": "3.1.*",
