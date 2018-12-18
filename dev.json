@@ -30,10 +30,10 @@
     }
   ],
   "require": {
-    "oro/platform": "3.2.x-dev",
-    "oro/platform-serialised-fields": "3.2.x-dev",
-    "oro/calendar-bundle": "3.2.x-dev",
-    "oro/redis-config": "3.2.x-dev"
+    "oro/platform": "dev-releaseTests",
+    "oro/platform-serialised-fields": "dev-releaseTests",
+    "oro/calendar-bundle": "dev-releaseTests",
+    "oro/redis-config": "dev-releaseTests"
   },
   "require-dev": {
     "sensio/generator-bundle": "3.1.*",
