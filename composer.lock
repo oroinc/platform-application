@@ -2250,12 +2250,12 @@
             "version": "v2.5.5",
             "source": {
                 "type": "git",
-                "url": "https://github.com/doctrine/doctrine2.git",
+                "url": "https://github.com/doctrine/orm.git",
                 "reference": "73e4be7c7b3ba26f96b781a40b33feba4dfa6d45"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/73e4be7c7b3ba26f96b781a40b33feba4dfa6d45",
+                "url": "https://api.github.com/repos/doctrine/orm/zipball/73e4be7c7b3ba26f96b781a40b33feba4dfa6d45",
                 "reference": "73e4be7c7b3ba26f96b781a40b33feba4dfa6d45",
                 "shasum": ""
             },
@@ -4891,16 +4891,16 @@
         },
         {
             "name": "oro/platform",
-            "version": "2.6.37",
+            "version": "2.6.38",
             "source": {
                 "type": "git",
-                "url": "git@github.com:oroinc/platform.git",
-                "reference": "9d1d88d2ead24716de8827f74f7b019e4506fd0d"
+                "url": "https://github.com/oroinc/platform.git",
+                "reference": "23c871c6161fe37ec2c075ece2c3417181569784"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/oroinc/platform/zipball/9d1d88d2ead24716de8827f74f7b019e4506fd0d",
-                "reference": "9d1d88d2ead24716de8827f74f7b019e4506fd0d",
+                "url": "https://api.github.com/repos/oroinc/platform/zipball/23c871c6161fe37ec2c075ece2c3417181569784",
+                "reference": "23c871c6161fe37ec2c075ece2c3417181569784",
                 "shasum": ""
             },
             "require": {
@@ -5053,20 +5053,24 @@
             ],
             "description": "Business Application Platform (BAP)",
             "homepage": "https://github.com/oroinc/platform.git",
-            "time": "2018-12-20T10:03:58+00:00"
+            "support": {
+                "source": "https://github.com/oroinc/platform/tree/2.6",
+                "issues": "https://github.com/oroinc/platform/issues"
+            },
+            "time": "2019-01-04T13:42:08+00:00"
         },
         {
             "name": "oro/platform-serialised-fields",
-            "version": "2.6.3",
+            "version": "2.6.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/oroinc/OroEntitySerializedFieldsBundle.git",
-                "reference": "00e6a6e52fcaa289d257f4be18b5cf9d530019e9"
+                "reference": "63bb5091e76503488b1c53d21bc2f7d233ae3024"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/oroinc/OroEntitySerializedFieldsBundle/zipball/00e6a6e52fcaa289d257f4be18b5cf9d530019e9",
-                "reference": "00e6a6e52fcaa289d257f4be18b5cf9d530019e9",
+                "url": "https://api.github.com/repos/oroinc/OroEntitySerializedFieldsBundle/zipball/63bb5091e76503488b1c53d21bc2f7d233ae3024",
+                "reference": "63bb5091e76503488b1c53d21bc2f7d233ae3024",
                 "shasum": ""
             },
             "require": {
@@ -5108,7 +5112,7 @@
                 "source": "https://github.com/oroinc/OroEntitySerializedFieldsBundle/tree/2.6",
                 "issues": "https://github.com/oroinc/OroEntitySerializedFieldsBundle/issues"
             },
-            "time": "2018-09-20T11:49:48+00:00"
+            "time": "2018-12-28T17:52:20+00:00"
         },
         {
             "name": "oro/redis-config",
