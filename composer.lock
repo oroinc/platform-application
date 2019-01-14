@@ -5340,12 +5340,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/oroinc/platform.git",
-                "reference": "9368787da587b1b9c919df9831d61fc6805e5c68"
+                "reference": "252a8a5d9ff778305a31d0367cc8f6508dd02c76"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/oroinc/platform/zipball/9368787da587b1b9c919df9831d61fc6805e5c68",
-                "reference": "9368787da587b1b9c919df9831d61fc6805e5c68",
+                "url": "https://api.github.com/repos/oroinc/platform/zipball/252a8a5d9ff778305a31d0367cc8f6508dd02c76",
+                "reference": "252a8a5d9ff778305a31d0367cc8f6508dd02c76",
                 "shasum": ""
             },
             "require": {
@@ -5443,7 +5443,7 @@
                 "symfony/polyfill-php70": "1.*",
                 "symfony/security-acl": "~3.0.0",
                 "symfony/swiftmailer-bundle": "2.6.*",
-                "symfony/symfony": "3.4.18",
+                "symfony/symfony": "~3.4.20",
                 "tinymce/tinymce": "4.6.*",
                 "twig/extensions": "1.5.*",
                 "twig/twig": "1.35.*",
@@ -5491,7 +5491,7 @@
                 "source": "https://github.com/oroinc/platform/tree/releaseTests",
                 "issues": "https://github.com/oroinc/platform/issues"
             },
-            "time": "2019-01-09T16:37:51+00:00"
+            "time": "2019-01-14T09:45:07+00:00"
         },
         {
             "name": "oro/platform-serialised-fields",
@@ -7519,16 +7519,16 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v3.4.18",
+            "version": "v3.4.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "ee054aa62e535b7905c5b8e90cb49a1ad65dbfd8"
+                "reference": "c7a57e0bcc3c57ae697f072b3e862487b6fd0030"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/ee054aa62e535b7905c5b8e90cb49a1ad65dbfd8",
-                "reference": "ee054aa62e535b7905c5b8e90cb49a1ad65dbfd8",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/c7a57e0bcc3c57ae697f072b3e862487b6fd0030",
+                "reference": "c7a57e0bcc3c57ae697f072b3e862487b6fd0030",
                 "shasum": ""
             },
             "require": {
@@ -7670,7 +7670,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2018-11-03T10:03:29+00:00"
+            "time": "2019-01-06T15:54:26+00:00"
         },
         {
             "name": "tinymce/tinymce",
