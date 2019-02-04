@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bf391aa0ac973a57000199691b06f3b9",
+    "content-hash": "239fb9a1b3890f6c6049538a33608b7a",
     "packages": [
         {
             "name": "akeneo/batch-bundle",
@@ -5338,16 +5338,16 @@
         },
         {
             "name": "oro/platform",
-            "version": "3.1.0",
+            "version": "3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/oroinc/platform.git",
-                "reference": "9ac3f81cca8ddefba0cc00e7aecd86fd7d8caf34"
+                "reference": "4d56bbbef1cf588bc5529d46a4ef8730e2613b17"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/oroinc/platform/zipball/9ac3f81cca8ddefba0cc00e7aecd86fd7d8caf34",
-                "reference": "9ac3f81cca8ddefba0cc00e7aecd86fd7d8caf34",
+                "url": "https://api.github.com/repos/oroinc/platform/zipball/4d56bbbef1cf588bc5529d46a4ef8730e2613b17",
+                "reference": "4d56bbbef1cf588bc5529d46a4ef8730e2613b17",
                 "shasum": ""
             },
             "require": {
@@ -5434,7 +5434,7 @@
                 "npm-asset/xregexp": "3.2.*",
                 "ocramius/proxy-manager": "2.1.1",
                 "oro/doctrine-extensions": "1.2.*",
-                "oro/redis-config": "3.1.*",
+                "oro/redis-config": "~3.1.1",
                 "php": ">=7.1.26",
                 "piwik/device-detector": "3.10.*",
                 "robloach/component-installer": "0.2.*",
@@ -5493,24 +5493,24 @@
                 "source": "https://github.com/oroinc/platform/tree/3.1",
                 "issues": "https://github.com/oroinc/platform/issues"
             },
-            "time": "2019-01-29T08:19:45+00:00"
+            "time": "2019-02-04T11:06:54+00:00"
         },
         {
             "name": "oro/platform-serialised-fields",
-            "version": "3.1.0",
+            "version": "3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/oroinc/OroEntitySerializedFieldsBundle.git",
-                "reference": "9db1d6f6a75f9483ab5f21de24ea2d39de77cdc2"
+                "reference": "4541b8ec5eadeebd70e7799e20b443e35077f8ef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/oroinc/OroEntitySerializedFieldsBundle/zipball/9db1d6f6a75f9483ab5f21de24ea2d39de77cdc2",
-                "reference": "9db1d6f6a75f9483ab5f21de24ea2d39de77cdc2",
+                "url": "https://api.github.com/repos/oroinc/OroEntitySerializedFieldsBundle/zipball/4541b8ec5eadeebd70e7799e20b443e35077f8ef",
+                "reference": "4541b8ec5eadeebd70e7799e20b443e35077f8ef",
                 "shasum": ""
             },
             "require": {
-                "oro/platform": "3.1.*"
+                "oro/platform": "~3.1.1"
             },
             "type": "library",
             "extra": {
@@ -5547,11 +5547,11 @@
                 "source": "https://github.com/oroinc/OroEntitySerializedFieldsBundle/tree/3.1",
                 "issues": "https://github.com/oroinc/OroEntitySerializedFieldsBundle/issues"
             },
-            "time": "2019-01-29T08:19:45+00:00"
+            "time": "2019-02-04T11:06:54+00:00"
         },
         {
             "name": "oro/redis-config",
-            "version": "3.1.0",
+            "version": "3.1.1",
             "target-dir": "Oro/Bundle/RedisConfigBundle",
             "source": {
                 "type": "git",
@@ -8346,22 +8346,22 @@
         },
         {
             "name": "zendframework/zend-validator",
-            "version": "2.11.0",
+            "version": "2.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-validator.git",
-                "reference": "f0789b4c4c099afdd2ecc58cc209a26c64bd4f17"
+                "reference": "64c33668e5fa2d39c6289a878f927ea2b0850c30"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-validator/zipball/f0789b4c4c099afdd2ecc58cc209a26c64bd4f17",
-                "reference": "f0789b4c4c099afdd2ecc58cc209a26c64bd4f17",
+                "url": "https://api.github.com/repos/zendframework/zend-validator/zipball/64c33668e5fa2d39c6289a878f927ea2b0850c30",
+                "reference": "64c33668e5fa2d39c6289a878f927ea2b0850c30",
                 "shasum": ""
             },
             "require": {
                 "container-interop/container-interop": "^1.1",
                 "php": "^5.6 || ^7.0",
-                "zendframework/zend-stdlib": "^2.7.6 || ^3.1"
+                "zendframework/zend-stdlib": "^3.2.1"
             },
             "require-dev": {
                 "phpunit/phpunit": "^6.0.8 || ^5.7.15",
@@ -8392,8 +8392,8 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.11.x-dev",
-                    "dev-develop": "2.12.x-dev"
+                    "dev-master": "2.12.x-dev",
+                    "dev-develop": "2.13.x-dev"
                 },
                 "zf": {
                     "component": "Zend\\Validator",
@@ -8415,7 +8415,7 @@
                 "validator",
                 "zf2"
             ],
-            "time": "2018-12-13T21:23:15+00:00"
+            "time": "2019-01-30T14:26:10+00:00"
         }
     ],
     "packages-dev": [
@@ -9246,7 +9246,7 @@
         },
         {
             "name": "oro/twig-inspector",
-            "version": "dev-master",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/oroinc/twig-inspector.git",
@@ -9277,7 +9277,6 @@
                     "Oro\\TwigInspector\\": ""
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -9298,6 +9297,10 @@
                 "toolbar-extension",
                 "twig"
             ],
+            "support": {
+                "source": "https://github.com/oroinc/twig-inspector/tree/1.0.0",
+                "issues": "https://github.com/oroinc/twig-inspector/issues"
+            },
             "time": "2018-08-19T20:22:28+00:00"
         },
         {
@@ -10077,16 +10080,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "6.5.13",
+            "version": "6.5.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "0973426fb012359b2f18d3bd1e90ef1172839693"
+                "reference": "bac23fe7ff13dbdb461481f706f0e9fe746334b7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/0973426fb012359b2f18d3bd1e90ef1172839693",
-                "reference": "0973426fb012359b2f18d3bd1e90ef1172839693",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/bac23fe7ff13dbdb461481f706f0e9fe746334b7",
+                "reference": "bac23fe7ff13dbdb461481f706f0e9fe746334b7",
                 "shasum": ""
             },
             "require": {
@@ -10157,7 +10160,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2018-09-08T15:10:43+00:00"
+            "time": "2019-02-01T05:22:47+00:00"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -10973,16 +10976,16 @@
         },
         {
             "name": "symfony/phpunit-bridge",
-            "version": "v3.4.21",
+            "version": "v3.4.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/phpunit-bridge.git",
-                "reference": "5dab0d4b2ac99ab22b447b615fdfdc10ec4af3d5"
+                "reference": "6a2148bfc6ca0016846a32bdc55a317274283709"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/phpunit-bridge/zipball/5dab0d4b2ac99ab22b447b615fdfdc10ec4af3d5",
-                "reference": "5dab0d4b2ac99ab22b447b615fdfdc10ec4af3d5",
+                "url": "https://api.github.com/repos/symfony/phpunit-bridge/zipball/6a2148bfc6ca0016846a32bdc55a317274283709",
+                "reference": "6a2148bfc6ca0016846a32bdc55a317274283709",
                 "shasum": ""
             },
             "require": {
@@ -11035,7 +11038,7 @@
             ],
             "description": "Symfony PHPUnit Bridge",
             "homepage": "https://symfony.com",
-            "time": "2019-01-01T13:45:19+00:00"
+            "time": "2019-01-30T13:30:37+00:00"
         },
         {
             "name": "symfony/polyfill-php72",
