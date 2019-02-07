@@ -426,8 +426,7 @@
                 "reference": "df0ddedcab1a8fdb3a7abafc5fe97819931e7bd5",
                 "shasum": null
             },
-            "type": "bower-asset",
-            "time": "2014-07-21T18:45:41+00:00"
+            "type": "bower-asset"
         },
         {
             "name": "bower-asset/font-awesome",
@@ -638,8 +637,7 @@
                 "reference": "58df70e97f9031c58361d38d59997485e7a693a2",
                 "shasum": null
             },
-            "type": "bower-asset",
-            "time": "2018-04-29T21:14:49+00:00"
+            "type": "bower-asset"
         },
         {
             "name": "bower-asset/jsplumb",
@@ -5338,16 +5336,16 @@
         },
         {
             "name": "oro/platform",
-            "version": "3.1.1",
+            "version": "3.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/oroinc/platform.git",
-                "reference": "4d56bbbef1cf588bc5529d46a4ef8730e2613b17"
+                "reference": "461883c78280095c7bd90926c863c838a9806842"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/oroinc/platform/zipball/4d56bbbef1cf588bc5529d46a4ef8730e2613b17",
-                "reference": "4d56bbbef1cf588bc5529d46a4ef8730e2613b17",
+                "url": "https://api.github.com/repos/oroinc/platform/zipball/461883c78280095c7bd90926c863c838a9806842",
+                "reference": "461883c78280095c7bd90926c863c838a9806842",
                 "shasum": ""
             },
             "require": {
@@ -5493,20 +5491,20 @@
                 "source": "https://github.com/oroinc/platform/tree/3.1",
                 "issues": "https://github.com/oroinc/platform/issues"
             },
-            "time": "2019-02-04T11:06:54+00:00"
+            "time": "2019-02-05T14:09:29+00:00"
         },
         {
             "name": "oro/platform-serialised-fields",
-            "version": "3.1.1",
+            "version": "3.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/oroinc/OroEntitySerializedFieldsBundle.git",
-                "reference": "4541b8ec5eadeebd70e7799e20b443e35077f8ef"
+                "reference": "c2db6afd01163a05c9e5cc48d7c726b84af9b977"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/oroinc/OroEntitySerializedFieldsBundle/zipball/4541b8ec5eadeebd70e7799e20b443e35077f8ef",
-                "reference": "4541b8ec5eadeebd70e7799e20b443e35077f8ef",
+                "url": "https://api.github.com/repos/oroinc/OroEntitySerializedFieldsBundle/zipball/c2db6afd01163a05c9e5cc48d7c726b84af9b977",
+                "reference": "c2db6afd01163a05c9e5cc48d7c726b84af9b977",
                 "shasum": ""
             },
             "require": {
@@ -5547,21 +5545,21 @@
                 "source": "https://github.com/oroinc/OroEntitySerializedFieldsBundle/tree/3.1",
                 "issues": "https://github.com/oroinc/OroEntitySerializedFieldsBundle/issues"
             },
-            "time": "2019-02-04T11:06:54+00:00"
+            "time": "2019-02-05T11:04:25+00:00"
         },
         {
             "name": "oro/redis-config",
-            "version": "3.1.1",
+            "version": "3.1.2",
             "target-dir": "Oro/Bundle/RedisConfigBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/oroinc/redis-config.git",
-                "reference": "708fd5ec06c46bad8dceaefcb313004004ecf0dd"
+                "reference": "a630e49ac7203387abc33156a522970e39ce20a4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/oroinc/redis-config/zipball/708fd5ec06c46bad8dceaefcb313004004ecf0dd",
-                "reference": "708fd5ec06c46bad8dceaefcb313004004ecf0dd",
+                "url": "https://api.github.com/repos/oroinc/redis-config/zipball/a630e49ac7203387abc33156a522970e39ce20a4",
+                "reference": "a630e49ac7203387abc33156a522970e39ce20a4",
                 "shasum": ""
             },
             "require": {
@@ -5594,10 +5592,10 @@
                 "Redis"
             ],
             "support": {
-                "source": "https://github.com/oroinc/redis-config/tree/master",
+                "source": "https://github.com/oroinc/redis-config/tree/3.1",
                 "issues": "https://github.com/oroinc/redis-config/issues"
             },
-            "time": "2018-10-15T16:52:42+00:00"
+            "time": "2019-01-31T15:02:49+00:00"
         },
         {
             "name": "paragonie/random_compat",
