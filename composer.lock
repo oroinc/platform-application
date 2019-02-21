@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "239fb9a1b3890f6c6049538a33608b7a",
+    "content-hash": "7d79a032f7c1c6f0d0a1b878e6d7cf46",
     "packages": [
         {
             "name": "akeneo/batch-bundle",
@@ -12,7 +12,7 @@
             "target-dir": "Akeneo/Bundle/BatchBundle",
             "source": {
                 "type": "git",
-                "url": "https://github.com/laboro/BatchBundle.git",
+                "url": "git@github.com:laboro/BatchBundle.git",
                 "reference": "aff218f6ba5714baae575698c0578bf8da207f41"
             },
             "dist": {
@@ -54,9 +54,6 @@
                 "Reader",
                 "Writer"
             ],
-            "support": {
-                "source": "https://github.com/laboro/BatchBundle/tree/0.4.8"
-            },
             "time": "2018-03-20T11:52:51+00:00"
         },
         {
@@ -848,30 +845,29 @@
         },
         {
             "name": "brick/math",
-            "version": "0.5.4",
+            "version": "0.8.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/brick/math.git",
-                "reference": "b44a78b01cb79aa4bf17de46a45db968b6958bda"
+                "reference": "510f506185d4c988f97180426ec80fb3dbf51e04"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/brick/math/zipball/b44a78b01cb79aa4bf17de46a45db968b6958bda",
-                "reference": "b44a78b01cb79aa4bf17de46a45db968b6958bda",
+                "url": "https://api.github.com/repos/brick/math/zipball/510f506185d4c988f97180426ec80fb3dbf51e04",
+                "reference": "510f506185d4c988f97180426ec80fb3dbf51e04",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.6"
+                "php": ">=7.1"
             },
             "require-dev": {
-                "phpunit/phpunit": "*",
-                "satooshi/php-coveralls": "dev-master"
+                "php-coveralls/php-coveralls": "2.*",
+                "phpunit/phpunit": "7.*"
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Brick\\Math\\": "src/",
-                    "Brick\\Math\\Tests\\": "tests/"
+                    "Brick\\Math\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -888,7 +884,7 @@
                 "brick",
                 "math"
             ],
-            "time": "2016-10-17T22:08:04+00:00"
+            "time": "2019-02-12T10:40:15+00:00"
         },
         {
             "name": "components/jquery",
@@ -5336,16 +5332,16 @@
         },
         {
             "name": "oro/platform",
-            "version": "3.1.2",
+            "version": "3.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/oroinc/platform.git",
-                "reference": "461883c78280095c7bd90926c863c838a9806842"
+                "reference": "bb2bec782150ab208a361ba686220a1370685615"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/oroinc/platform/zipball/461883c78280095c7bd90926c863c838a9806842",
-                "reference": "461883c78280095c7bd90926c863c838a9806842",
+                "url": "https://api.github.com/repos/oroinc/platform/zipball/bb2bec782150ab208a361ba686220a1370685615",
+                "reference": "bb2bec782150ab208a361ba686220a1370685615",
                 "shasum": ""
             },
             "require": {
@@ -5386,7 +5382,7 @@
                 "bower-asset/timepicker": "1.11.*",
                 "bower-asset/underscore": "1.8.3",
                 "bower-asset/when": "2.4.0",
-                "brick/math": "0.5.*",
+                "brick/math": "0.8.*",
                 "components/jquery": "3.1.*",
                 "components/jqueryui": "1.12.*",
                 "composer/composer": "1.6.*",
@@ -5491,20 +5487,20 @@
                 "source": "https://github.com/oroinc/platform/tree/3.1",
                 "issues": "https://github.com/oroinc/platform/issues"
             },
-            "time": "2019-02-05T14:09:29+00:00"
+            "time": "2019-02-19T16:49:50+00:00"
         },
         {
             "name": "oro/platform-serialised-fields",
-            "version": "3.1.2",
+            "version": "3.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/oroinc/OroEntitySerializedFieldsBundle.git",
-                "reference": "c2db6afd01163a05c9e5cc48d7c726b84af9b977"
+                "reference": "8eb678d565321283c33441af5148cf63136a1a27"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/oroinc/OroEntitySerializedFieldsBundle/zipball/c2db6afd01163a05c9e5cc48d7c726b84af9b977",
-                "reference": "c2db6afd01163a05c9e5cc48d7c726b84af9b977",
+                "url": "https://api.github.com/repos/oroinc/OroEntitySerializedFieldsBundle/zipball/8eb678d565321283c33441af5148cf63136a1a27",
+                "reference": "8eb678d565321283c33441af5148cf63136a1a27",
                 "shasum": ""
             },
             "require": {
@@ -5545,7 +5541,7 @@
                 "source": "https://github.com/oroinc/OroEntitySerializedFieldsBundle/tree/3.1",
                 "issues": "https://github.com/oroinc/OroEntitySerializedFieldsBundle/issues"
             },
-            "time": "2019-02-05T11:04:25+00:00"
+            "time": "2019-02-19T15:32:42+00:00"
         },
         {
             "name": "oro/redis-config",
@@ -5553,7 +5549,7 @@
             "target-dir": "Oro/Bundle/RedisConfigBundle",
             "source": {
                 "type": "git",
-                "url": "https://github.com/oroinc/redis-config.git",
+                "url": "git@github.com:oroinc/redis-config.git",
                 "reference": "a630e49ac7203387abc33156a522970e39ce20a4"
             },
             "dist": {
@@ -5591,10 +5587,6 @@
                 "OroPlatform",
                 "Redis"
             ],
-            "support": {
-                "source": "https://github.com/oroinc/redis-config/tree/3.1",
-                "issues": "https://github.com/oroinc/redis-config/issues"
-            },
             "time": "2019-01-31T15:02:49+00:00"
         },
         {
@@ -9229,7 +9221,7 @@
                     "email": "shelburt02@gmail.com"
                 },
                 {
-                    "name": "Théo FIDRY",
+                    "name": "Théo Fidry",
                     "email": "theo.fidry@gmail.com"
                 }
             ],
@@ -10217,6 +10209,7 @@
                 "mock",
                 "xunit"
             ],
+            "abandoned": true,
             "time": "2018-08-09T05:50:03+00:00"
         },
         {
