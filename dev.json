@@ -30,11 +30,11 @@
     }
   ],
   "require": {
-    "oro/platform": "3.1.*",
-    "oro/platform-serialised-fields": "3.1.*",
-    "oro/oauth2-server": "3.1.*",
-    "oro/calendar-bundle": "3.1.*",
-    "oro/redis-config": "3.1.*"
+    "oro/platform": "4.0.x-dev",
+    "oro/platform-serialised-fields": "4.0.x-dev",
+    "oro/oauth2-server": "4.0.*",
+    "oro/calendar-bundle": "4.0.x-dev",
+    "oro/redis-config": "4.0.x-dev"
   },
   "require-dev": {
     "sensio/generator-bundle": "3.1.*",
