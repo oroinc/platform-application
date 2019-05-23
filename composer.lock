@@ -597,21 +597,6 @@
             ]
         },
         {
-            "name": "bower-asset/json2",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/douglascrockford/JSON-js.git",
-                "reference": "58df70e97f9031c58361d38d59997485e7a693a2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/douglascrockford/JSON-js/zipball/58df70e97f9031c58361d38d59997485e7a693a2",
-                "reference": "58df70e97f9031c58361d38d59997485e7a693a2"
-            },
-            "type": "bower-asset"
-        },
-        {
             "name": "bower-asset/jsplumb",
             "version": "1.7.10",
             "source": {
@@ -809,16 +794,16 @@
         },
         {
             "name": "brick/math",
-            "version": "0.8.6",
+            "version": "0.8.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/brick/math.git",
-                "reference": "44d14bb2a1976b6a165d00eb08823eaa6e8f366e"
+                "reference": "b77bf303449ac66e46d521e5022cedd1663ab6bd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/brick/math/zipball/44d14bb2a1976b6a165d00eb08823eaa6e8f366e",
-                "reference": "44d14bb2a1976b6a165d00eb08823eaa6e8f366e",
+                "url": "https://api.github.com/repos/brick/math/zipball/b77bf303449ac66e46d521e5022cedd1663ab6bd",
+                "reference": "b77bf303449ac66e46d521e5022cedd1663ab6bd",
                 "shasum": ""
             },
             "require": {
@@ -848,7 +833,7 @@
                 "brick",
                 "math"
             ],
-            "time": "2019-04-11T12:03:33+00:00"
+            "time": "2019-04-25T14:55:49+00:00"
         },
         {
             "name": "components/jquery",
@@ -2258,16 +2243,16 @@
         },
         {
             "name": "doctrine/persistence",
-            "version": "v1.1.0",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/persistence.git",
-                "reference": "c0f1c17602afc18b4cbd8e1c8125f264c9cf7d38"
+                "reference": "3da7c9d125591ca83944f477e65ed3d7b4617c48"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/persistence/zipball/c0f1c17602afc18b4cbd8e1c8125f264c9cf7d38",
-                "reference": "c0f1c17602afc18b4cbd8e1c8125f264c9cf7d38",
+                "url": "https://api.github.com/repos/doctrine/persistence/zipball/3da7c9d125591ca83944f477e65ed3d7b4617c48",
+                "reference": "3da7c9d125591ca83944f477e65ed3d7b4617c48",
                 "shasum": ""
             },
             "require": {
@@ -2336,7 +2321,7 @@
                 "orm",
                 "persistence"
             ],
-            "time": "2018-11-21T00:33:13+00:00"
+            "time": "2019-04-23T08:28:24+00:00"
         },
         {
             "name": "doctrine/reflection",
@@ -5349,16 +5334,16 @@
         },
         {
             "name": "oro/platform",
-            "version": "3.1.6",
+            "version": "3.1.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/oroinc/platform.git",
-                "reference": "bba89ab0034c34785f0df225c2ca77abcafdef6a"
+                "reference": "bf516a06801186aaea0299d61372aebfeb2ffbfe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/oroinc/platform/zipball/bba89ab0034c34785f0df225c2ca77abcafdef6a",
-                "reference": "bba89ab0034c34785f0df225c2ca77abcafdef6a",
+                "url": "https://api.github.com/repos/oroinc/platform/zipball/bf516a06801186aaea0299d61372aebfeb2ffbfe",
+                "reference": "bf516a06801186aaea0299d61372aebfeb2ffbfe",
                 "shasum": ""
             },
             "require": {
@@ -5387,7 +5372,6 @@
                 "bower-asset/jquery-ui-multiselect-widget": "2.0.1",
                 "bower-asset/jquery-validate": "1.16.0",
                 "bower-asset/jquery.numeric": "1.5.0",
-                "bower-asset/json2": "dev-master",
                 "bower-asset/jsplumb": "1.7.*",
                 "bower-asset/lightgallery": "1.4.0",
                 "bower-asset/malihu-custom-scrollbar-plugin": "3.1.5",
@@ -5507,7 +5491,7 @@
                 "source": "https://github.com/oroinc/platform/tree/3.1",
                 "issues": "https://github.com/oroinc/platform/issues"
             },
-            "time": "2019-04-17T09:42:30+00:00"
+            "time": "2019-05-16T15:35:46+00:00"
         },
         {
             "name": "oro/platform-serialised-fields",
@@ -5762,16 +5746,16 @@
         },
         {
             "name": "phpdocumentor/reflection-docblock",
-            "version": "4.3.0",
+            "version": "4.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/ReflectionDocBlock.git",
-                "reference": "94fd0001232e47129dd3504189fa1c7225010d08"
+                "reference": "bdd9f737ebc2a01c06ea7ff4308ec6697db9b53c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/94fd0001232e47129dd3504189fa1c7225010d08",
-                "reference": "94fd0001232e47129dd3504189fa1c7225010d08",
+                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/bdd9f737ebc2a01c06ea7ff4308ec6697db9b53c",
+                "reference": "bdd9f737ebc2a01c06ea7ff4308ec6697db9b53c",
                 "shasum": ""
             },
             "require": {
@@ -5809,7 +5793,7 @@
                 }
             ],
             "description": "With this component, a library can provide support for annotations via DocBlocks or otherwise retrieve information that is embedded in a DocBlock.",
-            "time": "2017-11-30T07:14:17+00:00"
+            "time": "2019-04-30T17:48:53+00:00"
         },
         {
             "name": "phpdocumentor/type-resolver",
@@ -8112,16 +8096,16 @@
         },
         {
             "name": "vakata/jstree",
-            "version": "3.3.7",
+            "version": "3.3.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vakata/jstree.git",
-                "reference": "bc5187e5826244dee5ebdc0e9db2e2652fefe928"
+                "reference": "c9d7c1425f2272c5400536fa631eba8657522ecf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vakata/jstree/zipball/bc5187e5826244dee5ebdc0e9db2e2652fefe928",
-                "reference": "bc5187e5826244dee5ebdc0e9db2e2652fefe928",
+                "url": "https://api.github.com/repos/vakata/jstree/zipball/c9d7c1425f2272c5400536fa631eba8657522ecf",
+                "reference": "c9d7c1425f2272c5400536fa631eba8657522ecf",
                 "shasum": ""
             },
             "require": {
@@ -8165,7 +8149,7 @@
             ],
             "description": "jsTree is jquery plugin, that provides interactive trees.",
             "homepage": "http://jstree.com",
-            "time": "2018-11-06T21:15:47+00:00"
+            "time": "2019-04-28T21:22:05+00:00"
         },
         {
             "name": "webmozart/assert",
@@ -11099,7 +11083,7 @@
         },
         {
             "name": "symfony/phpunit-bridge",
-            "version": "v3.4.26",
+            "version": "v3.4.27",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/phpunit-bridge.git",
