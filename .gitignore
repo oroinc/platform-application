@@ -39,7 +39,6 @@ bin/*
 !bin/console
 !bin/dist
 phpunit.xml
-/var/SymfonyRequirements.php
 /public/uploads/behat
 /.web-server-pid
 /.vagrant
