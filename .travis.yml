@@ -26,7 +26,7 @@ before_script:
   - set +e; DIFF=$(git diff --name-only --diff-filter=ACMR $TRAVIS_COMMIT_RANGE | grep -e ".*\.php$"); set -e;
 
 script:
-  - ./vendor/bin/phpunit
-  - ./vendor/bin/phpcs ./src -p --encoding=utf-8 --extensions=php --standard=PSR2
-  - ./vendor/bin/php-cs-fixer fix --dry-run --config=./build/.php_cs --path-mode=intersection ./src
+  - ./bin/phpunit
+  - ./bin/phpcs ./src -p --encoding=utf-8 --extensions=php --standard=PSR2
+  - ./bin/php-cs-fixer fix --dry-run --config=./build/.php_cs --path-mode=intersection ./src
   - if [[ $DIFF ]]; then ./vendor/bin/phpmd ${DIFF//$'\n'/,} text ./build/phpmd.xml --suffixes php; fi
