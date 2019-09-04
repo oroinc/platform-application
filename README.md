@@ -1,6 +1,8 @@
 OroPlatform Application
 =======================
 
+[![Travis CI build status](https://travis-ci.org/reiser/platform-application.svg?branch=master)](https://https://travis-ci.org/reiser/platform-application)
+
 What is OroPlatform?
 --------------------
 
