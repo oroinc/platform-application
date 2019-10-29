@@ -5,7 +5,10 @@
   "license": "MIT",
   "autoload": {
     "psr-4": {"": "src/"},
-    "exclude-from-classmap": ["**/Tests/"]
+    "exclude-from-classmap": ["**/Tests/"],
+    "files": [
+      "vendor/oro/platform/src/Oro/Bundle/LocaleBundle/Intl/Locale.php"
+    ]
   },
   "repositories": [
     {
