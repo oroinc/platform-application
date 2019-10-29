@@ -7,7 +7,7 @@
         "psr-4": {"": "src/"},
         "exclude-from-classmap": ["**/Tests/"],
         "files": [
-            "vendor/oro/platform/src/Oro/Bundle/LocaleBundle/Intl/Locale.php"
+            "vendor/symfony/symfony/src/Symfony/Component/Intl/Locale.php"
         ]
     },
     "repositories": {
