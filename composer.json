@@ -18,9 +18,9 @@
         }
     },
     "require": {
-        "oro/platform": "4.0.*",
-        "oro/platform-serialised-fields": "4.0.*",
-        "oro/oauth2-server": "4.0.*"
+        "oro/platform": "4.1.*",
+        "oro/platform-serialised-fields": "4.1.*",
+        "oro/oauth2-server": "4.1.*"
     },
     "require-dev": {
         "behat/behat": "3.4.*",
