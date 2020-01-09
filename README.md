@@ -17,12 +17,18 @@ This OroPlatform application is an example of a fully functional application cre
 System Requirements
 -------------------
 
-Please see the OroCRM online documentation for the complete list of [system requirements](https://oroinc.com/doc/orocrm/current/system-requirements).
+Please see the OroCRM online documentation for the complete list of [system requirements](https://doc.oroinc.com/backend/setup/system-requirements/).
 
 Installation
 ------------
 
-Please see the [Quick Start Installation Hints for OroPlatform](https://oroinc.com/doc/orocrm/current/install-upgrade/installation-quick-start-dev/platform) or refer to the online [OroCRM Installation Guide](https://oroinc.com/doc/orocrm/current/install-upgrade) for the detailed installation steps.
+Please see the online [OroCRM Installation Guide](https://doc.oroinc.com/backend/setup/dev-environment/manual-installation/crm-ce/) for the detailed installation steps.
+
+Resources
+---------
+
+  * [OroPlatform Documentation](https://doc.oroinc.com)
+  * [Contributing](https://doc.oroinc.com/community/contribute/)
 
 License
 -------
