@@ -4,6 +4,7 @@
 /.idea
 /node_modules
 /composer.phar
+composer.lock
 behat.yml
 /var/*
 !var/cache/
@@ -35,13 +36,11 @@ behat.yml
 /public/build.js
 /config/parameters.yml
 /config/parameters_test.yml
-behat.yml
+phpunit.xml
 *~
 bin/*
 !bin/console
 !bin/dist
-phpunit.xml
 /public/uploads/behat
 /.web-server-pid
 /.vagrant
-/package.json
