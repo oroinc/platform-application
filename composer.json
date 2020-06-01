@@ -7,9 +7,13 @@
         "psr-4": {"": "src/"},
         "classmap": [
             "src/AppKernel.php",
-            "src/AppCache.php"
+            "src/AppCache.php",
+            "vendor/oro/platform/guzzle/Client.php"
         ],
-        "exclude-from-classmap": ["**/Tests/"]
+        "exclude-from-classmap": [
+            "/vendor/guzzle/guzzle/src/Guzzle/Http/Client.php",
+            "**/Tests/"
+        ]
     },
     "repositories": {
         "composer": {
