@@ -44,3 +44,5 @@ bin/*
 /public/uploads/behat
 /.web-server-pid
 /.vagrant
+/.php-version
+/docker-compose.override.yml
