@@ -47,7 +47,6 @@
         "oro/twig-inspector": "1.0.*"
   },
     "config": {
-        "component-dir": "public/bundles/components",
         "bin-dir": "bin",
         "fxp-asset": {
             "enabled": false
@@ -88,6 +87,10 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "extra": {
+        "installer-types": ["component"],
+        "installer-paths": {
+          "public/bundles/components/{$name}/": ["type:component"]
+        },
         "symfony": {
             "require": "4.4.*"
         },
