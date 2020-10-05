@@ -1,7 +1,7 @@
 {
   "name": "oro/platform-application",
   "description": "Oro Platform Empty Application",
-  "homepage": "https://github.com/orocrm/platform-application.git",
+  "homepage": "https://github.com/oroinc/platform-application.git",
   "license": "MIT",
   "autoload": {
     "psr-4": {"": "src/"},
@@ -52,7 +52,16 @@
     "phpmd/phpmd": "2.8.*",
     "sebastian/phpcpd": "5.0.*",
     "phpunit/phpcov": "7.0.*",
-    "symfony/phpunit-bridge": "4.4.*",
+    "symfony/phpunit-bridge": "4.4.13",
+    "symfony/browser-kit": "4.4.13",
+    "symfony/css-selector": "4.4.13",
+    "symfony/debug": "4.4.13",
+    "symfony/debug-bundle": "4.4.13",
+    "symfony/dom-crawler": "4.4.13",
+    "symfony/stopwatch": "4.4.13",
+    "symfony/var-dumper": "4.4.13",
+    "symfony/var-exporter": "4.4.13",
+    "symfony/web-profiler-bundle": "4.4.13",
     "friendsofphp/php-cs-fixer": "2.16.*",
     "oro/twig-inspector": "1.0.*",
     "oro/platform-documentation-examples": "4.2.x-dev"
