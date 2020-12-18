@@ -33,7 +33,8 @@
     "oro/platform-serialised-fields": "4.2.x-dev",
     "oro/oauth2-server": "4.2.x-dev",
     "oro/calendar-bundle": "4.2.x-dev",
-    "oro/redis-config": "4.2.x-dev"
+    "oro/redis-config": "4.2.x-dev",
+    "oro/gridfs-config": "4.2.x-dev"
   },
   "require-dev": {
     "behat/behat": "3.4.*",
