@@ -263,7 +263,7 @@ ____NGINXCONFIGTEMPLATE
     sed -i "/database_name/s/:[[:space:]].*$/: $DB_NAME/g" ./config/parameters.yml
     chown vagrant:vagrant /var/www/oroapp/config/parameters.yml
 
-    echo "\n~~~~~~~~~~~~~~ Install OroCommerce Community Edition Application ~~~~~~~~~~~~~~\n"
+    echo "\n~~~~~~~~~~~~~~ Install OroPlatform Community Edition Application ~~~~~~~~~~~~~~\n"
 
     # --- Configure DBAL parameters before installation ---
 
@@ -325,7 +325,7 @@ ____SUPERVISORDTEMPLATE
     systemctl restart supervisord
 
     echo "\n**********************************************************************************************************************"
-    echo "************** Congratulations! You’ve Successfully Installed OroCommerce Application **********************************"
+    echo "************** Congratulations! You’ve Successfully Installed OroPlatform Application **********************************"
     echo "**********************************************************************************************************************\n"
     echo "\n************** You should now be able to open the homepage http://$APP_HOST:$FORWARDED_PORT/ and use the application. **************\n"
    SHELL
