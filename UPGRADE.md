@@ -1,4 +1,4 @@
-The upgrade instructions are available at [OroPlatform website](https://oroinc.com/oroplatform/doc/current/install-upgrade/upgrade).
+The upgrade instructions are available at [Oro documentation website](https://doc.oroinc.com/backend/setup/upgrade-to-new-version/).
 
 This file includes only the most important items that should be addressed before attempting to upgrade or during the upgrade of a vanilla Oro application.
 
@@ -6,7 +6,20 @@ Please also refer to [CHANGELOG.md](CHANGELOG.md) for a list of significant chan
 
 ## 4.2.0
 
-The minimum required PHP version is 7.4.14.
+* The minimum required PHP version is 7.4.14.
+* The minimum supported MySQL version is 8.0.
+
+### Directory structure and filesystem changes
+
+The `var/attachment` and `var/import_export` directories are no longer used for storing files and have been removed from the default directory structure.
+
+All files from these directories must be moved to the new locations:
+- from `var/attachment/protected_mediacache` to `var/data/protected_mediacache`;
+- from `var/attachment` to `var/data/attachments`;
+- from `var/import_export` to `var/data/importexport`;
+- from `var/import_export/files` to `var/data/import_files`.
+
+The console command `oro:gaufrette:migrate-filestorages` will help to migrate the files to new structure.
 
 ### Routing
 
@@ -28,12 +41,82 @@ The `public/uploads` directory has been removed.
 
 ## 4.1.0
 
-The minimum required PHP version is 7.3.13.
-
-Upgrade PHP before running `composer install` or `composer update`, otherwise composer may download wrong versions of the application packages.
+- The minimum required PHP version is 7.3.13.
+- The feature toggle for WEB API was implemented. After upgrade, the API feature will be disabled.
+  To enable it please follow the documentation [Enabling an API Feature](https://doc.oroinc.com/api/enabling-api-feature/).
+- Upgrade PHP before running `composer install` or `composer update`, otherwise composer may download wrong versions of the application packages.
 
 ## 3.1.0
 
-The minimum required PHP version is 7.1.26.
+* The minimum required PHP version is 7.1.26.
+* `oro:assets:install` command was removed, use [`assets:install`] instead.
+* `oro:assetic:dump` command was removed, use [`oro:assets:build`](src/Oro/Bundle/AssetBundle/README.md) instead.
+* `nodejs` and `npm` are required dependencies now
+* `oro_entity.database_exception_helper` service was removed. Catch `Doctrine\DBAL\Exception\RetryableException` directly instead of helper usage.
 
 Upgrade PHP before running `composer install` or `composer update`, otherwise composer may download wrong versions of the application packages.
+
+## 3.0.0
+* To successfuly upgrade to 3.0.0 version which uses Symfony 3 you need to replace all form alias by their respective FQCN's in entity configs and embedded forms.
+  Use the following script to find out which values should be changed.
+```bash
+php vendor/oro/platform/bin/oro-form-alias-checker/oro-form-alias-checker
+```
+
+## 2.6.0
+
+* Changed minimum required php version to 7.1
+
+## 2.3.1
+* A full rebuilding of the backend search index is required due to tokenizer configuration has been changed.
+
+## 2.1.0
+* Changed minimum required php version to 7.0
+* Updated dependency to [fxpio/composer-asset-plugin](https://github.com/fxpio/composer-asset-plugin) composer plugin to version 1.3.
+* Composer updated to version 1.4.
+
+```
+    composer self-update
+    composer global require "fxp/composer-asset-plugin"
+```
+* The `oro:search:reindex` command now works synchronously by default. Use the `--scheduled` parameter if you need the old, async behaviour
+
+## 2.0.0
+
+### app/config/config.yml
+- removed `be_simple_soap` section.
+- removed `authentication_listener_class` parameter from `escape_wsse_authentication` section
+
+## 1.9.0
+
+### app/config/config.yml
+
+- Removed `doctrine` section. From now this declaration is located in `OroPlatformBundle` bundle. Remove declaration of DBAL connections and ORM entity managers from your `app/config/config.yml` to be sure that an application will work properly.
+- Removed unused `report_source` and `report_target` DBAL connections.
+- Added `config` DBAL connection and ORM entity manager. They can be used as a gateway for different kind of configuration data to improve performance of the default ORM entity manager. For example `OroEntityConfigBundle` uses them for entity configuration data.
+
+## 1.8.0
+
+### app/config/config.yml
+- Changed definition of `framework` / `templating` section. New definition is:
+``` yaml
+framework:
+    templating:
+        engines: ['twig', 'php']
+        assets_version: %assets_version%
+        assets_version_format: %%s?version=%%s
+```
+- Removed `twig` / `globals` / `ws` section. From now this declaration is located in `OroSyncBundle` bundle.
+- Removed `clank` section. From now this declaration is located in `OroSyncBundle` bundle.
+- Removed `doctrine.dbal.default.wrapped_connection` service.
+- Removed `session.handler.pdo` service. From now a declaration of this service is located in `OroPlatformBundle`. Remove this service from your `app/config/config.yml` to be sure that PDO session will work properly. If you need to override this service, you can keep it in your `app/config/config.yml`, but make sure that a default database connection is not used here. You can use `doctrine.dbal.session_connection.wrapped` service if sessions are stored in a main database.
+
+### app/Resources
+- Removed `app/Resources/DoctrineBundle/views/Collector/db.html.twig`.
+- Removed `app/Resources/SecurityBundle/views/Collector/security.html.twig`.
+- Removed `app/Resources/SwiftmailerBundle/views/Collector/swiftmailer.html.twig`.
+- Removed `app/Resources/WebProfilerBundle/views/Collector/config.html.twig`.
+- Removed `app/Resources/WebProfilerBundle/views/Collector/logger.html.twig`.
+- Removed `app/Resources/WebProfilerBundle/views/Collector/memory.html.twig`.
+- Removed `app/Resources/WebProfilerBundle/views/Collector/request.html.twig`.
+- Removed `app/Resources/WebProfilerBundle/views/Collector/time.html.twig`.
