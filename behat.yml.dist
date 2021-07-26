@@ -8,7 +8,7 @@ default: &default
     extensions:
         Behat\MinkExtension:
             base_url: 'http://dev-platform.local/'
-        Behat\Symfony2Extension: ~
+        FriendsOfBehat\SymfonyExtension: ~
         Oro\Bundle\TestFrameworkBundle\Behat\ServiceContainer\OroTestFrameworkExtension: ~
 
 chromedriver:
