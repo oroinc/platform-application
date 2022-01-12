@@ -25,8 +25,6 @@ parameters:
     session_handler:        session.handler.native_file
 
     secret:                 '%env(ORO_SECRET)%'
-    installed:              ~
-
     message_queue_transport: 'dbal'
     message_queue_transport_config: ~
 
