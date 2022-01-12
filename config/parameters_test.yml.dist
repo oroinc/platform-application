@@ -25,7 +25,6 @@ parameters:
     session_handler:        ~
 
     secret:                 '%env(ORO_SECRET)%'
-    installed:              ~
     message_queue_transport: 'null'
     message_queue_transport_config: {}
 
