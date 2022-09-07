@@ -41,7 +41,7 @@ All files from these directories must be moved to the new locations:
 - from `var/import_export` to `var/data/importexport`;
 - from `var/import_export/files` to `var/data/import_files`.
 
-The console command `oro:gaufrette:migrate-filestorages` will help to migrate the files to new structure.
+The console command `oro:gaufrette:migrate-filestorages` will help migrate the files to new structure.
 
 ### Routing
 
@@ -57,7 +57,7 @@ All files from these directories must be moved to the new locations:
 - from `var/import_export` to `var/data/importexport`;
 - from `var/import_export/files` to `var/data/import_files`.
 
-The console command `oro:gaufrette:migrate-filestorages` will help to migrate the files to new structure.
+The console command `oro:gaufrette:migrate-filestorages` will help migrate the files to new structure.
 
 The `public/uploads` directory has been removed.
 
