@@ -61,7 +61,8 @@
     "symfony/web-profiler-bundle": "~5.4.0",
     "friendsofphp/php-cs-fixer": "~3.4.0",
     "oro/twig-inspector": "1.0.*",
-    "oro/platform-documentation-examples": "5.0.x-dev"
+    "oro/platform-documentation-examples": "5.0.x-dev",
+    "oro/maker": "5.0.x-dev"
   },
   "config": {
     "bin-dir": "bin",
