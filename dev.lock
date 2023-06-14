@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "28ca94c47275f9ee78201d9de8a3b99a",
+    "content-hash": "f111a51136fee7cb485b2e71ec429872",
     "packages": [
         {
             "name": "ass/xmlsecurity",
@@ -6172,44 +6172,6 @@
             ],
             "description": "Business Application Platform (BAP)",
             "homepage": "https://github.com/oroinc/platform.git",
-            "transport-options": {
-                "relative": true
-            }
-        },
-        {
-            "name": "oro/platform-documentation-examples",
-            "version": "dev-master",
-            "dist": {
-                "type": "path",
-                "url": "../../documentation/code_examples/platform",
-                "reference": "2c16253b897ee829d94f8f7329053cad82ab5780"
-            },
-            "type": "symfony-bundle",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "5.1-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "ACME\\Bundle\\DemoBundle\\": "image_placeholder/demo/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Oro, Inc",
-                    "homepage": "http://www.orocrm.com"
-                }
-            ],
-            "description": "OroPlatform documentation examples",
-            "keywords": [
-                "OroPlatform",
-                "documentation",
-                "example"
-            ],
             "transport-options": {
                 "relative": true
             }
@@ -18180,7 +18142,6 @@
         "oro/oauth2-server": 20,
         "oro/calendar-bundle": 20,
         "oro/gridfs-config": 20,
-        "oro/platform-documentation-examples": 20,
         "oro/maker": 20
     },
     "prefer-stable": true,
