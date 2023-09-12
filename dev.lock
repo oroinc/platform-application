@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f111a51136fee7cb485b2e71ec429872",
+    "content-hash": "52861f57291270cd6a4ca6bb94c19294",
     "packages": [
         {
             "name": "ass/xmlsecurity",
@@ -5649,10 +5649,10 @@
             "dist": {
                 "type": "path",
                 "url": "../../package/calendar",
-                "reference": "959515b451c985d20353f5f7f00cf3bf451bd3cd"
+                "reference": "678754ea8401cbca5d637b9f4d02101709d83d15"
             },
             "require": {
-                "oro/platform": "5.1.*"
+                "oro/platform": "6.0.*"
             },
             "type": "symfony-bundle",
             "extra": {
@@ -5660,7 +5660,7 @@
                     "fullcalendar": "3.4.0"
                 },
                 "branch-alias": {
-                    "dev-master": "5.1-dev"
+                    "dev-master": "6.0-dev"
                 }
             },
             "autoload": {
@@ -5756,12 +5756,12 @@
             "dist": {
                 "type": "path",
                 "url": "../../package/gridfs-config",
-                "reference": "d99aced1921cb8d33308f3ad9fc2cebdc8491f9f"
+                "reference": "9499d30a60ca6c9af80851b4baa930d5069b8b06"
             },
             "require": {
                 "knplabs/knp-gaufrette-bundle": "~0.8.0",
                 "mongodb/mongodb": "1.15.*",
-                "oro/platform": "5.1.*"
+                "oro/platform": "6.0.*"
             },
             "require-dev": {
                 "phpunit/phpunit": "9.5.13"
@@ -5769,7 +5769,7 @@
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "5.1-dev"
+                    "dev-master": "6.0-dev"
                 }
             },
             "autoload": {
@@ -5808,18 +5808,18 @@
             "dist": {
                 "type": "path",
                 "url": "../../package/oauth2-server",
-                "reference": "5e34f71f00d4c9559dc96d1f6c079e04f1db2261"
+                "reference": "d8b17ec8b056588a4b2bf331e1243ce557f6735d"
             },
             "require": {
                 "ext-sodium": "*",
                 "league/oauth2-server": "~8.5.3",
-                "oro/platform": "5.1.*",
+                "oro/platform": "6.0.*",
                 "symfony/psr-http-message-bridge": "~2.1.1"
             },
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "5.1-dev"
+                    "dev-master": "6.0-dev"
                 }
             },
             "autoload": {
@@ -5856,7 +5856,7 @@
             "dist": {
                 "type": "path",
                 "url": "../../package/platform",
-                "reference": "3e51cac4b063e92756ed1d068fb5f734b62e3ab6"
+                "reference": "e3debc348ed89d10135d0ed250adf4213773a68e"
             },
             "require": {
                 "ass/xmlsecurity": "1.1.1",
@@ -5910,7 +5910,7 @@
                 "ocramius/proxy-manager": "~2.11.1",
                 "oro/api-doc-bundle": "2.0.0",
                 "oro/doctrine-extensions": "~2.0.2",
-                "oro/platform-serialised-fields": "5.1.*",
+                "oro/platform-serialised-fields": "6.0.*",
                 "php": "~8.2.0",
                 "php-http/httplug-bundle": "~1.27.0",
                 "phpdocumentor/reflection-docblock": "5.3.*",
@@ -6066,7 +6066,7 @@
                     "require": "~5.4.0"
                 },
                 "branch-alias": {
-                    "dev-master": "5.1-dev"
+                    "dev-master": "6.0-dev"
                 }
             },
             "autoload": {
@@ -6188,15 +6188,15 @@
             "dist": {
                 "type": "path",
                 "url": "../../package/serialized-fields",
-                "reference": "06290d23c2467c3d43d55ed2ac84a8bf5d9c729d"
+                "reference": "26995f4e406e22c5a026bac13550ffe15b284389"
             },
             "require": {
-                "oro/platform": "5.1.*"
+                "oro/platform": "6.0.*"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "5.1-dev"
+                    "dev-master": "6.0-dev"
                 }
             },
             "autoload": {
@@ -15609,16 +15609,16 @@
             "dist": {
                 "type": "path",
                 "url": "../../package/maker",
-                "reference": "147fa7e3159baaecf1f0d01bdcdd8d131104032c"
+                "reference": "bb26bd503af632682e89c21a86e45a29cc16de7c"
             },
             "require": {
-                "oro/platform": "5.1.*",
+                "oro/platform": "6.0.*",
                 "symfony/maker-bundle": "1.39"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "5.1-dev"
+                    "dev-master": "6.0-dev"
                 }
             },
             "autoload": {
