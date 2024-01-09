@@ -46,7 +46,7 @@ class AppKernel extends OroKernel
     /**
      * {@inheritdoc}
      */
-    public function getCacheDir()
+    public function getCacheDir(): string
     {
         return dirname(__DIR__).'/var/cache/'.$this->environment;
     }
@@ -54,7 +54,7 @@ class AppKernel extends OroKernel
     /**
      * {@inheritdoc}
      */
-    public function getLogDir()
+    public function getLogDir(): string
     {
         return dirname(__DIR__).'/var/logs';
     }
