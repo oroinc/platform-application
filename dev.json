@@ -24,11 +24,11 @@
   ],
   "require": {
     "php": "~8.3.0",
-    "oro/platform": "6.0.x-dev",
-    "oro/platform-serialised-fields": "6.0.x-dev",
-    "oro/oauth2-server": "6.0.x-dev",
-    "oro/calendar-bundle": "6.0.x-dev",
-    "oro/gridfs-config": "6.0.x-dev"
+    "oro/platform": "6.1.x-dev",
+    "oro/platform-serialised-fields": "6.1.x-dev",
+    "oro/oauth2-server": "6.1.x-dev",
+    "oro/calendar-bundle": "6.1.x-dev",
+    "oro/gridfs-config": "6.1.x-dev"
   },
   "require-dev": {
     "behat/behat": "~3.12.0",
@@ -55,7 +55,7 @@
     "symfony/web-profiler-bundle": "~6.4.0",
     "friendsofphp/php-cs-fixer": "~3.13.2",
     "oro/twig-inspector": "1.1.*",
-    "oro/maker": "6.0.x-dev"
+    "oro/maker": "6.1.x-dev"
   },
   "config": {
     "bin-dir": "bin",
