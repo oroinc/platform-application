@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d37bc1468ff1f4b53af598dea1d9c0cf",
+    "content-hash": "8746ad1065dd3004128e78e33772cf92",
     "packages": [
         {
             "name": "ass/xmlsecurity",
@@ -5669,7 +5669,7 @@
             "dist": {
                 "type": "path",
                 "url": "../../package/calendar",
-                "reference": "33114576bf8227e729e9ac7ede281742f5af9bf8"
+                "reference": "7136f751f3e987b417934789cd780fe266b4a878"
             },
             "require": {
                 "oro/platform": "6.1.*"
@@ -5697,7 +5697,7 @@
             "authors": [
                 {
                     "name": "Oro, Inc",
-                    "homepage": "http://www.orocrm.com"
+                    "homepage": "https://oroinc.com/"
                 }
             ],
             "description": "Calendar bundle for OroPlatform-based applications.\nSee https://doc.oroinc.com/user/back-office/activities/calendar-events/ for more information.",
@@ -5780,7 +5780,7 @@
             "dist": {
                 "type": "path",
                 "url": "../../package/gridfs-config",
-                "reference": "4fb7c160a4eca6aee714c6bbb4cb619219ff20cb"
+                "reference": "fdd43f1434821c3b267851025fb0d0e5c5008c2e"
             },
             "require": {
                 "knplabs/knp-gaufrette-bundle": "~0.8.0",
@@ -5810,7 +5810,7 @@
             "authors": [
                 {
                     "name": "Oro, Inc",
-                    "homepage": "http://oroinc.com"
+                    "homepage": "https://oroinc.com/"
                 }
             ],
             "description": "GridFS adapter configuration for Gaufrette",
@@ -5832,7 +5832,7 @@
             "dist": {
                 "type": "path",
                 "url": "../../package/oauth2-server",
-                "reference": "aa84e129d429e2672bf6275931dd175380732190"
+                "reference": "26d0ddce255d3b174ba340721c1515003b4b31aa"
             },
             "require": {
                 "ext-sodium": "*",
@@ -5860,7 +5860,7 @@
             "authors": [
                 {
                     "name": "Oro, Inc",
-                    "homepage": "http://oroinc.com"
+                    "homepage": "https://oroinc.com"
                 }
             ],
             "description": "Oro OAuth 2.0 authorization and resource server for BAP",
@@ -5880,7 +5880,7 @@
             "dist": {
                 "type": "path",
                 "url": "../../package/platform",
-                "reference": "af8c32b2350360f91f5b0c39f4e710e27944ad0c"
+                "reference": "ed2769cde4bc51fd5844f53e909bbec7ac580630"
             },
             "require": {
                 "ass/xmlsecurity": "1.1.1",
@@ -6199,7 +6199,7 @@
             "authors": [
                 {
                     "name": "Oro, Inc",
-                    "homepage": "http://www.orocrm.com"
+                    "homepage": "https://oroinc.com/"
                 }
             ],
             "description": "Business Application Platform (BAP)",
@@ -6214,7 +6214,7 @@
             "dist": {
                 "type": "path",
                 "url": "../../package/serialized-fields",
-                "reference": "4c918dbc2cf00e9e5e3a5a9bc4e485cd6fbbe9d0"
+                "reference": "1860365cfb616f5a7e778f0b2e3a540a379655e6"
             },
             "require": {
                 "oro/platform": "6.1.*"
@@ -6239,7 +6239,7 @@
             "authors": [
                 {
                     "name": "Oro, Inc",
-                    "homepage": "http://www.orocrm.com"
+                    "homepage": "https://oroinc.com/"
                 }
             ],
             "description": "OroPlatform Serialized Fields",
@@ -15790,7 +15790,7 @@
             "dist": {
                 "type": "path",
                 "url": "../../package/maker",
-                "reference": "65c0a63d48ad0283e0e25be79e7183158af42113"
+                "reference": "3b86521a1a30a56671a4c56230c87eb8f090a676"
             },
             "require": {
                 "oro/platform": "6.1.*",
@@ -15816,7 +15816,7 @@
             "authors": [
                 {
                     "name": "Oro, Inc",
-                    "homepage": "https://www.orocommerce.com"
+                    "homepage": "https://oroinc.com"
                 }
             ],
             "description": "Code generation/makers for Oro platform",
@@ -15830,7 +15830,7 @@
             "dist": {
                 "type": "path",
                 "url": "../../package/twig-inspector",
-                "reference": "6ec311c40e5cc491957e9f59b36d31009e58304a"
+                "reference": "185aed1b4c34aff0676267566f71390707e338cc"
             },
             "require": {
                 "php": ">=7.4",
@@ -15859,7 +15859,7 @@
             "authors": [
                 {
                     "name": "Oro, Inc",
-                    "homepage": "http://www.orocrm.com"
+                    "homepage": "https://oroinc.com/"
                 }
             ],
             "description": "Oro Twig Inspector adds the possibility to find twig templates and blocks used for rendering HTML pages faster during development",
