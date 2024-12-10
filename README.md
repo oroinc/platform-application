@@ -53,6 +53,6 @@ Resources
 License
 -------
 
-[MIT][1] Copyright (c) 2013 - 2017, Oro, Inc.
+[MIT][1] Copyright (c) 2024 Oro Inc.
 
 [1]:    LICENSE
