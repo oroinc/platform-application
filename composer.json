@@ -26,9 +26,9 @@
     },
     "require": {
         "php": "~8.5.0",
-        "oro/platform": "6.1.*",
-        "oro/platform-serialised-fields": "6.1.*",
-        "oro/oauth2-server": "6.1.*"
+        "oro/platform": "7.0.*",
+        "oro/platform-serialised-fields": "7.0.*",
+        "oro/oauth2-server": "7.0.*"
     },
     "require-dev": {
         "behat/behat": "~3.29.0",
