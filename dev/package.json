@@ -2,7 +2,7 @@
     "description": "THE FILE IS GENERATED PROGRAMMATICALLY, ALL MANUAL CHANGES IN DEPENDENCIES SECTION WILL BE LOST",
     "homepage": "https://doc.oroinc.com/master/frontend/javascript/composer-js-dependencies/",
     "main": "webpack.config.js",
-    "name": "platform",
+    "name": "platform-dev",
     "engines": {
         "node": ">=v24.11.0 <25",
         "pnpm": ">=v10.7.0"
@@ -50,6 +50,7 @@
         "datepair.js": "0.4.*",
         "flotr2": "0.1.0",
         "focus-visible": "5.2.1",
+        "fullcalendar": "3.4.0",
         "fuse.js": "6.6.2",
         "jquery": "3.7.*",
         "jquery-mousewheel": "3.1.13",
