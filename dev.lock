@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "640f7f085359c7a8371ddd9891c41bac",
+    "content-hash": "72a6bf9bea7d77f477be92e48cd515a3",
     "packages": [
         {
             "name": "ass/xmlsecurity",
@@ -5783,7 +5783,7 @@
             "dist": {
                 "type": "path",
                 "url": "../../package/platform",
-                "reference": "456ec1451b6f090af82226ba1e2eb6b9e8b71ff5"
+                "reference": "f25c2c009d5413925839c1f53107dcc091ae84c8"
             },
             "require": {
                 "ass/xmlsecurity": "1.1.1",
@@ -5924,7 +5924,7 @@
                 "oro/twig-inspector": "1.1.*",
                 "phpmd/phpmd": "~2.15.0",
                 "phpunit/phpunit": "~9.6.34",
-                "squizlabs/php_codesniffer": "~4.0.1",
+                "squizlabs/php_codesniffer": "~4.0.4",
                 "symfony/browser-kit": "~7.4.0",
                 "symfony/css-selector": "~7.4.0",
                 "symfony/debug-bundle": "~7.4.0",
